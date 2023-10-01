@@ -1,0 +1,261 @@
+[gd_scene load_steps=3 format=3 uid="uid://tmdi72a130so"]
+
+[ext_resource type="Script" path="res://scripts/ui/stats_window.gd" id="1_8wymx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbxhb"]
+size = Vector2(200, 24)
+
+[node name="stats_ui" type="Panel" node_paths=PackedStringArray("drag_area")]
+custom_minimum_size = Vector2(200, 300)
+offset_left = 476.0
+offset_top = 174.0
+offset_right = 676.0
+offset_bottom = 474.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_8wymx")
+drag_area = NodePath("VBoxContainer/title/drag_area")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 300.0
+
+[node name="title" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="stats" type="Label" parent="VBoxContainer/title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="drag_area" type="Area2D" parent="VBoxContainer/title"]
+
+[node name="drag_collider" type="CollisionShape2D" parent="VBoxContainer/title/drag_area"]
+position = Vector2(100, 12)
+shape = SubResource("RectangleShape2D_tbxhb")
+
+[node name="body" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/body"]
+layout_mode = 2
+
+[node name="name" type="Label" parent="VBoxContainer/body/VBoxContainer"]
+layout_mode = 2
+text = "Player"
+
+[node name="Control" type="Control" parent="VBoxContainer/body/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="attribute_points" type="Label" parent="VBoxContainer/body/VBoxContainer"]
+layout_mode = 2
+text = "Attribute Points"
+
+[node name="points" type="Label" parent="VBoxContainer/body/VBoxContainer/attribute_points"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 142.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/body/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="str" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Strength"
+
+[node name="str_value" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="str_buttons" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="str_buttons_parent" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer/str_buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="str_remove" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/str_buttons/str_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "-"
+
+[node name="str_add" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/str_buttons/str_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_left = 30.0
+offset_right = 54.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+"
+
+[node name="agi" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Agility"
+
+[node name="agi_value" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="agi_buttons" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="agi_buttons_parent" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer/agi_buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="agi_remove" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/agi_buttons/agi_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "-"
+
+[node name="agi_add" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/agi_buttons/agi_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_left = 30.0
+offset_right = 54.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+"
+
+[node name="dex" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Dexterity"
+
+[node name="dex_value" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="dex_buttons" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="dex_buttons_parent" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer/dex_buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="dex_remove" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/dex_buttons/dex_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "-"
+
+[node name="dex_add" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/dex_buttons/dex_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_left = 30.0
+offset_right = 54.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+"
+
+[node name="wis" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Wisdom"
+
+[node name="wis_value" type="Label" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="wis_buttons" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="wis_buttons_parent" type="Control" parent="VBoxContainer/body/VBoxContainer/GridContainer/wis_buttons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="wis_remove" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/wis_buttons/wis_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "-"
+
+[node name="wis_add" type="Button" parent="VBoxContainer/body/VBoxContainer/GridContainer/wis_buttons/wis_buttons_parent"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_left = 30.0
+offset_right = 54.0
+offset_bottom = 31.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "+"
+
+[node name="Label" type="Label" parent="VBoxContainer/body/VBoxContainer"]
+layout_mode = 2
+
+[node name="apply_button" type="Button" parent="VBoxContainer/body/VBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_top = 4.0
+offset_right = -2.0
+offset_bottom = 35.0
+grow_horizontal = 0
+text = "Apply"

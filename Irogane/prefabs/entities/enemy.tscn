@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3d50iupb8rug"]
+
+[ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="1_iro6g"]
+[ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="2_itryu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r67sv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u2a8l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oea8h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66wce"]
+albedo_color = Color(0.921569, 0, 0.337255, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t1jkw"]
+radius = 0.7
+
+[node name="enemy" type="CharacterBody3D"]
+script = ExtResource("1_iro6g")
+acceleration = 20
+rotation_speed = 5
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_r67sv")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_u2a8l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.45)
+mesh = SubResource("BoxMesh_oea8h")
+surface_material_override/0 = SubResource("StandardMaterial3D_66wce")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.6
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="step_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
+target_position = Vector3(0, -3, 0)
+
+[node name="interactive" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_itryu")
+dialogue = "farmer"
+interaction_text = "Talk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interactive"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_t1jkw")
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

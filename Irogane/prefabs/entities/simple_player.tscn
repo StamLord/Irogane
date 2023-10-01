@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bf35ipmkxwhhg"]
+
+[ext_resource type="Script" path="res://scripts/controls/player.gd" id="1_t76ld"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6p2i2"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_8wv25"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_al2lu"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_d5bj2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1fwdq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7fsyi"]
+height = 1.0
+
+[node name="Simple Player" type="CharacterBody3D"]
+script = ExtResource("1_t76ld")
+
+[node name="states" type="Node3D" parent="."]
+
+[node name="walk" type="Node" parent="states"]
+script = ExtResource("2_6p2i2")
+
+[node name="run" type="Node" parent="states"]
+script = ExtResource("3_8wv25")
+
+[node name="jump" type="Node" parent="states"]
+script = ExtResource("4_al2lu")
+
+[node name="air" type="Node" parent="states"]
+script = ExtResource("5_d5bj2")
+
+[node name="stand_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1fwdq")
+
+[node name="crouch_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_7fsyi")
+disabled = true
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+
+[node name="head_check" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+
+[node name="ledge_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)

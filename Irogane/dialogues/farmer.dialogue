@@ -1,0 +1,33 @@
+~ farmer_greetings
+farmer: [Nods and smiles] Greetings, traveler. What brings you to these humble fields?
+- I'm in need of some food. Do you have any crops to spare?
+	player: I'm in need of some food. Do you have any crops to spare?
+	farmer: Ah, times have been tough, and my family relies on these crops. But I can share some rice and vegetables with you. [Hands over a small bundle of food] May it sustain you on your journey.
+- I heard there's a war brewing. What can you tell me about the local situation?
+	player: I heard there's a war brewing. What can you tell me about the local situation?
+	farmer: Yes, rumors of war have been spreading like wildfire. The samurai clans are in conflict, and it's making life difficult for us farmers. We just hope the war doesn't reach our village.
+	- Is there anything I can do to help or contribute to the village's safety?
+		player: Is there anything I can do to help or contribute to the village's safety?
+		farmer: Your willingness to help is noble, but I'm not sure what can be done. Perhaps you can talk to the local lord or the village leader. They might have some insight or tasks for you.
+	- Do you think the war will affect your crops and livelihood?
+		player: Do you think the war will affect your crops and livelihood?
+		farmer: Oh, it most certainly will. War disrupts everything, and we rely on our crops to survive. If the war reaches us, it could mean famine for our village.
+	- Are there any places nearby that are particularly dangerous due to the war?
+		player: Are there any places nearby that are particularly dangerous due to the war?
+		farmer: The roads have become treacherous with bandits and wandering samurai looking for a fight. You should be cautious while traveling in these times.
+- I'm lost and looking for directions. Can you help me find my way?
+	player: I'm lost and looking for directions. Can you help me find my way?
+	farmer: Of course, I can help you with that. Where are you trying to go? [Provides directions to the player]
+- Tell me about your life as a farmer in these times.
+	player: Tell me about your life as a farmer in these times.
+	farmer: Life as a farmer is both challenging and rewarding. We toil in the fields from dawn till dusk, tending to our crops, hoping for a good harvest. It's a simple life, but it's one that sustains our families and our village. But with the war looming, we fear for the safety of our loved ones.
+	- What crops do you grow here?
+		player: What crops do you grow here?
+		farmer: We primarily grow rice, soybeans, and vegetables. Rice is the staple of our diet and a valuable commodity.
+	- How do you protect your crops from theft or wildlife?
+		player: How do you protect your crops from theft or wildlife?
+		farmer: We have a watchman who keeps an eye on the fields at night, and some of us take turns patrolling. It's essential to protect what little we have.
+	- What's the biggest challenge you face as a farmer in these times?
+		player: What's the biggest challenge you face as a farmer in these times?
+		farmer: The uncertainty of war is our greatest challenge. It threatens our way of life and the safety of our families. We can only hope for peace and a bountiful harvest.
+=> END

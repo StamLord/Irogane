@@ -1,0 +1,220 @@
+[gd_scene load_steps=25 format=3 uid="uid://bx4y44rdruyi7"]
+
+[ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
+[ext_resource type="Script" path="res://scripts/stats/stats.gd" id="2_dvgo6"]
+[ext_resource type="Script" path="res://scripts/stats/attribute.gd" id="3_6cm35"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_nkdgy"]
+[ext_resource type="Script" path="res://scripts/stats/attribute_dependant.gd" id="4_iytyv"]
+[ext_resource type="Script" path="res://scripts/stats/health.gd" id="4_rtbp0"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_y8at0"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_hicbf"]
+[ext_resource type="Script" path="res://scripts/stats/stamina.gd" id="6_afqpp"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Slide.gd" id="6_mtivl"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Crouch.gd" id="7_826s0"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Vault.gd" id="8_nprs7"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Glide.gd" id="9_c0lt0"]
+[ext_resource type="Script" path="res://scripts/controls/mouse_look.gd" id="9_nfdeu"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/ClimbRope.gd" id="10_7bwsl"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
+[ext_resource type="Script" path="res://scripts/controls/camera_copy.gd" id="17_6vema"]
+[ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
+[ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
+radius = 0.49
+height = 1.9
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_764jx"]
+radius = 0.45
+height = 0.9
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnn1b"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8nx1q"]
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state")]
+floor_constant_speed = true
+script = ExtResource("1_v2hnl")
+push_force = 2
+default_state = NodePath("states/walk")
+
+[node name="stats" type="Node" parent="."]
+script = ExtResource("2_dvgo6")
+
+[node name="strength" type="Node" parent="stats"]
+script = ExtResource("3_6cm35")
+
+[node name="agility" type="Node" parent="stats"]
+script = ExtResource("3_6cm35")
+
+[node name="dexterity" type="Node" parent="stats"]
+script = ExtResource("3_6cm35")
+
+[node name="wisdom" type="Node" parent="stats"]
+script = ExtResource("3_6cm35")
+
+[node name="health" type="Node" parent="stats" node_paths=PackedStringArray("max_value_source")]
+script = ExtResource("4_rtbp0")
+max_value_source = NodePath("values")
+value = 50
+auto_replenish_rate = 4
+
+[node name="values" type="Node" parent="stats/health" node_paths=PackedStringArray("attribute")]
+script = ExtResource("4_iytyv")
+attribute = NodePath("../../strength")
+values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
+
+[node name="stamina" type="Node" parent="stats" node_paths=PackedStringArray("max_value_source")]
+script = ExtResource("6_afqpp")
+max_value_source = NodePath("values")
+value = 50
+auto_replenish_rate = 4
+
+[node name="values" type="Node" parent="stats/stamina" node_paths=PackedStringArray("attribute")]
+script = ExtResource("4_iytyv")
+attribute = NodePath("../../agility")
+values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
+
+[node name="states" type="Node3D" parent="."]
+
+[node name="walk" type="Node" parent="states"]
+script = ExtResource("2_6iu14")
+
+[node name="run" type="Node" parent="states"]
+script = ExtResource("3_nkdgy")
+
+[node name="jump" type="Node" parent="states"]
+script = ExtResource("4_y8at0")
+
+[node name="air" type="Node" parent="states"]
+script = ExtResource("5_hicbf")
+
+[node name="slide" type="Node" parent="states"]
+script = ExtResource("6_mtivl")
+
+[node name="crouch" type="Node" parent="states"]
+script = ExtResource("7_826s0")
+
+[node name="vault" type="Node" parent="states"]
+script = ExtResource("8_nprs7")
+
+[node name="glide" type="Node" parent="states"]
+script = ExtResource("9_c0lt0")
+
+[node name="climb_rope" type="Node" parent="states"]
+script = ExtResource("10_7bwsl")
+push_force = 4
+ledge_mask = 1
+
+[node name="swim" type="Node" parent="states"]
+script = ExtResource("16_0qk7s")
+water_level = -1.475
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+script = ExtResource("9_nfdeu")
+
+[node name="main_camera" type="Camera3D" parent="head"]
+cull_mask = 1048573
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="head/main_camera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="head/main_camera/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="weapons_camera" type="Camera3D" parent="head/main_camera/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+cull_mask = 2
+script = ExtResource("17_6vema")
+
+[node name="weapon_manager" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+script = ExtResource("18_u5xda")
+
+[node name="melee" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.361343, -0.248307, 0)
+layers = 2
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347279, -0.136427, 0)
+layers = 2
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="sword" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/sword"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -0.226465, -0.666647)
+layers = 2
+size = Vector3(0.05, 1.5, 0.1)
+
+[node name="interaction" type="Node3D" parent="head/main_camera"]
+script = ExtResource("19_s7wsu")
+carry_layer = 4
+
+[node name="interact_check" type="RayCast3D" parent="head/main_camera/interaction"]
+visible = false
+target_position = Vector3(0, 0, -2)
+collision_mask = 5
+collide_with_areas = true
+debug_shape_custom_color = Color(0.407843, 0.862745, 0, 1)
+
+[node name="stand_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("CapsuleShape3D_rdctd")
+
+[node name="crouch_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_764jx")
+disabled = true
+
+[node name="head_check" type="RayCast3D" parent="."]
+target_position = Vector3(0, 1.9, 0)
+
+[node name="ledge_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.75)
+target_position = Vector3(0, -1.25, 0)
+
+[node name="wall_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25)
+target_position = Vector3(0, 0, -1)
+
+[node name="step_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
+target_position = Vector3(0, -3, 0)
+
+[node name="water_level_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+target_position = Vector3(0, -2, 0)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="rope_check" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+shape = SubResource("CapsuleShape3D_bnn1b")
+target_position = Vector3(0, 0, 0)
+collision_mask = 4
+
+[node name="water_check" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_8nx1q")
+target_position = Vector3(0, 0, 0)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false

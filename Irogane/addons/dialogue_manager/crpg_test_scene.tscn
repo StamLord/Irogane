@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cknnn4xc1ipob"]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/crpg_test_scene.gd" id="1_54bpx"]
+
+[node name="TestScene" type="Node2D"]
+script = ExtResource("1_54bpx")

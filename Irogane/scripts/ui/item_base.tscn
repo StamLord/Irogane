@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ube1kk4vlnm"]
+
+[ext_resource type="Texture2D" uid="uid://c5butioic5w78" path="res://assets/textures/icons/onigiri.png" id="1_xep2n"]
+
+[node name="ItemBase" type="TextureRect"]
+texture = ExtResource("1_xep2n")
