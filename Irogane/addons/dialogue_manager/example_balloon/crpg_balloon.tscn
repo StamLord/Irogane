@@ -57,7 +57,7 @@ ResponseLabel/base_type = &"RichTextLabel"
 ResponseLabel/styles/focus = SubResource("StyleBoxFlat_ikvxs")
 ResponseLabel/styles/normal = SubResource("StyleBoxFlat_ludo3")
 
-[node name="ExampleBalloon" type="CanvasLayer"]
+[node name="crpg_baloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_u7req")
 
@@ -74,21 +74,22 @@ offset_right = 450.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(450, 175)
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 theme = SubResource("Theme_qq3yp")
 
-[node name="Dialogue" type="MarginContainer" parent="Balloon"]
+[node name="MarginContainer" type="MarginContainer" parent="Balloon"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Dialogue"]
-layout_mode = 2
-
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer"]
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/MarginContainer"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
@@ -98,47 +99,65 @@ text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/Dialogue/VBoxContainer" instance=ExtResource("2_8ecxg")]
+[node name="MarginContainer2" type="MarginContainer" parent="Balloon/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="scroll_container" type="ScrollContainer" parent="Balloon/MarginContainer/MarginContainer2"]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="dialogue_container" type="VBoxContainer" parent="Balloon/MarginContainer/MarginContainer2/scroll_container"]
+unique_name_in_owner = true
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueLabel" parent="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container" instance=ExtResource("2_8ecxg")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 text = "Dialogue..."
 
-[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/Dialogue/VBoxContainer"]
+[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
+size_flags_vertical = 0
 script = ExtResource("3_k8w1a")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer/ResponsesMenu"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container/ResponsesMenu"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 text = "1. "
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer/ResponsesMenu"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container/ResponsesMenu"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 text = "2. "
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer/ResponsesMenu"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container/ResponsesMenu"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 text = "3. "
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer/ResponsesMenu"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container/ResponsesMenu"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 text = "4. "
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer/ResponsesMenu"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container/ResponsesMenu"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 focus_mode = 2
@@ -146,4 +165,4 @@ theme_override_font_sizes/normal_font_size = 18
 text = "5. "
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="response_selected" from="Balloon/Dialogue/VBoxContainer/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
+[connection signal="response_selected" from="Balloon/MarginContainer/MarginContainer2/scroll_container/dialogue_container/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
