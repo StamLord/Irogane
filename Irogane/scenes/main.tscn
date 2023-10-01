@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://2ivnx4h1jygn" path="res://assets/shaders/underwater.tres" id="3_j0iyi"]
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="3_mxwgm"]
 [ext_resource type="Script" path="res://scripts/procedural/rope.gd" id="3_xi6qj"]
-[ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://assets/shaders/underwater_2.tres" id="4_41qgg"]
+[ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://scenes/underwater_2.tres" id="4_41qgg"]
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="4_b71lg"]
 [ext_resource type="Texture2D" uid="uid://ohxrcax1elgi" path="res://assets/textures/vfx/flame_256.png" id="4_yh3rb"]
 [ext_resource type="PackedScene" uid="uid://tmdi72a130so" path="res://prefabs/ui/stats_ui.tscn" id="6_e1qy1"]
@@ -43,10 +43,11 @@ albedo_texture = ExtResource("1_q3we3")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wlfvs"]
 render_priority = 0
 shader = ExtResource("2_towa0")
-shader_parameter/speed2 = 0.1
+shader_parameter/wave_height = 1.0
+shader_parameter/displacement_speed = 0.1
 shader_parameter/color = Color(0.0745098, 0.392157, 0.611765, 1)
-shader_parameter/speed = 0.1
-shader_parameter/power = 1.25
+shader_parameter/visual_speed = 0.1
+shader_parameter/highlights = 1.25
 shader_parameter/edge_power = 20.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ifwhq"]
