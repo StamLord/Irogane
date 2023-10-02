@@ -641,9 +641,11 @@ size = Vector3(1, 0.1, 1)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("23_fxejx")
+on_text = "Close"
 on_position = Vector3(0.55, 0.5, 0)
 on_rotation = Vector3(0, 0, -90)
 animation_time = 1.0
+interaction_text = "Open"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stage/trap_door/interaction_area"]
 shape = SubResource("BoxShape3D_quplk")
@@ -658,9 +660,11 @@ size = Vector3(1, 0.1, 1)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("23_fxejx")
+on_text = "Close"
 on_position = Vector3(0.55, 0.5, 0)
 on_rotation = Vector3(0, 0, -90)
 animation_time = 1.0
+interaction_text = "Open"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stage/trap_door2/interaction_area"]
 shape = SubResource("BoxShape3D_quplk")
@@ -675,9 +679,11 @@ size = Vector3(1, 0.1, 1)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("23_fxejx")
+on_text = "Close"
 on_position = Vector3(0.55, 0.5, 0)
 on_rotation = Vector3(0, 0, -90)
 animation_time = 1.0
+interaction_text = "Open"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stage/trap_door3/interaction_area"]
 shape = SubResource("BoxShape3D_quplk")

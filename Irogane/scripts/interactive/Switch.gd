@@ -1,6 +1,7 @@
 extends Interactive
 
 @export var state : bool
+@export var on_text : String
 @export var on_position : Vector3
 @export var on_rotation : Vector3
 @export var animation_time : float
@@ -25,6 +26,8 @@ func use(interactor):
 		animate_position(origin_position + on_position, origin_position)
 		animate_rotation(origin_rotation + on_rotation, origin_rotation)
 	
+func get_text():
+	return on_text if state else interaction_text
 
 func animate_position(from, to):
 	is_animating_position = true
