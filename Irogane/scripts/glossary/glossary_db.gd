@@ -7,8 +7,8 @@ const GLOSSARY = {
 		"description" : "A name given to a variaty of colored, legendary metals."
 	},
 	"war" : {
-		"color" : "f30000",
-		"description" : "There is an ongoing war that takes place in across the land."
+		"color" : "ffa500",
+		"description" : "There is an ongoing war that takes place across the land."
 	}
 }
 
