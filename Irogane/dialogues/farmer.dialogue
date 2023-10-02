@@ -1,5 +1,5 @@
 ~ farmer_greetings
-farmer: [Nods and smiles] Greetings, traveler. Welcome to irogane. What brings you to these humble fields?
+farmer: [Nods and smiles] Greetings, traveler. Welcome to Irogane. What brings you to these humble fields?
 do GlossaryLearned.learn("irogane")
 - I'm in need of some food. Do you have any crops to spare?
 	player: I'm in need of some food. Do you have any crops to spare?

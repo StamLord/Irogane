@@ -188,7 +188,7 @@ func find_and_color_glossary_words(dialogue_line):
 	for char in dialogue_line:
 		# Reached end of a word
 		if char in [".", ",", " ", "!", "?"]:
-			var keyword = GlossaryDB.get_glossary(word)
+			var keyword = GlossaryDB.get_glossary(word.to_lower())
 			if keyword != null:
 				var color = keyword.data.color
 				word = "[color=" + color + "]" + word + "[/color]"
