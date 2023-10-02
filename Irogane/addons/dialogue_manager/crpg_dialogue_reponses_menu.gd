@@ -48,6 +48,13 @@ func set_responses(next_responses: Array[DialogueResponse]) -> void:
 
 ### Signals
 
+func _input(event):
+	if not visible: return
+	
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		get_viewport().set_input_as_handled()
+		select_current()
+	
 
 func _on_response_mouse_entered(item: Control) -> void:
 	if "Disallowed" in item.name: return
@@ -85,6 +92,8 @@ func _process(delta):
 	elif Input.is_action_just_pressed("scroll_up") or Input.is_action_just_pressed("ui_up"):
 		increment_focus(-1)
 
+func select_current():
+	select(focused)
 
 func select(index):
 	if index >= _responses.size() or index < 0:
