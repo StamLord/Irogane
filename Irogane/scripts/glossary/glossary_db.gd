@@ -1,0 +1,19 @@
+extends Node
+class_name GlossaryDB
+
+const GLOSSARY = {
+	"irogane" : {
+		"color" : "f30000",
+		"description" : "A name given to a variaty of colored, legendary metals."
+	},
+	"war" : {
+		"color" : "f30000",
+		"description" : "There is an ongoing war that takes place in across the land."
+	}
+}
+
+static func get_glossary(id):
+	if id in GLOSSARY:
+		return { "text" : id,
+				"data": GLOSSARY[id] }
+	return null

@@ -13,6 +13,8 @@ signal paused_typing(duration: float)
 ## Emitted when typing finishes.
 signal finished_typing()
 
+## Emits when a glossary keyword is found
+signal found_glossary_keyword(keyword)
 
 ## The action to press to skip typing.
 @export var skip_action: String = "ui_cancel"
@@ -28,6 +30,7 @@ signal finished_typing()
 var dialogue_line:
 	set(next_dialogue_line):
 		dialogue_line = next_dialogue_line
+		dialogue_line.text = find_and_color_glossary_words(dialogue_line.text)
 		custom_minimum_size = Vector2.ZERO
 		text = dialogue_line.text
 	get:
@@ -176,3 +179,36 @@ func _should_auto_pause() -> bool:
 		return false
 
 	return parsed_text[visible_characters - 1] in pause_at_characters.split()
+
+func find_and_color_glossary_words(dialogue_line):
+	var index = 0 # Counts char
+	var word = "" # Current word
+	var colored_string = ""
+	
+	for char in dialogue_line:
+		# Reached end of a word
+		if char in [".", ",", " ", "!", "?"]:
+			var keyword = GlossaryDB.get_glossary(word)
+			if keyword != null:
+				var color = keyword.data.color
+				word = "[color=" + color + "]" + word + "[/color]"
+			
+			colored_string += word 
+			colored_string += char
+			word = ""
+		else:
+			word += char
+		
+		index += 1
+	
+	# Add any leftover we might have if string ends abruptly without punctuation
+	if word != "":
+		var keyword = GlossaryDB.get_glossary(word)
+		if keyword != null:
+			var color = keyword.data.color
+			word = "[color=" + color + "]" + word + "[/color]"
+			found_glossary_keyword.emit(keyword)
+		
+		colored_string += word
+	
+	return colored_string

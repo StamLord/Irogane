@@ -2,6 +2,7 @@ extends Control
 class_name UIWindow
 
 @export var drag_area : Area2D
+@export var button : String
 
 var offset
 var dragging : bool
@@ -10,6 +11,16 @@ var mouse_in : bool
 
 func _ready():
 	set_drag_area()
+
+func _process(delta):
+	if button == null: return
+	
+	if Input.is_action_just_pressed(button):
+		if visible:
+			close()
+		else:
+			open()
+
 
 func set_drag_area():
 	if drag_area:

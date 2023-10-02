@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://tmdi72a130so"]
+[gd_scene load_steps=4 format=3 uid="uid://tmdi72a130so"]
 
 [ext_resource type="Script" path="res://scripts/ui/stats_window.gd" id="1_8wymx"]
+[ext_resource type="Theme" uid="uid://6snkhra24kq2" path="res://themes/ui_title.tres" id="2_k17nh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbxhb"]
 size = Vector2(200, 24)
@@ -32,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("2_k17nh")
 text = "Stats"
 horizontal_alignment = 1
 

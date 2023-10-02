@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxvwku347bsj8"]
+
+[ext_resource type="Script" path="res://scripts/ui/glossary_ui.gd" id="1_himdg"]
+[ext_resource type="Theme" uid="uid://6snkhra24kq2" path="res://themes/ui_title.tres" id="2_qkn24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvn77"]
+size = Vector2(535, 32)
+
+[node name="glossary_ui" type="Control" node_paths=PackedStringArray("drag_area")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 351.0
+offset_top = 78.0
+offset_right = 886.0
+offset_bottom = 484.0
+script = ExtResource("1_himdg")
+drag_area = NodePath("title/drag_area")
+button = "glossary"
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qkn24")
+
+[node name="title_label" type="Label" parent="title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Glossary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="drag_area" type="Area2D" parent="title"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="title/drag_area"]
+position = Vector2(267.5, 16)
+shape = SubResource("RectangleShape2D_bvn77")
+
+[node name="glossary" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -160.0
+offset_right = -6.0
+offset_bottom = 195.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="margin" type="MarginContainer" parent="glossary"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="glossary/margin"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="glossary/margin/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="description" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 7.0
+offset_top = -160.0
+offset_right = 405.0
+offset_bottom = 195.0
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="description_text" type="RichTextLabel" parent="description/margin"]
+layout_mode = 2
