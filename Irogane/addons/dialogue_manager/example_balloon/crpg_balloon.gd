@@ -26,22 +26,24 @@ var will_hide_balloon: bool = false
 var dialogue_line: DialogueLine:
 	set(next_dialogue_line):
 		is_waiting_for_input = false
-
+		
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
 			queue_free()
 			return
-
+		
 		dialogue_line = next_dialogue_line
 		
 		# Create new dialogue label
 		current_dialogue_label = create_dialogue_label()
 		
 		# Add character name
-		dialogue_line.text = dialogue_line.character.capitalize() + ": " + dialogue_line.text
+		if dialogue_line.character:
+			dialogue_line.text = dialogue_line.character.capitalize() + ": " + dialogue_line.text
 		
 		# Add new line after each node
-		dialogue_line.text += "\n "
+		if not dialogue_line.text.is_empty():	# Mutations call this method too 
+			dialogue_line.text += "\n "			# so we don't want to create new lines for them
 		
 		# Set text
 		current_dialogue_label.dialogue_line = dialogue_line
@@ -135,7 +137,7 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		current_dialogue_label.skip_typing()
 		return
-
+	
 	if not is_waiting_for_input: return
 	if dialogue_line.responses.size() > 0: return
 
