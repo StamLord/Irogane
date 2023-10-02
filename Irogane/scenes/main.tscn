@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=64 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -40,6 +40,42 @@ albedo_texture = ExtResource("1_q3we3")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tn2ew"]
 albedo_texture = ExtResource("1_q3we3")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yie4l"]
+material = SubResource("StandardMaterial3D_avcn8")
+size = Vector2(16, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xtai"]
+size = Vector3(16, 1, 0.05)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pohce"]
+load_path = "res://.godot/imported/grid_64x64_dark_2.png-8200311758e1ec099131e7db69b2e8dd.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84gqu"]
+albedo_texture = SubResource("CompressedTexture2D_pohce")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_wnfgr"]
+material = SubResource("StandardMaterial3D_84gqu")
+size = Vector2(7, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uaq1y"]
+load_path = "res://.godot/imported/grid_64x64_dark_2.png-8200311758e1ec099131e7db69b2e8dd.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4om81"]
+albedo_texture = SubResource("CompressedTexture2D_uaq1y")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_2c440"]
+material = SubResource("StandardMaterial3D_4om81")
+size = Vector2(7, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ymkx0"]
+size = Vector3(7, 1, 0.05)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wlfvs"]
 render_priority = 0
@@ -195,10 +231,25 @@ font_size = 24
 [node name="navmesh" type="NavigationRegion3D" parent="stage"]
 navigation_mesh = SubResource("NavigationMesh_vd5j8")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="stage/navmesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="floor" type="CSGCombiner3D" parent="stage/navmesh"]
 use_collision = true
-size = Vector3(20, 1, 20)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stage/navmesh/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+size = Vector3(20, 2, 20)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="stage/navmesh/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.499, -8)
+operation = 2
+size = Vector3(18, 1, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="stage/navmesh/floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, -0.499, 0.5)
+operation = 2
+size = Vector3(16, 1, 1)
 material = SubResource("StandardMaterial3D_avcn8")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="stage/navmesh"]
@@ -422,6 +473,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 4)
 use_collision = true
 size = Vector3(2, 0.25, 1)
 material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="tunnel_cover" type="StaticBody3D" parent="stage/navmesh"]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, 0, 0, -8)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stage/navmesh/tunnel_cover"]
+mesh = SubResource("QuadMesh_yie4l")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="stage/navmesh/tunnel_cover"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_yie4l")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/navmesh/tunnel_cover"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_0xtai")
+
+[node name="tunnel_cover2" type="StaticBody3D" parent="stage/navmesh"]
+transform = Transform3D(-4.37114e-08, -1, 1.31134e-07, 0, 1.31134e-07, 1, -1, 4.37114e-08, -5.73206e-15, 8.5, 0, 4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stage/navmesh/tunnel_cover2"]
+mesh = SubResource("QuadMesh_wnfgr")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="stage/navmesh/tunnel_cover2"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_2c440")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/navmesh/tunnel_cover2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_ymkx0")
+
+[node name="tunnel_cover3" type="StaticBody3D" parent="stage/navmesh"]
+transform = Transform3D(-4.37114e-08, -1, 1.31134e-07, 0, 1.31134e-07, 1, -1, 4.37114e-08, -5.73206e-15, 8.5, 0, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="stage/navmesh/tunnel_cover3"]
+mesh = SubResource("QuadMesh_wnfgr")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="stage/navmesh/tunnel_cover3"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_2c440")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stage/navmesh/tunnel_cover3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+shape = SubResource("BoxShape3D_ymkx0")
 
 [node name="water" type="Node3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -1.475, -5)
