@@ -31,9 +31,8 @@ signal press_time_update(time)
 signal too_heavy(weight)
 
 func _input(event):
-	if is_carrying and event is InputEventMouseButton:
-		if event.is_pressed():
-			throw_carry_object()
+	if is_carrying and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		throw_carry_object()
 
 func _process(delta):
 	if is_carrying:
