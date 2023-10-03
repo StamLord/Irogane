@@ -22,9 +22,7 @@ var percentage : float
 
 func Enter(body):
 	direction = body.last_direction
-	
-	# Freeze CharacterBody so we can move it ourselves
-	body.disable_mode = CollisionObject3D.DisableMode.DISABLE_MODE_MAKE_STATIC
+	body.velocity = Vector3.ZERO
 	
 	rope = find_closest_rope(rope_check.global_position)
 	if rope != null:
@@ -68,16 +66,17 @@ func PhysicsUpdate(body, delta):
 	
 	# Jump State
 	if Input.is_action_just_pressed("jump"):
+		disable_rope_check(0.5)
 		Transitioned.emit(self, "jump")
 		return
 	
 	# Fall off
 	if Input.is_action_just_pressed("crouch"):
+		disable_rope_check(0.5)
 		Transitioned.emit(self, "air")
 		return
 	
 	# Vault State
-	print("ledge: " + str(ledge_check.is_colliding()))
 	if input_dir.y < 0 and ledge_check.is_colliding():
 		# Verify we have enough head room
 		var ledge_position = ledge_check.get_collision_point()
@@ -94,8 +93,8 @@ func PhysicsUpdate(body, delta):
 		return
 
 func Exit(body):
+	body.last_direction = Vector3.ZERO
 	body.last_speed = speed
-	body.disable_mode = CollisionObject3D.DisableMode.DISABLE_MODE_KEEP_ACTIVE
 
 func find_closest_rope(position):
 	# Find all ropes
@@ -144,3 +143,8 @@ func parent_to_segment(body, segment):
 	
 	offset = (rope_check.global_position - rope_segment.global_position).normalized() * 0.25
 	print(rope_segment)
+
+func disable_rope_check(duration):
+	rope_check.enabled = false
+	await get_tree().create_timer(duration).timeout
+	rope_check.enabled = true
