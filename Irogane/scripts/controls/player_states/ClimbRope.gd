@@ -22,12 +22,15 @@ var percentage : float
 
 func Enter(body):
 	direction = body.last_direction
-	body.velocity = Vector3.ZERO
 	
 	rope = find_closest_rope(rope_check.global_position)
 	if rope != null:
 		rope_segment_index = rope.get_closest_segment_index(rope_check.global_position)
 		parent_to_segment(body, rope.rope[rope_segment_index])
+		rope_segment.apply_force(body.velocity * 100)
+	
+	# Reset body velocity
+	body.velocity = Vector3.ZERO
 	
 func Update(delta):
 	pass
