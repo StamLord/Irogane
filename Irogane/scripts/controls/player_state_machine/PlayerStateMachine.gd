@@ -32,7 +32,6 @@ func _process(delta):
 func _physics_process(delta):
 	# State Process
 	if current_state:
-		last_direction = current_state.direction
 		current_state.PhysicsUpdate(self, delta)
 	
 	var current_speed = 5

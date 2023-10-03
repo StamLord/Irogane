@@ -98,4 +98,4 @@ func PhysicsUpdate(body, delta):
 		return
 	
 func Exit(body):
-	pass
+	body.last_direction = direction

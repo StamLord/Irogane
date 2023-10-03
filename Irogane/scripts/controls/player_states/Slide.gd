@@ -67,6 +67,7 @@ func PhysicsUpdate(body, delta):
 		return
 
 func Exit(body):
+	body.last_direction = direction
 	body.last_speed = speed / speed_multiplier # Fix the speed back to what it was before slide
 	
 	# Switch to stand collider

@@ -7,7 +7,7 @@ class_name Jump
 var direction = Vector3.ZERO
 
 func Enter(body):
-	direction = body.last_direction
+	pass
 
 func Update(_delta):
 	pass

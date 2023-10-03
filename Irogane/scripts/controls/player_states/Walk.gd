@@ -67,6 +67,7 @@ func PhysicsUpdate(body, delta):
 		return
 
 func Exit(body):
+	body.last_direction = direction
 	body.last_speed = speed
 
 func is_step(body, input_dir):
