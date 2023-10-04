@@ -13,12 +13,15 @@ class_name ClimbRope
 @export_flags_3d_physics var ledge_mask
 
 var direction = Vector3.ZERO
-
+var vertical_direction : float
 var rope : Rope
 var rope_segment_index : int
 var rope_segment
 var offset : Vector3
 var percentage : float
+
+signal climb_rope_started()
+signal climb_rope_ended()
 
 func Enter(body):
 	direction = body.last_direction
@@ -31,15 +34,16 @@ func Enter(body):
 	
 	# Reset body velocity
 	body.velocity = Vector3.ZERO
-	
+	climb_rope_started.emit()
+
 func Update(delta):
 	pass
 
 func PhysicsUpdate(body, delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	#direction = rope.get_direction_to_segment(body.global_position, rope_segment_index) * -input_dir.y
+	vertical_direction = input_dir.y
 	
-	percentage += input_dir.y * speed * delta
+	percentage += vertical_direction * speed * delta
 	percentage = clampf(percentage, 0.0, 1.0)
 	
 	# Switch segment
@@ -98,6 +102,7 @@ func PhysicsUpdate(body, delta):
 func Exit(body):
 	body.last_direction = Vector3.ZERO
 	body.last_speed = speed
+	climb_rope_ended.emit()
 
 func find_closest_rope(position):
 	# Find all ropes

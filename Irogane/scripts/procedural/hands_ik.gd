@@ -1,8 +1,8 @@
 extends Node3D
 class_name hands_ik
 
-@export var left_hand : SkeletonIK3D
-@export var right_hand : SkeletonIK3D
+@onready var left_hand : SkeletonIK3D = $RootNode/first_person_rig/Skeleton3D/left_hand_ik
+@onready var right_hand : SkeletonIK3D = $RootNode/first_person_rig/Skeleton3D/right_hand_ik
 
 var target_left : Vector3
 var target_right : Vector3

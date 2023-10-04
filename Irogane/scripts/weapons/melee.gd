@@ -21,8 +21,14 @@ extends Node3D
 @export var max_display_moves = 10
 
 @onready var vault = $"../../../../../../../states/vault"
+@onready var air = $"../../../../../../../states/air"
+@onready var swim = $"../../../../../../../states/swim"
+@onready var climb_rope = $"../../../../../../../states/climb_rope"
+
 @onready var anim_tree : AnimationTree = $first_person_rig/AnimationTree
 @onready var anim_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/StateMachine/playback"]
+@onready var anim_idle_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/StateMachine/idle/playback"]
+
 @onready var anim_hands_ik = $first_person_rig
 
 @onready var moves_container = $moves_display/moves_container
@@ -30,17 +36,33 @@ extends Node3D
 var combo = ""
 var last_combo_addition = 0
 
+var is_swimming = false
+var is_climb_rope = false
+
 func _ready():
+	air.air_started.connect(start_animate_air)
+	air.air_ended.connect(stop_animate_air)
+	
 	vault.vault_started.connect(start_animate_vault)
 	vault.vault_ended.connect(stop_animate_vault)
+	
+	swim.swim_started.connect(start_animate_swim)
+	swim.swim_ended.connect(stop_animate_swim)
+	
+	climb_rope.climb_rope_started.connect(start_animate_climb_rope)
+	climb_rope.climb_rope_ended.connect(stop_animate_climb_rope)
 
 func _process(delta):
+	if is_swimming:
+		anim_tree["parameters/StateMachine/idle/swim/blend/blend_amount"] = swim.direction.length()
+	elif is_climb_rope:
+		anim_tree["parameters/StateMachine/idle/climb_rope/blend/blend_amount"] = climb_rope.vertical_direction
 	
 	if Input.is_action_just_pressed("defend"):
 		anim_state_machine.start("defend_start")
 		add_to_combo("d")
 	elif anim_state_machine.get_current_node() == "defend" and not Input.is_action_pressed("defend"):
-		anim_state_machine.start("idle")
+		anim_state_machine.travel("idle")
 	elif Input.is_action_just_pressed("attack_primary"):
 		#if valid_state_for_input():
 		anim_state_machine.start("left")
@@ -138,6 +160,12 @@ func highlight_display_combo(length):
 	for i in range(length):
 		moves_container.get_child(count - 1 - i).add_theme_color_override("font_color", Color.RED)
 
+func start_animate_air():
+	anim_idle_state_machine.travel("air")
+	
+func stop_animate_air():
+	anim_idle_state_machine.travel("idle")
+
 func start_animate_vault(ledge_position):
 	anim_state_machine.start("open_hands")
 	anim_hands_ik.start_ik()
@@ -147,3 +175,19 @@ func start_animate_vault(ledge_position):
 func stop_animate_vault(ledge_position):
 	anim_state_machine.start("idle")
 	anim_hands_ik.stop_ik()
+
+func start_animate_swim():
+	anim_idle_state_machine.travel("swim")
+	is_swimming = true
+	
+func stop_animate_swim():
+	anim_idle_state_machine.travel("idle")
+	is_swimming = false
+
+func start_animate_climb_rope():
+	anim_idle_state_machine.travel("climb_rope")
+	is_climb_rope = true
+	
+func stop_animate_climb_rope():
+	anim_idle_state_machine.travel("idle")
+	is_climb_rope = false

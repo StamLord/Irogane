@@ -20,12 +20,16 @@ var direction = Vector3.ZERO
 var speed = 0
 var current_air_jump = 0
 
+signal air_started()
+signal air_ended()
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func Enter(body):
 	direction = body.last_direction
 	speed = body.last_speed
+	air_started.emit()
 
 func Update(delta):
 	pass
@@ -99,3 +103,4 @@ func PhysicsUpdate(body, delta):
 	
 func Exit(body):
 	body.last_direction = direction
+	air_ended.emit()

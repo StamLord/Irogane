@@ -17,8 +17,12 @@ class_name Swim
 
 var direction = Vector3.ZERO
 
+signal swim_started()
+signal swim_ended()
+
 func Enter(body):
 	direction = body.last_direction
+	swim_started.emit()
 
 func Update(delta):
 	pass
@@ -74,3 +78,4 @@ func PhysicsUpdate(body, delta):
 	
 func Exit(body):
 	body.last_direction = direction
+	swim_ended.emit()
