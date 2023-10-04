@@ -22,6 +22,9 @@ class_name Glide
 var direction = Vector3.ZERO
 var speed = 0
 
+signal glide_started()
+signal glide_ended()
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier
 
@@ -31,6 +34,7 @@ func Enter(body):
 	
 	# Reset falling
 	body.velocity.y = 0
+	glide_started.emit()
 
 func Update(delta):
 	pass
@@ -97,3 +101,4 @@ func PhysicsUpdate(body, delta):
 
 func Exit(body):
 	body.last_direction = direction
+	glide_ended.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dq6tiqj0gtm6u"]
+[gd_scene load_steps=59 format=3 uid="uid://dq6tiqj0gtm6u"]
 
 [ext_resource type="PackedScene" uid="uid://c54hb80sgqu3t" path="res://assets/models/first_person_rig.fbx" id="1_a1su1"]
 [ext_resource type="Script" path="res://scripts/procedural/hands_ik.gd" id="2_50ecj"]
@@ -39,6 +39,9 @@ nodes/blend/position = Vector2(60, 60)
 nodes/output/position = Vector2(220, 120)
 node_connections = [&"output", 0, &"blend", &"blend", 0, &"Animation 3", &"blend", 1, &"Animation 2", &"blend", 2, &"Animation"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5vpgu"]
+animation = &"first_person_rig|unarmed_glide"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6i3wk"]
 animation = &"first_person_rig|unarmed_idle"
 
@@ -78,17 +81,42 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ykky"]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q7cle"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iay16"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dvsb4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2gc7"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ae4ma"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h72lk"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4vf0"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t712a"]
+xfade_time = 0.1
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_li0bv"]
 states/air/node = SubResource("AnimationNodeAnimation_4lbs4")
 states/air/position = Vector2(597, 100)
 states/climb_rope/node = SubResource("AnimationNodeBlendTree_kh2ps")
-states/climb_rope/position = Vector2(614, 203)
+states/climb_rope/position = Vector2(597, -31)
+states/glide/node = SubResource("AnimationNodeAnimation_5vpgu")
+states/glide/position = Vector2(794, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_6i3wk")
-states/idle/position = Vector2(473, 100)
+states/idle/position = Vector2(368, 100)
 states/swim/node = SubResource("AnimationNodeBlendTree_ajddp")
-states/swim/position = Vector2(473, 203)
-transitions = ["idle", "air", SubResource("AnimationNodeStateMachineTransition_qr7u4"), "air", "idle", SubResource("AnimationNodeStateMachineTransition_e4gxj"), "idle", "swim", SubResource("AnimationNodeStateMachineTransition_i1tv8"), "swim", "air", SubResource("AnimationNodeStateMachineTransition_ixbq4"), "air", "swim", SubResource("AnimationNodeStateMachineTransition_r0gj4"), "swim", "idle", SubResource("AnimationNodeStateMachineTransition_4ykky")]
-graph_offset = Vector2(-61, 57)
+states/swim/position = Vector2(481, 189)
+transitions = ["idle", "air", SubResource("AnimationNodeStateMachineTransition_qr7u4"), "air", "idle", SubResource("AnimationNodeStateMachineTransition_e4gxj"), "idle", "swim", SubResource("AnimationNodeStateMachineTransition_i1tv8"), "swim", "air", SubResource("AnimationNodeStateMachineTransition_ixbq4"), "air", "swim", SubResource("AnimationNodeStateMachineTransition_r0gj4"), "swim", "idle", SubResource("AnimationNodeStateMachineTransition_4ykky"), "climb_rope", "air", SubResource("AnimationNodeStateMachineTransition_q7cle"), "air", "climb_rope", SubResource("AnimationNodeStateMachineTransition_iay16"), "glide", "climb_rope", SubResource("AnimationNodeStateMachineTransition_dvsb4"), "climb_rope", "glide", SubResource("AnimationNodeStateMachineTransition_f2gc7"), "glide", "air", SubResource("AnimationNodeStateMachineTransition_ae4ma"), "air", "glide", SubResource("AnimationNodeStateMachineTransition_h72lk"), "idle", "climb_rope", SubResource("AnimationNodeStateMachineTransition_g4vf0"), "climb_rope", "idle", SubResource("AnimationNodeStateMachineTransition_t712a")]
+graph_offset = Vector2(-32, -50)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4omb"]
 animation = &"first_person_rig|unarmed_left"

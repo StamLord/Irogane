@@ -24,6 +24,7 @@ extends Node3D
 @onready var air = $"../../../../../../../states/air"
 @onready var swim = $"../../../../../../../states/swim"
 @onready var climb_rope = $"../../../../../../../states/climb_rope"
+@onready var glide = $"../../../../../../../states/glide"
 
 @onready var anim_tree : AnimationTree = $first_person_rig/AnimationTree
 @onready var anim_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/StateMachine/playback"]
@@ -51,6 +52,9 @@ func _ready():
 	
 	climb_rope.climb_rope_started.connect(start_animate_climb_rope)
 	climb_rope.climb_rope_ended.connect(stop_animate_climb_rope)
+	
+	glide.glide_started.connect(start_animate_glide)
+	glide.glide_ended.connect(stop_animate_glide)
 
 func _process(delta):
 	if is_swimming:
@@ -191,3 +195,9 @@ func start_animate_climb_rope():
 func stop_animate_climb_rope():
 	anim_idle_state_machine.travel("idle")
 	is_climb_rope = false
+	
+func start_animate_glide():
+	anim_idle_state_machine.travel("glide")
+	
+func stop_animate_glide():
+	anim_idle_state_machine.travel("idle")
