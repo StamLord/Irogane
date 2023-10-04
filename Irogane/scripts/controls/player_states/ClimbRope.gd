@@ -17,7 +17,6 @@ var vertical_direction : float
 var rope : Rope
 var rope_segment_index : int
 var rope_segment
-var offset : Vector3
 var percentage : float
 
 signal climb_rope_started()
@@ -57,8 +56,8 @@ func PhysicsUpdate(body, delta):
 		parent_to_segment(body, rope.rope[rope_segment_index])
 	
 	# Update position
-	var rope_check_offset = body.global_position - rope_check.global_position
-	body.global_position = lerp(body.global_position, rope.get_position_on_segment(rope_segment_index, percentage) + rope_segment.basis * offset + rope_check_offset, delta * 20)
+	#var rope_check_offset = body.global_position - rope_check.global_position
+	body.global_position = lerp(body.global_position, rope.get_position_on_segment(rope_segment_index, percentage) + body.basis * Vector3.BACK * 0.5, delta * 20)
 	
 	# Apply forces to rope horizontally
 	if Input.is_action_pressed("left"):
@@ -148,8 +147,6 @@ func FindClosestRopeSegment(position):
 			
 func parent_to_segment(body, segment):
 	rope_segment = segment
-	
-	offset = (rope_check.global_position - rope_segment.global_position).normalized() * 0.25
 	print(rope_segment)
 
 func disable_rope_check(duration):
