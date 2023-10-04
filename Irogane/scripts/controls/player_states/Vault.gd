@@ -21,6 +21,9 @@ var startPos
 var duration
 var is_crouch
 
+signal vault_started(ledge_position)
+signal vault_ended()
+
 func Enter(body):
 	# Reset direction so we don't continue moving in next state
 	body.last_direction = Vector3.ZERO
@@ -50,6 +53,8 @@ func Enter(body):
 	
 	if is_crouch:
 		head.ChangeHeight(crouch_head_height, 0.2)
+		
+	vault_started.emit(target_position)
 
 func Update(delta):
 	pass
@@ -79,3 +84,5 @@ func Exit(body):
 		crouch_collider.disabled = false
 	else:
 		stand_collider.disabled = false
+		
+	vault_ended.emit(target_position)
