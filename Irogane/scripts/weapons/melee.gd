@@ -26,10 +26,10 @@ extends Node3D
 @onready var climb_rope = $"../../../../../../../states/climb_rope"
 @onready var glide = $"../../../../../../../states/glide"
 
+const anim_idle_path = "parameters/StateMachine/idle"
 @onready var anim_tree : AnimationTree = $first_person_rig/AnimationTree
 @onready var anim_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/StateMachine/playback"]
-@onready var anim_idle_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/StateMachine/idle/playback"]
-
+@onready var anim_idle_state_machine : AnimationNodeStateMachinePlayback = anim_tree[anim_idle_path + "/playback"]
 @onready var anim_hands_ik = $first_person_rig
 
 @onready var moves_container = $moves_display/moves_container
@@ -39,6 +39,8 @@ var last_combo_addition = 0
 
 var is_swimming = false
 var is_climb_rope = false
+
+var last_swim_input = Vector2.ZERO
 
 func _ready():
 	air.air_started.connect(start_animate_air)
@@ -58,7 +60,11 @@ func _ready():
 
 func _process(delta):
 	if is_swimming:
-		anim_tree["parameters/StateMachine/idle/swim/blend/blend_amount"] = swim.direction.length()
+		last_swim_input = lerp(last_swim_input, swim.input_dir, delta * 10)
+		if abs(last_swim_input.y) > 0.1:
+			anim_tree["parameters/StateMachine/idle/swim/blend/blend_position"] = Vector2(0, -last_swim_input.y)
+		else:
+			anim_tree["parameters/StateMachine/idle/swim/blend/blend_position"] = Vector2(last_swim_input.x, -last_swim_input.y)
 	elif is_climb_rope:
 		anim_tree["parameters/StateMachine/idle/climb_rope/blend/blend_amount"] = climb_rope.vertical_direction
 	
@@ -166,9 +172,11 @@ func highlight_display_combo(length):
 
 func start_animate_air():
 	anim_idle_state_machine.travel("air")
+	anim_tree["parameters/StateMachine/idle/conditions/is_air"] = true
 	
 func stop_animate_air():
 	anim_idle_state_machine.travel("idle")
+	anim_tree["parameters/StateMachine/idle/conditions/is_air"] = false
 
 func start_animate_vault(ledge_position):
 	anim_state_machine.start("open_hands")
@@ -183,21 +191,27 @@ func stop_animate_vault(ledge_position):
 func start_animate_swim():
 	anim_idle_state_machine.travel("swim")
 	is_swimming = true
+	anim_tree[anim_idle_path + "/conditions/is_swim"] = true
 	
 func stop_animate_swim():
 	anim_idle_state_machine.travel("idle")
 	is_swimming = false
+	anim_tree[anim_idle_path + "/conditions/is_swim"] = false
 
 func start_animate_climb_rope():
 	anim_idle_state_machine.travel("climb_rope")
 	is_climb_rope = true
+	anim_tree[anim_idle_path + "/conditions/is_climb_rope"] = true
 	
 func stop_animate_climb_rope():
 	anim_idle_state_machine.travel("idle")
 	is_climb_rope = false
+	anim_tree[anim_idle_path + "/conditions/is_climb_rope"] = false
 	
 func start_animate_glide():
 	anim_idle_state_machine.travel("glide")
+	anim_tree[anim_idle_path + "/conditions/is_glide"] = true
 	
 func stop_animate_glide():
 	anim_idle_state_machine.travel("idle")
+	anim_tree[anim_idle_path + "/conditions/is_glide"] = false

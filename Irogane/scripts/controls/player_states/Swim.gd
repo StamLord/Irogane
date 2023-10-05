@@ -15,6 +15,7 @@ class_name Swim
 @export var surface_offset = -1.0
 @export var default_water_level = -0.75
 
+var input_dir = Vector2.ZERO
 var direction = Vector3.ZERO
 
 signal swim_started()
@@ -28,8 +29,7 @@ func Update(delta):
 	pass
 	
 func PhysicsUpdate(body, delta):
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	
+	input_dir = Input.get_vector("left", "right", "forward", "backward")
 	# Use head's transform to move in 3D
 	direction = lerp(direction, (head.get_global_transform().basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * acceleration)
 	
