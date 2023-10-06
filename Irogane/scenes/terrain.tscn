@@ -1,0 +1,289 @@
+[gd_scene load_steps=41 format=3 uid="uid://vxv851a77q3i"]
+
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_13ljh"]
+[ext_resource type="PackedScene" uid="uid://dubpen4xt6yuf" path="res://assets/models/import/structure_003_1.tscn" id="1_mi5yd"]
+[ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_vcd13"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_8rfxo"]
+[ext_resource type="Texture2D" uid="uid://b5up57x8k611s" path="res://assets/textures/env/dirt2.png" id="2_ew8uk"]
+[ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="2_gyuak"]
+[ext_resource type="PackedScene" uid="uid://v7vjke6iamn8" path="res://assets/models/import/structure_004_3.tscn" id="3_lftor"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="4_1c65y"]
+[ext_resource type="PackedScene" uid="uid://cf3dcyrcqttbt" path="res://assets/models/import/structure_008_15.tscn" id="4_1i17h"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="5_i5qce"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_grid.gd" id="5_n5hfh"]
+[ext_resource type="PackedScene" uid="uid://ddigxobrx6wkn" path="res://assets/models/import/structure_006_11.tscn" id="5_x523h"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="6_2u126"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="6_c74vt"]
+[ext_resource type="PackedScene" uid="uid://bfjehlfwhkxns" path="res://assets/models/import/structure_002_8.tscn" id="6_f61c6"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="7_3sjpl"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="8_r2pjr"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="9_tu20j"]
+[ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="19_tggc6"]
+[ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="20_d6kx8"]
+[ext_resource type="PackedScene" uid="uid://bi8n5t3pidiyf" path="res://prefabs/ui/hud.tscn" id="21_w5rbm"]
+[ext_resource type="PackedScene" uid="uid://tmdi72a130so" path="res://prefabs/ui/stats_ui.tscn" id="22_byid1"]
+[ext_resource type="PackedScene" uid="uid://bhr6cskoy2tmy" path="res://prefabs/ui/inventory_ui.tscn" id="23_giv86"]
+[ext_resource type="Texture2D" uid="uid://cc70hxhf5av80" path="res://assets/textures/ui/cursor/hollow_circle_shadow.png" id="24_6r7g2"]
+[ext_resource type="Script" path="res://scripts/ui/carry_progress_bar.gd" id="25_v0i03"]
+[ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="26_teyy2"]
+[ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="27_ufo5s"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n1aco"]
+panorama = ExtResource("1_vcd13")
+
+[sub_resource type="Sky" id="Sky_0i6g1"]
+sky_material = SubResource("PanoramaSkyMaterial_n1aco")
+
+[sub_resource type="Environment" id="Environment_8nnr5"]
+background_mode = 2
+sky = SubResource("Sky_0i6g1")
+fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
+fog_density = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqowx"]
+albedo_texture = ExtResource("2_ew8uk")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sa1n2"]
+size = Vector2(64, 64)
+
+[sub_resource type="Resource" id="Resource_utnmm"]
+script = ExtResource("5_n5hfh")
+spacing = Vector3(4, 4, 4)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_ryj0r"]
+script = ExtResource("6_2u126")
+operation = 1
+scale = Vector3(0.5, 0.5, 0.5)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_0scpc"]
+script = ExtResource("4_1c65y")
+position = Vector3(3, 1, 3)
+rotation = Vector3(0, 360, 0)
+scale = Vector3(0.5, 0.5, 0.5)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_vsgjb"]
+script = ExtResource("5_i5qce")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = false
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_6mkuy"]
+script = ExtResource("6_c74vt")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_nluv2"]
+script = ExtResource("2_8rfxo")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_utnmm"), SubResource("Resource_ryj0r"), SubResource("Resource_0scpc"), SubResource("Resource_vsgjb"), SubResource("Resource_6mkuy")])
+
+[sub_resource type="Resource" id="Resource_af661"]
+script = ExtResource("9_tu20j")
+radius = 32.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_yrtct"]
+font_size = 24
+
+[node name="world" type="Node3D"]
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_8nnr5")
+
+[node name="stage" type="Node3D" parent="."]
+
+[node name="floor" type="CSGMesh3D" parent="stage"]
+material_override = SubResource("StandardMaterial3D_rqowx")
+use_collision = true
+mesh = SubResource("PlaneMesh_sa1n2")
+
+[node name="ProtonScatter" type="Node3D" parent="stage"]
+script = ExtResource("1_13ljh")
+modifier_stack = SubResource("Resource_nluv2")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="stage/ProtonScatter"]
+script = ExtResource("7_3sjpl")
+path = "res://assets/models/import/structure_004_3.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="stage/ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("8_r2pjr")
+shape = SubResource("Resource_af661")
+
+[node name="structure_003_1" parent="." instance=ExtResource("1_mi5yd")]
+transform = Transform3D(1, 0, 0, 0, -1.68587e-07, -1, 0, 1, -1.68587e-07, 0.00395012, 0, 0.0215368)
+visible = false
+
+[node name="player" parent="." instance=ExtResource("2_gyuak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.36101)
+
+[node name="structure_004_3" parent="." instance=ExtResource("3_lftor")]
+visible = false
+
+[node name="structure_008_15" parent="." instance=ExtResource("4_1i17h")]
+visible = false
+
+[node name="structure_006_11" parent="." instance=ExtResource("5_x523h")]
+visible = false
+
+[node name="structure_002_8" parent="." instance=ExtResource("6_f61c6")]
+visible = false
+
+[node name="UI" type="Node" parent="."]
+
+[node name="canvas" type="Control" parent="UI"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="UI/canvas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="cursor" type="TextureRect" parent="UI/canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_tggc6")
+stretch_mode = 3
+
+[node name="interaction_text" type="Label" parent="UI/canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -44.0
+offset_right = 80.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 20)
+label_settings = SubResource("LabelSettings_yrtct")
+horizontal_alignment = 1
+script = ExtResource("20_d6kx8")
+
+[node name="hud" parent="UI/canvas" instance=ExtResource("21_w5rbm")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 850.0
+offset_bottom = 270.0
+
+[node name="stats_ui" parent="UI/canvas" instance=ExtResource("22_byid1")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventory" parent="UI/canvas" instance=ExtResource("23_giv86")]
+visible = false
+layout_mode = 1
+
+[node name="carry_progress_bar" type="TextureProgressBar" parent="UI/canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+fill_mode = 4
+texture_progress = ExtResource("24_6r7g2")
+script = ExtResource("25_v0i03")
+
+[node name="carry_notification" type="Label" parent="UI/canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -74.0
+offset_right = 50.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 15)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+text = "TOO HEAVY"
+horizontal_alignment = 1
+script = ExtResource("26_teyy2")
+
+[node name="glossary_ui" parent="UI/canvas" instance=ExtResource("27_ufo5s")]
+visible = false
