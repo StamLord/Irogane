@@ -60,13 +60,17 @@ func _ready():
 
 func _process(delta):
 	if is_swimming:
+		# Smooth the swim input to avoid instant direction shift
 		last_swim_input = lerp(last_swim_input, swim.input_dir, delta * 10)
-		if abs(last_swim_input.y) > 0.1:
-			anim_tree["parameters/StateMachine/idle/swim/blend/blend_position"] = Vector2(0, -last_swim_input.y)
-		else:
-			anim_tree["parameters/StateMachine/idle/swim/blend/blend_position"] = Vector2(last_swim_input.x, -last_swim_input.y)
+		
+		# Lerp between both all input and only forward input, based on the forward input
+		# This way, moving both forward and sideways will show only forward animation
+		# to avoid wierd in-between animations.
+		var vector = lerp(Vector2(last_swim_input.x, -last_swim_input.y), Vector2(0, -last_swim_input.y), abs(last_swim_input.y))
+		
+		anim_tree[anim_idle_path + "/swim/blend/blend_position"] = vector
 	elif is_climb_rope:
-		anim_tree["parameters/StateMachine/idle/climb_rope/blend/blend_amount"] = climb_rope.vertical_direction
+		anim_tree[anim_idle_path + "/climb_rope/blend/blend_amount"] = climb_rope.vertical_direction
 	
 	if Input.is_action_just_pressed("defend"):
 		anim_state_machine.start("defend_start")
