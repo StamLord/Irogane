@@ -60,7 +60,7 @@ general/custom_test_scene_path="res://addons/dialogue_manager/crpg_test_scene.ts
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [input]
 
