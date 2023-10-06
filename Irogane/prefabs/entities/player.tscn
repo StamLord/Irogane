@@ -213,8 +213,9 @@ disabled = true
 target_position = Vector3(0, 1.9, 0)
 
 [node name="ledge_check" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.75)
-target_position = Vector3(0, -1.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.75)
+target_position = Vector3(0, -1.75, 0)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 
 [node name="wall_check" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25)
