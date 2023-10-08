@@ -629,6 +629,7 @@ material = SubResource("StandardMaterial3D_avcn8")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="stage"]
 transform = Transform3D(0.05366, 0.942792, 0.329034, -0.886328, -0.106804, 0.450573, 0.459939, -0.31581, 0.829892, -22.388, -1.55851, 0.692136)
+visible = false
 mesh = SubResource("BoxMesh_f0pmh")
 
 [node name="trap_door" type="CSGBox3D" parent="stage"]
@@ -718,10 +719,12 @@ angular_damp = 0.0
 layer = 4
 mask = 0
 
-[node name="head" type="Node3D" parent="rigidbodies/procedural_rope2"]
+[node name="head" type="Marker3D" parent="rigidbodies/procedural_rope2"]
+gizmo_extents = 0.5
 
-[node name="tail" type="Node3D" parent="rigidbodies/procedural_rope2"]
+[node name="tail" type="Marker3D" parent="rigidbodies/procedural_rope2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+gizmo_extents = 0.5
 
 [node name="carriable" parent="rigidbodies" instance=ExtResource("9_524u2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 8)
@@ -764,7 +767,7 @@ process_material = SubResource("ParticleProcessMaterial_v6djl")
 draw_pass_1 = SubResource("QuadMesh_3qylr")
 
 [node name="enemy" parent="." instance=ExtResource("4_b71lg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0.145396, 2)
 
 [node name="UI" type="Node" parent="."]
 
