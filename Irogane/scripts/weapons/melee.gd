@@ -72,23 +72,24 @@ func _process(delta):
 	elif is_climb_rope:
 		anim_tree[anim_idle_path + "/climb_rope/blend/blend_amount"] = climb_rope.vertical_direction
 	
-	if Input.is_action_just_pressed("defend"):
-		anim_state_machine.start("defend_start")
-		add_to_combo("d")
-	elif anim_state_machine.get_current_node() == "defend" and not Input.is_action_pressed("defend"):
-		anim_state_machine.travel("idle")
-	elif Input.is_action_just_pressed("attack_primary"):
-		#if valid_state_for_input():
-		anim_state_machine.start("left")
-		add_to_combo("l")
-	elif Input.is_action_just_pressed("attack_secondary"):
-		#if valid_state_for_input():
-		var state = anim_state_machine.get_current_node()
-		if state == "right_elbow":
-			anim_state_machine.start("right_elbow_2")
-		else:
-			anim_state_machine.start("right")
-		add_to_combo("r")
+	if UIManager.window_count() < 1:
+		if Input.is_action_just_pressed("defend"):
+			anim_state_machine.start("defend_start")
+			add_to_combo("d")
+		elif anim_state_machine.get_current_node() == "defend" and not Input.is_action_pressed("defend"):
+			anim_state_machine.travel("idle")
+		elif Input.is_action_just_pressed("attack_primary"):
+			#if valid_state_for_input():
+			anim_state_machine.start("left")
+			add_to_combo("l")
+		elif Input.is_action_just_pressed("attack_secondary"):
+			#if valid_state_for_input():
+			var state = anim_state_machine.get_current_node()
+			if state == "right_elbow":
+				anim_state_machine.start("right_elbow_2")
+			else:
+				anim_state_machine.start("right")
+			add_to_combo("r")
 	
 	if not combo.is_empty() and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
 		reset_combo()
@@ -98,7 +99,7 @@ func add_to_combo(move):
 	last_combo_addition = Time.get_ticks_msec()
 	
 	var matching_combo = validate_combo(combo)
-	print(matching_combo)
+	#print(matching_combo)
 	
 	if matching_combo != null:
 		anim_state_machine.start(matching_combo.state)
@@ -120,7 +121,7 @@ func valid_state_for_input():
 	return false
 
 func validate_combo(combo):
-	print(combo)
+	#print(combo)
 	var matching_combos = []
 	for c in combo_list:
 		var move_size = c.combo.length()

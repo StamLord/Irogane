@@ -35,3 +35,6 @@ func update_cursor():
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		cursor_lock.emit()
+
+func window_count():
+	return windows.size()
