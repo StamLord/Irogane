@@ -35,7 +35,7 @@ func _process(_delta):
 		item_held.scale = get_container_scale(get_container_under_cursor(cursor_pos), item_held)
 
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.button_index == 1:
 		if event.is_pressed():
 			grab(get_global_mouse_position())
 		else:
