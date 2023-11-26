@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=44 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -22,6 +22,78 @@
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
 [ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/RIGS/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
+[ext_resource type="Texture2D" uid="uid://dun3hwsmtfcc8" path="res://assets/textures/vfx/burst_1.png" id="22_q86vq"]
+[ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
+[ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
+
+[sub_resource type="Gradient" id="Gradient_3hf1d"]
+offsets = PackedFloat32Array(0.587209, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m3rlp"]
+gradient = SubResource("Gradient_3hf1d")
+
+[sub_resource type="Curve" id="Curve_2gwt4"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_301sp"]
+curve = SubResource("Curve_2gwt4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_285xo"]
+gravity = Vector3(0, 0, 0)
+angle_max = 360.0
+scale_min = 0.5
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_301sp")
+color = Color(0.984314, 0.709804, 0, 1)
+color_ramp = SubResource("GradientTexture1D_m3rlp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpxkb"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("22_q86vq")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_mrejr"]
+material = SubResource("StandardMaterial3D_wpxkb")
+
+[sub_resource type="Gradient" id="Gradient_ab780"]
+offsets = PackedFloat32Array(0.436047, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ufnyn"]
+gradient = SubResource("Gradient_ab780")
+
+[sub_resource type="Curve" id="Curve_ns25a"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g8rnn"]
+curve = SubResource("Curve_ns25a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6uluk"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_g8rnn")
+color_ramp = SubResource("GradientTexture1D_ufnyn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_graes"]
+render_priority = 0
+shader = ExtResource("23_xjj03")
+shader_parameter/distortion = -0.05
+shader_parameter/Texture2DParameter = ExtResource("24_4mlx4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wkuo3"]
+material = SubResource("ShaderMaterial_graes")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
 radius = 0.49
@@ -148,6 +220,7 @@ render_target_update_mode = 4
 [node name="weapons_camera" type="Camera3D" parent="head/main_camera/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 cull_mask = 2
+fov = 55.0
 script = ExtResource("17_6vema")
 
 [node name="weapon_manager" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera"]
@@ -180,6 +253,22 @@ offset_bottom = 148.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 2
+
+[node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
+emitting = false
+amount = 24
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_285xo")
+draw_pass_1 = SubResource("QuadMesh_mrejr")
+
+[node name="ripple_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
+emitting = false
+amount = 24
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_6uluk")
+draw_pass_1 = SubResource("QuadMesh_wkuo3")
 
 [node name="sword" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
 visible = false

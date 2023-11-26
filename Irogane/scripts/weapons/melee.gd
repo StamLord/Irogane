@@ -37,6 +37,14 @@ const anim_idle_path = "parameters/StateMachine/idle"
 
 @onready var moves_container = $moves_display/moves_container
 
+@onready var hitbox_l = $first_person_rig/RootNode/first_person_rig/Skeleton3D/left_hand_attach/hitbox
+@onready var hitbox_r = $first_person_rig/RootNode/first_person_rig/Skeleton3D/right_hand_attach/hitbox
+@onready var hitbox_uppercut = $first_person_rig/uppercut_hitbox
+
+
+@onready var hit_vfx = $hit_vfx
+@onready var ripple_vfx = $ripple_vfx
+
 var combo = ""
 var last_combo_addition = 0
 
@@ -50,6 +58,12 @@ var last_secondary = -1
 var last_jump = -1
 
 func _ready():
+	# Register to hitboxes
+	hitbox_l.on_collision.connect(hit)
+	hitbox_r.on_collision.connect(hit)
+	hitbox_uppercut.on_collision.connect(hit)
+	
+	# Register to states
 	air.air_started.connect(start_animate_air)
 	air.air_ended.connect(stop_animate_air)
 	
@@ -93,7 +107,7 @@ func _process(delta):
 			last_primary = Time.get_ticks_msec()
 			if is_primary_and_secondary():
 				anim_state_machine.start("double_punch")
-				add_to_combo("lr")
+				add_to_combo("l+r")
 			else:
 				anim_state_machine.start("left")
 				add_to_combo("l")
@@ -103,7 +117,7 @@ func _process(delta):
 			var state = anim_state_machine.get_current_node()
 			if is_primary_and_secondary():
 				anim_state_machine.start("double_punch")
-				add_to_combo("lr")
+				add_to_combo("l+r")
 			elif is_jumping():
 				anim_state_machine.start("uppercut")
 				add_to_combo("r")
@@ -209,6 +223,14 @@ func highlight_display_combo(length):
 	for i in range(length):
 		moves_container.get_child(count - 1 - i).add_theme_color_override("font_color", Color.RED)
 
+func hit(area, hitbox):
+	if area is Hurtbox:
+		hit_vfx.global_position = hitbox.global_position
+		hit_vfx.emit_particle(hit_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+		ripple_vfx.global_position = hitbox.global_position
+		ripple_vfx.emit_particle(ripple_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+		
+
 func start_animate_air():
 	anim_idle_state_machine.travel("air")
 	anim_tree["parameters/StateMachine/idle/conditions/is_air"] = true
@@ -254,3 +276,4 @@ func start_animate_glide():
 func stop_animate_glide():
 	anim_idle_state_machine.travel("idle")
 	anim_tree[anim_idle_path + "/conditions/is_glide"] = false
+	

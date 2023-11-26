@@ -1,7 +1,25 @@
-[gd_scene load_steps=71 format=3 uid="uid://dq6tiqj0gtm6u"]
+[gd_scene load_steps=79 format=3 uid="uid://dq6tiqj0gtm6u"]
 
 [ext_resource type="PackedScene" uid="uid://c54hb80sgqu3t" path="res://assets/models/first_person_rig.fbx" id="1_a1su1"]
 [ext_resource type="Script" path="res://scripts/procedural/hands_ik.gd" id="2_50ecj"]
+[ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="3_capjn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nvte5"]
+size = Vector3(0.003, 0.003, 0.003)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xay4s"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.25098)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s7qe5"]
+size = Vector3(0.003, 0.003, 0.003)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hc3pf"]
+size = Vector3(0.003, 0.003, 0.003)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lwfv"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.25098)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_40lk6"]
 animation = &"first_person_rig|unarmed_defend"
@@ -293,7 +311,7 @@ states/right_elbow_chain/position = Vector2(714, 105)
 states/uppercut/node = SubResource("AnimationNodeAnimation_tt6xw")
 states/uppercut/position = Vector2(571, -130)
 transitions = ["left", "left_chain", SubResource("AnimationNodeStateMachineTransition_yxxov"), "right", "right_chain", SubResource("AnimationNodeStateMachineTransition_510dm"), "defend_start", "defend", SubResource("AnimationNodeStateMachineTransition_utu30"), "right_elbow", "right_elbow_chain", SubResource("AnimationNodeStateMachineTransition_rsj0s"), "right_elbow_chain", "right_elbow_2", SubResource("AnimationNodeStateMachineTransition_kdn1c"), "right_elbow_2", "right_elbow_2_chain", SubResource("AnimationNodeStateMachineTransition_fcikq"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_twk6d"), "defend", "idle", SubResource("AnimationNodeStateMachineTransition_83w24"), "right_chain", "idle", SubResource("AnimationNodeStateMachineTransition_5jbr7"), "left_chain", "idle", SubResource("AnimationNodeStateMachineTransition_a2k33"), "right_elbow_chain", "idle", SubResource("AnimationNodeStateMachineTransition_8yrlu"), "right_elbow_2_chain", "idle", SubResource("AnimationNodeStateMachineTransition_j14ue"), "flurry", "idle", SubResource("AnimationNodeStateMachineTransition_trxam"), "left_elbow", "idle", SubResource("AnimationNodeStateMachineTransition_3fevs"), "double_punch", "idle", SubResource("AnimationNodeStateMachineTransition_yrftr"), "uppercut", "idle", SubResource("AnimationNodeStateMachineTransition_olc7q")]
-graph_offset = Vector2(-186, -179)
+graph_offset = Vector2(-193, -61)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j6qrk"]
 graph_offset = Vector2(-253, 99)
@@ -302,6 +320,12 @@ nodes/StateMachine/position = Vector2(100, 140)
 nodes/output/position = Vector2(360, 140)
 node_connections = [&"output", 0, &"StateMachine"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqeyy"]
+size = Vector3(0.8, 1.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rc5xk"]
+size = Vector3(0.8, 1.5, 0.5)
+
 [node name="first_person_rig" instance=ExtResource("1_a1su1")]
 script = ExtResource("2_50ecj")
 
@@ -309,24 +333,23 @@ script = ExtResource("2_50ecj")
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RootNode/first_person_rig" index="0"]
-bones/1/rotation = Quaternion(0.178557, 0.156918, 0.891094, 0.386581)
-bones/2/rotation = Quaternion(0.94719, -0.00297025, -0.0143307, 0.32034)
-bones/3/rotation = Quaternion(-1.14079e-08, 1.50478e-07, 0.0973421, 0.995251)
+bones/1/rotation = Quaternion(0.175556, 0.140232, 0.899377, 0.375015)
+bones/2/rotation = Quaternion(0.939769, -0.00264818, -0.0143937, 0.341498)
+bones/3/rotation = Quaternion(-3.69404e-09, 1.50865e-07, 0.0462949, 0.998928)
 bones/4/rotation = Quaternion(0.305852, -0.250781, 0.436223, 0.808253)
-bones/5/rotation = Quaternion(-0.699799, 0.0270086, -0.0224198, 0.713477)
+bones/5/rotation = Quaternion(-0.699975, 0.0270142, -0.0224131, 0.713304)
 bones/7/rotation = Quaternion(-0.428109, 0.427812, 0.571808, 0.553837)
-bones/9/rotation = Quaternion(-0.640314, 0.0292858, 0.00584313, 0.767533)
-bones/11/rotation = Quaternion(-0.492767, 0.492837, 0.508694, 0.505493)
-bones/13/rotation = Quaternion(-0.68214, 0.0193887, -0.0266009, 0.730481)
+bones/9/rotation = Quaternion(-0.640314, 0.0292858, 0.00584312, 0.767533)
+bones/11/rotation = Quaternion(-0.492766, 0.492837, 0.508694, 0.505494)
+bones/12/rotation = Quaternion(-0.661759, -0.00577078, 0.00400164, 0.749684)
 bones/15/rotation = Quaternion(-0.531752, 0.531757, 0.454404, 0.477485)
-bones/16/rotation = Quaternion(-0.687517, 0.0195088, 0.00628456, 0.725879)
-bones/17/rotation = Quaternion(-0.65633, 0.0199581, 0.0229971, 0.75386)
+bones/16/rotation = Quaternion(-0.687516, 0.0195088, 0.00628456, 0.72588)
+bones/17/rotation = Quaternion(-0.65633, 0.0199581, 0.0229971, 0.753859)
 bones/19/rotation = Quaternion(-0.547271, 0.637391, 0.44929, 0.303917)
 bones/20/rotation = Quaternion(-0.660542, -0.000808335, -0.00480212, 0.750773)
-bones/21/rotation = Quaternion(-0.671666, -0.0168857, -0.00986223, 0.740596)
-bones/23/rotation = Quaternion(-0.359567, 0.451311, 0.76366, -0.289575)
-bones/24/rotation = Quaternion(0.38888, 0.224021, 0.202161, 0.87047)
-bones/25/rotation = Quaternion(-5.26966e-09, -1.58319e-07, -0.0785476, 0.99691)
+bones/23/rotation = Quaternion(-0.346076, 0.445001, 0.775927, -0.283096)
+bones/24/rotation = Quaternion(0.389405, 0.222876, 0.204677, 0.869941)
+bones/25/rotation = Quaternion(8.14665e-10, -1.58404e-07, -0.040202, 0.999192)
 bones/26/rotation = Quaternion(0.165465, 0.0895714, -0.605916, 0.772958)
 bones/27/rotation = Quaternion(-0.732812, -0.0280405, 0.0211152, 0.679525)
 bones/29/rotation = Quaternion(-0.414586, -0.401612, -0.577417, 0.577421)
@@ -338,6 +361,21 @@ bones/38/rotation = Quaternion(-0.687734, 0.00103577, 0.0310856, 0.725296)
 bones/41/rotation = Quaternion(0.546435, 0.638107, 0.44969, -0.303326)
 bones/42/rotation = Quaternion(-0.660524, 0.00333309, 0.00741672, 0.75076)
 bones/43/rotation = Quaternion(-0.656316, -0.00987795, -0.0265177, 0.753955)
+
+[node name="shoulder_r" parent="RootNode/first_person_rig/Skeleton3D" index="0"]
+layers = 2
+
+[node name="arm_r" parent="RootNode/first_person_rig/Skeleton3D" index="1"]
+layers = 2
+
+[node name="hand_r" parent="RootNode/first_person_rig/Skeleton3D" index="2"]
+layers = 2
+
+[node name="shoulder_l" parent="RootNode/first_person_rig/Skeleton3D" index="3"]
+layers = 2
+
+[node name="arm_l" parent="RootNode/first_person_rig/Skeleton3D" index="4"]
+layers = 2
 
 [node name="left_hand_ik" type="SkeletonIK3D" parent="RootNode/first_person_rig/Skeleton3D" index="5"]
 root_bone = &"shoulder_l"
@@ -353,6 +391,40 @@ tip_bone = &"hand_r"
 use_magnet = true
 magnet = Vector3(1, 0, 0)
 target_node = NodePath("../../../../target_r")
+
+[node name="right_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="7"]
+transform = Transform3D(0.586308, -0.804177, -0.0976855, 0.207598, 0.265714, -0.941435, 0.783037, 0.531691, 0.322736, 0.00153024, 0.00217274, 0.0150922)
+bone_name = "hand_r"
+bone_idx = 3
+
+[node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/right_hand_attach" index="0"]
+monitoring = false
+monitorable = false
+script = ExtResource("3_capjn")
+
+[node name="shape" type="CollisionShape3D" parent="RootNode/first_person_rig/Skeleton3D/right_hand_attach/hitbox" index="0"]
+shape = SubResource("BoxShape3D_nvte5")
+
+[node name="mesh" type="MeshInstance3D" parent="RootNode/first_person_rig/Skeleton3D/right_hand_attach/hitbox" index="1"]
+material_override = SubResource("StandardMaterial3D_xay4s")
+mesh = SubResource("BoxMesh_s7qe5")
+
+[node name="left_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="8"]
+transform = Transform3D(0.206278, 0.434492, 0.876736, 0.082632, 0.88507, -0.458064, -0.974998, 0.166935, 0.146668, -0.000922233, 0.00571053, 0.014754)
+bone_name = "hand_l"
+bone_idx = 25
+
+[node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/left_hand_attach" index="0"]
+monitoring = false
+monitorable = false
+script = ExtResource("3_capjn")
+
+[node name="shape" type="CollisionShape3D" parent="RootNode/first_person_rig/Skeleton3D/left_hand_attach/hitbox" index="0"]
+shape = SubResource("BoxShape3D_hc3pf")
+
+[node name="mesh" type="MeshInstance3D" parent="RootNode/first_person_rig/Skeleton3D/left_hand_attach/hitbox" index="1"]
+material_override = SubResource("StandardMaterial3D_2lwfv")
+mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_j6qrk")
@@ -371,3 +443,16 @@ transform = Transform3D(0.86433, 0.490383, 0.111619, -0.0301537, -0.17101, 0.984
 
 [node name="target_r" type="Marker3D" parent="." index="4"]
 transform = Transform3D(-0.211309, -0.365998, -0.906308, 0.866025, -0.5, 0, -0.453154, -0.784885, 0.422618, 0.175, 1.5, -0.5)
+
+[node name="uppercut_hitbox" type="Area3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.8)
+monitoring = false
+monitorable = false
+script = ExtResource("3_capjn")
+
+[node name="shape" type="CollisionShape3D" parent="uppercut_hitbox" index="0"]
+shape = SubResource("BoxShape3D_kqeyy")
+
+[node name="mesh" type="MeshInstance3D" parent="uppercut_hitbox" index="1"]
+material_override = SubResource("StandardMaterial3D_xay4s")
+mesh = SubResource("BoxMesh_rc5xk")
