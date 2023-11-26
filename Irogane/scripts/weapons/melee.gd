@@ -17,6 +17,9 @@ extends Node3D
 	},
 ]
 
+@export var double_input_window = 0.1
+@export var jump_input_window = 0.25
+
 @export var display_moves = true
 @export var max_display_moves = 10
 
@@ -41,6 +44,10 @@ var is_swimming = false
 var is_climb_rope = false
 
 var last_swim_input = Vector2.ZERO
+
+var last_primary = -1
+var last_secondary = -1
+var last_jump = -1
 
 func _ready():
 	air.air_started.connect(start_animate_air)
@@ -73,6 +80,9 @@ func _process(delta):
 		anim_tree[anim_idle_path + "/climb_rope/blend/blend_amount"] = climb_rope.vertical_direction
 	
 	if UIManager.window_count() < 1:
+		if Input.is_action_just_pressed("jump"):
+			last_jump = Time.get_ticks_msec()
+		
 		if Input.is_action_just_pressed("defend"):
 			anim_state_machine.start("defend_start")
 			add_to_combo("d")
@@ -80,16 +90,29 @@ func _process(delta):
 			anim_state_machine.travel("idle")
 		elif Input.is_action_just_pressed("attack_primary"):
 			#if valid_state_for_input():
-			anim_state_machine.start("left")
-			add_to_combo("l")
+			last_primary = Time.get_ticks_msec()
+			if is_primary_and_secondary():
+				anim_state_machine.start("double_punch")
+				add_to_combo("lr")
+			else:
+				anim_state_machine.start("left")
+				add_to_combo("l")
 		elif Input.is_action_just_pressed("attack_secondary"):
 			#if valid_state_for_input():
+			last_secondary = Time.get_ticks_msec()
 			var state = anim_state_machine.get_current_node()
-			if state == "right_elbow":
+			if is_primary_and_secondary():
+				anim_state_machine.start("double_punch")
+				add_to_combo("lr")
+			elif is_jumping():
+				anim_state_machine.start("uppercut")
+				add_to_combo("r")
+			elif state == "right_elbow":
 				anim_state_machine.start("right_elbow_2")
+				add_to_combo("r")
 			else:
 				anim_state_machine.start("right")
-			add_to_combo("r")
+				add_to_combo("r")
 	
 	if not combo.is_empty() and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
 		reset_combo()
@@ -110,6 +133,17 @@ func add_to_combo(move):
 		if matching_combo != null:
 			highlight_display_combo(matching_combo.combo.length())
 		
+
+func is_primary_and_secondary():
+	var both_pressed = Input.is_action_just_pressed("attack_primary") and Input.is_action_just_pressed("attack_secondary")
+	var pressed_in_succession = abs(last_primary - last_secondary) <= double_input_window * 1000
+	return both_pressed or pressed_in_succession
+	
+
+func is_jumping():
+	return (Time.get_ticks_msec() - last_jump) <= jump_input_window * 1000
+	
+
 func reset_combo():
 	combo = ""
 
