@@ -340,26 +340,24 @@ script = ExtResource("2_50ecj")
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RootNode/first_person_rig" index="0"]
-bones/1/rotation = Quaternion(0.17915, 0.162615, 0.889188, 0.388337)
-bones/2/rotation = Quaternion(0.949164, -0.00305934, -0.0143119, 0.314442)
-bones/3/rotation = Quaternion(-1.40418e-08, 1.50256e-07, 0.11476, 0.993393)
-bones/4/rotation = Quaternion(0.483138, -0.144004, 0.482125, 0.716516)
-bones/5/rotation = Quaternion(-0.369037, 0.0162237, -0.0311272, 0.928752)
-bones/7/rotation = Quaternion(-0.0483523, 0.673362, 0.237846, 0.698337)
-bones/8/rotation = Quaternion(-0.340042, -0.0564076, -0.0127915, 0.93863)
-bones/9/rotation = Quaternion(-0.332739, 0.0294865, -0.00472765, 0.942546)
-bones/11/rotation = Quaternion(-0.443693, 0.537948, 0.460727, 0.549071)
-bones/12/rotation = Quaternion(-0.611359, -0.00549698, 0.00437016, 0.791322)
-bones/13/rotation = Quaternion(-0.62543, 0.017339, -0.0279802, 0.779586)
+bones/1/rotation = Quaternion(0.175215, 0.138372, 0.900275, 0.373708)
+bones/2/rotation = Quaternion(0.938914, -0.00261225, -0.0144002, 0.343842)
+bones/3/rotation = Quaternion(-2.83486e-09, 1.50884e-07, 0.0406057, 0.999175)
+bones/4/rotation = Quaternion(0.305852, -0.250781, 0.436223, 0.808253)
+bones/5/rotation = Quaternion(-0.699975, 0.0270142, -0.0224131, 0.713305)
+bones/7/rotation = Quaternion(-0.428109, 0.427812, 0.571808, 0.553837)
+bones/9/rotation = Quaternion(-0.640314, 0.0292858, 0.00584313, 0.767533)
+bones/11/rotation = Quaternion(-0.492766, 0.492837, 0.508694, 0.505494)
+bones/12/rotation = Quaternion(-0.661759, -0.00577078, 0.00400164, 0.749684)
+bones/13/rotation = Quaternion(-0.68214, 0.0193887, -0.0266009, 0.730481)
 bones/15/rotation = Quaternion(-0.531752, 0.531757, 0.454404, 0.477485)
 bones/16/rotation = Quaternion(-0.687517, 0.0195088, 0.00628456, 0.725879)
-bones/17/rotation = Quaternion(-0.65633, 0.0199581, 0.0229971, 0.75386)
+bones/17/rotation = Quaternion(-0.65633, 0.019958, 0.0229971, 0.753859)
 bones/19/rotation = Quaternion(-0.547271, 0.637391, 0.44929, 0.303917)
 bones/20/rotation = Quaternion(-0.660542, -0.000808335, -0.00480212, 0.750773)
-bones/21/rotation = Quaternion(-0.671666, -0.0168857, -0.00986223, 0.740596)
-bones/23/rotation = Quaternion(-0.362926, 0.453185, 0.760359, -0.291139)
-bones/24/rotation = Quaternion(0.388775, 0.224146, 0.201882, 0.870549)
-bones/25/rotation = Quaternion(-7.33704e-09, -1.58236e-07, -0.0915617, 0.995799)
+bones/23/rotation = Quaternion(-0.344574, 0.444281, 0.777264, -0.28239)
+bones/24/rotation = Quaternion(0.389477, 0.222723, 0.205021, 0.869867)
+bones/25/rotation = Quaternion(1.49181e-09, -1.58399e-07, -0.0359303, 0.999354)
 bones/26/rotation = Quaternion(0.165465, 0.0895714, -0.605916, 0.772958)
 bones/27/rotation = Quaternion(-0.732812, -0.0280405, 0.0211152, 0.679525)
 bones/29/rotation = Quaternion(-0.414586, -0.401612, -0.577417, 0.577421)
@@ -403,7 +401,7 @@ magnet = Vector3(1, 0, 0)
 target_node = NodePath("../../../../target_r")
 
 [node name="right_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.443289, -0.895525, -0.0391134, 0.201249, 0.141951, -0.9692, 0.873495, 0.421764, 0.243149, 0.00147696, 0.00200707, 0.0152303)
+transform = Transform3D(0.597786, -0.795084, -0.10244, 0.20672, 0.276349, -0.938562, 0.774544, 0.539883, 0.329557, 0.00153514, 0.00218659, 0.0150795)
 bone_name = "hand_r"
 bone_idx = 3
 
@@ -421,7 +419,7 @@ material_override = SubResource("StandardMaterial3D_xay4s")
 mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="left_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="8"]
-transform = Transform3D(0.12707, 0.48676, 0.864244, 0.00304518, 0.871111, -0.491076, -0.991889, 0.065033, 0.10921, -0.000741371, 0.00569534, 0.0148341)
+transform = Transform3D(0.212664, 0.429359, 0.877738, 0.0896343, 0.885926, -0.455082, -0.973005, 0.175455, 0.149919, -0.000938343, 0.00571144, 0.0147476)
 bone_name = "hand_l"
 bone_idx = 25
 
@@ -439,7 +437,7 @@ material_override = SubResource("StandardMaterial3D_2lwfv")
 mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="left_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="9"]
-transform = Transform3D(0.213702, 0.455427, 0.864244, 0.161845, 0.85595, -0.491076, -0.963399, 0.244818, 0.10921, -0.00217473, 0.00300142, 0.0140636)
+transform = Transform3D(0.242949, 0.412979, 0.877738, 0.153025, 0.877202, -0.455082, -0.957893, 0.244878, 0.149919, -0.0022381, 0.00295064, 0.0139769)
 bone_name = "arm_l"
 bone_idx = 24
 
@@ -458,7 +456,7 @@ material_override = SubResource("StandardMaterial3D_2lwfv")
 mesh = SubResource("SphereMesh_mag5f")
 
 [node name="right_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="10"]
-transform = Transform3D(0.635795, -0.770866, -0.0391135, 0.163583, 0.184097, -0.9692, 0.754324, 0.609814, 0.243149, 0.0039031, 0.00142767, 0.0133111)
+transform = Transform3D(0.660331, -0.743955, -0.10244, 0.183614, 0.292212, -0.938562, 0.728182, 0.600953, 0.329557, 0.00387658, 0.00126692, 0.0131881)
 bone_name = "arm_r"
 bone_idx = 2
 
