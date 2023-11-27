@@ -5,15 +5,23 @@ extends Node3D
 @export var combo_list = [
 	{
 		"state" : "flurry",
-		"combo" : "lrlrlr"
+		"combo" : "lrlrlr",
+		"final" : true
 	},
 	{
 		"state" : "left_elbow",
-		"combo" : "ll"
+		"combo" : "ll",
+		"final" : true
 	},
 	{
 		"state" : "right_elbow",
-		"combo" : "rr"
+		"combo" : "rr",
+		"final" : false
+	},
+	{
+		"state" : "right_elbow_2",
+		"combo" : "rrr",
+		"final" : true
 	},
 ]
 
@@ -22,6 +30,9 @@ extends Node3D
 
 @export var display_moves = true
 @export var max_display_moves = 10
+
+@export var light_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
+@export var uppercut_attack_info = AttackInfo.new(10, 15, Vector3.UP * 4)
 
 @onready var vault = $"../../../../../../../states/vault"
 @onready var air = $"../../../../../../../states/air"
@@ -45,7 +56,7 @@ const anim_idle_path = "parameters/StateMachine/idle"
 @onready var hit_vfx = $hit_vfx
 @onready var ripple_vfx = $ripple_vfx
 
-var combo = ""
+var combo = []
 var last_combo_addition = 0
 
 var is_swimming = false
@@ -120,10 +131,7 @@ func _process(delta):
 				add_to_combo("l+r")
 			elif is_jumping():
 				anim_state_machine.start("uppercut")
-				add_to_combo("r")
-			elif state == "right_elbow":
-				anim_state_machine.start("right_elbow_2")
-				add_to_combo("r")
+				add_to_combo("j+r")
 			else:
 				anim_state_machine.start("right")
 				add_to_combo("r")
@@ -132,7 +140,7 @@ func _process(delta):
 		reset_combo()
 	
 func add_to_combo(move):
-	combo += move
+	combo.append(move)
 	last_combo_addition = Time.get_ticks_msec()
 	
 	var matching_combo = validate_combo(combo)
@@ -140,7 +148,10 @@ func add_to_combo(move):
 	
 	if matching_combo != null:
 		anim_state_machine.start(matching_combo.state)
-		reset_combo()
+		# If final, combo is reset and additional moves start a new combo
+		# If not final, aditional moves can add up to a bigger combo
+		if matching_combo.final:
+			reset_combo()
 	
 	if display_moves: 
 		display_move(move)
@@ -159,7 +170,7 @@ func is_jumping():
 	
 
 func reset_combo():
-	combo = ""
+	combo.clear()
 
 func valid_state_for_input():
 	var state = anim_state_machine.get_current_node()
@@ -174,13 +185,13 @@ func validate_combo(combo):
 	for c in combo_list:
 		var move_size = c.combo.length()
 		# Our combo can't contain these moves
-		if move_size > combo.length():
+		if move_size > combo.size():
 			continue
 		# Compare moves from last to first
 		var matching = true
 		for i in range(move_size):
 			# Not the same
-			if c.combo[move_size - 1 - i] != combo[combo.length() - 1 - i]:
+			if c.combo[move_size - 1 - i] != combo[combo.size() - 1 - i]:
 				matching = false
 				break
 		if matching:
@@ -225,6 +236,16 @@ func highlight_display_combo(length):
 
 func hit(area, hitbox):
 	if area is Hurtbox:
+		var attack_info = null
+		
+		if hitbox == hitbox_uppercut:
+			attack_info = uppercut_attack_info.clone()
+		else:
+			attack_info = light_attack_info.clone()
+			attack_info.force = get_global_transform().basis * attack_info.force
+		
+		area.hit(attack_info)
+		
 		CameraShaker.shake(0.25, 0.2)
 		hit_vfx.global_position = hitbox.global_position
 		hit_vfx.emit_particle(hit_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)

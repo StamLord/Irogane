@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=73 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="21_jnbh6"]
 [ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="22_mdftu"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="23_fxejx"]
+[ext_resource type="Script" path="res://scripts/hitbox/hurtbox_dummy.gd" id="24_fbhn0"]
+[ext_resource type="Texture2D" uid="uid://fdjjcjkxdo7o" path="res://icon.svg" id="25_g0vwl"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="25_urnjo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vd5j8"]
@@ -232,6 +234,9 @@ size = Vector2(0.05, 0.05)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
 font_size = 24
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3i6oh"]
+radius = 0.25
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6ohwg"]
 radius = 0.25
@@ -899,12 +904,24 @@ script = ExtResource("21_jnbh6")
 [node name="glossary_ui" parent="UI/canvas" instance=ExtResource("22_mdftu")]
 visible = false
 
-[node name="dummy" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="dummy" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+lock_rotation = true
+script = ExtResource("24_fbhn0")
+
+[node name="shape" type="CollisionShape3D" parent="dummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3i6oh")
 
 [node name="mesh" type="MeshInstance3D" parent="dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_6ohwg")
+
+[node name="Decal" type="Decal" parent="dummy/mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.512172, -0.301767)
+size = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("25_g0vwl")
+upper_fade = 0.00485281
 
 [node name="hurtbox" type="Area3D" parent="dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
