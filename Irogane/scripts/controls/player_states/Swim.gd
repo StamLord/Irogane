@@ -11,7 +11,6 @@ class_name Swim
 @export var speed = 5
 @export var acceleration = 10
 @export var buoyancy = 20.0
-@export var max_vertical_force = 100.0
 @export var surface_offset = -1.0
 @export var default_water_level = -0.75
 
@@ -52,9 +51,17 @@ func PhysicsUpdate(body, delta):
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
 	# Slowly move to surface
-	var vertical_force = lerp(buoyancy, 0.0, direction.length()) # Lerp towards 0 the bigger our input is
-	var target_velocity_y = -vertical_force * surface_delta # Bigger surface_delta = bigger pull
-	target_velocity_y = clamp(target_velocity_y, -max_vertical_force, max_vertical_force)
+	
+	# Reset velocity if above surface
+	if surface_delta > 0:
+		velocity.y = min(0, velocity.y)
+	
+	# Lerp towards 0 the bigger our input is
+	var vertical_force = lerp(buoyancy, 0.0, direction.length())
+	
+	# Farther from 0 surface delta means stronger
+	var target_velocity_y = lerp(0.0, vertical_force, -surface_delta) 
+	
 	velocity.y = lerp(velocity.y, target_velocity_y, delta)
 	
 	body.velocity = velocity

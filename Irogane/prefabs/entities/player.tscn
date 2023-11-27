@@ -232,6 +232,8 @@ ledge_mask = 1
 
 [node name="swim" type="Node" parent="states"]
 script = ExtResource("16_0qk7s")
+buoyancy = 0.0
+surface_offset = -1.5
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
