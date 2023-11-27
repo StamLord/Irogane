@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=53 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
+[ext_resource type="Shader" uid="uid://bdh8h54vakscc" path="res://assets/shaders/bubble.tres" id="26_ud12e"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -44,8 +45,8 @@ curve = SubResource("Curve_2gwt4")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_285xo"]
 gravity = Vector3(0, 0, 0)
 angle_max = 360.0
-scale_min = 0.5
-scale_max = 0.7
+scale_min = 0.7
+scale_max = 1.2
 scale_curve = SubResource("CurveTexture_301sp")
 color = Color(0.984314, 0.709804, 0, 1)
 color_ramp = SubResource("GradientTexture1D_m3rlp")
@@ -57,6 +58,8 @@ no_depth_test = true
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("23_hmrdc")
+refraction_scale = 0.01
+refraction_texture = ExtResource("23_hmrdc")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -95,6 +98,39 @@ shader_parameter/Texture2DParameter = ExtResource("24_4mlx4")
 
 [sub_resource type="QuadMesh" id="QuadMesh_wkuo3"]
 material = SubResource("ShaderMaterial_graes")
+
+[sub_resource type="Gradient" id="Gradient_vcrci"]
+offsets = PackedFloat32Array(0.383721, 0.755814, 1)
+colors = PackedColorArray(1, 0.137255, 0, 1, 1, 0.247059, 0, 0.396078, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8sswe"]
+gradient = SubResource("Gradient_vcrci")
+
+[sub_resource type="Curve" id="Curve_8pl4h"]
+_data = [Vector2(0, 0), 0.0, 3.26149, 0, 0, Vector2(1, 1), 0.0791426, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3sgy4"]
+curve = SubResource("Curve_8pl4h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_teee7"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.4
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_3sgy4")
+color_ramp = SubResource("GradientTexture1D_8sswe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa7yc"]
+render_priority = 0
+shader = ExtResource("26_ud12e")
+shader_parameter/distort_speed = 0.2
+shader_parameter/distort_strength = 0.02
+shader_parameter/mask_power2 = 0.5
+shader_parameter/fresnel_power = 1.0
+shader_parameter/glow = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_1d4nr"]
+material = SubResource("ShaderMaterial_qa7yc")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
 radius = 0.49
@@ -260,19 +296,28 @@ alignment = 2
 
 [node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
+visible = false
 emitting = false
 amount = 24
-lifetime = 0.3
+lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_285xo")
 draw_pass_1 = SubResource("QuadMesh_mrejr")
 
-[node name="ripple_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
+[node name="ripple_vfx_old" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
 emitting = false
 amount = 24
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_6uluk")
 draw_pass_1 = SubResource("QuadMesh_wkuo3")
+
+[node name="ripple_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
+emitting = false
+amount = 2
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_teee7")
+draw_pass_1 = SubResource("SphereMesh_1d4nr")
 
 [node name="sword" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
 visible = false
