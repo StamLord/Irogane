@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=45 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://scripts/controls/player_states/ClimbRope.gd" id="10_7bwsl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
 [ext_resource type="Script" path="res://scripts/controls/camera_copy.gd" id="17_6vema"]
+[ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
 [ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/RIGS/first_person_rig.tscn" id="20_1s0sd"]
@@ -202,6 +203,8 @@ script = ExtResource("9_nfdeu")
 
 [node name="main_camera" type="Camera3D" parent="head"]
 cull_mask = 1048573
+current = true
+script = ExtResource("18_bhey3")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="head/main_camera"]
 anchors_preset = 15
@@ -220,6 +223,7 @@ render_target_update_mode = 4
 [node name="weapons_camera" type="Camera3D" parent="head/main_camera/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 cull_mask = 2
+current = true
 fov = 55.0
 script = ExtResource("17_6vema")
 

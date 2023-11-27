@@ -225,6 +225,7 @@ func highlight_display_combo(length):
 
 func hit(area, hitbox):
 	if area is Hurtbox:
+		CameraShaker.shake(0.25, 0.2)
 		hit_vfx.global_position = hitbox.global_position
 		hit_vfx.emit_particle(hit_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 		ripple_vfx.global_position = hitbox.global_position

@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 UIManager="*res://scripts/ui/ui_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlossaryLearned="*res://scripts/glossary/glossary_learned.gd"
+CameraShaker="*res://scripts/camera/camera_shaker.gd"
 
 [dialogic]
 
