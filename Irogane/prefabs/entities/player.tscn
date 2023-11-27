@@ -23,7 +23,7 @@
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
 [ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/RIGS/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
-[ext_resource type="Texture2D" uid="uid://dun3hwsmtfcc8" path="res://assets/textures/vfx/burst_1.png" id="22_q86vq"]
+[ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 
@@ -56,7 +56,7 @@ blend_mode = 1
 no_depth_test = true
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("22_q86vq")
+albedo_texture = ExtResource("23_hmrdc")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -289,7 +289,7 @@ carry_layer = 4
 [node name="interact_check" type="RayCast3D" parent="head/main_camera/interaction"]
 visible = false
 target_position = Vector3(0, 0, -2)
-collision_mask = 5
+collision_mask = 4
 collide_with_areas = true
 debug_shape_custom_color = Color(0.407843, 0.862745, 0, 1)
 
