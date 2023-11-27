@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://dq6tiqj0gtm6u"]
+[gd_scene load_steps=81 format=3 uid="uid://dq6tiqj0gtm6u"]
 
 [ext_resource type="PackedScene" uid="uid://c54hb80sgqu3t" path="res://assets/models/first_person_rig.fbx" id="1_a1su1"]
 [ext_resource type="Script" path="res://scripts/procedural/hands_ik.gd" id="2_50ecj"]
@@ -20,6 +20,13 @@ size = Vector3(0.003, 0.003, 0.003)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lwfv"]
 transparency = 1
 albedo_color = Color(1, 0, 0, 0.25098)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4l72s"]
+radius = 0.003
+
+[sub_resource type="SphereMesh" id="SphereMesh_mag5f"]
+radius = 0.003
+height = 0.005
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_40lk6"]
 animation = &"first_person_rig|unarmed_defend"
@@ -333,23 +340,26 @@ script = ExtResource("2_50ecj")
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RootNode/first_person_rig" index="0"]
-bones/1/rotation = Quaternion(0.175556, 0.140232, 0.899377, 0.375015)
-bones/2/rotation = Quaternion(0.939769, -0.00264818, -0.0143937, 0.341498)
-bones/3/rotation = Quaternion(-3.69404e-09, 1.50865e-07, 0.0462949, 0.998928)
-bones/4/rotation = Quaternion(0.305852, -0.250781, 0.436223, 0.808253)
-bones/5/rotation = Quaternion(-0.699975, 0.0270142, -0.0224131, 0.713304)
-bones/7/rotation = Quaternion(-0.428109, 0.427812, 0.571808, 0.553837)
-bones/9/rotation = Quaternion(-0.640314, 0.0292858, 0.00584312, 0.767533)
-bones/11/rotation = Quaternion(-0.492766, 0.492837, 0.508694, 0.505494)
-bones/12/rotation = Quaternion(-0.661759, -0.00577078, 0.00400164, 0.749684)
+bones/1/rotation = Quaternion(0.17915, 0.162615, 0.889188, 0.388337)
+bones/2/rotation = Quaternion(0.949164, -0.00305934, -0.0143119, 0.314442)
+bones/3/rotation = Quaternion(-1.40418e-08, 1.50256e-07, 0.11476, 0.993393)
+bones/4/rotation = Quaternion(0.483138, -0.144004, 0.482125, 0.716516)
+bones/5/rotation = Quaternion(-0.369037, 0.0162237, -0.0311272, 0.928752)
+bones/7/rotation = Quaternion(-0.0483523, 0.673362, 0.237846, 0.698337)
+bones/8/rotation = Quaternion(-0.340042, -0.0564076, -0.0127915, 0.93863)
+bones/9/rotation = Quaternion(-0.332739, 0.0294865, -0.00472765, 0.942546)
+bones/11/rotation = Quaternion(-0.443693, 0.537948, 0.460727, 0.549071)
+bones/12/rotation = Quaternion(-0.611359, -0.00549698, 0.00437016, 0.791322)
+bones/13/rotation = Quaternion(-0.62543, 0.017339, -0.0279802, 0.779586)
 bones/15/rotation = Quaternion(-0.531752, 0.531757, 0.454404, 0.477485)
-bones/16/rotation = Quaternion(-0.687516, 0.0195088, 0.00628456, 0.72588)
-bones/17/rotation = Quaternion(-0.65633, 0.0199581, 0.0229971, 0.753859)
+bones/16/rotation = Quaternion(-0.687517, 0.0195088, 0.00628456, 0.725879)
+bones/17/rotation = Quaternion(-0.65633, 0.0199581, 0.0229971, 0.75386)
 bones/19/rotation = Quaternion(-0.547271, 0.637391, 0.44929, 0.303917)
 bones/20/rotation = Quaternion(-0.660542, -0.000808335, -0.00480212, 0.750773)
-bones/23/rotation = Quaternion(-0.346076, 0.445001, 0.775927, -0.283096)
-bones/24/rotation = Quaternion(0.389405, 0.222876, 0.204677, 0.869941)
-bones/25/rotation = Quaternion(8.14665e-10, -1.58404e-07, -0.040202, 0.999192)
+bones/21/rotation = Quaternion(-0.671666, -0.0168857, -0.00986223, 0.740596)
+bones/23/rotation = Quaternion(-0.362926, 0.453185, 0.760359, -0.291139)
+bones/24/rotation = Quaternion(0.388775, 0.224146, 0.201882, 0.870549)
+bones/25/rotation = Quaternion(-7.33704e-09, -1.58236e-07, -0.0915617, 0.995799)
 bones/26/rotation = Quaternion(0.165465, 0.0895714, -0.605916, 0.772958)
 bones/27/rotation = Quaternion(-0.732812, -0.0280405, 0.0211152, 0.679525)
 bones/29/rotation = Quaternion(-0.414586, -0.401612, -0.577417, 0.577421)
@@ -393,11 +403,12 @@ magnet = Vector3(1, 0, 0)
 target_node = NodePath("../../../../target_r")
 
 [node name="right_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.586308, -0.804177, -0.0976855, 0.207598, 0.265714, -0.941435, 0.783037, 0.531691, 0.322736, 0.00153024, 0.00217274, 0.0150922)
+transform = Transform3D(0.443289, -0.895525, -0.0391134, 0.201249, 0.141951, -0.9692, 0.873495, 0.421764, 0.243149, 0.00147696, 0.00200707, 0.0152303)
 bone_name = "hand_r"
 bone_idx = 3
 
 [node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/right_hand_attach" index="0"]
+input_ray_pickable = false
 monitoring = false
 monitorable = false
 script = ExtResource("3_capjn")
@@ -410,11 +421,12 @@ material_override = SubResource("StandardMaterial3D_xay4s")
 mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="left_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="8"]
-transform = Transform3D(0.206278, 0.434492, 0.876736, 0.082632, 0.88507, -0.458064, -0.974998, 0.166935, 0.146668, -0.000922233, 0.00571053, 0.014754)
+transform = Transform3D(0.12707, 0.48676, 0.864244, 0.00304518, 0.871111, -0.491076, -0.991889, 0.065033, 0.10921, -0.000741371, 0.00569534, 0.0148341)
 bone_name = "hand_l"
 bone_idx = 25
 
 [node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/left_hand_attach" index="0"]
+input_ray_pickable = false
 monitoring = false
 monitorable = false
 script = ExtResource("3_capjn")
@@ -425,6 +437,44 @@ shape = SubResource("BoxShape3D_hc3pf")
 [node name="mesh" type="MeshInstance3D" parent="RootNode/first_person_rig/Skeleton3D/left_hand_attach/hitbox" index="1"]
 material_override = SubResource("StandardMaterial3D_2lwfv")
 mesh = SubResource("BoxMesh_s7qe5")
+
+[node name="left_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="9"]
+transform = Transform3D(0.213702, 0.455427, 0.864244, 0.161845, 0.85595, -0.491076, -0.963399, 0.244818, 0.10921, -0.00217473, 0.00300142, 0.0140636)
+bone_name = "arm_l"
+bone_idx = 24
+
+[node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/left_elbow_attach" index="0"]
+transform = Transform3D(1, -1.49012e-08, 2.32831e-10, -4.47035e-08, 1, 0, -7.91624e-09, -3.72529e-09, 1, 0, 0, 0)
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("3_capjn")
+
+[node name="shape" type="CollisionShape3D" parent="RootNode/first_person_rig/Skeleton3D/left_elbow_attach/hitbox" index="0"]
+shape = SubResource("SphereShape3D_4l72s")
+
+[node name="mesh" type="MeshInstance3D" parent="RootNode/first_person_rig/Skeleton3D/left_elbow_attach/hitbox" index="1"]
+material_override = SubResource("StandardMaterial3D_2lwfv")
+mesh = SubResource("SphereMesh_mag5f")
+
+[node name="right_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="10"]
+transform = Transform3D(0.635795, -0.770866, -0.0391135, 0.163583, 0.184097, -0.9692, 0.754324, 0.609814, 0.243149, 0.0039031, 0.00142767, 0.0133111)
+bone_name = "arm_r"
+bone_idx = 2
+
+[node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/right_elbow_attach" index="0"]
+transform = Transform3D(1, -1.49012e-08, 2.32831e-10, -4.47035e-08, 1, 0, -7.91624e-09, -3.72529e-09, 1, 0, 0, 0)
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("3_capjn")
+
+[node name="shape" type="CollisionShape3D" parent="RootNode/first_person_rig/Skeleton3D/right_elbow_attach/hitbox" index="0"]
+shape = SubResource("SphereShape3D_4l72s")
+
+[node name="mesh" type="MeshInstance3D" parent="RootNode/first_person_rig/Skeleton3D/right_elbow_attach/hitbox" index="1"]
+material_override = SubResource("StandardMaterial3D_2lwfv")
+mesh = SubResource("SphereMesh_mag5f")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_j6qrk")

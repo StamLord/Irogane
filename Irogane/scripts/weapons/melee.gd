@@ -32,7 +32,7 @@ extends Node3D
 @export var max_display_moves = 10
 
 @export var light_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
-@export var uppercut_attack_info = AttackInfo.new(10, 15, Vector3.UP * 4)
+@export var uppercut_attack_info = AttackInfo.new(10, 15, Vector3.UP * 6)
 
 @onready var vault = $"../../../../../../../states/vault"
 @onready var air = $"../../../../../../../states/air"
@@ -50,6 +50,8 @@ const anim_idle_path = "parameters/StateMachine/idle"
 
 @onready var hitbox_l = $first_person_rig/RootNode/first_person_rig/Skeleton3D/left_hand_attach/hitbox
 @onready var hitbox_r = $first_person_rig/RootNode/first_person_rig/Skeleton3D/right_hand_attach/hitbox
+@onready var hitbox_elbow_l = $first_person_rig/RootNode/first_person_rig/Skeleton3D/left_elbow_attach/hitbox
+@onready var hitbox_elbow_r = $first_person_rig/RootNode/first_person_rig/Skeleton3D/right_elbow_attach/hitbox
 @onready var hitbox_uppercut = $first_person_rig/uppercut_hitbox
 
 
@@ -72,6 +74,8 @@ func _ready():
 	# Register to hitboxes
 	hitbox_l.on_collision.connect(hit)
 	hitbox_r.on_collision.connect(hit)
+	hitbox_elbow_l.on_collision.connect(hit)
+	hitbox_elbow_r.on_collision.connect(hit)
 	hitbox_uppercut.on_collision.connect(hit)
 	
 	# Register to states
