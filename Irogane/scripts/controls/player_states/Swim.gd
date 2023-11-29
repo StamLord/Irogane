@@ -29,8 +29,15 @@ func Update(delta):
 	
 func PhysicsUpdate(body, delta):
 	input_dir = Input.get_vector("left", "right", "forward", "backward")
+	
+	var input_y = 0
+	if Input.is_action_pressed("jump"):
+		input_y = 1
+	elif Input.is_action_pressed("crouch"):
+		input_y = -1
+	
 	# Use head's transform to move in 3D
-	direction = lerp(direction, (head.get_global_transform().basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * acceleration)
+	direction = lerp(direction, (head.get_global_transform().basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() + Vector3.UP * input_y, delta * acceleration)
 	
 	# How far from water surface
 	var water_level = default_water_level
