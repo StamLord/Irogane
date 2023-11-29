@@ -238,6 +238,7 @@ ledge_mask = 1
 
 [node name="swim" type="Node" parent="states"]
 script = ExtResource("16_0qk7s")
+acceleration = 5
 buoyancy = 0.0
 surface_offset = -1.5
 

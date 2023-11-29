@@ -37,7 +37,13 @@ func PhysicsUpdate(body, delta):
 		input_y = -1
 	
 	# Use head's transform to move in 3D
-	direction = lerp(direction, (head.get_global_transform().basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() + Vector3.UP * input_y, delta * acceleration)
+	var relative = head.get_global_transform().basis * Vector3(input_dir.x, 0, input_dir.y)
+	
+	# Vertical movement always aligned with Y axis
+	var vertical = Vector3.UP * input_y
+	
+	# Lerp direction towards target
+	direction = lerp(direction, (relative + vertical).normalized(), delta * acceleration)
 	
 	# How far from water surface
 	var water_level = default_water_level
@@ -52,7 +58,9 @@ func PhysicsUpdate(body, delta):
 	
 	var velocity = body.velocity
 	if direction:
-		velocity = direction * speed
+		# Lerp velocity instead of overwriting for smooth movement 
+		# and to keep vertical momentum from jumping in water
+		velocity = lerp(velocity, direction * speed, delta * acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
@@ -64,12 +72,13 @@ func PhysicsUpdate(body, delta):
 		velocity.y = min(0, velocity.y)
 	
 	# Lerp towards 0 the bigger our input is
-	var vertical_force = lerp(buoyancy, 0.0, direction.length())
+	var buoyancy_force = lerp(buoyancy, 0.0, direction.length())
 	
 	# Farther from 0 surface delta means stronger
-	var target_velocity_y = lerp(0.0, vertical_force, -surface_delta) 
+	buoyancy_force = lerp(0.0, buoyancy_force, -surface_delta) 
 	
-	velocity.y = lerp(velocity.y, target_velocity_y, delta)
+	# Lerp for bouyancy
+	velocity.y = lerp(velocity.y, buoyancy_force, delta)
 	
 	body.velocity = velocity
 	body.move_and_slide()
