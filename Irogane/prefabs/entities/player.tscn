@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=54 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/RIGS/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
+[ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 [ext_resource type="Shader" uid="uid://bdh8h54vakscc" path="res://assets/shaders/bubble.tres" id="26_ud12e"]
@@ -57,7 +58,7 @@ blend_mode = 1
 no_depth_test = true
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("23_hmrdc")
+albedo_texture = ExtResource("23_lpx6h")
 refraction_scale = 0.01
 refraction_texture = ExtResource("23_hmrdc")
 billboard_mode = 3
@@ -298,7 +299,6 @@ alignment = 2
 
 [node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
-visible = false
 emitting = false
 amount = 24
 lifetime = 0.4
@@ -316,7 +316,7 @@ draw_pass_1 = SubResource("QuadMesh_wkuo3")
 [node name="ripple_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
 emitting = false
-amount = 2
+amount = 24
 lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_teee7")
 draw_pass_1 = SubResource("SphereMesh_1d4nr")
