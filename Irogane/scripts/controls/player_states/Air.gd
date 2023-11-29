@@ -64,6 +64,24 @@ func PhysicsUpdate(body, delta):
 		Transitioned.emit(self, "jump")
 		return
 	
+	# Dash State
+	if InputUtils.is_action_just_double_pressed("forward"):
+		direction = body.basis * Vector3(0, 0, -1)
+		Transitioned.emit(self, "dash")
+		return
+	elif InputUtils.is_action_just_double_pressed("backward"):
+		direction = body.basis * Vector3(0, 0, 1)
+		Transitioned.emit(self, "dash")
+		return
+	elif InputUtils.is_action_just_double_pressed("left"):
+		direction = body.basis * Vector3(-1, 0, 0)
+		Transitioned.emit(self, "dash")
+		return
+	elif InputUtils.is_action_just_double_pressed("right"):
+		direction = body.basis * Vector3(1, 0, 0)
+		Transitioned.emit(self, "dash")
+		return
+	
 	# Climb Rope
 	if rope_check.is_colliding():
 		for i in range(rope_check.get_collision_count()):

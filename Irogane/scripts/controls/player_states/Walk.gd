@@ -51,6 +51,24 @@ func PhysicsUpdate(body, delta):
 		Transitioned.emit(self, "jump")
 		return
 	
+	# Dash State
+	if InputUtils.is_action_just_double_pressed("forward"):
+		direction = body.basis * Vector3(0, 0, -1)
+		Transitioned.emit(self, "dash")
+		return
+	elif InputUtils.is_action_just_double_pressed("backward"):
+		direction = body.basis * Vector3(0, 0, 1)
+		Transitioned.emit(self, "dash")
+		return
+	elif InputUtils.is_action_just_double_pressed("left"):
+		direction = body.basis * Vector3(-1, 0, 0)
+		Transitioned.emit(self, "dash")
+		return
+	elif InputUtils.is_action_just_double_pressed("right"):
+		direction = body.basis * Vector3(1, 0, 0)
+		Transitioned.emit(self, "dash")
+		return
+		
 	# Air State
 	if not body.is_on_floor() and not climb_step:
 		Transitioned.emit(self, "air")
