@@ -24,7 +24,7 @@ func _on_body_entered(body):
 	
 	bodies.append(body)
 	
-	var pos = body.global_position + Vector3.UP * 0.25
+	var pos = body.global_position + Vector3.UP * 0.1
 	
 	water_splash.global_position = pos
 	water_splash_2.global_position = pos
