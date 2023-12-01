@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=113 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://sqfqyem3kb4n" path="res://assets/shaders/fire.tres" id="3_4biji"]
 [ext_resource type="Shader" uid="uid://2ivnx4h1jygn" path="res://assets/shaders/underwater.tres" id="3_j0iyi"]
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="3_mxwgm"]
+[ext_resource type="Script" path="res://scenes/water_area.gd" id="3_p7gob"]
 [ext_resource type="Script" path="res://scripts/procedural/rope.gd" id="3_xi6qj"]
 [ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://scenes/underwater_2.tres" id="4_41qgg"]
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="4_b71lg"]
@@ -26,6 +27,8 @@
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox_dummy.gd" id="24_fbhn0"]
 [ext_resource type="Texture2D" uid="uid://fdjjcjkxdo7o" path="res://icon.svg" id="25_g0vwl"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="25_urnjo"]
+[ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
+[ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vd5j8"]
 vertices = PackedVector3Array(-8.08227, 2.98752, -21.9384, -6.08227, 1.48752, -13.6884, 2.16773, -0.0124755, -15.9384, 0.167732, 1.48752, -24.1884, -0.347076, 0.487525, -17.6876, -19.0823, 4.23752, -13.6884, -10.8323, 1.73752, -14.6884, -12.8323, -1.01248, -22.6884, -20.8323, 1.23752, -21.6884, -18.3371, 2.73752, -16.1816, -32.5823, 4.23752, -9.93843, -24.0823, 5.48752, -9.43843, -23.5823, 4.98752, -14.9384, -23.5823, 4.73752, -18.1884, -32.0823, 3.23752, -18.6884, -32.5823, 3.98752, -12.9384, -9.33227, 0.487525, -3.93843, -4.83227, 0.487525, -3.93843, -4.83227, 0.487525, -6.43843, -2.58227, 0.487525, -9.43843, -9.33227, 0.487525, -9.43843, -9.33227, 0.487525, -3.93843, -4.83227, 0.487525, -6.43843, -4.33227, 0.487525, -6.93843, 4.16773, 0.487525, -6.93843, 4.16773, 0.487525, -9.43843, -2.58227, 0.487525, -9.43843, -4.33227, 0.487525, -6.93843, 4.16773, 0.487525, -9.43843, 4.16773, 0.487525, -6.93843, 4.91773, 0.487525, -6.43843, 9.16773, 0.487525, -9.43843, 4.91773, 0.487525, -3.68843, 4.41773, 0.487525, -3.18843, 9.16773, 0.487525, -3.18843, 4.91773, 0.487525, -6.43843, 4.91773, 0.487525, -3.68843, 9.16773, 0.487525, -3.18843, 9.16773, 0.487525, -9.43843, -3.33227, 5.48752, -5.43843, -3.33227, 5.48752, -4.68843, -2.58227, 5.48752, -4.68843, -2.58227, 5.48752, -5.43843, -0.332268, 5.98752, -5.43843, -0.332268, 5.98752, -4.68843, 0.417732, 5.98752, -4.68843, 0.417732, 5.98752, -5.43843, 2.66773, 6.48752, -5.43843, 2.66773, 6.48752, -4.68843, 3.41773, 6.48752, -4.68843, 3.41773, 6.48752, -5.43843, -3.33227, 1.73752, 9.56157, -2.58227, 1.73752, 9.56157, -2.58227, 0.737525, 7.56157, -3.58227, 0.737525, 7.31157, -9.33227, 0.487525, 2.56157, -4.83227, 0.487525, 7.56157, -3.58227, 0.737525, 7.31157, -3.58227, 0.737525, 7.31157, -2.58227, 0.737525, 7.56157, -1.83227, 0.737525, 7.31157, -1.83227, 0.487525, -3.18843, -4.33227, 0.487525, -3.18843, -9.33227, 0.487525, 2.56157, -9.33227, 0.487525, 9.31157, -4.83227, 0.487525, 9.31157, -4.83227, 0.487525, 7.56157, -9.33227, 0.487525, 2.56157, -4.33227, 0.487525, -3.18843, -4.83227, 0.487525, -3.93843, -9.33227, 0.487525, -3.93843, -9.33227, 0.487525, 2.56157, -1.08227, 1.23752, 9.81157, -0.582268, 1.48752, 10.0616, -0.332268, 0.487525, 9.06157, -1.08227, 0.487525, 7.56157, -1.08227, 0.487525, 8.68657, 9.16773, 0.487525, 3.06157, 9.16773, 0.487525, -3.18843, 4.41773, 0.487525, -3.18843, -0.332268, 0.487525, 9.06157, 2.16773, 0.487525, 9.31157, 2.16773, 0.487525, 7.56157, -1.08227, 0.487525, 7.56157, -0.332268, 0.487525, 9.06157, 2.16773, 0.487525, 7.56157, 2.66773, 0.487525, 7.06157, 2.66773, 0.487525, 7.06157, 4.41773, 0.487525, 7.06157, 9.16773, 0.487525, 3.06157, -1.83227, 0.737525, 7.31157, -1.08227, 0.487525, 7.56157, 2.66773, 0.487525, 7.06157, 9.16773, 0.487525, 3.06157, 4.41773, 0.487525, -3.18843, -1.83227, 0.487525, -3.18843, 4.91773, 0.487525, 7.56157, 4.91773, 0.487525, 9.31157, 9.16773, 0.487525, 9.31157, 4.41773, 0.487525, 7.06157, 4.91773, 0.487525, 7.56157, 9.16773, 0.487525, 9.31157, 9.16773, 0.487525, 3.06157, -27.8323, 16.4875, -1.93843, -27.8323, 16.4875, 1.81157, -24.0823, 16.4875, 1.81157, -24.0823, 16.4875, -1.93843, -27.8323, 14.4875, 5.06157, -27.8323, 14.4875, 8.81157, -24.0823, 14.4875, 8.81157, -24.0823, 14.4875, 5.06157, 3.16773, 4.73752, 8.56157, 3.16773, 4.73752, 11.3116, 3.91773, 4.73752, 11.3116, 3.91773, 4.73752, 8.56157, -0.582268, 1.48752, 10.0616, -1.08227, 1.23752, 9.81157, -1.33227, 2.48752, 11.0616, -0.582268, 2.98752, 12.0616, -0.0822678, 2.98752, 12.5616, -3.33227, 2.98752, 12.0616, -3.83227, 2.98752, 12.5616, -2.33227, 2.48752, 11.0616, -2.58227, 1.73752, 9.56157, -3.33227, 1.73752, 9.56157, -3.33227, 2.98752, 12.0616, 4.41773, 2.98752, 12.8116, -0.0822678, 2.98752, 12.5616, -3.83227, 2.98752, 12.5616, -0.582268, 2.98752, 12.0616, -1.33227, 2.48752, 11.0616, -2.33227, 2.48752, 11.0616, -0.0822678, 2.98752, 12.5616, -0.582268, 2.98752, 12.0616, -2.33227, 2.48752, 11.0616, -3.33227, 2.98752, 12.0616, -3.83227, 2.98752, 12.5616, -5.33227, 3.23752, 12.5616, -5.08227, 2.98752, 21.3116, 4.41773, 2.98752, 21.3116, 4.41773, 2.98752, 12.8116, -30.3323, 12.4875, 12.5616, -30.3323, 12.4875, 21.3116, -21.5823, 12.4875, 21.3116, -21.5823, 12.4875, 12.5616, -12.8323, 7.48752, 12.5616, -20.0823, 11.7375, 12.5616, -20.0823, 11.7375, 21.3116, -12.5823, 7.23752, 21.3116, -12.5823, 7.23752, 21.3116, -5.08227, 2.98752, 21.3116, -5.33227, 3.23752, 12.5616, -12.8323, 7.48752, 12.5616, -6.35223, 3.48752, 13.8195)
@@ -105,6 +108,202 @@ size = Vector3(10, 10, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2mll0"]
 size = Vector3(10, 7, 10)
+
+[sub_resource type="Gradient" id="Gradient_r54cj"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_msn4c"]
+gradient = SubResource("Gradient_r54cj")
+
+[sub_resource type="Curve" id="Curve_fnrqy"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_r3rim"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_5kt5b"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_08obh"]
+curve_x = SubResource("Curve_fnrqy")
+curve_y = SubResource("Curve_r3rim")
+curve_z = SubResource("Curve_5kt5b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s4cg4"]
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveXYZTexture_08obh")
+color_ramp = SubResource("GradientTexture1D_msn4c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bx1p"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("27_wryva")
+texture_filter = 0
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_7ost3"]
+material = SubResource("StandardMaterial3D_2bx1p")
+center_offset = Vector3(0, 0.4, 0)
+
+[sub_resource type="Gradient" id="Gradient_qtbj1"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f8koo"]
+gradient = SubResource("Gradient_qtbj1")
+
+[sub_resource type="Curve" id="Curve_ak2ph"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_e82nw"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_imq2h"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_whtbi"]
+curve_x = SubResource("Curve_ak2ph")
+curve_y = SubResource("Curve_e82nw")
+curve_z = SubResource("Curve_imq2h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wraie"]
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+angle_min = 90.0
+angle_max = 90.0
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveXYZTexture_whtbi")
+color_ramp = SubResource("GradientTexture1D_f8koo")
+
+[sub_resource type="Gradient" id="Gradient_c38c7"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kserc"]
+gradient = SubResource("Gradient_c38c7")
+
+[sub_resource type="Curve" id="Curve_rfpjd"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_imrmx"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_expe6"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_13qd1"]
+curve_x = SubResource("Curve_rfpjd")
+curve_y = SubResource("Curve_imrmx")
+curve_z = SubResource("Curve_expe6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gf8nx"]
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+angle_min = 45.0
+angle_max = 45.0
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveXYZTexture_13qd1")
+color_ramp = SubResource("GradientTexture1D_kserc")
+
+[sub_resource type="Gradient" id="Gradient_hpca1"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.501961, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ud2a"]
+gradient = SubResource("Gradient_hpca1")
+
+[sub_resource type="Curve" id="Curve_ab7oc"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ult31"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_3gvl4"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6looo"]
+curve_x = SubResource("Curve_ab7oc")
+curve_y = SubResource("Curve_ult31")
+curve_z = SubResource("Curve_3gvl4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cnouc"]
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+angle_min = -45.0
+angle_max = -45.0
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveXYZTexture_6looo")
+color_ramp = SubResource("GradientTexture1D_6ud2a")
+
+[sub_resource type="Gradient" id="Gradient_v8f3g"]
+offsets = PackedFloat32Array(0.482558, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_82daa"]
+gradient = SubResource("Gradient_v8f3g")
+
+[sub_resource type="Curve" id="Curve_rt8cv"]
+_data = [Vector2(0, 0), 0.0, 2.39271, 0, 0, Vector2(1, 1), 0.109141, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_11nu5"]
+curve = SubResource("Curve_rt8cv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f536d"]
+emission_shape = 1
+emission_sphere_radius = 0.25
+direction = Vector3(0, 1, 0)
+spread = 12.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angle_max = 360.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_11nu5")
+color_ramp = SubResource("GradientTexture1D_82daa")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnhlj"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("28_ag1fk")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_csur3"]
+material = SubResource("StandardMaterial3D_vnhlj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bj4xs"]
 render_priority = -1
@@ -566,7 +765,8 @@ skeleton = NodePath("../..")
 
 [node name="water_area" type="Area3D" parent="stage/water"]
 collision_layer = 8
-collision_mask = 0
+script = ExtResource("3_p7gob")
+spray_amount = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stage/water/water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -4.75, 5)
@@ -579,6 +779,48 @@ shape = SubResource("BoxShape3D_5qrqs")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="stage/water/water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -6.5, -1)
 shape = SubResource("BoxShape3D_2mll0")
+
+[node name="vfx" type="Node3D" parent="stage/water/water_area"]
+
+[node name="water_splash" type="GPUParticles3D" parent="stage/water/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_s4cg4")
+draw_pass_1 = SubResource("QuadMesh_7ost3")
+
+[node name="water_splash2" type="GPUParticles3D" parent="stage/water/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wraie")
+draw_pass_1 = SubResource("QuadMesh_7ost3")
+
+[node name="water_splash3" type="GPUParticles3D" parent="stage/water/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_gf8nx")
+draw_pass_1 = SubResource("QuadMesh_7ost3")
+
+[node name="water_splash4" type="GPUParticles3D" parent="stage/water/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_cnouc")
+draw_pass_1 = SubResource("QuadMesh_7ost3")
+
+[node name="water_spray" type="GPUParticles3D" parent="stage/water/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.079459, 5)
+emitting = false
+amount = 24
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_f536d")
+draw_pass_1 = SubResource("QuadMesh_csur3")
 
 [node name="water_1" type="MeshInstance3D" parent="stage/water"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -5, 10)
@@ -905,7 +1147,7 @@ script = ExtResource("21_jnbh6")
 visible = false
 
 [node name="dummy" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49509, 21)
 lock_rotation = true
 script = ExtResource("24_fbhn0")
 
@@ -915,13 +1157,15 @@ shape = SubResource("CapsuleShape3D_3i6oh")
 
 [node name="mesh" type="MeshInstance3D" parent="dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 4
 mesh = SubResource("CapsuleMesh_6ohwg")
 
 [node name="Decal" type="Decal" parent="dummy/mesh"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.512172, -0.301767)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.731313, -0.301767)
 size = Vector3(0.5, 0.5, 0.5)
 texture_albedo = ExtResource("25_g0vwl")
 upper_fade = 0.00485281
+cull_mask = 4
 
 [node name="hurtbox" type="Area3D" parent="dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -929,3 +1173,6 @@ script = ExtResource("25_urnjo")
 
 [node name="shape" type="CollisionShape3D" parent="dummy/hurtbox"]
 shape = SubResource("CapsuleShape3D_otx07")
+
+[connection signal="body_entered" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_entered"]
+[connection signal="body_exited" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_exited"]
