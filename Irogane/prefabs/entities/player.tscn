@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=56 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -29,6 +29,7 @@
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 [ext_resource type="Shader" uid="uid://bdh8h54vakscc" path="res://assets/shaders/bubble.tres" id="26_ud12e"]
+[ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -326,6 +327,29 @@ amount = 24
 lifetime = 0.6
 process_material = SubResource("ParticleProcessMaterial_teee7")
 draw_pass_1 = SubResource("SphereMesh_1d4nr")
+
+[node name="audio" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
+script = ExtResource("29_c2b1q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+
+[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
 
 [node name="sword" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
 visible = false

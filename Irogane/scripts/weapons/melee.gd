@@ -54,9 +54,10 @@ const anim_idle_path = "parameters/StateMachine/idle"
 @onready var hitbox_elbow_r = $first_person_rig/RootNode/first_person_rig/Skeleton3D/right_elbow_attach/hitbox
 @onready var hitbox_uppercut = $first_person_rig/uppercut_hitbox
 
-
 @onready var hit_vfx = $hit_vfx
 @onready var ripple_vfx = $ripple_vfx
+
+@onready var audio = $audio
 
 var combo = []
 var last_combo_addition = 0
@@ -69,6 +70,12 @@ var last_swim_input = Vector2.ZERO
 var last_primary = -1
 var last_secondary = -1
 var last_jump = -1
+
+@onready var hit_sounds = [
+	preload ("res://assets/audio/melee/hit07.mp3"), 
+	preload ("res://assets/audio/melee/hit08.mp3"), 
+	preload ("res://assets/audio/melee/hit09.mp3"), 
+	preload ("res://assets/audio/melee/hit16.mp3")]
 
 func _ready():
 	# Register to hitboxes
@@ -256,6 +263,7 @@ func hit(area, hitbox):
 		ripple_vfx.global_position = hitbox.global_position
 		ripple_vfx.emit_particle(ripple_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 		
+		audio.play(hit_sounds.pick_random(), hitbox.global_position)
 
 func start_animate_air():
 	anim_idle_state_machine.travel("air")
