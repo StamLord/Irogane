@@ -40,6 +40,8 @@ func update_tree():
 	trunk.mesh = CylinderMesh.new()
 	
 	trunk.global_position.y = tree_height * 0.5
+	trunk.mesh.radial_segments = mesh_radial_segments
+	trunk.mesh.rings = mesh_rings
 	trunk.mesh.height = tree_height
 	trunk.mesh.bottom_radius = trunk_width
 	trunk.mesh.top_radius = top_width
@@ -79,7 +81,9 @@ func update_tree():
 				else:
 					add_child(mesh)
 					mesh.position.y = height
-					mesh.set_rotation_degrees(Vector3(90+branch_angle, angle_space * j, 0))
+					# Add offset for every other level
+					var offset_angle = angle_space * 0.5 if i % 2 == 0 else 0
+					mesh.set_rotation_degrees(Vector3(90+branch_angle, angle_space * j + offset_angle, 0))
 					mesh.position += mesh.basis.y * branch_segment_length * 0.5
 				
 				create_collider(mesh)
@@ -96,3 +100,4 @@ func create_collider(mesh):
 	collider.shape.size.z = radius
 	body.add_child(collider)
 	mesh.add_child(body)
+	
