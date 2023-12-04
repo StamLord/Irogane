@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=68 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 [ext_resource type="Shader" uid="uid://bdh8h54vakscc" path="res://assets/shaders/bubble.tres" id="26_ud12e"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
+[ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
+[ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -150,6 +152,60 @@ height = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_8nx1q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_motmp"]
+
+[sub_resource type="Curve" id="Curve_y01dl"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ibynj"]
+curve = SubResource("Curve_y01dl")
+
+[sub_resource type="Gradient" id="Gradient_jk3ou"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3bx3h"]
+gradient = SubResource("Gradient_jk3ou")
+
+[sub_resource type="Curve" id="Curve_pvrf3"]
+_data = [Vector2(0, 0), 0.0, 2.24649, 0, 0, Vector2(0.664975, 0.852632), 0.717814, 0.717814, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_le6v8"]
+curve = SubResource("Curve_pvrf3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30waa"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.4
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_ibynj")
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_le6v8")
+color = Color(0.537255, 0.580392, 0.780392, 0.376471)
+color_ramp = SubResource("GradientTexture1D_3bx3h")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvrxs"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("31_kl1ps")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7s8xr"]
+material = SubResource("StandardMaterial3D_uvrxs")
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state")]
 floor_constant_speed = true
@@ -425,3 +481,15 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wind_check"]
 shape = SubResource("BoxShape3D_motmp")
+
+[node name="vfx" type="Node3D" parent="."]
+
+[node name="slide_dust" type="GPUParticles3D" parent="vfx"]
+emitting = false
+amount = 64
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_30waa")
+draw_pass_1 = SubResource("QuadMesh_7s8xr")
+script = ExtResource("32_jglc7")
+emission_per_unit = 4

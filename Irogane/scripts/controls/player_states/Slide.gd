@@ -6,6 +6,7 @@ class_name Slide
 @onready var crouch_collider = $"../../crouch_collider"
 @onready var head_check = $"../../head_check"
 @onready var head = $"../../head"
+@onready var slide_dust = $"../../vfx/slide_dust"
 
 # Variables
 @export var speed_multiplier = 1.5;
@@ -29,6 +30,9 @@ func Enter(body):
 	original_head_height = head.position.y
 	head.change_height(slide_head_height, 0.2)
 	head.change_tilt(-10.0, 0.2)
+	
+	# Start vfx
+	slide_dust.active = true
 
 func Update(delta):
 	pass
@@ -78,3 +82,6 @@ func Exit(body):
 	# Return head to original height
 	head.reset_height(0.2)
 	head.reset_tilt(0.2)
+	
+	# Stop vfx
+	slide_dust.active = false
