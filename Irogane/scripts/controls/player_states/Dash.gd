@@ -23,7 +23,7 @@ func Enter(body):
 	end_time = Time.get_ticks_msec() + dash_duration * 1000
 	
 	# Lower  head
-	head.ChangeHeight(dash_head_height, 0.2)
+	head.change_height(dash_head_height, 0.2)
 	
 	# Reset vertical velocity
 	body.velocity.y = 0
@@ -76,4 +76,4 @@ func Exit(body):
 	body.velocity *= velocity_retention_on_exit
 	
 	# Return head to original height
-	head.ResetHeight(0.2)
+	head.reset_height(0.2)

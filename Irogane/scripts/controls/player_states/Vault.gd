@@ -44,7 +44,7 @@ func Enter(body):
 	startPos = body.position
 	duration = climb_time * 1000 # Convert to milliseconds
 	
-	head.ChangeTilt(20.0, 0.1)
+	head.change_tilt(20.0, 0.1)
 	
 	# Check if we are in a crouch space
 	var query = PhysicsRayQueryParameters3D.create(target_position, target_position + Vector3.UP * 1.9)
@@ -52,7 +52,7 @@ func Enter(body):
 	is_crouch = collision
 	
 	if is_crouch:
-		head.ChangeHeight(crouch_head_height, 0.2)
+		head.change_height(crouch_head_height, 0.2)
 		
 	vault_started.emit(target_position)
 
@@ -77,10 +77,10 @@ func Exit(body):
 	body.move_and_slide() 	# Update body to acknowledge new state, 
 							# otherwise next state will think it's not on floor
 	
-	head.ResetTilt(0.2)
+	head.reset_tilt(0.2)
 	
 	if is_crouch:
-		head.ResetHeight(0.2)
+		head.reset_height(0.2)
 		crouch_collider.disabled = false
 	else:
 		stand_collider.disabled = false
