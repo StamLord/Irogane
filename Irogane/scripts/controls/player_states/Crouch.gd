@@ -27,7 +27,7 @@ func Enter(body):
 	crouch_collider.disabled = false
 	
 	# Lower head
-	head.ChangeHeight(crouch_head_height, 0.2)
+	head.change_height(crouch_head_height, 0.2)
 
 func PhysicsUpdate(body, delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
@@ -68,7 +68,7 @@ func Exit(body):
 	crouch_collider.disabled = true
 	
 	# Return head to original height
-	head.ResetHeight(0.2)
+	head.reset_height(0.2)
 
 func is_step(body, input_dir):
 	

@@ -27,7 +27,8 @@ func Enter(body):
 	
 	# Lower  head
 	original_head_height = head.position.y
-	head.ChangeHeight(slide_head_height, 0.2)
+	head.change_height(slide_head_height, 0.2)
+	head.change_tilt(-10.0, 0.2)
 
 func Update(delta):
 	pass
@@ -75,4 +76,5 @@ func Exit(body):
 	crouch_collider.disabled = true
 	
 	# Return head to original height
-	head.ResetHeight(0.2)
+	head.reset_height(0.2)
+	head.reset_tilt(0.2)

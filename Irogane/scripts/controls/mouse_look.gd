@@ -42,16 +42,16 @@ func _input(event):
 		rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		rotation.x = clamp(rotation.x, deg_to_rad(look_min), deg_to_rad(look_max))
 
-func ChangeHeight(height, duration):
+func change_height(height, duration):
 	new_height = height
 	height_duration = duration
 	
-	HeightAnimate()
+	height_animate()
 
-func ResetHeight(duration):
-	ChangeHeight(original_height, duration)
+func reset_height(duration):
+	change_height(original_height, duration)
 
-func HeightAnimate():
+func height_animate():
 	var startTime = Time.get_ticks_msec()
 	var duration = height_duration * 1000
 	var startHeight = position.y
@@ -65,16 +65,16 @@ func HeightAnimate():
 
 	position.y = new_height
 
-func ChangeTilt(tilt, duration):
+func change_tilt(tilt, duration):
 	new_tilt = tilt
 	tilt_duration = duration
 	
-	TiltAnimate()
+	tilt_animate()
 	
-func ResetTilt(duration):
-	ChangeTilt(0.0, duration)
+func reset_tilt(duration):
+	change_tilt(0.0, duration)
 
-func TiltAnimate():
+func tilt_animate():
 	var startTime = Time.get_ticks_msec()
 	var duration = tilt_duration * 1000
 	var startRotation = camera.rotation_degrees.z

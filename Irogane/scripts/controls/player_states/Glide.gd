@@ -139,7 +139,7 @@ func PhysicsUpdate(body, delta):
 	
 func Exit(body):
 	body.last_direction = body.velocity.normalized()
-	head.ResetTilt(0.2)
+	head.reset_tilt(0.2)
 	head.reset_fov(0.2)
 	glide_ended.emit()
 
