@@ -21,8 +21,12 @@ var tilt_duration = 4
 var look_enabled = true
 var is_tilting = false
 
+# Fov
+var original_fov = 75
+
 func _ready():
 	original_height = position.y
+	original_fov = camera.fov
 	UIManager.cursor_lock.connect(enable_look)
 	UIManager.cursor_unlock.connect(disable_look)
 
@@ -87,8 +91,43 @@ func TiltAnimate():
 	camera.rotation_degrees.z = new_tilt
 	is_tilting = false
 
+func fov_animate(new_fov, duration):
+	var startTime = Time.get_ticks_msec()
+	var startFov = camera.fov
+	duration *= 1000
+	
+	while Time.get_ticks_msec() - startTime <= duration:
+		var t = (Time.get_ticks_msec() - startTime) / duration
+		camera.fov = lerp(startFov, new_fov, t)
+		
+		# Wait for next frame
+		await get_tree().process_frame
+
+	camera.fov = new_fov
+
 func enable_look():
 	look_enabled = true
 	
+
 func disable_look():
 	look_enabled = false
+	
+
+func set_tilt(tilt):
+	camera.rotation_degrees.z = tilt
+	
+
+func get_tilt():
+	return camera.rotation_degrees.z
+	
+
+func set_fov(fov):
+	camera.fov = fov
+	
+func get_fov():
+	return camera.fov
+	
+
+func reset_fov(duration):
+	fov_animate(original_fov, duration)
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=57 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -148,6 +148,8 @@ radius = 0.25
 height = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8nx1q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_motmp"]
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state")]
 floor_constant_speed = true
@@ -415,3 +417,11 @@ target_position = Vector3(0, 0, 0)
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="wind_check" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wind_check"]
+shape = SubResource("BoxShape3D_motmp")
