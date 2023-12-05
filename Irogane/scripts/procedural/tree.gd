@@ -86,18 +86,18 @@ func update_tree():
 					mesh.set_rotation_degrees(Vector3(90+branch_angle, angle_space * j + offset_angle, 0))
 					mesh.position += mesh.basis.y * branch_segment_length * 0.5
 				
-				create_collider(mesh)
+				create_collider(mesh, 3)
 				
 				prev_branch = mesh
 
-func create_collider(mesh):
+func create_collider(mesh, dimensions_multiplier = 1):
 	var body = StaticBody3D.new()
 	var collider = CollisionShape3D.new()
 	collider.shape = BoxShape3D.new()
 	collider.shape.size.y = mesh.mesh.height
 	var radius = (mesh.mesh.top_radius + mesh.mesh.bottom_radius) / 2
-	collider.shape.size.x = radius
-	collider.shape.size.z = radius
+	collider.shape.size.x = radius * dimensions_multiplier
+	collider.shape.size.z = radius * dimensions_multiplier
 	body.add_child(collider)
 	mesh.add_child(body)
 	
