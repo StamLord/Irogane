@@ -13,7 +13,7 @@ func _ready():
 	set_drag_area()
 
 func _process(delta):
-	if button == null: return
+	if not button: return
 	
 	if Input.is_action_just_pressed(button):
 		if visible:

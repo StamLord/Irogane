@@ -289,6 +289,7 @@ script = ExtResource("8_nprs7")
 
 [node name="glide" type="Node" parent="states"]
 script = ExtResource("9_c0lt0")
+gravity_multiplier = 100.0
 
 [node name="climb_rope" type="Node" parent="states"]
 script = ExtResource("10_7bwsl")
@@ -390,24 +391,34 @@ draw_pass_1 = SubResource("SphereMesh_1d4nr")
 script = ExtResource("29_c2b1q")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
 
 [node name="sword" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
 visible = false
