@@ -19,7 +19,9 @@ var direction = Vector3.ZERO
 var original_head_height = 1.8
 
 func Enter(body):
-	direction = body.last_direction
+	# Flatten direction on floor
+	direction = flatten_vector(body.last_direction, body.get_floor_normal())
+	
 	speed = body.last_speed * speed_multiplier
 	
 	# Switch to crouch collider
@@ -38,23 +40,22 @@ func Update(delta):
 	pass
 
 func PhysicsUpdate(body, delta):
+	# Flatten direction on floor
+	direction = flatten_vector(direction, body.get_floor_normal())
 	
-	direction = lerp(direction, Vector3.ZERO, delta * deceleration)
-	
-	var velocity = body.velocity
-	
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+	# Slow down over time
+	if direction.y >= 0:
+		direction = lerp(direction, Vector3.ZERO, delta * deceleration)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		direction = lerp(direction, Vector3.ZERO, delta * deceleration * 0.5)
+	
+	var velocity = direction * speed
 	
 	body.velocity = velocity
 	body.move_and_slide()
 	
 	# Walk State
-	if velocity.length() < exit_threshold:
+	if body.velocity.length() < exit_threshold:
 		if head_check.is_colliding():
 			Transitioned.emit(self, "crouch")
 		else:
@@ -85,3 +86,15 @@ func Exit(body):
 	
 	# Stop vfx
 	slide_dust.active = false
+
+func flatten_vector(vector, normal):
+	var plane = Plane(normal)
+	var flat_vector = plane.project(vector)
+	
+	# If going up a slope, to prevent body moving up 
+	# and losing contact with the floor, we return vector as is
+	if flat_vector.y > 0 :
+		return vector
+	# Otherwise, use flat vector while keeping same length
+	else:
+		return flat_vector.normalized() * vector.length()
