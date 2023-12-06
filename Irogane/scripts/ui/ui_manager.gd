@@ -5,7 +5,10 @@ var windows : Array[UIWindow]
 signal cursor_lock()
 signal cursor_unlock()
 
+signal open_system_menu()
+
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	update_cursor()
 
 func _process(_delta):
@@ -23,7 +26,9 @@ func remove_window(window):
 	update_cursor()
 
 func close_last_window():
+	# If no windows to close, open system menu
 	if windows.size() < 1:
+		open_system_menu.emit()
 		return
 	
 	windows[0].close()

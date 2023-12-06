@@ -1708,7 +1708,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("29_4q3xv")
-button = "menu"
 
 [node name="gradient" type="TextureRect" parent="UI/canvas/system_menu"]
 layout_mode = 1
@@ -1879,7 +1878,126 @@ audio_bus_name = "Music"
 layout_mode = 2
 text = "GRAPHICS"
 
+[node name="graphics_margin" type="MarginContainer" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin"]
+layout_mode = 2
+
+[node name="resolution" type="Label" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+layout_mode = 2
+text = "RESOLUTION"
+
+[node name="resolution_button" type="OptionButton" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = -6.0
+offset_right = 346.0
+offset_bottom = 30.0
+item_count = 3
+selected = 2
+popup/item_0/text = "800x600"
+popup/item_0/id = 0
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+popup/item_2/text = "1920x1080"
+popup/item_2/id = 2
+
+[node name="full_screen" type="Label" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+layout_mode = 2
+text = "FULL SCREEN
+"
+
+[node name="full_screen_button" type="CheckButton" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/full_screen"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = -6.0
+offset_right = 220.0
+offset_bottom = 30.0
+
+[node name="vsync" type="Label" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+layout_mode = 2
+text = "V SYNC"
+
+[node name="vsync_button" type="OptionButton" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/vsync"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = -6.0
+offset_right = 346.0
+offset_bottom = 30.0
+item_count = 2
+selected = 1
+popup/item_0/text = "DISABLED"
+popup/item_0/id = 0
+popup/item_1/text = "ENABLED"
+popup/item_1/id = 1
+
+[node name="limit_fps" type="Label" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+layout_mode = 2
+text = "LIMIT FPS"
+
+[node name="limit_fps_button" type="OptionButton" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/limit_fps"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = -6.0
+offset_right = 346.0
+offset_bottom = 30.0
+item_count = 4
+selected = 0
+popup/item_0/text = "UNLIMITED"
+popup/item_0/id = 0
+popup/item_1/text = "30"
+popup/item_1/id = 1
+popup/item_2/text = "60"
+popup/item_2/id = 2
+popup/item_3/text = "144"
+popup/item_3/id = 3
+
+[node name="anti_aliasing" type="Label" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+layout_mode = 2
+text = "ANTI-ALIASING"
+
+[node name="anti_aliasing_button" type="OptionButton" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/anti_aliasing"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = -6.0
+offset_right = 346.0
+offset_bottom = 30.0
+item_count = 4
+selected = 0
+popup/item_0/text = "DISABLED"
+popup/item_0/id = 0
+popup/item_1/text = "2x"
+popup/item_1/id = 1
+popup/item_2/text = "4x"
+popup/item_2/id = 2
+popup/item_3/text = "8x"
+popup/item_3/id = 3
+
+[node name="draw_distance" type="Label" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+layout_mode = 2
+text = "DRAW DISTANCE"
+
+[node name="draw_distance_button" type="OptionButton" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/draw_distance"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = -6.0
+offset_right = 346.0
+offset_bottom = 30.0
+item_count = 4
+selected = 3
+popup/item_0/text = "LOW"
+popup/item_0/id = 0
+popup/item_1/text = "MEDIUM"
+popup/item_1/id = 1
+popup/item_2/text = "HIGH"
+popup/item_2/id = 2
+popup/item_3/text = "EPIC"
+popup/item_3/id = 3
+
 [node name="controls" type="Label" parent="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "CONTROLS"
 
@@ -2020,3 +2138,9 @@ mesh = SubResource("TorusMesh_frcvn")
 [connection signal="pressed" from="UI/canvas/system_menu/Panel/MarginContainer/VBoxContainer/continue" to="UI/canvas/system_menu" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/canvas/system_menu/Panel/MarginContainer/VBoxContainer/settings" to="UI/canvas/system_menu" method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/canvas/system_menu/Panel/MarginContainer/VBoxContainer/quit" to="UI/canvas/system_menu" method="_on_quit_pressed"]
+[connection signal="item_selected" from="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution/resolution_button" to="UI/canvas/system_menu" method="_on_resolution_button_item_selected"]
+[connection signal="toggled" from="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/full_screen/full_screen_button" to="UI/canvas/system_menu" method="_on_full_screen_button_toggled"]
+[connection signal="item_selected" from="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/vsync/vsync_button" to="UI/canvas/system_menu" method="_on_vsync_button_item_selected"]
+[connection signal="item_selected" from="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/limit_fps/limit_fps_button" to="UI/canvas/system_menu" method="_on_limit_fps_button_item_selected"]
+[connection signal="item_selected" from="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/anti_aliasing/anti_aliasing_button" to="UI/canvas/system_menu" method="_on_anti_aliasing_button_item_selected"]
+[connection signal="item_selected" from="UI/canvas/system_menu/settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/draw_distance/draw_distance_button" to="UI/canvas/system_menu" method="_on_draw_distance_button_item_selected"]
