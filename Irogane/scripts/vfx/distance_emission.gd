@@ -15,8 +15,6 @@ func _process(delta):
 	var distance = global_position.distance_to(last_position)
 	var particles = floor(distance * emission_per_unit)
 	
-	print(particles)
-	
 	if particles > 0:
 		for p in range(particles):
 			emit_particle(global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
