@@ -13,6 +13,34 @@ func _ready():
 	for slot in slots:
 		items[slot] = null
 
+func valid_item(item):
+	# Get item slot data if not null
+	var item_slot = null
+	if item != null:
+		item_slot = ItemDB.get_item(item.get_meta("id"))["slot"]
+	
+	return item_slot in valid_slot_types
+	
+
+func highlight_valid_slots(item):
+	animate_highlight(slots_container, valid_item(item))
+	
+
+func animate_highlight(slot, state):
+	var start = Time.get_ticks_msec()
+	var duration = 0.1 * 1000
+	var from_alpha = slot.modulate.a
+	var to_alpha = 1.0 if state else 0.5
+	
+	while Time.get_ticks_msec() - start <= duration:
+		var t = (Time.get_ticks_msec() - start) / duration
+		slot.modulate.a = lerp(from_alpha, to_alpha, t)
+		
+		await get_tree().process_frame
+	
+	slot.modulate.a = to_alpha
+	
+
 func insert_item(item):
 	# Get slot under the item
 	var item_pos = item.global_position + item.size * item.scale / 2
@@ -20,11 +48,8 @@ func insert_item(item):
 	if slot == null:
 		return false
 	
-	# Get item slot data
-	var item_slot = ItemDB.get_item(item.get_meta("id"))["slot"]
-	
 	# Wrong slot
-	if item_slot not in valid_slot_types:
+	if not valid_item(item):
 		return false
 	
 	# Slot not empty

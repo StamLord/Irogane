@@ -50,6 +50,10 @@ func grab(cursor_pos):
 			last_pos = item_held.global_position
 			item_offset = (item_held.global_position - cursor_pos) / get_container_scale(c, item_held)
 			move_child(item_held, get_child_count())
+			
+			# Highlight/De-highlight valid slots
+			equipment_slots.highlight_valid_slots(item_held)
+			quick_slots.highlight_valid_slots(item_held)
 
 func get_container_under_cursor(cursor_pos):
 	var containers = [grid, equipment_slots, quick_slots, base]
@@ -71,6 +75,10 @@ func release(cursor_pos):
 			return_item()
 	else:
 		return_item()
+		
+	# Highlight/De-highlight valid slots
+	equipment_slots.highlight_valid_slots(item_held)
+	quick_slots.highlight_valid_slots(item_held)
 
 func drop_item():
 	var item_id = item_held.get_meta("id")

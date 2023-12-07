@@ -996,27 +996,33 @@ grow_vertical = 2
 script = ExtResource("4_t2qdd")
 
 [node name="head" type="TextureRect" parent="inventory/equipment_slots"]
+modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 0
 offset_left = 63.0
 offset_top = 19.0
 offset_right = 150.0
 offset_bottom = 101.0
+pivot_offset = Vector2(43, 41)
 texture = ExtResource("6_34bjq")
 
 [node name="torso" type="TextureRect" parent="inventory/equipment_slots"]
+modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 0
 offset_left = 49.0
 offset_top = 118.0
 offset_right = 164.0
 offset_bottom = 232.0
+pivot_offset = Vector2(57, 57)
 texture = ExtResource("6_34bjq")
 
 [node name="legs" type="TextureRect" parent="inventory/equipment_slots"]
+modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 0
 offset_left = 67.0
 offset_top = 251.0
 offset_right = 146.0
 offset_bottom = 388.0
+pivot_offset = Vector2(39, 68)
 texture = ExtResource("6_34bjq")
 
 [node name="quick_slots" type="Control" parent="inventory"]
@@ -1035,12 +1041,14 @@ grow_vertical = 2
 script = ExtResource("6_qh2tf")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="inventory/quick_slots"]
+modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(353, 37)
 theme_override_constants/separation = 4
 
 [node name="Panel" type="TextureRect" parent="inventory/quick_slots/HBoxContainer"]

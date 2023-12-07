@@ -6,6 +6,33 @@ var items = {}
 func _ready():
 	for slot in slots:
 		items[slot.name] = null
+	
+
+func highlight_valid_slots(item):
+	# Get item slot data if not null
+	var item_slot = null
+	if item != null:
+		item_slot = ItemDB.get_item(item.get_meta("id"))["slot"].to_lower()
+	
+	# Find relevant slots
+	var to_highlight = []
+	for slot in slots:
+		animate_highlight(slot, slot.name == item_slot)
+	
+
+func animate_highlight(slot, state):
+	var start = Time.get_ticks_msec()
+	var duration = 0.1 * 1000
+	var from_alpha = slot.modulate.a
+	var to_alpha = 1.0 if state else 0.5
+	
+	while Time.get_ticks_msec() - start <= duration:
+		var t = (Time.get_ticks_msec() - start) / duration
+		slot.modulate.a = lerp(from_alpha, to_alpha, t)
+		
+		await get_tree().process_frame
+	
+	slot.modulate.a = to_alpha
 
 func insert_item(item):
 	# Get slot under the item
