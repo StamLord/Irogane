@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=92 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -22,7 +22,7 @@
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
-[ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/RIGS/first_person_rig.tscn" id="20_1s0sd"]
+[ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
@@ -32,6 +32,9 @@
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
+[ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
+[ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
+[ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -137,6 +140,9 @@ shader_parameter/glow = 4.0
 [sub_resource type="SphereMesh" id="SphereMesh_1d4nr"]
 material = SubResource("ShaderMaterial_qa7yc")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
+radius = 1.0
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
 radius = 0.49
 height = 1.9
@@ -206,6 +212,178 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_7s8xr"]
 material = SubResource("StandardMaterial3D_uvrxs")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3d1aj"]
+
+[sub_resource type="Gradient" id="Gradient_qwvni"]
+colors = PackedColorArray(1, 1, 1, 1, 0.717573, 0.868575, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ifpml"]
+gradient = SubResource("Gradient_qwvni")
+
+[sub_resource type="Curve" id="Curve_t6ghl"]
+_data = [Vector2(0, 0), 0.0, 5.11278, 0, 0, Vector2(0.5, 1), 0.0791426, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_rn0i1"]
+curve = SubResource("Curve_t6ghl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tljm3"]
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_rn0i1")
+color = Color(1, 1, 1, 0.498039)
+color_ramp = SubResource("GradientTexture1D_ifpml")
+
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_xxph2"]
+default_input_values = [0, 0.1]
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_5dnky"]
+function = 31
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_q27so"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7v1pb"]
+source = 1
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_ewf4r"]
+default_input_values = [2, false, 3, 4.0]
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_u03du"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xft7w"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gxebw"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_pqew7"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_qwpwt"]
+parameter_name = "proximity"
+default_value_enabled = true
+default_value = 0.5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lul85"]
+parameter_name = "fresnel"
+default_value_enabled = true
+default_value = 4.0
+
+[sub_resource type="VisualShader" id="VisualShader_c81ef"]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform sampler2D screen_tex_frg_21 : hint_screen_texture;
+uniform float proximity = 0.5;
+uniform sampler2D depth_tex_frg_18 : hint_depth_texture;
+uniform float fresnel = 4;
+
+
+
+void fragment() {
+	vec4 n_out21p0;
+// Texture2D:21
+	n_out21p0 = texture(screen_tex_frg_21, SCREEN_UV);
+
+
+// FloatParameter:38
+	float n_out38p0 = proximity;
+
+
+	float n_out18p0;
+// ProximityFade:18
+	{
+		float __depth_tex = texture(depth_tex_frg_18, SCREEN_UV).r;
+		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
+		__depth_world_pos.xyz /= __depth_world_pos.w;
+		n_out18p0 = clamp(1.0 - smoothstep(__depth_world_pos.z + n_out38p0, __depth_world_pos.z, VERTEX.z), 0.0, 1.0);
+	}
+
+
+// FloatFunc:19
+	float n_out19p0 = 1.0 - n_out18p0;
+
+
+// FloatParameter:39
+	float n_out39p0 = fresnel;
+
+
+// Fresnel:22
+	float n_out22p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out39p0);
+
+
+// ColorOp:23
+	vec3 n_out23p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out19p0)) * (vec3(1.0) - vec3(n_out22p0));
+
+
+// ColorOp:20
+	vec3 n_out20p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out21p0.xyz)) * (vec3(1.0) - n_out23p0);
+
+
+// Input:34
+	vec4 n_out34p0 = COLOR;
+
+
+// VectorOp:35
+	vec4 n_out35p0 = vec4(n_out20p0, 0.0) * n_out34p0;
+
+
+// VectorDecompose:36
+	float n_out36p0 = n_out34p0.x;
+	float n_out36p1 = n_out34p0.y;
+	float n_out36p2 = n_out34p0.z;
+	float n_out36p3 = n_out34p0.w;
+
+
+// Output:0
+	ALBEDO = vec3(n_out35p0.xyz);
+	ALPHA = n_out36p3;
+
+
+}
+"
+graph_offset = Vector2(-1017.11, -35.5419)
+modes/blend = 1
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/18/node = SubResource("VisualShaderNodeProximityFade_xxph2")
+nodes/fragment/18/position = Vector2(-860, 260)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatFunc_5dnky")
+nodes/fragment/19/position = Vector2(-640, 260)
+nodes/fragment/20/node = SubResource("VisualShaderNodeColorOp_q27so")
+nodes/fragment/20/position = Vector2(-200, 200)
+nodes/fragment/21/node = SubResource("VisualShaderNodeTexture_7v1pb")
+nodes/fragment/21/position = Vector2(-480, 40)
+nodes/fragment/22/node = SubResource("VisualShaderNodeFresnel_ewf4r")
+nodes/fragment/22/position = Vector2(-700, 360)
+nodes/fragment/23/node = SubResource("VisualShaderNodeColorOp_u03du")
+nodes/fragment/23/position = Vector2(-360, 320)
+nodes/fragment/34/node = SubResource("VisualShaderNodeInput_xft7w")
+nodes/fragment/34/position = Vector2(-400, 540)
+nodes/fragment/35/node = SubResource("VisualShaderNodeVectorOp_gxebw")
+nodes/fragment/35/position = Vector2(20, 120)
+nodes/fragment/36/node = SubResource("VisualShaderNodeVectorDecompose_pqew7")
+nodes/fragment/36/position = Vector2(-40, 500)
+nodes/fragment/38/node = SubResource("VisualShaderNodeFloatParameter_qwpwt")
+nodes/fragment/38/position = Vector2(-1140, 260)
+nodes/fragment/39/node = SubResource("VisualShaderNodeFloatParameter_lul85")
+nodes/fragment/39/position = Vector2(-1080, 520)
+nodes/fragment/connections = PackedInt32Array(18, 0, 19, 0, 21, 0, 20, 0, 22, 0, 23, 1, 19, 0, 23, 0, 23, 0, 20, 1, 35, 0, 0, 0, 34, 0, 35, 1, 20, 0, 35, 0, 34, 0, 36, 0, 38, 0, 18, 0, 39, 0, 22, 3, 36, 3, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4ab3"]
+render_priority = 0
+shader = SubResource("VisualShader_c81ef")
+shader_parameter/proximity = 0.1
+shader_parameter/fresnel = 6.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_qy1qf"]
+material = SubResource("ShaderMaterial_m4ab3")
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state")]
 floor_constant_speed = true
@@ -439,6 +617,16 @@ collision_mask = 4
 collide_with_areas = true
 debug_shape_custom_color = Color(0.407843, 0.862745, 0, 1)
 
+[node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("33_qeuud")
+state_machine = NodePath("../..")
+
+[node name="collider" type="CollisionShape3D" parent="head/StealthAgent"]
+shape = SubResource("SphereShape3D_xo22a")
+
 [node name="stand_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 shape = SubResource("CapsuleShape3D_rdctd")
@@ -504,3 +692,68 @@ process_material = SubResource("ParticleProcessMaterial_30waa")
 draw_pass_1 = SubResource("QuadMesh_7s8xr")
 script = ExtResource("32_jglc7")
 emission_per_unit = 4
+
+[node name="footsteps" type="Node3D" parent="." node_paths=PackedStringArray("sound_emitter", "state_machine")]
+script = ExtResource("34_8v6om")
+sound_emitter = NodePath("sound_emitter")
+state_machine = NodePath("..")
+
+[node name="audio" type="Node3D" parent="footsteps"]
+script = ExtResource("29_c2b1q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="footsteps/audio"]
+volume_db = -18.0
+bus = &"Sound"
+
+[node name="sound_emitter" type="Node3D" parent="footsteps"]
+script = ExtResource("36_ldcyx")
+
+[node name="sound_cast" type="ShapeCast3D" parent="footsteps/sound_emitter"]
+shape = SubResource("SphereShape3D_3d1aj")
+target_position = Vector3(0, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="sound_ripple_vfx" type="GPUParticles3D" parent="footsteps/sound_emitter"]
+emitting = false
+amount = 24
+lifetime = 2.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_tljm3")
+draw_pass_1 = SubResource("SphereMesh_qy1qf")

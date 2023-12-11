@@ -36,7 +36,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_66wce")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 0.6
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="step_check" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
