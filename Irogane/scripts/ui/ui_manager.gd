@@ -43,3 +43,14 @@ func update_cursor():
 
 func window_count():
 	return windows.size()
+	
+
+func hide_ui():
+	for window in windows:
+		window.visible = false
+	
+
+func unhide_ui():
+	for window in windows:
+		window.visible = true
+	

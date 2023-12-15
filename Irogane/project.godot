@@ -23,6 +23,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlossaryLearned="*res://scripts/glossary/glossary_learned.gd"
 CameraShaker="*res://scripts/camera/camera_shaker.gd"
 InputUtils="*res://scripts/input/input_utils.gd"
+SaveSystem="*res://scripts/save/save_system.gd"
 
 [dialogic]
 

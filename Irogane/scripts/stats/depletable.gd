@@ -20,21 +20,39 @@ func _process(_delta):
 	if Time.get_ticks_msec() - last_replenish >= auto_replenish_rate * 1000:
 		replenish(1)
 		last_replenish = Time.get_ticks_msec()
+	
 
 func get_value():
 	return value
+	
 
 func deplete(amount):
 	value = clamp(value - amount, min_value, max_value)
 	value_changed.emit(value)
+	
 
 func replenish(amount):
 	value = clamp(value + amount, min_value, max_value)
 	value_changed.emit(value)
+	
 
 func try_deplete(amount) -> bool:
 	if amount > value:
 		return false
 	deplete(amount)
 	return true
+	
+
+func save_data():
+	var data = {
+		"value" : value,
+		"last_replenish" : last_replenish
+	}
+	
+	return data
+	
+
+func load_data(data):
+	value = data["value"]
+	last_replenish = data["last_replenish"]
 	

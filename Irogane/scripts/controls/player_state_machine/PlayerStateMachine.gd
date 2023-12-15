@@ -58,3 +58,41 @@ func on_child_transition(state, new_state_name):
 	new_state.Enter(self)
 	current_state = new_state
 	on_state_enter.emit(new_state.name)
+	
+
+func save_data():
+	var data = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"node_name" : name,
+		"position" : global_position,
+		"rotation" : rotation_degrees,
+		"current_state" : current_state,
+		"velocity" : velocity,
+		"last_direction" : last_direction,
+		"head_rotation" : get_node("head").rotation,
+		"last_speed" : last_speed,
+		"stats" : get_node("stats").save_data()
+	}
+	
+	return data
+
+func load_data(data):
+	# Set transform
+	global_position = Utils.str_to_vector3(data["position"])
+	rotation_degrees = Utils.str_to_vector3(data["rotation"])
+	velocity = Utils.str_to_vector3(data["velocity"])
+	
+	# Set last direction vector
+	last_direction = Utils.str_to_vector3(data["last_direction"])
+	last_speed = data["last_speed"]
+	
+	# Rotate head
+	get_node("head").rotation = Utils.str_to_vector3(data["head_rotation"])
+	
+	# Transition to right state
+	on_child_transition(current_state, data["current_state"])
+	
+	# Load stats
+	get_node("stats").load_data(data["stats"])
+	

@@ -385,7 +385,7 @@ shader_parameter/fresnel = 6.0
 [sub_resource type="SphereMesh" id="SphereMesh_qy1qf"]
 material = SubResource("ShaderMaterial_m4ab3")
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state")]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
 floor_constant_speed = true
 script = ExtResource("1_v2hnl")
 push_force = 2
