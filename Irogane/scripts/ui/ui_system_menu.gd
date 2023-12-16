@@ -1,7 +1,8 @@
 extends UIWindow
 @onready var settings = $settings
+@onready var save = $save
+@onready var load = $load
 @onready var resolution_button = $settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution/resolution_button
-
 
 func _ready():
 	UIManager.open_system_menu.connect(open)
@@ -11,20 +12,38 @@ func open():
 	UIManager.add_window(self)
 	get_tree().paused = true
 	
+
 func close():
 	settings.close()
 	
 	visible = false
 	UIManager.remove_window(self)
 	get_tree().paused = false
-
+	
 
 func _on_continue_pressed():
+	save.close()
+	load.close()
+	settings.close()
 	close()
+	
+
+func _on_save_pressed():
+	save.open()
+	load.close()
+	settings.close()
+	
+
+func _on_load_pressed():
+	load.open()
+	save.close()
+	settings.close()
 	
 
 func _on_settings_pressed():
 	settings.open()
+	save.close()
+	load.close()
 	
 
 func _on_quit_pressed():
@@ -62,3 +81,13 @@ func _on_full_screen_button_toggled(button_pressed):
 func _on_resolution_button_item_selected(index):
 	var settings = [Vector2i(800,600), Vector2i(1280,720), Vector2i(1920,1080)]
 	DisplayServer.window_set_size(settings[index])
+
+
+func _on_button_pressed():
+	SaveSystem.save()
+
+func _on_button_load_pressed():
+	SaveSystem.load()
+
+
+

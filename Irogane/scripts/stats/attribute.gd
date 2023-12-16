@@ -9,7 +9,7 @@ var modifier_dict : Dictionary
 
 var modified_value : int
 var dirty_value = true
-	
+
 func add_point(points):
 	value = clamp(value + points, min_max.x, min_max.y)
 	dirty_value = true
@@ -18,6 +18,7 @@ func remove_point(points):
 	value = clamp(value - points, min_max.x, min_max.y)
 	dirty_value = true
 	
+
 func get_value():
 	if not dirty_value:
 		return modified_value
@@ -35,8 +36,10 @@ func get_value():
 	dirty_value = false
 	return modified_value
 	
+
 func get_unmodified():
 	return value
+	
 
 func add_modifier(modifier):
 	if not modifier is Modifier:
@@ -49,6 +52,7 @@ func add_modifier(modifier):
 	modifier_dict[modifier.name] = modifier
 	dirty_value = true # Flags that we need to recalculate mods
 	
+
 func remove_modifier(modifier):
 	if not modifier_dict.has(modifier.name):
 		return
@@ -56,3 +60,21 @@ func remove_modifier(modifier):
 	remove_child(modifier_dict[modifier.name])
 	modifier_dict.erase(modifier.name)
 	dirty_value = true # Flags that we need to recalculate mods
+	
+
+func save_data():
+	var data = {
+		"value" : value,
+		"modifier_dict" : modifier_dict
+	}
+	
+	return data
+	
+
+func load_data(data):
+	value = data["value"]
+	modifier_dict = data["modifier_dict"]
+	
+	# Value needs to be calculated again with the modifiers
+	dirty_value = true
+	
