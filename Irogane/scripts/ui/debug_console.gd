@@ -10,6 +10,7 @@ extends UIWindow
 @export var command_history_limit = 100
 @export var max_suggestions = 8
 @export var COMMAND_NAME_COLUMN_LENGTH = 60
+@export var RAY_LENGTH = 1000.0
 
 var message_buffer: PackedStringArray = []
 
@@ -85,6 +86,19 @@ func _ready():
 	add_clear_command()
 	
 
+func grab_object_with_ray_cast():
+		var mouse_pos = get_viewport().get_mouse_position()
+		var camera3d = command_manager.main_camera
+		var from = camera3d.project_ray_origin(mouse_pos)
+		var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		var space_state = camera3d.get_world_3d().direct_space_state
+		var result = space_state.intersect_ray(query)
+	
+		if result:
+			input.text = str(input.text, result.collider.get_instance_id())
+	
+
 func _process(_delta):
 	if Input.is_action_just_pressed("console"):
 		if visible:
@@ -118,6 +132,12 @@ func _process(_delta):
 		found_comment_index = (found_comment_index + 1) % found_commands.size()
 		input.text = found_commands[found_comment_index]
 		input.set_caret_column(found_commands[found_comment_index].length())
+	
+	if Input.is_action_just_pressed("attack_primary"):
+		if not visible:
+			return
+		
+		grab_object_with_ray_cast()
 	
 
 func open():
