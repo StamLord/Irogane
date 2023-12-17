@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfy8qdkjnd4tc"]
+[gd_scene load_steps=6 format=3 uid="uid://dfy8qdkjnd4tc"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
 [ext_resource type="Texture2D" uid="uid://lpromgnlx70t" path="res://assets/images/irogane_blue.png" id="2_c15w1"]
 [ext_resource type="PackedScene" uid="uid://b1se03ak14ix3" path="res://scenes/load_window.tscn" id="2_ifvaf"]
+[ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://scenes/settings_window.tscn" id="4_gtrqj"]
 
 [sub_resource type="SystemFont" id="SystemFont_8pshx"]
 font_names = PackedStringArray("Marcellus SC")
@@ -20,9 +21,18 @@ script = ExtResource("1_xac4n")
 close_on_back = false
 
 [node name="menu_container" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
@@ -53,6 +63,15 @@ theme_override_fonts/font = SubResource("SystemFont_8pshx")
 theme_override_font_sizes/font_size = 24
 text = "Load Game"
 
+[node name="settings_button" type="Button" parent="menu_container"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+
 [node name="quit_button" type="Button" parent="menu_container"]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
@@ -74,6 +93,15 @@ offset_right = 300.0
 offset_bottom = 200.0
 from_main_menu = true
 
+[node name="settings_window" parent="." instance=ExtResource("4_gtrqj")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -300.0
+offset_top = -231.5
+offset_right = 300.0
+offset_bottom = 231.5
+
 [connection signal="pressed" from="menu_container/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="menu_container/load_button" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="menu_container/settings_button" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="menu_container/quit_button" to="." method="_on_quit_button_pressed"]
