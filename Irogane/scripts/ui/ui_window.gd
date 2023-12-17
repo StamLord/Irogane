@@ -11,6 +11,7 @@ var mouse_in : bool
 
 func _ready():
 	set_drag_area()
+	
 
 func _process(delta):
 	if not button: return
@@ -20,7 +21,7 @@ func _process(delta):
 			close()
 		else:
 			open()
-
+	
 
 func set_drag_area():
 	if drag_area:
@@ -48,8 +49,11 @@ func _input(event):
 			new_position = get_viewport().get_mouse_position() - offset
 			position = new_position
 	
+
 func mouse_enter():
 	mouse_in = true;
 	
+
 func mouse_exit():
 	mouse_in = false;
+	
