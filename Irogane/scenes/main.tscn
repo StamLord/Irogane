@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scenes/water_area.gd" id="3_p7gob"]
 [ext_resource type="Script" path="res://scripts/procedural/rope.gd" id="3_xi6qj"]
 [ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="4_4ttr5"]
-[ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://scenes/underwater_2.tres" id="4_41qgg"]
+[ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://assets/shaders/underwater_2.tres" id="4_41qgg"]
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="4_b71lg"]
 [ext_resource type="Script" path="res://scripts/procedural/transform_animator.gd" id="4_taxmt"]
 [ext_resource type="Texture2D" uid="uid://ohxrcax1elgi" path="res://assets/textures/vfx/flame_256.png" id="4_yh3rb"]
@@ -40,7 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://cq6cr15aonyd" path="res://assets/textures/ui/stealth/detect_radar.png" id="33_34m8e"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
-[ext_resource type="PackedScene" uid="uid://caculcb3k1hfl" path="res://prefabs/ui/debug_console.tscn" id="38_h4jui"]
+[ext_resource type="PackedScene" path="res://prefabs/ui/debug_console.tscn" id="38_h4jui"]
 [ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="38_tiyp4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vd5j8"]

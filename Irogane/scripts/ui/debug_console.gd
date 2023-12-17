@@ -4,8 +4,6 @@ extends UIWindow
 @onready var display = %console_display
 @onready var suggestion_label = %suggestion_label
 
-@onready var command_manager = get_node("/root/DebugCommandsManager")
-
 @export var message_buffer_limit = 200
 @export var command_history_limit = 100
 @export var max_suggestions = 8
@@ -30,7 +28,7 @@ func print_help(args):
 		if func_name not in commands:
 			push_message("[color=red]ERROR[/color]: Command not found: '%s', use 'help'" % func_name)
 	
-		return command_manager.get_command_usage(func_name)
+		return DebugCommandsManager.get_command_usage(func_name)
 		
 	var help_string = "[color=green][b]------------------------------HELP------------------------------[/b][/color]\n"
 	
@@ -73,22 +71,22 @@ func print_help(args):
 	
 
 func add_help_command():
-	command_manager.add_command("help", print_help, [], "shows all commands, use optional <command_name> to show help for a specific command")
+	DebugCommandsManager.add_command("help", print_help, [], "shows all commands, use optional <command_name> to show help for a specific command")
 	
 
 func add_clear_command():
-	command_manager.add_command("clear", clear_output, [], "clears console")
+	DebugCommandsManager.add_command("clear", clear_output, [], "clears console")
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	commands = command_manager.get_all_commands()
+	commands = DebugCommandsManager.get_all_commands()
 	add_help_command()
 	add_clear_command()
 	
 
 func grab_object_with_ray_cast():
 		var mouse_pos = get_viewport().get_mouse_position()
-		var camera3d = command_manager.main_camera
+		var camera3d = DebugCommandsManager.main_camera
 		var from = camera3d.project_ray_origin(mouse_pos)
 		var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
 		var query = PhysicsRayQueryParameters3D.create(from, to)
@@ -181,7 +179,7 @@ func parse_input(input_text):
 		args.push_back(tokenized[i])
 	
 	push_message("> %s" % input_text)
-	var result = command_manager.run_command(command, args)
+	var result = DebugCommandsManager.run_command(command, args)
 	
 	if result:
 		push_message(result)
