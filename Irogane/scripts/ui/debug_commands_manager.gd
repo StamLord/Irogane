@@ -87,11 +87,11 @@ func run_command(command_name: String, args: PackedStringArray):
 					return "[color=red]ERROR[/color]: bad argument type for argument '%s', expected: 'int'" % arg_meta.arg_name
 				
 				actual_arg = args[i].to_int()
-	
+		
 		casted_args.push_back(actual_arg)
 	
 	var command_function = command_meta.function
-	return command_function.call(args)
+	return command_function.call(casted_args)
 	
 
 func get_all_commands():

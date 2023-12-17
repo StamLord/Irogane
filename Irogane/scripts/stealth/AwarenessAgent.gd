@@ -22,6 +22,19 @@ var visible_agents  = []
 signal on_sound_heard()
 signal on_enemy_seen()
 
+func _ready():
+	DebugCommandsManager.add_command(
+		"display_vision_cone",
+		set_debug,
+		 [{
+				"arg_name" : "1/0",
+				"arg_type" : DebugCommandsManager.ArgumentType.INT,
+				"arg_desc" : "1: True, 0: False"
+			}],
+		"Displays/Hides vision cone on AwarenessAgent(s)"
+		)
+	
+
 func get_visible(delta):
 	# Get all in range
 	sight_cast.shape.radius = sight_range
@@ -106,10 +119,12 @@ func _process(delta):
 		update_cone_mesh()
 	else:
 		vision_cone.visible =  false
+	
 
 func get_angle(point1 : Vector2, point2 : Vector2):
 	return atan2(point2.y - point1.y, point2.x - point1.x) * 180 / PI
 	
+
 func is_line_of_sight(agent):
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(
@@ -124,6 +139,7 @@ func is_line_of_sight(agent):
 		return result["collider"] == agent.owner
 	else:
 		return false
+	
 
 func update_cone_mesh():
 	# Calculate the cone base
@@ -150,3 +166,8 @@ func hear_sound(position):
 	print("Heard sound at: " + str(position))
 	on_sound_heard.emit()
 	pass
+	
+
+func set_debug(args: Array):
+	debug = bool(args[0])
+	

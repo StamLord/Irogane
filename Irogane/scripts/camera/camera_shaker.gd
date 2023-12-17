@@ -3,6 +3,24 @@ extends Camera3D
 var main_camera = null
 var origin = null
 
+func _ready():
+	DebugCommandsManager.add_command(
+		"shake_camera",
+		shake_debug,
+		 [{
+				"arg_name" : "amount",
+				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
+				"arg_desc" : "Shake amount"
+			},
+			{
+				"arg_name" : "duration",
+				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
+				"arg_desc" : "Shake duration"
+		}],
+		"Shakes the main camera"
+		)
+	
+
 func _process(delta):
 	if Input.is_key_pressed(KEY_HOME):
 		shake(0.25, 0.2)
@@ -73,3 +91,8 @@ func random_point_on_circle():
 	point = point.normalized()
 	
 	return point
+	
+
+func shake_debug(args : Array):
+	shake(args[0], args[1])
+	

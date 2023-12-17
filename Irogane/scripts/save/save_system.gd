@@ -90,7 +90,7 @@ func save(index = null):
 			continue
 			
 		# Check the node has a save function.
-		if !node.has_method("save"):
+		if !node.has_method("save_data"):
 			print("persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
 		
