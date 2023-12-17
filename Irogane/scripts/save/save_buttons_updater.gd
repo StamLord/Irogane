@@ -5,6 +5,7 @@ enum button_type_enum {SAVE, LOAD}
 
 @onready var prefab = $Button
 @onready var thumbnail_rect = $"../../../info_panel/VBoxContainer/save_thumbnail"
+@onready var load_window = $"../../../../../.."
 @onready var date_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/date_label"
 @onready var level_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/level_label"
 @onready var name_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/name_label"
@@ -41,7 +42,7 @@ func _on_visibility_changed():
 		if button_type == button_type_enum.SAVE:
 			button.pressed.connect(SaveSystem.save.bind(index))
 		elif button_type == button_type_enum.LOAD:
-			button.pressed.connect(SaveSystem.load.bind(index))
+			button.pressed.connect(SaveSystem.load_save.bind(load_window.from_main_menu, index))
 		
 		button.mouse_entered.connect(display_save_info.bind(file))
 		

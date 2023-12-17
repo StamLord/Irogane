@@ -3,6 +3,8 @@ class_name UIWindow
 
 @export var drag_area : Area2D
 @export var button : String
+@export var close_on_back: bool = true
+@export var from_main_menu: bool = false
 
 var offset
 var dragging : bool

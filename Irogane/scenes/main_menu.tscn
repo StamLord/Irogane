@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfy8qdkjnd4tc"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
+[ext_resource type="Texture2D" uid="uid://lpromgnlx70t" path="res://assets/images/irogane_blue.png" id="2_c15w1"]
+[ext_resource type="PackedScene" uid="uid://b1se03ak14ix3" path="res://scenes/load_window.tscn" id="2_ifvaf"]
+
+[sub_resource type="SystemFont" id="SystemFont_8pshx"]
+font_names = PackedStringArray("Marcellus SC")
+font_italic = true
+subpixel_positioning = 0
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xac4n")
+close_on_back = false
+
+[node name="menu_container" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="menu_container"]
+custom_minimum_size = Vector2(100, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_c15w1")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="start_button" type="Button" parent="menu_container"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 24
+text = "Start New"
+
+[node name="load_button" type="Button" parent="menu_container"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 24
+text = "Load Game"
+
+[node name="quit_button" type="Button" parent="menu_container"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 24
+text = "Quit
+"
+
+[node name="load_window" parent="." instance=ExtResource("2_ifvaf")]
+unique_name_in_owner = true
+visible = false
+z_as_relative = false
+layout_mode = 1
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+from_main_menu = true
+
+[connection signal="pressed" from="menu_container/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="menu_container/load_button" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="menu_container/quit_button" to="." method="_on_quit_button_pressed"]

@@ -1,11 +1,19 @@
 extends Node
 
+@onready var scene_manager = get_node("/root/SceneManager")
+
 const save_path = "user://"
 const save_filename = "savegame_{i}.save"
 const thumbnail_filename = "savegame_{i}.png"
 
 signal on_game_save()
 signal on_game_load()
+
+var pending_save_file = null
+
+func _ready():
+	scene_manager.on_scene_loaded.connect(scene_loaded)
+	
 
 func get_save_files():
 	var directory = DirAccess.open(save_path)
@@ -90,7 +98,7 @@ func save(index = null):
 			continue
 			
 		# Check the node has a save function.
-		if !node.has_method("save"):
+		if !node.has_method("save_data"):
 			print("persistent node '%s' is missing a save() function, skipped" % node.name)
 			continue
 		
@@ -109,26 +117,13 @@ func save(index = null):
 	on_game_save.emit()
 	
 
-func load(index = 0):
-	var save_file = save_path.path_join(save_filename)
-	save_file = save_file.format({"i" : index})
-	
-	if not FileAccess.file_exists(save_file):
-		return # Error! We don't have a save to load.
-	
+func load_save_file(save_file):
 	# Get all objects in current scene that should be saveable
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	
-	# Load the file line by line and process that dictionary to restore
-	var save_game = FileAccess.open(save_file, FileAccess.READ)
-	
-	# First line should be the save version for future compatibility checks
-	var version = save_game.get_line()
-	print("Loading save file, version: ", version)
-	
 	# Iterate over save file
-	while save_game.get_position() < save_game.get_length():
-		var json_string = save_game.get_line()
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
 
 		# Creates the helper class to interact with JSON
 		var json = JSON.new()
@@ -176,6 +171,39 @@ func load(index = 0):
 		i.queue_free()
 		
 	on_game_load.emit()
+	
+
+func load_save(from_main_menu, index = 0):
+	var save_file_path = save_path.path_join(save_filename)
+	save_file_path = save_file_path.format({"i" : index})
+	
+	if not FileAccess.file_exists(save_file_path):
+		return # Error! We don't have a save to load.
+	
+	# Load the file line by line and process that dictionary to restore
+	var save_file = FileAccess.open(save_file_path, FileAccess.READ)
+	
+	# First line should be the save version for future compatibility checks
+	var version = save_file.get_line()
+	print("Loading save file, version: ", version)
+	
+	# Second line is scene name
+	#var saved_scene_name = save_file.get_line()
+	#print("Save file scene name: ", saved_scene_name)
+	
+	var scene_name = "res://scenes/main.tscn"
+	
+	if from_main_menu:
+		pending_save_file = save_file
+		scene_manager.goto_scene(scene_name)
+	else:
+		load_save_file(save_file)
+	
+
+func scene_loaded(scene_name):
+	if pending_save_file:
+		load_save_file(pending_save_file)
+		pending_save_file = null
 	
 
 func create_thumbnail(index):

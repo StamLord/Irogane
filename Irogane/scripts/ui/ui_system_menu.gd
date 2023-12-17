@@ -3,6 +3,7 @@ extends UIWindow
 @onready var save = $save
 @onready var load = $load
 @onready var resolution_button = $settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution/resolution_button
+@onready var scene_manager = get_node("/root/SceneManager")
 
 func _ready():
 	UIManager.open_system_menu.connect(open)
@@ -47,7 +48,8 @@ func _on_settings_pressed():
 	
 
 func _on_quit_pressed():
-	get_tree().quit()
+	close()
+	scene_manager.goto_scene("res://scenes/main_menu.tscn")
 	
 
 func _on_anti_aliasing_button_item_selected(index):
@@ -81,13 +83,6 @@ func _on_full_screen_button_toggled(button_pressed):
 func _on_resolution_button_item_selected(index):
 	var settings = [Vector2i(800,600), Vector2i(1280,720), Vector2i(1920,1080)]
 	DisplayServer.window_set_size(settings[index])
-
-
-func _on_button_pressed():
-	SaveSystem.save()
-
-func _on_button_load_pressed():
-	SaveSystem.load()
-
+	
 
 

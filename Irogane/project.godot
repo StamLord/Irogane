@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Irogane"
 config/tags=PackedStringArray("main")
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ GlossaryLearned="*res://scripts/glossary/glossary_learned.gd"
 CameraShaker="*res://scripts/camera/camera_shaker.gd"
 InputUtils="*res://scripts/input/input_utils.gd"
 SaveSystem="*res://scripts/save/save_system.gd"
+SceneManager="*res://scripts/utils/scene_manager.gd"
 
 [dialogic]
 
