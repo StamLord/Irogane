@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfy8qdkjnd4tc"]
+[gd_scene load_steps=7 format=3 uid="uid://dfy8qdkjnd4tc"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
+[ext_resource type="Texture2D" uid="uid://82pxulkm7jju" path="res://assets/images/Untitled.png" id="2_8h8yi"]
 [ext_resource type="Texture2D" uid="uid://lpromgnlx70t" path="res://assets/images/irogane_blue.png" id="2_c15w1"]
 [ext_resource type="PackedScene" uid="uid://b1se03ak14ix3" path="res://scenes/load_window.tscn" id="2_ifvaf"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://scenes/settings_window.tscn" id="4_gtrqj"]
@@ -19,6 +20,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xac4n")
 close_on_back = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8h8yi")
+expand_mode = 1
 
 [node name="menu_container" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -46,39 +57,39 @@ expand_mode = 1
 stretch_mode = 3
 
 [node name="start_button" type="Button" parent="menu_container"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 24
-text = "Start New"
+theme_override_font_sizes/font_size = 28
+text = "New Game"
 
 [node name="load_button" type="Button" parent="menu_container"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "Load Game"
 
 [node name="settings_button" type="Button" parent="menu_container"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "Settings"
 
 [node name="quit_button" type="Button" parent="menu_container"]
-custom_minimum_size = Vector2(150, 50)
+custom_minimum_size = Vector2(180, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "Quit
 "
 

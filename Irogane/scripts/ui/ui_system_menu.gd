@@ -49,6 +49,6 @@ func _on_settings_pressed():
 
 func _on_quit_pressed():
 	close()
-	scene_manager.goto_scene("res://scenes/main_menu.tscn")
+	scene_manager.goto_scene_no_load("res://scenes/main_menu.tscn")
 	
 
