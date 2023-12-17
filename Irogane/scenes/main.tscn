@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=163 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://cq6cr15aonyd" path="res://assets/textures/ui/stealth/detect_radar.png" id="33_34m8e"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
+[ext_resource type="PackedScene" uid="uid://caculcb3k1hfl" path="res://prefabs/ui/debug_console.tscn" id="38_h4jui"]
 [ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="38_tiyp4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vd5j8"]
@@ -2802,6 +2803,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Player1"
 horizontal_alignment = 1
+
+[node name="debug_console" parent="UI/canvas" instance=ExtResource("38_h4jui")]
+visible = false
+layout_mode = 1
 
 [node name="dummy" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49509, 21)
