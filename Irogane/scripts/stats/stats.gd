@@ -22,13 +22,13 @@ func save_data():
 	var data = {
 		"level" : level,
 		"experience" : experience,
-		"health" : health.save(),
-		"stamina" : stamina.save(),
+		"health" : health.save_data(),
+		"stamina" : stamina.save_data(),
 		"attr_points" : attr_points,
-		"strength" : strength.save(),
-		"agility" : agility.save(),
-		"dexterity" : dexterity.save(),
-		"wisdom" : wisdom.save(),
+		"strength" : strength.save_data(),
+		"agility" : agility.save_data(),
+		"dexterity" : dexterity.save_data(),
+		"wisdom" : wisdom.save_data(),
 	}
 	
 	return data
