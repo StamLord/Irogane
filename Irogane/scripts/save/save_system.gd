@@ -2,9 +2,14 @@ extends Node
 
 @onready var scene_manager = get_node("/root/SceneManager")
 
-const save_path = "user://"
+const game_dir_path = "user://"
+const save_dir_name = "saves"
+const settings_dir_name = "settings"
 const save_filename = "savegame_{i}.save"
 const thumbnail_filename = "savegame_{i}.png"
+const system_settings_file_name = "system.config"
+var save_path = null
+var settings_path = null
 
 signal on_game_save()
 signal on_game_load()
@@ -13,7 +18,17 @@ var pending_save_file = null
 
 func _ready():
 	scene_manager.on_scene_loaded.connect(scene_loaded)
+	var directory = DirAccess.open(game_dir_path)
+	var dirs = directory.get_directories()
 	
+	if not directory.dir_exists(save_dir_name):
+		directory.make_dir(save_dir_name)
+		
+	if not directory.dir_exists(settings_dir_name):
+		directory.make_dir(settings_dir_name)
+	
+	save_path = game_dir_path.path_join(save_dir_name)
+	settings_path = game_dir_path.path_join(settings_dir_name)
 
 func get_save_files():
 	var directory = DirAccess.open(save_path)
@@ -117,6 +132,21 @@ func save(index = null):
 	on_game_save.emit()
 	
 
+func _parse_json_string(json_string):
+	# Creates the helper class to interact with JSON
+	var json = JSON.new()
+
+	# Check if there is any error while parsing the JSON string, skip in case of failure
+	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		return null
+
+	# Get the data from the JSON object
+	var data = json.get_data()
+	return data
+	
+
 func load_save_file(save_file):
 	# Get all objects in current scene that should be saveable
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
@@ -125,18 +155,11 @@ func load_save_file(save_file):
 	while save_file.get_position() < save_file.get_length():
 		var json_string = save_file.get_line()
 
-		# Creates the helper class to interact with JSON
-		var json = JSON.new()
-
-		# Check if there is any error while parsing the JSON string, skip in case of failure
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-			continue
-
-		# Get the data from the JSON object
-		var data = json.get_data()
+		var data = _parse_json_string(json_string)
 		
+		if data == null:
+			continue
+	
 		# Find if node exits
 		var node = get_node(data["parent"]).get_node(data["node_name"])
 		
@@ -217,3 +240,22 @@ func create_thumbnail(index):
 	var filename = save_path.path_join(thumbnail_filename).format({"i" : index})
 	image.save_png(filename)
 	
+
+func save_system_settings(settings):
+	var settings_file_path = settings_path.path_join(system_settings_file_name)
+	
+	var settings_file = FileAccess.open(settings_file_path, FileAccess.WRITE)
+	
+	settings_file.store_line(JSON.stringify(settings))
+	
+
+func load_system_settings():
+	var settings_file_path = settings_path.path_join(system_settings_file_name)
+	
+	if not FileAccess.file_exists(settings_file_path):
+		return # Error! We don't have a settings file
+	
+	var settings_file = FileAccess.open(settings_file_path, FileAccess.READ)
+	var settings_data_json_string = settings_file.get_line()
+	var settings_data = _parse_json_string(settings_data_json_string)
+	return settings_data
