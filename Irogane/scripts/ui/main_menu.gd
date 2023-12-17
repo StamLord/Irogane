@@ -3,10 +3,12 @@ extends UIWindow
 @onready var scene_manager = get_node("/root/SceneManager")
 @onready var load_window = %load_window
 @onready var settings_window = %settings_window
+@onready var start_button = %start_button
 
 func _ready():
 	visible = true
 	UIManager.add_window(self)
+	start_button.grab_focus()
 	
 
 func _on_start_button_pressed():
