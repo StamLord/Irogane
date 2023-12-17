@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
 [ext_resource type="Texture2D" uid="uid://82pxulkm7jju" path="res://assets/images/Untitled.png" id="2_8h8yi"]
 [ext_resource type="Texture2D" uid="uid://lpromgnlx70t" path="res://assets/images/irogane_blue.png" id="2_c15w1"]
-[ext_resource type="PackedScene" uid="uid://b1se03ak14ix3" path="res://scenes/load_window.tscn" id="2_ifvaf"]
-[ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://scenes/settings_window.tscn" id="4_gtrqj"]
+[ext_resource type="PackedScene" uid="uid://b1se03ak14ix3" path="res://prefabs/ui/load_window.tscn" id="2_ifvaf"]
+[ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="4_gtrqj"]
 
 [sub_resource type="SystemFont" id="SystemFont_8pshx"]
 font_names = PackedStringArray("Marcellus SC")

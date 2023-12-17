@@ -2,7 +2,7 @@ extends Node
 
 signal on_scene_loaded()
 
-@onready var loading_scene = preload("res://scenes/loading_screen.tscn").instantiate()
+@onready var loading_scene = preload("res://prefabs/ui/loading_screen.tscn").instantiate()
 
 var current_scene = null
 var loading_scene_name = null
