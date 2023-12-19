@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=94 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -35,6 +35,8 @@
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
+[ext_resource type="PackedScene" uid="uid://bfdo6pucwu6t2" path="res://prefabs/entities/human_model.tscn" id="36_y7hmg"]
+[ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -757,3 +759,13 @@ lifetime = 2.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_tljm3")
 draw_pass_1 = SubResource("SphereMesh_qy1qf")
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="Character" parent="model" instance=ExtResource("36_y7hmg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.2)
+
+[node name="third_person_camera" type="Camera3D" parent="model"]
+transform = Transform3D(-1, 0, -8.74228e-08, -1.19085e-08, 0.990679, 0.136217, 8.66079e-08, 0.136217, -0.990679, 0, 1.35377, -1.7465)
+fov = 55.0
+script = ExtResource("38_tsii1")

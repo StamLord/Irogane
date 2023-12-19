@@ -3,6 +3,7 @@ class_name PlayerStateMachine
 
 # States Parent
 @onready var states_parent = $states
+@onready var stats = $stats
 
 # Variables
 @export var push_force = 15
@@ -19,6 +20,7 @@ signal on_state_enter(state_name)
 signal on_state_exit(state_name)
 
 func _ready():
+	PlayerEntity.set_player_node(self)
 	for child in states_parent.get_children():
 		if child is PlayerState:
 			states[child.name.to_lower()] = child
@@ -27,7 +29,7 @@ func _ready():
 	if default_state:
 		default_state.Enter(self)
 		current_state = default_state
-
+	
 func _process(delta):
 	if current_state:
 		current_state.Update(delta)

@@ -13,7 +13,7 @@ func _ready():
 
 func _on_start_button_pressed():
 	close()
-	scene_manager.goto_scene("res://scenes/main.tscn")
+	scene_manager.goto_scene("res://prefabs/ui/character_creator.tscn")
 	
 
 func _on_load_button_pressed():

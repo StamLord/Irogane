@@ -1,6 +1,7 @@
 extends Node
 
 signal on_scene_loaded()
+signal on_scene_start_load()
 
 @onready var loading_scene = preload("res://prefabs/ui/loading_screen.tscn").instantiate()
 
@@ -20,7 +21,7 @@ func goto_scene(path):
 	call_deferred("_deferred_goto_scene", path)
 	
 
-func _process(delta):
+func _process(_delta):
 	if loading_scene_name:
 		var scene_load_status = ResourceLoader.load_threaded_get_status(loading_scene_name, [])
 	
@@ -35,16 +36,19 @@ func _process(delta):
 	
 
 func _deferred_goto_scene_no_load(path):
+	on_scene_start_load.emit(path)
 	current_scene.free()
 	var s = ResourceLoader.load(path)
 	current_scene = s.instantiate()
 	get_tree().root.add_child(current_scene)
 	get_tree().current_scene = current_scene
+	on_scene_loaded.emit(path)
 	
 
 func _deferred_goto_scene(path):
-	current_scene.free()
+	on_scene_start_load.emit(path)
 	get_tree().root.add_child(loading_scene)
+	current_scene.free()
 	loading_scene_name = path
 	ResourceLoader.load_threaded_request(path)
 	
