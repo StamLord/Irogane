@@ -31,7 +31,6 @@ func _on_visibility_changed():
 	# Create a button per save file
 	var files = SaveSystem.get_save_files()
 	for file in files:
-		var info = SaveSystem.get_save_file_info(file)
 		var button = prefab.duplicate()
 		
 		# Index is between _ and extension: savefile_X.save

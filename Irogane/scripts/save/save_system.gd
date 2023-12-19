@@ -42,12 +42,12 @@ func get_save_file_info(filename):
 	info["date"] = FileAccess.get_modified_time(save_file)
 	
 	# Get thumbnail as ImageTexture
-	var thumbnail_filename = save_path.path_join(filename.replace(".save", ".png"))
+	var new_thumbnail_filename = save_path.path_join(filename.replace(".save", ".png"))
 	
-	if FileAccess.file_exists(thumbnail_filename):
+	if FileAccess.file_exists(new_thumbnail_filename):
 		var image = Image.new()
-		image.load(thumbnail_filename)
-		info["thumbnail"] = ImageTexture.new().create_from_image(image)
+		image.load(new_thumbnail_filename)
+		info["thumbnail"] = ImageTexture.create_from_image(image)
 	
 	# Get player level
 #	json.parse(save_game.get_line())

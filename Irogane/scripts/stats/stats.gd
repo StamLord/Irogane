@@ -19,7 +19,8 @@ class_name Stats
 @onready var wisdom = $wisdom
 
 func _ready():
-	add_debug_commands()
+	if get_owner().name == "player":
+		add_debug_commands()
 	
 
 func save_data():
@@ -36,6 +37,7 @@ func save_data():
 	}
 	
 	return data
+	
 
 func load_data(data):
 	level = data["level"]

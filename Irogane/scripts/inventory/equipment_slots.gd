@@ -15,7 +15,6 @@ func highlight_valid_slots(item):
 		item_slot = ItemDB.get_item(item.get_meta("id"))["slot"].to_lower()
 	
 	# Find relevant slots
-	var to_highlight = []
 	for slot in slots:
 		animate_highlight(slot, slot.name == item_slot)
 	

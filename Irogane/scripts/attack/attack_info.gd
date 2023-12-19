@@ -11,9 +11,12 @@ func _init(soft_damage, hard_damage, force = Vector3.ZERO, statuses = []):
 	self.hard_damage = hard_damage
 	self.force = force
 	self.statuses = statuses
+	
 
 func _to_string():
 	return "Damage: " + str(soft_damage) + "/" + str(hard_damage) + " Force: " + str(force) + " Statuses: " + str(statuses)
+	
 
 func clone():
 	return AttackInfo.new(soft_damage, hard_damage, force, statuses)
+	
