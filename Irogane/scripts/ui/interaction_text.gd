@@ -1,6 +1,7 @@
 extends Label
 
-@onready var interaction = $"../../../player/head/main_camera/interaction"
+@onready var interaction = PlayerEntity.player_node.get_node("head/main_camera/interaction")
+#$"../../../../player/head/main_camera/interaction"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-@onready var interaction = $"/root/world/player/head/main_camera/interaction"
+@onready var interaction = PlayerEntity.player_node.get_node("head/main_camera/interaction")
 @onready var max_time = interaction.carry_start_time * 1000
 
 var visible_threshold_ms = 200

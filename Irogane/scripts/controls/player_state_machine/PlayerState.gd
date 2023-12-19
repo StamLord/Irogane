@@ -3,16 +3,16 @@ class_name PlayerState
 
 signal Transitioned(state, new_state_name)
 
-func Enter(body):
+func Enter(_body):
 	pass
 
 func Update(_delta):
 	pass
 	
-func PhysicsUpdate(body, _delta):
+func PhysicsUpdate(_body, _delta):
 	pass
 	
-func Exit(body):
+func Exit(_body):
 	pass
 	
 func PerformCollisions(body, speed, push_force, delta):

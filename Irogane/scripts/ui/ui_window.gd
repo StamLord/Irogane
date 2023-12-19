@@ -14,7 +14,7 @@ var mouse_in : bool
 func _ready():
 	set_drag_area()
 
-func _process(delta):
+func _process(_delta):
 	if not button: return
 	
 	if Input.is_action_just_pressed(button):

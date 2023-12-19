@@ -19,7 +19,6 @@ var pending_save_file = null
 func _ready():
 	scene_manager.on_scene_loaded.connect(scene_loaded)
 	var directory = DirAccess.open(game_dir_path)
-	var dirs = directory.get_directories()
 	
 	if not directory.dir_exists(save_dir_name):
 		directory.make_dir(save_dir_name)
@@ -65,12 +64,12 @@ func get_save_file_info(filename):
 	info["date"] = FileAccess.get_modified_time(save_file)
 	
 	# Get thumbnail as ImageTexture
-	var thumbnail_filename = save_path.path_join(filename.replace(".save", ".png"))
+	var _thumbnail_filename = save_path.path_join(filename.replace(".save", ".png"))
 	
-	if FileAccess.file_exists(thumbnail_filename):
+	if FileAccess.file_exists(_thumbnail_filename):
 		var image = Image.new()
-		image.load(thumbnail_filename)
-		info["thumbnail"] = ImageTexture.new().create_from_image(image)
+		image.load(_thumbnail_filename)
+		info["thumbnail"] = ImageTexture.create_from_image(image)
 	
 	# Get player level
 #	json.parse(save_game.get_line())
@@ -223,7 +222,7 @@ func load_save(from_main_menu, index = 0):
 		load_save_file(save_file)
 	
 
-func scene_loaded(scene_name):
+func scene_loaded(_scene_name):
 	if pending_save_file:
 		load_save_file(pending_save_file)
 		pending_save_file = null

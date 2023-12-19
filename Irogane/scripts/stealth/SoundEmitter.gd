@@ -5,10 +5,10 @@ class_name SoundEmitter
 @onready var ripple_vfx = $sound_ripple_vfx
 @export_flags_3d_physics var sound_collision_mask = 16
 
-func emit_sound(sound_position, range):
+func emit_sound(sound_position, sound_range):
 	# Set and cast a sphere around us
 	sound_cast.global_position = sound_position
-	sound_cast.shape.radius = range
+	sound_cast.shape.radius = sound_range
 	sound_cast.collision_mask = sound_collision_mask
 	
 	sound_cast.force_shapecast_update()
@@ -22,7 +22,7 @@ func emit_sound(sound_position, range):
 	# Play vfx
 	if ripple_vfx:
 		ripple_vfx.global_position = sound_position
-		ripple_vfx.process_material.scale_min = range * 2
-		ripple_vfx.process_material.scale_max = range * 2
+		ripple_vfx.process_material.scale_min = sound_range * 2
+		ripple_vfx.process_material.scale_max = sound_range * 2
 		ripple_vfx.emit_particle(ripple_vfx.get_global_transform(), Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 	

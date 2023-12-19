@@ -1,11 +1,11 @@
 extends TextureProgressBar
 class_name DepletableBar
 
-@export var path: String
-var depletable
+@export var bar_name: String
+@onready var stats = PlayerEntity.player_node.stats
 
 func _ready():
-	depletable = get_node(path)
+	var depletable = stats.get_node(bar_name)
 	
 	if depletable == null:
 		return

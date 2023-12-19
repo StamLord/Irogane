@@ -1,6 +1,6 @@
 extends UIWindow
 
-@onready var stats = $"/root/world/player/stats"
+@onready var stats = PlayerEntity.player_node.stats
 @onready var str_value = $VBoxContainer/body/VBoxContainer/GridContainer/str_value
 @onready var agi_value = $VBoxContainer/body/VBoxContainer/GridContainer/agi_value
 @onready var dex_value = $VBoxContainer/body/VBoxContainer/GridContainer/dex_value

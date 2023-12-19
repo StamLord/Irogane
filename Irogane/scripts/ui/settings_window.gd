@@ -79,12 +79,12 @@ func get_system_settings():
 
 func apply_system_settings(data):
 	if "anti_aliasing" in data:
-		var anti_aliasing = data["anti_aliasing"]
-		var anti_aliasing_index = ANTI_ALIASING_SETTINGS.find(int(anti_aliasing))
+		var _anti_aliasing = data["anti_aliasing"]
+		var anti_aliasing_index = ANTI_ALIASING_SETTINGS.find(int(_anti_aliasing))
 		
 		if anti_aliasing_index != -1:
 			anti_aliasing_button.select(anti_aliasing_index)
-			RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), anti_aliasing)
+			RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), _anti_aliasing)
 		
 	if "vsync" in data:
 		var vsync = data["vsync"]
@@ -103,13 +103,13 @@ func apply_system_settings(data):
 			Engine.max_fps = max_fps
 		
 	if "draw_distance" in data:
-		var draw_distance = data["draw_distance"]
-		var draw_distance_index = DRAW_DISTANCE_SETTINGS.find(int(draw_distance))
+		var _draw_distance = data["draw_distance"]
+		var draw_distance_index = DRAW_DISTANCE_SETTINGS.find(int(_draw_distance))
 		
 		if draw_distance_index != -1:
 			draw_distance_button.select(draw_distance_index)
 			if CameraShaker.main_camera != null:
-				CameraShaker.main_camera.far = draw_distance
+				CameraShaker.main_camera.far = _draw_distance
 	
 	if "resolution" in data:
 		var resolution = data["resolution"]
@@ -136,6 +136,6 @@ func on_game_load():
 	load_system_settings()
 	
 
-func on_scene_loaded(scene_name):
+func on_scene_loaded(_scene_name):
 	load_system_settings()
 	

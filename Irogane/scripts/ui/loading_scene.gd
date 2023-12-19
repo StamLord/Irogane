@@ -7,7 +7,7 @@ var progress = []
 var scene_load_status = 0
 
 
-func _process(delta):
+func _process(_delta):
 	var scene_name = scene_manager.loading_scene_name
 	
 	if scene_name:
