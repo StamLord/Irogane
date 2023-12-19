@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b6x672pitiuuq"]
+
+[resource]
+resource_name = "clothes"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.30666, 0.236518, 0.196441, 1)

@@ -1,0 +1,198 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfdo6pucwu6t2"]
+
+[ext_resource type="PackedScene" uid="uid://c5grqu5kkh3xe" path="res://to_move/models/human_model/human_styl_7.glb" id="1_n6iwh"]
+[ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="2_f1ohr"]
+
+[node name="Character" instance=ExtResource("1_n6iwh")]
+script = ExtResource("2_f1ohr")
+
+[node name="bangs_01" parent="Armature/Skeleton3D" index="2" groups=["bangs"]]
+visible = false
+
+[node name="bangs_02" parent="Armature/Skeleton3D" index="3" groups=["bangs"]]
+visible = false
+
+[node name="bangs_03" parent="Armature/Skeleton3D" index="4" groups=["bangs"]]
+visible = false
+
+[node name="bangs_06" parent="Armature/Skeleton3D" index="5"]
+visible = false
+
+[node name="bangs_07" parent="Armature/Skeleton3D" index="6" groups=["bangs"]]
+visible = false
+
+[node name="bangs_08" parent="Armature/Skeleton3D" index="7" groups=["bangs"]]
+visible = false
+
+[node name="bangs_09" parent="Armature/Skeleton3D" index="8" groups=["bangs"]]
+visible = false
+
+[node name="bangs_10" parent="Armature/Skeleton3D" index="9" groups=["bangs"]]
+visible = false
+
+[node name="bangs_11" parent="Armature/Skeleton3D" index="10" groups=["bangs"]]
+visible = false
+
+[node name="bangs_12" parent="Armature/Skeleton3D" index="11" groups=["bangs"]]
+visible = false
+
+[node name="bangs_13" parent="Armature/Skeleton3D" index="12" groups=["bangs"]]
+visible = false
+
+[node name="bangs_14" parent="Armature/Skeleton3D" index="13"]
+visible = false
+
+[node name="bangs_15" parent="Armature/Skeleton3D" index="14"]
+visible = false
+
+[node name="bangs_16" parent="Armature/Skeleton3D" index="15"]
+visible = false
+
+[node name="bangs_04" parent="Armature/Skeleton3D" index="16" groups=["bangs"]]
+visible = false
+
+[node name="bangs_05" parent="Armature/Skeleton3D" index="17" groups=["bangs"]]
+visible = false
+
+[node name="bangs_17" parent="Armature/Skeleton3D" index="18"]
+visible = false
+
+[node name="facial_01" parent="Armature/Skeleton3D" index="19" groups=["facial"]]
+visible = false
+
+[node name="facial_02" parent="Armature/Skeleton3D" index="20" groups=["facial"]]
+visible = false
+
+[node name="facial_03" parent="Armature/Skeleton3D" index="21" groups=["facial"]]
+visible = false
+
+[node name="facial_04" parent="Armature/Skeleton3D" index="22" groups=["facial"]]
+visible = false
+
+[node name="facial_05" parent="Armature/Skeleton3D" index="23" groups=["facial"]]
+visible = false
+
+[node name="facial_06" parent="Armature/Skeleton3D" index="24" groups=["facial"]]
+visible = false
+
+[node name="facial_07" parent="Armature/Skeleton3D" index="25" groups=["facial"]]
+visible = false
+
+[node name="facial_08" parent="Armature/Skeleton3D" index="26" groups=["facial"]]
+visible = false
+
+[node name="facial_09" parent="Armature/Skeleton3D" index="27" groups=["facial"]]
+visible = false
+
+[node name="facial_10" parent="Armature/Skeleton3D" index="28" groups=["facial"]]
+visible = false
+
+[node name="facial_11" parent="Armature/Skeleton3D" index="29" groups=["facial"]]
+visible = false
+
+[node name="hair_01" parent="Armature/Skeleton3D" index="34" groups=["hair"]]
+visible = false
+
+[node name="hair_02" parent="Armature/Skeleton3D" index="35" groups=["hair"]]
+visible = false
+
+[node name="hair_03" parent="Armature/Skeleton3D" index="36" groups=["hair"]]
+visible = false
+
+[node name="hair_04" parent="Armature/Skeleton3D" index="37" groups=["hair"]]
+visible = false
+
+[node name="hair_05" parent="Armature/Skeleton3D" index="38" groups=["hair"]]
+visible = false
+
+[node name="hair_06" parent="Armature/Skeleton3D" index="39" groups=["hair"]]
+visible = false
+
+[node name="hair_07" parent="Armature/Skeleton3D" index="40" groups=["hair"]]
+visible = false
+
+[node name="hair_08" parent="Armature/Skeleton3D" index="41"]
+visible = false
+
+[node name="hair_09" parent="Armature/Skeleton3D" index="42"]
+visible = false
+
+[node name="hat_0" parent="Armature/Skeleton3D" index="45"]
+visible = false
+
+[node name="hat_1" parent="Armature/Skeleton3D" index="46"]
+visible = false
+
+[node name="hat_2" parent="Armature/Skeleton3D" index="47"]
+visible = false
+
+[node name="hat_3" parent="Armature/Skeleton3D" index="48"]
+visible = false
+
+[node name="hat_4" parent="Armature/Skeleton3D" index="49"]
+visible = false
+
+[node name="hat_5" parent="Armature/Skeleton3D" index="50"]
+visible = false
+
+[node name="head_0" parent="Armature/Skeleton3D" index="51" groups=["head"]]
+
+[node name="head_1" parent="Armature/Skeleton3D" index="52" groups=["head"]]
+visible = false
+
+[node name="head_2" parent="Armature/Skeleton3D" index="53" groups=["head"]]
+visible = false
+
+[node name="head_4" parent="Armature/Skeleton3D" index="54" groups=["head"]]
+visible = false
+
+[node name="mask_1" parent="Armature/Skeleton3D" index="56" groups=["mask"]]
+visible = false
+
+[node name="mask_2" parent="Armature/Skeleton3D" index="57" groups=["mask"]]
+visible = false
+
+[node name="pants_0" parent="Armature/Skeleton3D" index="59" groups=["pants"]]
+visible = false
+
+[node name="pants_1" parent="Armature/Skeleton3D" index="60" groups=["pants"]]
+visible = false
+
+[node name="pants_2" parent="Armature/Skeleton3D" index="61" groups=["pants"]]
+visible = false
+
+[node name="pants_3" parent="Armature/Skeleton3D" index="62" groups=["pants"]]
+visible = false
+
+[node name="shoes_0" parent="Armature/Skeleton3D" index="65" groups=["shoes"]]
+visible = false
+
+[node name="shoes_1" parent="Armature/Skeleton3D" index="66" groups=["shoes"]]
+visible = false
+
+[node name="shoulder_guards" parent="Armature/Skeleton3D" index="67"]
+visible = false
+
+[node name="straw_armor" parent="Armature/Skeleton3D" index="70"]
+visible = false
+
+[node name="straw_armor_001" parent="Armature/Skeleton3D" index="71"]
+visible = false
+
+[node name="top_1" parent="Armature/Skeleton3D" index="72" groups=["top"]]
+visible = false
+
+[node name="top_2" parent="Armature/Skeleton3D" index="73" groups=["top"]]
+visible = false
+
+[node name="top_3" parent="Armature/Skeleton3D" index="74" groups=["top"]]
+visible = false
+
+[node name="top_4" parent="Armature/Skeleton3D" index="75" groups=["top"]]
+visible = false
+
+[node name="top_5" parent="Armature/Skeleton3D" index="76" groups=["top"]]
+visible = false
+
+[node name="top_armor" parent="Armature/Skeleton3D" index="77"]
+visible = false
