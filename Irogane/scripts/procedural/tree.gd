@@ -82,7 +82,7 @@ func update_tree():
 					add_child(mesh)
 					mesh.position.y = height
 					# Add offset for every other level
-					var offset_angle = angle_space * 0.5 if i % 2 == 0 else 0
+					var offset_angle = angle_space * 0.5 if i % 2 == 0 else 0.0
 					mesh.set_rotation_degrees(Vector3(90+branch_angle, angle_space * j + offset_angle, 0))
 					mesh.position += mesh.basis.y * branch_segment_length * 0.5
 				

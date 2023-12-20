@@ -4,7 +4,7 @@ enum axis_enum {X, Y, Z}
 enum rotation_type_enum {full, ping_pong}
 @export var axis: axis_enum
 @export var rotation_type: rotation_type_enum
-@export var range = Vector2(0.0, 0.0)
+@export var rotation_range = Vector2(0.0, 0.0)
 @export var speed = 1.0
 
 var inverted = false
@@ -28,10 +28,10 @@ func rotate_angle(angle, delta):
 		angle = lerp(angle, angle + change, delta * speed)
 		
 		# Invert at range min/max
-		if angle <= range.x or angle >= range.y:
+		if angle <= rotation_range.x or angle >= rotation_range.y:
 			inverted = !inverted
 		
-		angle = clamp(angle, range.x, range.y)
+		angle = clamp(angle, rotation_range.x, rotation_range.y)
 	else:
 		angle += speed * delta
 		# Clamp to 360

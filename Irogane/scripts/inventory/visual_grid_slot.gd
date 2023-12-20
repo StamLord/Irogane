@@ -16,7 +16,7 @@ var rotation_time_ms = 100.0
 
 var start_animate = 0
 
-func _process(delta):
+func _process(_delta):
 	if free == null or occupied == null:
 		return
 		

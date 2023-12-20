@@ -9,7 +9,7 @@ const pickup_base = preload("res://prefabs/pickups/pickup.tscn")
 @onready var quick_slots = $"quick_slots"
 @onready var base = $"ReferenceRect"
 
-@onready var drop_origin = $"/root/world/player"
+@onready var drop_origin = PlayerEntity.player_node
 var drop_offset = Vector3(0, 1.5, -1.5)
 
 var item_held = null

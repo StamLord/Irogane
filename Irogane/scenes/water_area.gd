@@ -11,7 +11,7 @@ extends Area3D
 var bodies = []
 var bodies_exited = {}
 
-func _process(delta):
+func _process(_delta):
 	# Clean list of bodies that exited after a .1 delay
 	for b in bodies_exited:
 		if Time.get_ticks_msec() - bodies_exited[b] >= .1:

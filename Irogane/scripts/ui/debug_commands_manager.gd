@@ -89,6 +89,9 @@ func run_command(command_name: String, args: PackedStringArray):
 				actual_arg = args[i].to_int()
 		
 		casted_args.push_back(actual_arg)
+		
+	if command_name == "help":
+		casted_args = args
 	
 	var command_function = command_meta.function
 	return command_function.call(casted_args)

@@ -1,0 +1,208 @@
+[gd_scene load_steps=23 format=3 uid="uid://dfy8qdkjnd4tc"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
+[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/load_window.tscn" id="2_ifvaf"]
+[ext_resource type="Texture2D" uid="uid://bug7mybc6xkht" path="res://assets/images/main_menu_bg.png" id="2_ys01h"]
+[ext_resource type="Texture2D" uid="uid://brufi7iodim6" path="res://assets/images/main_menu_vingette.png" id="3_4hocg"]
+[ext_resource type="Texture2D" uid="uid://vu67v5m4a1rh" path="res://assets/images/main_menu_highlight.png" id="3_6d7bo"]
+[ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="4_gtrqj"]
+[ext_resource type="Script" path="res://scripts/ui/focus_on_hover_button.gd" id="7_snhy3"]
+
+[sub_resource type="SystemFont" id="SystemFont_8pshx"]
+font_names = PackedStringArray("Marcellus SC")
+font_italic = true
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sclo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tluq7"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ku0ye"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qla45"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqsy5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fchx"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ey3wh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1rbs2"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r0xqf"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l571t"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g8lot"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wo1q"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uq8rm"]
+texture = ExtResource("3_6d7bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owyvs"]
+texture = ExtResource("3_6d7bo")
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xac4n")
+close_on_back = false
+
+[node name="bg_image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ys01h")
+expand_mode = 1
+
+[node name="bg_overlay" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4hocg")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="top" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="bottom" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="menu_container" type="VBoxContainer" parent="VBoxContainer/bottom"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="start_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5sclo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tluq7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ku0ye")
+theme_override_styles/focus = SubResource("StyleBoxTexture_qla45")
+text = "   New Game"
+alignment = 0
+script = ExtResource("7_snhy3")
+
+[node name="load_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
+custom_minimum_size = Vector2(330, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.992157, 0.992157, 0.992157, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iqsy5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8fchx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8fchx")
+theme_override_styles/focus = SubResource("StyleBoxTexture_8fchx")
+text = "   Load Game"
+alignment = 0
+script = ExtResource("7_snhy3")
+
+[node name="settings_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
+custom_minimum_size = Vector2(330, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ey3wh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1rbs2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_r0xqf")
+theme_override_styles/focus = SubResource("StyleBoxTexture_l571t")
+text = "   Settings"
+alignment = 0
+script = ExtResource("7_snhy3")
+
+[node name="quit_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
+custom_minimum_size = Vector2(330, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_8pshx")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g8lot")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1wo1q")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uq8rm")
+theme_override_styles/focus = SubResource("StyleBoxTexture_owyvs")
+text = "   Quit
+"
+alignment = 0
+script = ExtResource("7_snhy3")
+
+[node name="load_window" parent="." instance=ExtResource("2_ifvaf")]
+unique_name_in_owner = true
+visible = false
+z_as_relative = false
+layout_mode = 1
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+from_main_menu = true
+
+[node name="settings_window" parent="." instance=ExtResource("4_gtrqj")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -300.0
+offset_top = -231.5
+offset_right = 300.0
+offset_bottom = 231.5
+
+[connection signal="pressed" from="VBoxContainer/bottom/menu_container/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/bottom/menu_container/load_button" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/bottom/menu_container/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/bottom/menu_container/quit_button" to="." method="_on_quit_button_pressed"]

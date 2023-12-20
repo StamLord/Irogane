@@ -10,7 +10,7 @@ extends CharacterBody3D
 
 @onready var nav = $NavigationAgent3D
 @onready var nav_agent = $NavigationAgent3D
-@onready var player = $"../player"
+@onready var player = PlayerEntity.player_node
 
 @export var max_step_height = .3
 @export var max_step_angle = 10

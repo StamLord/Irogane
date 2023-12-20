@@ -162,8 +162,8 @@ func update_cone_mesh():
 	sphere_mesh.radius = sight_range
 	
 
-func hear_sound(position):
-	print("Heard sound at: " + str(position))
+func hear_sound(_position):
+	print("Heard sound at: " + str(_position))
 	on_sound_heard.emit()
 	pass
 	

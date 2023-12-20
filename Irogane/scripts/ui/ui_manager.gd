@@ -9,7 +9,25 @@ signal open_system_menu()
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	SaveSystem.on_game_load.connect(on_game_load)
 	update_cursor()
+
+func close_all_windows():
+	var windows_to_close = []
+	
+	for window in windows:
+		if window != null: # After load from main_menu, scene is changed and the windows are freed (null)
+			windows_to_close.push_back(window) # can't remove mid iteration so use array to store
+	
+	for window in windows_to_close:
+		window.close()
+	
+	windows = []
+	update_cursor()
+	
+
+func on_game_load():
+	close_all_windows()
 	
 
 func _process(_delta):
@@ -30,12 +48,13 @@ func remove_window(window):
 	
 
 func close_last_window():
-	# If no windows to close, open system menu
+		# If no windows to close, open system menu
 	if windows.size() < 1:
 		open_system_menu.emit()
 		return
 	
-	windows[0].close()
+	if windows[0].close_on_back:
+		windows[0].close()
 	
 
 func update_cursor():

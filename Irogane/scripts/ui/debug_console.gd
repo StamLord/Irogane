@@ -24,7 +24,7 @@ func print_help(args):
 	if args.size() > 0:
 		# specific help for 'func_name'
 		var func_name = args[0]
-	
+		
 		if func_name not in commands:
 			push_message("[color=red]ERROR[/color]: Command not found: '%s', use 'help'" % func_name)
 	
@@ -131,7 +131,7 @@ func _process(_delta):
 		input.text = found_commands[found_comment_index]
 		input.set_caret_column(found_commands[found_comment_index].length())
 	
-	if Input.is_action_just_pressed("attack_primary"):
+	if Input.is_action_just_pressed("attack_secondary"):
 		if not visible:
 			return
 		
@@ -139,7 +139,6 @@ func _process(_delta):
 	
 
 func open():
-	input.clear()
 	hide_suggestions()
 	command_history_index = -1
 	visible = true
@@ -203,10 +202,6 @@ func _on_console_inputbar_text_submitted(new_text):
 		command_history.remove_at(0)
 	
 
-func _on_console_display_focus_entered():
-	input.grab_focus()
-	
-
 func try_suggest_command(new_text):
 	found_commands = []
 	
@@ -231,7 +226,7 @@ func try_suggest_command(new_text):
 		
 	else:
 		suggestion_label.visible = false
-		
+	
 
 func hide_suggestions():
 	suggestion_label.visible = false
@@ -247,18 +242,3 @@ func _on_console_inputbar_text_changed(new_text):
 	
 	try_suggest_command(new_text)
 	
-
-func _on_suggestion_label_focus_entered():
-		input.grab_focus()
-	
-
-func _on_margin_container_focus_entered():
-		input.grab_focus()
-	
-
-func _on_scroll_container_focus_entered():
-	input.grab_focus()
-
-
-func _on_v_box_container_focus_entered():
-	input.grab_focus()

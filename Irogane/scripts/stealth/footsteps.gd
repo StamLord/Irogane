@@ -29,7 +29,7 @@ func _ready():
 		state_machine.on_state_enter.connect(on_state_enter)
 		state_machine.on_state_exit.connect(on_state_exit)
 
-func _process(delta):
+func _process(_delta):
 	if not is_playing:
 		return
 	

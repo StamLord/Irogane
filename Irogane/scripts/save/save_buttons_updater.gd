@@ -5,9 +5,11 @@ enum button_type_enum {SAVE, LOAD}
 
 @onready var prefab = $Button
 @onready var thumbnail_rect = $"../../../info_panel/VBoxContainer/save_thumbnail"
+@onready var load_window = $"../../../../../.."
 @onready var date_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/date_label"
 @onready var level_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/level_label"
 @onready var name_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/name_label"
+@onready var version_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/version_label"
 
 func _ready():
 	visibility_changed.connect(_on_visibility_changed)
@@ -24,7 +26,7 @@ func _on_visibility_changed():
 	if button_type == button_type_enum.SAVE:
 		var button = prefab.duplicate()
 		button.text = "NEW SAVE"
-		button.pressed.connect(SaveSystem.save)
+		button.pressed.connect(SaveSystem.save_game)
 		button.visible = true
 		add_child(button)
 		
@@ -38,9 +40,9 @@ func _on_visibility_changed():
 		button.text = "SAVE " + index
 		
 		if button_type == button_type_enum.SAVE:
-			button.pressed.connect(SaveSystem.save.bind(index))
+			button.pressed.connect(SaveSystem.save_game.bind(index))
 		elif button_type == button_type_enum.LOAD:
-			button.pressed.connect(SaveSystem.load.bind(index))
+			button.pressed.connect(SaveSystem.load_game.bind(index))
 		
 		button.mouse_entered.connect(display_save_info.bind(file))
 		
@@ -55,6 +57,9 @@ func display_save_info(filename):
 	var date = Time.get_datetime_string_from_unix_time(info["date"]) # YYYY-MM-DDTHH:MM:SS
 	date = date.replace("T", " ")
 	date_label.text = date
+	version_label.text = "Version %s" % info["version"]
+	name_label.text = info["name"]
+	level_label.text = "Level %s" % info["level"]
 	
 	# Thumbnail
 	thumbnail_rect.texture = info["thumbnail"] if info.has("thumbnail") else null

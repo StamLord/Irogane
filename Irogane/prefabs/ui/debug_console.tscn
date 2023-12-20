@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://caculcb3k1hfl"]
+[gd_scene load_steps=10 format=3 uid="uid://cy46s0m24lnxw"]
 
 [ext_resource type="FontFile" uid="uid://blnra70x5efg" path="res://assets/fonts/UbuntuMono-Regular.ttf" id="1_u8j0n"]
 [ext_resource type="Script" path="res://scripts/ui/debug_console.gd" id="1_ufbnu"]
@@ -72,7 +72,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-focus_mode = 2
 bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
@@ -80,11 +79,14 @@ selection_enabled = true
 [node name="console_inputbar" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_next = NodePath(".")
 placeholder_text = "Use 'help' for list of commands"
 caret_blink = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 theme_override_constants/margin_bottom = 24
 
 [node name="suggestion_label" type="Label" parent="MarginContainer"]
@@ -97,10 +99,5 @@ size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_u8j0n")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2fmul")
 
-[connection signal="focus_entered" from="VBoxContainer" to="." method="_on_v_box_container_focus_entered"]
-[connection signal="focus_entered" from="VBoxContainer/ScrollContainer" to="." method="_on_scroll_container_focus_entered"]
-[connection signal="focus_entered" from="VBoxContainer/ScrollContainer/console_display" to="." method="_on_console_display_focus_entered"]
 [connection signal="text_changed" from="VBoxContainer/console_inputbar" to="." method="_on_console_inputbar_text_changed"]
 [connection signal="text_submitted" from="VBoxContainer/console_inputbar" to="." method="_on_console_inputbar_text_submitted"]
-[connection signal="focus_entered" from="MarginContainer" to="." method="_on_margin_container_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/suggestion_label" to="." method="_on_suggestion_label_focus_entered"]

@@ -5,7 +5,7 @@ extends GPUParticles3D
 
 var last_position
 
-func _process(delta):
+func _process(_delta):
 	if not active or emission_per_unit == 0:
 		return
 	

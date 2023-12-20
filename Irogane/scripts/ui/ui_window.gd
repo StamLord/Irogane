@@ -3,6 +3,7 @@ class_name UIWindow
 
 @export var drag_area : Area2D
 @export var button : String
+@export var close_on_back: bool = true
 
 var offset
 var dragging : bool
@@ -13,7 +14,7 @@ func _ready():
 	set_drag_area()
 	
 
-func _process(delta):
+func _process(_delta):
 	if not button: return
 	
 	if Input.is_action_just_pressed(button):
