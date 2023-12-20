@@ -36,6 +36,9 @@ var default_face = 0
 var current_face = 0
 
 func _ready():
+	add_show_part_command()
+	add_get_part_options_command()
+	
 	# Initialize parts
 	for key in default_selections:
 		parts[key] = []
@@ -70,6 +73,42 @@ func mask_parts(parts_to_mask, mask: bool):
 			parts[part][index].visible = !mask
 	
 
+func set_part(args):
+	self.show_part_at_index(args[0], args[1])
+	
+
+func add_show_part_command():
+	var args = [
+		{
+			"arg_name": "part_name",
+			"arg_type": DebugCommandsManager.ArgumentType.STRING,
+			"arg_description": "part name of the model, as configured in appearance script",
+		},
+		{
+			"arg_name": "index",
+			"arg_type": DebugCommandsManager.ArgumentType.INT,
+			"arg_description": "index of part variation]",
+		}
+	]
+	
+	DebugCommandsManager.add_command("set_part", set_part, args, "Set model part variation by index")
+	
+func get_part_options(args):
+	return str(self.parts[args[0]].size())
+	
+
+func add_get_part_options_command():
+	var args = [
+		{
+			"arg_name": "part_name",
+			"arg_type": DebugCommandsManager.ArgumentType.STRING,
+			"arg_description": "part name of the model, as configured in appearance script",
+		},
+	]
+	
+	DebugCommandsManager.add_command("get_part_options", get_part_options, args, "Get number of available options for a model part")
+	
+
 func show_part_at_index(part: String, index: int):
 	if not parts.has(part):
 		print("Error! No part named %s ", part)
@@ -83,6 +122,10 @@ func show_part_at_index(part: String, index: int):
 	
 	# Show new selection if not -1
 	if index >= 0:
+		if index > parts[part].size():
+			print("Error, invalid index %s" % parts[part].size())
+			return
+	
 		parts[part][index].visible = true
 		
 		# If this part masks other parts, mask them

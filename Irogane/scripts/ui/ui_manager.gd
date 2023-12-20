@@ -1,7 +1,5 @@
 extends Node
 
-@onready var save_manager = get_node("/root/SaveSystem")
-
 var windows : Array[UIWindow]
 
 signal cursor_lock()
@@ -11,7 +9,7 @@ signal open_system_menu()
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	save_manager.on_game_load.connect(on_game_load)
+	SaveSystem.on_game_load.connect(on_game_load)
 	update_cursor()
 
 func close_all_windows():
