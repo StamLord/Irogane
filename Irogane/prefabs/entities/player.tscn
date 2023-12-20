@@ -35,7 +35,7 @@
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/male_model.tscn" id="36_y7hmg"]
+[ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="36_y7hmg"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
