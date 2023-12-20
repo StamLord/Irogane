@@ -39,7 +39,7 @@
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="36_mqd6s"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
-[ext_resource type="PackedScene" path="res://prefabs/ui/debug_console.tscn" id="38_h4jui"]
+[ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="38_h4jui"]
 [ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="38_tiyp4"]
 [ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/load_window.tscn" id="39_u7kw6"]
 
@@ -2206,6 +2206,7 @@ visible = false
 
 [node name="system_menu" type="Control" parent="UI/canvas"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2296,6 +2297,7 @@ alignment = 0
 layout_mode = 1
 
 [node name="save" type="Control" parent="UI/canvas/system_menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
