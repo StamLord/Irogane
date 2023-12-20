@@ -72,7 +72,7 @@ func save_data():
 		"last_direction" : last_direction,
 		"head_rotation" : get_node("head").rotation,
 		"last_speed" : last_speed,
-		"stats" : get_node("stats").save_data(),
+		"stats" : stats.save_data(),
 		"appearance": model.save_appearance(),
 		"sex": PlayerEntity.get_sex(),
 		"name": PlayerEntity.get_player_name(),
