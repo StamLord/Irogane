@@ -6,7 +6,7 @@ var hair_material: StandardMaterial3D = load("res://assets/materials/human_male/
 
 # Defines part names and default values
 var default_selections = {
-	"head" : 0,
+	#"head" : 0,
 	"hair": -1,
 	"bangs": -1,
 	"facial": -1,
@@ -52,10 +52,10 @@ func _ready():
 			parts[part_name].append(child)
 	
 		# Set local duplicate of materials
-		if part_name == "head":
-			child.set_surface_override_material(0, skin_material)
-			child.set_surface_override_material(1, face_material)
-		elif part_name in ["hair", "bangs", "facial"]:
+		#if part_name == "head":
+		#	child.set_surface_override_material(0, skin_material)
+		#	child.set_surface_override_material(1, face_material)
+		if part_name in ["hair", "bangs", "facial"]:
 			child.set_surface_override_material(0, hair_material)
 		elif part_name in ["body"]:
 			child.set_surface_override_material(0, skin_material)

@@ -97,7 +97,7 @@ func load_data(data):
 	on_child_transition(current_state, data["current_state"])
 	
 	# Load stats
-	get_node("stats").load_data(data["stats"])
+	stats.load_data(data["stats"])
 	
 	#load appearance
 	model.load_appearance(data["appearance"])
