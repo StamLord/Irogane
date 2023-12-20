@@ -1,33 +1,36 @@
 extends Node
 
-@onready var scene_manager = get_node("/root/SceneManager")
+const GAME_DIR_PATH = "user://"
+const SAVE_DIR_NAME = "saves"
+const SETTINGS_DIR_NAME = "settings"
+const SAVE_FILE_NAME = "savegame_{i}.save"
+const THUMBNAIL_FILE_NAME = "savegame_{i}.png"
+const SYSTEM_SETTINGS_FILE_NAME = "system.config"
 
-const game_dir_path = "user://"
-const save_dir_name = "saves"
-const settings_dir_name = "settings"
-const save_filename = "savegame_{i}.save"
-const thumbnail_filename = "savegame_{i}.png"
-const system_settings_file_name = "system.config"
+const SETTINGS_VERSION = 0.2
+
 var save_path = null
 var settings_path = null
+
+var pending_save_file = null
 
 signal on_game_save()
 signal on_game_load()
 
-var pending_save_file = null
 
 func _ready():
-	scene_manager.on_scene_loaded.connect(scene_loaded)
-	var directory = DirAccess.open(game_dir_path)
+	SceneManager.on_scene_loaded.connect(scene_loaded)
+	var directory = DirAccess.open(GAME_DIR_PATH)
 	
-	if not directory.dir_exists(save_dir_name):
-		directory.make_dir(save_dir_name)
+	if not directory.dir_exists(SAVE_DIR_NAME):
+		directory.make_dir(SAVE_DIR_NAME)
 		
-	if not directory.dir_exists(settings_dir_name):
-		directory.make_dir(settings_dir_name)
+	if not directory.dir_exists(SETTINGS_DIR_NAME):
+		directory.make_dir(SETTINGS_DIR_NAME)
 	
-	save_path = game_dir_path.path_join(save_dir_name)
-	settings_path = game_dir_path.path_join(settings_dir_name)
+	save_path = GAME_DIR_PATH.path_join(SAVE_DIR_NAME)
+	settings_path = GAME_DIR_PATH.path_join(SETTINGS_DIR_NAME)
+	
 
 func get_save_files():
 	var directory = DirAccess.open(save_path)
@@ -36,13 +39,14 @@ func get_save_files():
 	# Filter items according to filename convention
 	var saves = []
 	for file in files:
-		if file.split("_")[0] != save_filename.split("_")[0]:
+		if file.split("_")[0] != SAVE_FILE_NAME.split("_")[0]:
 			continue
-		if file.split(".")[1] != save_filename.split(".")[1]:
+		if file.split(".")[1] != SAVE_FILE_NAME.split(".")[1]:
 			continue
 		saves.append(file)
 	
 	return saves
+	
 
 func get_save_file_info(filename):
 	var save_file = save_path.path_join(filename)
@@ -53,28 +57,40 @@ func get_save_file_info(filename):
 	
 	var save_game = FileAccess.open(save_file, FileAccess.READ)
 	
-	var json = JSON.new()
+	# First line should be the save version for future compatibility checks
+	var version_dict = _parse_json_string(save_game.get_line())
 	
-	# Get version
-	json.parse(save_game.get_line())
-	var data = json.get_data()
-	info["version"] = data
+	if version_dict == null:
+		info["version"] = "ERROR"
+		
+	var version = version_dict["version"]
+	
+	# Second line is scene name
+	var scene_dict = _parse_json_string(save_game.get_line())
+	
+	if scene_dict == null:
+		info["scene_name"] = "ERROR"
+	
+	var scene_name = scene_dict["scene"]
+	
+	info["version"] = version
+	info["scene_name"] = scene_name
 	
 	# Get Date
 	info["date"] = FileAccess.get_modified_time(save_file)
 	
 	# Get thumbnail as ImageTexture
-	var _thumbnail_filename = save_path.path_join(filename.replace(".save", ".png"))
+	var _THUMBNAIL_FILE_NAME = save_path.path_join(filename.replace(".save", ".png"))
 	
-	if FileAccess.file_exists(_thumbnail_filename):
+	if FileAccess.file_exists(_THUMBNAIL_FILE_NAME):
 		var image = Image.new()
-		image.load(_thumbnail_filename)
+		image.load(_THUMBNAIL_FILE_NAME)
 		info["thumbnail"] = ImageTexture.create_from_image(image)
 	
 	# Get player level
-#	json.parse(save_game.get_line())
-#	data = json.get_data()
-#	info["level"] = data["level"]
+	var player_data = _parse_json_string(save_game.get_line())
+	info["name"] = player_data["name"]
+	info["level"] = player_data["stats"]["level"]
 	
 	return info
 
@@ -96,12 +112,13 @@ func save(index = null):
 	if index == null:
 		index = str(get_highest_save_index() + 1)
 	
-	var save_file = save_path.path_join(save_filename)
+	var save_file = save_path.path_join(SAVE_FILE_NAME)
 	save_file = save_file.format({"i" : index})
 	
 	var save_game = FileAccess.open(save_file, FileAccess.WRITE)
 	
-	save_game.store_line(JSON.stringify("{version : 0.1}"))
+	save_game.store_line(JSON.stringify({"version" : SETTINGS_VERSION}))
+	save_game.store_line(JSON.stringify({"scene" : SceneManager.current_scene.scene_file_path}))
 	
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	
@@ -118,12 +135,8 @@ func save(index = null):
 		
 		# Call the node's save function.
 		var node_data = node.call("save_data")
-
-		# JSON provides a static method to serialized JSON string.
-		var json_string = JSON.stringify(node_data)
-
 		# Store the save dictionary as a new line in the save file.
-		save_game.store_line(json_string)
+		save_game.store_line(JSON.stringify(node_data))
 	
 	# Generate thumbnail
 	create_thumbnail(index)
@@ -192,35 +205,49 @@ func load_save_file(save_file):
 		print("Erasing node: ", i)
 		i.queue_free()
 		
-	on_game_load.emit()
 	
 
 func load_save(from_main_menu, index = 0):
-	var save_file_path = save_path.path_join(save_filename)
+	var save_file_path = save_path.path_join(SAVE_FILE_NAME)
 	save_file_path = save_file_path.format({"i" : index})
 	
 	if not FileAccess.file_exists(save_file_path):
+		print("Error, Save file not found %s", save_file_path)
 		return # Error! We don't have a save to load.
 	
 	# Load the file line by line and process that dictionary to restore
 	var save_file = FileAccess.open(save_file_path, FileAccess.READ)
 	
 	# First line should be the save version for future compatibility checks
-	var version = save_file.get_line()
+	var version_dict = _parse_json_string(save_file.get_line())
+	
+	if version_dict == null:
+		print("Error, could not find version in save file")
+		return
+		
+	var version = version_dict["version"]
 	print("Loading save file, version: ", version)
 	
+	if version_dict["version"] != SETTINGS_VERSION:
+		print("Error, save version mismatch, current: %s, got: ", SETTINGS_VERSION, version)
+		return
+	
 	# Second line is scene name
-	#var saved_scene_name = save_file.get_line()
-	#print("Save file scene name: ", saved_scene_name)
+	var scene_dict = _parse_json_string(save_file.get_line())
 	
-	var scene_name = "res://scenes/main.tscn"
+	if scene_dict == null:
+		print("Error, could not find scene name")
+		return
 	
-	if from_main_menu:
-		pending_save_file = save_file
-		scene_manager.goto_scene(scene_name)
-	else:
-		load_save_file(save_file)
+	var scene_name = scene_dict["scene"]
+	print("Loaded scene name: ", scene_name)
 	
+	PlayerEntity.create_player_node_if_needed()
+	
+	pending_save_file = save_file
+	on_game_load.emit()
+	SceneManager.goto_scene(scene_name)
+
 
 func scene_loaded(_scene_name):
 	if pending_save_file:
@@ -236,20 +263,18 @@ func create_thumbnail(index):
 	var image = get_viewport().get_texture().get_image()
 	UIManager.unhide_ui()
 	
-	var filename = save_path.path_join(thumbnail_filename).format({"i" : index})
+	var filename = save_path.path_join(THUMBNAIL_FILE_NAME).format({"i" : index})
 	image.save_png(filename)
 	
 
 func save_system_settings(settings):
-	var settings_file_path = settings_path.path_join(system_settings_file_name)
-	
+	var settings_file_path = settings_path.path_join(SYSTEM_SETTINGS_FILE_NAME)
 	var settings_file = FileAccess.open(settings_file_path, FileAccess.WRITE)
-	
 	settings_file.store_line(JSON.stringify(settings))
 	
 
 func load_system_settings():
-	var settings_file_path = settings_path.path_join(system_settings_file_name)
+	var settings_file_path = settings_path.path_join(SYSTEM_SETTINGS_FILE_NAME)
 	
 	if not FileAccess.file_exists(settings_file_path):
 		return # Error! We don't have a settings file
