@@ -1,8 +1,8 @@
 extends Node3D
 
 var skin_material: StandardMaterial3D = load("res://assets/materials/human_male/human_skin.tres").duplicate()
-var face_material: ShaderMaterial = load("res://assets/materials/human_male/male_face.tres").duplicate()
-var hair_material: StandardMaterial3D = load("res://assets/models/human_model/hair.tres").duplicate()
+var face_material: ShaderMaterial = load("res://assets/materials/human_male/male_faces.tres").duplicate()
+var hair_material: StandardMaterial3D = load("res://assets/materials/human_male/hair.tres").duplicate()
 
 # Defines part names and default values
 var default_selections = {
@@ -54,9 +54,9 @@ func _ready():
 			child.set_surface_override_material(1, face_material)
 		elif part_name in ["hair", "bangs", "facial"]:
 			child.set_surface_override_material(0, hair_material)
-		elif part_name in ["neck", "torso", "shoulder", "arm", "hand", "hips", "shin", "femur", "foot"]:
+		elif part_name in ["body"]:
 			child.set_surface_override_material(0, skin_material)
-	
+			child.set_surface_override_material(1, face_material)
 	
 
 func mask_parts(parts_to_mask, mask: bool):
@@ -94,7 +94,7 @@ func show_part_at_index(part: String, index: int):
 	
 	# Update selection
 	current_selections[part] = index
-	print(current_selections)
+	#print(current_selections)
 	
 
 func cycle_part_variation(part: String, increment = 1, allow_no_selection = true):
@@ -149,9 +149,9 @@ func cycle_face_variation(forward = true):
 		
 	if next_selection == -1:
 		next_selection = num_options -1
-
-	face_material.set_shader_parameter("face", next_selection)
 	
+	face_material.set_shader_parameter("face", next_selection)
+		
 	return next_selection
 
 func get_face_selection():
@@ -190,8 +190,8 @@ func set_hair_color(color: Color):
 func save_appearance():
 	var data = {
 		"face" : current_face,
-		"skin_color" : current_colors["skin"],
-		"hair_color" : current_colors["hair"],
+		"skin_color" : [current_colors["skin"].r, current_colors["skin"].g, current_colors["skin"].b],
+		"hair_color" : [current_colors["hair"].r, current_colors["hair"].g, current_colors["hair"].b],
 		"parts" : current_selections
 	}
 	
@@ -200,9 +200,10 @@ func save_appearance():
 
 func load_appearance(data):
 	set_face_index(data["face"])
-	
-	set_skin_color(data["skin_color"])
-	set_hair_color(data["hair_color"])
+	var skin_color = Color(data["skin_color"][0], data["skin_color"][1], data["skin_color"][2])
+	var hair_color = Color(data["hair_color"][0], data["hair_color"][1], data["hair_color"][2])
+	set_skin_color(skin_color)
+	set_hair_color(hair_color)
 	
 	for part in data["parts"]:
 		show_part_at_index(part, data["parts"][part])

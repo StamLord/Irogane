@@ -3,8 +3,9 @@ extends Node
 var player_node = null
 var player_name
 var sex
-var appearance 
-var cached_attributes
+var initial_scene_position = null
+
+var model_node_path = "model/Character"
 
 const PLAYER_SCENE_PATH = "res://prefabs/entities/player.tscn"
 const NO_PLAYER_SCENES = ["res://prefabs/ui/character_creator.tscn", "res://scenes/main_menu.tscn"]
@@ -16,43 +17,55 @@ func _ready():
 	
 
 func on_scene_start_load(scene_name):
-	if player_node == null and not scene_name in NO_PLAYER_SCENES:
-		var player_scene = ResourceLoader.load(PLAYER_SCENE_PATH)
-		player_node = player_scene.instantiate()
-		get_tree().root.add_child(player_node)
-		
-		player_node.get_node("model/Character").load_appearance(appearance)
-		player_node.stats.load_data(cached_attributes)
-		cached_attributes = null
-	
-	if player_node != null and scene_name in NO_PLAYER_SCENES:
-		player_node.free()
+	delete_player_node_if_needed(scene_name)
 	
 
 func on_scene_loaded(scene_name):
-	if player_node != null:
-		player_node.global_position = Vector3.ZERO
+	if player_node != null and initial_scene_position != null:
+		player_node.global_position = initial_scene_position
+		initial_scene_position = null
 	
 
 func set_player_node(node):
 	player_node = node
 	
 
+func set_player_name(name):
+	player_name = name
+	
+
+func create_player_node_if_needed():
+	if player_node == null:
+		var player_scene = ResourceLoader.load(PLAYER_SCENE_PATH)
+		player_node = player_scene.instantiate()
+		get_tree().root.add_child(player_node)
+	
+
+func delete_player_node_if_needed(scene_name):
+	if player_node != null and scene_name in NO_PLAYER_SCENES:
+		player_node.free()
+	
+
 func load_player_data(player_data):
+	create_player_node_if_needed()
+	
+	initial_scene_position = Vector3.ZERO
+
+	player_node.get_node(model_node_path).load_appearance(player_data.appearance)
+	player_node.stats.load_data(player_data.stats)
+	
 	player_name = player_data.name
 	sex = player_data.sex
-	appearance = player_data.appearance
-	cached_attributes = player_data.attributes
-	
-
-func get_attributes():
-	return cached_attributes
-	
-
-func get_appearance():
-	return appearance
 	
 
 func get_sex():
 	return sex
+	
+
+func set_sex(new_sex):
+	sex = new_sex
+	
+
+func get_player_name():
+	return player_name
 	

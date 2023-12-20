@@ -1,7 +1,7 @@
 extends UIWindow
 
 # Nodes
-@onready var character = %Character
+@onready var character = $"../male"
 @onready var camera = %Camera3D
 
 
@@ -52,11 +52,11 @@ const HAIR_COLOR_PRESETS = [
 
 # Part Configuration
 @onready var MODEL_PARTS = {
-	"head": {
-		"button": %"Head Button",
-		"text": "Head Style",
-		"optional": false,
-	},
+	#"head": {
+	#	"button": %"Head Button",
+	#	"text": "Head Style",
+	#	"optional": false,
+	#},
 	"hair": {
 		"button": %"Hair Button",
 		"text": "Hair Style",
@@ -193,7 +193,7 @@ func load_default_character():
 	for part_name in MODEL_PARTS:
 		var part = MODEL_PARTS[part_name]
 		update_button_selection_text(part.button, part.text, character.default_selections[part_name])
-	
+		
 	update_button_selection_text(face_button, FACE_LABEL, character.default_face)
 	
 
@@ -671,9 +671,10 @@ func _on_attr_randomize_button_pressed():
 		
 		while attr_names.size() > 0:
 			var index = rng.randi_range(0, attr_names.size() - 1)
-			var value = rng.randi_range(0, current_available_points)
+			var add_value = rng.randi_range(0, current_available_points)
+			var curr_val = current_attribute_allocation[attr_names[index]]
 			
-			try_set_attribute_value(attr_names[index], value)
+			try_set_attribute_value(attr_names[index], curr_val + add_value)
 			attr_names.remove_at(index)
 	
 
@@ -682,12 +683,24 @@ func save_preset():
 		"name": char_name.text,
 		"sex": current_sex_selection,
 		"appearance" : character.save_appearance(),
-		"attributes": {
-			"strength": current_attribute_allocation["strength"],
-			"agility": current_attribute_allocation["agility"],
-			"dexterity": current_attribute_allocation["dexterity"],
-			"wisdom": current_attribute_allocation["wisdom"],
-			"attr_points": current_available_points,
+		"stats": {
+			"strength": { 
+				"value": current_attribute_allocation.strength,
+				"modifier_dict": {},
+			},
+			"agility": { 
+				"value": current_attribute_allocation.agility,
+				"modifier_dict": {},
+			},
+			"dexterity": { 
+				"value": current_attribute_allocation.dexterity,
+				"modifier_dict": {},
+			},
+			"wisdom": { 
+				"value": current_attribute_allocation.wisdom,
+				"modifier_dict": {},
+			},
+			"attr_points": current_available_points, 
 		},
 	}
 	SceneManager.goto_scene("res://scenes/main.tscn")

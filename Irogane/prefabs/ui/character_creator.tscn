@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bp7x42n7e2h48"]
 
+[ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
-[ext_resource type="PackedScene" uid="uid://bfdo6pucwu6t2" path="res://prefabs/entities/human_model.tscn" id="4_v1ovm"]
 
 [sub_resource type="Environment" id="Environment_vqamt"]
 
@@ -18,9 +18,9 @@ draw_center = false
 font_names = PackedStringArray("Marcellus SC")
 
 [node name="CharacterCreation" type="Node3D"]
-
-[node name="Character" parent="." instance=ExtResource("4_v1ovm")]
 unique_name_in_owner = true
+
+[node name="male" parent="." instance=ExtResource("1_k3j8k")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
@@ -284,6 +284,7 @@ size_flags_vertical = 4
 max_value = 255.0
 
 [node name="HeadStyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 

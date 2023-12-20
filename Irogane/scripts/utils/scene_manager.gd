@@ -24,7 +24,7 @@ func goto_scene(path):
 func _process(_delta):
 	if loading_scene_name:
 		var scene_load_status = ResourceLoader.load_threaded_get_status(loading_scene_name, [])
-	
+
 		if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED:
 			var new_scene = ResourceLoader.load_threaded_get(loading_scene_name)
 			current_scene = new_scene.instantiate()

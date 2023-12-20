@@ -4,6 +4,7 @@ class_name PlayerStateMachine
 # States Parent
 @onready var states_parent = $states
 @onready var stats = $stats
+@onready var model = $model/Character
 
 # Variables
 @export var push_force = 15
@@ -51,12 +52,12 @@ func on_child_transition(state, new_state_name):
 	if !new_state:
 		return
 		
-	print("EXITING: " + current_state.name)
+	#print("EXITING: " + current_state.name)
 	if current_state: 
 		current_state.Exit(self)
 		on_state_exit.emit(current_state.name)
 	
-	print("ENTERING: " + new_state.name)
+	#print("ENTERING: " + new_state.name)
 	new_state.Enter(self)
 	current_state = new_state
 	on_state_enter.emit(new_state.name)
@@ -74,7 +75,10 @@ func save_data():
 		"last_direction" : last_direction,
 		"head_rotation" : get_node("head").rotation,
 		"last_speed" : last_speed,
-		"stats" : get_node("stats").save_data()
+		"stats" : get_node("stats").save_data(),
+		"appearance": model.save_appearance(),
+		"sex": PlayerEntity.get_sex(),
+		"name": PlayerEntity.get_player_name(),
 	}
 	
 	return data
@@ -97,4 +101,11 @@ func load_data(data):
 	
 	# Load stats
 	get_node("stats").load_data(data["stats"])
+	
+	#load appearance
+	model.load_appearance(data["appearance"])
+	
+	# name and sex
+	PlayerEntity.set_sex(data["sex"])
+	PlayerEntity.set_player_name(data["name"])
 	
