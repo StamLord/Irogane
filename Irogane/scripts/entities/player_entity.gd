@@ -20,7 +20,7 @@ func on_scene_start_load(scene_name):
 	delete_player_node_if_needed(scene_name)
 	
 
-func on_scene_loaded(scene_name):
+func on_scene_loaded(_scene_name):
 	if player_node != null and initial_scene_position != null:
 		player_node.global_position = initial_scene_position
 		initial_scene_position = null
@@ -30,8 +30,8 @@ func set_player_node(node):
 	player_node = node
 	
 
-func set_player_name(name):
-	player_name = name
+func set_player_name(new_name):
+	player_name = new_name
 	
 
 func create_player_node_if_needed():
