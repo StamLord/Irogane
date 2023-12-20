@@ -50,7 +50,7 @@ func toggle_camera():
 
 func _process(delta):
 	if Input.is_action_just_pressed("equals"):
-		CameraEntity.toggle_camera()
+		toggle_camera()
 	
 
 

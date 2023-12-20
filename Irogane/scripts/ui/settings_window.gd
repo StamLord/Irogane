@@ -105,8 +105,8 @@ func apply_system_settings(data):
 		
 		if draw_distance_index != -1:
 			draw_distance_button.select(draw_distance_index)
-			if CameraShaker.main_camera != null:
-				CameraShaker.main_camera.far = _draw_distance
+			if CameraEntity.active_camera != null:
+				CameraEntity.active_camera.far = _draw_distance
 	
 	if "resolution" in data:
 		var resolution = data["resolution"]
