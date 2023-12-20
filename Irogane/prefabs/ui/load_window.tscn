@@ -114,17 +114,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="date_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+[node name="version_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
-text = "10/12/2023"
 horizontal_alignment = 1
 
-[node name="level_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+[node name="date_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
-text = "LEVEL 33"
 horizontal_alignment = 1
 
 [node name="name_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Player1"
+horizontal_alignment = 1
+
+[node name="level_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
 horizontal_alignment = 1
