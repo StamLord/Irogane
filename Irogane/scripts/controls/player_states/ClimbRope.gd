@@ -105,7 +105,7 @@ func Exit(body):
 
 func find_closest_rope(position):
 	# Find all ropes
-	var found_segments: Array
+	var found_segments = []
 	if rope_check.is_colliding():
 		for i in range(rope_check.get_collision_count()):
 			if rope_check.get_collider(i).get_parent() is Rope:
@@ -128,7 +128,7 @@ func find_closest_rope(position):
 func FindClosestRopeSegment(position):
 	
 	# Find all rope segments we are touching
-	var found_segments: Array
+	var found_segments = []
 	if rope_check.is_colliding():
 		for i in range(rope_check.get_collision_count()):
 			if rope_check.get_collider(i).get_parent() is Rope:

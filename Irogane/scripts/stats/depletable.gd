@@ -9,6 +9,8 @@ class_name Depletable
 @export var auto_replenish_rate = 1
 var last_replenish = 0
 
+var godmode = false
+
 signal max_value_changed(new_max_value)
 signal value_changed(new_value)
 
@@ -22,18 +24,24 @@ func _process(_delta):
 		last_replenish = Time.get_ticks_msec()
 	
 
+func set_value(value):
+	self.value = clamp(value, min_value, max_value)
+	value_changed.emit(value)
+	
+
 func get_value():
 	return value
 	
 
 func deplete(amount):
-	value = clamp(value - amount, min_value, max_value)
-	value_changed.emit(value)
+	if godmode:
+		return
+	
+	set_value(value - amount)
 	
 
 func replenish(amount):
-	value = clamp(value + amount, min_value, max_value)
-	value_changed.emit(value)
+	set_value(value + amount)
 	
 
 func try_deplete(amount) -> bool:
@@ -41,6 +49,13 @@ func try_deplete(amount) -> bool:
 		return false
 	deplete(amount)
 	return true
+	
+
+func set_godmode(state):
+	godmode = state
+	
+	if godmode:
+		set_value(max_value)
 	
 
 func save_data():

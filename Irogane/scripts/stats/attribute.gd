@@ -11,11 +11,15 @@ var modified_value : int
 var dirty_value = true
 
 func add_point(points):
-	value = clamp(value + points, min_max.x, min_max.y)
-	dirty_value = true
+	set_value(value + points)
+	
 
 func remove_point(points):
-	value = clamp(value - points, min_max.x, min_max.y)
+	set_value(value - points)
+	
+
+func set_value(value):
+	self.value = clamp(value, min_max.x, min_max.y)
 	dirty_value = true
 	
 

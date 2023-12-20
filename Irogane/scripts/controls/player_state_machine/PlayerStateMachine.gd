@@ -37,9 +37,6 @@ func _physics_process(delta):
 	if current_state:
 		current_state.PhysicsUpdate(self, delta)
 	
-	var current_speed = 5
-	if not current_state.get("speed") == null:
-		current_speed = current_state.speed
 
 func on_child_transition(state, new_state_name):
 	if state != current_state:

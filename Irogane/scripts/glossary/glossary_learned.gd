@@ -2,6 +2,23 @@ extends Node
 
 var learned = {}
 
+func _ready():
+	DebugCommandsManager.add_command(
+		"learn_keyword",
+		learn_debug,
+		 [{
+				"arg_name" : "keyword",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Keyword to learn"
+			}],
+		"Learn a new keyword"
+		)
+	
+
+func learn_debug(args : Array):
+	learn(args[0])
+	
+
 func learn(keyword : String):
 	if is_learned(keyword): return
 	

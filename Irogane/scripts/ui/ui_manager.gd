@@ -35,16 +35,19 @@ func on_game_load():
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
 		close_last_window()
+	
 
 func add_window(window):
 	if window is UIWindow:
 		windows.push_front(window)
-	update_cursor()
+	update_cursor()		
+	
 
 func remove_window(window):
 	if window is UIWindow:
 		windows.erase(window)
 	update_cursor()
+	
 
 func close_last_window():
 		# If no windows to close, open system menu

@@ -29,6 +29,8 @@ func _ready():
 	original_fov = camera.fov
 	UIManager.cursor_lock.connect(enable_look)
 	UIManager.cursor_unlock.connect(disable_look)
+	
+	add_debug_commands()
 
 func _input(event):
 	if is_tilting:
@@ -41,15 +43,18 @@ func _input(event):
 		body.rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		rotation.x = clamp(rotation.x, deg_to_rad(look_min), deg_to_rad(look_max))
+	
 
 func change_height(height, duration):
 	new_height = height
 	height_duration = duration
 	
 	height_animate()
+	
 
 func reset_height(duration):
 	change_height(original_height, duration)
+	
 
 func height_animate():
 	var startTime = Time.get_ticks_msec()
@@ -62,8 +67,9 @@ func height_animate():
 		
 		# Wait for next frame
 		await get_tree().create_timer(0).timeout
-
+	
 	position.y = new_height
+	
 
 func change_tilt(tilt, duration):
 	new_tilt = tilt
@@ -71,8 +77,10 @@ func change_tilt(tilt, duration):
 	
 	tilt_animate()
 	
+
 func reset_tilt(duration):
 	change_tilt(0.0, duration)
+	
 
 func tilt_animate():
 	var startTime = Time.get_ticks_msec()
@@ -87,9 +95,10 @@ func tilt_animate():
 		
 		# Wait for next frame
 		await get_tree().create_timer(0).timeout
-
+	
 	camera.rotation_degrees.z = new_tilt
 	is_tilting = false
+	
 
 func fov_animate(new_fov, duration):
 	var startTime = Time.get_ticks_msec()
@@ -102,8 +111,9 @@ func fov_animate(new_fov, duration):
 		
 		# Wait for next frame
 		await get_tree().process_frame
-
+	
 	camera.fov = new_fov
+
 
 func enable_look():
 	look_enabled = true
@@ -124,10 +134,29 @@ func get_tilt():
 func set_fov(fov):
 	camera.fov = fov
 	
+
 func get_fov():
 	return camera.fov
 	
 
 func reset_fov(duration):
 	fov_animate(original_fov, duration)
+	
+
+func add_debug_commands():
+	DebugCommandsManager.add_command(
+		"set_fov",
+		set_original_fov,
+		 [{
+				"arg_name" : "value",
+				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
+				"arg_desc" : "New fov value"
+			}],
+		"Sets the player camera fov to the new value"
+		)
+	
+
+func set_original_fov(args: Array):
+	original_fov = args[0]
+	camera.fov = args[0]
 	

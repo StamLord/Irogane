@@ -136,7 +136,7 @@ func _process(delta):
 		elif Input.is_action_just_pressed("attack_secondary"):
 			#if valid_state_for_input():
 			last_secondary = Time.get_ticks_msec()
-			var state = anim_state_machine.get_current_node()
+			
 			if is_primary_and_secondary():
 				anim_state_machine.start("double_punch")
 				add_to_combo("l+r")

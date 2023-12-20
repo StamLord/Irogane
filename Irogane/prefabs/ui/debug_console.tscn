@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://caculcb3k1hfl"]
+
+[ext_resource type="FontFile" uid="uid://blnra70x5efg" path="res://assets/fonts/UbuntuMono-Regular.ttf" id="1_u8j0n"]
+[ext_resource type="Script" path="res://scripts/ui/debug_console.gd" id="1_ufbnu"]
+[ext_resource type="FontFile" uid="uid://druqe0aldjhhg" path="res://assets/fonts/UbuntuMono-Bold.ttf" id="2_5h4f2"]
+[ext_resource type="FontFile" uid="uid://b1hcvh2fjofvs" path="res://assets/fonts/UbuntuMono-BoldItalic.ttf" id="3_mvrqw"]
+[ext_resource type="FontFile" uid="uid://d150r4feeur3d" path="res://assets/fonts/UbuntuMono-Italic.ttf" id="4_isg8d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibhrq"]
+content_margin_left = 5.0
+content_margin_right = 3.0
+content_margin_bottom = 2.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.415686, 0.541176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gkog"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 0.862745)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fmul"]
+content_margin_left = 5.0
+bg_color = Color(0.0941176, 0.0941176, 0.0941176, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.415686, 0.541176, 1)
+
+[sub_resource type="Theme" id="Theme_nkdcb"]
+LineEdit/colors/caret_color = Color(0.823529, 0.352941, 0.207843, 1)
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_placeholder_color = Color(0.87451, 0.87451, 0.87451, 0.470588)
+LineEdit/colors/selection_color = Color(0.823529, 0.352941, 0.207843, 0.941176)
+LineEdit/fonts/font = ExtResource("1_u8j0n")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_ibhrq")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_ibhrq")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_6gkog")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/selection_color = Color(0.823529, 0.352941, 0.207843, 0.784314)
+RichTextLabel/fonts/bold_font = ExtResource("2_5h4f2")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_mvrqw")
+RichTextLabel/fonts/italics_font = ExtResource("4_isg8d")
+RichTextLabel/fonts/normal_font = ExtResource("1_u8j0n")
+RichTextLabel/styles/focus = SubResource("StyleBoxFlat_2fmul")
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_2fmul")
+
+[node name="consolePanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nkdcb")
+script = ExtResource("1_ufbnu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="console_display" type="RichTextLabel" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 2
+bbcode_enabled = true
+scroll_following = true
+selection_enabled = true
+
+[node name="console_inputbar" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Use 'help' for list of commands"
+caret_blink = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_bottom = 24
+
+[node name="suggestion_label" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_u8j0n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fmul")
+
+[connection signal="focus_entered" from="VBoxContainer" to="." method="_on_v_box_container_focus_entered"]
+[connection signal="focus_entered" from="VBoxContainer/ScrollContainer" to="." method="_on_scroll_container_focus_entered"]
+[connection signal="focus_entered" from="VBoxContainer/ScrollContainer/console_display" to="." method="_on_console_display_focus_entered"]
+[connection signal="text_changed" from="VBoxContainer/console_inputbar" to="." method="_on_console_inputbar_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/console_inputbar" to="." method="_on_console_inputbar_text_submitted"]
+[connection signal="focus_entered" from="MarginContainer" to="." method="_on_margin_container_focus_entered"]
+[connection signal="focus_entered" from="MarginContainer/suggestion_label" to="." method="_on_suggestion_label_focus_entered"]

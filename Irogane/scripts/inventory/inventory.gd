@@ -18,6 +18,8 @@ var last_container = null
 var last_pos = Vector2()
 
 func _ready():
+	add_debug_commands()
+	
 	pickup_item("katana")
 	pickup_item("robes")
 	pickup_item("onigiri")
@@ -27,12 +29,14 @@ func _ready():
 	#pickup_item("test")w
 	#pickup_item("test")
 	
+
 func _process(_delta):
 	var cursor_pos = get_global_mouse_position()
 	
 	if item_held != null:
 		item_held.global_position = cursor_pos + item_offset * item_held.scale
 		item_held.scale = get_container_scale(get_container_under_cursor(cursor_pos), item_held)
+	
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == 1:
@@ -40,7 +44,8 @@ func _input(event):
 			grab(get_global_mouse_position())
 		else:
 			release(get_global_mouse_position())
-			
+	
+
 func grab(cursor_pos):
 	var c = get_container_under_cursor(cursor_pos)
 	if c != null and c.has_method("grab_item"):
@@ -54,6 +59,7 @@ func grab(cursor_pos):
 			# Highlight/De-highlight valid slots
 			equipment_slots.highlight_valid_slots(item_held)
 			quick_slots.highlight_valid_slots(item_held)
+	
 
 func get_container_under_cursor(cursor_pos):
 	var containers = [grid, equipment_slots, quick_slots, base]
@@ -61,6 +67,7 @@ func get_container_under_cursor(cursor_pos):
 		if c.get_global_rect().has_point(cursor_pos):
 			return c
 	return null
+	
 
 func release(cursor_pos):
 	if item_held == null:
@@ -79,6 +86,7 @@ func release(cursor_pos):
 	# Highlight/De-highlight valid slots
 	equipment_slots.highlight_valid_slots(item_held)
 	quick_slots.highlight_valid_slots(item_held)
+	
 
 func drop_item():
 	var item_id = item_held.get_meta("id")
@@ -93,16 +101,18 @@ func drop_item():
 		for child in pickup.get_children():
 			if child is Pickup:
 				child.item_id = item_id
-		print(pickup.get_parent())
+	
 	# Destroy gui item
 	item_held.queue_free()
 	item_held = null
 	
+
 func return_item():
 	item_held.global_position = last_pos
 	item_held.scale = get_container_scale(last_container, item_held)
 	last_container.insert_item(item_held)
 	item_held = null
+	
 
 func pickup_item(item_id):
 	var item = item_base.instantiate()
@@ -113,6 +123,7 @@ func pickup_item(item_id):
 		item.queue_free()
 		return false
 	return true
+	
 
 func get_container_scale(container, item):
 	
@@ -130,3 +141,38 @@ func get_container_scale(container, item):
 		return Vector2(1, 1)
 	else:
 		return Vector2.ONE * container_size / largest_dimension
+	
+
+func add_debug_commands():
+	DebugCommandsManager.add_command(
+		"add_item",
+		add_item,
+		 [{
+				"arg_name" : "item",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Item name in database"
+			},
+			{
+				"arg_name" : "amount",
+				"arg_type" : DebugCommandsManager.ArgumentType.INT,
+				"arg_desc" : "Amount to add"
+		}],
+		"Adds item(s) directly to your inventory"
+		)
+	
+	DebugCommandsManager.add_command(
+		"get_item_keys",
+		get_item_keys_from_db,
+		 [],
+		"Get all item keys (id) in the database"
+		)
+	
+
+func add_item(args: Array):
+	for i in args[1]:
+		pickup_item(args[0])
+	
+
+func get_item_keys_from_db(args: Array):
+	return str(ItemDB.get_item_keys())
+	

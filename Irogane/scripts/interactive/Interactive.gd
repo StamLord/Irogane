@@ -2,7 +2,7 @@ extends Area3D
 class_name Interactive
 
 @export var interaction_text = "Use"
-@onready var mesh = $"../mesh"
+@export var mesh : MeshInstance3D
 
 func get_text():
 	return interaction_text

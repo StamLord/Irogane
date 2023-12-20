@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scenes/water_area.gd" id="3_p7gob"]
 [ext_resource type="Script" path="res://scripts/procedural/rope.gd" id="3_xi6qj"]
 [ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="4_4ttr5"]
-[ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://scenes/underwater_2.tres" id="4_41qgg"]
+[ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://assets/shaders/underwater_2.tres" id="4_41qgg"]
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="4_b71lg"]
 [ext_resource type="Script" path="res://scripts/procedural/transform_animator.gd" id="4_taxmt"]
 [ext_resource type="Texture2D" uid="uid://ohxrcax1elgi" path="res://assets/textures/vfx/flame_256.png" id="4_yh3rb"]
@@ -40,6 +40,7 @@
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://scenes/settings_window.tscn" id="36_mqd6s"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
+[ext_resource type="PackedScene" path="res://prefabs/ui/debug_console.tscn" id="38_h4jui"]
 [ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="38_tiyp4"]
 [ext_resource type="PackedScene" uid="uid://b1se03ak14ix3" path="res://scenes/load_window.tscn" id="39_u7kw6"]
 
@@ -2470,6 +2471,10 @@ text = "Player1"
 horizontal_alignment = 1
 
 [node name="load" parent="UI/canvas/system_menu" instance=ExtResource("39_u7kw6")]
+visible = false
+layout_mode = 1
+
+[node name="debug_console" parent="UI/canvas" instance=ExtResource("38_h4jui")]
 visible = false
 layout_mode = 1
 

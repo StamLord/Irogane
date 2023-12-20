@@ -41,3 +41,7 @@ static func get_item(id):
 	if id in ITEMS:
 		return ITEMS[id]
 	return ITEMS["error"]
+	
+
+static func get_item_keys():
+	return ITEMS.keys()
