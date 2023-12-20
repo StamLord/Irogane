@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t8napivdd4tg"
-path.s3tc="res://.godot/imported/human_styl_7_hair_1.png-78e5909666e3ee6a237b3cea285e7126.s3tc.ctex"
+uid="uid://b4goym2p48m04"
+path="res://.godot/imported/human_styl_7_hair_1.png-78e5909666e3ee6a237b3cea285e7126.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/human_model/human_styl_7_hair_1.png"
-dest_files=["res://.godot/imported/human_styl_7_hair_1.png-78e5909666e3ee6a237b3cea285e7126.s3tc.ctex"]
+dest_files=["res://.godot/imported/human_styl_7_hair_1.png-78e5909666e3ee6a237b3cea285e7126.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

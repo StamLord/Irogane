@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://htr2owy5e402"
-path.s3tc="res://.godot/imported/human_styl_7_top_armor_black.png-daa5e0ee47c22ad057d395a3acc4f2aa.s3tc.ctex"
+uid="uid://bpsyvalmb2j0w"
+path="res://.godot/imported/human_styl_7_top_armor_black.png-daa5e0ee47c22ad057d395a3acc4f2aa.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/human_model/human_styl_7_top_armor_black.png"
-dest_files=["res://.godot/imported/human_styl_7_top_armor_black.png-daa5e0ee47c22ad057d395a3acc4f2aa.s3tc.ctex"]
+dest_files=["res://.godot/imported/human_styl_7_top_armor_black.png-daa5e0ee47c22ad057d395a3acc4f2aa.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

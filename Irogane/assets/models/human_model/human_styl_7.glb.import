@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bak05dxi8yo1t"
+uid="uid://c160otnn57cdd"
 path="res://.godot/imported/human_styl_7.glb-1acae7ef498a978784049e725ff6022d.scn"
 
 [deps]
@@ -40,7 +40,7 @@ _subresources={
 },
 "hair": {
 "use_external/enabled": true,
-"use_external/path": "res://models/human_model/hair.tres"
+"use_external/path": "res://assets/materials/human_male/hair.tres"
 },
 "hat_0": {
 "use_external/enabled": true,
@@ -64,7 +64,7 @@ _subresources={
 },
 "male_face": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/human_male/male_face.tres"
+"use_external/path": "res://assets/materials/human_male/male_faces.tres"
 },
 "mask": {
 "use_external/enabled": true,

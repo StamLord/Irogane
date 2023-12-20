@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b3jd2t4s3wxvp"]
+
+[ext_resource type="Shader" uid="uid://dsggxq8qirgoe" path="res://assets/materials/human_male/face_shader.tres" id="1_y8t1x"]
+[ext_resource type="Texture2D" uid="uid://bbnakas1crr2e" path="res://assets/models/human_model/human_styl_7_faces.png" id="2_n3brs"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_y8t1x")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader_parameter/max_cells = 6
+shader_parameter/face = 0
+shader_parameter/Texture2DParameter = ExtResource("2_n3brs")

@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b643gtiyian4d"
-path.s3tc="res://.godot/imported/human_styl_7_malu_tex.png-0b8cc582ed3b63c346315dbeb4407664.s3tc.ctex"
+uid="uid://bn44mnn1d8xdc"
+path="res://.godot/imported/human_styl_7_malu_tex.png-0b8cc582ed3b63c346315dbeb4407664.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/human_model/human_styl_7_malu_tex.png"
-dest_files=["res://.godot/imported/human_styl_7_malu_tex.png-0b8cc582ed3b63c346315dbeb4407664.s3tc.ctex"]
+dest_files=["res://.godot/imported/human_styl_7_malu_tex.png-0b8cc582ed3b63c346315dbeb4407664.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

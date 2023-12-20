@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0hq5jt0sfr3y"
-path.s3tc="res://.godot/imported/human_styl_7_hat_4.png-8c5fabb8dc57609e4acb0568f353bcd2.s3tc.ctex"
+uid="uid://dprw81qvtr1s2"
+path="res://.godot/imported/human_styl_7_hat_4.png-8c5fabb8dc57609e4acb0568f353bcd2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={}
 
 [deps]
 
 source_file="res://assets/models/human_model/human_styl_7_hat_4.png"
-dest_files=["res://.godot/imported/human_styl_7_hat_4.png-8c5fabb8dc57609e4acb0568f353bcd2.s3tc.ctex"]
+dest_files=["res://.godot/imported/human_styl_7_hat_4.png-8c5fabb8dc57609e4acb0568f353bcd2.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

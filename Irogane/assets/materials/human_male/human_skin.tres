@@ -1,12 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://sv20iqobn60c"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://j8s5y3lofeo6"]
 
-[ext_resource type="Texture2D" uid="uid://drs5eervuc3bc" path="res://to_move/models/human_model/human_styl_7_human_skin_2.png" id="1_ck0u4"]
+[ext_resource type="Texture2D" uid="uid://tdjydyanaary" path="res://assets/models/human_model/human_styl_7_human_skin_2.png" id="1_i8yc0"]
 
 [resource]
-resource_local_to_scene = true
 resource_name = "human_skin"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_ck0u4")
-roughness = 0.7
+albedo_texture = ExtResource("1_i8yc0")
+roughness = 0.5
 texture_filter = 2
