@@ -49,16 +49,16 @@ func get_save_files():
 	
 
 func get_save_file_info(filename):
-	var save_file = save_path.path_join(filename)
+	var save_file_path = save_path.path_join(filename)
 	var info = {}
 	
-	if not FileAccess.file_exists(save_file):
+	if not FileAccess.file_exists(save_file_path):
 		return info
 	
-	var save_game = FileAccess.open(save_file, FileAccess.READ)
+	var save_file = FileAccess.open(save_file_path, FileAccess.READ)
 	
 	# First line should be the save version for future compatibility checks
-	var version_dict = _parse_json_string(save_game.get_line())
+	var version_dict = _parse_json_string(save_file.get_line())
 	
 	if version_dict == null:
 		info["version"] = "ERROR"
@@ -66,7 +66,7 @@ func get_save_file_info(filename):
 	var version = version_dict["version"]
 	
 	# Second line is scene name
-	var scene_dict = _parse_json_string(save_game.get_line())
+	var scene_dict = _parse_json_string(save_file.get_line())
 	
 	if scene_dict == null:
 		info["scene_name"] = "ERROR"
@@ -77,7 +77,7 @@ func get_save_file_info(filename):
 	info["scene_name"] = scene_name
 	
 	# Get Date
-	info["date"] = FileAccess.get_modified_time(save_file)
+	info["date"] = FileAccess.get_modified_time(save_file_path)
 	
 	# Get thumbnail as ImageTexture
 	var new_thumbnail_filename = save_path.path_join(filename.replace(".save", ".png"))
@@ -88,7 +88,7 @@ func get_save_file_info(filename):
 		info["thumbnail"] = ImageTexture.create_from_image(image)
 	
 	# Get player level
-	var player_data = _parse_json_string(save_game.get_line())
+	var player_data = _parse_json_string(save_file.get_line())
 	info["name"] = player_data["name"]
 	info["level"] = player_data["stats"]["level"]
 	
@@ -107,7 +107,7 @@ func get_highest_save_index():
 	return biggest_index
 	
 
-func save(index = null):
+func save_game(index = null):
 	# Generate next index if not provided
 	if index == null:
 		index = str(get_highest_save_index() + 1)
@@ -207,7 +207,7 @@ func load_save_file(save_file):
 		
 	
 
-func load_save(index = 0):
+func load_game(index = 0):
 	var save_file_path = save_path.path_join(SAVE_FILE_NAME)
 	save_file_path = save_file_path.format({"i" : index})
 	

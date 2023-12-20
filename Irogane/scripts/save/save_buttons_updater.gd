@@ -26,7 +26,7 @@ func _on_visibility_changed():
 	if button_type == button_type_enum.SAVE:
 		var button = prefab.duplicate()
 		button.text = "NEW SAVE"
-		button.pressed.connect(SaveSystem.save)
+		button.pressed.connect(SaveSystem.save_game)
 		button.visible = true
 		add_child(button)
 		
@@ -40,9 +40,9 @@ func _on_visibility_changed():
 		button.text = "SAVE " + index
 		
 		if button_type == button_type_enum.SAVE:
-			button.pressed.connect(SaveSystem.save.bind(index))
+			button.pressed.connect(SaveSystem.save_game.bind(index))
 		elif button_type == button_type_enum.LOAD:
-			button.pressed.connect(SaveSystem.load_save.bind(index))
+			button.pressed.connect(SaveSystem.load_game.bind(index))
 		
 		button.mouse_entered.connect(display_save_info.bind(file))
 		
