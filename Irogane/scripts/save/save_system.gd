@@ -207,7 +207,7 @@ func load_save_file(save_file):
 		
 	
 
-func load_save(from_main_menu, index = 0):
+func load_save(index = 0):
 	var save_file_path = save_path.path_join(SAVE_FILE_NAME)
 	save_file_path = save_file_path.format({"i" : index})
 	

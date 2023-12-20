@@ -42,7 +42,7 @@ func _on_visibility_changed():
 		if button_type == button_type_enum.SAVE:
 			button.pressed.connect(SaveSystem.save.bind(index))
 		elif button_type == button_type_enum.LOAD:
-			button.pressed.connect(SaveSystem.load_save.bind(load_window.from_main_menu, index))
+			button.pressed.connect(SaveSystem.load_save.bind(index))
 		
 		button.mouse_entered.connect(display_save_info.bind(file))
 		
