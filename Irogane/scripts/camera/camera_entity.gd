@@ -48,7 +48,7 @@ func toggle_camera():
 	active_camera.current = true
 	
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("equals"):
 		toggle_camera()
 	
