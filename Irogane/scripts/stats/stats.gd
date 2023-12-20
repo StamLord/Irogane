@@ -18,6 +18,7 @@ class_name Stats
 @onready var dexterity = $dexterity
 @onready var wisdom = $wisdom
 
+
 func _ready():
 	if get_owner().name == "player":
 		add_debug_commands()
@@ -40,12 +41,13 @@ func save_data():
 	
 
 func load_data(data):
-	level = data["level"]
-	experience = data["experience"]
-	attr_points = data["attr_points"]
+	level = data["level"] if "level" in data else 1
+	experience = data["experience"] if "experience" in data else 0
 	
-	health.load_data(data["health"])
-	stamina.load_data(data["stamina"])
+	health.load_data(data["health"]) if "health" in data else 50
+	stamina.load_data(data["stamina"]) if "stamina" in data else 50
+	
+	attr_points = data["attr_points"]
 	
 	strength.load_data(data["strength"])
 	agility.load_data(data["agility"])

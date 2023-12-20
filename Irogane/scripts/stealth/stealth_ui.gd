@@ -1,10 +1,10 @@
 extends Control
 
-@onready var stealth_agent = $"../../../player/head/StealthAgent"
+@onready var stealth_agent = PlayerEntity.player_node.get_node("head/StealthAgent")
 @onready var indicators = get_children()
 @export var indicator_radius = 120
 
-func _process(delta):
+func _process(_delta):
 	if stealth_agent == null:
 		return
 	

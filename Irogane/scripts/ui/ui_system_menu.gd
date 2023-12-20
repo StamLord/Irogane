@@ -1,7 +1,7 @@
 extends UIWindow
 @onready var settings = $settings
 @onready var save = $save
-@onready var load = $load
+@onready var load_window = $load
 @onready var resolution_button = $settings/Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution/resolution_button
 @onready var scene_manager = get_node("/root/SceneManager")
 
@@ -24,19 +24,19 @@ func close():
 
 func _on_continue_pressed():
 	save.close()
-	load.close()
+	load_window.close()
 	settings.close()
 	close()
 	
 
 func _on_save_pressed():
 	save.open()
-	load.close()
+	load_window.close()
 	settings.close()
 	
 
 func _on_load_pressed():
-	load.open()
+	load_window.open()
 	save.close()
 	settings.close()
 	
@@ -44,7 +44,7 @@ func _on_load_pressed():
 func _on_settings_pressed():
 	settings.open()
 	save.close()
-	load.close()
+	load_window.close()
 	
 
 func _on_quit_pressed():

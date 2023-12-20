@@ -6,7 +6,7 @@ const monitored_actions = ["forward", "backward", "left", "right"]
 var actions = {}
 var double_actions = []
 
-func _process(delta):
+func _process(_delta):
 	clean_actions()
 	clean_double_actions()
 	

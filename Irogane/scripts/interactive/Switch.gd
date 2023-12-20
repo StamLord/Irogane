@@ -19,7 +19,7 @@ func _ready():
 	origin_position = get_parent().position
 	origin_rotation = get_parent().rotation_degrees
 
-func use(interactor):
+func use(_interactor):
 	state = !state
 	
 	if state:

@@ -7,11 +7,11 @@ func _ready():
 		p.finished.connect(reset_position.bind(p))
 	
 
-func play(sound, global_position = null):
+func play(sound, _global_position = null):
 	for p in players:
 		if not p.playing:
-			if global_position:
-				p.global_position = global_position
+			if _global_position:
+				p.global_position = _global_position
 			p.stream = sound
 			p.play()
 			return

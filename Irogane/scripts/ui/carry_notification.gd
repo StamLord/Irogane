@@ -1,7 +1,7 @@
 extends Label
 
 @export var message_duration = 2.0
-@onready var interaction = $"/root/world/player/head/main_camera/interaction"
+@onready var interaction = PlayerEntity.player_node.get_node("head/main_camera/interaction")
 
 var base_color
 var is_showing = false
@@ -10,7 +10,7 @@ func _ready():
 	base_color = get_theme_color("font_color")
 	interaction.too_heavy.connect(show_message)
 
-func show_message(weight):
+func show_message(_weight):
 	if is_showing:
 		return
 	

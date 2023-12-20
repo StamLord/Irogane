@@ -1,0 +1,131 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1se03ak14ix3"]
+
+[ext_resource type="Script" path="res://scripts/ui/ui_window.gd" id="1_jsmwh"]
+[ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="2_3muku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q284v"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="load" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -216.0
+offset_right = 407.0
+offset_bottom = 247.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jsmwh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q284v")
+
+[node name="title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 37.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "LOAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_3muku")
+button_type = 1
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/HBoxContainer/Panel/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "NEW SAVE"
+
+[node name="info_panel" type="Panel" parent="Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/info_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="save_thumbnail" type="TextureRect" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="version_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="date_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="name_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="level_label" type="Label" parent="Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1

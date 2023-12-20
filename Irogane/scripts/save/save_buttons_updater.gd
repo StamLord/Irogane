@@ -9,6 +9,7 @@ enum button_type_enum {SAVE, LOAD}
 @onready var date_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/date_label"
 @onready var level_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/level_label"
 @onready var name_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/name_label"
+@onready var version_label = $"../../../info_panel/VBoxContainer/Panel/VBoxContainer/version_label"
 
 func _ready():
 	visibility_changed.connect(_on_visibility_changed)
@@ -56,6 +57,9 @@ func display_save_info(filename):
 	var date = Time.get_datetime_string_from_unix_time(info["date"]) # YYYY-MM-DDTHH:MM:SS
 	date = date.replace("T", " ")
 	date_label.text = date
+	version_label.text = "Version %s" % info["version"]
+	name_label.text = info["name"]
+	level_label.text = "Level %s" % info["level"]
 	
 	# Thumbnail
 	thumbnail_rect.texture = info["thumbnail"] if info.has("thumbnail") else null
