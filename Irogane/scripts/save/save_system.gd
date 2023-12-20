@@ -9,8 +9,11 @@ const SYSTEM_SETTINGS_FILE_NAME = "system.config"
 
 const SETTINGS_VERSION = 0.2
 
-var save_path = null
-var settings_path = null
+var save_path = GAME_DIR_PATH.path_join(SAVE_DIR_NAME)
+var settings_path = GAME_DIR_PATH.path_join(SETTINGS_DIR_NAME)
+
+# Creates the helper class to interact with JSON
+var JSON_HELPER = JSON.new()
 
 var pending_save_file = null
 
@@ -18,8 +21,7 @@ signal on_game_save()
 signal on_game_load()
 
 
-func _ready():
-	SceneManager.on_scene_loaded.connect(scene_loaded)
+func create_dirs_if_needed():
 	var directory = DirAccess.open(GAME_DIR_PATH)
 	
 	if not directory.dir_exists(SAVE_DIR_NAME):
@@ -28,8 +30,10 @@ func _ready():
 	if not directory.dir_exists(SETTINGS_DIR_NAME):
 		directory.make_dir(SETTINGS_DIR_NAME)
 	
-	save_path = GAME_DIR_PATH.path_join(SAVE_DIR_NAME)
-	settings_path = GAME_DIR_PATH.path_join(SETTINGS_DIR_NAME)
+
+func _ready():
+	SceneManager.on_scene_loaded.connect(scene_loaded)
+	create_dirs_if_needed()
 	
 
 func get_save_files():
@@ -145,17 +149,14 @@ func save_game(index = null):
 	
 
 func _parse_json_string(json_string):
-	# Creates the helper class to interact with JSON
-	var json = JSON.new()
-
 	# Check if there is any error while parsing the JSON string, skip in case of failure
-	var parse_result = json.parse(json_string)
+	var parse_result = JSON_HELPER.parse(json_string)
 	if not parse_result == OK:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+		print("JSON Parse Error: ", JSON_HELPER.get_error_message(), " in ", json_string, " at line ", JSON_HELPER.get_error_line())
 		return null
 
 	# Get the data from the JSON object
-	var data = json.get_data()
+	var data = JSON_HELPER.get_data()
 	return data
 	
 
