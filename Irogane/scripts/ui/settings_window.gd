@@ -1,7 +1,6 @@
 extends UIWindow
 
-@onready var save_manager = get_node("/root/SaveSystem")
-@onready var scene_manager = get_node("/root/SceneManager")
+
 @onready var anti_aliasing_button = $Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/anti_aliasing/anti_aliasing_button
 @onready var resolution_button = $Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution/resolution_button
 @onready var vsync_button = $Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/vsync/vsync_button
@@ -20,25 +19,23 @@ var draw_distance = 500
 
 
 func _ready():
-	save_manager.on_game_load.connect(on_game_load)
-	scene_manager.on_scene_loaded.connect(on_scene_loaded)
 	load_system_settings()
 	
 
 func _on_anti_aliasing_button_item_selected(index):
 	anti_aliasing = ANTI_ALIASING_SETTINGS[index] 
 	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), anti_aliasing)
-	save_manager.save_system_settings(get_system_settings())
+	SaveSystem.save_system_settings(get_system_settings())
 	
 
 func _on_vsync_button_item_selected(index):
 	DisplayServer.window_set_vsync_mode(VSYNC_SETTINGS[index])
-	save_manager.save_system_settings(get_system_settings())
+	SaveSystem.save_system_settings(get_system_settings())
 	
 
 func _on_limit_fps_button_item_selected(index):
 	Engine.max_fps = FPS_SETTINGS[index]
-	save_manager.save_system_settings(get_system_settings())
+	SaveSystem.save_system_settings(get_system_settings())
 	
 
 func _on_draw_distance_button_item_selected(index):
@@ -46,12 +43,12 @@ func _on_draw_distance_button_item_selected(index):
 	if CameraShaker.main_camera != null:
 		CameraShaker.main_camera.far = draw_distance
 		
-	save_manager.save_system_settings(get_system_settings())
+	SaveSystem.save_system_settings(get_system_settings())
 	
 
 func _on_resolution_button_item_selected(index):
 	DisplayServer.window_set_size(RESOLUTION_SETTINGS[index])
-	save_manager.save_system_settings(get_system_settings())
+	SaveSystem.save_system_settings(get_system_settings())
 	
 
 func _on_full_screen_button_toggled(button_pressed):
@@ -61,7 +58,7 @@ func _on_full_screen_button_toggled(button_pressed):
 	# Update resolution windowed
 	if mode == DisplayServer.WINDOW_MODE_WINDOWED:
 		_on_resolution_button_item_selected(resolution_button.selected)
-	save_manager.save_system_settings(get_system_settings())
+	SaveSystem.save_system_settings(get_system_settings())
 	
 
 func get_system_settings():
@@ -126,16 +123,8 @@ func apply_system_settings(data):
 	
 
 func load_system_settings():
-	var save_data = save_manager.load_system_settings()
+	var save_data = SaveSystem.load_system_settings()
 
 	if save_data:
 		apply_system_settings(save_data)
-	
-
-func on_game_load():
-	load_system_settings()
-	
-
-func on_scene_loaded(_scene_name):
-	load_system_settings()
 	
