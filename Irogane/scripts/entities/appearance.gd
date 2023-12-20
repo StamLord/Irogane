@@ -115,17 +115,13 @@ func show_part_at_index(part: String, index: int):
 		return
 	
 	# Clamp for safety
-	index = clamp(index, -1, parts[part].size()) 
+	index = clamp(index, -1, parts[part].size() - 1) 
 	
 	# Hide current selection
 	parts[part][current_selections[part]].visible = false
 	
 	# Show new selection if not -1
 	if index >= 0:
-		if index > parts[part].size():
-			print("Error, invalid index %s" % parts[part].size())
-			return
-	
 		parts[part][index].visible = true
 		
 		# If this part masks other parts, mask them
