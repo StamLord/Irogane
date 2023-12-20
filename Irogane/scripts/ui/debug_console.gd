@@ -226,7 +226,7 @@ func try_suggest_command(new_text):
 		
 	else:
 		suggestion_label.visible = false
-		
+	
 
 func hide_suggestions():
 	suggestion_label.visible = false

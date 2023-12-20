@@ -15,8 +15,6 @@ var settings_path = GAME_DIR_PATH.path_join(SETTINGS_DIR_NAME)
 # Creates the helper class to interact with JSON
 var JSON_HELPER = JSON.new()
 
-var pending_save_file = null
-
 signal on_game_save()
 signal on_game_load()
 
@@ -32,7 +30,6 @@ func create_dirs_if_needed():
 	
 
 func _ready():
-	SceneManager.on_scene_loaded.connect(scene_loaded)
 	create_dirs_if_needed()
 	
 
@@ -209,6 +206,7 @@ func load_save_file(save_file):
 	
 
 func load_game(index = 0):
+	on_game_load.emit()
 	var save_file_path = save_path.path_join(SAVE_FILE_NAME)
 	save_file_path = save_file_path.format({"i" : index})
 	
@@ -242,18 +240,56 @@ func load_game(index = 0):
 	
 	var scene_name = scene_dict["scene"]
 	print("Loaded scene name: ", scene_name)
-	
+
 	PlayerEntity.create_player_node_if_needed()
-	
-	pending_save_file = save_file
-	on_game_load.emit()
+
 	SceneManager.goto_scene(scene_name)
+	await SceneManager.on_scene_loaded
 
+	# Get all objects in current scene that should be saveable
+	var save_nodes = get_tree().get_nodes_in_group("Persist")
 
-func scene_loaded(_scene_name):
-	if pending_save_file:
-		load_save_file(pending_save_file)
-		pending_save_file = null
+	# Iterate over save file
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+		var data = _parse_json_string(json_string)
+	
+		if data == null:
+			continue
+	
+		# Find if node exits
+		var node = get_node(data["parent"]).get_node(data["node_name"])
+		
+		# If node doesn't exist, we create it
+		if node == null:
+			print("Creating new node: ", data["filename"])
+			node = load(data["filename"]).instantiate()
+			get_node(data["parent"]).add_child(node)
+	
+		print("Updating node: ", data["parent"], data["filename"])
+	
+		# If node handles it own load
+		if node.has_method("load_data"):
+			node.load_data(data)
+		else:
+			node.position = Vector3(data["gpos_x"], data["gpos_y"], data["gpos_z"])
+			node.rotation = Vector3(data["rot_x"], data["rot_y"], data["rot_z"])
+			node.velocity = Vector3(data["velocity_x"], data["velocity_y"], data["velocity_z"])
+		
+			# Now we set the remaining variables.
+			for i in data.keys():
+				if i in ["filename", "parent", "gpos_x", "gpos_y", "gpos_z", "rot_x", "rot_y", "rot_z"]:
+					continue
+				node.set(i, data[i])
+		
+		# Erase from our list of persists so we don't delete them later
+		save_nodes.erase(node)
+	
+	# Delete all persistant nodes that are left in scene
+	for i in save_nodes:
+		print("Erasing node: ", i)
+		i.queue_free()
+		
 	
 
 func create_thumbnail(index):
