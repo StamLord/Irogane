@@ -192,7 +192,6 @@ offset_left = -300.0
 offset_top = -200.0
 offset_right = 300.0
 offset_bottom = 200.0
-from_main_menu = true
 
 [node name="settings_window" parent="." instance=ExtResource("4_gtrqj")]
 unique_name_in_owner = true
