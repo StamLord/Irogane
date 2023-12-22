@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://iu6qr0geyhot"]
+
+[ext_resource type="PackedScene" uid="uid://on50tn3awhqq" path="res://assets/models/house_modular/house_wall_a_window.glb" id="1_6cqcq"]
+
+[node name="house_wall_a_window" instance=ExtResource("1_6cqcq")]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnlaf8kehlj4o"]
+
+[ext_resource type="Texture2D" uid="uid://ccu01lcgqwiyd" path="res://assets/models/house_modular/house_wall_c_1x4_house_wall_c.png" id="1_2prl2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfxu1"]
+resource_name = "house_wall_c"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_2prl2")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_62ffu"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, 3.24249e-05, 1, 4, 1e-05),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(1, 0, 2, 0, 3, 0, 1, 0, 0, 0, 2, 0),
+"name": "house_wall_c",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 8, 56, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 8, 56, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 8, 56, 0, 0, 0, 63, 0, 0, 128, 64, 0, 0, 8, 56)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6wyrc"]
+resource_name = "house_wall_c_1x4_Cube_086"
+_surfaces = [{
+"aabb": AABB(-0.5, 0, 3.24249e-05, 1, 4, 1e-05),
+"attribute_data": PackedByteArray(112, 252, 127, 62, 0, 0, 128, 63, 110, 252, 255, 62, 0, 0, 128, 63, 112, 252, 127, 62, 0, 0, 0, 0, 112, 252, 255, 62, 0, 0, 0, 0),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(1, 0, 2, 0, 3, 0, 1, 0, 0, 0, 2, 0),
+"material": SubResource("StandardMaterial3D_cfxu1"),
+"name": "house_wall_c",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 63, 0, 0, 128, 64, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_62ffu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kr4tn"]
+size = Vector3(1, 4, 0.25)
+
+[node name="house_wall_c_1x4" type="StaticBody3D"]
+
+[node name="house_wall_c_1x42" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_6wyrc")
+skeleton = NodePath("")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_kr4tn")

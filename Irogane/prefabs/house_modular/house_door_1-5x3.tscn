@@ -1,0 +1,27 @@
+[gd_scene load_steps=8 format=3 uid="uid://ce6i28njjdi1p"]
+
+[ext_resource type="PackedScene" uid="uid://mpnjtxcgn73i" path="res://assets/models/house_modular/house_door_1-5x3.glb" id="1_qoqgo"]
+[ext_resource type="Shader" uid="uid://bdlhq4yhn0v2i" path="res://assets/shaders/shadow_canvas_2.tres" id="2_6lutg"]
+[ext_resource type="Shader" uid="uid://b580ye1bpnork" path="res://assets/shaders/shadow_canvas.tres" id="2_48a60"]
+[ext_resource type="Texture2D" uid="uid://chlmwcce2o5s0" path="res://assets/models/house_modular/textures/house_door_1-5x3_house_door.png" id="3_owy36"]
+[ext_resource type="Texture2D" uid="uid://cyoufuwtn8wn" path="res://assets/models/house_modular/textures/house_door_emission.png" id="4_2hx0y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
+render_priority = 0
+shader = ExtResource("2_6lutg")
+shader_parameter/FloatParameter = 1.0
+shader_parameter/shadow_mask = ExtResource("4_2hx0y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7tr37"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("2_48a60")
+shader_parameter/FloatParameter = 0.0
+shader_parameter/Texture2DParameter = ExtResource("3_owy36")
+shader_parameter/shadow_mask = ExtResource("4_2hx0y")
+
+[node name="house_door_1-5x3" instance=ExtResource("1_qoqgo")]
+
+[node name="house_door_1-5x32" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_7tr37")
+ignore_occlusion_culling = true

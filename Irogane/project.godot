@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 UIManager="*res://scripts/ui/ui_manager.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlossaryLearned="*res://scripts/glossary/glossary_learned.gd"
 CameraShaker="*res://scripts/camera/camera_shaker.gd"
 InputUtils="*res://scripts/input/input_utils.gd"
@@ -28,6 +27,8 @@ SaveSystem="*res://scripts/save/save_system.gd"
 SceneManager="*res://scripts/utils/scene_manager.gd"
 PlayerEntity="*res://scripts/entities/player_entity.gd"
 CameraEntity="*res://scripts/camera/camera_entity.gd"
+DebugCanvas="*res://scripts/utils/debug_canvas.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogic]
 
@@ -67,7 +68,13 @@ general/custom_test_scene_path="res://addons/dialogue_manager/crpg_test_scene.ts
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
+enabled=PackedStringArray("res://addons/building_blocks/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
+
+[importer_defaults]
+
+animation_library={
+"gltf/embedded_image_handling": 0
+}
 
 [input]
 

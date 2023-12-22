@@ -1,0 +1,193 @@
+[gd_scene load_steps=2 format=3 uid="uid://njv3ubj77g7s"]
+
+[ext_resource type="Script" path="res://addons/building_blocks/building_blocks_dock.gd" id="1_87jl5"]
+
+[node name="building_blocks_dock" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_87jl5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="center" type="HBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="open_files_panel" type="VBoxContainer" parent="MarginContainer/Panel/center"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="open_model" type="Button" parent="MarginContainer/Panel/center/open_files_panel"]
+layout_mode = 2
+text = "OPEN PREFABS"
+
+[node name="Panel" type="Panel" parent="MarginContainer/Panel/center/open_files_panel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="open_files_label" type="Label" parent="MarginContainer/Panel/center/open_files_panel/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="clear_files" type="Button" parent="MarginContainer/Panel/center/open_files_panel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "CLEAR"
+
+[node name="operations_panel" type="VBoxContainer" parent="MarginContainer/Panel/center"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="Panel" type="Panel" parent="MarginContainer/Panel/center/operations_panel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_stretch_ratio = 0.01
+
+[node name="Label2" type="Label" parent="MarginContainer/Panel/center/operations_panel/Panel"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 207.0
+offset_bottom = 30.0
+text = "Offset"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="offset_container" type="HBoxContainer" parent="MarginContainer/Panel/center/operations_panel/Panel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+offset_top = 34.0
+offset_right = 207.0
+offset_bottom = 69.0
+
+[node name="offset_x" type="TextEdit" parent="MarginContainer/Panel/center/operations_panel/Panel/offset_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="offset_y" type="TextEdit" parent="MarginContainer/Panel/center/operations_panel/Panel/offset_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="offset_z" type="TextEdit" parent="MarginContainer/Panel/center/operations_panel/Panel/offset_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/center/operations_panel/Panel"]
+layout_mode = 2
+offset_top = 73.0
+offset_right = 207.0
+offset_bottom = 99.0
+text = "Default Dimensions"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="dimensions_container2" type="HBoxContainer" parent="MarginContainer/Panel/center/operations_panel/Panel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+offset_top = 103.0
+offset_right = 207.0
+offset_bottom = 138.0
+
+[node name="dimensions_x" type="TextEdit" parent="MarginContainer/Panel/center/operations_panel/Panel/dimensions_container2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.25"
+
+[node name="dimensions_y" type="TextEdit" parent="MarginContainer/Panel/center/operations_panel/Panel/dimensions_container2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.25"
+
+[node name="dimensions_z" type="TextEdit" parent="MarginContainer/Panel/center/operations_panel/Panel/dimensions_container2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0.25"
+
+[node name="update_prefab" type="Button" parent="MarginContainer/Panel/center/operations_panel"]
+layout_mode = 2
+text = "UPDATE PREFABS"
+
+[node name="Control" type="Control" parent="MarginContainer/Panel/center"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open File(s)"
+initial_position = 2
+size = Vector2i(300, 500)
+min_size = Vector2i(200, 500)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 1
+root_subfolder = "res://prefabs/"
+filters = PackedStringArray("*.tscn")
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+initial_position = 2
+size = Vector2i(392, 500)
+min_size = Vector2i(300, 500)
+ok_button_text = "Save"
+dialog_hide_on_ok = true
+filters = PackedStringArray("*.tscn")
+
+[node name="FolderDialog" type="FileDialog" parent="."]
+title = "Save to Directory"
+initial_position = 2
+size = Vector2i(392, 500)
+ok_button_text = "Select This Folder"
+file_mode = 2
+
+[connection signal="pressed" from="MarginContainer/Panel/center/open_files_panel/open_model" to="." method="_on_open_model_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/center/open_files_panel/clear_files" to="." method="_on_clear_files_pressed"]
+[connection signal="text_changed" from="MarginContainer/Panel/center/operations_panel/Panel/offset_container/offset_x" to="." method="_on_offset_x_text_changed"]
+[connection signal="text_changed" from="MarginContainer/Panel/center/operations_panel/Panel/offset_container/offset_y" to="." method="_on_offset_y_text_changed"]
+[connection signal="text_changed" from="MarginContainer/Panel/center/operations_panel/Panel/offset_container/offset_z" to="." method="_on_offset_z_text_changed"]
+[connection signal="text_changed" from="MarginContainer/Panel/center/operations_panel/Panel/dimensions_container2/dimensions_x" to="." method="_on_dimensions_x_text_changed"]
+[connection signal="text_changed" from="MarginContainer/Panel/center/operations_panel/Panel/dimensions_container2/dimensions_y" to="." method="_on_dimensions_y_text_changed"]
+[connection signal="text_changed" from="MarginContainer/Panel/center/operations_panel/Panel/dimensions_container2/dimensions_z" to="." method="_on_dimensions_z_text_changed"]
+[connection signal="pressed" from="MarginContainer/Panel/center/operations_panel/update_prefab" to="." method="_on_update_prefab_pressed"]
+[connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]
+[connection signal="dir_selected" from="FolderDialog" to="." method="_on_folder_dialog_dir_selected"]

@@ -64,9 +64,9 @@ func Update(delta):
 	
 	var fov = lerp(min_camera_fov, max_camera_fov, prev_forward_velocity / max_fov_at_velocity)
 	head.set_fov(lerp(head.get_fov(), fov, delta * camera_fov_speed))
+	
 
 func PhysicsUpdate(body, delta):
-	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 #	direction = (main_camera.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -119,7 +119,7 @@ func PhysicsUpdate(body, delta):
 		if not collision:
 			Transitioned.emit(self, "vault")
 			return
-			
+	
 	# Back to Air.
 	if not Input.is_action_pressed("crouch"):
 		Transitioned.emit(self, "air")
@@ -127,31 +127,37 @@ func PhysicsUpdate(body, delta):
 	
 	# Ground State
 	if body.is_on_floor():
-		Transitioned.emit(self, "crouch")
+		if velocity.length() > 7:
+			Transitioned.emit(self, "slide")
+		else:
+			Transitioned.emit(self, "crouch")
 		return
-		
+	
 	# Water State
 	if water_check.is_colliding():
 		Transitioned.emit(self, "swim")
 		return
 	
-	
-	
+
 func Exit(body):
 	body.last_direction = body.velocity.normalized()
+	body.last_speed = speed
 	head.reset_tilt(0.2)
 	head.reset_fov(0.2)
 	glide_ended.emit()
+	
 
 func on_area_enter(area):
 	if area.wind_force_magnitude > 0:
 		wind = area.get_node(area.wind_source_path).global_transform.basis.z * area.wind_force_magnitude
 		wind_area = area
+	
 
 func on_area_exit(area):
 	if area == wind_area:
 		wind = Vector3.ZERO
 		wind_area = null
+	
 
 func get_forward_comp(vector):
 	# Flatten vector on x,y plane
@@ -159,3 +165,4 @@ func get_forward_comp(vector):
 	var xy = plane.project(vector)
 	# Return what's left, which is z
 	return vector - xy
+	

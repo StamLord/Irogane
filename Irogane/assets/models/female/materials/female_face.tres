@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ekfe085fwyfr"]
+
+[ext_resource type="Texture2D" uid="uid://bk8vdms4uno5x" path="res://assets/models/female/female_female_faces.png" id="1_oaxsd"]
+[ext_resource type="Shader" uid="uid://nlhmy1w7x8m4" path="res://assets/models/human/face_shader.tres" id="1_wr03l"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wr03l")
+shader_parameter/max_cells = 6
+shader_parameter/face = 8
+shader_parameter/Texture2DParameter = ExtResource("1_oaxsd")

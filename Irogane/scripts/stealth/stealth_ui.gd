@@ -26,3 +26,4 @@ func _process(_delta):
 		indicators[i].modulate.a = stealth_agent.watchers[watcher]
 		
 		i += 1
+	

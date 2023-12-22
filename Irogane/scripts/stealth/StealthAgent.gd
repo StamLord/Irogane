@@ -15,6 +15,8 @@ func _ready():
 		state_machine.on_state_enter.connect(state_enter_check)
 		state_machine.on_state_exit.connect(state_exit_check)
 	
+	SceneManager.on_scene_start_load.connect(scene_loading)
+	
 
 func set_crouch_detection():
 	detection_multiplier = crouch_detection_multiplier
@@ -40,4 +42,12 @@ func state_enter_check(state_name):
 func state_exit_check(state_name):
 	if state_name == "crouch":
 		set_base_detection()
+	
+
+func remove_all_watchers():
+	watchers.clear()
+	
+
+func scene_loading(_scene_path):
+	remove_all_watchers()
 	

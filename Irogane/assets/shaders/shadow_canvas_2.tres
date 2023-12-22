@@ -1,0 +1,69 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://bdlhq4yhn0v2i"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_46uoy"]
+parameter_name = "Texture2DParameter"
+texture_filter = 1
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_q0ttm"]
+source = 5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mo5kg"]
+parameter_name = "FloatParameter"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_80kon"]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_wrnxl"]
+parameter_name = "shadow_mask"
+texture_filter = 1
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_txnf2"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D shadow_mask : filter_nearest;
+uniform float FloatParameter = 1;
+
+
+
+void fragment() {
+	vec4 n_out5p0;
+// Texture2D:5
+	n_out5p0 = texture(shadow_mask, UV);
+
+
+// FloatOp:7
+	float n_in7p1 = 0.50000;
+	float n_out7p0 = n_out5p0.x * n_in7p1;
+
+
+// FloatParameter:4
+	float n_out4p0 = FloatParameter;
+
+
+// Output:0
+	ALPHA = n_out7p0;
+	ROUGHNESS = n_out4p0;
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_46uoy")
+nodes/fragment/2/position = Vector2(-320, -240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_q0ttm")
+nodes/fragment/3/position = Vector2(60, -40)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_mo5kg")
+nodes/fragment/4/position = Vector2(40, 120)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_80kon")
+nodes/fragment/5/position = Vector2(-220, 460)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture2DParameter_wrnxl")
+nodes/fragment/6/position = Vector2(-600, 280)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatOp_txnf2")
+nodes/fragment/7/position = Vector2(120, 420)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 6, 0, 5, 2, 4, 0, 0, 3, 5, 0, 7, 0, 7, 0, 0, 1)

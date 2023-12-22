@@ -1,15 +1,11 @@
-[gd_scene load_steps=94 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=90 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
-[ext_resource type="Script" path="res://scripts/stats/stats.gd" id="2_dvgo6"]
-[ext_resource type="Script" path="res://scripts/stats/attribute.gd" id="3_6cm35"]
+[ext_resource type="PackedScene" uid="uid://lsod62yvvsph" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_nkdgy"]
-[ext_resource type="Script" path="res://scripts/stats/attribute_dependant.gd" id="4_iytyv"]
-[ext_resource type="Script" path="res://scripts/stats/health.gd" id="4_rtbp0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_y8at0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_hicbf"]
-[ext_resource type="Script" path="res://scripts/stats/stamina.gd" id="6_afqpp"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Slide.gd" id="6_mtivl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Crouch.gd" id="7_826s0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Vault.gd" id="8_nprs7"]
@@ -22,7 +18,7 @@
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
-[ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
+[ext_resource type="PackedScene" uid="uid://bba44d8rksvrn" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
@@ -393,57 +389,13 @@ script = ExtResource("1_v2hnl")
 push_force = 2
 default_state = NodePath("states/walk")
 
-[node name="stats" type="Node" parent="."]
-script = ExtResource("2_dvgo6")
-
-[node name="strength" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="agility" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="dexterity" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="wisdom" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="health" type="Node" parent="stats" node_paths=PackedStringArray("max_value_source")]
-script = ExtResource("4_rtbp0")
-max_value_source = NodePath("values")
-value = 50
-auto_replenish_rate = 4
-
-[node name="values" type="Node" parent="stats/health" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../../strength")
-values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
-
-[node name="stamina" type="Node" parent="stats" node_paths=PackedStringArray("max_value_source")]
-script = ExtResource("6_afqpp")
-max_value_source = NodePath("values")
-value = 50
-auto_replenish_rate = 4
-
-[node name="values" type="Node" parent="stats/stamina" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../../agility")
-values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
-
-[node name="fall_damage" type="Node" parent="stats" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../agility")
-values = Array[int]([5, 5, 4, 4, 3, 3, 2, 2, 1, 1])
-
-[node name="fall_damage_height" type="Node" parent="stats" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../agility")
-values = Array[int]([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+[node name="stats" parent="." instance=ExtResource("2_u6d7g")]
 
 [node name="states" type="Node3D" parent="."]
 
 [node name="walk" type="Node" parent="states"]
 script = ExtResource("2_6iu14")
+max_step_height = 0.4
 
 [node name="run" type="Node" parent="states"]
 script = ExtResource("3_nkdgy")

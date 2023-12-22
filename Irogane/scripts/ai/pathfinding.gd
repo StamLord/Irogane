@@ -19,19 +19,34 @@ extends CharacterBody3D
 var prev_current_angle : float
 var prev_target_angle : float
 
-var next_position
-var direction
+var next_position = Vector3.ZERO
+var direction = Vector3.ZERO
 
 func _process(delta):
-	rotate_to_target(delta)
+	if nav.is_navigation_finished():
+		rotate_to_target(delta)
+	else:
+		rotate_to_next_position(delta)
+	
+
+func set_target(target_position : Vector3):
+	nav.target_position = target_position
+	
+
+func reset_target():
+	nav.target_position = global_position
+	
 
 func _physics_process(delta):
-	nav.target_position = player.position
-	
 	next_position = nav.get_next_path_position()
 	direction = (next_position - global_position).normalized()
 	
-	nav_agent.set_velocity(direction * speed)
+	# Get dot product between our facing direction and the direction
+	var facing_direction = basis * Vector3.FORWARD # Our facing direction
+	var dot_product = facing_direction.dot(direction)
+	
+	# Multiply by dot to slow down movement when facing the wrong direction
+	nav_agent.set_velocity(direction * speed * dot_product)
 	
 	# Apply gravity
 	velocity.y -= gravity * delta
@@ -52,23 +67,35 @@ func _physics_process(delta):
 			collider.apply_impulse(-collision.get_normal() * 0.01, collision.get_position())
 		elif collider is CharacterBody3D:
 				collider.velocity += -collision.get_normal() * push_force * delta
+	
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	var flat_vector = velocity.move_toward(safe_velocity, .25)
 	velocity.x = flat_vector.x
 	velocity.z = flat_vector.z
 	
+
 func rotate_to_next_position(delta):
 	rotate_to_position(next_position, delta)
 	
+
 func rotate_to_target(delta):
 	rotate_to_position(nav.target_position, delta)
 	
+
 func rotate_to_position(target_position, delta):
 	var forward = basis * Vector3.FORWARD
-	var flat_target = Vector3(target_position.x, position.y, target_position.z)
-	var new_forward = lerp(position + forward, flat_target, delta * rotation_speed)
-	look_at(new_forward)
+	var flat_dir = Vector3(target_position.x - global_position.x, 0, target_position.z - global_position.z).normalized()
+	var new_forward = lerp(forward, flat_dir, delta * rotation_speed)
+	
+	look_at(global_position + new_forward)
+	
+	DebugCanvas.debug_line(global_position, global_position + forward, Color.GREEN)
+	DebugCanvas.debug_line(global_position, global_position + flat_dir, Color.YELLOW)
+	DebugCanvas.debug_line(global_position, global_position + new_forward, Color.RED)
+	
+	DebugCanvas.debug_point(target_position, Color.RED)
+	
 
 func rotate_angle(delta):
 	var current_angle = rad_to_deg(basis.z.signed_angle_to(-Vector3.FORWARD, Vector3.UP))
@@ -99,13 +126,15 @@ func rotate_angle(delta):
 	#print("Target Angle: " + str(target_angle))
 	#print("Angle: " + str(angle))
 	#print("Dir: " + str(direction))
+	
 
 func is_step(body, input_dir):
 	
 	# Move raycast position according to direction
 	step_check.position.x = input_dir.x * step_check_distance
 	step_check.position.z = input_dir.z * step_check_distance
-
+	
+	
 	if not step_check.is_colliding():
 		return false
 	
@@ -140,3 +169,4 @@ func is_step(body, input_dir):
 		body.global_position.y += height_diff - 0.01
 		
 	return true
+	
