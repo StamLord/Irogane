@@ -27,30 +27,30 @@ func _on_visibility_changed():
 	
 	# If save, create a new save button first
 	if window_type == window_type_enum.SAVE:
-		var button = prefab.duplicate()
-		button.text = "New Save"
-		button.pressed.connect(SaveSystem.save_game)
-		button.visible = true
-		buttons_container.add_child(button)
+		var new_button = prefab.duplicate()
+		new_button.text = "New Save"
+		new_button.pressed.connect(SaveSystem.save_game)
+		new_button.visible = true
+		buttons_container.add_child(new_button)
 		
 	# Create a button per save file
 	var files = SaveSystem.get_save_files()
 	for file in files:
-		var button = prefab.duplicate()
+		var new_button = prefab.duplicate()
 		
 		# Index is between _ and extension: savefile_X.save
 		var index = file.split(".")[0].split("_")[1]
-		button.text = "Save " + index
+		new_button.text = "Save " + index
 		
 		if window_type == window_type_enum.SAVE:
-			button.pressed.connect(SaveSystem.save_game.bind(index))
+			new_button.pressed.connect(SaveSystem.save_game.bind(index))
 		elif window_type == window_type_enum.LOAD:
-			button.pressed.connect(SaveSystem.load_game.bind(index))
+			new_button.pressed.connect(SaveSystem.load_game.bind(index))
 		
-		button.mouse_entered.connect(display_save_info.bind(file))
+		new_button.mouse_entered.connect(display_save_info.bind(file))
 		
-		button.visible = true
-		buttons_container.add_child(button)
+		new_button.visible = true
+		buttons_container.add_child(new_button)
 	
 
 func display_save_info(filename):
