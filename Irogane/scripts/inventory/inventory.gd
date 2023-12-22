@@ -173,6 +173,6 @@ func add_item(args: Array):
 		pickup_item(args[0])
 	
 
-func get_item_keys_from_db(args: Array):
+func get_item_keys_from_db(_args: Array):
 	return str(ItemDB.get_item_keys())
 	

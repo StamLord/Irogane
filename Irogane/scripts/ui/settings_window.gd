@@ -8,6 +8,9 @@ extends UIWindow
 @onready var draw_distance_button = $Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/draw_distance/draw_distance_button
 @onready var full_screen_button = $Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/full_screen/full_screen_button
 
+@onready var sound_slider = $Panel/MarginContainer/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer/sounds/sound_slider
+@onready var music_slider = $Panel/MarginContainer/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer/music/music_slider
+
 const RESOLUTION_SETTINGS = [Vector2i(800,600), Vector2i(1280,720), Vector2i(1920,1080)]
 const ANTI_ALIASING_SETTINGS = [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X, Viewport.MSAA_8X]
 const VSYNC_SETTINGS = [DisplayServer.VSYNC_DISABLED, DisplayServer.VSYNC_ENABLED]
@@ -71,6 +74,8 @@ func get_system_settings():
 		"draw_distance": draw_distance,
 		"resolution": [resolution.x, resolution.y],
 		"full_screen": DisplayServer.window_get_mode(),
+		"sound_level": sound_slider.value,
+		"music_level": music_slider.value,
 	}	
 	
 
@@ -120,6 +125,12 @@ func apply_system_settings(data):
 	if "full_screen" in data:
 		full_screen_button.button_pressed = data["full_screen"] == DisplayServer.WINDOW_MODE_FULLSCREEN
 		DisplayServer.window_set_mode(data["full_screen"])
+		
+	if "sound_level" in data:
+		sound_slider.value = data["sound_level"]
+		
+	if "music_level" in data:
+		music_slider.value = data["music_level"]
 	
 
 func load_system_settings():

@@ -7,7 +7,7 @@ class_name Rope
 #@export var length: float = 10
 @export var segments_per_unit: int = 1
 @export var width: float = 0.25
-@export var mass: float = 1
+var mass: float = 1.0
 @export var damp: float = 1
 @export var angular_damp: float = 1
 
