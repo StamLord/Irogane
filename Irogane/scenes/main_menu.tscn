@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://dfy8qdkjnd4tc"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
-[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/load_window.tscn" id="2_ifvaf"]
+[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/game_save_load_window.tscn" id="2_ifvaf"]
 [ext_resource type="Texture2D" uid="uid://bug7mybc6xkht" path="res://assets/images/main_menu_bg.png" id="2_ys01h"]
 [ext_resource type="Texture2D" uid="uid://brufi7iodim6" path="res://assets/images/main_menu_vingette.png" id="3_4hocg"]
 [ext_resource type="Texture2D" uid="uid://vu67v5m4a1rh" path="res://assets/images/main_menu_highlight.png" id="3_6d7bo"]
@@ -183,8 +183,7 @@ text = "   Quit
 alignment = 0
 script = ExtResource("7_snhy3")
 
-[node name="load_window" parent="." instance=ExtResource("2_ifvaf")]
-unique_name_in_owner = true
+[node name="game_load_window" parent="." instance=ExtResource("2_ifvaf")]
 visible = false
 z_as_relative = false
 layout_mode = 1
@@ -192,9 +191,9 @@ offset_left = -300.0
 offset_top = -200.0
 offset_right = 300.0
 offset_bottom = 200.0
+window_type = 1
 
 [node name="settings_window" parent="." instance=ExtResource("4_gtrqj")]
-unique_name_in_owner = true
 layout_mode = 1
 offset_left = -300.0
 offset_top = -231.5

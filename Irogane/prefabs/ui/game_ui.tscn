@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=20 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -13,9 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
 [ext_resource type="Script" path="res://scripts/ui/ui_system_menu.gd" id="12_cwfne"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="13_rwvw6"]
-[ext_resource type="Script" path="res://scripts/ui/ui_window.gd" id="14_w2re3"]
-[ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="15_u42xo"]
-[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/load_window.tscn" id="16_i0tdl"]
+[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/game_save_load_window.tscn" id="16_i0tdl"]
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
@@ -30,9 +28,6 @@ width = 256
 height = 256
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b83ot"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q284v"]
 bg_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="Node"]
@@ -397,131 +392,12 @@ alignment = 0
 [node name="settings" parent="canvas/system_menu" instance=ExtResource("13_rwvw6")]
 layout_mode = 1
 
-[node name="save" type="Control" parent="canvas/system_menu"]
+[node name="game_load_window" parent="canvas/system_menu" instance=ExtResource("16_i0tdl")]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -193.0
-offset_top = -216.0
-offset_right = 407.0
-offset_bottom = 247.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("14_w2re3")
+window_type = 1
 
-[node name="Panel" type="Panel" parent="canvas/system_menu/save"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_q284v")
-
-[node name="title" type="Label" parent="canvas/system_menu/save/Panel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 26.0
-grow_horizontal = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "SAVE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="canvas/system_menu/save/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 48
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="HBoxContainer" type="HBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/Panel/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("15_u42xo")
-
-[node name="Button" type="Button" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/Panel/ScrollContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-text = "NEW SAVE"
-
-[node name="info_panel" type="Panel" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="save_thumbnail" type="TextureRect" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Panel" type="Panel" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="version_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="date_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="name_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="level_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="load" parent="canvas/system_menu" instance=ExtResource("16_i0tdl")]
+[node name="game_save_window" parent="canvas/system_menu" instance=ExtResource("16_i0tdl")]
 visible = false
 layout_mode = 1
 
