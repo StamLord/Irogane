@@ -1,5 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bp7v6vgaalb10"]
 
-[ext_resource type="PackedScene" uid="uid://dr5iy0o1bmn75" path="res://assets/models/house_modular/tatami_1x2.glb" id="1_euvu5"]
+[ext_resource type="PackedScene" uid="uid://dr5iy0o1bmn75" path="res://assets/models/env/house_modular/teapot.glb" id="1_euvu5"]
+
 
 [node name="tatami_1x2" instance=ExtResource("1_euvu5")]

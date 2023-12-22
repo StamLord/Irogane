@@ -1,5 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bnj17ptkog7gs"]
 
-[ext_resource type="PackedScene" uid="uid://cc3blmjvw5byx" path="res://assets/models/house_modular/house_enterance_6x4.glb" id="1_b6tmx"]
+[ext_resource type="PackedScene" uid="uid://cc3blmjvw5byx" path="res://assets/models/env/house_modular/house_enterance_6x4.glb" id="1_b6tmx"]
+
 
 [node name="house_enterance_6x4" instance=ExtResource("1_b6tmx")]

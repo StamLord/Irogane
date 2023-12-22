@@ -1,10 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://ce6i28njjdi1p"]
 
-[ext_resource type="PackedScene" uid="uid://mpnjtxcgn73i" path="res://assets/models/house_modular/house_door_1-5x3.glb" id="1_qoqgo"]
-[ext_resource type="Shader" uid="uid://bdlhq4yhn0v2i" path="res://assets/shaders/shadow_canvas_2.tres" id="2_6lutg"]
-[ext_resource type="Shader" uid="uid://b580ye1bpnork" path="res://assets/shaders/shadow_canvas.tres" id="2_48a60"]
-[ext_resource type="Texture2D" uid="uid://chlmwcce2o5s0" path="res://assets/models/house_modular/textures/house_door_1-5x3_house_door.png" id="3_owy36"]
-[ext_resource type="Texture2D" uid="uid://cyoufuwtn8wn" path="res://assets/models/house_modular/textures/house_door_emission.png" id="4_2hx0y"]
+[ext_resource type="PackedScene" uid="uid://mpnjtxcgn73i" path="res://assets/models/env/house_modular/house_door_1-5x3.glb" id="1_qoqgo"]
+[ext_resource type="Shader" path="res://assets/shaders/shadow_canvas_2.tres" id="2_6lutg"]
+[ext_resource type="Shader" path="res://assets/shaders/shadow_canvas.tres" id="2_48a60"]
+[ext_resource type="Texture2D" uid="uid://chlmwcce2o5s0" path="res://assets/models/env/house_modular/textures/house_door_1-5x3_house_door.png" id="3_owy36"]
+[ext_resource type="Texture2D" uid="uid://cyoufuwtn8wn" path="res://assets/models/env/house_modular/textures/house_door_emission.png" id="4_2hx0y"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
 render_priority = 0
