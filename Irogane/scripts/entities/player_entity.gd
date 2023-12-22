@@ -48,9 +48,10 @@ func delete_player_node_if_needed(scene_name):
 
 func load_player_data(player_data):
 	create_player_node_if_needed()
+	UIManager.create_ui_node_if_needed()
 	
 	initial_scene_position = Vector3.ZERO
-
+	
 	player_node.get_node(model_node_path).load_appearance(player_data.appearance)
 	player_node.stats.load_data(player_data.stats)
 	

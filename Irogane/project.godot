@@ -28,6 +28,7 @@ SaveSystem="*res://scripts/save/save_system.gd"
 SceneManager="*res://scripts/utils/scene_manager.gd"
 PlayerEntity="*res://scripts/entities/player_entity.gd"
 CameraEntity="*res://scripts/camera/camera_entity.gd"
+EventManager="*res://scripts/events/event_manager.gd"
 
 [dialogic]
 

@@ -1,16 +1,27 @@
 extends Node
 
 var windows : Array[UIWindow]
+var ui_node = null
 
 signal cursor_lock()
 signal cursor_unlock()
 
 signal open_system_menu()
 
+const UI_SCENE_PATH = "res://prefabs/ui/game_ui.tscn"
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	SaveSystem.on_game_load.connect(on_game_load)
 	update_cursor()
+	
+
+func create_ui_node_if_needed():
+	if ui_node == null:
+		var game_ui_scene = ResourceLoader.load(UI_SCENE_PATH)
+		ui_node = game_ui_scene.instantiate()
+		get_tree().root.add_child(ui_node)
+	
 
 func close_all_windows():
 	var windows_to_close = []
@@ -38,7 +49,7 @@ func _process(_delta):
 func add_window(window):
 	if window is UIWindow:
 		windows.push_front(window)
-	update_cursor()		
+	update_cursor()
 	
 
 func remove_window(window):

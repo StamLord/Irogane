@@ -1,0 +1,536 @@
+[gd_scene load_steps=23 format=3 uid="uid://dxkipe3wxamcu"]
+
+[ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
+[ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
+[ext_resource type="PackedScene" uid="uid://bi8n5t3pidiyf" path="res://prefabs/ui/hud.tscn" id="3_qbjqm"]
+[ext_resource type="Script" path="res://scripts/stealth/stealth_ui.gd" id="4_0kmua"]
+[ext_resource type="Texture2D" uid="uid://cq6cr15aonyd" path="res://assets/textures/ui/stealth/detect_radar.png" id="5_skdea"]
+[ext_resource type="PackedScene" uid="uid://tmdi72a130so" path="res://prefabs/ui/stats_ui.tscn" id="6_qe11c"]
+[ext_resource type="PackedScene" uid="uid://bhr6cskoy2tmy" path="res://prefabs/ui/inventory_ui.tscn" id="7_86uhb"]
+[ext_resource type="Texture2D" uid="uid://cc70hxhf5av80" path="res://assets/textures/ui/cursor/hollow_circle_shadow.png" id="8_o0b22"]
+[ext_resource type="Script" path="res://scripts/ui/carry_progress_bar.gd" id="9_554op"]
+[ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="10_pnsv3"]
+[ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
+[ext_resource type="Script" path="res://scripts/ui/ui_system_menu.gd" id="12_cwfne"]
+[ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="13_rwvw6"]
+[ext_resource type="Script" path="res://scripts/ui/ui_window.gd" id="14_w2re3"]
+[ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="15_u42xo"]
+[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/load_window.tscn" id="16_i0tdl"]
+[ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
+font_size = 24
+
+[sub_resource type="Gradient" id="Gradient_umlgj"]
+colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.25098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_htpd5"]
+gradient = SubResource("Gradient_umlgj")
+width = 256
+height = 256
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b83ot"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q284v"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="Node"]
+
+[node name="canvas" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="canvas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="cursor" type="TextureRect" parent="canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xge4d")
+stretch_mode = 3
+
+[node name="interaction_text" type="Label" parent="canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -44.0
+offset_right = 80.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 20)
+label_settings = SubResource("LabelSettings_8mr78")
+horizontal_alignment = 1
+script = ExtResource("2_pu65n")
+
+[node name="hud" parent="canvas" instance=ExtResource("3_qbjqm")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 850.0
+offset_bottom = 270.0
+
+[node name="stealth_ui" type="Control" parent="canvas"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_0kmua")
+
+[node name="indicator" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator2" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator3" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator4" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator5" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator6" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator7" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator8" type="TextureRect" parent="canvas/stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="stats_ui" parent="canvas" instance=ExtResource("6_qe11c")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventory" parent="canvas" instance=ExtResource("7_86uhb")]
+visible = false
+layout_mode = 1
+
+[node name="carry_progress_bar" type="TextureProgressBar" parent="canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+fill_mode = 4
+texture_progress = ExtResource("8_o0b22")
+script = ExtResource("9_554op")
+
+[node name="carry_notification" type="Label" parent="canvas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -74.0
+offset_right = 50.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 15)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+text = "TOO HEAVY"
+horizontal_alignment = 1
+script = ExtResource("10_pnsv3")
+
+[node name="glossary_ui" parent="canvas" instance=ExtResource("11_tb3gr")]
+visible = false
+
+[node name="system_menu" type="Control" parent="canvas"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_cwfne")
+
+[node name="gradient" type="TextureRect" parent="canvas/system_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_htpd5")
+
+[node name="Panel" type="Panel" parent="canvas/system_menu"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 42.0
+offset_right = 269.0
+offset_bottom = 424.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b83ot")
+
+[node name="MarginContainer" type="MarginContainer" parent="canvas/system_menu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="continue" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "CONTINUE"
+alignment = 0
+
+[node name="save" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "SAVE"
+alignment = 0
+
+[node name="load" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "LOAD"
+alignment = 0
+
+[node name="settings" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
+alignment = 0
+
+[node name="quit" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "QUIT"
+alignment = 0
+
+[node name="settings" parent="canvas/system_menu" instance=ExtResource("13_rwvw6")]
+layout_mode = 1
+
+[node name="save" type="Control" parent="canvas/system_menu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -216.0
+offset_right = 407.0
+offset_bottom = 247.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_w2re3")
+
+[node name="Panel" type="Panel" parent="canvas/system_menu/save"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q284v")
+
+[node name="title" type="Label" parent="canvas/system_menu/save/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "SAVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="canvas/system_menu/save/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("15_u42xo")
+
+[node name="Button" type="Button" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/Panel/ScrollContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "NEW SAVE"
+
+[node name="info_panel" type="Panel" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="save_thumbnail" type="TextureRect" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="version_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="date_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="name_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="level_label" type="Label" parent="canvas/system_menu/save/Panel/MarginContainer/HBoxContainer/info_panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="load" parent="canvas/system_menu" instance=ExtResource("16_i0tdl")]
+visible = false
+layout_mode = 1
+
+[node name="debug_console" parent="canvas" instance=ExtResource("17_07pmg")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/continue" to="canvas/system_menu" method="_on_continue_pressed"]
+[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/save" to="canvas/system_menu" method="_on_save_pressed"]
+[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/load" to="canvas/system_menu" method="_on_load_pressed"]
+[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/settings" to="canvas/system_menu" method="_on_settings_pressed"]
+[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/quit" to="canvas/system_menu" method="_on_quit_pressed"]
