@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 UIManager="*res://scripts/ui/ui_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlossaryLearned="*res://scripts/glossary/glossary_learned.gd"
 CameraShaker="*res://scripts/camera/camera_shaker.gd"
 InputUtils="*res://scripts/input/input_utils.gd"
@@ -28,7 +29,6 @@ SceneManager="*res://scripts/utils/scene_manager.gd"
 PlayerEntity="*res://scripts/entities/player_entity.gd"
 CameraEntity="*res://scripts/camera/camera_entity.gd"
 DebugCanvas="*res://scripts/utils/debug_canvas.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogic]
 
