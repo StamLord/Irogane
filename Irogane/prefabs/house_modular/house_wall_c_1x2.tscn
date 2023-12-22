@@ -1,14 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://m6n2vldancgt"]
+[gd_scene load_steps=5 format=3 uid="uid://m6n2vldancgt"]
 
-[ext_resource type="Texture2D" uid="uid://d0eee0kakkxl0" path="res://assets/models/house_modular/house_wall_c_1x2_house_wall_c.png" id="1_5wewp"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwd41"]
-resource_name = "house_wall_c"
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_5wewp")
-roughness = 0.5
-texture_filter = 2
+[ext_resource type="Material" uid="uid://iu2ua2dn6dey" path="res://prefabs/house_modular/materials/house_wall_c.tres" id="1_jp3x1"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ohlvd"]
 _surfaces = [{
@@ -31,7 +23,7 @@ _surfaces = [{
 "format": 4119,
 "index_count": 12,
 "index_data": PackedByteArray(4, 0, 1, 0, 3, 0, 4, 0, 0, 0, 1, 0, 1, 0, 6, 0, 2, 0, 1, 0, 5, 0, 6, 0),
-"material": SubResource("StandardMaterial3D_jwd41"),
+"material": ExtResource("1_jp3x1"),
 "name": "house_wall_c",
 "primitive": 3,
 "vertex_count": 7,

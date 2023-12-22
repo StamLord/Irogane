@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b0pqs7spu6bwg"]
 
-[ext_resource type="Texture2D" uid="uid://cvtjvtt8eiimr" path="res://assets/models/house_modular/house_enterance_2x4_house_wall.png" id="1_6358p"]
-[ext_resource type="Texture2D" uid="uid://styirqas5ga7" path="res://assets/models/house_modular/house_enterance_2x4_house_beam.png" id="2_nl3xf"]
+[ext_resource type="Texture2D" uid="uid://bpaujjcxvwdnc" path="res://assets/models/env/house_modular/textures/house_wall.png" id="1_5ji2p"]
+[ext_resource type="Texture2D" uid="uid://bk1tvtq3ip2i4" path="res://assets/models/env/house_modular/textures/house_beam.png" id="2_5i6b2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb0yt"]
 resource_name = "house_walll"
@@ -10,7 +10,7 @@ alpha_scissor_threshold = 0.0
 alpha_antialiasing_mode = 0
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_6358p")
+albedo_texture = ExtResource("1_5ji2p")
 roughness = 0.0
 texture_filter = 2
 
@@ -18,7 +18,7 @@ texture_filter = 2
 resource_name = "house_beam"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_nl3xf")
+albedo_texture = ExtResource("2_5i6b2")
 roughness = 0.5
 texture_filter = 2
 

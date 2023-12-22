@@ -1,20 +1,24 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://c7625k88fvdqq"]
 
-[ext_resource type="Shader" uid="uid://bdlhq4yhn0v2i" path="res://assets/shaders/shadow_canvas_2.tres" id="1_2k0au"]
-[ext_resource type="Texture2D" uid="uid://cyoufuwtn8wn" path="res://assets/models/house_modular/textures/house_door_emission.png" id="2_5ilho"]
-[ext_resource type="Shader" uid="uid://b580ye1bpnork" path="res://assets/shaders/shadow_canvas.tres" id="3_gmmhr"]
-[ext_resource type="Texture2D" uid="uid://chlmwcce2o5s0" path="res://assets/models/house_modular/textures/house_door_1-5x3_house_door.png" id="4_grgws"]
+[ext_resource type="Shader" uid="uid://cotvcfr6unec4" path="res://assets/shaders/shadow_canvas_2.tres" id="1_2k0au"]
+[ext_resource type="Shader" uid="uid://cjqdm7p38lo4r" path="res://assets/shaders/shadow_canvas.tres" id="3_gmmhr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3klga"]
+load_path = "res://.godot/imported/house_door_emission.png-5f2c169dbb4cf01d5e36128bcdd2d2e5.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
 render_priority = 0
 shader = ExtResource("1_2k0au")
 shader_parameter/FloatParameter = 1.0
-shader_parameter/shadow_mask = ExtResource("2_5ilho")
+shader_parameter/shadow_mask = SubResource("CompressedTexture2D_3klga")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jw0bi"]
+load_path = "res://.godot/imported/house_door_1-5x3_house_door.png-50eb9351a7071492a28f8a5380612674.s3tc.ctex"
 
 [resource]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_eq0le")
 shader = ExtResource("3_gmmhr")
 shader_parameter/FloatParameter = 0.0
-shader_parameter/Texture2DParameter = ExtResource("4_grgws")
-shader_parameter/shadow_mask = ExtResource("2_5ilho")
+shader_parameter/Texture2DParameter = SubResource("CompressedTexture2D_jw0bi")
+shader_parameter/shadow_mask = SubResource("CompressedTexture2D_3klga")

@@ -1,6 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci0167cfweeap"]
-
-[ext_resource type="Texture2D" uid="uid://bkcnfyk4h7wyb" path="res://assets/models/house_modular/house_wall_a__5x4_house_wall.png" id="1_n264r"]
+[gd_scene load_steps=5 format=3 uid="uid://ci0167cfweeap"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsmov"]
 resource_name = "house_walll"
@@ -9,7 +7,6 @@ alpha_scissor_threshold = 0.0
 alpha_antialiasing_mode = 0
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_n264r")
 roughness = 0.0
 texture_filter = 2
 
@@ -44,11 +41,11 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uvhpp")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uo1g6"]
-size = Vector3(5, 4, 0.25)
+size = Vector3(0.5, 4, 0.25)
 
-[node name="house_wall_a__5x4" type="StaticBody3D"]
+[node name="house_wall_a_-5x4" type="StaticBody3D"]
 
-[node name="house_wall_a__5x42" type="MeshInstance3D" parent="."]
+[node name="house_wall_a_-5x4" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_easw8")
 skeleton = NodePath("")
 

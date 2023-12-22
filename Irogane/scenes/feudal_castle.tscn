@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dw5btkrx2t57w"]
+[gd_scene load_steps=42 format=3 uid="uid://by3blyi2puay4"]
 
 [ext_resource type="Texture2D" uid="uid://b5up57x8k611s" path="res://assets/textures/env/dirt2.png" id="1_w1o5h"]
 [ext_resource type="PackedScene" uid="uid://vax1kbfkr21h" path="res://prefabs/house_modular/floor_2x-2x2.tscn" id="2_seurk"]
@@ -25,9 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="22_4xdvj"]
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="23_16by5"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="24_qdn50"]
-[ext_resource type="PackedScene" uid="uid://cdc2ayg330fi8" path="res://assets/models/house_modular/house_balcony_6x1.glb" id="26_52g3u"]
 [ext_resource type="PackedScene" uid="uid://b0pqs7spu6bwg" path="res://prefabs/house_modular/house_enterance_2x4.tscn" id="27_n1ca8"]
 [ext_resource type="PackedScene" uid="uid://dk5wjqc66k27r" path="res://prefabs/house_modular/house_door_1x3.tscn" id="28_ckxyq"]
+[ext_resource type="PackedScene" uid="uid://cgttt2pyu3noh" path="res://prefabs/env/lanterns/andon.tscn" id="29_14vgb"]
 [ext_resource type="PackedScene" uid="uid://5fql5x18mv8j" path="res://assets/models/female/female.tscn" id="29_hxdj7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_kicq0"]
@@ -1026,6 +1026,9 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 4, 3)
 [node name="house_wall_b_2x45" parent="NavigationRegion3D/wall_b" instance=ExtResource("5_c7p1v")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 4, 5)
 
+[node name="house_enterance_2x4" parent="NavigationRegion3D" instance=ExtResource("27_n1ca8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00477, 0, 1.99923)
+
 [node name="UI" type="Node" parent="."]
 
 [node name="canvas" type="Control" parent="UI"]
@@ -1529,13 +1532,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -4)
 light_color = Color(1, 0.839216, 0.505882, 1)
 light_energy = 2.0
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25266, 1.67857, -1.29091)
-light_color = Color(1, 0.839216, 0.505882, 1)
-light_energy = 2.5
-shadow_enabled = true
-shadow_bias = 0.433
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 100, 0)
 shadow_enabled = true
@@ -1583,12 +1579,6 @@ schedule = {
 }
 }
 
-[node name="house_balcony_6x1" parent="." instance=ExtResource("26_52g3u")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 4.1, -4)
-
-[node name="house_enterance_2x4" parent="." instance=ExtResource("27_n1ca8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00477, 0, 1.99923)
-
 [node name="house_door_1x3" parent="." instance=ExtResource("28_ckxyq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2)
 
@@ -1597,6 +1587,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.41426, 0, 1.94404)
 
 [node name="female" parent="." instance=ExtResource("29_hxdj7")]
 transform = Transform3D(0.497307, 0, 0.867575, 0, 1, 0, -0.867575, 0, 0.497307, 2.88904, 0.109549, -0.0752622)
+
+[node name="andon" parent="." instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="andon2" parent="." instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, 0)
+
+[node name="andon3" parent="." instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, -8)
+
+[node name="andon4" parent="." instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -8)
 
 [connection signal="pressed" from="UI/canvas/system_menu/Panel/MarginContainer/VBoxContainer/continue" to="UI/canvas/system_menu" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/canvas/system_menu/Panel/MarginContainer/VBoxContainer/save" to="UI/canvas/system_menu" method="_on_save_pressed"]
