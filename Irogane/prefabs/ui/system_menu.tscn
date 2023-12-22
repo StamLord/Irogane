@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvok8nvjcehcs"]
 
-[ext_resource type="Script" path="res://scripts/ui/ui_system_menu.gd" id="1_51a4q"]
+[ext_resource type="Script" path="res://scripts/ui/system_menu.gd" id="1_51a4q"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="2_uccdj"]
 [ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/game_save_load_window.tscn" id="3_rgxg2"]
 
