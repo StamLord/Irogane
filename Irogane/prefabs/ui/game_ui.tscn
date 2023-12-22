@@ -302,7 +302,6 @@ visible = false
 
 [node name="system_menu" type="Control" parent="canvas"]
 process_mode = 3
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -322,10 +321,10 @@ texture = SubResource("GradientTexture2D_htpd5")
 
 [node name="Panel" type="Panel" parent="canvas/system_menu"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 42.0
-offset_right = 269.0
-offset_bottom = 424.0
+offset_left = 61.0
+offset_top = 123.0
+offset_right = 294.0
+offset_bottom = 505.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_b83ot")
 
 [node name="MarginContainer" type="MarginContainer" parent="canvas/system_menu/Panel"]
@@ -389,7 +388,7 @@ theme_override_font_sizes/font_size = 24
 text = "QUIT"
 alignment = 0
 
-[node name="settings" parent="canvas/system_menu" instance=ExtResource("13_rwvw6")]
+[node name="settings_window" parent="canvas/system_menu" instance=ExtResource("13_rwvw6")]
 layout_mode = 1
 
 [node name="game_load_window" parent="canvas/system_menu" instance=ExtResource("16_i0tdl")]
