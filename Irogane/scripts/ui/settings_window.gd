@@ -135,6 +135,7 @@ func apply_system_settings(data):
 
 func load_system_settings():
 	var save_data = SaveSystem.load_system_settings()
+	
 
 	if save_data:
 		apply_system_settings(save_data)
