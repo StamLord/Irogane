@@ -113,13 +113,13 @@ func save_game(index = null):
 	if index == null:
 		index = str(get_highest_save_index() + 1)
 	
-	var save_file = save_path.path_join(SAVE_FILE_NAME)
-	save_file = save_file.format({"i" : index})
+	var save_file_path = save_path.path_join(SAVE_FILE_NAME)
+	save_file_path = save_file_path.format({"i" : index})
 	
-	var save_game = FileAccess.open(save_file, FileAccess.WRITE)
+	var save_file = FileAccess.open(save_file_path, FileAccess.WRITE)
 	
-	save_game.store_line(JSON.stringify({"version" : SETTINGS_VERSION}))
-	save_game.store_line(JSON.stringify({"scene" : SceneManager.current_scene.scene_file_path}))
+	save_file.store_line(JSON.stringify({"version" : SETTINGS_VERSION}))
+	save_file.store_line(JSON.stringify({"scene" : SceneManager.current_scene.scene_file_path}))
 	
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	
@@ -137,7 +137,7 @@ func save_game(index = null):
 		# Call the node's save function.
 		var node_data = node.call("save_data")
 		# Store the save dictionary as a new line in the save file.
-		save_game.store_line(JSON.stringify(node_data))
+		save_file.store_line(JSON.stringify(node_data))
 	
 	# Generate thumbnail
 	create_thumbnail(index)
