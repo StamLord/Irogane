@@ -226,7 +226,7 @@ func validate_combo(combo):
 	
 	return longest_combo
 
-func display_move(char):
+func display_move(character):
 	var count = moves_container.get_child_count()
 	var move = null
 	
@@ -238,7 +238,7 @@ func display_move(char):
 		move.remove_theme_color_override("font_color")
 		moves_container.move_child(move, count - 1)
 	
-	move.text = char.capitalize()
+	move.text = character.capitalize()
 
 func highlight_display_combo(length):
 	var count = moves_container.get_child_count()
@@ -279,7 +279,7 @@ func start_animate_vault(ledge_position):
 	var hand_offset = global_transform.basis * Vector3.RIGHT * 0.25
 	anim_hands_ik.set_targets(ledge_position - hand_offset, ledge_position + hand_offset)
 
-func stop_animate_vault(ledge_position):
+func stop_animate_vault(_ledge_position):
 	anim_state_machine.start("idle")
 	anim_hands_ik.stop_ik()
 
