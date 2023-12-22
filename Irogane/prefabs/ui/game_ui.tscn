@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=15 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -11,24 +11,11 @@
 [ext_resource type="Script" path="res://scripts/ui/carry_progress_bar.gd" id="9_554op"]
 [ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="10_pnsv3"]
 [ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
-[ext_resource type="Script" path="res://scripts/ui/ui_system_menu.gd" id="12_cwfne"]
-[ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="13_rwvw6"]
-[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/game_save_load_window.tscn" id="16_i0tdl"]
+[ext_resource type="PackedScene" uid="uid://dvok8nvjcehcs" path="res://prefabs/ui/system_menu.tscn" id="12_dwafj"]
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
 font_size = 24
-
-[sub_resource type="Gradient" id="Gradient_umlgj"]
-colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.25098)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_htpd5"]
-gradient = SubResource("Gradient_umlgj")
-width = 256
-height = 256
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b83ot"]
-bg_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="Node"]
 
@@ -300,112 +287,9 @@ script = ExtResource("10_pnsv3")
 [node name="glossary_ui" parent="canvas" instance=ExtResource("11_tb3gr")]
 visible = false
 
-[node name="system_menu" type="Control" parent="canvas"]
-process_mode = 3
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("12_cwfne")
-
-[node name="gradient" type="TextureRect" parent="canvas/system_menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_htpd5")
-
-[node name="Panel" type="Panel" parent="canvas/system_menu"]
-layout_mode = 0
-offset_left = 61.0
-offset_top = 123.0
-offset_right = 294.0
-offset_bottom = 505.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_b83ot")
-
-[node name="MarginContainer" type="MarginContainer" parent="canvas/system_menu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
-
-[node name="VBoxContainer" type="VBoxContainer" parent="canvas/system_menu/Panel/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="continue" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "CONTINUE"
-alignment = 0
-
-[node name="save" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "SAVE"
-alignment = 0
-
-[node name="load" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "LOAD"
-alignment = 0
-
-[node name="settings" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "SETTINGS"
-alignment = 0
-
-[node name="quit" type="Button" parent="canvas/system_menu/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "QUIT"
-alignment = 0
-
-[node name="settings_window" parent="canvas/system_menu" instance=ExtResource("13_rwvw6")]
-layout_mode = 1
-
-[node name="game_load_window" parent="canvas/system_menu" instance=ExtResource("16_i0tdl")]
-visible = false
-layout_mode = 1
-window_type = 1
-
-[node name="game_save_window" parent="canvas/system_menu" instance=ExtResource("16_i0tdl")]
-visible = false
+[node name="system_menu" parent="canvas" instance=ExtResource("12_dwafj")]
 layout_mode = 1
 
 [node name="debug_console" parent="canvas" instance=ExtResource("17_07pmg")]
 visible = false
 layout_mode = 1
-
-[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/continue" to="canvas/system_menu" method="_on_continue_pressed"]
-[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/save" to="canvas/system_menu" method="_on_save_pressed"]
-[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/load" to="canvas/system_menu" method="_on_load_pressed"]
-[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/settings" to="canvas/system_menu" method="_on_settings_pressed"]
-[connection signal="pressed" from="canvas/system_menu/Panel/MarginContainer/VBoxContainer/quit" to="canvas/system_menu" method="_on_quit_pressed"]
