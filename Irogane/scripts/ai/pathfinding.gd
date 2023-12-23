@@ -57,6 +57,7 @@ func _physics_process(delta):
 	# Get dot product between our facing direction and the direction
 	var facing_direction = basis * Vector3.FORWARD # Our facing direction
 	var dot_product = facing_direction.dot(direction)
+	dot_product = max(0, dot_product) # Make sure it's not below 0
 	
 	# Multiply by dot to slow down movement when facing the wrong direction
 	nav_agent.set_velocity(direction * speed * dot_product)
