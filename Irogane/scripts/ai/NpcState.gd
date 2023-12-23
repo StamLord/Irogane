@@ -55,7 +55,7 @@ func set_target_rotation(target_rotation):
 	
 
 func reset_rotation_target():
-	state_machine.reset_rotation_target()
+	state_machine.reset_target_rotation()
 	
 
 func perform_collisions(body, speed, push_force, delta):
