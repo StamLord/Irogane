@@ -58,7 +58,7 @@ func physics_update(state_machine, delta):
 			switch_to_search_state()
 	# Otherwise, chase target
 	else:
-		set_target(chase_target.global_position)
+		set_target_position(chase_target.global_position)
 	
 
 func exit(state_machine):

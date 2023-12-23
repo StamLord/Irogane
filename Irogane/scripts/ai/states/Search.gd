@@ -21,7 +21,7 @@ func enter(state_machine):
 	
 	# Move to first point - Extrapolated search position
 	var target = last_seen_position + last_direction * extrapolate_movement_range
-	set_target(target)
+	set_target_position(target)
 	state_machine.pathfinding.nav.navigation_finished.connect(reached_search_point)
 
 func physics_update(state_machine, delta):
@@ -46,7 +46,7 @@ func move_to_next_search_point():
 	var random_in_range = Utils.random_inside_circle() * search_range
 	var cheat_vector = (search_target.global_position - last_seen_position).normalized() * cheat_amount
 	var next_search_point = last_seen_position + cheat_vector + Vector3(random_in_range.x, 0, random_in_range.y)
-	set_target(next_search_point)
+	set_target_position(next_search_point)
 	
 
 func exit(state_machine):
@@ -67,7 +67,7 @@ func sound_heard(sound_position):
 	
 	# Future search points will generate around this point
 	last_seen_position = sound_position
-	set_target(sound_position)
+	set_target_position(sound_position)
 	
 	DebugCanvas.debug_text("Sound Heard", sound_position, Color.PURPLE, 3)
 	
