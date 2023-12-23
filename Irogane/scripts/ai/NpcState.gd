@@ -42,12 +42,20 @@ func set_alert_mode(new_state):
 	state_machine.awareness_agent.set_alert_mode(new_state)
 	
 
-func set_target(target_position):
-	state_machine.set_target(target_position)
+func set_target_position(target_position):
+	state_machine.set_target_position(target_position)
 	
 
-func reset_target():
-	state_machine.reset_target()
+func reset_target_position():
+	state_machine.reset_target_position()
+	
+
+func set_target_rotation(target_rotation):
+	state_machine.set_target_rotation(target_rotation)
+	
+
+func reset_rotation_target():
+	state_machine.reset_rotation_target()
 	
 
 func perform_collisions(body, speed, push_force, delta):

@@ -22,19 +22,32 @@ var prev_target_angle : float
 var next_position = Vector3.ZERO
 var direction = Vector3.ZERO
 
+var target_rotation = null
+
 func _process(delta):
 	if nav.is_navigation_finished():
-		rotate_to_target(delta)
-	else:
-		rotate_to_next_position(delta)
+		if target_rotation: # Face an overriding rotation target
+			rotate_to_target_rotation(delta)
+		else: # Face the path target position
+			rotate_to_target(delta)
+	else: # Face next position on path
+		rotate_to_next_position(delta) 
 	
 
-func set_target(target_position : Vector3):
+func set_target_position(target_position : Vector3):
 	nav.target_position = target_position
 	
 
-func reset_target():
+func reset_target_position():
 	nav.target_position = global_position
+	
+
+func set_target_rotation(_target_rotation : Vector3):
+	target_rotation = _target_rotation
+	
+
+func reset_target_rotation():
+	target_rotation = null
 	
 
 func _physics_process(delta):
@@ -81,6 +94,10 @@ func rotate_to_next_position(delta):
 
 func rotate_to_target(delta):
 	rotate_to_position(nav.target_position, delta)
+	
+
+func rotate_to_target_rotation(delta):
+	rotate_to_position(target_rotation, delta)
 	
 
 func rotate_to_position(target_position, delta):

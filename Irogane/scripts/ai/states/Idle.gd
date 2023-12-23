@@ -8,7 +8,7 @@ var roam_path_active = false
 var roam_idle_start = 0.0
 
 func enter(state_machine):
-	reset_target()
+	reset_target_position()
 	state_machine.awareness_agent.on_enemy_seen.connect(enemy_seen)
 	set_alert_mode(false)
 	
@@ -28,7 +28,7 @@ func simple_roam(state_machine, delta):
 	perform_collisions(state_machine.pathfinding, state_machine.pathfinding.velocity, 10, delta)
 	
 	if not roam_path_active and Time.get_ticks_msec() - roam_idle_start >= roam_idle_duration * 1000:
-		set_target(get_new_roam_target())
+		set_target_position(get_new_roam_target())
 		roam_path_active = true
 		
 		await state_machine.pathfinding.nav.navigation_finished
@@ -48,20 +48,23 @@ func perform_task():
 	#			"extra_data" : dict
 	
 	if task == null:
-		set_target(global_position)
+		set_target_position(global_position)
 		return
 	
 	var markers = SceneManager.current_scene.get_node("markers")
-	print(markers)
 	
 	if task["task_type"] == ScheduleAgent.task_type.GUARD:
 		if markers != null:
 			var target_marker = markers.get_node(task["location"])
-			print(target_marker)
 			if target_marker != null:
-				set_target(target_marker.global_position + target_marker.basis * Vector3.FORWARD)
+				set_target_position(target_marker.global_position)
+				
+				var face_direction = state_machine.pathfinding.global_position + target_marker.basis * Vector3.FORWARD
+				set_target_rotation(face_direction)
+				DebugCanvas.debug_point(target_marker.global_position, Color.RED)
+				DebugCanvas.debug_point(face_direction, Color.GREEN)
 				return
-		set_target(global_position)
+		set_target_position(global_position)
 		
 	
 

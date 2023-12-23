@@ -65,12 +65,20 @@ func on_child_transition(state, new_state_name):
 	on_state_enter.emit(new_state.name)
 	
 
-func set_target(target_position):
-	pathfinding.set_target(target_position)
+func set_target_position(target_position):
+	pathfinding.set_target_position(target_position)
 	
 
-func reset_target():
-	pathfinding.reset_target()
+func reset_target_position():
+	pathfinding.reset_target_position()
+	
+
+func set_target_rotation(target_rotation):
+	pathfinding.set_target_rotation(target_rotation)
+	
+
+func reset_target_rotation():
+	pathfinding.reset_target_rotation()
 	
 
 func save_data():
