@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://by3blyi2puay4"]
+[gd_scene load_steps=42 format=3 uid="uid://by3blyi2puay4"]
 
 [ext_resource type="Texture2D" uid="uid://b5up57x8k611s" path="res://assets/textures/env/dirt2.png" id="1_w1o5h"]
 [ext_resource type="PackedScene" uid="uid://vax1kbfkr21h" path="res://prefabs/house_modular/floor_2x-2x2.tscn" id="2_seurk"]
@@ -26,7 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="23_16by5"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="24_qdn50"]
 [ext_resource type="PackedScene" uid="uid://b0pqs7spu6bwg" path="res://prefabs/house_modular/house_enterance_2x4.tscn" id="27_n1ca8"]
-[ext_resource type="PackedScene" uid="uid://dk5wjqc66k27r" path="res://prefabs/house_modular/house_door_1x3.tscn" id="28_ckxyq"]
 [ext_resource type="PackedScene" uid="uid://cgttt2pyu3noh" path="res://prefabs/env/lanterns/andon.tscn" id="29_14vgb"]
 [ext_resource type="PackedScene" uid="uid://5fql5x18mv8j" path="res://assets/models/female/female.tscn" id="29_hxdj7"]
 [ext_resource type="PackedScene" uid="uid://3bkwol7plfmo" path="res://prefabs/env/lanterns/street_lantern.tscn" id="30_4p4qj"]
@@ -84,7 +83,7 @@ tonemap_mode = 3
 glow_enabled = true
 fog_enabled = true
 
-[node name="Node3D" type="Node3D"]
+[node name="feudal_castle" type="Node3D"]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_kicq0")
@@ -1030,6 +1029,24 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 6, 4, 5)
 [node name="house_enterance_2x4" parent="NavigationRegion3D" instance=ExtResource("27_n1ca8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00477, 0, 1.99923)
 
+[node name="andon" parent="NavigationRegion3D" instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="andon2" parent="NavigationRegion3D" instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, 0)
+
+[node name="andon5" parent="NavigationRegion3D" instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.49123, 0.1, -5)
+
+[node name="andon3" parent="NavigationRegion3D" instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, -8)
+
+[node name="andon4" parent="NavigationRegion3D" instance=ExtResource("29_14vgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -8)
+
+[node name="house_enterance_4x5" parent="NavigationRegion3D" instance=ExtResource("3_dpiro")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, -4)
+
 [node name="UI" type="Node" parent="."]
 
 [node name="canvas" type="Control" parent="UI"]
@@ -1528,11 +1545,6 @@ layout_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wk5wa")
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, -4)
-light_color = Color(1, 0.839216, 0.505882, 1)
-light_energy = 2.0
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 100, 0)
 shadow_enabled = true
@@ -1568,41 +1580,56 @@ gizmo_extents = 1.0
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.5, 1, 6)
 gizmo_extents = 1.0
 
-[node name="NpcStateMachine" parent="." instance=ExtResource("23_16by5")]
+[node name="female" parent="." instance=ExtResource("29_hxdj7")]
+transform = Transform3D(0.497307, 0, 0.867575, 0, 1, 0, -0.867575, 0, 0.497307, 2.88904, 0.109549, -0.0752622)
+
+[node name="street_lantern" parent="." instance=ExtResource("30_4p4qj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 0, 1)
+
+[node name="NPC" parent="." instance=ExtResource("23_16by5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.58132, 0, 10.0252)
 
-[node name="ScheduleAgent" type="Node3D" parent="NpcStateMachine"]
+[node name="ScheduleAgent" type="Node3D" parent="NPC"]
 script = ExtResource("24_qdn50")
 schedule = {
 "22:00": {
-"location": "guard_a",
+"location": ["guard_a"],
 "task_type": 2
 }
 }
 
-[node name="house_door_1x3" parent="." instance=ExtResource("28_ckxyq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2)
+[node name="NPC2" parent="." instance=ExtResource("23_16by5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7284, 0, -1.62261)
 
-[node name="house_door_1x4" parent="." instance=ExtResource("28_ckxyq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.41426, 0, 1.94404)
+[node name="ScheduleAgent" type="Node3D" parent="NPC2"]
+script = ExtResource("24_qdn50")
+schedule = {
+"22:00": {
+"location": ["patrol_c", "patrol_d"],
+"task_type": 3
+}
+}
 
-[node name="female" parent="." instance=ExtResource("29_hxdj7")]
-transform = Transform3D(0.497307, 0, 0.867575, 0, 1, 0, -0.867575, 0, 0.497307, 2.88904, 0.109549, -0.0752622)
+[node name="NPC3" parent="." instance=ExtResource("23_16by5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 9)
 
-[node name="andon" parent="." instance=ExtResource("29_14vgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+[node name="ScheduleAgent" type="Node3D" parent="NPC3"]
+script = ExtResource("24_qdn50")
+schedule = {
+"22:00": {
+"location": ["patrol_b", "patrol_a"],
+"task_type": 3
+}
+}
 
-[node name="andon2" parent="." instance=ExtResource("29_14vgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, 0)
+[node name="NPC4" parent="." instance=ExtResource("23_16by5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, -4)
 
-[node name="andon3" parent="." instance=ExtResource("29_14vgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, -8)
+[node name="NPC5" parent="." instance=ExtResource("23_16by5")]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -6, 0, -4)
 
-[node name="andon4" parent="." instance=ExtResource("29_14vgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -8)
-
-[node name="street_lantern" parent="." instance=ExtResource("30_4p4qj")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15, 0, 1)
+[node name="house_enterance_4x4" parent="." instance=ExtResource("3_dpiro")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, -4)
 
 [connection signal="pressed" from="UI/canvas/system_menu/Panel/MarginContainer/VBoxContainer/continue" to="UI/canvas/system_menu" method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/canvas/system_menu/Panel/MarginContainer/VBoxContainer/save" to="UI/canvas/system_menu" method="_on_save_pressed"]
