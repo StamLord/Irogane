@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://wtmdywhftyl7"]
+
+[ext_resource type="Texture2D" uid="uid://dg2bgxoiimkas" path="res://assets/models/env/lanterns/street_lantern_lantern_clean.png" id="1_sljc4"]
+[ext_resource type="Texture2D" uid="uid://dbbx3dvh2760o" path="res://assets/models/env/lanterns/lantern_emmision.png" id="2_q6eai"]
+
+[resource]
+cull_mode = 2
+albedo_texture = ExtResource("1_sljc4")
+emission_enabled = true
+emission = Color(1, 0.843137, 0.52549, 1)
+emission_operator = 1
+emission_texture = ExtResource("2_q6eai")
+texture_filter = 0

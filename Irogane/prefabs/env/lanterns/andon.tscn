@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgttt2pyu3noh"]
+[gd_scene load_steps=7 format=3 uid="uid://cgttt2pyu3noh"]
 
-[ext_resource type="Texture2D" uid="uid://k2nkl2en5mr2" path="res://assets/models/env/lanterns/andon_andon.png" id="1_1qcmg"]
+[ext_resource type="Texture2D" path="res://assets/models/env/lanterns/andon_andon.png" id="1_1qcmg"]
+[ext_resource type="Texture2D" uid="uid://bmmq4tv2l6iap" path="res://assets/models/env/lanterns/andon.png" id="2_4twae"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdgnl"]
 resource_name = "andon"
@@ -8,8 +9,9 @@ cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_1qcmg")
 roughness = 0.4
+emission_enabled = true
+emission_texture = ExtResource("2_4twae")
 texture_filter = 2
-disable_receive_shadows = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7alq0"]
 _surfaces = [{
@@ -48,6 +50,7 @@ size = Vector3(0.5, 1.1, 0.5)
 mass = 5.0
 
 [node name="andon2" type="MeshInstance3D" parent="."]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_1xsay")
 skeleton = NodePath("")
 
