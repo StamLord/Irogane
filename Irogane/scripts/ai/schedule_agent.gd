@@ -4,7 +4,7 @@ class_name ScheduleAgent
 enum task_type {WAIT, ROAM, GUARD, PATROL}
 
 # task = {	"task_type" : enum (task_type),
-# 			"location" : string,
+# 			"location" : [string, string, ...],
 #			"extra_data" : dict
 
 # schedule = { "start_time" (string) : task (dict) }
@@ -15,7 +15,6 @@ var sorted_task_hours = [] # Helper array to sort dictionary keys
 func _ready():
 	# Fix int to task_type enum
 	for task in schedule.values():
-		print(task)
 		if task.has("task_type") and typeof(task["task_type"]) == 2:
 			var enum_index = task["task_type"]
 			task["task_type"] = task_type[task_type.keys()[enum_index]]

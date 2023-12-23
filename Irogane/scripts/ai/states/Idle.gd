@@ -7,6 +7,8 @@ class_name Idle
 var roam_path_active = false
 var roam_idle_start = 0.0
 
+var patrol_index = 0
+
 func enter(state_machine):
 	reset_target_position()
 	state_machine.awareness_agent.on_enemy_seen.connect(enemy_seen)
@@ -44,7 +46,7 @@ func get_new_roam_target():
 func perform_task():
 	var task = get_current_task()
 	# task = {	"task_type" : enum (task_type),
-	# 			"location" : string,
+	# 			"location" : [string, string, ...],
 	#			"extra_data" : dict
 	
 	if task == null:
@@ -52,20 +54,38 @@ func perform_task():
 		return
 	
 	var markers = SceneManager.current_scene.get_node("markers")
+	var locations = task["location"]
 	
+	# Guard
 	if task["task_type"] == ScheduleAgent.task_type.GUARD:
 		if markers != null:
-			var target_marker = markers.get_node(task["location"])
+			var target_marker = markers.get_node(locations[0])
 			if target_marker != null:
 				set_target_position(target_marker.global_position)
 				
+				# Face target marker's forward
 				var face_direction = state_machine.pathfinding.global_position + target_marker.basis * Vector3.FORWARD
 				set_target_rotation(face_direction)
-				DebugCanvas.debug_point(target_marker.global_position, Color.RED)
-				DebugCanvas.debug_point(face_direction, Color.GREEN)
+				
 				return
-		set_target_position(global_position)
-		
+	# Patrol
+	elif task["task_type"] == ScheduleAgent.task_type.PATROL:
+		if markers != null:
+			var target_marker = markers.get_node(locations[patrol_index])
+			if target_marker != null:
+				set_target_position(target_marker.global_position)
+				reset_rotation_target()
+				
+				# Set next patrol index
+				var distance_to_patrol_target = target_marker.global_position.distance_to(state_machine.pathfinding.global_position)
+				if distance_to_patrol_target < 1.5:
+					patrol_index += 1
+					patrol_index %= locations.size()
+				
+				return
+	
+	# Fallback
+	set_target_position(global_position)
 	
 
 func enemy_seen(enemy):

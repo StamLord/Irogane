@@ -20,7 +20,7 @@ var lost_target_time = 0.0
 
 func enter(state_machine):
 	lost_target = false
-	chase_start_position = global_position
+	chase_start_position = state_machine.pathfinding.global_position
 	chase_target = get_from_blackboard("chase_target")
 	last_target_position = chase_target.position
 	
@@ -36,7 +36,7 @@ func physics_update(state_machine, delta):
 		return
 	
 	# Target out of chase range
-	if global_position.distance_to(chase_target.global_position) > chase_range:
+	if chase_start_position.distance_to(chase_target.global_position) > chase_range:
 		DebugCanvas.debug_text("Target out of range", state_machine.pathfinding.global_position, Color.PURPLE, 3)
 		Transitioned.emit(self, "idle")
 		return
