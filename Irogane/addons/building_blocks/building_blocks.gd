@@ -9,12 +9,8 @@ func _enter_tree():
 	get_editor_interface().get_editor_main_screen().add_child(main_panel_instance)
 	_make_visible(false)
 	
-	add_custom_type("MyButton", "Button", preload("building_blocks_button.gd"), preload("res://icon.svg"))
-	
 
 func _exit_tree():
-	remove_custom_type("MyButton")
-	
 	if main_panel_instance:
 		main_panel_instance.queue_free()
 	

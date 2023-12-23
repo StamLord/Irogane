@@ -63,12 +63,6 @@ func _on_folder_dialog_dir_selected(dir):
 	print(dir)
 	
 
-func save_current_scene(file_path):
-	var packed_scene = PackedScene.new()
-	packed_scene.pack(get_tree().get_current_scene())
-	ResourceSaver.save(file_path, packed_scene)
-	
-
 func _on_update_prefab_pressed():
 	for file_path in open_files:
 		# Load scene resource (PackedScene)
@@ -81,9 +75,10 @@ func _on_update_prefab_pressed():
 		# Pack and save scene to same file
 		var new_packed_scene = PackedScene.new()
 		new_packed_scene.pack(root)
-		ResourceSaver.save(new_packed_scene, file_path)
+		var error = ResourceSaver.save(new_packed_scene, file_path)
+		
+		print("Saved to: ", file_path, " Error [{e}]".format({"e" : error}))
 	
-
 
 func _on_offset_x_text_changed():
 	var parsed = offset_input_x.text.to_float()

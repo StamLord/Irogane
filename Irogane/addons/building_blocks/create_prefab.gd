@@ -55,11 +55,10 @@ func scene_to_static_body(edited_scene):
 	static_body.name = edited_scene.name
 	
 	edited_scene.replace_by(static_body)
+	edited_scene.free()
 	
 	for child in static_body.get_children():
 		child.owner = static_body
 	
 	return static_body
-
-func function():
-	print("FUNC CALLED")
+	
