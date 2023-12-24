@@ -18,6 +18,10 @@ func _process(_delta):
 func _draw():
 	var camera = CameraEntity.active_camera
 	
+	# If camera was freed due to scene loading
+	if not is_instance_valid(camera):
+		return
+	
 	for line in lines:
 		# Don't draw if behind camera
 		if camera.is_position_behind(line["from"]) or camera.is_position_behind(line["to"]):
