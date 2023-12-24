@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var step_check = $step_check
+@onready var door_check = $door_check
 
 @export var speed = 2
 @export var acceleration = 10
@@ -9,12 +10,13 @@ extends CharacterBody3D
 @export var push_force = 15
 
 @onready var nav = $NavigationAgent3D
-@onready var nav_agent = $NavigationAgent3D
 @onready var player = PlayerEntity.player_node
 
 @export var max_step_height = .3
 @export var max_step_angle = 10
 @export var step_check_distance = 0.55
+
+@export var door_check_distance = 1.5
 
 var prev_current_angle : float
 var prev_target_angle : float
@@ -24,14 +26,52 @@ var direction = Vector3.ZERO
 
 var target_rotation = null
 
+var is_traveling_link = false
+var link_details = null
+
+func _ready():
+	nav.link_reached.connect(link_reached)
+	
+
+func link_reached(details):
+	move_in_link(details)
+	
+
+func move_in_link(link_details):
+	is_traveling_link = true
+	
+	var from = link_details["link_entry_position"]
+	var offset = global_position - from
+	print(offset)
+	var to = link_details["link_exit_position"] + offset
+	var distance = from.distance_to(to)
+	var duration = (distance / speed) * 1000
+	var start_time = Time.get_ticks_msec()
+	
+	while(Time.get_ticks_msec() - start_time < duration):
+		var t = (Time.get_ticks_msec() - start_time) / duration
+		global_position = lerp(from, to, t)
+		await get_tree().process_frame
+	
+	global_position = to
+	is_traveling_link = false
+	
+
 func _process(delta):
-	if nav.is_navigation_finished():
-		if target_rotation: # Face an overriding rotation target
-			rotate_to_target_rotation(delta)
-		else: # Face the path target position
-			rotate_to_target(delta)
-	else: # Face next position on path
-		rotate_to_next_position(delta) 
+	if not is_traveling_link:
+		if nav.is_navigation_finished():
+			if target_rotation: # Face an overriding rotation target
+				rotate_to_target_rotation(delta)
+			else: # Face the path target position
+				rotate_to_target(delta)
+		else: # Face next position on path
+			rotate_to_next_position(delta) 
+	
+	# Open doors when moving into them
+	if door_check != null and velocity.length() > 0 and door_check.is_colliding():
+		var collider = door_check.get_collider()
+		if collider is Switch and collider.state == false:
+			collider.use(null)
 	
 
 func set_target_position(target_position : Vector3):
@@ -51,6 +91,9 @@ func reset_target_rotation():
 	
 
 func _physics_process(delta):
+	if is_traveling_link:
+		return
+	
 	next_position = nav.get_next_path_position()
 	direction = (next_position - global_position).normalized()
 	
@@ -60,7 +103,7 @@ func _physics_process(delta):
 	dot_product = max(0, dot_product) # Make sure it's not below 0
 	
 	# Multiply by dot to slow down movement when facing the wrong direction
-	nav_agent.set_velocity(direction * speed * dot_product)
+	nav.set_velocity(direction * speed * dot_product)
 	
 	# Apply gravity
 	velocity.y -= gravity * delta
@@ -80,13 +123,14 @@ func _physics_process(delta):
 			collider.apply_central_impulse(-collision.get_normal() * push_force * delta)
 			collider.apply_impulse(-collision.get_normal() * 0.01, collision.get_position())
 		elif collider is CharacterBody3D:
-				collider.velocity += -collision.get_normal() * push_force * delta
+			collider.velocity += -collision.get_normal() * push_force * delta
 	
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	var flat_vector = velocity.move_toward(safe_velocity, .25)
 	velocity.x = flat_vector.x
 	velocity.z = flat_vector.z
+	DebugCanvas.debug_line(global_position, global_position + safe_velocity, Color.RED)
 	
 
 func rotate_to_next_position(delta):
@@ -102,17 +146,22 @@ func rotate_to_target_rotation(delta):
 	
 
 func rotate_to_position(target_position, delta):
+	if target_position == null:
+		return
+	
+#	DebugCanvas.debug_point(target_position)
+	
 	var forward = basis * Vector3.FORWARD
 	var flat_dir = Vector3(target_position.x - global_position.x, 0, target_position.z - global_position.z).normalized()
 	var new_forward = lerp(forward, flat_dir, delta * rotation_speed)
 	
 	look_at(global_position + new_forward)
-	
-	DebugCanvas.debug_line(global_position, global_position + forward, Color.GREEN)
-	DebugCanvas.debug_line(global_position, global_position + flat_dir, Color.YELLOW)
-	DebugCanvas.debug_line(global_position, global_position + new_forward, Color.RED)
-	
-	DebugCanvas.debug_point(target_position, Color.RED)
+#	DebugCanvas.debug_point(global_position + new_forward, Color.BLUE)
+#	DebugCanvas.debug_line(global_position, global_position + forward, Color.GREEN)
+#	DebugCanvas.debug_line(global_position, global_position + flat_dir, Color.YELLOW)
+#	DebugCanvas.debug_line(global_position, global_position + new_forward, Color.RED)
+#
+#	DebugCanvas.debug_point(target_position, Color.RED)
 	
 
 func rotate_angle(delta):

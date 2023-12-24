@@ -16,7 +16,9 @@ func play(sound, sound_position = null):
 			p.play()
 			return
 	print(get_parent().name + "." + name + ": Not enought stream players!")
+	
 
 func reset_position(player):
 	# Reset to local 0,0,0
 	player.position = Vector3.ZERO
+	

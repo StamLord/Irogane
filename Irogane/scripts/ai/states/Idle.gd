@@ -17,7 +17,8 @@ func enter(state_machine):
 
 func physics_update(state_machine, delta):
 	if state_machine.schedule_agent == null:
-		simple_roam(state_machine, delta)
+		reset_target_position()
+		reset_rotation_target()
 	else:
 		perform_task()
 	
@@ -50,12 +51,24 @@ func perform_task():
 	#			"extra_data" : dict
 	
 	if task == null:
-		set_target_position(global_position)
+		reset_target_position()
+		reset_rotation_target()
 		return
 	
 	var markers = SceneManager.current_scene.get_node("markers")
 	var locations = task["location"]
 	
+	# Wait
+	if task["task_type"] == ScheduleAgent.task_type.WAIT:
+		var target_marker = markers.get_node(locations[0])
+		if target_marker != null:
+			set_target_position(target_marker.global_position)
+			
+			# Face target marker's forward
+			var face_direction = state_machine.pathfinding.global_position + target_marker.basis * Vector3.FORWARD
+			set_target_rotation(face_direction)
+			
+			return
 	# Guard
 	if task["task_type"] == ScheduleAgent.task_type.GUARD:
 		if markers != null:
@@ -85,7 +98,8 @@ func perform_task():
 				return
 	
 	# Fallback
-	set_target_position(global_position)
+	reset_target_position()
+	reset_rotation_target()
 	
 
 func enemy_seen(enemy):

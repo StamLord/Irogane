@@ -339,23 +339,23 @@ script = ExtResource("2_cklb0")
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RootNode/first_person_rig" index="0"]
-bones/1/rotation = Quaternion(0.178927, 0.159705, 0.889976, 0.387843)
-bones/2/rotation = Quaternion(0.948318, -0.00302097, -0.0143201, 0.316985)
-bones/3/rotation = Quaternion(-1.26427e-08, 1.5038e-07, 0.105508, 0.994418)
-bones/5/rotation = Quaternion(-0.69978, 0.027008, -0.0224205, 0.713496)
+bones/1/rotation = Quaternion(0.17411, 0.132295, 0.90314, 0.369487)
+bones/2/rotation = Quaternion(0.936095, -0.0024954, -0.0144209, 0.351444)
+bones/3/rotation = Quaternion(-3.0367e-11, 1.5091e-07, 0.0220301, 0.999757)
+bones/4/rotation = Quaternion(0.305852, -0.250781, 0.436223, 0.808253)
+bones/5/rotation = Quaternion(-0.699971, 0.0270141, -0.0224133, 0.713308)
 bones/7/rotation = Quaternion(-0.428109, 0.427812, 0.571808, 0.553837)
-bones/9/rotation = Quaternion(-0.640314, 0.0292858, 0.00584312, 0.767533)
-bones/11/rotation = Quaternion(-0.492767, 0.492837, 0.508694, 0.505493)
+bones/9/rotation = Quaternion(-0.640314, 0.0292858, 0.00584313, 0.767533)
+bones/12/rotation = Quaternion(-0.661759, -0.00577078, 0.00400164, 0.749684)
 bones/13/rotation = Quaternion(-0.68214, 0.0193887, -0.0266009, 0.730481)
 bones/15/rotation = Quaternion(-0.531752, 0.531757, 0.454404, 0.477485)
 bones/16/rotation = Quaternion(-0.687517, 0.0195088, 0.00628456, 0.725879)
-bones/17/rotation = Quaternion(-0.65633, 0.0199581, 0.0229971, 0.753859)
+bones/17/rotation = Quaternion(-0.65633, 0.019958, 0.0229971, 0.753859)
 bones/19/rotation = Quaternion(-0.547271, 0.637391, 0.44929, 0.303917)
 bones/20/rotation = Quaternion(-0.660542, -0.000808335, -0.00480212, 0.750773)
-bones/21/rotation = Quaternion(-0.671666, -0.0168857, -0.00986223, 0.740596)
-bones/23/rotation = Quaternion(-0.361646, 0.452348, 0.761633, -0.290703)
-bones/24/rotation = Quaternion(0.38884, 0.224068, 0.202056, 0.8705)
-bones/25/rotation = Quaternion(-6.24525e-09, -1.58283e-07, -0.0846899, 0.996407)
+bones/23/rotation = Quaternion(-0.339622, 0.441979, 0.781613, -0.279987)
+bones/24/rotation = Quaternion(0.389781, 0.222248, 0.206088, 0.8696)
+bones/25/rotation = Quaternion(3.70224e-09, -1.58363e-07, -0.02198, 0.999758)
 bones/26/rotation = Quaternion(0.165465, 0.0895714, -0.605916, 0.772958)
 bones/27/rotation = Quaternion(-0.732812, -0.0280405, 0.0211152, 0.679525)
 bones/29/rotation = Quaternion(-0.414586, -0.401612, -0.577417, 0.577421)
@@ -384,11 +384,13 @@ magnet = Vector3(1, 0, 0)
 target_node = NodePath("../../../../target_r")
 
 [node name="right_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.460937, -0.88625, -0.0458049, 0.203082, 0.155586, -0.966722, 0.863884, 0.436296, 0.251697, 0.00148315, 0.00202298, 0.0152154)
+transform = Transform3D(0.634205, -0.764156, -0.117684, 0.202253, 0.31088, -0.92868, 0.746242, 0.565172, 0.351715, 0.00155163, 0.00223084, 0.0150367)
 bone_name = "hand_r"
 bone_idx = 3
 
 [node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/right_hand_attach" index="0"]
+collision_layer = 32
+collision_mask = 32
 input_ray_pickable = false
 monitoring = false
 monitorable = false
@@ -402,11 +404,13 @@ material_override = SubResource("StandardMaterial3D_xay4s")
 mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="left_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="8"]
-transform = Transform3D(0.135867, 0.482205, 0.865459, 0.0138429, 0.87255, -0.488329, -0.99063, 0.0783283, 0.111875, -0.000757176, 0.0056969, 0.014826)
+transform = Transform3D(0.233182, 0.412192, 0.880752, 0.112677, 0.888166, -0.445494, -0.965883, 0.203122, 0.16066, -0.000989868, 0.00571378, 0.0147265)
 bone_name = "hand_l"
 bone_idx = 25
 
 [node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/left_hand_attach" index="0"]
+collision_layer = 32
+collision_mask = 32
 input_ray_pickable = false
 monitoring = false
 monitorable = false
@@ -420,12 +424,14 @@ material_override = SubResource("StandardMaterial3D_2lwfv")
 mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="left_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="9"]
-transform = Transform3D(0.2153, 0.452357, 0.865459, 0.160906, 0.857697, -0.488329, -0.9632, 0.244395, 0.111875, -0.00218087, 0.00299748, 0.0140569)
+transform = Transform3D(0.251072, 0.401546, 0.880752, 0.151603, 0.882356, -0.445494, -0.956022, 0.245376, 0.160659, -0.00225365, 0.00293676, 0.0139543)
 bone_name = "arm_l"
 bone_idx = 24
 
 [node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/left_elbow_attach" index="0"]
 transform = Transform3D(1, -1.49012e-08, 2.32831e-10, -4.47035e-08, 1, 0, -7.91624e-09, -3.72529e-09, 1, 0, 0, 0)
+collision_layer = 32
+collision_mask = 32
 input_ray_pickable = false
 monitoring = false
 monitorable = false
@@ -439,12 +445,14 @@ material_override = SubResource("StandardMaterial3D_2lwfv")
 mesh = SubResource("SphereMesh_mag5f")
 
 [node name="right_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="10"]
-transform = Transform3D(0.636644, -0.769796, -0.045805, 0.165912, 0.194737, -0.966722, 0.753098, 0.607858, 0.251696, 0.00390592, 0.00141009, 0.0133023)
+transform = Transform3D(0.66725, -0.735478, -0.117684, 0.188363, 0.319488, -0.928681, 0.720623, 0.597495, 0.351715, 0.00386639, 0.00122533, 0.0131562)
 bone_name = "arm_r"
 bone_idx = 2
 
 [node name="hitbox" type="Area3D" parent="RootNode/first_person_rig/Skeleton3D/right_elbow_attach" index="0"]
 transform = Transform3D(1, -1.49012e-08, 2.32831e-10, -4.47035e-08, 1, 0, -7.91624e-09, -3.72529e-09, 1, 0, 0, 0)
+collision_layer = 32
+collision_mask = 32
 input_ray_pickable = false
 monitoring = false
 monitorable = false
@@ -477,6 +485,8 @@ transform = Transform3D(-0.211309, -0.365998, -0.906308, 0.866025, -0.5, 0, -0.4
 
 [node name="uppercut_hitbox" type="Area3D" parent="." index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.8)
+collision_layer = 32
+collision_mask = 32
 monitoring = false
 monitorable = false
 script = ExtResource("3_wmsrh")

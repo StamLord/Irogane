@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
-[ext_resource type="PackedScene" uid="uid://lsod62yvvsph" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
+[ext_resource type="PackedScene" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_nkdgy"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_y8at0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_hicbf"]
@@ -384,6 +384,8 @@ shader_parameter/fresnel = 6.0
 material = SubResource("ShaderMaterial_m4ab3")
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
+collision_layer = 129
+collision_mask = 129
 floor_constant_speed = true
 script = ExtResource("1_v2hnl")
 push_force = 2
@@ -439,11 +441,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 script = ExtResource("9_nfdeu")
 
 [node name="main_camera" type="Camera3D" parent="head"]
-cull_mask = 1048573
 current = true
 script = ExtResource("18_bhey3")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="head/main_camera"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -455,7 +457,7 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="weapons_camera" type="Camera3D" parent="head/main_camera/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -721,3 +723,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(-1, 0, -8.74228e-08, -1.19085e-08, 0.990679, 0.136217, 8.66079e-08, 0.136217, -0.990679, 0, 1.35377, -1.7465)
 fov = 55.0
 script = ExtResource("38_tsii1")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.796078, 0.686275, 0.360784, 1)

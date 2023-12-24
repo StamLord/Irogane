@@ -9,7 +9,7 @@ class_name AwarenessAgent
 
 @export var sight_angle = Vector2(90, 90)
 @export var sight_range = 10.0
-@export_flags_3d_physics var sight_obstacle_mask = 1
+@export_flags_3d_physics var sight_obstacle_mask = 17 # 1 - Default, 5 - Stealth
 
 @export var detection_rate = 1.0
 @export var undetection_rate = 0.5
@@ -145,10 +145,12 @@ func is_line_of_sight(agent):
 		sight_obstacle_mask,		# Collision mask for obstacles
 		[self]) 					# Exclude self
 	
+	query.collide_with_areas = true	# Collide with areas like stealth areas
+	
 	var result = space_state.intersect_ray(query)
 	
 	if result.has("collider"):
-		return result["collider"] == agent.owner
+		return result["collider"].owner == agent.owner
 	else:
 		return false
 	

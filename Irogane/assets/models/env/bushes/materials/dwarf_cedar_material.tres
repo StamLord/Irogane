@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dd2slokjfwyop"]
+
+[ext_resource type="Shader" uid="uid://cevq2cduslyaf" path="res://assets/shaders/bush_shader.res" id="1_admph"]
+[ext_resource type="Texture2D" uid="uid://cih44jct7dmcw" path="res://assets/models/env/bushes/textures/dwarf_cedar_2_dwarf_cedar_albedo.png" id="2_xoudk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_admph")
+shader_parameter/Texture2DParameter = ExtResource("2_xoudk")

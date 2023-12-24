@@ -9,7 +9,12 @@ enum task_type {WAIT, ROAM, GUARD, PATROL}
 
 # schedule = { "start_time" (string) : task (dict) }
 # "start_time" is a string in 24 hours format: 22:30
-@export var schedule = {}
+@export var schedule = {
+	"22:00" : {
+		"task_type" = task_type.WAIT,
+		"location" = ["guard_a"]
+	}}
+
 var sorted_task_hours = [] # Helper array to sort dictionary keys
 
 func _ready():

@@ -41,50 +41,100 @@ size = Vector3(1.8, 0.1, 0.5)
 mesh = SubResource("ArrayMesh_8ogw4")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
+start_position = Vector3(0, 0, 0.5)
+end_position = Vector3(0, 4, -3.5)
+
+[node name="player_steps" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.145)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58, -0.165723)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.920041, -0.488001)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25521, -0.796625)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59476, -1.09166)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92476, -1.40238)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2648, -1.72466)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59997, -2.03328)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.94092, -2.32293)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D10" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27092, -2.63365)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D11" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.61096, -2.95593)
 shape = SubResource("BoxShape3D_vct78")
 
-[node name="CollisionShape3D12" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="player_steps"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.94612, -3.26456)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.393134, -0.0245454)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723134, -0.335268)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06317, -0.657546)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39834, -0.96617)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73789, -1.26121)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.06789, -1.57193)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40793, -1.89421)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7431, -2.20283)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D21" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.08405, -2.49248)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.41405, -2.8032)
+shape = SubResource("BoxShape3D_vct78")
+
+[node name="CollisionShape3D23" type="CollisionShape3D" parent="player_steps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75409, -3.12548)
 shape = SubResource("BoxShape3D_vct78")
