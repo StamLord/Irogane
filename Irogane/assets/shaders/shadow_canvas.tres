@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://cjqdm7p38lo4r"]
+[gd_resource type="VisualShader" load_steps=12 format=3 uid="uid://cjqdm7p38lo4r"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_fy5yd"]
 default_input_values = [0, 0.0, 1, -2.0]
@@ -13,6 +13,14 @@ operator = 2
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_bkmvw"]
 default_input_values = [0, 0.0, 1, 1.0]
 
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mba04"]
+parameter_name = "specular"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mcawa"]
+parameter_name = "metalic"
+default_value_enabled = true
+
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_fro6x"]
 parameter_name = "Texture2DParameter"
 texture_filter = 1
@@ -21,7 +29,7 @@ texture_filter = 1
 source = 5
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_a7txj"]
-parameter_name = "FloatParameter"
+parameter_name = "rougness"
 default_value_enabled = true
 default_value = 1.0
 
@@ -37,7 +45,9 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_always, cull_disabled, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D Texture2DParameter : filter_nearest;
-uniform float FloatParameter = 1;
+uniform float metalic = 0;
+uniform float rougness = 1;
+uniform float specular = 0;
 uniform sampler2D shadow_mask : filter_nearest;
 
 
@@ -48,8 +58,16 @@ void fragment() {
 	n_out3p0 = texture(Texture2DParameter, UV);
 
 
+// FloatParameter:16
+	float n_out16p0 = metalic;
+
+
 // FloatParameter:4
-	float n_out4p0 = FloatParameter;
+	float n_out4p0 = rougness;
+
+
+// FloatParameter:15
+	float n_out15p0 = specular;
 
 
 	vec4 n_out5p0;
@@ -77,7 +95,9 @@ void fragment() {
 
 // Output:0
 	ALBEDO = vec3(n_out3p0.xyz);
+	METALLIC = n_out16p0;
 	ROUGHNESS = n_out4p0;
+	SPECULAR = n_out15p0;
 	NORMAL = n_out12p0;
 
 
@@ -104,4 +124,8 @@ nodes/fragment/12/node = SubResource("VisualShaderNodeVectorOp_chri4")
 nodes/fragment/12/position = Vector2(-120, 280)
 nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_bkmvw")
 nodes/fragment/14/position = Vector2(-300, 160)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 0, 3, 6, 0, 5, 2, 3, 0, 0, 0, 11, 0, 12, 1, 5, 0, 10, 0, 10, 0, 14, 0, 14, 0, 12, 0, 12, 0, 0, 8)
+nodes/fragment/15/node = SubResource("VisualShaderNodeFloatParameter_mba04")
+nodes/fragment/15/position = Vector2(60, 420)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatParameter_mcawa")
+nodes/fragment/16/position = Vector2(60, 640)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 0, 3, 6, 0, 5, 2, 3, 0, 0, 0, 11, 0, 12, 1, 5, 0, 10, 0, 10, 0, 14, 0, 14, 0, 12, 0, 12, 0, 0, 8, 15, 0, 0, 4, 16, 0, 0, 2)

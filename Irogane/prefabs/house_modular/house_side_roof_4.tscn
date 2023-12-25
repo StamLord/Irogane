@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh7pki6w7kn0m"]
+
+[ext_resource type="PackedScene" uid="uid://6e2p6kidk1cf" path="res://assets/models/env/house_modular/house_side_roof_4.glb" id="1_sp28w"]
+[ext_resource type="Material" uid="uid://iu2ua2dn6dey" path="res://assets/models/env/house_modular/materials/house_wall_c.tres" id="2_xhon3"]
+
+[node name="house_side_roof_4" instance=ExtResource("1_sp28w")]
+
+[node name="house_side_roof_42" parent="." index="0"]
+material_override = ExtResource("2_xhon3")

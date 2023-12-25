@@ -7,13 +7,13 @@ func _run():
 	update_prefab(edited_scene)
 	
 
-func update_prefab(edited_scene : Node, default_dimensions = Vector3(0.25, 0.25, 0.25), offset = Vector3.ZERO):
-	create_collider(edited_scene, default_dimensions, offset)
+func update_prefab(edited_scene : Node, default_dimensions = Vector3(0.25, 0.25, 0.25), collider_offset = Vector3.ZERO, collider_rotation = Vector3.ZERO):
+	create_collider(edited_scene, default_dimensions, collider_offset, collider_rotation)
 	# Replaces root node and returns new node
 	return scene_to_static_body(edited_scene)
 	
 
-func create_collider(edited_scene, default_dimensions, offset):
+func create_collider(edited_scene, default_dimensions, collider_offset, collider_rotation):
 	# Get or create a new collider
 	var collider = edited_scene.get_node("collider")
 	
@@ -46,7 +46,8 @@ func create_collider(edited_scene, default_dimensions, offset):
 	collider.shape = BoxShape3D.new()
 	collider.shape.size = dimensions
 	collider.position.y = collider.shape.size.y * 0.5
-	collider.position += offset
+	collider.position += collider_offset
+	collider.rotation_degrees = collider_rotation
 	collider.name = "collider"
 	
 

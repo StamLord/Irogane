@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://d36qux01iw2qi"]
+
+[ext_resource type="Shader" uid="uid://cjqdm7p38lo4r" path="res://assets/shaders/shadow_canvas.tres" id="1_3lops"]
+[ext_resource type="Shader" uid="uid://cotvcfr6unec4" path="res://assets/shaders/shadow_canvas_2.tres" id="1_ppmwf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aghui"]
+render_priority = 0
+shader = ExtResource("1_ppmwf")
+shader_parameter/FloatParameter = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44780"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_aghui")
+shader = ExtResource("1_3lops")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htvjm"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h5irr"]
+_surfaces = [{
+"aabb": AABB(-2, 0, -0.25, 4, 2.5, 0.500001),
+"format": 4097,
+"index_count": 24,
+"index_data": PackedByteArray(4, 0, 3, 0, 1, 0, 4, 0, 5, 0, 3, 0, 0, 0, 5, 0, 4, 0, 0, 0, 2, 0, 5, 0, 3, 0, 6, 0, 1, 0, 3, 0, 7, 0, 6, 0, 7, 0, 8, 0, 6, 0, 7, 0, 9, 0, 8, 0),
+"primitive": 3,
+"vertex_count": 10,
+"vertex_data": PackedByteArray(0, 0, 0, 192, 0, 0, 0, 0, 6, 0, 128, 190, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 128, 190, 0, 0, 0, 192, 0, 0, 32, 64, 3, 0, 128, 190, 0, 0, 0, 0, 0, 0, 32, 64, 3, 0, 128, 190, 0, 0, 128, 191, 0, 0, 0, 0, 9, 0, 128, 62, 0, 0, 128, 191, 0, 0, 32, 64, 12, 0, 128, 62, 0, 0, 128, 63, 0, 0, 0, 0, 9, 0, 128, 62, 0, 0, 128, 63, 0, 0, 32, 64, 12, 0, 128, 62, 0, 0, 0, 64, 0, 0, 0, 0, 6, 0, 128, 190, 0, 0, 0, 64, 0, 0, 32, 64, 3, 0, 128, 190)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bb85j"]
+resource_name = "byobu_screen_4_Plane_044"
+_surfaces = [{
+"aabb": AABB(-2, 0, -0.25, 4, 2.5, 0.500001),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0),
+"format": 4119,
+"index_count": 24,
+"index_data": PackedByteArray(7, 0, 5, 0, 2, 0, 7, 0, 9, 0, 5, 0, 0, 0, 8, 0, 6, 0, 0, 0, 3, 0, 8, 0, 4, 0, 10, 0, 1, 0, 4, 0, 12, 0, 10, 0, 13, 0, 14, 0, 11, 0, 13, 0, 15, 0, 14, 0),
+"material": SubResource("StandardMaterial3D_htvjm"),
+"primitive": 3,
+"vertex_count": 16,
+"vertex_data": PackedByteArray(0, 0, 0, 192, 0, 0, 0, 0, 6, 0, 128, 190, 84, 85, 255, 127, 84, 213, 255, 191, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 128, 190, 84, 85, 255, 127, 255, 255, 255, 63, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 128, 190, 170, 170, 255, 127, 255, 255, 84, 213, 0, 0, 0, 192, 0, 0, 32, 64, 3, 0, 128, 190, 84, 85, 255, 127, 84, 213, 255, 191, 0, 0, 0, 0, 0, 0, 32, 64, 3, 0, 128, 190, 84, 85, 255, 127, 255, 255, 255, 63, 0, 0, 0, 0, 0, 0, 32, 64, 3, 0, 128, 190, 170, 170, 255, 127, 255, 255, 84, 213, 0, 0, 128, 191, 0, 0, 0, 0, 9, 0, 128, 62, 84, 85, 255, 127, 84, 213, 255, 191, 0, 0, 128, 191, 0, 0, 0, 0, 9, 0, 128, 62, 170, 170, 255, 127, 255, 255, 84, 213, 0, 0, 128, 191, 0, 0, 32, 64, 12, 0, 128, 62, 84, 85, 255, 127, 84, 213, 255, 191, 0, 0, 128, 191, 0, 0, 32, 64, 12, 0, 128, 62, 170, 170, 255, 127, 255, 255, 84, 213, 0, 0, 128, 63, 0, 0, 0, 0, 9, 0, 128, 62, 84, 85, 255, 127, 255, 255, 255, 63, 0, 0, 128, 63, 0, 0, 0, 0, 9, 0, 128, 62, 170, 170, 255, 127, 255, 255, 255, 63, 0, 0, 128, 63, 0, 0, 32, 64, 12, 0, 128, 62, 84, 85, 255, 127, 255, 255, 255, 63, 0, 0, 128, 63, 0, 0, 32, 64, 12, 0, 128, 62, 170, 170, 255, 127, 255, 255, 255, 63, 0, 0, 0, 64, 0, 0, 0, 0, 6, 0, 128, 190, 170, 170, 255, 127, 255, 255, 255, 63, 0, 0, 0, 64, 0, 0, 32, 64, 3, 0, 128, 190, 170, 170, 255, 127, 255, 255, 255, 63)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_h5irr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xaxsb"]
+size = Vector3(1, 2.5, 0.2)
+
+[node name="byobu_screen_4" type="StaticBody3D"]
+
+[node name="byobu_screen_42" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_44780")
+mesh = SubResource("ArrayMesh_bb85j")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.898794, 0, -0.438371, 0, 1, 0, 0.438371, 0, 0.898794, -1.5, 1.25, 0)
+shape = SubResource("BoxShape3D_xaxsb")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.898794, 0, -0.438371, 0, 1, 0, 0.438371, 0, 0.898794, 0.5, 1.25, 0)
+shape = SubResource("BoxShape3D_xaxsb")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.898794, 0, 0.438371, 0, 1, 0, -0.438371, 0, 0.898794, -0.5, 1.25, 0)
+shape = SubResource("BoxShape3D_xaxsb")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.898794, 0, 0.438371, 0, 1, 0, -0.438371, 0, 0.898794, 1.5, 1.25, 0)
+shape = SubResource("BoxShape3D_xaxsb")

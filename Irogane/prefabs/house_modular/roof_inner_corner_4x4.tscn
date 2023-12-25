@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfvytsfewljto"]
+
+[ext_resource type="Texture2D" uid="uid://dhs0irk75heo4" path="res://assets/models/env/house_modular/roof_inner_corner_4x4_roof_tiles.png" id="1_eflly"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipfdq"]
+resource_name = "house_roof"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_eflly")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_70doi"]
+resource_name = "house_ceiling"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wjvne"]
+_surfaces = [{
+"aabb": AABB(-4, 0, -4, 4.00001, 2, 4.00001),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "house_roof",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 180, 0, 0, 128, 192, 0, 0, 0, 64, 0, 0, 128, 192, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 128, 192, 0, 0, 128, 192, 0, 0, 0, 64, 0, 0, 192, 180)
+}, {
+"aabb": AABB(-4, -0.2, -4, 4.00001, 2, 4.00001),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0, 0, 0, 1, 0, 3, 0),
+"name": "house_ceiling",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 208, 204, 76, 190, 0, 0, 0, 180, 0, 0, 128, 192, 104, 102, 230, 63, 0, 0, 128, 192, 0, 0, 0, 0, 104, 102, 230, 63, 0, 0, 128, 192, 0, 0, 128, 192, 104, 102, 230, 63, 0, 0, 192, 180)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ye7kx"]
+resource_name = "roof_inner_corner_4x4_Plane_043"
+_surfaces = [{
+"aabb": AABB(-4, 0, -4, 4.00001, 2, 4.00001),
+"attribute_data": PackedByteArray(0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 64, 180, 250, 255, 127, 63, 0, 24, 70, 57, 0, 0, 128, 52, 0, 0, 128, 63, 0, 0, 192, 52, 0, 0, 128, 63, 0, 0, 0, 52, 0, 0, 64, 52, 0, 128, 69, 56),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 2, 0, 4, 0, 1, 0, 5, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_ipfdq"),
+"name": "house_roof",
+"primitive": 3,
+"vertex_count": 6,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 180, 255, 127, 84, 213, 254, 255, 255, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 180, 170, 170, 84, 213, 254, 255, 0, 128, 0, 0, 128, 192, 0, 0, 0, 64, 0, 0, 128, 192, 255, 127, 84, 213, 254, 255, 255, 191, 0, 0, 128, 192, 0, 0, 0, 64, 0, 0, 128, 192, 170, 170, 84, 213, 254, 255, 0, 128, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 128, 192, 255, 127, 84, 213, 254, 255, 255, 191, 0, 0, 128, 192, 0, 0, 0, 64, 0, 0, 192, 180, 170, 170, 84, 213, 254, 255, 0, 128)
+}, {
+"aabb": AABB(-4, -0.2, -4, 4.00001, 2, 4.00001),
+"attribute_data": PackedByteArray(0, 0, 64, 180, 250, 255, 127, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 192, 52, 0, 24, 70, 57, 0, 0, 128, 52, 0, 0, 128, 63, 0, 0, 0, 52, 0, 0, 64, 52, 0, 128, 69, 56),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(1, 0, 4, 0, 3, 0, 0, 0, 2, 0, 5, 0),
+"material": SubResource("StandardMaterial3D_70doi"),
+"name": "house_ceiling",
+"primitive": 3,
+"vertex_count": 6,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 208, 204, 76, 190, 0, 0, 0, 180, 84, 85, 170, 42, 254, 255, 254, 127, 0, 0, 0, 0, 208, 204, 76, 190, 0, 0, 0, 180, 170, 170, 0, 0, 254, 255, 255, 63, 0, 0, 128, 192, 104, 102, 230, 63, 0, 0, 128, 192, 84, 85, 170, 42, 254, 255, 254, 127, 0, 0, 128, 192, 104, 102, 230, 63, 0, 0, 128, 192, 170, 170, 0, 0, 254, 255, 255, 63, 0, 0, 0, 0, 104, 102, 230, 63, 0, 0, 128, 192, 170, 170, 0, 0, 254, 255, 255, 63, 0, 0, 128, 192, 104, 102, 230, 63, 0, 0, 192, 180, 84, 85, 170, 42, 254, 255, 254, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wjvne")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pcw7q"]
+size = Vector3(4, 0.25, 4.5)
+
+[node name="roof_inner_corner_4x4" type="StaticBody3D"]
+
+[node name="roof_inner_corner_5x5_001" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_ye7kx")
+skeleton = NodePath("")
+
+[node name="collider1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.892586, -0.450878, 0, 0.450878, 0.892586, -2, 0.908, -1.95)
+shape = SubResource("BoxShape3D_pcw7q")
+
+[node name="collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.450878, 0.892586, 0, 0.892586, -0.450878, -1, -1.97085e-08, -3.90162e-08, -2, 0.908, -1.95)
+shape = SubResource("BoxShape3D_pcw7q")

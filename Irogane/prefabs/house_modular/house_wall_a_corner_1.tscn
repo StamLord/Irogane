@@ -1,6 +1,101 @@
-[gd_scene load_steps=2 format=3 uid="uid://qvbr1li7a8bd"]
+[gd_scene load_steps=11 format=3 uid="uid://qvbr1li7a8bd"]
 
-[ext_resource type="PackedScene" uid="uid://t80hclae4f1c" path="res://assets/models/env/house_modular/house_wall_a_corner_1.glb" id="1_0fdl5"]
+[ext_resource type="Texture2D" uid="uid://d36tq8t6oh1s7" path="res://assets/models/env/house_modular/house_wall_a_corner_1_house_wall.png" id="1_r83p8"]
+[ext_resource type="Texture2D" uid="uid://cwws2ms2dip6g" path="res://assets/models/env/house_modular/house_wall_a_corner_1_house_beam.png" id="2_ta2k7"]
+[ext_resource type="Material" uid="uid://vpgtxll8v0nh" path="res://assets/models/env/house_modular/materials/house_wall_a.tres" id="3_glsnx"]
+[ext_resource type="Material" uid="uid://cqomyhc0udu0m" path="res://assets/models/env/house_modular/materials/house_beam.tres" id="4_qw0dh"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ou4v8"]
+resource_name = "house_walll"
+transparency = 2
+alpha_scissor_threshold = 0.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_r83p8")
+roughness = 0.0
+texture_filter = 2
 
-[node name="house_wall_a_corner_1" instance=ExtResource("1_0fdl5")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1c3bq"]
+resource_name = "house_beam"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_ta2k7")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h3qfn"]
+_surfaces = [{
+"aabb": AABB(-1.78814e-07, 0, -1, 1, 4, 1.00001),
+"format": 4097,
+"index_count": 12,
+"index_data": PackedByteArray(2, 0, 1, 0, 3, 0, 2, 0, 0, 0, 1, 0, 0, 0, 4, 0, 1, 0, 0, 0, 5, 0, 4, 0),
+"name": "house_walll",
+"primitive": 3,
+"vertex_count": 6,
+"vertex_data": PackedByteArray(0, 0, 64, 180, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 64, 180, 0, 0, 128, 64, 0, 0, 0, 52, 253, 255, 127, 63, 0, 0, 0, 0, 0, 0, 0, 52, 252, 255, 127, 63, 0, 0, 128, 64, 0, 0, 0, 52, 0, 0, 64, 180, 0, 0, 128, 64, 253, 255, 127, 191, 0, 0, 64, 180, 0, 0, 0, 0, 253, 255, 127, 191)
+}, {
+"aabb": AABB(-0.1, 0, -0.3, 0.4, 3.96, 0.40001),
+"format": 4097,
+"index_count": 24,
+"index_data": PackedByteArray(1, 0, 7, 0, 3, 0, 1, 0, 6, 0, 7, 0, 2, 0, 5, 0, 0, 0, 2, 0, 4, 0, 5, 0, 3, 0, 4, 0, 2, 0, 3, 0, 7, 0, 4, 0, 0, 0, 6, 0, 1, 0, 0, 0, 5, 0, 6, 0),
+"name": "house_beam",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(224, 204, 204, 189, 0, 0, 0, 0, 224, 204, 204, 61, 146, 153, 153, 62, 0, 0, 0, 0, 224, 204, 204, 61, 224, 204, 204, 189, 0, 0, 0, 0, 148, 153, 153, 190, 146, 153, 153, 62, 0, 0, 0, 0, 148, 153, 153, 190, 224, 204, 204, 189, 164, 112, 125, 64, 148, 153, 153, 190, 224, 204, 204, 189, 164, 112, 125, 64, 224, 204, 204, 61, 146, 153, 153, 62, 164, 112, 125, 64, 224, 204, 204, 61, 146, 153, 153, 62, 164, 112, 125, 64, 148, 153, 153, 190)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lx57u"]
+resource_name = "house_wall_a_corner_1_Cube_045"
+_surfaces = [{
+"aabb": AABB(-1.78814e-07, 0, -1, 1, 4, 1.00001),
+"attribute_data": PackedByteArray(1, 0, 128, 62, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 1, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 178, 0, 0, 0, 0, 1, 0, 128, 62, 0, 0, 128, 63, 1, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63),
+"format": 4119,
+"index_count": 12,
+"index_data": PackedByteArray(4, 0, 3, 0, 5, 0, 4, 0, 1, 0, 3, 0, 0, 0, 6, 0, 2, 0, 0, 0, 7, 0, 6, 0),
+"material": SubResource("StandardMaterial3D_ou4v8"),
+"name": "house_walll",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 64, 180, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 64, 180, 0, 0, 0, 0, 0, 0, 0, 52, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 64, 180, 0, 0, 128, 64, 0, 0, 0, 52, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 64, 180, 0, 0, 128, 64, 0, 0, 0, 52, 255, 127, 255, 127, 255, 255, 255, 191, 253, 255, 127, 63, 0, 0, 0, 0, 0, 0, 0, 52, 255, 127, 255, 127, 255, 255, 255, 191, 252, 255, 127, 63, 0, 0, 128, 64, 0, 0, 0, 52, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 64, 180, 0, 0, 128, 64, 253, 255, 127, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 64, 180, 0, 0, 0, 0, 253, 255, 127, 191, 0, 0, 255, 127, 255, 127, 255, 191)
+}, {
+"aabb": AABB(-0.1, 0, -0.3, 0.4, 3.96, 0.40001),
+"attribute_data": PackedByteArray(40, 238, 207, 61, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 40, 238, 207, 61, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 40, 238, 207, 61, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 40, 238, 207, 61, 0, 0, 128, 63, 0, 0, 0, 0, 0, 215, 35, 60, 24, 238, 207, 61, 0, 215, 35, 60, 24, 238, 207, 61, 0, 215, 35, 60, 0, 0, 0, 0, 0, 215, 35, 60, 24, 238, 207, 61, 0, 215, 35, 60, 0, 0, 0, 0, 0, 215, 35, 60, 0, 0, 0, 0, 0, 215, 35, 60, 24, 238, 207, 61, 0, 215, 35, 60),
+"format": 4119,
+"index_count": 24,
+"index_data": PackedByteArray(3, 0, 15, 0, 7, 0, 3, 0, 13, 0, 15, 0, 4, 0, 10, 0, 0, 0, 4, 0, 8, 0, 10, 0, 6, 0, 9, 0, 5, 0, 6, 0, 14, 0, 9, 0, 1, 0, 12, 0, 2, 0, 1, 0, 11, 0, 12, 0),
+"material": SubResource("StandardMaterial3D_1c3bq"),
+"name": "house_beam",
+"primitive": 3,
+"vertex_count": 16,
+"vertex_data": PackedByteArray(224, 204, 204, 189, 0, 0, 0, 0, 224, 204, 204, 61, 0, 0, 255, 127, 255, 127, 255, 191, 224, 204, 204, 189, 0, 0, 0, 0, 224, 204, 204, 61, 255, 127, 255, 127, 255, 255, 255, 191, 146, 153, 153, 62, 0, 0, 0, 0, 224, 204, 204, 61, 255, 127, 255, 127, 255, 255, 255, 191, 146, 153, 153, 62, 0, 0, 0, 0, 224, 204, 204, 61, 255, 255, 255, 127, 255, 255, 255, 255, 224, 204, 204, 189, 0, 0, 0, 0, 148, 153, 153, 190, 0, 0, 255, 127, 255, 127, 255, 191, 224, 204, 204, 189, 0, 0, 0, 0, 148, 153, 153, 190, 255, 255, 255, 255, 0, 0, 255, 191, 146, 153, 153, 62, 0, 0, 0, 0, 148, 153, 153, 190, 255, 255, 255, 255, 0, 0, 255, 191, 146, 153, 153, 62, 0, 0, 0, 0, 148, 153, 153, 190, 255, 255, 255, 127, 255, 255, 255, 255, 224, 204, 204, 189, 164, 112, 125, 64, 148, 153, 153, 190, 0, 0, 255, 127, 255, 127, 255, 191, 224, 204, 204, 189, 164, 112, 125, 64, 148, 153, 153, 190, 255, 255, 255, 255, 0, 0, 255, 191, 224, 204, 204, 189, 164, 112, 125, 64, 224, 204, 204, 61, 0, 0, 255, 127, 255, 127, 255, 191, 224, 204, 204, 189, 164, 112, 125, 64, 224, 204, 204, 61, 255, 127, 255, 127, 255, 255, 255, 191, 146, 153, 153, 62, 164, 112, 125, 64, 224, 204, 204, 61, 255, 127, 255, 127, 255, 255, 255, 191, 146, 153, 153, 62, 164, 112, 125, 64, 224, 204, 204, 61, 255, 255, 255, 127, 255, 255, 255, 255, 146, 153, 153, 62, 164, 112, 125, 64, 148, 153, 153, 190, 255, 255, 255, 255, 0, 0, 255, 191, 146, 153, 153, 62, 164, 112, 125, 64, 148, 153, 153, 190, 255, 255, 255, 127, 255, 255, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_h3qfn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2mgdw"]
+size = Vector3(1, 4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qrqc8"]
+size = Vector3(0.4, 4, 0.4)
+
+[node name="house_wall_a_corner_1" type="StaticBody3D"]
+
+[node name="house_wall_a_corner_12" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_lx57u")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_glsnx")
+surface_material_override/1 = ExtResource("4_qw0dh")
+
+[node name="collider1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, 0)
+shape = SubResource("BoxShape3D_2mgdw")
+
+[node name="collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -0.5)
+shape = SubResource("BoxShape3D_2mgdw")
+
+[node name="collider3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.1, 2, -0.1)
+shape = SubResource("BoxShape3D_qrqc8")

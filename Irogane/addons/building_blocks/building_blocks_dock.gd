@@ -14,26 +14,35 @@ extends Control
 @onready var dimensions_input_y = %dimensions_y
 @onready var dimensions_input_z = %dimensions_z
 
+@onready var rotation_input_x = %rotations_x
+@onready var rotation_input_y = %rotations_y
+@onready var rotation_input_z = %rotations_z
+
 var create_prefab_script = load("res://addons/building_blocks/create_prefab.gd")
 var create_prefab_instance
 
 var open_files = []
 var output_folder = null
 
-var offset = Vector3.ZERO
+var collider_offset = Vector3.ZERO
 var default_dimensions = Vector3(0.25, 0.25, 0.25)
+var collider_rotation = Vector3(0.0, 0.0, 0.0)
 
 func _ready():
 	open_files.clear()
 	create_prefab_instance = create_prefab_script.new()
 	
-	offset_input_x.text = str(offset.x)
-	offset_input_y.text = str(offset.y)
-	offset_input_z.text = str(offset.z)
+	offset_input_x.text = str(collider_offset.x)
+	offset_input_y.text = str(collider_offset.y)
+	offset_input_z.text = str(collider_offset.z)
 	
 	dimensions_input_x.text = str(default_dimensions.x)
 	dimensions_input_y.text = str(default_dimensions.y)
 	dimensions_input_z.text = str(default_dimensions.z)
+	
+	rotation_input_x.text = str(collider_rotation.x)
+	rotation_input_y.text = str(collider_rotation.y)
+	rotation_input_z.text = str(collider_rotation.z)
 	
 
 func _on_open_model_pressed():
@@ -70,7 +79,7 @@ func _on_update_prefab_pressed():
 		
 		# Instantiate and update scene
 		var root = packed_scene.instantiate()
-		root = create_prefab_instance.update_prefab(root, default_dimensions, offset)
+		root = create_prefab_instance.update_prefab(root, default_dimensions, collider_offset, collider_rotation)
 		
 		# Pack and save scene to same file
 		var new_packed_scene = PackedScene.new()
@@ -82,19 +91,19 @@ func _on_update_prefab_pressed():
 
 func _on_offset_x_text_changed():
 	var parsed = offset_input_x.text.to_float()
-	offset.x = parsed
+	collider_offset.x = parsed
 #	offset_input_x.text = str(parsed)
 	
 
 func _on_offset_y_text_changed():
 	var parsed = offset_input_y.text.to_float()
-	offset.y = parsed
+	collider_offset.y = parsed
 #	offset_input_y.text = str(parsed)
 	
 
 func _on_offset_z_text_changed():
 	var parsed = offset_input_z.text.to_float()
-	offset.z = parsed
+	collider_offset.z = parsed
 	
 
 func _on_dimensions_x_text_changed():
@@ -112,7 +121,24 @@ func _on_dimensions_z_text_changed():
 	default_dimensions.z = parsed
 	
 
+func _on_rotations_x_text_changed():
+	var parsed = rotation_input_x.text.to_float()
+	collider_rotation.x = parsed
+	
+
+func _on_rotations_y_text_changed():
+	var parsed = rotation_input_y.text.to_float()
+	collider_rotation.y = parsed
+	
+
+func _on_rotations_z_text_changed():
+	var parsed = rotation_input_z.text.to_float()
+	collider_rotation.z = parsed
+	
+
 func _on_clear_files_pressed():
 	open_files = []
 	update_open_files_label()
 	
+
+

@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://c7625k88fvdqq"]
+
+[ext_resource type="Shader" uid="uid://cotvcfr6unec4" path="res://assets/shaders/shadow_canvas_2.tres" id="1_iu6qr"]
+[ext_resource type="Texture2D" uid="uid://dogmyl7fbb76d" path="res://assets/models/env/house_modular/textures/house_door_emission.png" id="2_71vna"]
+[ext_resource type="Shader" uid="uid://cjqdm7p38lo4r" path="res://assets/shaders/shadow_canvas.tres" id="3_q0bbb"]
+[ext_resource type="Texture2D" uid="uid://bg4w6c844lc3x" path="res://assets/models/env/house_modular/textures/house_door.png" id="4_4vogw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
+render_priority = 0
+shader = ExtResource("1_iu6qr")
+shader_parameter/FloatParameter = 1.0
+shader_parameter/shadow_mask = ExtResource("2_71vna")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("3_q0bbb")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 1.0
+shader_parameter/Texture2DParameter = ExtResource("4_4vogw")
+shader_parameter/shadow_mask = ExtResource("2_71vna")
