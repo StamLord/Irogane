@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgttt2pyu3noh"]
+[gd_scene load_steps=7 format=3 uid="uid://cgttt2pyu3noh"]
 
 [ext_resource type="Material" uid="uid://b0n44r6g5j4ky" path="res://prefabs/env/lanterns/andon_material.tres" id="1_n2xvs"]
+[ext_resource type="Script" path="res://scripts/interactive/Carriable.gd" id="2_prmf4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7alq0"]
 _surfaces = [{
@@ -35,6 +36,9 @@ shadow_mesh = SubResource("ArrayMesh_7alq0")
 [sub_resource type="BoxShape3D" id="BoxShape3D_3k6l8"]
 size = Vector3(0.5, 1.1, 0.5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qesac"]
+size = Vector3(0.6, 1, 0.6)
+
 [node name="andon" type="RigidBody3D"]
 
 [node name="andon2" type="MeshInstance3D" parent="."]
@@ -50,3 +54,13 @@ shape = SubResource("BoxShape3D_3k6l8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 light_color = Color(1, 0.827451, 0.368627, 1)
 shadow_enabled = true
+
+[node name="Carriable" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_prmf4")
+interaction_text = ""
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Carriable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape3D_qesac")
