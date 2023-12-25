@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ovsmncqwo15s"]
+
+[ext_resource type="PackedScene" uid="uid://7ft6i86idgxm" path="res://assets/models/env/house_modular/roof_pipe_mid_4.glb" id="1_efypb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ovm1"]
+size = Vector3(0.3, 0.3, 4)
+
+[node name="roof_pipe_mid_4" instance=ExtResource("1_efypb")]
+
+[node name="roof_pipe_mid_42" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_2ovm1")
