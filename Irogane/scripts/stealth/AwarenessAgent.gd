@@ -150,7 +150,9 @@ func is_line_of_sight(agent):
 	var result = space_state.intersect_ray(query)
 	
 	if result.has("collider"):
-		return result["collider"].owner == agent.owner
+		# Either the collider is the stealth agent
+		# or the collider is the stealth agent's owner - like CharacterBody3D
+		return result["collider"] == agent or result["collider"] == agent.owner
 	else:
 		return false
 	
