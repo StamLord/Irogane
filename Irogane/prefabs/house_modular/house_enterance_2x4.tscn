@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0pqs7spu6bwg"]
+[gd_scene load_steps=14 format=3 uid="uid://b0pqs7spu6bwg"]
 
 [ext_resource type="Texture2D" uid="uid://bpaujjcxvwdnc" path="res://assets/models/env/house_modular/textures/house_wall.png" id="1_5ji2p"]
 [ext_resource type="Texture2D" uid="uid://bk1tvtq3ip2i4" path="res://assets/models/env/house_modular/textures/house_beam.png" id="2_5i6b2"]
+[ext_resource type="Material" uid="uid://vpgtxll8v0nh" path="res://assets/models/env/house_modular/materials/house_wall_a.tres" id="3_eldly"]
 [ext_resource type="PackedScene" uid="uid://dk5wjqc66k27r" path="res://prefabs/house_modular/house_door_1x3.tscn" id="3_nprcv"]
+[ext_resource type="Material" uid="uid://cqomyhc0udu0m" path="res://assets/models/env/house_modular/materials/house_beam.tres" id="4_e0keh"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="4_ro4sg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb0yt"]
@@ -88,6 +90,8 @@ size = Vector3(1, 3, 0.1)
 [node name="house_enterance_2x42" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_vomv4")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_eldly")
+surface_material_override/1 = ExtResource("4_e0keh")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -0.1)
