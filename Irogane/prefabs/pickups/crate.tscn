@@ -1,7 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://cx8myxrl1yfr4"]
+[gd_scene load_steps=28 format=3 uid="uid://cx8myxrl1yfr4"]
 
 [ext_resource type="Script" path="res://scripts/interactive/Carriable.gd" id="1_xbvml"]
-[ext_resource type="Texture2D" uid="uid://fdjjcjkxdo7o" path="res://icon.svg" id="2_rnmam"]
 [ext_resource type="Script" path="res://scripts/stealth/physics_sound_emitter.gd" id="3_0lj7c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nefr"]
@@ -9,100 +8,18 @@ size = Vector3(1.1, 1.1, 1.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_76ii7"]
 
-[sub_resource type="Shader" id="Shader_mol42"]
-code = "//Copyright 2021 redvillusion
-//
-//Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files 
-//(the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, 
-//merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished
-//to do so, subject to the following conditions:
-//
-//The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-//THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
-//OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
-//LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR 
-//IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
-shader_type spatial;
- 
-render_mode unshaded, cull_front;
- 
-uniform float on : hint_range(0.0,1.0);
-uniform float border_width : hint_range(0,1,0.001);
-uniform vec4 color : source_color = vec4(1.0);
- 
-uniform bool pattern;
-uniform float line_number : hint_range(0,100,1);
-uniform float line_sharpness : hint_range(0,10,0.001);
- 
-uniform bool pulse;
-uniform float pulse_speed : hint_range(0,100,1);
- 
-uniform bool line_movement;
-uniform float line_movement_speed : hint_range(-100,100,1);
- 
-uniform bool wave;
- 
-void vertex() {
-	VERTEX += VERTEX * border_width * on;
-}
- 
-void fragment() {
-	ALBEDO = color.xyz;
-	if (pattern) 
-	{
-		vec2 uv = VERTEX.xy * line_number;
-		ALBEDO = sin(uv.xxx + uv.yyy) * line_sharpness * color.xyz;
- 
-		if (pulse)
-		{
-			ALBEDO = sin(uv.xxx + uv.yyy) * line_sharpness * color.xyz * sin(TIME * pulse_speed);
-		}
- 
-		if (line_movement)
-		{
-			ALBEDO = sin(uv.xxx + uv.yyy + TIME * line_movement_speed) * line_sharpness * color.xyz;
-		}
- 
-		if (pulse && line_movement)
-		{
-			ALBEDO = sin(uv.xxx + uv.yyy + TIME * line_movement_speed) * line_sharpness * color.xyz * sin(TIME * pulse_speed);
-		}
-	}
- 
-	if (wave)
-	{
-		vec2 uv = VERTEX.xy * line_number;
-		ALBEDO = sin(uv.xxx + TIME * line_movement_speed) * line_sharpness * color.xyz;
-	}
- 
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3j7et"]
-resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_mol42")
-shader_parameter/on = 0.0
-shader_parameter/border_width = 0.1
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/pattern = false
-shader_parameter/line_number = 0.0
-shader_parameter/line_sharpness = 0.0
-shader_parameter/pulse = false
-shader_parameter/pulse_speed = 0.0
-shader_parameter/line_movement = false
-shader_parameter/line_movement_speed = 0.0
-shader_parameter/wave = false
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxr8i"]
-resource_local_to_scene = true
-next_pass = SubResource("ShaderMaterial_3j7et")
-albedo_color = Color(0.337255, 0.337255, 0.337255, 1)
-albedo_texture = ExtResource("2_rnmam")
-uv1_scale = Vector3(3, 2, 3)
-
 [sub_resource type="BoxMesh" id="BoxMesh_8tndr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1pelj"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k554t"]
+resource_local_to_scene = true
+albedo_color = Color(0.337255, 0.337255, 0.337255, 1)
+albedo_texture = SubResource("CompressedTexture2D_1pelj")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
+uv1_scale = Vector3(3, 2, 3)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_45vjg"]
 
@@ -281,12 +198,13 @@ mass = 10.0
 max_contacts_reported = 1
 contact_monitor = true
 
-[node name="interactive_area" type="Area3D" parent="."]
+[node name="interactive_area" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_xbvml")
 weight = 1
 interaction_text = ""
+mesh = NodePath("../mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 shape = SubResource("BoxShape3D_5nefr")
@@ -295,8 +213,8 @@ shape = SubResource("BoxShape3D_5nefr")
 shape = SubResource("BoxShape3D_76ii7")
 
 [node name="mesh" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_uxr8i")
 mesh = SubResource("BoxMesh_8tndr")
+surface_material_override/0 = SubResource("StandardMaterial3D_k554t")
 
 [node name="sound_emitter" type="Node3D" parent="." node_paths=PackedStringArray("rigidbody")]
 script = ExtResource("3_0lj7c")

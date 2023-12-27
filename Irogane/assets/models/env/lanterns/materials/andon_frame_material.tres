@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ylsaxug58faq"]
+
+[ext_resource type="Texture2D" uid="uid://bmmq4tv2l6iap" path="res://assets/models/env/lanterns/andon.png" id="1_4asi1"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "andon"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_4asi1")
+metallic_specular = 0.0
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.5
+emission_operator = 1
+emission_texture = ExtResource("1_4asi1")
+texture_filter = 2
