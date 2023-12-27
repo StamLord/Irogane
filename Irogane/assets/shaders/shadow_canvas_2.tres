@@ -8,7 +8,7 @@ texture_filter = 1
 source = 5
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mo5kg"]
-parameter_name = "FloatParameter"
+parameter_name = "roughness"
 default_value_enabled = true
 default_value = 1.0
 
@@ -28,7 +28,7 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D shadow_mask : filter_nearest;
-uniform float FloatParameter = 1;
+uniform float roughness = 1;
 
 
 
@@ -44,7 +44,7 @@ void fragment() {
 
 
 // FloatParameter:4
-	float n_out4p0 = FloatParameter;
+	float n_out4p0 = roughness;
 
 
 // Output:0
@@ -54,6 +54,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-513.664, 77.8314)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_46uoy")
 nodes/fragment/2/position = Vector2(-320, -240)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_q0ttm")
