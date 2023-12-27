@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
 render_priority = 0
 shader = ExtResource("1_iu6qr")
-shader_parameter/FloatParameter = 1.0
+shader_parameter/roughness = 1.0
 shader_parameter/shadow_mask = ExtResource("2_71vna")
 
 [resource]
