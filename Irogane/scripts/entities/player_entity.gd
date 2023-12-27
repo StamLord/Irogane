@@ -5,6 +5,8 @@ var player_name
 var sex
 var initial_scene_position = null
 
+var inventory = null
+
 var model_node_path = "model/Character"
 
 const PLAYER_SCENE_PATH = "res://prefabs/entities/player.tscn"
@@ -68,4 +70,12 @@ func set_sex(new_sex):
 
 func get_player_name():
 	return player_name
+	
+
+func set_inventory(_inventory):
+	inventory = _inventory
+	
+
+func get_inventory():
+	return inventory
 	
