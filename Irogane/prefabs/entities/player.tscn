@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=95 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -31,8 +31,11 @@
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
+[ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
+[ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="36_y7hmg"]
+[ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
@@ -384,6 +387,9 @@ shader_parameter/fresnel = 6.0
 [sub_resource type="SphereMesh" id="SphereMesh_qy1qf"]
 material = SubResource("ShaderMaterial_m4ab3")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_86t26"]
+radius = 5.0
+
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
 collision_layer = 129
 collision_mask = 129
@@ -732,3 +738,122 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(-1, 0, -8.74228e-08, -1.19085e-08, 0.990679, 0.136217, 8.66079e-08, 0.136217, -0.990679, 0, 1.35377, -1.7465)
 fov = 55.0
 script = ExtResource("38_tsii1")
+
+[node name="light_detection" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("35_853ua")
+
+[node name="Control" type="Control" parent="light_detection"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="light_detection/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 843.0
+offset_top = -64.0
+offset_right = 875.0
+offset_bottom = -32.0
+grow_vertical = 2
+
+[node name="top_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 0
+
+[node name="top_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer/top_viewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+fov = 55.0
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="light_detection/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -64.0
+offset_right = -231.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="bot_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 0
+
+[node name="bot_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer2/bot_viewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+fov = 55.0
+
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="light_detection/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -292.0
+offset_top = -118.0
+offset_right = -260.0
+offset_bottom = -86.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="front_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer3"]
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 0
+
+[node name="front_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer3/front_viewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, -1)
+fov = 25.0
+
+[node name="light_stone" type="TextureRect" parent="light_detection/Control"]
+texture_filter = 1
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -82.0
+offset_right = 100.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("36_so2kt")
+
+[node name="light_stone_frame" type="TextureRect" parent="light_detection/Control"]
+modulate = Color(0.596078, 0.596078, 0.596078, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -82.0
+offset_right = 100.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("37_gcigv")
+
+[node name="light_cast" type="ShapeCast3D" parent="light_detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_86t26")
+collision_mask = 64
