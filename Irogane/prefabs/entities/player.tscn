@@ -647,8 +647,9 @@ unique_name_in_owner = true
 target_position = Vector3(0, 2.5, 0)
 
 [node name="ledge_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 target_position = Vector3(0, -1.75, 0)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 

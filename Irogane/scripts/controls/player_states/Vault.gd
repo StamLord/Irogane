@@ -16,8 +16,8 @@ var target_collider
 var target_position
 var direction = Vector3.ZERO
 
-var startTime
-var startPos
+var start_time
+var start_position
 var duration
 var is_crouch
 
@@ -34,14 +34,15 @@ func Enter(body):
 	
 	# Get our collider and end position
 	target_collider = ledge_check.get_collider()
-	target_position = ledge_check.get_collision_point()
+	# Target position should have a forward offset of 0.25 units 
+	target_position = ledge_check.get_collision_point() + body.global_transform.basis * Vector3.FORWARD * 0.25
 	
 	# Freeze rigidbody so we don't push it away
 	if target_collider is RigidBody3D:
 		target_collider.freeze = true
 	
-	startTime = Time.get_ticks_msec()
-	startPos = body.position
+	start_time = Time.get_ticks_msec()
+	start_position = body.position
 	duration = climb_time * 1000 # Convert to milliseconds
 	
 	head.change_tilt(20.0, 0.1)
@@ -60,10 +61,11 @@ func Update(delta):
 	pass
 
 func PhysicsUpdate(body, delta):
-	var t = (Time.get_ticks_msec() - startTime) / duration
-	body.position = lerp(startPos, target_position, t)
+	var t = (Time.get_ticks_msec() - start_time) / duration
+	body.position = lerp(start_position, target_position, t)
 	
-	if(Time.get_ticks_msec() - startTime > duration):
+	if(Time.get_ticks_msec() - start_time > duration):
+		body.position = target_position
 		if head_check.is_colliding():
 			Transitioned.emit(self, "crouch")
 		else:
@@ -86,3 +88,11 @@ func Exit(body):
 		stand_collider.disabled = false
 		
 	vault_ended.emit(target_position)
+	
+
+func get_time_since_last_vault():
+	if start_time == null:
+		return INF
+	
+	return Time.get_ticks_msec() - start_time
+	
