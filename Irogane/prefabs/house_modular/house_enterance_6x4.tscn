@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnj17ptkog7gs"]
+[gd_scene load_steps=18 format=3 uid="uid://bnj17ptkog7gs"]
 
 [ext_resource type="Texture2D" uid="uid://cln8b8fxgabho" path="res://assets/models/env/house_modular/house_enterance_6x4_house_wall.png" id="1_s7pp6"]
 [ext_resource type="Texture2D" uid="uid://c57g6tripslpb" path="res://assets/models/env/house_modular/house_enterance_6x4_house_beam.png" id="2_r7c2h"]
 [ext_resource type="PackedScene" uid="uid://ce6i28njjdi1p" path="res://prefabs/house_modular/house_door_1-5x3.tscn" id="3_r6wuw"]
+[ext_resource type="Texture2D" uid="uid://bg4w6c844lc3x" path="res://assets/models/env/house_modular/textures/house_door.png" id="4_01rsa"]
+[ext_resource type="Material" uid="uid://c7625k88fvdqq" path="res://assets/models/env/house_modular/materials/house_door.tres" id="5_061r3"]
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="6_i5tyh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mmum"]
 resource_name = "house_walll"
@@ -79,6 +82,50 @@ size = Vector3(6, 1, 0.25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gu6g"]
 size = Vector3(0.2, 4, 0.4)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i52us"]
+resource_name = "house_door"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_01rsa")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uw72d"]
+_surfaces = [{
+"aabb": AABB(-0.75, 0, -0.0278937, 1.5, 3, 0.0500096),
+"format": 4097,
+"index_count": 36,
+"index_data": PackedByteArray(2, 0, 7, 0, 3, 0, 2, 0, 6, 0, 7, 0, 4, 0, 1, 0, 5, 0, 4, 0, 0, 0, 1, 0, 3, 0, 5, 0, 1, 0, 3, 0, 7, 0, 5, 0, 6, 0, 0, 0, 4, 0, 6, 0, 2, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 6, 0, 5, 0, 7, 0, 6, 0, 4, 0, 5, 0),
+"name": "house_door",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 64, 191, 0, 0, 0, 0, 80, 23, 181, 60, 0, 0, 64, 191, 0, 0, 64, 64, 80, 23, 181, 60, 0, 0, 64, 191, 0, 0, 0, 0, 96, 129, 228, 188, 0, 0, 64, 191, 0, 0, 64, 64, 96, 129, 228, 188, 0, 0, 64, 63, 0, 0, 0, 0, 80, 23, 181, 60, 0, 0, 64, 63, 0, 0, 64, 64, 80, 23, 181, 60, 0, 0, 64, 63, 0, 0, 0, 0, 96, 129, 228, 188, 0, 0, 64, 63, 0, 0, 64, 64, 96, 129, 228, 188)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hypur"]
+resource_name = "house_door_1-5x3_Cube_054"
+_surfaces = [{
+"aabb": AABB(-0.75, 0, -0.0278937, 1.5, 3, 0.0500096),
+"attribute_data": PackedByteArray(75, 241, 127, 63, 0, 0, 64, 63, 0, 0, 128, 62, 165, 249, 67, 63, 0, 0, 128, 62, 166, 6, 64, 63, 0, 0, 128, 62, 128, 221, 63, 63, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 128, 62, 166, 6, 64, 63, 165, 240, 127, 63, 165, 249, 67, 63, 0, 0, 128, 62, 166, 6, 64, 63, 255, 255, 31, 63, 167, 240, 63, 63, 0, 0, 128, 62, 164, 249, 67, 63, 1, 0, 32, 63, 0, 0, 64, 52, 0, 0, 128, 62, 164, 249, 67, 63, 128, 155, 68, 59, 165, 249, 67, 63, 255, 255, 31, 63, 167, 240, 63, 63, 165, 240, 127, 63, 165, 249, 67, 63, 1, 0, 32, 63, 0, 0, 128, 51, 128, 155, 68, 59, 166, 6, 64, 63, 0, 0, 128, 62, 164, 249, 67, 63, 128, 155, 68, 59, 166, 6, 64, 63, 0, 0, 128, 62, 166, 6, 64, 63, 75, 241, 127, 63, 0, 0, 64, 63, 0, 0, 128, 62, 0, 0, 0, 0, 128, 155, 68, 59, 165, 249, 67, 63, 0, 0, 128, 62, 128, 221, 63, 63),
+"format": 4119,
+"index_count": 36,
+"index_data": PackedByteArray(8, 0, 21, 0, 10, 0, 8, 0, 19, 0, 21, 0, 13, 0, 4, 0, 15, 0, 13, 0, 2, 0, 4, 0, 11, 0, 16, 0, 5, 0, 11, 0, 22, 0, 16, 0, 18, 0, 1, 0, 12, 0, 18, 0, 7, 0, 1, 0, 0, 0, 9, 0, 3, 0, 0, 0, 6, 0, 9, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0),
+"material": SubResource("StandardMaterial3D_i52us"),
+"name": "house_door",
+"primitive": 3,
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 64, 191, 0, 0, 0, 0, 80, 23, 181, 60, 0, 0, 255, 127, 255, 127, 0, 128, 0, 0, 64, 191, 0, 0, 0, 0, 80, 23, 181, 60, 255, 127, 0, 0, 0, 0, 255, 191, 0, 0, 64, 191, 0, 0, 0, 0, 80, 23, 181, 60, 255, 127, 255, 127, 225, 255, 240, 191, 0, 0, 64, 191, 0, 0, 64, 64, 80, 23, 181, 60, 0, 0, 255, 127, 255, 127, 8, 128, 0, 0, 64, 191, 0, 0, 64, 64, 80, 23, 181, 60, 255, 127, 255, 127, 246, 255, 250, 191, 0, 0, 64, 191, 0, 0, 64, 64, 80, 23, 181, 60, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 64, 191, 0, 0, 0, 0, 96, 129, 228, 188, 0, 0, 255, 127, 255, 127, 0, 128, 0, 0, 64, 191, 0, 0, 0, 0, 96, 129, 228, 188, 255, 127, 0, 0, 0, 0, 255, 191, 0, 0, 64, 191, 0, 0, 0, 0, 96, 129, 228, 188, 255, 255, 255, 255, 20, 0, 244, 191, 0, 0, 64, 191, 0, 0, 64, 64, 96, 129, 228, 188, 0, 0, 255, 127, 255, 127, 8, 128, 0, 0, 64, 191, 0, 0, 64, 64, 96, 129, 228, 188, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 64, 191, 0, 0, 64, 64, 96, 129, 228, 188, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 64, 63, 0, 0, 0, 0, 80, 23, 181, 60, 255, 127, 0, 0, 0, 0, 255, 191, 0, 0, 64, 63, 0, 0, 0, 0, 80, 23, 181, 60, 255, 127, 255, 127, 234, 255, 244, 191, 0, 0, 64, 63, 0, 0, 0, 0, 80, 23, 181, 60, 255, 255, 255, 127, 255, 127, 0, 128, 0, 0, 64, 63, 0, 0, 64, 64, 80, 23, 181, 60, 255, 127, 255, 127, 254, 255, 255, 191, 0, 0, 64, 63, 0, 0, 64, 64, 80, 23, 181, 60, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 64, 63, 0, 0, 64, 64, 80, 23, 181, 60, 255, 255, 255, 127, 17, 128, 0, 128, 0, 0, 64, 63, 0, 0, 0, 0, 96, 129, 228, 188, 255, 127, 0, 0, 0, 0, 255, 191, 0, 0, 64, 63, 0, 0, 0, 0, 96, 129, 228, 188, 255, 255, 255, 255, 29, 0, 240, 191, 0, 0, 64, 63, 0, 0, 0, 0, 96, 129, 228, 188, 255, 255, 255, 127, 255, 127, 0, 128, 0, 0, 64, 63, 0, 0, 64, 64, 96, 129, 228, 188, 255, 255, 255, 255, 8, 0, 250, 191, 0, 0, 64, 63, 0, 0, 64, 64, 96, 129, 228, 188, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 64, 63, 0, 0, 64, 64, 96, 129, 228, 188, 255, 255, 255, 127, 17, 128, 0, 128)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_uw72d")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m5h1e"]
+size = Vector3(1.5, 3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3o4wg"]
+size = Vector3(1.5, 3, 0.1)
+
 [node name="house_enterance_6x4" type="StaticBody3D"]
 
 [node name="house_enterance_6x42" type="MeshInstance3D" parent="."]
@@ -100,11 +147,63 @@ shape = SubResource("BoxShape3D_4gu6g")
 [node name="house_door_1-5x3" parent="." instance=ExtResource("3_r6wuw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.125, 0, 0)
 
-[node name="house_door_1-5x4" parent="." instance=ExtResource("3_r6wuw")]
+[node name="house_door_1-5x4" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625, 0, -0.05)
 
-[node name="house_door_1-5x5" parent="." instance=ExtResource("3_r6wuw")]
+[node name="house_door_1-5x32" type="MeshInstance3D" parent="house_door_1-5x4"]
+ignore_occlusion_culling = true
+mesh = SubResource("ArrayMesh_hypur")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_061r3")
+
+[node name="collider" type="CollisionShape3D" parent="house_door_1-5x4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_m5h1e")
+
+[node name="Switch" type="Area3D" parent="house_door_1-5x4" node_paths=PackedStringArray("mesh")]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("6_i5tyh")
+on_text = "Close"
+on_position = Vector3(1.5, 0, 0)
+animation_time = 0.25
+interaction_text = "Open"
+mesh = NodePath("../house_door_1-5x32")
+
+[node name="collider" type="CollisionShape3D" parent="house_door_1-5x4/Switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_3o4wg")
+
+[node name="house_door_1-5x5" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.875, 0, -0.05)
+
+[node name="house_door_1-5x32" type="MeshInstance3D" parent="house_door_1-5x5"]
+ignore_occlusion_culling = true
+mesh = SubResource("ArrayMesh_hypur")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_061r3")
+
+[node name="collider" type="CollisionShape3D" parent="house_door_1-5x5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_m5h1e")
+
+[node name="Switch" type="Area3D" parent="house_door_1-5x5" node_paths=PackedStringArray("mesh")]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("6_i5tyh")
+on_text = "Close"
+on_position = Vector3(1.5, 0, 0)
+animation_time = 0.25
+interaction_text = "Open"
+mesh = NodePath("../house_door_1-5x32")
+
+[node name="collider" type="CollisionShape3D" parent="house_door_1-5x5/Switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_3o4wg")
 
 [node name="house_door_1-5x6" parent="." instance=ExtResource("3_r6wuw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.375, 0, 0)
