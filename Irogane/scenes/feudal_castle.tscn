@@ -2257,6 +2257,7 @@ gizmo_extents = 1.0
 
 [node name="female" parent="." instance=ExtResource("29_hxdj7")]
 transform = Transform3D(-0.920975, 0, 0.389622, 0, 1, 0, -0.389622, 0, -0.920975, -0.604484, -0.683626, 0.776157)
+visible = false
 
 [node name="NpcStateMachine" parent="." instance=ExtResource("23_16by5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 2)
@@ -2335,7 +2336,7 @@ transform = Transform3D(-0.91938, 0, -0.241472, 0, 0.675623, 0, 0.246349, 0, -0.
 [node name="dwarf_cedar_6" parent="bushes" instance=ExtResource("32_70trj")]
 transform = Transform3D(-0.367971, 0, 1.35957, 0, 0.883271, 0, -1.37329, 0, -0.364297, 6.01735, 9.53674e-07, -20.0418)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1.54597, -7)
 light_color = Color(0.972549, 0.792157, 0.360784, 1)
 shadow_enabled = true
