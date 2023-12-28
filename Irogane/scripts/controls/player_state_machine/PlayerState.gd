@@ -5,16 +5,20 @@ signal Transitioned(state, new_state_name)
 
 func Enter(_body):
 	pass
+	
 
 func Update(_delta):
 	pass
 	
+
 func PhysicsUpdate(_body, _delta):
 	pass
 	
+
 func Exit(_body):
 	pass
 	
+
 func PerformCollisions(body, speed, push_force, delta):
 	for i in body.get_slide_collision_count():
 		var collision = body.get_slide_collision(i)
@@ -30,3 +34,4 @@ func PerformCollisions(body, speed, push_force, delta):
 			collider.apply_impulse(-collision.get_normal() * 0.01, collision.get_position())
 		elif collider is CharacterBody3D:
 			collider.velocity += -collision.get_normal() * speed * push_force * delta
+	

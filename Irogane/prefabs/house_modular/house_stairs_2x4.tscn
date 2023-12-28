@@ -35,15 +35,11 @@ shadow_mesh = SubResource("ArrayMesh_y34ws")
 [sub_resource type="BoxShape3D" id="BoxShape3D_vct78"]
 size = Vector3(1.8, 0.1, 0.5)
 
-[node name="house_stairs_2x4" type="StaticBody3D"]
+[node name="house_stairs_2x4" type="Node3D"]
 
 [node name="house_stairs_2x42" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_8ogw4")
 skeleton = NodePath("")
-
-[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
-start_position = Vector3(0, 0, 0.5)
-end_position = Vector3(0, 4, -3.5)
 
 [node name="player_steps" type="StaticBody3D" parent="."]
 
@@ -88,11 +84,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27092, -2.63365)
 shape = SubResource("BoxShape3D_vct78")
 
 [node name="CollisionShape3D11" type="CollisionShape3D" parent="player_steps"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.61096, -2.95593)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.615, -2.942)
 shape = SubResource("BoxShape3D_vct78")
 
 [node name="CollisionShape3D12" type="CollisionShape3D" parent="player_steps"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.94612, -3.26456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95, -3.25)
 shape = SubResource("BoxShape3D_vct78")
 
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="player_steps"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=96 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
-[ext_resource type="PackedScene" uid="uid://bba44d8rksvrn" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
+[ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
@@ -160,6 +160,9 @@ height = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_8nx1q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_motmp"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_6kqm5"]
+length = 0.5
 
 [sub_resource type="Curve" id="Curve_y01dl"]
 min_value = -360.0
@@ -404,7 +407,6 @@ default_state = NodePath("states/walk")
 
 [node name="walk" type="Node" parent="states"]
 script = ExtResource("2_6iu14")
-max_step_height = 0.4
 
 [node name="run" type="Node" parent="states"]
 script = ExtResource("3_nkdgy")
@@ -620,8 +622,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25)
 target_position = Vector3(0, 0, -1)
 
 [node name="step_check" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
-target_position = Vector3(0, -3, 0)
+debug_shape_custom_color = Color(0, 0.631373, 0.466667, 1)
 
 [node name="water_level_check" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -651,6 +652,12 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wind_check"]
 shape = SubResource("BoxShape3D_motmp")
+
+[node name="step_separation" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
+shape = SubResource("SeparationRayShape3D_6kqm5")
+disabled = true
 
 [node name="vfx" type="Node3D" parent="."]
 
