@@ -8,6 +8,7 @@ class_name Air
 @onready var head_check = $"%head_check"
 @onready var head_check_2 = $"%head_check_2"
 @onready var water_check = $"%water_check"
+@onready var vault_state = $"../vault"
 
 # Variables
 @export var air_acceleration = 0.1
