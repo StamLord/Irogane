@@ -3,10 +3,11 @@ class_name Swim
 
 # Refs
 @onready var head = $"../../head"
-@onready var ledge_check = $"../../ledge_check"
-@onready var wall_check = $"../../wall_check"
-@onready var water_check = $"../../water_check"
-@onready var water_level_check = $"../../water_level_check"
+@onready var ledge_check = $"%ledge_check"
+@onready var head_check_2 = $"%head_check_2"
+@onready var wall_check = $"%wall_check"
+@onready var water_check = $"%water_check"
+@onready var water_level_check = $"%water_level_check"
 
 @export var speed = 5
 @export var acceleration = 10
@@ -84,7 +85,7 @@ func PhysicsUpdate(body, delta):
 	body.move_and_slide()
 	
 	# Vault State
-	if input_dir.y < 0 and ledge_check.is_colliding():
+	if input_dir.y < 0 and ledge_check.is_colliding() and not head_check_2.is_colliding():
 		# Verify we have enough head room
 		var ledge_position = ledge_check.get_collision_point()
 		var query = PhysicsRayQueryParameters3D.create(ledge_position, ledge_position + Vector3.UP * 0.9)

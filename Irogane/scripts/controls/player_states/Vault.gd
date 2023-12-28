@@ -2,9 +2,9 @@ extends PlayerState
 class_name Vault
 
 # References
-@onready var ledge_check = $"../../ledge_check"
+@onready var ledge_check = $"%ledge_check"
 @onready var head = $"../../head"
-@onready var head_check = $"../../head_check"
+@onready var head_check = $"%head_check"
 @onready var stand_collider = $"../../stand_collider"
 @onready var crouch_collider = $"../../crouch_collider"
 
