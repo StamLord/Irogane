@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var step_check = $step_check
 @onready var door_check = $door_check
+@onready var step_separation = %step_separation
 
 @export var speed = 2
 @export var acceleration = 10
@@ -13,8 +14,7 @@ extends CharacterBody3D
 @onready var player = PlayerEntity.player_node
 
 @export var max_step_height = .3
-@export var max_step_angle = 10
-@export var step_check_distance = 0.55
+@export var step_check_distance = 0.5
 
 @export var door_check_distance = 1.5
 
@@ -29,6 +29,9 @@ var target_rotation = null
 var is_traveling_link = false
 var link_details = null
 
+var was_on_floor_last_frame = false
+var snapped_to_stairs_last_frame = false
+
 func _ready():
 	nav.link_reached.connect(link_reached)
 	
@@ -42,7 +45,7 @@ func move_in_link(link_details):
 	
 	var from = link_details["link_entry_position"]
 	var offset = global_position - from
-	print(offset)
+	
 	var to = link_details["link_exit_position"] + offset
 	var distance = from.distance_to(to)
 	var duration = (distance / speed) * 1000
@@ -108,12 +111,24 @@ func _physics_process(delta):
 	# Apply gravity
 	velocity.y -= gravity * delta
 	
+	# The next position in local space is the direction we travel in
+	var local_direction = to_local(next_position)
+	local_direction.y = 0
+	local_direction = local_direction.normalized()
+	
+	# Move step separations to go up stairs regardless of movement direction
+	StairUtils.update_step_separation(step_separation, local_direction, step_check_distance)
+	
 	move_and_slide()
 	
-	# The next position in local space is the direction we travel in
-	var local_next_pos = to_local(next_position)
-	# We use it to test if we are walking on steps
-	is_step(self, Vector3(local_next_pos.x, 0, local_next_pos.z).normalized())
+	# Snap down to stairs when moving down
+	var snap_down_result = StairUtils.snap_down_to_stairs_check(
+		self, local_direction, step_check, 
+		step_check_distance, max_step_height, 
+		was_on_floor_last_frame, snapped_to_stairs_last_frame)
+	
+	was_on_floor_last_frame = snap_down_result["on_floor"]
+	snapped_to_stairs_last_frame = snap_down_result["snapped_down"]
 	
 	# Collisions
 	for i in get_slide_collision_count():
@@ -195,45 +210,3 @@ func rotate_angle(delta):
 	#print("Dir: " + str(direction))
 	
 
-func is_step(body, input_dir):
-	
-	# Move raycast position according to direction
-	step_check.position.x = input_dir.x * step_check_distance
-	step_check.position.z = input_dir.z * step_check_distance
-	
-	
-	if not step_check.is_colliding():
-		return false
-	
-	# Surface must be flat enough to be considered a step
-	var angle = rad_to_deg(step_check.get_collision_normal().angle_to(Vector3.UP))
-	if angle > max_step_angle:
-		return false
-	
-	var step_pos = step_check.get_collision_point()
-	var height_diff = step_pos.y - body.global_position.y
-	
-	# Verify we can stand on the step
-	#var shape_cast = ShapeCast3D.new()
-	#shape_cast.collide_with_areas = true
-	#shape_cast.collide_with_bodies = true
-	#shape_cast.shape = stand_collider.shape
-	#shape_cast.target_position = step_pos
-	
-	#if shape_cast.get_collision_count() > 0:
-	#	return false
-	
-	# Not a step if we are same height
-	if height_diff == 0:
-		return false
-	elif height_diff < -max_step_height:
-		return false
-	elif height_diff > max_step_height:
-		return false
-	
-	# If we are moving, change height
-	if input_dir.length() > 0.1:
-		body.global_position.y += height_diff - 0.01
-		
-	return true
-	

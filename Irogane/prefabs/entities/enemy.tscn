@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3d50iupb8rug"]
+[gd_scene load_steps=19 format=3 uid="uid://d3d50iupb8rug"]
 
 [ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="1_iro6g"]
 [ext_resource type="Script" path="res://scripts/ai/states/Idle.gd" id="2_ce8wj"]
@@ -18,6 +18,9 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66wce"]
 albedo_color = Color(0.921569, 0, 0.337255, 1)
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ymceo"]
+length = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t1jkw"]
 radius = 0.7
@@ -56,8 +59,6 @@ script = ExtResource("1_iro6g")
 acceleration = 20
 rotation_speed = 2
 push_force = 120
-max_step_height = 1.0
-step_check_distance = 1.0
 
 [node name="collider" type="CollisionShape3D" parent="character_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -89,6 +90,11 @@ collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(1, 0.67451, 0, 1)
+
+[node name="step_separation" type="CollisionShape3D" parent="character_body"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
+shape = SubResource("SeparationRayShape3D_ymceo")
 
 [node name="interactive" type="Area3D" parent="character_body"]
 collision_layer = 4
