@@ -80,7 +80,7 @@ func raycast_light_detection():
 		var from = light_origin
 		var to = global_position
 		
-		DebugCanvas.debug_point(from)
+		#DebugCanvas.debug_point(from)
 		
 		var query = PhysicsRayQueryParameters3D.create(from, to)
 		query.hit_from_inside = false
@@ -99,6 +99,4 @@ func raycast_light_detection():
 	var color_clamp = clamp(total_light, 0.05, 1)
 	light_stone.modulate = Color(color_clamp, color_clamp, color_clamp, 1)
 	light_beads_material.albedo_color = Color(total_light, total_light, total_light, 1)
-	
-	print(total_light)
 	

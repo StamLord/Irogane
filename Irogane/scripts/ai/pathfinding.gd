@@ -130,7 +130,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	var flat_vector = velocity.move_toward(safe_velocity, .25)
 	velocity.x = flat_vector.x
 	velocity.z = flat_vector.z
-	DebugCanvas.debug_line(global_position, global_position + safe_velocity, Color.RED)
+	#DebugCanvas.debug_line(global_position, global_position + safe_velocity, Color.RED)
 	
 
 func rotate_to_next_position(delta):

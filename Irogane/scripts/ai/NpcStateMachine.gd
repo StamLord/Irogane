@@ -55,7 +55,7 @@ func on_child_transition(state, new_state_name):
 		current_state.exit(self)
 		on_state_exit.emit(current_state.name)
 	
-	DebugCanvas.debug_text("Start " + new_state.name, pathfinding.global_position, Color.RED, 3)
+	#DebugCanvas.debug_text("Start " + new_state.name, pathfinding.global_position, Color.RED, 3)
 	
 	print("[{name}] ENTERING: {state}".format({"name" : name, "state" : new_state_name}))
 	

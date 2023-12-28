@@ -37,7 +37,7 @@ func physics_update(state_machine, delta):
 	
 	# Target out of chase range
 	if chase_start_position.distance_to(chase_target.global_position) > chase_range:
-		DebugCanvas.debug_text("Target out of range", state_machine.pathfinding.global_position, Color.PURPLE, 3)
+#		DebugCanvas.debug_text("Target out of range", state_machine.pathfinding.global_position, Color.PURPLE, 3)
 		Transitioned.emit(self, "idle")
 		return
 	
@@ -46,10 +46,10 @@ func physics_update(state_machine, delta):
 	chase_target_last_direction = (1 - chase_target_directions_smooth) * chase_target_last_direction + chase_target_directions_smooth * current_direction
 	last_target_position = chase_target.global_position
 	
-	DebugCanvas.debug_line(
-		state_machine.pathfinding.global_position, 
-		state_machine.pathfinding.global_position + chase_target_last_direction * 2, 
-		Color.PURPLE, 7)
+#	DebugCanvas.debug_line(
+#		state_machine.pathfinding.global_position, 
+#		state_machine.pathfinding.global_position + chase_target_last_direction * 2, 
+#		Color.PURPLE, 7)
 	
 	# If we lost the target and cheat duration is over
 	if lost_target and Time.get_ticks_msec() - lost_target_time > cheat_duration_after_target_lost * 1000:
@@ -70,13 +70,13 @@ func enemy_lost(enemy):
 	if enemy == chase_target:
 		lost_target = true
 		lost_target_time = Time.get_ticks_msec()
-		DebugCanvas.debug_text("Enemy Lost ", last_target_position, Color.PURPLE, 3)
+#		DebugCanvas.debug_text("Enemy Lost ", last_target_position, Color.PURPLE, 3)
 	
 
 func enemy_seen(enemy):
 	if enemy == chase_target and lost_target:
 		lost_target = false
-		DebugCanvas.debug_text("Enemy Regained ", state_machine.pathfinding.global_position, Color.PURPLE, 3)
+#		DebugCanvas.debug_text("Enemy Regained ", state_machine.pathfinding.global_position, Color.PURPLE, 3)
 	
 
 func switch_to_search_state():

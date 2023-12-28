@@ -32,7 +32,7 @@ func physics_update(state_machine, delta):
 	
 	# Search timeout
 	if Time.get_ticks_msec() - enter_time > search_duration * 1000:
-		DebugCanvas.debug_text("Search Timeout", state_machine.pathfinding.global_position, Color.PURPLE, 3)
+#		DebugCanvas.debug_text("Search Timeout", state_machine.pathfinding.global_position, Color.PURPLE, 3)
 		Transitioned.emit(self, "idle")
 		return
 	
@@ -69,5 +69,5 @@ func sound_heard(sound_position):
 	last_seen_position = sound_position
 	set_target_position(sound_position)
 	
-	DebugCanvas.debug_text("Sound Heard", sound_position, Color.PURPLE, 3)
+#	DebugCanvas.debug_text("Sound Heard", sound_position, Color.PURPLE, 3)
 	
