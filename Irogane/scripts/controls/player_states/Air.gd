@@ -2,11 +2,12 @@ extends PlayerState
 class_name Air
 
 # Refs
-@onready var ledge_check = $"../../ledge_check"
-@onready var wall_check = $"../../wall_check"
-@onready var rope_check = $"../../rope_check"
-@onready var head_check = $"../../head_check"
-@onready var water_check = $"../../water_check"
+@onready var ledge_check = $"%ledge_check"
+@onready var wall_check = $"%wall_check"
+@onready var rope_check = $"%rope_check"
+@onready var head_check = $"%head_check"
+@onready var head_check_2 = $"%head_check_2"
+@onready var water_check = $"%water_check"
 
 # Variables
 @export var air_acceleration = 0.1
@@ -30,9 +31,11 @@ func Enter(body):
 	direction = body.last_direction
 	speed = body.last_speed
 	air_started.emit()
+	
 
 func Update(delta):
 	pass
+	
 
 func PhysicsUpdate(body, delta):
 	
@@ -90,7 +93,7 @@ func PhysicsUpdate(body, delta):
 				return
 	
 	# Vault State
-	if input_dir.y < 0 and ledge_check.is_colliding() and not wall_check.is_colliding():
+	if input_dir.y < 0 and ledge_check.is_colliding() and not wall_check.is_colliding() and not head_check_2.is_colliding():
 		# Verify we have enough head room
 		var ledge_position = ledge_check.get_collision_point()
 		var query = PhysicsRayQueryParameters3D.create(ledge_position, ledge_position + Vector3.UP * 0.9)
@@ -119,6 +122,8 @@ func PhysicsUpdate(body, delta):
 		Transitioned.emit(self, "swim")
 		return
 	
+
 func Exit(body):
 	body.last_direction = direction
 	air_ended.emit()
+	
