@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3q225ien8agg"]
+
+[ext_resource type="PackedScene" uid="uid://xxcaueap3rv0" path="res://assets/models/env/bushes/dwarf_cedar_0.glb" id="1_gqksa"]
+[ext_resource type="Material" uid="uid://dd2slokjfwyop" path="res://assets/models/env/bushes/materials/dwarf_cedar_material.tres" id="2_ihywb"]
+
+[node name="dwarf_cedar_0" instance=ExtResource("1_gqksa")]
+
+[node name="dwarf_cedar_02" parent="." index="0"]
+material_override = ExtResource("2_ihywb")
+transparency = 1.0

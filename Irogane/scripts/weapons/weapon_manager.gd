@@ -1,7 +1,15 @@
 extends Node
 class_name WeaponManager
 
-@onready var quick_slots = $"/root/world/UI/canvas/inventory/inventory/quick_slots"
+@onready var quick_slots = null:
+	get:
+		if quick_slots == null:
+			quick_slots = PlayerEntity.get_quick_slots()
+		
+		if quick_slots == null:
+			print("Got quick_slots null from player entity! This shouldn't happen!")
+		return quick_slots
+	
 
 @onready var melee = $melee
 @onready var sword = $sword
@@ -16,8 +24,8 @@ var index = 0
 @onready var current_template = null
 
 func _ready():
-	if quick_slots != null:
-		quick_slots.slot_changed.connect(on_slot_changed)
+	PlayerEntity.slot_changed.connect(on_slot_changed)
+	
 
 func _process(delta):
 	if Input.is_action_just_pressed("scroll_up"):
@@ -45,6 +53,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("alpha0"):
 		switch_to(9)
 	
+
 func switch_to(new_index):
 	if new_index < 0:
 		new_index += 10
@@ -59,6 +68,7 @@ func switch_to(new_index):
 		activate_template(melee)
 	elif item.get_meta("id")  == "katana":
 		activate_template(sword)
+	
 
 func activate_template(template):
 	if current_template == template:
@@ -72,9 +82,12 @@ func activate_template(template):
 	template.visible = true
 	current_template = template
 	
+
 func deactivate_template(template):
 	template.visible = false
+	
 
 func on_slot_changed(slot_index):
 	if index == slot_index:
 		switch_to(slot_index)
+	

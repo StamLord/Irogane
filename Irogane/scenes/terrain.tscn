@@ -48,7 +48,7 @@ texture_filter = 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_sa1n2"]
 size = Vector2(64, 64)
 
-[sub_resource type="Resource" id="Resource_utnmm"]
+[sub_resource type="Resource" id="Resource_0aaoq"]
 script = ExtResource("5_n5hfh")
 spacing = Vector3(4, 4, 4)
 enabled = true
@@ -57,7 +57,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ryj0r"]
+[sub_resource type="Resource" id="Resource_kjwph"]
 script = ExtResource("6_2u126")
 operation = 1
 scale = Vector3(0.5, 0.5, 0.5)
@@ -67,7 +67,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_0scpc"]
+[sub_resource type="Resource" id="Resource_25tm4"]
 script = ExtResource("4_1c65y")
 position = Vector3(3, 1, 3)
 rotation = Vector3(0, 360, 0)
@@ -78,7 +78,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_vsgjb"]
+[sub_resource type="Resource" id="Resource_tvrvh"]
 script = ExtResource("5_i5qce")
 iterations = 3
 offset_step = 0.2
@@ -90,7 +90,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_6mkuy"]
+[sub_resource type="Resource" id="Resource_bt0f0"]
 script = ExtResource("6_c74vt")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -106,9 +106,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_nluv2"]
+[sub_resource type="Resource" id="Resource_7ovj6"]
 script = ExtResource("2_8rfxo")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_utnmm"), SubResource("Resource_ryj0r"), SubResource("Resource_0scpc"), SubResource("Resource_vsgjb"), SubResource("Resource_6mkuy")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_0aaoq"), SubResource("Resource_kjwph"), SubResource("Resource_25tm4"), SubResource("Resource_tvrvh"), SubResource("Resource_bt0f0")])
 
 [sub_resource type="Resource" id="Resource_af661"]
 script = ExtResource("9_tu20j")
@@ -133,7 +133,7 @@ mesh = SubResource("PlaneMesh_sa1n2")
 
 [node name="ProtonScatter" type="Node3D" parent="stage"]
 script = ExtResource("1_13ljh")
-modifier_stack = SubResource("Resource_nluv2")
+modifier_stack = SubResource("Resource_7ovj6")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

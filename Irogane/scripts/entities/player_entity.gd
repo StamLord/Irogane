@@ -5,11 +5,14 @@ var player_name
 var sex
 var initial_scene_position = null
 
+var inventory = null
+
 var model_node_path = "model/Character"
 
 const PLAYER_SCENE_PATH = "res://prefabs/entities/player.tscn"
 const NO_PLAYER_SCENES = ["res://prefabs/ui/character_creator.tscn", "res://scenes/main_menu.tscn"]
 
+signal slot_changed(slot_index)
 
 func _ready():
 	SceneManager.on_scene_loaded.connect(on_scene_loaded)
@@ -68,4 +71,24 @@ func set_sex(new_sex):
 
 func get_player_name():
 	return player_name
+	
+
+func set_inventory(_inventory):
+	inventory = _inventory
+	inventory.quick_slots.slot_changed.connect(on_slot_changed)
+	
+
+func get_inventory():
+	return inventory
+	
+
+func get_quick_slots():
+	if inventory == null:
+		return null
+	
+	return inventory.quick_slots
+	
+
+func on_slot_changed(slot_index):
+	slot_changed.emit(slot_index)
 	

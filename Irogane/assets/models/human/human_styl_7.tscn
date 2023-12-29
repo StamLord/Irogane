@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt4vii2oiqbk0"]
+
+[ext_resource type="PackedScene" uid="uid://yv0a38lsr0u7" path="res://assets/models/human/human_styl_7.glb" id="1_obc6k"]
+[ext_resource type="Script" path="res://scripts/procedural/SpringBone.gd" id="2_taoao"]
+
+[node name="human_styl_7" instance=ExtResource("1_obc6k")]
+
+[node name="bangs_0" parent="Armature/Skeleton3D" index="2"]
+visible = false
+
+[node name="bangs_1" parent="Armature/Skeleton3D" index="3"]
+visible = false
+
+[node name="bangs_4" parent="Armature/Skeleton3D" index="4"]
+visible = false
+
+[node name="bangs_5" parent="Armature/Skeleton3D" index="5"]
+visible = false
+
+[node name="bangs_6" parent="Armature/Skeleton3D" index="6"]
+visible = false
+
+[node name="bangs_7" parent="Armature/Skeleton3D" index="7"]
+visible = false
+
+[node name="hair_0" parent="Armature/Skeleton3D" index="12"]
+visible = false
+
+[node name="hair_1" parent="Armature/Skeleton3D" index="13"]
+visible = false
+
+[node name="hair_2" parent="Armature/Skeleton3D" index="14"]
+visible = false
+
+[node name="hair_3" parent="Armature/Skeleton3D" index="15"]
+visible = false
+
+[node name="hat_0" parent="Armature/Skeleton3D" index="18"]
+visible = false
+
+[node name="hat_1" parent="Armature/Skeleton3D" index="19"]
+visible = false
+
+[node name="hat_2" parent="Armature/Skeleton3D" index="20"]
+visible = false
+
+[node name="hat_3" parent="Armature/Skeleton3D" index="21"]
+visible = false
+
+[node name="hat_4" parent="Armature/Skeleton3D" index="22"]
+visible = false
+
+[node name="hat_5" parent="Armature/Skeleton3D" index="23"]
+visible = false
+
+[node name="head_1" parent="Armature/Skeleton3D" index="25"]
+visible = false
+
+[node name="head_2" parent="Armature/Skeleton3D" index="26"]
+visible = false
+
+[node name="head_4" parent="Armature/Skeleton3D" index="27"]
+visible = false
+
+[node name="mask_1" parent="Armature/Skeleton3D" index="29"]
+visible = false
+
+[node name="mask_2" parent="Armature/Skeleton3D" index="30"]
+visible = false
+
+[node name="pants_0" parent="Armature/Skeleton3D" index="32"]
+visible = false
+
+[node name="pants_1" parent="Armature/Skeleton3D" index="33"]
+visible = false
+
+[node name="pants_2" parent="Armature/Skeleton3D" index="34"]
+visible = false
+
+[node name="pants_3" parent="Armature/Skeleton3D" index="35"]
+visible = false
+
+[node name="shoes_0" parent="Armature/Skeleton3D" index="38"]
+visible = false
+
+[node name="shoes_1" parent="Armature/Skeleton3D" index="39"]
+visible = false
+
+[node name="shoulder_guards" parent="Armature/Skeleton3D" index="40"]
+visible = false
+
+[node name="straw_armor" parent="Armature/Skeleton3D" index="43"]
+visible = false
+
+[node name="straw_armor_001" parent="Armature/Skeleton3D" index="44"]
+visible = false
+
+[node name="top_1" parent="Armature/Skeleton3D" index="45"]
+visible = false
+
+[node name="top_2" parent="Armature/Skeleton3D" index="46"]
+visible = false
+
+[node name="top_3" parent="Armature/Skeleton3D" index="47"]
+visible = false
+
+[node name="top_4" parent="Armature/Skeleton3D" index="48"]
+visible = false
+
+[node name="top_5" parent="Armature/Skeleton3D" index="49"]
+visible = false
+
+[node name="top_armor" parent="Armature/Skeleton3D" index="50"]
+visible = false
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="52"]
+transform = Transform3D(1, 7.10543e-15, -2.38419e-07, -9.76996e-15, 1, 0, 2.38419e-07, 0, 1, 2.30926e-14, 4.00798, 0.120513)
+bone_name = "head"
+bone_idx = 20
+override_pose = true
+script = ExtResource("2_taoao")

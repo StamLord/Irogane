@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cqomyhc0udu0m"]
+
+[ext_resource type="Texture2D" uid="uid://bk1tvtq3ip2i4" path="res://assets/models/env/house_modular/textures/house_beam.png" id="1_21jg5"]
+
+[resource]
+resource_name = "house_beam"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_21jg5")
+metallic_specular = 0.0
+texture_filter = 2

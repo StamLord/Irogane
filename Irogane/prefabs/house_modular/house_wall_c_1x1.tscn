@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx7y4csowcl1b"]
+
+[ext_resource type="Material" uid="uid://iu2ua2dn6dey" path="res://assets/models/env/house_modular/materials/house_wall_c.tres" id="1_xbpmk"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3supy"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, 3.24249e-05, 1, 1, 1e-05),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(3, 0, 1, 0, 2, 0, 3, 0, 0, 0, 1, 0),
+"name": "house_wall_c",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 8, 56, 0, 0, 0, 191, 0, 0, 128, 63, 0, 0, 8, 56, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 8, 56, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 8, 56)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rm2i1"]
+resource_name = "house_wall_c_1x1_Cube_068"
+_surfaces = [{
+"aabb": AABB(-0.5, 0, 3.24249e-05, 1, 1, 1e-05),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 128, 62, 112, 252, 127, 62, 0, 0, 128, 62, 108, 252, 127, 62, 0, 0, 0, 63),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(3, 0, 1, 0, 2, 0, 3, 0, 0, 0, 1, 0),
+"material": ExtResource("1_xbpmk"),
+"name": "house_wall_c",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 191, 0, 0, 128, 63, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 8, 56, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3supy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_un0or"]
+size = Vector3(1, 1, 0.25)
+
+[node name="house_wall_c_1x1" type="StaticBody3D"]
+
+[node name="house_wall_c_1x12" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_rm2i1")
+skeleton = NodePath("")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_un0or")

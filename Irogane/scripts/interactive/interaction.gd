@@ -1,7 +1,17 @@
 extends Node3D
 
 @onready var interact_check = $interact_check
-@onready var inventory = $"/root/world/UI/canvas/inventory/inventory"
+@onready var inventory = null : 
+	get:
+		if inventory == null:
+			inventory = PlayerEntity.get_inventory()
+			
+		if inventory == null:
+			print("Got inventory null from player entity! This shouldn't happen!")
+		
+		return inventory
+	
+
 @onready var strength = $"../../../stats/strength"
 
 @export var carry_start_time = 0.8
@@ -33,6 +43,7 @@ signal too_heavy(weight)
 func _input(event):
 	if is_carrying and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		throw_carry_object()
+	
 
 func _process(delta):
 	if is_carrying:
@@ -81,6 +92,7 @@ func _process(delta):
 				# Prevents cases where we press on an empty space
 				# and move to the same interactive we last pressed on
 				start_press_interactive = null
+	
 
 func set_interactive(interactive):
 	# No change
@@ -106,10 +118,12 @@ func set_interactive(interactive):
 		text = current_interactive.get_text()
 	
 	interactive_changed.emit(text)
+	
 
 func reset_button_time():
 	last_button_press = INF
 	press_time_update.emit(0)
+	
 
 func can_carry(weight):
 	if weight == Carriable.CarryWeight.LIGHT:
@@ -119,6 +133,7 @@ func can_carry(weight):
 	elif weight == Carriable.CarryWeight.HEAVY:
 		return strength.get_value() >= heavy_threshold
 	return false
+	
 
 func start_carry():
 	reset_button_time()
@@ -131,6 +146,7 @@ func start_carry():
 		old_layer = object.collision_layer
 		object.angular_damp = carry_angular_damp
 		object.collision_layer = carry_layer
+	
 
 func stop_carrying():
 	is_carrying = false
@@ -141,6 +157,7 @@ func stop_carrying():
 		object.angular_damp = old_angular_damp
 		object.collision_layer = old_layer
 		object.linear_velocity = Vector3.ZERO # For some reason unfreezes the object
+	
 
 func update_carry_object(delta):
 	if current_interactive == null:
@@ -160,6 +177,7 @@ func update_carry_object(delta):
 		object.linear_velocity = direction * carry_force
 	else:
 		object.global_position = carry_point
+	
 
 func throw_carry_object():
 	if current_interactive == null:
@@ -171,8 +189,10 @@ func throw_carry_object():
 	if object is RigidBody3D:
 		object.linear_velocity = global_transform.basis * Vector3.FORWARD * throw_force
 	
+
 func add_item(item_id):
 	if inventory == null:
 		return false
 	
 	return inventory.pickup_item(item_id)
+	

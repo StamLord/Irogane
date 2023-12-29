@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://dga323odbiivx"]
+
+[ext_resource type="Texture2D" uid="uid://dj3h0lrrmq6wv" path="res://assets/models/env/house_modular/roof_inner_corner_edge_4x4_roof_tiles.png" id="1_s0kpb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ei0o"]
+resource_name = "house_roof"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_s0kpb")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yxbap"]
+_surfaces = [{
+"aabb": AABB(-0.5, 3.6, -0.5, 4, 0.40001, 4),
+"format": 4097,
+"index_count": 18,
+"index_data": PackedByteArray(1, 0, 2, 0, 0, 0, 3, 0, 2, 0, 1, 0, 0, 0, 5, 0, 1, 0, 0, 0, 4, 0, 5, 0, 1, 0, 7, 0, 3, 0, 1, 0, 6, 0, 7, 0),
+"name": "house_roof",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 128, 64, 250, 255, 255, 190, 0, 0, 0, 63, 103, 102, 102, 64, 3, 0, 0, 63, 0, 0, 0, 191, 0, 0, 128, 64, 1, 0, 0, 191, 0, 0, 0, 191, 0, 0, 128, 64, 254, 255, 255, 62, 0, 0, 96, 64, 0, 0, 128, 64, 250, 255, 255, 190, 0, 0, 96, 64, 103, 102, 102, 64, 3, 0, 0, 63, 0, 0, 0, 63, 103, 102, 102, 64, 1, 0, 96, 64, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 96, 64)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tehjl"]
+resource_name = "roof_inner_corner_edge_4x4_Plane_026"
+_surfaces = [{
+"aabb": AABB(-0.5, 3.6, -0.5, 4, 0.40001, 4),
+"attribute_data": PackedByteArray(143, 6, 128, 62, 0, 0, 64, 63, 1, 0, 128, 62, 0, 0, 64, 63, 240, 242, 127, 62, 140, 0, 128, 63, 254, 255, 127, 62, 0, 0, 128, 63, 48, 2, 64, 63, 210, 253, 127, 63, 163, 251, 63, 63, 0, 0, 128, 63, 0, 128, 138, 183, 0, 0, 64, 63, 0, 0, 128, 63, 0, 0, 64, 63, 163, 251, 63, 63, 0, 0, 64, 63, 255, 255, 63, 63, 0, 0, 64, 63, 0, 0, 128, 63, 2, 0, 64, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 64, 63),
+"format": 4119,
+"index_count": 18,
+"index_data": PackedByteArray(2, 0, 6, 0, 0, 0, 8, 0, 7, 0, 4, 0, 1, 0, 11, 0, 3, 0, 1, 0, 10, 0, 11, 0, 5, 0, 13, 0, 9, 0, 5, 0, 12, 0, 13, 0),
+"material": SubResource("StandardMaterial3D_4ei0o"),
+"name": "house_roof",
+"primitive": 3,
+"vertex_count": 14,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 128, 64, 250, 255, 255, 190, 255, 127, 108, 219, 254, 255, 255, 191, 0, 0, 0, 63, 0, 0, 128, 64, 250, 255, 255, 190, 255, 127, 108, 219, 255, 255, 255, 191, 0, 0, 0, 63, 103, 102, 102, 64, 3, 0, 0, 63, 255, 127, 108, 219, 254, 255, 255, 191, 0, 0, 0, 63, 103, 102, 102, 64, 3, 0, 0, 63, 255, 127, 108, 219, 255, 255, 255, 191, 0, 0, 0, 63, 103, 102, 102, 64, 3, 0, 0, 63, 145, 164, 108, 219, 255, 255, 255, 255, 0, 0, 0, 63, 103, 102, 102, 64, 3, 0, 0, 63, 145, 164, 108, 219, 255, 255, 255, 255, 0, 0, 0, 191, 0, 0, 128, 64, 1, 0, 0, 191, 255, 127, 108, 219, 254, 255, 255, 191, 0, 0, 0, 191, 0, 0, 128, 64, 1, 0, 0, 191, 145, 164, 108, 219, 255, 255, 255, 255, 0, 0, 0, 191, 0, 0, 128, 64, 254, 255, 255, 62, 145, 164, 108, 219, 255, 255, 255, 255, 0, 0, 0, 191, 0, 0, 128, 64, 254, 255, 255, 62, 145, 164, 108, 219, 255, 255, 255, 255, 0, 0, 96, 64, 0, 0, 128, 64, 250, 255, 255, 190, 255, 127, 108, 219, 255, 255, 255, 191, 0, 0, 96, 64, 103, 102, 102, 64, 3, 0, 0, 63, 255, 127, 108, 219, 255, 255, 255, 191, 0, 0, 0, 63, 103, 102, 102, 64, 1, 0, 96, 64, 145, 164, 108, 219, 255, 255, 255, 255, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 96, 64, 145, 164, 108, 219, 255, 255, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_yxbap")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfhoo"]
+size = Vector3(4, 0.25, 1)
+
+[node name="roof_inner_corner_edge_4x4" type="StaticBody3D"]
+
+[node name="roof_inner_corner_edge_4x42" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_tehjl")
+skeleton = NodePath("")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.92388, -0.382683, 0, 0.382683, 0.92388, 1.5, 3.7, 0)
+shape = SubResource("BoxShape3D_lfhoo")
+
+[node name="collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.382683, 0.92388, 0, 0.92388, -0.382683, -1, -1.67276e-08, -4.03841e-08, 0, 3.7, 1.5)
+shape = SubResource("BoxShape3D_lfhoo")

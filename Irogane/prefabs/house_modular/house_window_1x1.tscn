@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://xfq8ytg5ncpq"]
+
+[ext_resource type="Texture2D" uid="uid://bgvahv72u5wuq" path="res://assets/models/house_modular/house_window_house_window.png" id="1_488tu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o73di"]
+resource_name = "house_window"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_488tu")
+roughness = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_e1bjy"]
+_surfaces = [{
+"aabb": AABB(-0.5, 1.5, -3.7998e-07, 1.00001, 1.00001, 1e-05),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(3, 0, 1, 0, 0, 0, 3, 0, 2, 0, 1, 0),
+"name": "house_window",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 32, 64, 0, 0, 204, 180, 0, 0, 0, 191, 0, 0, 32, 64, 0, 0, 204, 180, 0, 0, 0, 191, 0, 0, 192, 63, 0, 0, 204, 180, 0, 0, 0, 63, 0, 0, 192, 63, 0, 0, 204, 180)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t6f7m"]
+resource_name = "house_window_Cube_039"
+_surfaces = [{
+"aabb": AABB(-0.5, 1.5, -3.7998e-07, 1.00001, 1.00001, 1e-05),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 127, 63, 0, 0, 0, 0, 255, 255, 127, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(3, 0, 1, 0, 0, 0, 3, 0, 2, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_o73di"),
+"name": "house_window",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 32, 64, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63, 0, 0, 0, 191, 0, 0, 32, 64, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63, 0, 0, 0, 191, 0, 0, 192, 63, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63, 0, 0, 0, 63, 0, 0, 192, 63, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_e1bjy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yk0yl"]
+size = Vector3(1, 1, 0.25)
+
+[node name="house_window" type="StaticBody3D"]
+
+[node name="house_window2" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_t6f7m")
+skeleton = NodePath("")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yk0yl")

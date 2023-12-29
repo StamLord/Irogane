@@ -1,36 +1,59 @@
+@tool
 extends Interactive
 class_name Switch
 
-@export var state : bool
+@export var state : bool : 
+	set(value): 
+		state = value
+		
+		if Engine.is_editor_hint():
+			if state:
+				get_parent().position = origin_position + get_parent().basis * on_position
+				get_parent().rotation_degrees = origin_rotation + on_rotation
+			else:
+				get_parent().position = origin_position
+				get_parent().rotation_degrees = origin_rotation
+	
+
 @export var on_text : String
 @export var on_position : Vector3
 @export var on_rotation : Vector3
 @export var animation_time : float
+@export var sub_switches : Array[Switch]
 
-var origin_position : Vector3
-var origin_rotation : Vector3
+@onready var origin_position =  get_parent().position
+@onready var origin_rotation = get_parent().rotation_degrees
 
 var is_animating_position : bool
 var is_animating_rotation : bool
 
 signal on_state_changed(state)
 
-func _ready():
-	origin_position = get_parent().position
-	origin_rotation = get_parent().rotation_degrees
-
-func use(_interactor):
+func use(interactor):
 	state = !state
 	
+	perform_animations()
+	
+	for sub_switch in sub_switches:
+		sub_switch.chain_use()
+	
+
+func chain_use():
+	state = !state
+	perform_animations()
+	
+
+func perform_animations():
 	if state:
-		animate_position(origin_position, origin_position + on_position)
+		animate_position(origin_position, origin_position + get_parent().basis * on_position)
 		animate_rotation(origin_rotation, origin_rotation + on_rotation)
 	else:
-		animate_position(origin_position + on_position, origin_position)
+		animate_position(origin_position + get_parent().basis * on_position, origin_position)
 		animate_rotation(origin_rotation + on_rotation, origin_rotation)
 	
 	on_state_changed.emit(state)
 	
+
 func get_text():
 	return on_text if state else interaction_text
 

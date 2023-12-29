@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://lsod62yvvsph"]
+
+[ext_resource type="Script" path="res://scripts/stats/stats.gd" id="1_i15bq"]
+[ext_resource type="Script" path="res://scripts/stats/attribute.gd" id="2_p1n0g"]
+[ext_resource type="Script" path="res://scripts/stats/health.gd" id="3_cngxo"]
+[ext_resource type="Script" path="res://scripts/stats/attribute_dependant.gd" id="4_xw1y4"]
+[ext_resource type="Script" path="res://scripts/stats/stamina.gd" id="5_bpmwy"]
+
+[node name="stats" type="Node"]
+script = ExtResource("1_i15bq")
+
+[node name="strength" type="Node" parent="."]
+script = ExtResource("2_p1n0g")
+
+[node name="agility" type="Node" parent="."]
+script = ExtResource("2_p1n0g")
+
+[node name="dexterity" type="Node" parent="."]
+script = ExtResource("2_p1n0g")
+
+[node name="wisdom" type="Node" parent="."]
+script = ExtResource("2_p1n0g")
+
+[node name="health" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
+script = ExtResource("3_cngxo")
+max_value_source = NodePath("values")
+value = 50
+auto_replenish_rate = 4
+
+[node name="values" type="Node" parent="health" node_paths=PackedStringArray("attribute")]
+script = ExtResource("4_xw1y4")
+attribute = NodePath("../../strength")
+values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
+
+[node name="stamina" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
+script = ExtResource("5_bpmwy")
+max_value_source = NodePath("values")
+value = 50
+auto_replenish_rate = 4
+
+[node name="values" type="Node" parent="stamina" node_paths=PackedStringArray("attribute")]
+script = ExtResource("4_xw1y4")
+attribute = NodePath("../../agility")
+values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
+
+[node name="fall_damage" type="Node" parent="." node_paths=PackedStringArray("attribute")]
+script = ExtResource("4_xw1y4")
+attribute = NodePath("../agility")
+values = Array[int]([5, 5, 4, 4, 3, 3, 2, 2, 1, 1])
+
+[node name="fall_damage_height" type="Node" parent="." node_paths=PackedStringArray("attribute")]
+script = ExtResource("4_xw1y4")
+attribute = NodePath("../agility")
+values = Array[int]([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])

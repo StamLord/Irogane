@@ -46,7 +46,7 @@ func on_child_transition(state, new_state_name):
 		return
 		
 	var new_state = states.get(new_state_name.to_lower())
-	if !new_state:
+	if not new_state:
 		return
 		
 	#print("EXITING: " + current_state.name)
