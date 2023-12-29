@@ -52,6 +52,7 @@
 [ext_resource type="PackedScene" uid="uid://dlj37o7nxiw8d" path="res://prefabs/house_modular/garden_rock_1.tscn" id="52_5twya"]
 [ext_resource type="PackedScene" uid="uid://da0if4aorcvrq" path="res://prefabs/house_modular/garden_rock_2.tscn" id="53_c2aff"]
 [ext_resource type="PackedScene" uid="uid://s45ywva0f8hn" path="res://prefabs/house_modular/roof_mid_2x2.tscn" id="53_k4au7"]
+[ext_resource type="Material" uid="uid://c6wa5t56dccgj" path="res://assets/materials/sky/night_sky_2.tres" id="53_pc2w3"]
 [ext_resource type="PackedScene" uid="uid://dyik5css1ch4h" path="res://prefabs/house_modular/garden_rock_3.tscn" id="54_l67al"]
 [ext_resource type="PackedScene" uid="uid://bsax74ojytcuf" path="res://prefabs/house_modular/roof_top_mid_2x2.tscn" id="54_x17p2"]
 [ext_resource type="PackedScene" uid="uid://ovsmncqwo15s" path="res://prefabs/house_modular/roof_pipe_mid_4.tscn" id="55_0j2w2"]
@@ -98,22 +99,13 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgdc"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a2jsf"]
-sky_top_color = Color(0.0156863, 0.027451, 0.105882, 1)
-sky_horizon_color = Color(0.101961, 0.156863, 0.227451, 1)
-sky_curve = 0.0861525
-ground_bottom_color = Color(0.0588235, 0.0431373, 0.0313726, 1)
-ground_horizon_color = Color(0.0470588, 0.0470588, 0.0509804, 1)
-sun_angle_max = 10.43
-sun_curve = 1.883
-
-[sub_resource type="Sky" id="Sky_ipike"]
-sky_material = SubResource("ProceduralSkyMaterial_a2jsf")
+[sub_resource type="Sky" id="Sky_rxhwu"]
+sky_material = ExtResource("53_pc2w3")
 
 [sub_resource type="Environment" id="Environment_wk5wa"]
 background_mode = 2
 background_color = Color(0.0823529, 0.113725, 0.227451, 1)
-sky = SubResource("Sky_ipike")
+sky = SubResource("Sky_rxhwu")
 tonemap_mode = 2
 glow_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
@@ -2267,8 +2259,13 @@ layout_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wk5wa")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
-transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 100, 0)
+[node name="sun_light" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, 0.277919, -0.960605, 0, 0.960605, 0.277919, 0, 100, 0)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="moon_light" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, -0.527846, 0.84934, 0, -0.84934, -0.527846, 0, 100, 0)
 light_energy = 0.1
 shadow_enabled = true
 
