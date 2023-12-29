@@ -1,9 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c0wxv3u75fp38"]
-
-[ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="1_jnb8v"]
-
-[sub_resource type="Shader" id="Shader_56war"]
-code = "shader_type sky;
+shader_type sky;
 render_mode use_quarter_res_pass;
 
 // Originaly based on https://godotshaders.com/shader/stylized-sky-shader-with-clouds/ but there's not much left
@@ -62,7 +57,7 @@ group_uniforms settings;
 	uniform float overwritten_time = 0.0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Function for clouds noises. You can replace using \"gen_fractal_ping_pong\" with a simple texture reading.
+	// Function for clouds noises. You can replace using "gen_fractal_ping_pong" with a simple texture reading.
 	// I was frustrated with the repeating texture that's why I included the algorithm in the code.
 	// Source: https://github.com/Auburn/FastNoiseLite/tree/master
 	const int PRIME_X = 501125321;
@@ -252,7 +247,7 @@ void sky()
 			_sun_amount = clamp( _sun_amount * ( 1.0 - _moon_amount ), 0.0, 1.0 );
 			// Hiding the sun behind the horizon
 			_sun_amount *= 1.0 - _horizon_amount;
-			// Leveling the \"glow\" in color
+			// Leveling the "glow" in color
 			if( _sun_color.r > 1.0 || _sun_color.g > 1.0 || _sun_color.b > 1.0 )
 				_sun_color *= _sun_amount;
 			COLOR = mix( COLOR, _sun_color, _sun_amount );
@@ -312,44 +307,9 @@ void sky()
 		_clouds_color = mix( _clouds_color, clamp( sun_color, 0.0, 1.0 ), pow( 1.0 - clamp( _sun_distance, 0.0, 1.0 ), 5 ));
 		// Color combined with sunset condition
 		_clouds_color = mix( _clouds_color, sunset_bottom_color, _sunset_amount * 0.75 );
-		// Color depending on the \"progress\" of the night.
+		// Color depending on the "progress" of the night.
 		_clouds_color = mix( _clouds_color, _sky_color, clamp( _night_amount, 0.0, 0.98 ));
 		_clouds_color = mix( _clouds_color, vec3( 0.0 ), clouds_weight * 0.9 );
 		COLOR = mix( COLOR, _clouds_color, _clouds_amount );
 	}
-}"
-
-[resource]
-shader = SubResource("Shader_56war")
-shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
-shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
-shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
-shader_parameter/sunset_bottom_color = Color(1, 0.501961, 0.701961, 1)
-shader_parameter/night_top_color = Color(0, 0.0392157, 0.14902, 1)
-shader_parameter/night_bottom_color = Color(9.62615e-08, 0.106342, 0.297386, 1)
-shader_parameter/horizon_color = Color(0.145098, 0.0941176, 0.0627451, 1)
-shader_parameter/horizon_blur = 0.05
-shader_parameter/sun_color = Color(1, 1, 0.737255, 1)
-shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
-shader_parameter/sun_size = 0.2
-shader_parameter/sun_blur = 1.267
-shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
-shader_parameter/moon_size = 0.2
-shader_parameter/moon_blur = 0.01
-shader_parameter/moon_texture_angle_x = 2.0
-shader_parameter/moon_texture_angle_y = 0.0
-shader_parameter/moon_texture_angle_z = 3.2
-shader_parameter/moon_texture = ExtResource("1_jnb8v")
-shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
-shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
-shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
-shader_parameter/clouds_speed = 2.0
-shader_parameter/clouds_direction = 0.2
-shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_cutoff = 1.0
-shader_parameter/clouds_fuzziness = 0.5
-shader_parameter/clouds_weight = 0.0
-shader_parameter/clouds_blur = 0.25
-shader_parameter/stars_speed = 1.0
-shader_parameter/overwritten_time = 0.0
+}
