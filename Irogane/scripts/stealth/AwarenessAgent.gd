@@ -9,7 +9,7 @@ class_name AwarenessAgent
 
 @export var sight_angle = Vector2(90, 90)
 @export var sight_range = 10.0
-@export_flags_3d_physics var sight_obstacle_mask = 17 # 1 - Default, 5 - Stealth
+@export_flags_3d_physics var sight_obstacle_mask = 17 # Bit mask for layers, 17 is 1 - Default, 5 - Stealth
 
 @export var detection_rate = 1.0
 @export var undetection_rate = 0.5
@@ -152,7 +152,7 @@ func is_line_of_sight(agent):
 	if result.has("collider"):
 		# Either the collider is the stealth agent
 		# or the collider is the stealth agent's owner - like CharacterBody3D
-		return result["collider"] == agent or result["collider"] == agent.owner
+		return result["collider"] in [agent, agent.owner]
 	else:
 		return false
 	

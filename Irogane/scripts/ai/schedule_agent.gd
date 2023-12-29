@@ -130,6 +130,6 @@ func load_data(data):
 	schedule = data
 	
 
-func save_date():
+func save_data():
 	pass
 	

@@ -13,6 +13,14 @@ func _ready():
 	
 
 func bush_entered(body):
+	bush_movement_behaviour(body)
+	
+
+func bush_exited(body):
+	bush_movement_behaviour(body)
+	
+
+func bush_movement_behaviour(body):
 	if not wiggle_bone:
 		return
 	
@@ -20,19 +28,8 @@ func bush_entered(body):
 	if body is StaticBody3D:
 		return
 	
-	var entry_direction = (global_position - body.global_position).normalized()
-	wiggle_bone.apply_impulse(entry_direction * wiggle_force)
-	
-	if audio_player:
-		audio_player.play(sound_clip)
-	
-
-func bush_exited(body):
-	if not wiggle_bone:
-		return
-	
-	var exit_direction = (body.global_position - global_position).normalized()
-	wiggle_bone.apply_impulse(exit_direction * wiggle_force)
+	var movement_direction = (global_position - body.global_position).normalized()
+	wiggle_bone.apply_impulse(movement_direction * wiggle_force)
 	
 	if audio_player:
 		audio_player.play(sound_clip)

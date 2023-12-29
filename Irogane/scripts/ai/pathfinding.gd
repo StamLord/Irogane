@@ -145,7 +145,6 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	var flat_vector = velocity.move_toward(safe_velocity, .25)
 	velocity.x = flat_vector.x
 	velocity.z = flat_vector.z
-	#DebugCanvas.debug_line(global_position, global_position + safe_velocity, Color.RED)
 	
 
 func rotate_to_next_position(delta):
@@ -164,19 +163,11 @@ func rotate_to_position(target_position, delta):
 	if target_position == null:
 		return
 	
-#	DebugCanvas.debug_point(target_position)
-	
 	var forward = basis * Vector3.FORWARD
 	var flat_dir = Vector3(target_position.x - global_position.x, 0, target_position.z - global_position.z).normalized()
 	var new_forward = lerp(forward, flat_dir, delta * rotation_speed)
 	
 	look_at(global_position + new_forward)
-#	DebugCanvas.debug_point(global_position + new_forward, Color.BLUE)
-#	DebugCanvas.debug_line(global_position, global_position + forward, Color.GREEN)
-#	DebugCanvas.debug_line(global_position, global_position + flat_dir, Color.YELLOW)
-#	DebugCanvas.debug_line(global_position, global_position + new_forward, Color.RED)
-#
-#	DebugCanvas.debug_point(target_position, Color.RED)
 	
 
 func rotate_angle(delta):
@@ -205,8 +196,3 @@ func rotate_angle(delta):
 	# Set rotation
 	rotation_degrees.y = -angle
 	
-	#print("Target Angle: " + str(target_angle))
-	#print("Angle: " + str(angle))
-	#print("Dir: " + str(direction))
-	
-

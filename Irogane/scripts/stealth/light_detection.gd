@@ -22,40 +22,6 @@ func _process(delta):
 	raycast_light_detection()
 	
 
-func get_light_level(viewport):
-	var img = viewport.get_texture().get_image()
-	img.flip_y()
-	
-	var highest_light = 0
-	for y in img.get_height():
-		for x in img.get_width():
-			var pixel = img.get_pixel(x, y)
-			var light = 0.2126 * pixel.r + 0.7152 * pixel.g + 0.0722 * pixel.b
-			if light > highest_light:
-				highest_light = light
-	
-	return highest_light
-	
-
-func viewport_light_detection():
-	if Time.get_ticks_msec() - last_detection < detection_rate * 1000:
-		return
-	
-	# Move cameras with player
-	var new_pos = player.global_transform.origin
-	top_camera.global_transform.origin = new_pos
-	bot_camera.global_transform.origin = new_pos
-	
-	# Get averages
-	var top_light_average = get_light_level(top_viewport)
-	var bottom_light_average = get_light_level(bot_viewport)
-	
-	var max_level = max(top_light_average, bottom_light_average)
-	
-	light_stone.modulate = Color(max_level, max_level, max_level, 1)
-	last_detection = Time.get_ticks_msec()
-	
-
 func raycast_light_detection():
 	# Get all light sources in range
 	#light_cast.shape.radius = sight_range
