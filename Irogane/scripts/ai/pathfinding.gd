@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var door_check = $door_check
 @onready var step_separation = %step_separation
 
-@export var speed = 2
+@export var movement_speed = 2
 @export var acceleration = 10
 @export var rotation_speed = 30
 @export var gravity = 9
@@ -32,6 +32,9 @@ var link_details = null
 var was_on_floor_last_frame = false
 var snapped_to_stairs_last_frame = false
 
+var override_rotation_speed = null
+var override_movement_speed = null
+
 func _ready():
 	nav.link_reached.connect(link_reached)
 	
@@ -48,7 +51,7 @@ func move_in_link(link_details):
 	
 	var to = link_details["link_exit_position"] + offset
 	var distance = from.distance_to(to)
-	var duration = (distance / speed) * 1000
+	var duration = (distance / get_movement_speed()) * 1000
 	var start_time = Time.get_ticks_msec()
 	
 	while(Time.get_ticks_msec() - start_time < duration):
@@ -106,7 +109,7 @@ func _physics_process(delta):
 	dot_product = max(0, dot_product) # Make sure it's not below 0
 	
 	# Multiply by dot to slow down movement when facing the wrong direction
-	nav.set_velocity(direction * speed * dot_product)
+	nav.set_velocity(direction * get_movement_speed() * dot_product)
 	
 	# Apply gravity
 	velocity.y -= gravity * delta
@@ -165,7 +168,7 @@ func rotate_to_position(target_position, delta):
 	
 	var forward = basis * Vector3.FORWARD
 	var flat_dir = Vector3(target_position.x - global_position.x, 0, target_position.z - global_position.z).normalized()
-	var new_forward = lerp(forward, flat_dir, delta * rotation_speed)
+	var new_forward = lerp(forward, flat_dir, delta * get_rotation_speed())
 	
 	look_at(global_position + new_forward)
 	
@@ -191,8 +194,32 @@ func rotate_angle(delta):
 	prev_target_angle = target_angle
 	
 	# Calculate new angle
-	var angle = lerp(current_angle, target_angle, delta * rotation_speed)
+	var angle = lerp(current_angle, target_angle, delta * get_rotation_speed())
 	
 	# Set rotation
 	rotation_degrees.y = -angle
+	
+
+func set_override_rotation_speed(new_override_rotation_speed):
+	override_rotation_speed = new_override_rotation_speed
+	
+
+func set_override_movement_speed(new_override_movement_speed):
+	override_movement_speed = new_override_movement_speed
+	
+
+func clear_override_rotation_speed():
+	override_rotation_speed = null
+	
+
+func clear_override_movement_speed():
+	override_movement_speed = null
+	
+
+func get_movement_speed():
+	return override_movement_speed if override_movement_speed != null else movement_speed
+	
+
+func get_rotation_speed():
+	return override_rotation_speed if override_rotation_speed != null else rotation_speed
 	

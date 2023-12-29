@@ -27,9 +27,12 @@ func enter(state_machine):
 	state_machine.awareness_agent.on_enemy_seen.connect(enemy_seen)
 	state_machine.awareness_agent.on_enemy_lost.connect(enemy_lost)
 	
+	state_machine.pathfinding.set_override_movement_speed(movement_speed)
+	state_machine.pathfinding.set_override_rotation_speed(rotation_speed)
+	
 	set_alert_mode(true)
 
-func physics_update(state_machine, delta):
+func physics_update(state_machine, _delta):
 	if chase_target == null:
 		print("%s: Chase target is null. This shouldn't happen!", name)
 		Transitioned.emit(self, "idle")
@@ -64,6 +67,9 @@ func physics_update(state_machine, delta):
 func exit(state_machine):
 	state_machine.awareness_agent.on_enemy_seen.disconnect(enemy_seen)
 	state_machine.awareness_agent.on_enemy_lost.disconnect(enemy_lost)
+	
+	state_machine.pathfinding.clear_override_movement_speed()
+	state_machine.pathfinding.clear_override_rotation_speed()
 	
 
 func enemy_lost(enemy):

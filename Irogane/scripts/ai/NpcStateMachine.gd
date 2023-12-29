@@ -81,6 +81,20 @@ func reset_target_rotation():
 	pathfinding.reset_target_rotation()
 	
 
+func get_total_path_distance():
+	var path_points = pathfinding.nav.get_current_navigation_path()
+	var current_point = pathfinding.nav.get_current_navigation_path_index()
+	var distance = 0
+	
+	for i in range(current_point, path_points.size()):
+		if i == current_point:
+			distance += pathfinding.global_position.distance_to(path_points[i])
+		else:
+			distance += path_points[i - 1].distance_to(path_points[i])
+	
+	return distance
+	
+
 func save_data():
 	var data = {
 		"filename" : get_scene_file_path(),

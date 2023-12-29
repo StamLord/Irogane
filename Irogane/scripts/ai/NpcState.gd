@@ -1,6 +1,9 @@
 extends Node3D
 class_name NpcState
 
+@export var movement_speed = 2.0
+@export var rotation_speed = 2.0
+
 var state_machine : NpcStateMachine
 var enter_time
 
@@ -81,6 +84,14 @@ func get_state_time_in_seconds():
 
 func is_navigation_finished():
 	return state_machine.pathfinding.nav.is_navigation_finished()
+	
+
+func get_total_path_distance():
+	return state_machine.get_total_path_distance()
+	
+
+func get_body_position():
+	return state_machine.pathfinding.global_position
 	
 
 func get_current_task():

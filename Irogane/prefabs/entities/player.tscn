@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=97 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="36_y7hmg"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
+[ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
@@ -618,7 +619,6 @@ unique_name_in_owner = true
 target_position = Vector3(0, 2.5, 0)
 
 [node name="ledge_check" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 target_position = Vector3(0, -1.75, 0)
@@ -878,3 +878,23 @@ texture = ExtResource("37_gcigv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_86t26")
 collision_mask = 64
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+grow_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("node_to_follow")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0)
+projection = 1
+size = 7.0
+script = ExtResource("38_510aq")
+node_to_follow = NodePath("../../..")

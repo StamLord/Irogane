@@ -46,9 +46,12 @@ script = ExtResource("2_ce8wj")
 
 [node name="Chase" type="Node3D" parent="states"]
 script = ExtResource("3_f7qx7")
+movement_speed = 5.0
+rotation_speed = 10.0
 
 [node name="Search" type="Node3D" parent="states"]
 script = ExtResource("4_u5p12")
+rotation_speed = 10.0
 
 [node name="stats" parent="." instance=ExtResource("3_vke2l")]
 
