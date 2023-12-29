@@ -2260,12 +2260,12 @@ layout_mode = 1
 environment = SubResource("Environment_wk5wa")
 
 [node name="sun_light" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
-transform = Transform3D(1, 0, 0, 0, 0.277919, -0.960605, 0, 0.960605, 0.277919, 0, 100, 0)
+transform = Transform3D(1, 0, 0, 0, 0.766045, -0.642788, 0, 0.642788, 0.766045, 0, 100, 0)
 light_energy = 0.0
 shadow_enabled = true
 
 [node name="moon_light" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
-transform = Transform3D(1, 0, 0, 0, -0.527846, 0.84934, 0, -0.84934, -0.527846, 0, 100, 0)
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 100, 0)
 light_energy = 0.1
 shadow_enabled = true
 
