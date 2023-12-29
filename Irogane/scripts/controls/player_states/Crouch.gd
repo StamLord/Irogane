@@ -50,7 +50,7 @@ func PhysicsUpdate(body, delta):
 	
 	body.velocity = velocity
 	
-	var input_dir_3d = Vector3(input_dir.x, 0, input_dir.y)
+	var input_dir_3d = Vector3(input_dir.x, 0, input_dir.y).normalized()
 	
 	# Move step separations to go up stairs regardless of movement direction
 	StairUtils.update_step_separation(step_separation, input_dir_3d, step_check_distance)
