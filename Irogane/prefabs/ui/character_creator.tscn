@@ -54,7 +54,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sa5v5")
 close_on_back = false
-from_main_menu = true
 
 [node name="ScreenMargin" type="MarginContainer" parent="CharacterCreationUI"]
 layout_mode = 1

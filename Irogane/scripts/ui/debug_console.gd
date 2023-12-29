@@ -184,7 +184,7 @@ func parse_input(input_text):
 		push_message(result)
 	
 
-func clear_output(args):
+func clear_output(_args):
 	message_buffer = []
 	display.bbcode_text = "\n"
 	

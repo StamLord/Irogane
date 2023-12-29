@@ -12,7 +12,7 @@ func use(interactor):
 	talking_to = interactor
 	DialogueManager.show_dialogue(resource, "farmer_greetings")
 
-func _process(delta):
+func _process(_delta):
 	if talking_to == null:
 		return
 	

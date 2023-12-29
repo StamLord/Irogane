@@ -610,21 +610,32 @@ shape = SubResource("CapsuleShape3D_764jx")
 disabled = true
 
 [node name="head_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 target_position = Vector3(0, 1.9, 0)
 
+[node name="head_check_2" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, 2.5, 0)
+
 [node name="ledge_check" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 target_position = Vector3(0, -1.75, 0)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 
 [node name="wall_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25)
 target_position = Vector3(0, 0, -1)
 
 [node name="step_check" type="RayCast3D" parent="."]
-debug_shape_custom_color = Color(0, 0.631373, 0.466667, 1)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
+target_position = Vector3(0, -3, 0)
 
 [node name="water_level_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 target_position = Vector3(0, -2, 0)
 collision_mask = 8
@@ -632,12 +643,14 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="rope_check" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
 shape = SubResource("CapsuleShape3D_bnn1b")
 target_position = Vector3(0, 0, 0)
 collision_mask = 4
 
 [node name="water_check" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_8nx1q")
 target_position = Vector3(0, 0, 0)
@@ -646,6 +659,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="wind_check" type="Area3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 collision_layer = 16
 collision_mask = 16

@@ -1,12 +1,56 @@
-[gd_scene load_steps=23 format=3 uid="uid://dfy8qdkjnd4tc"]
+[gd_scene load_steps=33 format=3 uid="uid://dfy8qdkjnd4tc"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
+[ext_resource type="Shader" uid="uid://c4q8tb0y1fq6a" path="res://assets/shaders/ink_canvase_item.tres" id="2_ghgom"]
 [ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/load_window.tscn" id="2_ifvaf"]
-[ext_resource type="Texture2D" uid="uid://bug7mybc6xkht" path="res://assets/images/main_menu_bg.png" id="2_ys01h"]
 [ext_resource type="Texture2D" uid="uid://brufi7iodim6" path="res://assets/images/main_menu_vingette.png" id="3_4hocg"]
 [ext_resource type="Texture2D" uid="uid://vu67v5m4a1rh" path="res://assets/images/main_menu_highlight.png" id="3_6d7bo"]
+[ext_resource type="Texture2D" uid="uid://dqpsiw2722c4l" path="res://assets/images/watercolor_mask.png" id="3_m1oa2"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="4_gtrqj"]
+[ext_resource type="Texture2D" uid="uid://bhlqu5o7l3p2c" path="res://assets/images/main_menu_art.png" id="4_plq28"]
+[ext_resource type="Script" path="res://scripts/vfx/shader_property_animator.gd" id="5_lq4pl"]
+[ext_resource type="Texture2D" uid="uid://dltbyebvhv1ga" path="res://assets/textures/vfx/maple_leaf.png" id="7_drwhy"]
 [ext_resource type="Script" path="res://scripts/ui/focus_on_hover_button.gd" id="7_snhy3"]
+[ext_resource type="Script" path="res://scripts/vfx/gpu_particles_2d_color_space_corrector.gd" id="8_416y4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl7wu"]
+bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lq3qy"]
+shader = ExtResource("2_ghgom")
+shader_parameter/panning = -0.785
+shader_parameter/texture = ExtResource("4_plq28")
+shader_parameter/mask_texture = ExtResource("3_m1oa2")
+
+[sub_resource type="Curve" id="Curve_6vycx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tn0dv"]
+curve = SubResource("Curve_6vycx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4q3xs"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 500, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 200.0
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -45.0
+angle_max = 45.0
+scale_min = 0.75
+scale_max = 1.25
+color = Color(0.861693, 0.447504, 0.534186, 1)
+turbulence_noise_speed_random = 1.0
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.01
+turbulence_influence_over_life = SubResource("CurveTexture_tn0dv")
 
 [sub_resource type="SystemFont" id="SystemFont_8pshx"]
 font_names = PackedStringArray("Marcellus SC")
@@ -61,15 +105,27 @@ grow_vertical = 2
 script = ExtResource("1_xac4n")
 close_on_back = false
 
-[node name="bg_image" type="TextureRect" parent="."]
+[node name="bg_white" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ys01h")
+theme_override_styles/panel = SubResource("StyleBoxFlat_pl7wu")
+
+[node name="bg_art" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_lq3qy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_plq28")
 expand_mode = 1
+script = ExtResource("5_lq4pl")
+animate_duration = 4.0
 
 [node name="bg_overlay" type="TextureRect" parent="."]
 layout_mode = 1
@@ -80,6 +136,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_4hocg")
 expand_mode = 1
+
+[node name="falling_leaves" type="GPUParticles2D" parent="."]
+position = Vector2(2120, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_4q3xs")
+texture = ExtResource("7_drwhy")
+lifetime = 30.0
+fixed_fps = 60
+visibility_rect = Rect2(-2120, 0, 1920, 1080)
+script = ExtResource("8_416y4")
+color = Color(0.713726, 0.168627, 0.247059, 1)
+is_linear_to_srgb = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -192,7 +260,6 @@ offset_left = -300.0
 offset_top = -200.0
 offset_right = 300.0
 offset_bottom = 200.0
-from_main_menu = true
 
 [node name="settings_window" parent="." instance=ExtResource("4_gtrqj")]
 unique_name_in_owner = true
