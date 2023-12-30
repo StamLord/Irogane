@@ -4,6 +4,7 @@ class_name Walk
 # References
 @onready var stand_collider = $"../../stand_collider"
 @onready var step_check = $"../../step_check"
+@onready var step_separation = %step_separation
 @onready var stamina = $"../../stats/stamina"
 
 # Variables
@@ -12,24 +13,27 @@ class_name Walk
 @export var push_force = 2
 
 @export var max_step_height = .3
-@export var max_step_angle = 10
 @export var step_check_distance = 0.5
 
 var direction = Vector3.ZERO
 var last_step = 0
 
+var was_on_floor_last_frame = false
+var snapped_to_stairs_last_frame = false
+
 func Enter(body):
 	stand_collider.disabled = false
 	direction = body.last_direction
+	step_separation.disabled = false
+	
 
 func Update(delta):
 	pass
+	
 
 func PhysicsUpdate(body, delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	direction = lerp(direction, (body.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * acceleration)
-	
-	var climb_step = is_step(body, Vector3(input_dir.x, 0, input_dir.y))
 	
 	var velocity = body.velocity
 	
@@ -41,7 +45,22 @@ func PhysicsUpdate(body, delta):
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
 	body.velocity = velocity
+	
+	var input_dir_3d = Vector3(input_dir.x, 0, input_dir.y).normalized()
+	
+	# Move step separations to go up stairs regardless of movement direction
+	StairUtils.update_step_separation(step_separation, input_dir_3d, step_check_distance)
+	
 	body.move_and_slide()
+	
+	# Snap down to stairs when moving down
+	var snap_down_result = StairUtils.snap_down_to_stairs_check(
+		body, input_dir_3d, step_check, 
+		step_check_distance, max_step_height, 
+		was_on_floor_last_frame, snapped_to_stairs_last_frame)
+	
+	was_on_floor_last_frame = snap_down_result["on_floor"]
+	snapped_to_stairs_last_frame = snap_down_result["snapped_down"]
 	
 	# Collisions
 	PerformCollisions(body, speed, push_force, delta)
@@ -70,7 +89,7 @@ func PhysicsUpdate(body, delta):
 		return
 		
 	# Air State
-	if not body.is_on_floor() and not climb_step:
+	if not body.is_on_floor() and not snapped_to_stairs_last_frame:
 		Transitioned.emit(self, "air")
 		return
 	
@@ -83,48 +102,10 @@ func PhysicsUpdate(body, delta):
 	if Input.is_action_pressed("crouch"):
 		Transitioned.emit(self, "crouch")
 		return
+	
 
 func Exit(body):
 	body.last_direction = direction
 	body.last_speed = speed
-
-func is_step(body, input_dir):
+	step_separation.disabled = true
 	
-	# Move raycast position according to direction
-	step_check.position.x = input_dir.x * step_check_distance
-	step_check.position.z = input_dir.z * step_check_distance
-
-	if not step_check.is_colliding():
-		return false
-	
-	# Surface must be flat enough to be considered a step
-	var angle = rad_to_deg(step_check.get_collision_normal().angle_to(Vector3.UP))
-	if angle > max_step_angle:
-		return false
-	
-	var step_pos = step_check.get_collision_point()
-	var height_diff = step_pos.y - body.global_position.y
-	
-	# Verify we can stand on the step
-	var shape_cast = ShapeCast3D.new()
-	shape_cast.collide_with_areas = true
-	shape_cast.collide_with_bodies = true
-	shape_cast.shape = stand_collider.shape
-	shape_cast.target_position = step_pos
-	
-	if shape_cast.get_collision_count() > 0:
-		return false
-	
-	# Not a step if we are same height
-	if height_diff == 0:
-		return false
-	elif height_diff < -max_step_height:
-		return false
-	elif height_diff > max_step_height:
-		return false
-	
-	# If we are moving, change height
-	if input_dir.length() > 0.1:
-		body.global_position.y += height_diff - 0.01
-	
-	return true

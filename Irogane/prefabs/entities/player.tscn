@@ -1,15 +1,11 @@
-[gd_scene load_steps=94 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=97 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
-[ext_resource type="Script" path="res://scripts/stats/stats.gd" id="2_dvgo6"]
-[ext_resource type="Script" path="res://scripts/stats/attribute.gd" id="3_6cm35"]
+[ext_resource type="PackedScene" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_nkdgy"]
-[ext_resource type="Script" path="res://scripts/stats/attribute_dependant.gd" id="4_iytyv"]
-[ext_resource type="Script" path="res://scripts/stats/health.gd" id="4_rtbp0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_y8at0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_hicbf"]
-[ext_resource type="Script" path="res://scripts/stats/stamina.gd" id="6_afqpp"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Slide.gd" id="6_mtivl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Crouch.gd" id="7_826s0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Vault.gd" id="8_nprs7"]
@@ -29,13 +25,18 @@
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 [ext_resource type="Shader" uid="uid://bdh8h54vakscc" path="res://assets/shaders/bubble.tres" id="26_ud12e"]
+[ext_resource type="Script" path="res://scripts/stealth/night_vision.gd" id="27_wn7je"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
+[ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
+[ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="36_y7hmg"]
+[ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
+[ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
@@ -143,7 +144,7 @@ shader_parameter/glow = 4.0
 material = SubResource("ShaderMaterial_qa7yc")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
-radius = 1.0
+radius = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
 radius = 0.49
@@ -160,6 +161,9 @@ height = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_8nx1q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_motmp"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_6kqm5"]
+length = 0.5
 
 [sub_resource type="Curve" id="Curve_y01dl"]
 min_value = -360.0
@@ -387,58 +391,18 @@ shader_parameter/fresnel = 6.0
 [sub_resource type="SphereMesh" id="SphereMesh_qy1qf"]
 material = SubResource("ShaderMaterial_m4ab3")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_86t26"]
+radius = 5.0
+
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
+collision_layer = 129
+collision_mask = 129
 floor_constant_speed = true
 script = ExtResource("1_v2hnl")
 push_force = 2
 default_state = NodePath("states/walk")
 
-[node name="stats" type="Node" parent="."]
-script = ExtResource("2_dvgo6")
-
-[node name="strength" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="agility" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="dexterity" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="wisdom" type="Node" parent="stats"]
-script = ExtResource("3_6cm35")
-
-[node name="health" type="Node" parent="stats" node_paths=PackedStringArray("max_value_source")]
-script = ExtResource("4_rtbp0")
-max_value_source = NodePath("values")
-value = 50
-auto_replenish_rate = 4
-
-[node name="values" type="Node" parent="stats/health" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../../strength")
-values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
-
-[node name="stamina" type="Node" parent="stats" node_paths=PackedStringArray("max_value_source")]
-script = ExtResource("6_afqpp")
-max_value_source = NodePath("values")
-value = 50
-auto_replenish_rate = 4
-
-[node name="values" type="Node" parent="stats/stamina" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../../agility")
-values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
-
-[node name="fall_damage" type="Node" parent="stats" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../agility")
-values = Array[int]([5, 5, 4, 4, 3, 3, 2, 2, 1, 1])
-
-[node name="fall_damage_height" type="Node" parent="stats" node_paths=PackedStringArray("attribute")]
-script = ExtResource("4_iytyv")
-attribute = NodePath("../agility")
-values = Array[int]([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+[node name="stats" parent="." instance=ExtResource("2_u6d7g")]
 
 [node name="states" type="Node3D" parent="."]
 
@@ -487,11 +451,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 script = ExtResource("9_nfdeu")
 
 [node name="main_camera" type="Camera3D" parent="head"]
-cull_mask = 1048573
 current = true
 script = ExtResource("18_bhey3")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="head/main_camera"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -503,7 +467,7 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="weapons_camera" type="Camera3D" parent="head/main_camera/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -619,6 +583,14 @@ collision_mask = 4
 collide_with_areas = true
 debug_shape_custom_color = Color(0.407843, 0.862745, 0, 1)
 
+[node name="night_vision" type="SpotLight3D" parent="head/main_camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+visible = false
+light_energy = 0.1
+spot_range = 20.0
+spot_angle = 60.0
+script = ExtResource("27_wn7je")
+
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
 collision_mask = 0
@@ -639,22 +611,31 @@ shape = SubResource("CapsuleShape3D_764jx")
 disabled = true
 
 [node name="head_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 target_position = Vector3(0, 1.9, 0)
 
+[node name="head_check_2" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, 2.5, 0)
+
 [node name="ledge_check" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.75)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
 target_position = Vector3(0, -1.75, 0)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 
 [node name="wall_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25)
 target_position = Vector3(0, 0, -1)
 
 [node name="step_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
 target_position = Vector3(0, -3, 0)
 
 [node name="water_level_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 target_position = Vector3(0, -2, 0)
 collision_mask = 8
@@ -662,12 +643,14 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="rope_check" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
 shape = SubResource("CapsuleShape3D_bnn1b")
 target_position = Vector3(0, 0, 0)
 collision_mask = 4
 
 [node name="water_check" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_8nx1q")
 target_position = Vector3(0, 0, 0)
@@ -676,12 +659,19 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="wind_check" type="Area3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wind_check"]
 shape = SubResource("BoxShape3D_motmp")
+
+[node name="step_separation" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
+shape = SubResource("SeparationRayShape3D_6kqm5")
+disabled = true
 
 [node name="vfx" type="Node3D" parent="."]
 
@@ -769,3 +759,142 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(-1, 0, -8.74228e-08, -1.19085e-08, 0.990679, 0.136217, 8.66079e-08, 0.136217, -0.990679, 0, 1.35377, -1.7465)
 fov = 55.0
 script = ExtResource("38_tsii1")
+
+[node name="light_detection" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("35_853ua")
+
+[node name="Control" type="Control" parent="light_detection"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="light_detection/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 843.0
+offset_top = -64.0
+offset_right = 875.0
+offset_bottom = -32.0
+grow_vertical = 2
+
+[node name="top_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 0
+
+[node name="top_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer/top_viewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+fov = 55.0
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="light_detection/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -64.0
+offset_right = -231.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="bot_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 0
+
+[node name="bot_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer2/bot_viewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+fov = 55.0
+
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="light_detection/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -292.0
+offset_top = -118.0
+offset_right = -260.0
+offset_bottom = -86.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="front_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer3"]
+handle_input_locally = false
+size = Vector2i(32, 32)
+render_target_update_mode = 0
+
+[node name="front_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer3/front_viewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, -1)
+fov = 25.0
+
+[node name="light_stone" type="TextureRect" parent="light_detection/Control"]
+texture_filter = 1
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -82.0
+offset_right = 100.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("36_so2kt")
+
+[node name="light_stone_frame" type="TextureRect" parent="light_detection/Control"]
+modulate = Color(0.596078, 0.596078, 0.596078, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -82.0
+offset_right = 100.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("37_gcigv")
+
+[node name="light_cast" type="ShapeCast3D" parent="light_detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_86t26")
+collision_mask = 64
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+grow_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("node_to_follow")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0)
+projection = 1
+size = 7.0
+script = ExtResource("38_510aq")
+node_to_follow = NodePath("../../..")

@@ -43,8 +43,8 @@ func _on_limit_fps_button_item_selected(index):
 
 func _on_draw_distance_button_item_selected(index):
 	draw_distance = DRAW_DISTANCE_SETTINGS[index]
-	if CameraShaker.main_camera != null:
-		CameraShaker.main_camera.far = draw_distance
+	if CameraEntity.main_camera != null:
+		CameraEntity.main_camera.far = draw_distance
 		
 	SaveSystem.save_system_settings(get_system_settings())
 	

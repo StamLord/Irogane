@@ -9,18 +9,22 @@ class_name AwarenessAgent
 
 @export var sight_angle = Vector2(90, 90)
 @export var sight_range = 10.0
-@export_flags_3d_physics var sight_obstacle_mask = 1
+@export_flags_3d_physics var sight_obstacle_mask = 17 # Bit mask for layers, 17 is 1 - Default, 5 - Stealth
 
 @export var detection_rate = 1.0
 @export var undetection_rate = 0.5
+
+@export var alert_mode = false
+@export var alert_detection_rate = 10
 
 static var debug = false
 
 var almost_visible_agents  = {} # Dictionary of agent: 0.0-1.0 (vision percent)
 var visible_agents  = []
 
-signal on_sound_heard()
-signal on_enemy_seen()
+signal on_sound_heard(sound_position)
+signal on_enemy_seen(enemy)
+signal on_enemy_lost(enemy)
 
 func _ready():
 	DebugCommandsManager.add_command(
@@ -33,6 +37,14 @@ func _ready():
 			}],
 		"Displays/Hides vision cone on AwarenessAgent(s)"
 		)
+	
+
+func set_alert_mode(new_state):
+	alert_mode = new_state
+	
+
+func get_detection_rate():
+	return alert_detection_rate if alert_mode else detection_rate
 	
 
 func get_visible(delta):
@@ -71,7 +83,6 @@ func get_visible(delta):
 		
 		# Check if in line of sight
 		if not is_line_of_sight(agent):
-			print("No line of sight")
 			continue
 		
 		agents_in_sight.append(agent)
@@ -81,11 +92,12 @@ func get_visible(delta):
 		if not agents_in_sight.has(agent):
 			almost_visible_agents[agent] = 1
 			visible_agents.erase(agent)
+			on_enemy_lost.emit(agent)
 	
 	# Increment vision to almost visible
 	for agent in almost_visible_agents.keys():
 		if agents_in_sight.has(agent):
-			almost_visible_agents[agent] += detection_rate * agent.detection_multiplier * delta
+			almost_visible_agents[agent] += get_detection_rate() * agent.detection_multiplier * delta
 			agents_in_sight.erase(agent)
 		else:
 			almost_visible_agents[agent] -= undetection_rate * delta
@@ -97,7 +109,7 @@ func get_visible(delta):
 		if almost_visible_agents[agent] >= 1:
 			almost_visible_agents.erase(agent)
 			visible_agents.append(agent)
-			on_enemy_seen.emit()
+			on_enemy_seen.emit(agent)
 		# Remove from almost_visible
 		elif almost_visible_agents[agent] <= 0:
 			almost_visible_agents.erase(agent)
@@ -108,7 +120,7 @@ func get_visible(delta):
 	# All agents left need to be added
 	for agent in agents_in_sight:
 		if not visible_agents.has(agent):
-			almost_visible_agents[agent] = detection_rate * agent.detection_multiplier * delta
+			almost_visible_agents[agent] = get_detection_rate() * agent.detection_multiplier * delta
 	
 
 func _process(delta):
@@ -133,10 +145,14 @@ func is_line_of_sight(agent):
 		sight_obstacle_mask,		# Collision mask for obstacles
 		[self]) 					# Exclude self
 	
+	query.collide_with_areas = true	# Collide with areas like stealth areas
+	
 	var result = space_state.intersect_ray(query)
 	
 	if result.has("collider"):
-		return result["collider"] == agent.owner
+		# Either the collider is the stealth agent
+		# or the collider is the stealth agent's owner - like CharacterBody3D
+		return result["collider"] in [agent, agent.owner]
 	else:
 		return false
 	
@@ -162,9 +178,9 @@ func update_cone_mesh():
 	sphere_mesh.radius = sight_range
 	
 
-func hear_sound(_position):
-	print("Heard sound at: " + str(_position))
-	on_sound_heard.emit()
+func hear_sound(sound_position):
+	print("Heard sound at: " + str(sound_position))
+	on_sound_heard.emit(sound_position)
 	pass
 	
 

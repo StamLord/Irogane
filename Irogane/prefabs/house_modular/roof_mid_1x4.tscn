@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://jfbefhcx8dvq"]
+
+[ext_resource type="Texture2D" uid="uid://bs7un86s3rdtb" path="res://assets/models/env/house_modular/textures/roof_tiles.png" id="1_k4d0v"]
+
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djom4"]
+resource_name = "house_roof"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_k4d0v")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu3fq"]
+resource_name = "house_ceiling"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mjvk4"]
+_surfaces = [{
+"aabb": AABB(-0.5, 4, -2, 1.00001, 2, 4.00001),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(2, 0, 1, 0, 0, 0, 2, 0, 3, 0, 1, 0),
+"name": "house_roof",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 0, 63, 0, 0, 192, 64, 0, 0, 0, 192, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 0, 191, 0, 0, 192, 64, 0, 0, 0, 192)
+}, {
+"aabb": AABB(-0.5, 3.8, -2, 1.00001, 2, 4.00001),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(2, 0, 1, 0, 3, 0, 2, 0, 0, 0, 1, 0),
+"name": "house_ceiling",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 51, 51, 115, 64, 0, 0, 0, 64, 0, 0, 0, 63, 154, 153, 185, 64, 0, 0, 0, 192, 0, 0, 0, 191, 51, 51, 115, 64, 0, 0, 0, 64, 0, 0, 0, 191, 154, 153, 185, 64, 0, 0, 0, 192)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h65qc"]
+resource_name = "roof_mid_1x4_Plane_021"
+_surfaces = [{
+"aabb": AABB(-0.5, 4, -2, 1.00001, 2, 4.00001),
+"attribute_data": PackedByteArray(0, 0, 128, 62, 255, 255, 127, 63, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 127, 63, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(2, 0, 1, 0, 0, 0, 2, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_djom4"),
+"name": "house_roof",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 128, 64, 0, 0, 0, 64, 255, 127, 84, 213, 255, 255, 255, 191, 0, 0, 0, 63, 0, 0, 192, 64, 0, 0, 0, 192, 255, 127, 84, 213, 255, 255, 255, 191, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 0, 64, 255, 127, 84, 213, 255, 255, 255, 191, 0, 0, 0, 191, 0, 0, 192, 64, 0, 0, 0, 192, 255, 127, 84, 213, 255, 255, 255, 191)
+}, {
+"aabb": AABB(-0.5, 3.8, -2, 1.00001, 2, 4.00001),
+"attribute_data": PackedByteArray(0, 0, 128, 62, 255, 255, 127, 63, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 127, 63, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(2, 0, 1, 0, 3, 0, 2, 0, 0, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_pu3fq"),
+"name": "house_ceiling",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 63, 51, 51, 115, 64, 0, 0, 0, 64, 170, 170, 0, 0, 255, 255, 255, 63, 0, 0, 0, 63, 154, 153, 185, 64, 0, 0, 0, 192, 170, 170, 0, 0, 255, 255, 255, 63, 0, 0, 0, 191, 51, 51, 115, 64, 0, 0, 0, 64, 170, 170, 0, 0, 255, 255, 255, 63, 0, 0, 0, 191, 154, 153, 185, 64, 0, 0, 0, 192, 170, 170, 0, 0, 255, 255, 255, 63)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mjvk4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_etskj"]
+size = Vector3(1, 4.5, 0.25)
+
+[node name="roof_mid_1x4" type="StaticBody3D"]
+
+[node name="roof_mid_1x42" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_h65qc")
+skeleton = NodePath("")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.469472, -0.882948, 0, 0.882948, -0.469472, 0, 5, 0)
+shape = SubResource("BoxShape3D_etskj")

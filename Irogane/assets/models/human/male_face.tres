@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://h0o7ic1hxxm5"]
+
+[ext_resource type="Shader" uid="uid://nlhmy1w7x8m4" path="res://assets/models/human/face_shader.tres" id="1_m4mff"]
+[ext_resource type="Texture2D" uid="uid://ca0aicrolfloj" path="res://assets/models/human/human_styl_7_faces.png" id="2_ugs0o"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m4mff")
+shader_parameter/max_cells = 6
+shader_parameter/face = 0
+shader_parameter/Texture2DParameter = ExtResource("2_ugs0o")

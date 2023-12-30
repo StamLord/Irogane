@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://vax1kbfkr21h"]
+
+[ext_resource type="Texture2D" uid="uid://doqjntrwmol27" path="res://assets/models/env/house_modular/textures/house_floor.png" id="1_0yfwl"]
+[ext_resource type="Material" uid="uid://cay1b3hrda07s" path="res://assets/models/env/house_modular/materials/house_floor.tres" id="1_n3di4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tsji"]
+resource_name = "house_floor"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_0yfwl")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dqkg4"]
+_surfaces = [{
+"aabb": AABB(-1, -0.1, -1, 2, 0.2, 2.00001),
+"format": 4097,
+"index_count": 12,
+"index_data": PackedByteArray(2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0, 7, 0, 1, 0, 3, 0, 7, 0, 5, 0, 1, 0),
+"name": "house_floor",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 128, 191, 206, 204, 204, 189, 2, 0, 128, 63, 0, 0, 128, 191, 205, 204, 204, 61, 2, 0, 128, 63, 0, 0, 128, 191, 206, 204, 204, 189, 2, 0, 128, 191, 0, 0, 128, 191, 205, 204, 204, 61, 2, 0, 128, 191, 0, 0, 128, 63, 206, 204, 204, 189, 2, 0, 128, 63, 0, 0, 128, 63, 205, 204, 204, 61, 2, 0, 128, 63, 0, 0, 128, 63, 206, 204, 204, 189, 2, 0, 128, 191, 0, 0, 128, 63, 205, 204, 204, 61, 2, 0, 128, 191)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mm5jg"]
+resource_name = "floor_2x-2x2_Cube_041"
+_surfaces = [{
+"aabb": AABB(-1, -0.1, -1, 2, 0.2, 2.00001),
+"attribute_data": PackedByteArray(254, 255, 255, 62, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 254, 255, 255, 62, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 63, 255, 255, 127, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 127, 63, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63),
+"format": 4119,
+"index_count": 12,
+"index_data": PackedByteArray(2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0, 7, 0, 1, 0, 3, 0, 7, 0, 5, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_4tsji"),
+"name": "house_floor",
+"primitive": 3,
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 128, 191, 206, 204, 204, 189, 2, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 205, 204, 204, 61, 2, 0, 128, 63, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 128, 191, 206, 204, 204, 189, 2, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 191, 205, 204, 204, 61, 2, 0, 128, 191, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 128, 63, 206, 204, 204, 189, 2, 0, 128, 63, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 205, 204, 204, 61, 2, 0, 128, 63, 255, 127, 255, 255, 0, 0, 255, 191, 0, 0, 128, 63, 206, 204, 204, 189, 2, 0, 128, 191, 255, 127, 0, 0, 255, 255, 255, 191, 0, 0, 128, 63, 205, 204, 204, 61, 2, 0, 128, 191, 255, 127, 255, 255, 0, 0, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_dqkg4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b6l7v"]
+size = Vector3(2, 0.2, 2)
+
+[node name="floor_2x-2x2" type="StaticBody3D"]
+
+[node name="floor_2x-2x23" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_mm5jg")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_n3di4")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_b6l7v")

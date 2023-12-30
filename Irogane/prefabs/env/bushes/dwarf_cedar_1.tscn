@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgi5ax5qb84vy"]
+
+[ext_resource type="PackedScene" uid="uid://bn6vve0tbp2l6" path="res://assets/models/env/bushes/dwarf_cedar_1.glb" id="1_p8nas"]
+[ext_resource type="Material" uid="uid://dd2slokjfwyop" path="res://assets/models/env/bushes/materials/dwarf_cedar_material.tres" id="2_ylpl6"]
+[ext_resource type="Script" path="res://addons/wigglebone/wiggle_bone.gd" id="3_2qwyd"]
+[ext_resource type="Script" path="res://addons/wigglebone/wiggle_properties.gd" id="4_ufhaj"]
+[ext_resource type="Script" path="res://scripts/stealth/bush_area.gd" id="5_pam60"]
+[ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="6_s0kra"]
+
+[sub_resource type="Resource" id="Resource_5f6u8"]
+script = ExtResource("4_ufhaj")
+mode = 0
+stiffness = 0.25
+damping = 0.5
+gravity = Vector3(0, 0, 0)
+length = 0.1
+max_distance = 0.1
+max_degrees = 45.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3l8fn"]
+radius = 1.0
+
+[node name="dwarf_cedar_1" instance=ExtResource("1_p8nas")]
+
+[node name="dwarf_cedar_12" parent="dwarf_cedar_rig/Skeleton3D" index="0"]
+material_override = ExtResource("2_ylpl6")
+transparency = 1.0
+
+[node name="WiggleBone" type="BoneAttachment3D" parent="dwarf_cedar_rig/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 0, 0.283364, 0)
+bone_name = "branch"
+bone_idx = 1
+script = ExtResource("3_2qwyd")
+properties = SubResource("Resource_5f6u8")
+
+[node name="stealth_area" type="Area3D" parent="." index="1"]
+collision_layer = 16
+script = ExtResource("5_pam60")
+wiggle_force = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stealth_area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("SphereShape3D_3l8fn")
+
+[node name="audio_player" type="Node3D" parent="." index="2"]
+script = ExtResource("6_s0kra")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="audio_player" index="0"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="audio_player" index="1"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="audio_player" index="2"]
+bus = &"Sound"

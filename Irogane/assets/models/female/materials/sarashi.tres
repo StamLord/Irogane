@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dlipdjikd4u2g"]
+
+[ext_resource type="Texture2D" uid="uid://b2yi5o32ctadw" path="res://assets/models/female/female_sarashi.png" id="1_7qx2u"]
+
+[resource]
+resource_name = "sarashi"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_7qx2u")
+texture_filter = 2

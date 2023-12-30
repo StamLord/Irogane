@@ -2,9 +2,10 @@ extends PlayerState
 class_name ClimbRope
 
 # References
-@onready var rope_check = $"../../rope_check"
-@onready var wall_check = $"../../wall_check"
-@onready var ledge_check = $"../../ledge_check"
+@onready var rope_check = $"%rope_check"
+@onready var wall_check = $"%wall_check"
+@onready var ledge_check = $"%ledge_check"
+@onready var head_check_2 = $"%head_check_2"
 
 # Variables
 @export var speed = 5.0;
@@ -83,7 +84,7 @@ func PhysicsUpdate(body, delta):
 		return
 	
 	# Vault State
-	if input_dir.y < 0 and ledge_check.is_colliding():
+	if input_dir.y < 0 and ledge_check.is_colliding() and not head_check_2.is_colliding():
 		# Verify we have enough head room
 		var ledge_position = ledge_check.get_collision_point()
 		var query = PhysicsRayQueryParameters3D.create(ledge_position, ledge_position + Vector3.UP * 1.9, ledge_mask)

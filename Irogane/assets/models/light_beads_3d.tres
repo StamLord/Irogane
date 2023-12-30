@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dpvfaaebswwjw"]
+
+[ext_resource type="Texture2D" uid="uid://ub6nos4i5004" path="res://assets/textures/ui/stealth/light_stone_simple.png" id="1_2r7kx"]
+
+[resource]
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_2r7kx")

@@ -1,5 +1,5 @@
 extends Panel
-class_name inventory
+class_name Inventory
 
 const item_base = preload("res://scripts/ui/item_base.tscn")
 const pickup_base = preload("res://prefabs/pickups/pickup.tscn")
@@ -19,6 +19,8 @@ var last_pos = Vector2()
 
 func _ready():
 	add_debug_commands()
+	
+	PlayerEntity.set_inventory(self)
 	
 	pickup_item("katana")
 	pickup_item("robes")

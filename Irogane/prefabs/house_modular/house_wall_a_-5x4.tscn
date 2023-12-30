@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci0167cfweeap"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsmov"]
+resource_name = "house_walll"
+transparency = 2
+alpha_scissor_threshold = 0.0
+alpha_antialiasing_mode = 0
+cull_mode = 2
+vertex_color_use_as_albedo = true
+roughness = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uvhpp"]
+_surfaces = [{
+"aabb": AABB(-0.25, 0, -4.76837e-07, 0.5, 4, 1e-05),
+"format": 4097,
+"index_count": 6,
+"index_data": PackedByteArray(2, 0, 1, 0, 3, 0, 2, 0, 0, 0, 1, 0),
+"name": "house_walll",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 128, 190, 0, 0, 0, 0, 0, 0, 0, 181, 0, 0, 128, 190, 0, 0, 128, 64, 0, 0, 0, 181, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 181, 0, 0, 128, 62, 0, 0, 128, 64, 0, 0, 0, 181)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_easw8"]
+resource_name = "house_wall_a__5x4_Cube_051"
+_surfaces = [{
+"aabb": AABB(-0.25, 0, -4.76837e-07, 0.5, 4, 1e-05),
+"attribute_data": PackedByteArray(114, 252, 127, 62, 0, 0, 128, 63, 114, 252, 127, 62, 0, 0, 0, 0, 86, 253, 191, 62, 0, 0, 128, 63, 86, 253, 191, 62, 0, 0, 0, 0),
+"format": 4119,
+"index_count": 6,
+"index_data": PackedByteArray(2, 0, 1, 0, 3, 0, 2, 0, 0, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_lsmov"),
+"name": "house_walll",
+"primitive": 3,
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 128, 190, 0, 0, 0, 0, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 190, 0, 0, 128, 64, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 62, 0, 0, 0, 0, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 128, 62, 0, 0, 128, 64, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_uvhpp")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uo1g6"]
+size = Vector3(0.5, 4, 0.25)
+
+[node name="house_wall_a_-5x4" type="StaticBody3D"]
+
+[node name="house_wall_a_-5x4" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_easw8")
+skeleton = NodePath("")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_uo1g6")
