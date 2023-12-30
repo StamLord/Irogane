@@ -90,3 +90,9 @@ func unhide_ui():
 	for window in windows:
 		window.visible = true
 	
+
+func get_inventory():
+	if ui_node == null:
+		return null
+	
+	return ui_node.get_node("inventory_window/inventory")

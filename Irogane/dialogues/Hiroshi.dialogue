@@ -1,0 +1,12 @@
+~ stolen_katana_quest
+Hiroshi: Oh, honored traveler! You have the look of one who can help in times of need. \nOur Miyamoto clan is in great distress – the Moonshadow Katana, our ancestral blade, has been stolen. Lord Miyamoto seeks a noble soul to recover it and restore honor to our name. Will you be the one to aid us?
+- Tell me more about the stolen katana.
+	{{PlayerEntity.player_name}}: Tell me more about the stolen katana.
+	Hiroshi: The Moonshadow Katana is a relic passed down through generations. Its theft brings shame to our clan. Please, speak to Lord Miyamoto at the estate for more details
+	- I am at your service. What must I do?
+	=> stolen_katana_quest_agreed
+- I am at your service. What must I do?
+~ stolen_katana_quest_agreed
+{{PlayerEntity.player_name}}: I am at your service. What must I do?
+Hiroshi: Head to the Miyamoto Estate, speak to Lord Miyamoto, and learn more about the theft. The Moonshadow Katana must be recovered, and honor restored.
+=> END

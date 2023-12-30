@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=16 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="10_pnsv3"]
 [ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
 [ext_resource type="PackedScene" uid="uid://dvok8nvjcehcs" path="res://prefabs/ui/system_menu.tscn" id="12_dwafj"]
+[ext_resource type="Script" path="res://prefabs/ui/quests_window.gd" id="14_amsqm"]
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
@@ -229,7 +230,7 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="inventory" parent="." instance=ExtResource("7_86uhb")]
+[node name="inventory_window" parent="." instance=ExtResource("7_86uhb")]
 visible = false
 layout_mode = 1
 
@@ -280,3 +281,48 @@ layout_mode = 1
 [node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
 visible = false
 layout_mode = 1
+
+[node name="quests_window" type="Window" parent="."]
+title = "Quests"
+initial_position = 2
+size = Vector2i(400, 400)
+visible = false
+script = ExtResource("14_amsqm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="quests_window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="quest_list" type="Panel" parent="quests_window/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="quests_window/HBoxContainer/quest_list"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="quest_list" type="VBoxContainer" parent="quests_window/HBoxContainer/quest_list/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="button_template" type="Button" parent="quests_window/HBoxContainer/quest_list/ScrollContainer/quest_list"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "template"
+
+[node name="quest_info" type="Panel" parent="quests_window/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]

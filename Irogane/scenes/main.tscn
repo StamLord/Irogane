@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=142 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox_dummy.gd" id="24_fbhn0"]
 [ext_resource type="Texture2D" uid="uid://fdjjcjkxdo7o" path="res://icon.svg" id="25_g0vwl"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="25_urnjo"]
+[ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="26_wvciu"]
 [ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
 [ext_resource type="Script" path="res://scripts/procedural/tree.gd" id="30_wm6fm"]
@@ -558,6 +559,18 @@ use_particle_trails = true
 [sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_cqe8l"]
 material = SubResource("StandardMaterial3D_axc3g")
 curve = SubResource("Curve_77mym")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ynb6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k1ph2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m4oe0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t601"]
+albedo_color = Color(0.921569, 0, 0.337255, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a1qq5"]
+radius = 0.7
 
 [node name="world" type="Node3D"]
 
@@ -2052,6 +2065,34 @@ visibility_aabb = AABB(-4, -4, -4, 8, 8, 64)
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_v0ed8")
 draw_pass_1 = SubResource("RibbonTrailMesh_cqe8l")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.797521, 0, -0.603292, 0, 1, 0, 0.603292, 0, 0.797521, -8.74275, 0.0379796, 9.07988)
+
+[node name="collider" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_5ynb6")
+
+[node name="mesh" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_k1ph2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.45)
+mesh = SubResource("BoxMesh_m4oe0")
+surface_material_override/0 = SubResource("StandardMaterial3D_0t601")
+
+[node name="interactive" type="Area3D" parent="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("26_wvciu")
+dialogue = "Hiroshi"
+initial_dialog = "stolen_katana_quest"
+interaction_text = "Talk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/interactive"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_a1qq5")
 
 [connection signal="body_entered" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_exited"]

@@ -122,6 +122,9 @@ func pickup_item(item_id):
 	if not grid.insert_item_at_first_available(item):
 		item.queue_free()
 		return false
+	
+	EventManager.item_picked_up(item_id)
+	
 	return true
 	
 

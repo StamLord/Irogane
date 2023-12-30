@@ -1,0 +1,13 @@
+~ farmer_greetings
+Hiroshi: Oh, honored traveler! You have the look of one who can help in times of need. 
+Our Miyamoto clan is in great distress – the Moonshadow Katana, our ancestral blade, has been stolen. 
+Lord Miyamoto seeks a noble soul to recover it and restore honor to our name. Will you be the one to aid us?
+do GlossaryLearned.learn("irogane")
+- Tell me more about the stolen katana.
+	player: Tell me more about the stolen katana.
+	Hiroshi: The Moonshadow Katana is a relic passed down through generations. 
+	Its theft brings shame to our clan. Please, speak to Lord Miyamoto at the estate for more details
+- I am at your service. What must I do?
+	player: I am at your service. What must I do?
+	Hiroshi: Yes, rumors of war have been spreading like wildfire. The samurai clans are in conflict, and it's making life difficult for us farmers. We just hope the war doesn't reach our village.
+=> END

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://vyku1tsdr0dl"]
+
+[ext_resource type="Script" path="res://scripts/ui/ui_window.gd" id="1_yr1uo"]
+[ext_resource type="Script" path="res://scripts/ui/quest_window.gd" id="2_nvj5i"]
+
+[node name="quest_window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yr1uo")
+button = "quests"
+
+[node name="Window" type="Window" parent="."]
+title = "Swag"
+initial_position = 2
+script = ExtResource("2_nvj5i")
