@@ -19,8 +19,7 @@ func _process(_delta):
 		return
 	
 	var dist = talking_to.global_position.distance_to(global_position)
-	#print("dist ", dist)
+	
 	if dist > 5:
-		#var varray : Array[Dictionary] = [{"type" : "end_dialogue"}]
-		#DialogueManager.mutate({"expression" : varray}, [null])
 		talking_to = null
+	
