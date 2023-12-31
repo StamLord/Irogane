@@ -21,12 +21,12 @@ const QUEST_ID = "quest_{s}"
 # Windows
 @onready var delete_dialog = %delete_dialog
 @onready var add_node_window = %add_node_window
+@onready var error_window = %error_dialog
 
 var quests: Array[QuestResource] = []
 var quest_to_file_name = {}
 var selected_quest: QuestResource = null
 var selected_quest_node: QuestNode = null
-
 
 func _ready():
 	# fetch quests and dispaly list
@@ -143,6 +143,13 @@ func update_selected_quest():
 	graph.arrange_nodes()
 	
 
+func select_quest(quest_id: String):
+	for quest in quests:
+		if quest.quest_id == quest_id:
+			selected_quest = quest
+			update_selected_quest()
+	
+
 func _on_add_quest_button_pressed():
 	var index = get_highest_ques_index() + 1
 	var suffix = str(index).pad_zeros(3)
@@ -161,11 +168,24 @@ func _on_add_quest_button_pressed():
 	
 
 func _on_save_quest_button_pressed():
+	var quest_ids = []
+	
+	for quest in quests:
+		if quest != selected_quest:
+			quest_ids.push_back(quest.quest_id)
+
+	if selected_quest_node.quest_id_label.text in quest_ids:
+		error_window.dialog_text = "Duplicate quest id '%s'" % selected_quest_node.quest_id_label.text
+		error_window.popup_centered()
+		return
 	selected_quest_node.update_quest_resource(graph)
+	var selected_quest_id = selected_quest.quest_id
 	ResourceSaver.save(selected_quest, "%s%s" % [QUESTS_DIR, quest_to_file_name[selected_quest]])
 	clear_selection()
 	get_quest_files()
 	create_quest_list()
+	select_quest(selected_quest_id)
+	
 
 func _on_delete_button_pressed():
 	if selected_quest:
