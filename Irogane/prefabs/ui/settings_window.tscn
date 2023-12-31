@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q284v"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="settings" type="Control"]
+[node name="setting_window" type="Control"]
 visible = false
 layout_mode = 3
 anchors_preset = 8

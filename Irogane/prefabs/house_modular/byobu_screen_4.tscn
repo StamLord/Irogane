@@ -6,7 +6,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aghui"]
 render_priority = 0
 shader = ExtResource("1_ppmwf")
-shader_parameter/FloatParameter = 1.0
+shader_parameter/roughness = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_44780"]
 render_priority = 0
@@ -15,6 +15,7 @@ shader = ExtResource("1_3lops")
 shader_parameter/metalic = 0.0
 shader_parameter/rougness = 1.0
 shader_parameter/specular = 0.0
+shader_parameter/emission_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_htvjm"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cdq8bcv07yohh"]
 
-[ext_resource type="Texture2D" uid="uid://ch1fp7gju4ac7" path="res://assets/models/env/house_modular/house_wall_a_corner_2x2_house_wall.png" id="1_mps83"]
-[ext_resource type="Texture2D" uid="uid://ds6731n3wnm88" path="res://assets/models/env/house_modular/house_wall_a_corner_2x2_house_beam.png" id="2_x1nny"]
+[ext_resource type="Texture2D" uid="uid://1c57gce386m8" path="res://assets/models/env/house_modular/textures/house_wall_c.png" id="1_mps83"]
+[ext_resource type="Texture2D" uid="uid://bk1tvtq3ip2i4" path="res://assets/models/env/house_modular/textures/house_beam.png" id="2_x1nny"]
 [ext_resource type="Material" uid="uid://vpgtxll8v0nh" path="res://assets/models/env/house_modular/materials/house_wall_a.tres" id="3_l6w20"]
 [ext_resource type="Material" uid="uid://cqomyhc0udu0m" path="res://assets/models/env/house_modular/materials/house_beam.tres" id="4_fu48w"]
 

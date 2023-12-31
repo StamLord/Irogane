@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bhr6cskoy2tmy"]
 
-[ext_resource type="Script" path="res://scripts/ui/inventory_window.gd" id="1_bq0th"]
+[ext_resource type="Script" path="res://scripts/ui/ui_window.gd" id="1_cbmn4"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory.gd" id="2_wmay1"]
 [ext_resource type="Script" path="res://scripts/inventory/inventory_grid.gd" id="3_2ojle"]
 [ext_resource type="Script" path="res://scripts/inventory/equipment_slots.gd" id="4_t2qdd"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://l5qhpter0str" path="res://assets/textures/ui/inventory/inv_grid_cell_square_2.png" id="6_34bjq"]
 [ext_resource type="Script" path="res://scripts/inventory/quick_slots.gd" id="6_qh2tf"]
 
-[node name="inventory" type="Control"]
+[node name="inventory_window" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -17,7 +17,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bq0th")
+script = ExtResource("1_cbmn4")
+button = "inventory"
 
 [node name="inventory" type="Panel" parent="."]
 layout_mode = 1

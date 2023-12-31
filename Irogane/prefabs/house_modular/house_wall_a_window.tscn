@@ -2,5 +2,4 @@
 
 [ext_resource type="PackedScene" uid="uid://on50tn3awhqq" path="res://assets/models/env/house_modular/house_wall_a_window.glb" id="1_6cqcq"]
 
-
 [node name="house_wall_a_window" instance=ExtResource("1_6cqcq")]

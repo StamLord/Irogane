@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://cveqhya6mya4h"]
+[gd_scene load_steps=23 format=3 uid="uid://cveqhya6mya4h"]
 
-[ext_resource type="Texture2D" uid="uid://bxutrw8gccjmn" path="res://assets/models/env/house_modular/house_enterance_4x4_house_wall.png" id="1_iw5h3"]
-[ext_resource type="Texture2D" uid="uid://boltibba0ygiw" path="res://assets/models/env/house_modular/house_enterance_4x4_house_beam.png" id="2_w5apd"]
+[ext_resource type="Texture2D" uid="uid://bpaujjcxvwdnc" path="res://assets/models/env/house_modular/textures/house_wall.png" id="1_iw5h3"]
+[ext_resource type="Texture2D" uid="uid://bk1tvtq3ip2i4" path="res://assets/models/env/house_modular/textures/house_beam.png" id="2_w5apd"]
 [ext_resource type="PackedScene" uid="uid://dk5wjqc66k27r" path="res://prefabs/house_modular/house_door_1x3.tscn" id="3_777uw"]
-[ext_resource type="Material" uid="uid://c7625k88fvdqq" path="res://assets/models/env/house_modular/materials/house_door.tres" id="4_aey82"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="4_qgw4r"]
 [ext_resource type="Texture2D" uid="uid://bg4w6c844lc3x" path="res://assets/models/env/house_modular/textures/house_door.png" id="5_v3e7y"]
+[ext_resource type="Shader" uid="uid://cotvcfr6unec4" path="res://assets/shaders/shadow_canvas_2.tres" id="5_wa64j"]
+[ext_resource type="Texture2D" uid="uid://dogmyl7fbb76d" path="res://assets/models/env/house_modular/textures/house_door_emission.png" id="6_bcymb"]
+[ext_resource type="Shader" uid="uid://cjqdm7p38lo4r" path="res://assets/shaders/shadow_canvas.tres" id="7_8hu2o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sy0xh"]
 resource_name = "house_walll"
@@ -120,11 +122,41 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ufy6e")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
+render_priority = 0
+shader = ExtResource("5_wa64j")
+shader_parameter/roughness = 1.0
+shader_parameter/shadow_mask = ExtResource("6_bcymb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oke7o"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("7_8hu2o")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/emission_multiplier = 0.0
+shader_parameter/Texture2DParameter = ExtResource("5_v3e7y")
+shader_parameter/emission_texture = ExtResource("5_v3e7y")
+shader_parameter/shadow_mask = ExtResource("6_bcymb")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_rslku"]
 size = Vector3(1, 3, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b0ssg"]
 size = Vector3(1, 3, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7t2i1"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("7_8hu2o")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/emission_multiplier = 0.0
+shader_parameter/Texture2DParameter = ExtResource("5_v3e7y")
+shader_parameter/emission_texture = ExtResource("5_v3e7y")
+shader_parameter/shadow_mask = ExtResource("6_bcymb")
 
 [node name="house_enterance_4x4" type="StaticBody3D"]
 
@@ -153,7 +185,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.05)
 [node name="house_door_1x32" type="MeshInstance3D" parent="house_door_1x4"]
 mesh = SubResource("ArrayMesh_i4fpc")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("4_aey82")
+surface_material_override/0 = SubResource("ShaderMaterial_oke7o")
 
 [node name="collider" type="CollisionShape3D" parent="house_door_1x4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -182,7 +214,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.0499999)
 [node name="house_door_1x32" type="MeshInstance3D" parent="house_door_1x5"]
 mesh = SubResource("ArrayMesh_i4fpc")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("4_aey82")
+surface_material_override/0 = SubResource("ShaderMaterial_7t2i1")
 
 [node name="collider" type="CollisionShape3D" parent="house_door_1x5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

@@ -1,0 +1,189 @@
+[gd_scene load_steps=6 format=3 uid="uid://dypmn1aap7f7t"]
+
+[ext_resource type="Script" path="res://addons/quest_editor/quest_editor_window.gd" id="1_8crdu"]
+[ext_resource type="Script" path="res://addons/quest_editor/scripts/editor_graph.gd" id="2_ogxms"]
+[ext_resource type="Script" path="res://addons/quest_editor/scripts/node_tree.gd" id="3_ytuql"]
+
+[sub_resource type="Image" id="Image_clcrm"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_q3bpe"]
+image = SubResource("Image_clcrm")
+
+[node name="quest_editor" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_8crdu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="top_buttons_hbox" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="buttons_left_pane" type="HBoxContainer" parent="VBoxContainer/top_buttons_hbox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="delete_wrapper" type="HBoxContainer" parent="VBoxContainer/top_buttons_hbox/buttons_left_pane"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="delete_button" type="Button" parent="VBoxContainer/top_buttons_hbox/buttons_left_pane/delete_wrapper"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Delete Quest"
+disabled = true
+icon = SubResource("ImageTexture_q3bpe")
+flat = true
+
+[node name="save_box" type="HBoxContainer" parent="VBoxContainer/top_buttons_hbox/buttons_left_pane"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="save_quest_button" type="Button" parent="VBoxContainer/top_buttons_hbox/buttons_left_pane/save_box"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Save Quest"
+disabled = true
+icon = SubResource("ImageTexture_q3bpe")
+flat = true
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/top_buttons_hbox"]
+layout_mode = 2
+
+[node name="buttons_mid_pane" type="HBoxContainer" parent="VBoxContainer/top_buttons_hbox"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="add_node" type="Button" parent="VBoxContainer/top_buttons_hbox/buttons_mid_pane"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Add new node"
+disabled = true
+text = "Add Node"
+icon = SubResource("ImageTexture_q3bpe")
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quest List"
+
+[node name="add_quest_button" type="Button" parent="VBoxContainer/HSplitContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Create new quest"
+icon = SubResource("ImageTexture_q3bpe")
+flat = true
+alignment = 0
+
+[node name="quest_list_panle" type="Panel" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer/quest_list_panle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="quest_list" type="VBoxContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer/quest_list_panle/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="button_template" type="Button" parent="VBoxContainer/HSplitContainer/VBoxContainer/quest_list_panle/ScrollContainer/quest_list"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Quest 001"
+alignment = 0
+
+[node name="GraphEdit" type="GraphEdit" parent="VBoxContainer/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+right_disconnects = true
+script = ExtResource("2_ogxms")
+
+[node name="delete_dialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Delete Quest"
+size = Vector2i(310, 100)
+ok_button_text = "Delete"
+
+[node name="error_dialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Error"
+
+[node name="add_node_window" type="Window" parent="."]
+unique_name_in_owner = true
+title = "Create Quest Node"
+position = Vector2i(0, 36)
+size = Vector2i(180, 250)
+visible = false
+
+[node name="node_tree" type="Tree" parent="add_node_window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+hide_root = true
+script = ExtResource("3_ytuql")
+
+[connection signal="pressed" from="VBoxContainer/top_buttons_hbox/buttons_left_pane/delete_wrapper/delete_button" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/top_buttons_hbox/buttons_left_pane/save_box/save_quest_button" to="." method="_on_save_quest_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/top_buttons_hbox/buttons_mid_pane/add_node" to="." method="_on_add_node_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/VBoxContainer/HBoxContainer/add_quest_button" to="." method="_on_add_quest_button_pressed"]
+[connection signal="connection_request" from="VBoxContainer/HSplitContainer/GraphEdit" to="VBoxContainer/HSplitContainer/GraphEdit" method="_on_connection_request"]
+[connection signal="delete_nodes_request" from="VBoxContainer/HSplitContainer/GraphEdit" to="VBoxContainer/HSplitContainer/GraphEdit" method="_on_delete_nodes_request"]
+[connection signal="disconnection_request" from="VBoxContainer/HSplitContainer/GraphEdit" to="VBoxContainer/HSplitContainer/GraphEdit" method="_on_disconnection_request"]
+[connection signal="popup_request" from="VBoxContainer/HSplitContainer/GraphEdit" to="VBoxContainer/HSplitContainer/GraphEdit" method="_on_popup_request"]
+[connection signal="confirmed" from="delete_dialog" to="." method="delete_selected_quest"]
+[connection signal="close_requested" from="add_node_window" to="." method="_on_window_close_requested"]
+[connection signal="focus_exited" from="add_node_window" to="." method="_on_window_focus_exited"]
+[connection signal="item_activated" from="add_node_window/node_tree" to="add_node_window/node_tree" method="_on_item_activated"]

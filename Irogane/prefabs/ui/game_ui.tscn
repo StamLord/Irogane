@@ -1,0 +1,343 @@
+[gd_scene load_steps=16 format=3 uid="uid://dxkipe3wxamcu"]
+
+[ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
+[ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
+[ext_resource type="PackedScene" uid="uid://bi8n5t3pidiyf" path="res://prefabs/ui/hud.tscn" id="3_qbjqm"]
+[ext_resource type="Script" path="res://scripts/stealth/stealth_ui.gd" id="4_0kmua"]
+[ext_resource type="Texture2D" uid="uid://cq6cr15aonyd" path="res://assets/textures/ui/stealth/detect_radar.png" id="5_skdea"]
+[ext_resource type="PackedScene" uid="uid://tmdi72a130so" path="res://prefabs/ui/stats_ui.tscn" id="6_qe11c"]
+[ext_resource type="PackedScene" uid="uid://bhr6cskoy2tmy" path="res://prefabs/ui/inventory_ui.tscn" id="7_86uhb"]
+[ext_resource type="Texture2D" uid="uid://cc70hxhf5av80" path="res://assets/textures/ui/cursor/hollow_circle_shadow.png" id="8_o0b22"]
+[ext_resource type="Script" path="res://scripts/ui/carry_progress_bar.gd" id="9_554op"]
+[ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="10_pnsv3"]
+[ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
+[ext_resource type="PackedScene" uid="uid://dvok8nvjcehcs" path="res://prefabs/ui/system_menu.tscn" id="12_dwafj"]
+[ext_resource type="Script" path="res://prefabs/ui/quests_window.gd" id="14_amsqm"]
+[ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
+font_size = 24
+
+[node name="game_ui" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cursor" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xge4d")
+stretch_mode = 3
+
+[node name="interaction_text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -44.0
+offset_right = 80.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 20)
+label_settings = SubResource("LabelSettings_8mr78")
+horizontal_alignment = 1
+script = ExtResource("2_pu65n")
+
+[node name="hud" parent="." instance=ExtResource("3_qbjqm")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 850.0
+offset_bottom = 270.0
+
+[node name="stealth_ui" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_0kmua")
+
+[node name="indicator" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator2" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator3" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator4" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator5" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator6" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator7" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="indicator8" type="TextureRect" parent="stealth_ui"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 47)
+texture = ExtResource("5_skdea")
+
+[node name="stats_ui" parent="." instance=ExtResource("6_qe11c")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventory_window" parent="." instance=ExtResource("7_86uhb")]
+visible = false
+layout_mode = 1
+
+[node name="carry_progress_bar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+fill_mode = 4
+texture_progress = ExtResource("8_o0b22")
+script = ExtResource("9_554op")
+
+[node name="carry_notification" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -74.0
+offset_right = 50.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 15)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+text = "TOO HEAVY"
+horizontal_alignment = 1
+script = ExtResource("10_pnsv3")
+
+[node name="glossary_ui" parent="." instance=ExtResource("11_tb3gr")]
+visible = false
+
+[node name="system_menu" parent="." instance=ExtResource("12_dwafj")]
+visible = false
+layout_mode = 1
+
+[node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
+visible = false
+layout_mode = 1
+
+[node name="quests_window" type="Window" parent="."]
+title = "Quests"
+initial_position = 2
+size = Vector2i(400, 400)
+visible = false
+script = ExtResource("14_amsqm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="quests_window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="quest_list" type="Panel" parent="quests_window/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="quests_window/HBoxContainer/quest_list"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="quest_list" type="VBoxContainer" parent="quests_window/HBoxContainer/quest_list/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="button_template" type="Button" parent="quests_window/HBoxContainer/quest_list/ScrollContainer/quest_list"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "template"
+
+[node name="quest_info" type="Panel" parent="quests_window/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="quests_window/HBoxContainer/quest_info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="quest_info_text" type="RichTextLabel" parent="quests_window/HBoxContainer/quest_info/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]

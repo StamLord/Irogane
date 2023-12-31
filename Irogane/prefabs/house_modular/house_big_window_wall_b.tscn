@@ -1,7 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0ki5165el444"]
 
-[ext_resource type="Texture2D" uid="uid://begeq3n1256na" path="res://assets/models/env/house_modular/house_big_window_wall_b_house_wall.png" id="1_336gr"]
+[ext_resource type="Texture2D" uid="uid://dxf2s41aiwk48" path="res://assets/models/env/house_modular/textures/house_wall_window.png" id="1_336gr"]
 [ext_resource type="PackedScene" uid="uid://3rljueky1vvh" path="res://assets/models/env/house_modular/house_window_b_2x1-5.glb" id="2_scqbt"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apqdw"]
 resource_name = "house_walll"

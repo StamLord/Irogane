@@ -242,7 +242,8 @@ func load_game(index = 0):
 	print("Loaded scene name: ", scene_name)
 
 	PlayerEntity.create_player_node_if_needed()
-
+	UIManager.create_ui_node_if_needed()
+	
 	SceneManager.goto_scene(scene_name)
 	await SceneManager.on_scene_loaded
 
