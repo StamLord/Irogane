@@ -26,6 +26,7 @@ func _ready():
 	add_get_all_active_quest_ids()
 	add_get_all_completed_quest_ids()
 	add_advance_stage_command()
+	add_complete_req_command()
 	
 
 func load_quest_files():
@@ -130,6 +131,24 @@ func advance_stage(quest_id: String):
 	return quest.advance_stage()
 	
 
+func complete_req(quest_id: String, stage_id: String, req_id: String):
+	if quest_id not in active_quests:
+		return false
+	
+	var quest = active_quests[quest_id]
+	
+	if quest.current_stage.stage_id != stage_id:
+		return false
+		
+	
+	for req in quest.current_stage.stage_requirements:
+		if req.req_id == req_id and not req.completed:
+			req.complete_req()
+			return true
+	
+	return false
+	
+
 func is_quest_active(quest_id: String):
 	return quest_id in active_quests
 	
@@ -164,7 +183,7 @@ func quest_completed(quest_id: String):
 	
 
 func advance_stage_command(args: Array):
-	advance_stage(args[0])
+	return "Stage Advanced: %s" %advance_stage(args[0])
 	
 
 func add_advance_stage_command():
@@ -180,7 +199,7 @@ func add_advance_stage_command():
 	
 
 func start_quest_commad(args: Array):
-	start_quest(args[0])
+	return "Quest Started: %s" % start_quest(args[0])
 	
 
 func add_start_quest_command():
@@ -195,14 +214,15 @@ func add_start_quest_command():
 		], "Starts quest with quest_id")
 	
 
-func get_all_quest_ids(args: Array):
+func get_all_quest_ids(_args: Array):
 	return ", ".join(quests_db.keys())
+	
 
 func add_get_all_quest_ids():
 	DebugCommandsManager.add_command("get_all_quests", get_all_quest_ids, [], "Returns all quest ids in quest DB")
 	
 
-func get_all_active_quest_ids(args: Array):
+func get_all_active_quest_ids(_args: Array):
 	return ", ".join(active_quests.keys())
 	
 
@@ -210,10 +230,34 @@ func add_get_all_active_quest_ids():
 	DebugCommandsManager.add_command("get_active_quests", get_all_active_quest_ids, [], "Returns all active quest ids in quest DB")
 	
 
-func get_all_completed_quest_ids(args: Array):
+func get_all_completed_quest_ids(_args: Array):
 	return ", ".join(completed_quests.keys())
 	
 
 func add_get_all_completed_quest_ids():
 	DebugCommandsManager.add_command("get_completed_quests", get_all_completed_quest_ids, [], "Returns all completed quest ids in quest DB")
+	
+
+func complete_req_command(args: Array):
+	return "Req Completed: %s" % complete_req(args[0], args[1], args[2])
+	
+
+func add_complete_req_command():
+	DebugCommandsManager.add_command("complete_quest_req", complete_req_command, [
+			{
+				"arg_name" : "quest_id",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Quest Id"
+			},
+			{
+				"arg_name" : "stage_id",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Stage Id"
+			},
+			{
+				"arg_name" : "req_id",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Requirement Id"
+			},
+		], "Complete a quest requirement from current stage of an active quest")
 	

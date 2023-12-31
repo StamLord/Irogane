@@ -29,5 +29,5 @@ func finish():
 	
 
 func get_req_description():
-	return
+	return description
 	

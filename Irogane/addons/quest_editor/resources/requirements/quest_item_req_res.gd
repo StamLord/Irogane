@@ -21,3 +21,6 @@ func check_item(item_id):
 			complete_req()
 	
 
+func get_req_description():
+	return "%s %s/%s" % [description, current_amount, amount]
+	

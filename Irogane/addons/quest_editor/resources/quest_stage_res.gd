@@ -51,4 +51,3 @@ func complete_stage():
 	if QuestManager.on_quest_req_complete.is_connected(req_completed):
 		QuestManager.on_quest_req_complete.disconnect(req_completed)
 	
-

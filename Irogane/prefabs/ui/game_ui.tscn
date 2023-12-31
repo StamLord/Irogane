@@ -325,4 +325,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
+[node name="ScrollContainer" type="ScrollContainer" parent="quests_window/HBoxContainer/quest_info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="quest_info_text" type="RichTextLabel" parent="quests_window/HBoxContainer/quest_info/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]
