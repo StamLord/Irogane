@@ -5,6 +5,7 @@ signal on_quest_complete(quest_id: String)
 signal on_quest_stage_started(stage_id: String, quest_id: String)
 signal on_quest_stage_complete(stage_id: String, quest_id: String)
 signal on_quest_req_started(req_id: String, stage_id: String, quest_id: String)
+signal on_quest_req_updated(req_id: String, stage_id: String, quest_id: String)
 signal on_quest_req_complete(req_id: String, stage_id: String, quest_id: String)
 
 signal quests_updated()
@@ -27,6 +28,7 @@ func _ready():
 	add_get_all_completed_quest_ids()
 	add_advance_stage_command()
 	add_complete_req_command()
+	add_reset_quest_command()
 	
 
 func load_quest_files():
@@ -180,10 +182,24 @@ func quest_completed(quest_id: String):
 	completed_quests[quest_id] = quest
 	active_quests.erase(quest_id)
 	quests_updated.emit()
-	
+	return true
 
+func reset_quest(quest_id: String):
+	if quest_id not in completed_quests:
+		return false
+	
+	var quest = completed_quests[quest_id]
+	
+	active_quests[quest_id] = quest
+	completed_quests.erase(quest_id)
+	quests_updated.emit()
+	return true
+
+func reset_quest_command(args):
+	return "Quest reset: %s" % reset_quest(args[0])
+	
 func advance_stage_command(args: Array):
-	return "Stage Advanced: %s" %advance_stage(args[0])
+	return "Stage Advanced: %s" % advance_stage(args[0])
 	
 
 func add_advance_stage_command():
@@ -196,6 +212,18 @@ func add_advance_stage_command():
 				"arg_desc" : "Quest Id"
 			}
 		], "Advances quest with quest_id to the next stage (completing it if it's the last stage)")
+	
+
+func add_reset_quest_command():
+	DebugCommandsManager.add_command(
+		"reset_quest",
+		reset_quest_command, [
+			{
+				"arg_name" : "quest_id",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Quest Id"
+			}
+		], "Resets a completed quest with quest_id to become available again")
 	
 
 func start_quest_commad(args: Array):
@@ -215,7 +243,12 @@ func add_start_quest_command():
 	
 
 func get_all_quest_ids(_args: Array):
-	return ", ".join(quests_db.keys())
+	var return_string = ""
+	
+	for quest_id in quests_db.keys():
+		return_string = str(return_string, "%s:%s" % [quest_id, quests_db[quest_id].title], "\n\n")
+	
+	return return_string
 	
 
 func add_get_all_quest_ids():

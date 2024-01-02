@@ -26,6 +26,9 @@ func advance_stage():
 	if not current_stage.completed:
 		return false # current stage not complete
 	
+	# finish stage
+	current_stage.finish()
+	
 	# Apply rewards for completed reqs in current_stage
 	for req in current_stage.stage_requirements:
 		if req.completed:
