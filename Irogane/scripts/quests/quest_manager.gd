@@ -75,10 +75,10 @@ func can_start_quest(quest_id: String):
 		if not preq_quest_id in completed_quests:
 			return false
 	
-	return quest.can_start_quest()
+	return true
 	
 
-# Returns true, if quest_id exists, active, and stage_id, exists, current and not completed
+# Returns true, if quest_id exists, active, and stage_id, exists and current, regardless of completion
 # Used to display "stage ongoing triggers"
 func is_stage_active(quest_id: String, stage_id: String):
 	if quest_id not in active_quests:
@@ -89,7 +89,7 @@ func is_stage_active(quest_id: String, stage_id: String):
 	if quest.current_stage.stage_id != stage_id:
 		return false
 	
-	return not quest.is_current_stage_complete()
+	return true
 	
 
 # Returns true, if quest_id exists, active, and stage_id, exists, current and completed
@@ -112,7 +112,7 @@ func get_current_stage_id(quest_id: String):
 	
 	var quest = active_quests[quest_id]
 	
-	return quest.current_stage
+	return quest.current_stage.stage_id
 	
 
 func is_current_stage_complete(quest_id: String):

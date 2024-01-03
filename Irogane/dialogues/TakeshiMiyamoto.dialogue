@@ -1,13 +1,43 @@
-~ farmer_greetings
-Hiroshi: Oh, honored traveler! You have the look of one who can help in times of need. 
-Our Miyamoto clan is in great distress – the Moonshadow Katana, our ancestral blade, has been stolen. 
-Lord Miyamoto seeks a noble soul to recover it and restore honor to our name. Will you be the one to aid us?
-do GlossaryLearned.learn("irogane")
-- Tell me more about the stolen katana.
-	player: Tell me more about the stolen katana.
-	Hiroshi: The Moonshadow Katana is a relic passed down through generations. 
-	Its theft brings shame to our clan. Please, speak to Lord Miyamoto at the estate for more details
-- I am at your service. What must I do?
-	player: I am at your service. What must I do?
-	Hiroshi: Yes, rumors of war have been spreading like wildfire. The samurai clans are in conflict, and it's making life difficult for us farmers. We just hope the war doesn't reach our village.
+~ greetings
+if QuestManager.is_quest_complete("quest_000")
+	Takeshi Miyamoto: Thank you so much for helping the Miyamoto clan
+	- Don't mention it
+	=> END
+if QuestManager.is_stage_active("quest_000", "002")
+	=> quest_stage_2
+~ rude
+Takeshi Miyamoto: Piss off...
+if QuestManager.is_stage_active("quest_000", "001")
+	=> quest_stage_1
+=> END
+
+~ quest_stage_1
+- I was sent by Hiroshi
+	{{PlayerEntity.player_name}}: I was sent by Hiroshi
+	Takeshi Miyamoto: Ah my apologies, what is it do you need?
+	- Hiroshi told me about a stolen Katana?
+		{{PlayerEntity.player_name}}: Hiroshi told me about a stolen Katana?
+		Takeshi Miyamoto: Hmf yes, our Moonshadow Katana, a symbol of our honor, has been stolen. This is a grave matter, and we seek a capable adventurer to recover it. Will you accept this noble task?
+		- How did the theft occur, Lord Miyamoto?
+			{{PlayerEntity.player_name}}: How did the theft occur, Lord Miyamoto?
+			Takeshi Miyamoto: Under the cloak of night, a thief infiltrated our estate and took the Moonshadow Katana. It is a treasured heirloom, and its loss brings great shame. Investigate the estate and the Cherry Blossom Grove for any clues.
+			- I understand. I will recover the katana for you.
+				{{PlayerEntity.player_name}}: I understand. I will recover the katana for you.
+				Takeshi Miyamoto: May the spirits guide you. Investigate the grove and the estate, follow any leads, and bring the Moonshadow Katana back to us. Your honor will be remembered in the annals of the Miyamoto clan.
+				do QuestManager.complete_req("quest_000", "001", "001")
+				do QuestManager.advance_stage("quest_000")
+			- Piss off
+				{{PlayerEntity.player_name}}: Piss off
+				Takeshi Miyamoto: Rude!
+=> END
+
+~ quest_stage_2
+Takeshi Miyamoto: Ah, you return! Do you bear good news? Has the Moonshadow Katana been recovered?
+- Not yet
+	{{PlayerEntity.player_name}}: Not yet
+	Takeshi Miyamoto: May the spirits guide you.
+- Yes [if QuestManager.is_stage_complete("quest_000", "002")]
+	{{PlayerEntity.player_name}}: Yes, Lord Miyamoto. The katana is here.
+	Takeshi Miyamoto: You have done a great service to the Miyamoto clan. The Moonshadow Katana is returned, and honor is restored. You are a true hero. Accept this humble reward as a token of our gratitude.
+	do QuestManager.advance_stage("quest_000")
 => END

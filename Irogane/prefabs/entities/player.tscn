@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
+[ext_resource type="PackedScene" uid="uid://lsod62yvvsph" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_nkdgy"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_y8at0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_hicbf"]
@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
-[ext_resource type="PackedScene" uid="uid://dq6tiqj0gtm6u" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
+[ext_resource type="PackedScene" uid="uid://bba44d8rksvrn" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
