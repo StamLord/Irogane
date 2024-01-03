@@ -1,0 +1,257 @@
+[gd_scene load_steps=26 format=3 uid="uid://cjn24hscmpgy4"]
+
+[ext_resource type="Texture2D" uid="uid://g4u5nbk45yfn" path="res://assets/textures/ui/theme/square_button_normal.png" id="1_gx5kc"]
+[ext_resource type="Texture2D" uid="uid://crrshaec0tal6" path="res://assets/textures/ui/theme/square_button_pressed.png" id="2_gohwh"]
+[ext_resource type="Texture2D" uid="uid://hweb3dypawxd" path="res://assets/textures/ui/theme/square_button_hover.png" id="3_dln5b"]
+[ext_resource type="Theme" uid="uid://bnp5tglxu3pg" path="res://themes/ui_button_theme.tres" id="4_5q0sx"]
+[ext_resource type="Theme" uid="uid://2j2x3dxdxl2n" path="res://themes/ui_text_theme.tres" id="4_qw1og"]
+[ext_resource type="Texture2D" uid="uid://cbv4mlc03ec5c" path="res://assets/textures/ui/theme/locked_icon.png" id="5_c10d5"]
+[ext_resource type="FontFile" uid="uid://c8ohdy7lcrv8l" path="res://assets/fonts/otsutome/Otsutome.otf" id="5_mti5c"]
+[ext_resource type="Texture2D" uid="uid://ddl2iowk6kwdv" path="res://assets/textures/ui/theme/locked_highlight_icon.png" id="6_5rhht"]
+[ext_resource type="Texture2D" uid="uid://cnus8fegfdfne" path="res://assets/textures/ui/theme/next_button.png" id="7_12cxm"]
+[ext_resource type="Texture2D" uid="uid://dqmpsyl3uiaqd" path="res://assets/textures/ui/theme/next_button_pressed.png" id="8_eo514"]
+[ext_resource type="Texture2D" uid="uid://c78d44s1om6wv" path="res://assets/textures/ui/theme/next_button_highlight.png" id="9_2v3ih"]
+[ext_resource type="Texture2D" uid="uid://cqihv8vbxwbru" path="res://assets/textures/ui/theme/back_button_normal.png" id="10_svgom"]
+[ext_resource type="Texture2D" uid="uid://b0msj8kguigjo" path="res://assets/textures/ui/theme/back_button_pressed.png" id="11_qewh2"]
+[ext_resource type="Texture2D" uid="uid://bkjgmhfgvjouq" path="res://assets/textures/ui/theme/back_button_highlight.png" id="12_kfiq0"]
+[ext_resource type="Texture2D" uid="uid://dnp0eovqbqf80" path="res://assets/textures/ui/theme/cc_attributes_window.png" id="13_auew8"]
+[ext_resource type="Texture2D" uid="uid://cefkn38oia5a7" path="res://assets/textures/ui/theme/cc_tooltip_window.png" id="14_xlueg"]
+[ext_resource type="Texture2D" uid="uid://ty4vbjslb884" path="res://assets/textures/ui/theme/dark_indent.png" id="15_xqvpy"]
+[ext_resource type="Texture2D" uid="uid://dpo0fwqx7gi5b" path="res://assets/textures/ui/theme/cc_skilltree_window.png" id="16_dq0lo"]
+[ext_resource type="Texture2D" uid="uid://bwccw8o72un0g" path="res://assets/textures/ui/theme/button_2_normal.png" id="17_8d2f3"]
+[ext_resource type="Texture2D" uid="uid://bem3h4sf06gmy" path="res://assets/textures/ui/theme/button_2_pressed.png" id="18_bonk6"]
+[ext_resource type="Texture2D" uid="uid://chaldjyol7e6e" path="res://assets/textures/ui/theme/button_2_highlight.png" id="19_u30su"]
+[ext_resource type="Texture2D" uid="uid://c5ympbmhhxkg7" path="res://assets/textures/ui/theme/long_small_button_normal.png" id="22_4xfhq"]
+[ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="22_5ng0p"]
+[ext_resource type="Texture2D" uid="uid://b2yjpv6xaj710" path="res://assets/textures/ui/theme/long_small_button_pressed.png" id="23_4b2uw"]
+[ext_resource type="Texture2D" uid="uid://b46iledi3eny5" path="res://assets/textures/ui/theme/long_small_button_highlight.png" id="24_g2ag1"]
+
+[node name="Control" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="cc_attributes_window" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 97.0
+offset_top = 213.0
+offset_right = 580.0
+offset_bottom = 704.0
+texture = ExtResource("13_auew8")
+
+[node name="cc_tooltip_window" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 752.0
+offset_right = 933.0
+offset_bottom = 1027.0
+texture = ExtResource("14_xlueg")
+
+[node name="dark_indent" type="NinePatchRect" parent="cc_tooltip_window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 58.0
+offset_right = -24.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_xqvpy")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="cc_tooltip_window/dark_indent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="cc_tooltip_window/dark_indent/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_qw1og")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_mti5c")
+text = "Dexterity is your ability to perform with precision in combat. A higher Dexterity stat improves your chances of landing critical hits, increases damage when using swords and ranged weapons, and speeds up your rate of fire. Invest in Dexterity to enhance your combat finesse and make your attacks more effective. "
+autowrap_mode = 2
+
+[node name="cc_skill_tree_window" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1193.0
+offset_top = 62.0
+offset_right = 2004.0
+offset_bottom = 774.0
+texture = ExtResource("16_dq0lo")
+flip_h = true
+
+[node name="dark_indent" type="NinePatchRect" parent="cc_skill_tree_window"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 93.0
+offset_right = 779.0
+offset_bottom = 620.0
+texture = ExtResource("15_xqvpy")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="small_button" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 181.0
+offset_top = 241.0
+offset_right = 231.0
+offset_bottom = 291.0
+texture_normal = ExtResource("1_gx5kc")
+texture_pressed = ExtResource("2_gohwh")
+texture_hover = ExtResource("3_dln5b")
+
+[node name="Label" type="Label" parent="small_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_colors/font_color = Color(0.788235, 0.321569, 0.278431, 1)
+theme_override_colors/font_outline_color = Color(0.145098, 0.137255, 0.121569, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lock_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 298.0
+offset_right = 224.0
+offset_bottom = 335.0
+toggle_mode = true
+texture_normal = ExtResource("5_c10d5")
+texture_pressed = ExtResource("6_5rhht")
+texture_hover = ExtResource("6_5rhht")
+texture_disabled = ExtResource("5_c10d5")
+texture_focused = ExtResource("6_5rhht")
+stretch_mode = 3
+
+[node name="next_button" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 795.0
+offset_top = 33.0
+offset_right = 1107.0
+offset_bottom = 133.0
+pivot_offset = Vector2(205, 36)
+texture_normal = ExtResource("7_12cxm")
+texture_pressed = ExtResource("8_eo514")
+texture_hover = ExtResource("9_2v3ih")
+
+[node name="next_button2" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 467.0
+offset_top = 33.0
+offset_right = 779.0
+offset_bottom = 133.0
+pivot_offset = Vector2(205, 36)
+texture_normal = ExtResource("10_svgom")
+texture_pressed = ExtResource("11_qewh2")
+texture_hover = ExtResource("12_kfiq0")
+
+[node name="long_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 237.0
+offset_right = 482.0
+offset_bottom = 298.0
+texture_normal = ExtResource("17_8d2f3")
+texture_pressed = ExtResource("18_bonk6")
+texture_hover = ExtResource("19_u30su")
+
+[node name="Label" type="Label" parent="long_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+text = "RANDOMIZE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="long_small_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 306.0
+offset_right = 388.0
+offset_bottom = 356.0
+texture_normal = ExtResource("22_4xfhq")
+texture_pressed = ExtResource("23_4b2uw")
+texture_hover = ExtResource("24_g2ag1")
+
+[node name="Label" type="Label" parent="long_small_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+theme_override_font_sizes/font_size = 20
+text = "Swords"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="brush_highlight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 400.0
+offset_right = 525.0
+offset_bottom = 477.0
+texture = ExtResource("22_5ng0p")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 365.0
+offset_right = 249.0
+offset_bottom = 391.0
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 40
+text = "STRENGTH"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 417.0
+offset_right = 323.0
+offset_bottom = 460.0
+theme = ExtResource("4_qw1og")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "AGILITY"
