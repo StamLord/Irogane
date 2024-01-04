@@ -1,7 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://cjn24hscmpgy4"]
+[gd_scene load_steps=28 format=3 uid="uid://cjn24hscmpgy4"]
 
+[ext_resource type="Texture2D" uid="uid://b807edcc2jh8n" path="res://assets/textures/ui/theme/scroll_button_base.png" id="1_d64j8"]
 [ext_resource type="Texture2D" uid="uid://g4u5nbk45yfn" path="res://assets/textures/ui/theme/square_button_normal.png" id="1_gx5kc"]
 [ext_resource type="Texture2D" uid="uid://crrshaec0tal6" path="res://assets/textures/ui/theme/square_button_pressed.png" id="2_gohwh"]
+[ext_resource type="Texture2D" uid="uid://b4rcjdoheqea1" path="res://assets/textures/ui/theme/scroll_button_color.png" id="2_q4sdr"]
 [ext_resource type="Texture2D" uid="uid://hweb3dypawxd" path="res://assets/textures/ui/theme/square_button_hover.png" id="3_dln5b"]
 [ext_resource type="Theme" uid="uid://bnp5tglxu3pg" path="res://themes/ui_button_theme.tres" id="4_5q0sx"]
 [ext_resource type="Theme" uid="uid://2j2x3dxdxl2n" path="res://themes/ui_text_theme.tres" id="4_qw1og"]
@@ -37,6 +39,331 @@ offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="skill_scroll" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 159.0
+offset_right = 1218.0
+offset_bottom = 209.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll"]
+modulate = Color(0.333333, 0.505882, 0.717647, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+text = "Sword"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1015.0
+offset_top = 222.0
+offset_right = 1195.0
+offset_bottom = 272.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll2"]
+modulate = Color(0.462745, 0.603922, 0.341176, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+text = "Staff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 286.0
+offset_right = 1218.0
+offset_bottom = 336.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll3"]
+modulate = Color(0.690196, 0.407843, 0.341176, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+text = "Bow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll4" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 351.0
+offset_right = 1218.0
+offset_bottom = 401.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll4"]
+modulate = Color(0.815686, 0.709804, 0.25098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+theme_override_font_sizes/font_size = 28
+text = "Thrown"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll5" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 416.0
+offset_right = 1218.0
+offset_bottom = 466.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll5"]
+modulate = Color(0.717647, 0.694118, 0.647059, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+theme_override_font_sizes/font_size = 28
+text = "Unarmed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll6" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 487.0
+offset_right = 1218.0
+offset_bottom = 537.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll6"]
+modulate = Color(0.866667, 0.560784, 0.635294, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+theme_override_font_sizes/font_size = 26
+text = "Mobility"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll7" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 553.0
+offset_right = 1218.0
+offset_bottom = 603.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll7"]
+modulate = Color(0.356863, 0.321569, 0.509804, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+text = "Stealth"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll8" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 621.0
+offset_right = 1218.0
+offset_bottom = 671.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll8"]
+modulate = Color(0.803922, 0.337255, 0.25098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+text = "Xaorin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll9" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 686.0
+offset_right = 1218.0
+offset_bottom = 736.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll9"]
+modulate = Color(0.188235, 0.568627, 0.584314, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+theme_override_font_sizes/font_size = 26
+text = "Onmyodo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll10" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 754.0
+offset_right = 1218.0
+offset_bottom = 804.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll10"]
+modulate = Color(0.823529, 0.470588, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_5q0sx")
+theme_override_font_sizes/font_size = 26
+text = "Shugendo"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="cc_attributes_window" type="TextureRect" parent="."]
 layout_mode = 2
@@ -97,9 +424,9 @@ autowrap_mode = 2
 [node name="cc_skill_tree_window" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 1193.0
-offset_top = 62.0
+offset_top = 121.0
 offset_right = 2004.0
-offset_bottom = 774.0
+offset_bottom = 833.0
 texture = ExtResource("16_dq0lo")
 flip_h = true
 
