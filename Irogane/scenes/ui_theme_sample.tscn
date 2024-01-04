@@ -81,7 +81,7 @@ offset_bottom = 272.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll2"]
-modulate = Color(0.462745, 0.603922, 0.341176, 1)
+modulate = Color(0.470588, 0.494118, 0.329412, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,7 +145,7 @@ offset_bottom = 401.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll4"]
-modulate = Color(0.815686, 0.709804, 0.25098, 1)
+modulate = Color(0.847059, 0.74902, 0.4, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -178,7 +178,7 @@ offset_bottom = 466.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll5"]
-modulate = Color(0.717647, 0.694118, 0.647059, 1)
+modulate = Color(0.901961, 0.890196, 0.870588, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
