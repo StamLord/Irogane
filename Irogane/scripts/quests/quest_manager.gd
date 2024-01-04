@@ -33,6 +33,9 @@ func _ready():
 
 func load_quest_files():
 	quests_db = {}
+	active_quests = {}
+	completed_quests = {}
+	
 	var directory = DirAccess.open(QUESTS_DIR)
 	var files = directory.get_files()
 	
@@ -44,6 +47,37 @@ func load_quest_files():
 			continue
 		var quest = ResourceLoader.load("%s%s" % [QUESTS_DIR, file])
 		quests_db[quest.quest_id] = quest
+	
+
+func save_quests_data():
+	var quests_data = {
+		"completed_quests": [],
+		"active_quests": [],
+	}
+
+	for quest_id in completed_quests:
+		quests_data.completed_quests.push_back(quest_id)
+	
+	for quest_id in active_quests:
+		var quest = active_quests[quest_id]
+		var quest_data = quest.get_quest_data()
+		quests_data.active_quests.push_back(quest_data)
+	
+	return quests_data
+	
+
+func load_quests_data(data):
+	if not data:
+		return
+	
+	for quest_id in data.completed_quests:
+		var quest = quests_db[quest_id]
+		completed_quests[quest_id] = quest
+		
+	for quest_data in data.active_quests:
+		var quest = quests_db[quest_data.id]
+		active_quests[quest_data.id] = quest
+		quest.load_quest_data(quest_data)
 	
 
 func start_quest(quest_id: String):
@@ -183,6 +217,7 @@ func quest_completed(quest_id: String):
 	active_quests.erase(quest_id)
 	quests_updated.emit()
 	return true
+	
 
 func reset_quest(quest_id: String):
 	if quest_id not in completed_quests:
