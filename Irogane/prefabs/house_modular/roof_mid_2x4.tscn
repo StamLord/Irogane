@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://drpml8pdab245"]
 
-[ext_resource type="Texture2D" uid="uid://c6o82qgxjgs8v" path="res://assets/models/env/house_modular/roof_mid_2x4_roof_tiles.png" id="1_1mypt"]
+[ext_resource type="Texture2D" uid="uid://bs7un86s3rdtb" path="res://assets/models/env/house_modular/textures/roof_tiles.png" id="1_1mypt"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erga6"]
 resource_name = "house_roof"

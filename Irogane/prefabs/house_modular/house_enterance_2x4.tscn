@@ -1,12 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0pqs7spu6bwg"]
+[gd_scene load_steps=24 format=3 uid="uid://b0pqs7spu6bwg"]
 
 [ext_resource type="Texture2D" uid="uid://bpaujjcxvwdnc" path="res://assets/models/env/house_modular/textures/house_wall.png" id="1_5ji2p"]
 [ext_resource type="Texture2D" uid="uid://bk1tvtq3ip2i4" path="res://assets/models/env/house_modular/textures/house_beam.png" id="2_5i6b2"]
 [ext_resource type="Material" uid="uid://vpgtxll8v0nh" path="res://assets/models/env/house_modular/materials/house_wall_a.tres" id="3_eldly"]
 [ext_resource type="Material" uid="uid://cqomyhc0udu0m" path="res://assets/models/env/house_modular/materials/house_beam.tres" id="4_e0keh"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="4_ro4sg"]
-[ext_resource type="Material" uid="uid://c7625k88fvdqq" path="res://assets/models/env/house_modular/materials/house_door.tres" id="5_egxha"]
 [ext_resource type="Texture2D" uid="uid://bg4w6c844lc3x" path="res://assets/models/env/house_modular/textures/house_door.png" id="6_8r8t0"]
+[ext_resource type="Shader" uid="uid://cotvcfr6unec4" path="res://assets/shaders/shadow_canvas_2.tres" id="6_38x2m"]
+[ext_resource type="Texture2D" uid="uid://dogmyl7fbb76d" path="res://assets/models/env/house_modular/textures/house_door_emission.png" id="7_5l3i3"]
+[ext_resource type="Shader" uid="uid://cjqdm7p38lo4r" path="res://assets/shaders/shadow_canvas.tres" id="8_sfcvk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cb0yt"]
 resource_name = "house_walll"
@@ -121,11 +123,41 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ufy6e")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
+render_priority = 0
+shader = ExtResource("6_38x2m")
+shader_parameter/roughness = 1.0
+shader_parameter/shadow_mask = ExtResource("7_5l3i3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pcrw"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("8_sfcvk")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/emission_multiplier = 0.0
+shader_parameter/Texture2DParameter = ExtResource("6_8r8t0")
+shader_parameter/emission_texture = ExtResource("6_8r8t0")
+shader_parameter/shadow_mask = ExtResource("7_5l3i3")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_rslku"]
 size = Vector3(1, 3, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6elxv"]
 size = Vector3(1, 3, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_do1mg"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("8_sfcvk")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/emission_multiplier = 0.0
+shader_parameter/Texture2DParameter = ExtResource("6_8r8t0")
+shader_parameter/emission_texture = ExtResource("6_8r8t0")
+shader_parameter/shadow_mask = ExtResource("7_5l3i3")
 
 [node name="house_enterance_2x4" type="StaticBody3D"]
 
@@ -153,7 +185,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.05)
 [node name="house_door_1x32" type="MeshInstance3D" parent="house_door_1"]
 mesh = SubResource("ArrayMesh_i4fpc")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("5_egxha")
+surface_material_override/0 = SubResource("ShaderMaterial_1pcrw")
 
 [node name="collider" type="CollisionShape3D" parent="house_door_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -182,7 +214,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.0499999)
 [node name="house_door_1x32" type="MeshInstance3D" parent="house_door_2"]
 mesh = SubResource("ArrayMesh_i4fpc")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("5_egxha")
+surface_material_override/0 = SubResource("ShaderMaterial_do1mg")
 
 [node name="collider" type="CollisionShape3D" parent="house_door_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

@@ -1,12 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://k0qetksj5mtf"]
-
-[ext_resource type="Texture2D" uid="uid://r0n2ewv34mk7" path="res://assets/models/house_modular/house_wall_window_house_wall_window.png" id="1_k8wen"]
+[gd_scene load_steps=6 format=3 uid="uid://k0qetksj5mtf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fupik"]
 resource_name = "house_wall_window"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_k8wen")
 roughness = 0.5
 texture_filter = 2
 

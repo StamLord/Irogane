@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvok8nvjcehcs"]
+
+[ext_resource type="Script" path="res://scripts/ui/system_menu.gd" id="1_51a4q"]
+[ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="2_uccdj"]
+[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/game_save_load_window.tscn" id="3_rgxg2"]
+
+[sub_resource type="Gradient" id="Gradient_umlgj"]
+colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.25098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_htpd5"]
+gradient = SubResource("Gradient_umlgj")
+width = 256
+height = 256
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b83ot"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="system_menu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_51a4q")
+
+[node name="gradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_htpd5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 123.0
+offset_right = 294.0
+offset_bottom = 505.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b83ot")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="continue" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "CONTINUE"
+alignment = 0
+
+[node name="save" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "SAVE"
+alignment = 0
+
+[node name="load" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "LOAD"
+alignment = 0
+
+[node name="settings" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
+alignment = 0
+
+[node name="quit" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "QUIT"
+alignment = 0
+
+[node name="settings_window" parent="." instance=ExtResource("2_uccdj")]
+layout_mode = 1
+
+[node name="game_load_window" parent="." instance=ExtResource("3_rgxg2")]
+visible = false
+layout_mode = 1
+window_type = 1
+
+[node name="game_save_window" parent="." instance=ExtResource("3_rgxg2")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

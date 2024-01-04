@@ -1,6 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhhpiimdxe886"]
-
-[ext_resource type="Texture2D" uid="uid://bw3cet5u8r3h6" path="res://assets/models/house_modular/house_wall_a_1x4_house_wall.png" id="1_xiv4v"]
+[gd_scene load_steps=5 format=3 uid="uid://dhhpiimdxe886"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqq6u"]
 resource_name = "house_walll"
@@ -9,7 +7,6 @@ alpha_scissor_threshold = 0.0
 alpha_antialiasing_mode = 0
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_xiv4v")
 roughness = 0.0
 texture_filter = 2
 

@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnj17ptkog7gs"]
+[gd_scene load_steps=23 format=3 uid="uid://bnj17ptkog7gs"]
 
-[ext_resource type="Texture2D" uid="uid://cln8b8fxgabho" path="res://assets/models/env/house_modular/house_enterance_6x4_house_wall.png" id="1_s7pp6"]
-[ext_resource type="Texture2D" uid="uid://c57g6tripslpb" path="res://assets/models/env/house_modular/house_enterance_6x4_house_beam.png" id="2_r7c2h"]
+[ext_resource type="Texture2D" uid="uid://bpaujjcxvwdnc" path="res://assets/models/env/house_modular/textures/house_wall.png" id="1_s7pp6"]
+[ext_resource type="Texture2D" uid="uid://bk1tvtq3ip2i4" path="res://assets/models/env/house_modular/textures/house_beam.png" id="2_r7c2h"]
 [ext_resource type="PackedScene" uid="uid://ce6i28njjdi1p" path="res://prefabs/house_modular/house_door_1-5x3.tscn" id="3_r6wuw"]
 [ext_resource type="Texture2D" uid="uid://bg4w6c844lc3x" path="res://assets/models/env/house_modular/textures/house_door.png" id="4_01rsa"]
-[ext_resource type="Material" uid="uid://c7625k88fvdqq" path="res://assets/models/env/house_modular/materials/house_door.tres" id="5_061r3"]
+[ext_resource type="Shader" uid="uid://cotvcfr6unec4" path="res://assets/shaders/shadow_canvas_2.tres" id="5_u3cj2"]
+[ext_resource type="Texture2D" uid="uid://dogmyl7fbb76d" path="res://assets/models/env/house_modular/textures/house_door_emission.png" id="6_7qg6b"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="6_i5tyh"]
+[ext_resource type="Shader" uid="uid://cjqdm7p38lo4r" path="res://assets/shaders/shadow_canvas.tres" id="7_urhei"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mmum"]
 resource_name = "house_walll"
@@ -120,11 +122,41 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_uw72d")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0le"]
+render_priority = 0
+shader = ExtResource("5_u3cj2")
+shader_parameter/roughness = 1.0
+shader_parameter/shadow_mask = ExtResource("6_7qg6b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0kqk"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("7_urhei")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/emission_multiplier = 0.0
+shader_parameter/Texture2DParameter = ExtResource("4_01rsa")
+shader_parameter/emission_texture = ExtResource("4_01rsa")
+shader_parameter/shadow_mask = ExtResource("6_7qg6b")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_m5h1e"]
 size = Vector3(1.5, 3, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3o4wg"]
 size = Vector3(1.5, 3, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7d8gt"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_eq0le")
+shader = ExtResource("7_urhei")
+shader_parameter/metalic = 0.0
+shader_parameter/rougness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/emission_multiplier = 0.0
+shader_parameter/Texture2DParameter = ExtResource("4_01rsa")
+shader_parameter/emission_texture = ExtResource("4_01rsa")
+shader_parameter/shadow_mask = ExtResource("6_7qg6b")
 
 [node name="house_enterance_6x4" type="StaticBody3D"]
 
@@ -154,7 +186,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625, 0, -0.05)
 ignore_occlusion_culling = true
 mesh = SubResource("ArrayMesh_hypur")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("5_061r3")
+surface_material_override/0 = SubResource("ShaderMaterial_r0kqk")
 
 [node name="collider" type="CollisionShape3D" parent="house_door_1-5x4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -183,7 +215,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.875,
 ignore_occlusion_culling = true
 mesh = SubResource("ArrayMesh_hypur")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("5_061r3")
+surface_material_override/0 = SubResource("ShaderMaterial_7d8gt")
 
 [node name="collider" type="CollisionShape3D" parent="house_door_1-5x5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

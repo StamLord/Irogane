@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3 uid="uid://ce1gncdbx641w"]
+
+[ext_resource type="Script" path="res://addons/quest_editor/resources/quest_resource.gd" id="1_afwtt"]
+
+[resource]
+script = ExtResource("1_afwtt")
+quest_id = "quest_001"
+title = "Quest 2"
+description = ""
+prereq_quests_ids = Array[String]([])
