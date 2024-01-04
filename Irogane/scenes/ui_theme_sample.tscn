@@ -42,10 +42,10 @@ mouse_filter = 2
 
 [node name="skill_scroll" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 159.0
-offset_right = 1218.0
-offset_bottom = 209.0
+offset_left = 894.0
+offset_top = 95.0
+offset_right = 1074.0
+offset_bottom = 145.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll"]
@@ -74,10 +74,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll2" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1015.0
-offset_top = 222.0
-offset_right = 1195.0
-offset_bottom = 272.0
+offset_left = 871.0
+offset_top = 158.0
+offset_right = 1051.0
+offset_bottom = 208.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll2"]
@@ -106,10 +106,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll3" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 286.0
-offset_right = 1218.0
-offset_bottom = 336.0
+offset_left = 894.0
+offset_top = 222.0
+offset_right = 1074.0
+offset_bottom = 272.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll3"]
@@ -138,10 +138,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll4" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 351.0
-offset_right = 1218.0
-offset_bottom = 401.0
+offset_left = 894.0
+offset_top = 287.0
+offset_right = 1074.0
+offset_bottom = 337.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll4"]
@@ -171,10 +171,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll5" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 416.0
-offset_right = 1218.0
-offset_bottom = 466.0
+offset_left = 894.0
+offset_top = 352.0
+offset_right = 1074.0
+offset_bottom = 402.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll5"]
@@ -204,10 +204,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll6" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 487.0
-offset_right = 1218.0
-offset_bottom = 537.0
+offset_left = 894.0
+offset_top = 423.0
+offset_right = 1074.0
+offset_bottom = 473.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll6"]
@@ -237,10 +237,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll7" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 553.0
-offset_right = 1218.0
-offset_bottom = 603.0
+offset_left = 894.0
+offset_top = 489.0
+offset_right = 1074.0
+offset_bottom = 539.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll7"]
@@ -269,10 +269,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll8" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 621.0
-offset_right = 1218.0
-offset_bottom = 671.0
+offset_left = 894.0
+offset_top = 557.0
+offset_right = 1074.0
+offset_bottom = 607.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll8"]
@@ -301,10 +301,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll9" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 686.0
-offset_right = 1218.0
-offset_bottom = 736.0
+offset_left = 894.0
+offset_top = 622.0
+offset_right = 1074.0
+offset_bottom = 672.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll9"]
@@ -334,10 +334,10 @@ vertical_alignment = 1
 
 [node name="skill_scroll10" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 754.0
-offset_right = 1218.0
-offset_bottom = 804.0
+offset_left = 894.0
+offset_top = 690.0
+offset_right = 1074.0
+offset_bottom = 740.0
 texture_normal = ExtResource("1_d64j8")
 
 [node name="TextureRect" type="TextureRect" parent="skill_scroll10"]
@@ -365,20 +365,33 @@ text = "Shugendo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="cc_attributes_window" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = 97.0
-offset_top = 213.0
-offset_right = 580.0
-offset_bottom = 704.0
-texture = ExtResource("13_auew8")
+[node name="cc_skill_tree_window" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 57.0
+offset_right = 1860.0
+offset_bottom = 769.0
+texture = ExtResource("16_dq0lo")
+flip_h = true
+
+[node name="dark_indent" type="NinePatchRect" parent="cc_skill_tree_window"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 93.0
+offset_right = 779.0
+offset_bottom = 620.0
+texture = ExtResource("15_xqvpy")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="cc_tooltip_window" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 752.0
-offset_right = 933.0
-offset_bottom = 1027.0
+offset_left = 36.0
+offset_top = 783.0
+offset_right = 913.0
+offset_bottom = 1058.0
 texture = ExtResource("14_xlueg")
 
 [node name="dark_indent" type="NinePatchRect" parent="cc_tooltip_window"]
@@ -421,34 +434,21 @@ theme_override_fonts/font = ExtResource("5_mti5c")
 text = "Dexterity is your ability to perform with precision in combat. A higher Dexterity stat improves your chances of landing critical hits, increases damage when using swords and ranged weapons, and speeds up your rate of fire. Invest in Dexterity to enhance your combat finesse and make your attacks more effective. "
 autowrap_mode = 2
 
-[node name="cc_skill_tree_window" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 1193.0
-offset_top = 121.0
-offset_right = 2004.0
-offset_bottom = 833.0
-texture = ExtResource("16_dq0lo")
-flip_h = true
-
-[node name="dark_indent" type="NinePatchRect" parent="cc_skill_tree_window"]
-layout_mode = 0
-offset_left = 163.0
-offset_top = 93.0
-offset_right = 779.0
-offset_bottom = 620.0
-texture = ExtResource("15_xqvpy")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
+[node name="cc_attributes_window" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 74.0
+offset_top = 177.0
+offset_right = 557.0
+offset_bottom = 668.0
+texture = ExtResource("13_auew8")
 
 [node name="small_button" type="TextureButton" parent="."]
 texture_filter = 1
 layout_mode = 0
-offset_left = 181.0
-offset_top = 241.0
-offset_right = 231.0
-offset_bottom = 291.0
+offset_left = 158.0
+offset_top = 205.0
+offset_right = 208.0
+offset_bottom = 255.0
 texture_normal = ExtResource("1_gx5kc")
 texture_pressed = ExtResource("2_gohwh")
 texture_hover = ExtResource("3_dln5b")
@@ -473,10 +473,10 @@ vertical_alignment = 1
 
 [node name="lock_button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 191.0
-offset_top = 298.0
-offset_right = 224.0
-offset_bottom = 335.0
+offset_left = 168.0
+offset_top = 262.0
+offset_right = 201.0
+offset_bottom = 299.0
 toggle_mode = true
 texture_normal = ExtResource("5_c10d5")
 texture_pressed = ExtResource("6_5rhht")
@@ -485,36 +485,12 @@ texture_disabled = ExtResource("5_c10d5")
 texture_focused = ExtResource("6_5rhht")
 stretch_mode = 3
 
-[node name="next_button" type="TextureButton" parent="."]
-texture_filter = 1
-layout_mode = 0
-offset_left = 795.0
-offset_top = 33.0
-offset_right = 1107.0
-offset_bottom = 133.0
-pivot_offset = Vector2(205, 36)
-texture_normal = ExtResource("7_12cxm")
-texture_pressed = ExtResource("8_eo514")
-texture_hover = ExtResource("9_2v3ih")
-
-[node name="next_button2" type="TextureButton" parent="."]
-texture_filter = 1
-layout_mode = 0
-offset_left = 467.0
-offset_top = 33.0
-offset_right = 779.0
-offset_bottom = 133.0
-pivot_offset = Vector2(205, 36)
-texture_normal = ExtResource("10_svgom")
-texture_pressed = ExtResource("11_qewh2")
-texture_hover = ExtResource("12_kfiq0")
-
 [node name="long_button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 252.0
-offset_top = 237.0
-offset_right = 482.0
-offset_bottom = 298.0
+offset_left = 229.0
+offset_top = 201.0
+offset_right = 459.0
+offset_bottom = 262.0
 texture_normal = ExtResource("17_8d2f3")
 texture_pressed = ExtResource("18_bonk6")
 texture_hover = ExtResource("19_u30su")
@@ -533,10 +509,10 @@ vertical_alignment = 1
 
 [node name="long_small_button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 252.0
-offset_top = 306.0
-offset_right = 388.0
-offset_bottom = 356.0
+offset_left = 229.0
+offset_top = 270.0
+offset_right = 365.0
+offset_bottom = 320.0
 texture_normal = ExtResource("22_4xfhq")
 texture_pressed = ExtResource("23_4b2uw")
 texture_hover = ExtResource("24_g2ag1")
@@ -556,29 +532,53 @@ vertical_alignment = 1
 
 [node name="brush_highlight" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 400.0
-offset_right = 525.0
-offset_bottom = 477.0
+offset_left = 132.0
+offset_top = 364.0
+offset_right = 502.0
+offset_bottom = 441.0
 texture = ExtResource("22_5ng0p")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 182.0
-offset_top = 365.0
-offset_right = 249.0
-offset_bottom = 391.0
+offset_left = 159.0
+offset_top = 329.0
+offset_right = 346.0
+offset_bottom = 372.0
 theme = ExtResource("4_qw1og")
 theme_override_font_sizes/font_size = 40
 text = "STRENGTH"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 182.0
-offset_top = 417.0
-offset_right = 323.0
-offset_bottom = 460.0
+offset_left = 159.0
+offset_top = 381.0
+offset_right = 300.0
+offset_bottom = 424.0
 theme = ExtResource("4_qw1og")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "AGILITY"
+
+[node name="next_button" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1595.0
+offset_top = 960.0
+offset_right = 1907.0
+offset_bottom = 1060.0
+pivot_offset = Vector2(205, 36)
+texture_normal = ExtResource("7_12cxm")
+texture_pressed = ExtResource("8_eo514")
+texture_hover = ExtResource("9_2v3ih")
+
+[node name="back_button" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 15.0
+offset_right = 330.0
+offset_bottom = 115.0
+pivot_offset = Vector2(205, 36)
+texture_normal = ExtResource("10_svgom")
+texture_pressed = ExtResource("11_qewh2")
+texture_hover = ExtResource("12_kfiq0")
