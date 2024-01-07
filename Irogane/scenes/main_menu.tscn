@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dfy8qdkjnd4tc"]
+[gd_scene load_steps=34 format=3 uid="uid://dfy8qdkjnd4tc"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
 [ext_resource type="Shader" uid="uid://c4q8tb0y1fq6a" path="res://assets/shaders/ink_canvase_item.tres" id="2_ghgom"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dltbyebvhv1ga" path="res://assets/textures/vfx/maple_leaf.png" id="7_drwhy"]
 [ext_resource type="Script" path="res://scripts/ui/focus_on_hover_button.gd" id="7_snhy3"]
 [ext_resource type="Script" path="res://scripts/vfx/gpu_particles_2d_color_space_corrector.gd" id="8_416y4"]
+[ext_resource type="AudioStream" uid="uid://dwgcapky45k16" path="res://assets/audio/music/main_menu_theme.ogg" id="13_xnqn3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl7wu"]
 bg_color = Color(0.996078, 0.996078, 0.996078, 1)
@@ -46,7 +47,7 @@ angle_min = -45.0
 angle_max = 45.0
 scale_min = 0.75
 scale_max = 1.25
-color = Color(0.861693, 0.447504, 0.534186, 1)
+color = Color(0.861693, 0.447503, 0.534186, 1)
 turbulence_noise_speed_random = 1.0
 turbulence_influence_min = 0.01
 turbulence_influence_max = 0.01
@@ -267,6 +268,10 @@ offset_left = -300.0
 offset_top = -231.5
 offset_right = 300.0
 offset_bottom = 231.5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_xnqn3")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/bottom/menu_container/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/bottom/menu_container/load_button" to="." method="_on_load_button_pressed"]

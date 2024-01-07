@@ -1,12 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://cjn24hscmpgy4"]
+[gd_scene load_steps=29 format=3 uid="uid://bx80xjf5v460"]
 
 [ext_resource type="Texture2D" uid="uid://b807edcc2jh8n" path="res://assets/textures/ui/theme/scroll_button_base.png" id="1_d64j8"]
 [ext_resource type="Texture2D" uid="uid://g4u5nbk45yfn" path="res://assets/textures/ui/theme/square_button_normal.png" id="1_gx5kc"]
 [ext_resource type="Texture2D" uid="uid://crrshaec0tal6" path="res://assets/textures/ui/theme/square_button_pressed.png" id="2_gohwh"]
 [ext_resource type="Texture2D" uid="uid://b4rcjdoheqea1" path="res://assets/textures/ui/theme/scroll_button_color.png" id="2_q4sdr"]
 [ext_resource type="Texture2D" uid="uid://hweb3dypawxd" path="res://assets/textures/ui/theme/square_button_hover.png" id="3_dln5b"]
-[ext_resource type="Theme" uid="uid://bnp5tglxu3pg" path="res://themes/ui_button_theme.tres" id="4_5q0sx"]
-[ext_resource type="Theme" uid="uid://2j2x3dxdxl2n" path="res://themes/ui_text_theme.tres" id="4_qw1og"]
+[ext_resource type="Theme" uid="uid://cmngfm0tefnp6" path="res://themes/ui_button_theme.tres" id="4_5q0sx"]
+[ext_resource type="Theme" path="res://themes/ui_text_theme.tres" id="4_qw1og"]
 [ext_resource type="Texture2D" uid="uid://cbv4mlc03ec5c" path="res://assets/textures/ui/theme/locked_icon.png" id="5_c10d5"]
 [ext_resource type="FontFile" uid="uid://c8ohdy7lcrv8l" path="res://assets/fonts/otsutome/Otsutome.otf" id="5_mti5c"]
 [ext_resource type="Texture2D" uid="uid://ddl2iowk6kwdv" path="res://assets/textures/ui/theme/locked_highlight_icon.png" id="6_5rhht"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dpo0fwqx7gi5b" path="res://assets/textures/ui/theme/cc_skilltree_window.png" id="16_dq0lo"]
 [ext_resource type="Texture2D" uid="uid://bwccw8o72un0g" path="res://assets/textures/ui/theme/button_2_normal.png" id="17_8d2f3"]
 [ext_resource type="Texture2D" uid="uid://bem3h4sf06gmy" path="res://assets/textures/ui/theme/button_2_pressed.png" id="18_bonk6"]
+[ext_resource type="Theme" uid="uid://cbbpua6uwpg0h" path="res://themes/bordered_buttons.tres" id="18_v3pou"]
 [ext_resource type="Texture2D" uid="uid://chaldjyol7e6e" path="res://assets/textures/ui/theme/button_2_highlight.png" id="19_u30su"]
 [ext_resource type="Texture2D" uid="uid://c5ympbmhhxkg7" path="res://assets/textures/ui/theme/long_small_button_normal.png" id="22_4xfhq"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="22_5ng0p"]
@@ -502,7 +503,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("4_5q0sx")
+theme = ExtResource("18_v3pou")
 text = "RANDOMIZE"
 horizontal_alignment = 1
 vertical_alignment = 1

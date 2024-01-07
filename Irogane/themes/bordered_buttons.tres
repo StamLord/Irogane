@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cbbpua6uwpg0h"]
+
+[ext_resource type="Texture2D" uid="uid://bwccw8o72un0g" path="res://assets/textures/ui/theme/button_2_normal.png" id="1_2oq6k"]
+[ext_resource type="FontFile" uid="uid://bdjuw50a266le" path="res://assets/fonts/otsutome/Otsutome.ttf" id="1_4wl54"]
+[ext_resource type="Texture2D" uid="uid://chaldjyol7e6e" path="res://assets/textures/ui/theme/button_2_highlight.png" id="2_bm013"]
+[ext_resource type="Texture2D" uid="uid://bem3h4sf06gmy" path="res://assets/textures/ui/theme/button_2_pressed.png" id="3_u1h2v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sbstp"]
+texture = ExtResource("2_bm013")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_loode"]
+texture = ExtResource("1_2oq6k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_51oio"]
+texture = ExtResource("3_u1h2v")
+
+[resource]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 26
+Button/fonts/font = ExtResource("1_4wl54")
+Button/styles/focus = SubResource("StyleBoxTexture_sbstp")
+Button/styles/hover = SubResource("StyleBoxTexture_sbstp")
+Button/styles/normal = SubResource("StyleBoxTexture_loode")
+Button/styles/pressed = SubResource("StyleBoxTexture_51oio")

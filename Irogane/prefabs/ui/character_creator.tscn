@@ -1,18 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=19 format=3 uid="uid://bp7x42n7e2h48"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
+[ext_resource type="Texture2D" uid="uid://drfncp5uxc1iv" path="res://assets/textures/ui/theme/character_creation_title.png" id="3_46iht"]
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
+[ext_resource type="Texture2D" uid="uid://cyxplhvugrsmq" path="res://assets/textures/ui/theme/cc_appearance_window.png" id="6_gduyu"]
+[ext_resource type="Theme" uid="uid://cbbpua6uwpg0h" path="res://themes/bordered_buttons.tres" id="7_4amj3"]
+[ext_resource type="Theme" uid="uid://7jcq7wedtuis" path="res://themes/char_creation_menu.tres" id="7_la3gu"]
+[ext_resource type="Texture2D" uid="uid://byjk3juxhhoy5" path="res://assets/textures/ui/theme/unlocked_icon.png" id="7_vmxa6"]
+[ext_resource type="Script" path="res://scripts/ui/ui_checkbox.gd" id="8_oidp0"]
+[ext_resource type="Texture2D" uid="uid://dbebo28iy7v82" path="res://assets/textures/ui/theme/next_button_normal.png" id="10_ja5oy"]
+[ext_resource type="Texture2D" uid="uid://dqmpsyl3uiaqd" path="res://assets/textures/ui/theme/next_button_pressed.png" id="11_ueydr"]
+[ext_resource type="Texture2D" uid="uid://c78d44s1om6wv" path="res://assets/textures/ui/theme/next_button_highlight.png" id="12_b8ruw"]
 
 [sub_resource type="Environment" id="Environment_vqamt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_qhaix"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
 subpixel_positioning = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
-draw_center = false
 
 [sub_resource type="SystemFont" id="SystemFont_3sii3"]
 font_names = PackedStringArray("Marcellus SC")
@@ -45,7 +56,7 @@ spot_angle = 29.1564
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vqamt")
 
-[node name="CharacterCreationUI" type="Control" parent="."]
+[node name="appearance_UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,571 +66,18 @@ grow_vertical = 2
 script = ExtResource("1_sa5v5")
 close_on_back = false
 
-[node name="ScreenMargin" type="MarginContainer" parent="CharacterCreationUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="ScreenVBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin"]
-layout_mode = 2
-
-[node name="ContentContainer" type="MarginContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ContentHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer"]
-layout_mode = 2
-
-[node name="LeftPanel" type="Panel" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LeftPanelMarginContainer" type="MarginContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 10
-
-[node name="LeftPanelVBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="CharNameContainer" type="MarginContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer"]
-layout_mode = 2
-
-[node name="CharNameVBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer/CharNameVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = SubResource("SystemFont_diugm")
-theme_override_font_sizes/font_size = 24
-text = "Character Name"
-
-[node name="LineEdit" type="LineEdit" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer/CharNameVBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "John Woo"
-placeholder_text = "Select a name"
-alignment = 1
-max_length = 256
-
-[node name="HSeparator" type="HSeparator" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer/CharNameVBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="SexContainer" type="MarginContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = SubResource("SystemFont_diugm")
-theme_override_font_sizes/font_size = 24
-text = "Sex
-"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="MaleButton" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Male
-"
-
-[node name="FemaleButton" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Female
-"
-
-[node name="HSeparator" type="HSeparator" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="AppearanceContainer" type="MarginContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = SubResource("SystemFont_diugm")
-theme_override_font_sizes/font_size = 24
-text = "Appearance
-"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SkinColorHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="skin_color_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Skin Color Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Skin Color
-"
-
-[node name="skin_color_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="CustomSkinColorButton" type="CheckButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Custom Color"
-alignment = 1
-
-[node name="CustonColorVBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="RHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="RSkinLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/RHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "R 255"
-vertical_alignment = 1
-
-[node name="RSkinSlider" type="HSlider" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/RHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="GHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="GSkinLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/GHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "G 255"
-vertical_alignment = 1
-
-[node name="GSkinSlider" type="HSlider" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/GHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="BHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="BSkinLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "B 255"
-vertical_alignment = 1
-
-[node name="BSkinSlider" type="HSlider" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="HeadStyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-alignment = 1
-
-[node name="head_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HeadStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Head Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HeadStyleHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Head Style"
-
-[node name="head_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HeadStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="FaceStyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="face_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FaceStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Face Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FaceStyleHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Face Style"
-
-[node name="face_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FaceStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="HairStyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="hair_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Hair Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairStyleHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Hair Style"
-
-[node name="hair_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="HairColorHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="hair_color_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairColorHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Hair Color Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairColorHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Hair Color
-"
-
-[node name="hair_color_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairColorHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="CustomHairColorButton" type="CheckButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Custom Color"
-alignment = 1
-
-[node name="CustonHairVBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="RSHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="RHairLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/RSHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "R 255"
-vertical_alignment = 1
-
-[node name="RHairSlider" type="HSlider" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/RSHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="GSHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="GHairLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/GSHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "G 255"
-vertical_alignment = 1
-
-[node name="GHairSlider" type="HSlider" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/GSHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="BHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="BHairLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "B 255"
-vertical_alignment = 1
-
-[node name="BHairSlider" type="HSlider" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="BangsStyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="bangs_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/BangsStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Bangs Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/BangsStyleHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Bangs Style"
-
-[node name="bangs_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/BangsStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="FacialstyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="facial_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FacialstyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="facial button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FacialstyleHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Facial Hair Style"
-
-[node name="facial_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FacialstyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="MaskStyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="mask_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/MaskStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="mask button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/MaskStyleHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Mask Style"
-
-[node name="mask_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/MaskStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="TopStyleHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="top_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/TopStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Top Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/TopStyleHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Top Style
-"
-
-[node name="top_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/TopStyleHBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="PantsStyleHBxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="pants_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/PantsStyleHBxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="Pants Button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/PantsStyleHBxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Pants Style"
-
-[node name="pants_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/PantsStyleHBxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="ShoesStyleHBxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="shoes_left_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/ShoesStyleHBxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-flip_h = true
-
-[node name="shoes button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/ShoesStyleHBxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Shoes Style"
-
-[node name="shoes_right_arrow" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/ShoesStyleHBxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_lsn8j")
-stretch_mode = 3
-
-[node name="HSeparator" type="HSeparator" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="bottomHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 10
-theme_override_constants/separation = 80
-alignment = 1
-
-[node name="reset_button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-text = "Reset"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer"]
-layout_mode = 2
-
-[node name="randomize_button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-text = "Randomize"
-
-[node name="randomize custom color" type="CheckBox" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Randomize Custom Color"
-
-[node name="CentralPanel" type="Panel" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer"]
+[node name="camera_control_panel" type="Panel" parent="appearance_UI"]
 clip_contents = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_6gpof")
 
-[node name="ResetCamera" type="TextureButton" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/CentralPanel"]
+[node name="ResetCamera" type="TextureButton" parent="appearance_UI/camera_control_panel"]
 unique_name_in_owner = true
 visible = false
 texture_filter = 1
@@ -634,11 +92,561 @@ scale = Vector2(1, 0.991)
 texture_normal = ExtResource("3_u1qym")
 stretch_mode = 0
 
-[node name="RightPanel" type="Panel" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer"]
+[node name="title_margin" type="MarginContainer" parent="appearance_UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="title" type="TextureRect" parent="appearance_UI/title_margin"]
+layout_mode = 2
+texture = ExtResource("3_46iht")
+
+[node name="appearance_margin" type="MarginContainer" parent="appearance_UI"]
+layout_mode = 2
+offset_right = 563.0
+offset_bottom = 991.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 150
+
+[node name="appearance_bg" type="TextureRect" parent="appearance_UI/appearance_margin"]
+layout_mode = 2
+texture = ExtResource("6_gduyu")
+
+[node name="list_margin" type="MarginContainer" parent="appearance_UI/appearance_margin/appearance_bg"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_right = 185.0
+offset_bottom = 651.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="appearance_menu_list" type="VBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin"]
+layout_mode = 2
+theme = ExtResource("7_la3gu")
+
+[node name="sex_button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 77)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_bottom = NodePath("../SkinColorHBoxContainer/Skin Color Button")
+text = "< MALE >"
+flat = true
+
+[node name="sex_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -17.5
+offset_right = 58.0
+offset_bottom = 22.5
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("7_vmxa6")
+
+[node name="SkinColorHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Skin Color Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 77)
+layout_mode = 2
+size_flags_horizontal = 4
+button_mask = 3
+text = "< SKIN CUSTOM >"
+flat = true
+
+[node name="skin_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button"]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -38.5
+offset_bottom = 38.5
+grow_vertical = 2
+focus_mode = 0
+stretch_mode = 3
+
+[node name="skin_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -17.5
+offset_right = 58.0
+offset_bottom = 22.5
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("7_vmxa6")
+
+[node name="custom_skin_color_wrapper" type="Control" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="CustomSkinColorButton" type="CheckButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_skin_color_wrapper"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = -18.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "CUSTOM"
+alignment = 1
+script = ExtResource("8_oidp0")
+
+[node name="CustonColorVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="RSkinLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/RHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "R 255"
+vertical_alignment = 1
+
+[node name="RSkinSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/RHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="GHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="GSkinLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/GHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "G 255"
+vertical_alignment = 1
+
+[node name="GSkinSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/GHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BSkinLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "B 255"
+vertical_alignment = 1
+
+[node name="BSkinSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="FaceStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+layout_mode = 2
+alignment = 1
+
+[node name="Face Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 77)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "< FACE >"
+flat = true
+
+[node name="face_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -38.5
+offset_right = 135.0
+offset_bottom = 38.5
+grow_vertical = 2
+focus_mode = 0
+stretch_mode = 3
+flip_h = true
+
+[node name="face_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -17.5
+offset_right = 48.0
+offset_bottom = 12.5
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("7_vmxa6")
+
+[node name="HairStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+layout_mode = 2
+alignment = 1
+
+[node name="Hair Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 77)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "< HAIR >"
+flat = true
+
+[node name="hair_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -38.5
+offset_right = 140.0
+offset_bottom = 38.5
+grow_vertical = 2
+focus_mode = 0
+stretch_mode = 3
+flip_h = true
+
+[node name="hair_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -17.5
+offset_right = 48.0
+offset_bottom = 12.5
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("7_vmxa6")
+
+[node name="HairColorHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+layout_mode = 2
+alignment = 1
+
+[node name="Hair Color Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 77)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "< HAIR COLOR >"
+flat = true
+
+[node name="hair_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button"]
+custom_minimum_size = Vector2(85, 77)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+focus_mode = 0
+stretch_mode = 3
+flip_h = true
+
+[node name="hair_color_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -17.5
+offset_right = 48.0
+offset_bottom = 12.5
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("7_vmxa6")
+
+[node name="custom_hair_color_wrapper" type="Control" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="CustomHairColorButton" type="CheckButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_hair_color_wrapper"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = -18.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "CUSTOM"
+alignment = 1
+script = ExtResource("8_oidp0")
+
+[node name="CustonHairVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="RHairLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/RSHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "R 255"
+vertical_alignment = 1
+
+[node name="RHairSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/RSHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="GSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="GHairLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/GSHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "G 255"
+vertical_alignment = 1
+
+[node name="GHairSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/GSHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BHairLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "B 255"
+vertical_alignment = 1
+
+[node name="BHairSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="BangsStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+layout_mode = 2
+alignment = 1
+
+[node name="Bangs Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 77)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "< BANGS >"
+flat = true
+
+[node name="bangs_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
+custom_minimum_size = Vector2(125, 77)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -21.5
+offset_right = 16.0
+offset_bottom = 21.5
+grow_vertical = 2
+focus_mode = 0
+stretch_mode = 3
+flip_h = true
+
+[node name="bangs_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -17.5
+offset_right = 48.0
+offset_bottom = 12.5
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("7_vmxa6")
+
+[node name="FacialstyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+layout_mode = 2
+alignment = 1
+
+[node name="facial button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 77)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "< FACIAL >"
+flat = true
+
+[node name="facial_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 120.0
+offset_bottom = 35.0
+grow_vertical = 2
+focus_mode = 0
+stretch_mode = 3
+flip_h = true
+
+[node name="facial_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -17.5
+offset_right = 48.0
+offset_bottom = 12.5
+grow_vertical = 2
+focus_mode = 0
+texture_normal = ExtResource("7_vmxa6")
+
+[node name="randomize_container" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -61.0
+offset_right = 272.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_qhaix")
+
+[node name="randomize_button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/randomize_container"]
+custom_minimum_size = Vector2(230, 61)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme = ExtResource("7_4amj3")
+text = "RANDOMIZE"
+
+[node name="randomize custom color" type="CheckBox" parent="appearance_UI/appearance_margin/appearance_bg/randomize_container"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Randomize Custom Color"
+
+[node name="next_margin" type="MarginContainer" parent="appearance_UI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="create_button" type="Button" parent="appearance_UI/next_margin"]
+visible = false
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Next"
+
+[node name="next_button" type="TextureButton" parent="appearance_UI/next_margin"]
+layout_mode = 2
+texture_normal = ExtResource("10_ja5oy")
+texture_pressed = ExtResource("11_ueydr")
+texture_hover = ExtResource("12_b8ruw")
+texture_focused = ExtResource("12_b8ruw")
+
+[node name="ScreenMargin" type="MarginContainer" parent="appearance_UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScreenVBoxContainer" type="VBoxContainer" parent="appearance_UI/ScreenMargin"]
+layout_mode = 2
+
+[node name="ContentContainer" type="MarginContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContentHBoxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer"]
+layout_mode = 2
+
+[node name="LeftPanel" type="Panel" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -646,7 +654,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer"]
+[node name="LeftPanelMarginContainer" type="MarginContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -655,11 +663,196 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer"]
+[node name="LeftPanelVBoxContainer" type="VBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CharNameContainer" type="MarginContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer"]
+layout_mode = 2
+
+[node name="CharNameVBoxContainer" type="VBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer/CharNameVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_diugm")
+theme_override_font_sizes/font_size = 24
+text = "Character Name"
+
+[node name="LineEdit" type="LineEdit" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer/CharNameVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "John Woo"
+placeholder_text = "Select a name"
+alignment = 1
+max_length = 256
+
+[node name="HSeparator" type="HSeparator" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/CharNameContainer/CharNameVBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="AppearanceContainer" type="MarginContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer"]
+layout_mode = 2
+
+[node name="HeadStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="head_left_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+flip_h = true
+
+[node name="Head Button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Head Style"
+
+[node name="head_right_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+
+[node name="MaskStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="mask_left_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/MaskStyleHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+flip_h = true
+
+[node name="mask button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/MaskStyleHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Mask Style"
+
+[node name="mask_right_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/MaskStyleHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+
+[node name="TopStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="top_left_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/TopStyleHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+flip_h = true
+
+[node name="Top Button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/TopStyleHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Top Style
+"
+
+[node name="top_right_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/TopStyleHBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+
+[node name="PantsStyleHBxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="pants_left_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/PantsStyleHBxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+flip_h = true
+
+[node name="Pants Button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/PantsStyleHBxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Pants Style"
+
+[node name="pants_right_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/PantsStyleHBxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+
+[node name="ShoesStyleHBxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="shoes_left_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/ShoesStyleHBxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+flip_h = true
+
+[node name="shoes button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/ShoesStyleHBxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Shoes Style"
+
+[node name="shoes_right_arrow" type="TextureButton" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/ShoesStyleHBxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lsn8j")
+stretch_mode = 3
+
+[node name="bottomHBoxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="reset_button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Reset"
+
+[node name="RightPanel" type="Panel" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = SubResource("SystemFont_diugm")
@@ -667,205 +860,165 @@ theme_override_font_sizes/font_size = 24
 text = "Attributes
 "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="attribute_label_box" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="attribute_label_box" type="VBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="strLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
+[node name="strLabel" type="Label" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_3sii3")
 theme_override_font_sizes/font_size = 20
 text = "Strength"
 
-[node name="agiLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
+[node name="agiLabel" type="Label" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_3sii3")
 theme_override_font_sizes/font_size = 20
 text = "Agility"
 
-[node name="dexLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
+[node name="dexLabel" type="Label" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_3sii3")
 theme_override_font_sizes/font_size = 20
 text = "Dexterity"
 
-[node name="wisLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
+[node name="wisLabel" type="Label" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_label_box"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_3sii3")
 theme_override_font_sizes/font_size = 20
 text = "Wisdom
 "
 
-[node name="attribute_value_box" type="VBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="attribute_value_box" type="VBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="strSpinBox" type="SpinBox" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
+[node name="strSpinBox" type="SpinBox" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 15.0
 
-[node name="agiSpinBox" type="SpinBox" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
+[node name="agiSpinBox" type="SpinBox" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 15.0
 
-[node name="dexSpinBox" type="SpinBox" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
+[node name="dexSpinBox" type="SpinBox" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 15.0
 
-[node name="wisSpinBox" type="SpinBox" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
+[node name="wisSpinBox" type="SpinBox" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 15.0
 
-[node name="availablepointsLabel" type="Label" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="availablepointsLabel" type="Label" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Available points 10
 "
 horizontal_alignment = 1
 
-[node name="bottomHBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="bottomHBoxContainer" type="HBoxContainer" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="attr_reset_button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer"]
+[node name="attr_reset_button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 text = "Reset"
 
-[node name="attr_randomize_button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer"]
+[node name="attr_randomize_button" type="Button" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 text = "Randomize"
 
-[node name="HSeparator" type="HSeparator" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="BottomBottonsContainer" type="MarginContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="ContentHBoxContainer2" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer"]
-layout_mode = 2
-
-[node name="LeftPanel" type="Panel" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2/LeftPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="cancel_button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2/LeftPanel/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-text = "Cancel"
-
-[node name="CentralPanel" type="Panel" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2"]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_6gpof")
-
-[node name="RightPanel" type="Panel" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2/RightPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="create_button" type="Button" parent="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2/RightPanel/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-text = "Create"
-
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer/skin_color_left_arrow" to="CharacterCreationUI" method="_on_skin_color_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer/Skin Color Button" to="CharacterCreationUI" method="_on_skin_color_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer/skin_color_right_arrow" to="CharacterCreationUI" method="_on_skin_color_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustomSkinColorButton" to="CharacterCreationUI" method="_on_custom_skin_color_button_pressed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/RHBoxContainer/RSkinSlider" to="CharacterCreationUI" method="_on_r_skin_slider_value_changed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/GHBoxContainer/GSkinSlider" to="CharacterCreationUI" method="_on_g_skin_slider_value_changed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonColorVBoxContainer/BHBoxContainer/BSkinSlider" to="CharacterCreationUI" method="_on_b_skin_slider_value_changed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HeadStyleHBoxContainer/head_left_arrow" to="CharacterCreationUI" method="_on_head_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HeadStyleHBoxContainer/Head Button" to="CharacterCreationUI" method="_on_head_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HeadStyleHBoxContainer/head_right_arrow" to="CharacterCreationUI" method="_on_head_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FaceStyleHBoxContainer/face_left_arrow" to="CharacterCreationUI" method="_on_face_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FaceStyleHBoxContainer/Face Button" to="CharacterCreationUI" method="_on_face_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FaceStyleHBoxContainer/face_right_arrow" to="CharacterCreationUI" method="_on_face_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairStyleHBoxContainer/hair_left_arrow" to="CharacterCreationUI" method="_on_hair_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairStyleHBoxContainer/Hair Button" to="CharacterCreationUI" method="_on_hair_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairStyleHBoxContainer/hair_right_arrow" to="CharacterCreationUI" method="_on_hair_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairColorHBoxContainer/hair_color_left_arrow" to="CharacterCreationUI" method="_on_hair_color_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairColorHBoxContainer/Hair Color Button" to="CharacterCreationUI" method="_on_hair_color_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/HairColorHBoxContainer/hair_color_right_arrow" to="CharacterCreationUI" method="_on_hair_color_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustomHairColorButton" to="CharacterCreationUI" method="_on_custom_hair_color_button_pressed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/RSHBoxContainer/RHairSlider" to="CharacterCreationUI" method="_on_r_hair_slider_value_changed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/GSHBoxContainer/GHairSlider" to="CharacterCreationUI" method="_on_g_hair_slider_value_changed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/CustonHairVBoxContainer/BHBoxContainer/BHairSlider" to="CharacterCreationUI" method="_on_b_hair_slider_value_changed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/BangsStyleHBoxContainer/bangs_left_arrow" to="CharacterCreationUI" method="_on_bangs_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/BangsStyleHBoxContainer/Bangs Button" to="CharacterCreationUI" method="_on_bangs_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/BangsStyleHBoxContainer/bangs_right_arrow" to="CharacterCreationUI" method="_on_bangs_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FacialstyleHBoxContainer/facial_left_arrow" to="CharacterCreationUI" method="_on_facial_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FacialstyleHBoxContainer/facial button" to="CharacterCreationUI" method="_on_facial_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/FacialstyleHBoxContainer/facial_right_arrow" to="CharacterCreationUI" method="_on_facial_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/MaskStyleHBoxContainer/mask_left_arrow" to="CharacterCreationUI" method="_on_mask_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/MaskStyleHBoxContainer/mask button" to="CharacterCreationUI" method="_on_mask_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/MaskStyleHBoxContainer/mask_right_arrow" to="CharacterCreationUI" method="_on_mask_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/TopStyleHBoxContainer/top_left_arrow" to="CharacterCreationUI" method="_on_top_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/TopStyleHBoxContainer/Top Button" to="CharacterCreationUI" method="_on_top_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/TopStyleHBoxContainer/top_right_arrow" to="CharacterCreationUI" method="_on_top_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/PantsStyleHBxContainer/pants_left_arrow" to="CharacterCreationUI" method="_on_pants_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/PantsStyleHBxContainer/Pants Button" to="CharacterCreationUI" method="_on_pants_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/PantsStyleHBxContainer/pants_right_arrow" to="CharacterCreationUI" method="_on_pants_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/ShoesStyleHBxContainer/shoes_left_arrow" to="CharacterCreationUI" method="_on_shoes_left_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/ShoesStyleHBxContainer/shoes button" to="CharacterCreationUI" method="_on_shoes_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/ShoesStyleHBxContainer/shoes_right_arrow" to="CharacterCreationUI" method="_on_shoes_right_arrow_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer/reset_button" to="CharacterCreationUI" method="_on_reset_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer/HBoxContainer/randomize_button" to="CharacterCreationUI" method="_on_randomize_button_pressed"]
-[connection signal="mouse_entered" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/CentralPanel" to="CharacterCreationUI" method="_on_central_panel_mouse_entered"]
-[connection signal="mouse_exited" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/CentralPanel" to="CharacterCreationUI" method="_on_central_panel_mouse_exited"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/CentralPanel/ResetCamera" to="CharacterCreationUI" method="_on_reset_camera_pressed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/strSpinBox" to="CharacterCreationUI" method="_on_str_spin_box_value_changed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/agiSpinBox" to="CharacterCreationUI" method="_on_agi_spin_box_value_changed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/dexSpinBox" to="CharacterCreationUI" method="_on_dex_spin_box_value_changed"]
-[connection signal="value_changed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/wisSpinBox" to="CharacterCreationUI" method="_on_wis_spin_box_value_changed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer/attr_reset_button" to="CharacterCreationUI" method="_on_attr_reset_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer/attr_randomize_button" to="CharacterCreationUI" method="_on_attr_randomize_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2/LeftPanel/HBoxContainer/cancel_button" to="CharacterCreationUI" method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/BottomBottonsContainer/ContentHBoxContainer2/RightPanel/HBoxContainer/create_button" to="CharacterCreationUI" method="_on_create_button_pressed"]
+[connection signal="mouse_entered" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_entered"]
+[connection signal="mouse_exited" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_exited"]
+[connection signal="pressed" from="appearance_UI/camera_control_panel/ResetCamera" to="appearance_UI" method="_on_reset_camera_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button/sex_lock" to="appearance_UI" method="_on_sex_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button/skin_color_left_arrow" to="appearance_UI" method="_on_skin_color_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button/skin_lock" to="appearance_UI" method="_on_skin_lock_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_pressed"]
+[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/RHBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/GHBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_value_changed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button/face_left_arrow" to="appearance_UI" method="_on_face_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button/face_lock" to="appearance_UI" method="_on_face_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button/hair_left_arrow" to="appearance_UI" method="_on_hair_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button/hair_lock" to="appearance_UI" method="_on_hair_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button/hair_color_left_arrow" to="appearance_UI" method="_on_hair_color_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button/hair_color_lock" to="appearance_UI" method="_on_hair_color_lock_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_pressed"]
+[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button/bangs_left_arrow" to="appearance_UI" method="_on_bangs_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button/bangs_lock" to="appearance_UI" method="_on_bangs_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_left_arrow" to="appearance_UI" method="_on_facial_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_lock" to="appearance_UI" method="_on_facial_lock_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/randomize_container/randomize_button" to="appearance_UI" method="_on_randomize_button_pressed"]
+[connection signal="pressed" from="appearance_UI/next_margin/create_button" to="appearance_UI" method="_on_create_button_pressed"]
+[connection signal="pressed" from="appearance_UI/next_margin/next_button" to="appearance_UI" method="_on_next_button_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/head_left_arrow" to="appearance_UI" method="_on_head_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/Head Button" to="appearance_UI" method="_on_head_button_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/head_right_arrow" to="appearance_UI" method="_on_head_right_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/MaskStyleHBoxContainer/mask_left_arrow" to="appearance_UI" method="_on_mask_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/MaskStyleHBoxContainer/mask button" to="appearance_UI" method="_on_mask_button_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/MaskStyleHBoxContainer/mask_right_arrow" to="appearance_UI" method="_on_mask_right_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/TopStyleHBoxContainer/top_left_arrow" to="appearance_UI" method="_on_top_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/TopStyleHBoxContainer/Top Button" to="appearance_UI" method="_on_top_button_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/TopStyleHBoxContainer/top_right_arrow" to="appearance_UI" method="_on_top_right_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/PantsStyleHBxContainer/pants_left_arrow" to="appearance_UI" method="_on_pants_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/PantsStyleHBxContainer/Pants Button" to="appearance_UI" method="_on_pants_button_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/PantsStyleHBxContainer/pants_right_arrow" to="appearance_UI" method="_on_pants_right_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/ShoesStyleHBxContainer/shoes_left_arrow" to="appearance_UI" method="_on_shoes_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/ShoesStyleHBxContainer/shoes button" to="appearance_UI" method="_on_shoes_button_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/ShoesStyleHBxContainer/shoes_right_arrow" to="appearance_UI" method="_on_shoes_right_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/bottomHBoxContainer/reset_button" to="appearance_UI" method="_on_reset_button_pressed"]
+[connection signal="value_changed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/strSpinBox" to="appearance_UI" method="_on_str_spin_box_value_changed"]
+[connection signal="value_changed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/agiSpinBox" to="appearance_UI" method="_on_agi_spin_box_value_changed"]
+[connection signal="value_changed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/dexSpinBox" to="appearance_UI" method="_on_dex_spin_box_value_changed"]
+[connection signal="value_changed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/attribute_value_box/wisSpinBox" to="appearance_UI" method="_on_wis_spin_box_value_changed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer/attr_reset_button" to="appearance_UI" method="_on_attr_reset_button_pressed"]
+[connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/RightPanel/ScrollContainer/MarginContainer/VBoxContainer/bottomHBoxContainer/attr_randomize_button" to="appearance_UI" method="_on_attr_randomize_button_pressed"]
