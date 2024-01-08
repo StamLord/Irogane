@@ -1,0 +1,55 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dpeedxe6o5at0"
+path="res://.godot/imported/river_bed_3.glb-5b92a4f2c3ba03306b77b7f8593e9f45.scn"
+
+[deps]
+
+source_file="res://assets/models/env/river_bed/river_bed_3.glb"
+dest_files=["res://.godot/imported/river_bed_3.glb-5b92a4f2c3ba03306b77b7f8593e9f45.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"bark": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/env/river_bed/bark.tres"
+},
+"grass": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/env/river_bed/grass.tres"
+},
+"pebbles": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/env/river_bed/pebbles.tres"
+},
+"pine_leaves": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/env/river_bed/pine_leaves.tres"
+},
+"water": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/env/river_bed/water.tres"
+}
+}
+}
+gltf/embedded_image_handling=1

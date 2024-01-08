@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=13 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
-
-[sub_resource type="Environment" id="Environment_vqamt"]
+[ext_resource type="PackedScene" uid="uid://dpeedxe6o5at0" path="res://assets/models/env/river_bed/river_bed_3.glb" id="5_amh3m"]
+[ext_resource type="Shader" path="res://assets/materials/sky/sky_shader.gdshader" id="6_7xd1u"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
@@ -17,6 +17,57 @@ draw_center = false
 [sub_resource type="SystemFont" id="SystemFont_3sii3"]
 font_names = PackedStringArray("Marcellus SC")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgrw0"]
+shader = ExtResource("6_7xd1u")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/moon_texture_angle_x = null
+shader_parameter/moon_texture_angle_y = null
+shader_parameter/moon_texture_angle_z = null
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/stars_brightness = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_iielw"]
+sky_material = SubResource("ShaderMaterial_wgrw0")
+
+[sub_resource type="Environment" id="Environment_vqamt"]
+background_mode = 2
+sky = SubResource("Sky_iielw")
+ambient_light_source = 2
+ambient_light_color = Color(0.211765, 0.372549, 0.721569, 1)
+ambient_light_sky_contribution = 0.5
+fog_light_color = Color(0.486275, 0.792157, 0.839216, 1)
+fog_light_energy = 0.4
+fog_density = 0.1
+fog_sky_affect = 0.0
+volumetric_fog_albedo = Color(0.00722328, 0.0464815, 0.0163539, 1)
+volumetric_fog_emission = Color(0.576471, 0.686275, 0.756863, 1)
+
 [node name="CharacterCreation" type="Node3D"]
 unique_name_in_owner = true
 
@@ -27,23 +78,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.920505, 0.390731, 0, -0.390731, 0.920505, 0, 1.8, 2)
 current = true
 fov = 55.0
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2, 1.4, 2.5)
-light_energy = 1.5
-distance_fade_begin = 44.05
-spot_range = 6.75493
-spot_angle = 29.1564
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2, 1.4, 2.5)
-light_energy = 1.5
-distance_fade_begin = 44.05
-spot_range = 6.75493
-spot_angle = 29.1564
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vqamt")
 
 [node name="CharacterCreationUI" type="Control" parent="."]
 layout_mode = 3
@@ -812,6 +846,34 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 text = "Create"
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="env"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2, 1.4, 2.5)
+light_energy = 1.5
+distance_fade_begin = 44.05
+spot_range = 6.75493
+spot_angle = 29.1564
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="env"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2, 1.4, 2.5)
+light_energy = 1.5
+distance_fade_begin = 44.05
+spot_range = 6.75493
+spot_angle = 29.1564
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_vqamt")
+
+[node name="sun" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(0.819152, -0.439385, 0.368688, 0, 0.642788, 0.766044, -0.573576, -0.627507, 0.526541, 0, 0, 0)
+light_color = Color(0.996078, 1, 0.737255, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="river_bed_3" parent="env" instance=ExtResource("5_amh3m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
