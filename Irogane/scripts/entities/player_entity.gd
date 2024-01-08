@@ -47,6 +47,7 @@ func create_player_node_if_needed():
 func delete_player_node_if_needed(scene_name):
 	if player_node != null and scene_name in NO_PLAYER_SCENES:
 		player_node.free()
+		UIManager.delete_ui_node()
 	
 
 func load_player_data(player_data):
