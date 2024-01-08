@@ -231,7 +231,9 @@ func load_default_character():
 	
 	# Unique locks
 	lock_selection["sex"] = false
+	update_lock_texture(sex_lock, false, sex_button.has_focus())
 	lock_selection["face"] = false
+	update_lock_texture(face_lock, false, sex_button.has_focus())
 	
 
 func cycle_part_variation(part: String, increment = 1):
@@ -310,11 +312,20 @@ func update_lock_texture(lock: TextureButton, locked: bool, highlight: bool):
 			lock.texture_normal = locked_highlight_texture
 		else:
 			lock.texture_normal = locked_texture
+		var new_modulate = lock.get_modulate()
+		new_modulate.a = 1
+		lock.set_modulate(new_modulate)
 	else:
 		if highlight:
 			lock.texture_normal = unlocked_highlight_texture
+			var new_modulate = lock.get_modulate()
+			new_modulate.a = 1
+			lock.set_modulate(new_modulate)
 		else:
 			lock.texture_normal = unlocked_texture
+			var new_modulate = lock.get_modulate()
+			new_modulate.a = 0.4
+			lock.set_modulate(new_modulate)
 	
 
 func update_color_lock_texture(part_name: String):
@@ -545,10 +556,6 @@ func _on_randomize_button_pressed():
 		update_button_selection_text(part_color.button, part_color.text, preset_selection, true)
 	
 
-func _on_create_button_pressed():
-	save_preset()
-	
-
 func _on_hair_button_pressed():
 	cycle_part_variation("hair")
 	
@@ -595,6 +602,7 @@ func _on_skin_color_left_arrow_pressed():
 
 func _on_hair_left_arrow_pressed():
 	cycle_part_variation("hair", -1)
+	MODEL_PARTS.hair.button.grab_focus()
 	
 
 func _on_r_hair_slider_value_changed(value):
@@ -611,6 +619,7 @@ func _on_b_hair_slider_value_changed(value):
 
 func _on_hair_color_left_arrow_pressed():
 	cycle_color_preset("hair", -1)
+	PART_COLORS.hair.button.grab_focus()
 	
 
 func cycle_face_selection(forward = true):
@@ -619,6 +628,7 @@ func cycle_face_selection(forward = true):
 
 func _on_face_left_arrow_pressed():
 	cycle_face_selection(false)
+	face_button.grab_focus()
 	
 
 func _on_head_left_arrow_pressed():
@@ -663,10 +673,12 @@ func _on_pants_right_arrow_pressed():
 
 func _on_facial_left_arrow_pressed():
 	cycle_part_variation("facial", -1)
+	MODEL_PARTS.facial.button.grab_focus()
 	
 
 func _on_bangs_left_arrow_pressed():
 	cycle_part_variation("bangs", -1)
+	MODEL_PARTS.bangs.button.grab_focus()
 	
 
 func _on_shoes_left_arrow_pressed():
@@ -927,6 +939,6 @@ func _on_facial_lock_pressed():
 	toggle_lock("facial")
 	
 
-
 func _on_next_button_pressed():
 	save_preset()
+	

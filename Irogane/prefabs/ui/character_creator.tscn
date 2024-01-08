@@ -10,16 +10,15 @@
 [ext_resource type="Theme" uid="uid://7jcq7wedtuis" path="res://themes/char_creation_menu.tres" id="7_la3gu"]
 [ext_resource type="Texture2D" uid="uid://byjk3juxhhoy5" path="res://assets/textures/ui/theme/unlocked_icon.png" id="7_vmxa6"]
 [ext_resource type="Script" path="res://scripts/ui/ui_checkbox.gd" id="8_oidp0"]
+[ext_resource type="Texture2D" uid="uid://bnlwkulgl74nj" path="res://assets/textures/ui/theme/undo_icon.png" id="10_3g8ee"]
 [ext_resource type="Texture2D" uid="uid://dbebo28iy7v82" path="res://assets/textures/ui/theme/next_button_normal.png" id="10_ja5oy"]
+[ext_resource type="Texture2D" uid="uid://dx8s1wsl7tfx" path="res://assets/textures/ui/theme/redo_icon.png" id="11_evdjq"]
 [ext_resource type="Texture2D" uid="uid://dqmpsyl3uiaqd" path="res://assets/textures/ui/theme/next_button_pressed.png" id="11_ueydr"]
-[ext_resource type="Texture2D" uid="uid://c78d44s1om6wv" path="res://assets/textures/ui/theme/next_button_highlight.png" id="12_b8ruw"]
 
 [sub_resource type="Environment" id="Environment_vqamt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
-
-[sub_resource type="Theme" id="Theme_qhaix"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
@@ -72,6 +71,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -9.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -103,43 +104,68 @@ theme_override_constants/margin_top = 20
 layout_mode = 2
 texture = ExtResource("3_46iht")
 
-[node name="appearance_margin" type="MarginContainer" parent="appearance_UI"]
-layout_mode = 2
+[node name="appearance_bg" type="TextureRect" parent="appearance_UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -921.0
 offset_right = 563.0
-offset_bottom = 991.0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 150
-
-[node name="appearance_bg" type="TextureRect" parent="appearance_UI/appearance_margin"]
-layout_mode = 2
+offset_bottom = -50.0
+grow_vertical = 0
 texture = ExtResource("6_gduyu")
 
-[node name="list_margin" type="MarginContainer" parent="appearance_UI/appearance_margin/appearance_bg"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -185.0
-offset_right = 185.0
-offset_bottom = 651.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 20
+[node name="undo_redo_container" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 10.0
+offset_right = 524.0
+offset_bottom = 106.0
 
-[node name="appearance_menu_list" type="VBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin"]
+[node name="undo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_container"]
 layout_mode = 2
-theme = ExtResource("7_la3gu")
+tooltip_text = "Undo"
+focus_neighbor_bottom = NodePath("../redo_button")
+focus_next = NodePath("../redo_button")
+texture_normal = ExtResource("10_3g8ee")
 
-[node name="sex_button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="redo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_container"]
+layout_mode = 2
+tooltip_text = "Redo"
+focus_neighbor_top = NodePath("../undo_button")
+focus_neighbor_bottom = NodePath("../../appearance_menu_list/sex_button")
+focus_next = NodePath("../../appearance_menu_list/sex_button")
+focus_previous = NodePath("../undo_button")
+texture_normal = ExtResource("11_evdjq")
+
+[node name="appearance_menu_list" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
+layout_mode = 2
+offset_left = 46.5
+offset_top = 54.0
+offset_right = 416.5
+offset_bottom = 817.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("7_la3gu")
+theme_override_constants/separation = 18
+
+[node name="sex_button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../undo_redo_container/redo_button")
+focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../SkinColorHBoxContainer/Skin Color Button")
+focus_next = NodePath("../SkinColorHBoxContainer/Skin Color Button")
+focus_previous = NodePath("../../undo_redo_container/redo_button")
 text = "< MALE >"
 flat = true
 
-[node name="sex_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button"]
+[node name="sex_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/sex_button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -153,22 +179,28 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="SkinColorHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="SkinColorHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Skin Color Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer"]
+[node name="Skin Color Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../sex_button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../custom_skin_color_wrapper/CustomSkinColorButton")
+focus_next = NodePath("../../custom_skin_color_wrapper/CustomSkinColorButton")
+focus_previous = NodePath("../../sex_button")
 button_mask = 3
 text = "< SKIN CUSTOM >"
 flat = true
 
-[node name="skin_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button"]
+[node name="skin_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button"]
 custom_minimum_size = Vector2(135, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -180,7 +212,7 @@ grow_vertical = 2
 focus_mode = 0
 stretch_mode = 3
 
-[node name="skin_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button"]
+[node name="skin_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -194,11 +226,11 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="custom_skin_color_wrapper" type="Control" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="custom_skin_color_wrapper" type="Control" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="CustomSkinColorButton" type="CheckButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_skin_color_wrapper"]
+[node name="CustomSkinColorButton" type="CheckButton" parent="appearance_UI/appearance_bg/appearance_menu_list/custom_skin_color_wrapper"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 1
@@ -212,90 +244,35 @@ offset_bottom = 40.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../SkinColorHBoxContainer/Skin Color Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../FaceStyleHBoxContainer/Face Button")
+focus_next = NodePath("../../FaceStyleHBoxContainer/Face Button")
+focus_previous = NodePath("../../SkinColorHBoxContainer/Skin Color Button")
 text = "CUSTOM"
 alignment = 1
 script = ExtResource("8_oidp0")
 
-[node name="CustonColorVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="RHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="RSkinLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/RHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "R 255"
-vertical_alignment = 1
-
-[node name="RSkinSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/RHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="GHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="GSkinLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/GHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "G 255"
-vertical_alignment = 1
-
-[node name="GSkinSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/GHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="BSkinLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "B 255"
-vertical_alignment = 1
-
-[node name="BSkinSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="FaceStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="FaceStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
 alignment = 1
 
-[node name="Face Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer"]
+[node name="Face Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../custom_skin_color_wrapper/CustomSkinColorButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../HairStyleHBoxContainer/Hair Button")
+focus_next = NodePath("../../HairStyleHBoxContainer/Hair Button")
+focus_previous = NodePath("../../custom_skin_color_wrapper/CustomSkinColorButton")
 text = "< FACE >"
 flat = true
 
-[node name="face_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
+[node name="face_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -308,7 +285,7 @@ focus_mode = 0
 stretch_mode = 3
 flip_h = true
 
-[node name="face_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
+[node name="face_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -322,19 +299,25 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="HairStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="HairStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
 alignment = 1
 
-[node name="Hair Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer"]
+[node name="Hair Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../FaceStyleHBoxContainer/Face Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../HairColorHBoxContainer/Hair Color Button")
+focus_next = NodePath("../../HairColorHBoxContainer/Hair Color Button")
+focus_previous = NodePath("../../FaceStyleHBoxContainer/Face Button")
 text = "< HAIR >"
 flat = true
 
-[node name="hair_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
+[node name="hair_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -347,7 +330,7 @@ focus_mode = 0
 stretch_mode = 3
 flip_h = true
 
-[node name="hair_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
+[node name="hair_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -361,19 +344,25 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="HairColorHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="HairColorHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
 alignment = 1
 
-[node name="Hair Color Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer"]
+[node name="Hair Color Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../HairStyleHBoxContainer/Hair Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../custom_hair_color_wrapper/CustomHairColorButton")
+focus_next = NodePath("../../custom_hair_color_wrapper/CustomHairColorButton")
+focus_previous = NodePath("../../HairStyleHBoxContainer/Hair Button")
 text = "< HAIR COLOR >"
 flat = true
 
-[node name="hair_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button"]
+[node name="hair_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer/Hair Color Button"]
 custom_minimum_size = Vector2(85, 77)
 layout_mode = 1
 anchors_preset = 9
@@ -383,7 +372,7 @@ focus_mode = 0
 stretch_mode = 3
 flip_h = true
 
-[node name="hair_color_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button"]
+[node name="hair_color_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer/Hair Color Button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -397,11 +386,11 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="custom_hair_color_wrapper" type="Control" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="custom_hair_color_wrapper" type="Control" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="CustomHairColorButton" type="CheckButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_hair_color_wrapper"]
+[node name="CustomHairColorButton" type="CheckButton" parent="appearance_UI/appearance_bg/appearance_menu_list/custom_hair_color_wrapper"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 1
@@ -414,90 +403,35 @@ offset_right = 80.0
 offset_bottom = 40.0
 grow_horizontal = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../HairColorHBoxContainer/Hair Color Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
+focus_next = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
+focus_previous = NodePath("../../HairColorHBoxContainer/Hair Color Button")
 text = "CUSTOM"
 alignment = 1
 script = ExtResource("8_oidp0")
 
-[node name="CustonHairVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="RSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="RHairLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/RSHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "R 255"
-vertical_alignment = 1
-
-[node name="RHairSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/RSHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="GSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="GHairLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/GSHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "G 255"
-vertical_alignment = 1
-
-[node name="GHairSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/GSHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="BHairLabel" type="Label" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "B 255"
-vertical_alignment = 1
-
-[node name="BHairSlider" type="HSlider" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="BangsStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="BangsStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
 alignment = 1
 
-[node name="Bangs Button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer"]
+[node name="Bangs Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../custom_hair_color_wrapper/CustomHairColorButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../FacialstyleHBoxContainer/facial button")
+focus_next = NodePath("../../FacialstyleHBoxContainer/facial button")
+focus_previous = NodePath("../../custom_hair_color_wrapper/CustomHairColorButton")
 text = "< BANGS >"
 flat = true
 
-[node name="bangs_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
+[node name="bangs_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
 custom_minimum_size = Vector2(125, 77)
 layout_mode = 1
 anchors_preset = 4
@@ -511,7 +445,7 @@ focus_mode = 0
 stretch_mode = 3
 flip_h = true
 
-[node name="bangs_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
+[node name="bangs_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -525,19 +459,23 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="FacialstyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list"]
+[node name="FacialstyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
 alignment = 1
 
-[node name="facial button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer"]
+[node name="facial button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
+focus_neighbor_right = NodePath(".")
+focus_previous = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
 text = "< FACIAL >"
 flat = true
 
-[node name="facial_left_arrow" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
+[node name="facial_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -546,11 +484,12 @@ offset_top = -35.0
 offset_right = 120.0
 offset_bottom = 35.0
 grow_vertical = 2
+scale = Vector2(1, 1.00529)
 focus_mode = 0
 stretch_mode = 3
 flip_h = true
 
-[node name="facial_lock" type="TextureButton" parent="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
+[node name="facial_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -564,7 +503,147 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="randomize_container" type="HBoxContainer" parent="appearance_UI/appearance_margin/appearance_bg"]
+[node name="CustonColorVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+offset_left = 470.0
+offset_top = 211.0
+offset_right = 770.0
+offset_bottom = 297.0
+size_flags_horizontal = 4
+
+[node name="RHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="RSkinLabel" type="Label" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/RHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "R 255"
+vertical_alignment = 1
+
+[node name="RSkinSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/RHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="GHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="GSkinLabel" type="Label" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/GHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "G 255"
+vertical_alignment = 1
+
+[node name="GSkinSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/GHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BSkinLabel" type="Label" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "B 255"
+vertical_alignment = 1
+
+[node name="BSkinSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="CustonHairVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+offset_left = 470.0
+offset_top = 551.0
+offset_right = 770.0
+offset_bottom = 637.0
+size_flags_horizontal = 4
+
+[node name="RSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="RHairLabel" type="Label" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/RSHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "R 255"
+vertical_alignment = 1
+
+[node name="RHairSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/RSHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="GSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="GHairLabel" type="Label" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/GSHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "G 255"
+vertical_alignment = 1
+
+[node name="GHairSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/GSHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BHairLabel" type="Label" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "B 255"
+vertical_alignment = 1
+
+[node name="BHairSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 255.0
+
+[node name="randomize_container" type="HBoxContainer" parent="appearance_UI/appearance_bg"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -576,9 +655,8 @@ offset_top = -61.0
 offset_right = 272.0
 grow_horizontal = 0
 grow_vertical = 0
-theme = SubResource("Theme_qhaix")
 
-[node name="randomize_button" type="Button" parent="appearance_UI/appearance_margin/appearance_bg/randomize_container"]
+[node name="randomize_button" type="Button" parent="appearance_UI/appearance_bg/randomize_container"]
 custom_minimum_size = Vector2(230, 61)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -586,38 +664,51 @@ size_flags_vertical = 4
 theme = ExtResource("7_4amj3")
 text = "RANDOMIZE"
 
-[node name="randomize custom color" type="CheckBox" parent="appearance_UI/appearance_margin/appearance_bg/randomize_container"]
+[node name="randomize custom color" type="CheckBox" parent="appearance_UI/appearance_bg/randomize_container"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Randomize Custom Color"
 
-[node name="next_margin" type="MarginContainer" parent="appearance_UI"]
+[node name="next_button" type="TextureButton" parent="appearance_UI"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -20.0
-offset_bottom = 20.0
+offset_left = -345.0
+offset_top = -50.0
+offset_right = -30.0
+offset_bottom = 50.0
 grow_horizontal = 0
 grow_vertical = 2
-
-[node name="create_button" type="Button" parent="appearance_UI/next_margin"]
-visible = false
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-text = "Next"
-
-[node name="next_button" type="TextureButton" parent="appearance_UI/next_margin"]
-layout_mode = 2
 texture_normal = ExtResource("10_ja5oy")
 texture_pressed = ExtResource("11_ueydr")
-texture_hover = ExtResource("12_b8ruw")
-texture_focused = ExtResource("12_b8ruw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="appearance_UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -514.0
+offset_top = -111.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("7_4amj3")
+
+[node name="save_preset" type="Button" parent="appearance_UI/HBoxContainer"]
+custom_minimum_size = Vector2(230, 61)
+layout_mode = 2
+text = "SAVE PRESET"
+
+[node name="load_preset" type="Button" parent="appearance_UI/HBoxContainer"]
+custom_minimum_size = Vector2(230, 61)
+layout_mode = 2
+text = "LOAD PRESET"
 
 [node name="ScreenMargin" type="MarginContainer" parent="appearance_UI"]
 visible = false
@@ -955,51 +1046,50 @@ theme_override_constants/separation = 20
 [connection signal="mouse_entered" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_entered"]
 [connection signal="mouse_exited" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_exited"]
 [connection signal="pressed" from="appearance_UI/camera_control_panel/ResetCamera" to="appearance_UI" method="_on_reset_camera_pressed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_entered"]
-[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_exited"]
-[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_gui_input"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/sex_button/sex_lock" to="appearance_UI" method="_on_sex_lock_pressed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_focus_entered"]
-[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_focus_exited"]
-[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_gui_input"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button/skin_color_left_arrow" to="appearance_UI" method="_on_skin_color_left_arrow_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button/skin_lock" to="appearance_UI" method="_on_skin_lock_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_pressed"]
-[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/RHBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/GHBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonColorVBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_value_changed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_entered"]
-[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_exited"]
-[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_gui_input"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button/face_left_arrow" to="appearance_UI" method="_on_face_left_arrow_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FaceStyleHBoxContainer/Face Button/face_lock" to="appearance_UI" method="_on_face_lock_pressed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_focus_entered"]
-[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_focus_exited"]
-[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_gui_input"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button/hair_left_arrow" to="appearance_UI" method="_on_hair_left_arrow_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairStyleHBoxContainer/Hair Button/hair_lock" to="appearance_UI" method="_on_hair_lock_pressed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_focus_entered"]
-[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_focus_exited"]
-[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_gui_input"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button/hair_color_left_arrow" to="appearance_UI" method="_on_hair_color_left_arrow_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/HairColorHBoxContainer/Hair Color Button/hair_color_lock" to="appearance_UI" method="_on_hair_color_lock_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_pressed"]
-[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/CustonHairVBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_entered"]
-[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_exited"]
-[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_gui_input"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button/bangs_left_arrow" to="appearance_UI" method="_on_bangs_left_arrow_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button/bangs_lock" to="appearance_UI" method="_on_bangs_lock_pressed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_focus_entered"]
-[connection signal="focus_exited" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_focus_exited"]
-[connection signal="gui_input" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_gui_input"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_left_arrow" to="appearance_UI" method="_on_facial_left_arrow_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/list_margin/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_lock" to="appearance_UI" method="_on_facial_lock_pressed"]
-[connection signal="pressed" from="appearance_UI/appearance_margin/appearance_bg/randomize_container/randomize_button" to="appearance_UI" method="_on_randomize_button_pressed"]
-[connection signal="pressed" from="appearance_UI/next_margin/create_button" to="appearance_UI" method="_on_create_button_pressed"]
-[connection signal="pressed" from="appearance_UI/next_margin/next_button" to="appearance_UI" method="_on_next_button_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/sex_button/sex_lock" to="appearance_UI" method="_on_sex_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button/skin_color_left_arrow" to="appearance_UI" method="_on_skin_color_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinColorHBoxContainer/Skin Color Button/skin_lock" to="appearance_UI" method="_on_skin_lock_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button/face_left_arrow" to="appearance_UI" method="_on_face_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button/face_lock" to="appearance_UI" method="_on_face_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button" to="appearance_UI" method="_on_hair_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button/hair_left_arrow" to="appearance_UI" method="_on_hair_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button/hair_lock" to="appearance_UI" method="_on_hair_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer/Hair Color Button/hair_color_left_arrow" to="appearance_UI" method="_on_hair_color_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairColorHBoxContainer/Hair Color Button/hair_color_lock" to="appearance_UI" method="_on_hair_color_lock_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button/bangs_left_arrow" to="appearance_UI" method="_on_bangs_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button/bangs_lock" to="appearance_UI" method="_on_bangs_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_focus_exited"]
+[connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_gui_input"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_left_arrow" to="appearance_UI" method="_on_facial_left_arrow_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_lock" to="appearance_UI" method="_on_facial_lock_pressed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonColorVBoxContainer/RHBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonColorVBoxContainer/GHBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonColorVBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/randomize_container/randomize_button" to="appearance_UI" method="_on_randomize_button_pressed"]
+[connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/head_left_arrow" to="appearance_UI" method="_on_head_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/Head Button" to="appearance_UI" method="_on_head_button_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/head_right_arrow" to="appearance_UI" method="_on_head_right_arrow_pressed"]
