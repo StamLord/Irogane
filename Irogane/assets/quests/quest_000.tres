@@ -6,12 +6,12 @@
 [ext_resource type="Script" path="res://addons/quest_editor/resources/requirements/quest_item_req_res.gd" id="3_7n8gk"]
 [ext_resource type="Script" path="res://addons/quest_editor/resources/requirements/quest_requirement_res.gd" id="4_x8t6f"]
 
-[sub_resource type="Resource" id="Resource_8ucne"]
+[sub_resource type="Resource" id="Resource_y62bl"]
 script = ExtResource("2_f0g0q")
-item_name = "onigiri"
-amount = 4
+item_name = "katana"
+amount = 2
 
-[sub_resource type="Resource" id="Resource_fqq1r"]
+[sub_resource type="Resource" id="Resource_4un1y"]
 script = ExtResource("3_7n8gk")
 item_name = "katana"
 amount = 1
@@ -20,18 +20,18 @@ stage_id = "002"
 quest_id = "quest_000"
 description = "Moonshadow Katana"
 optional = false
-rewards = Array[Resource("res://addons/quest_editor/resources/rewards/quest_reward_res.gd")]([SubResource("Resource_8ucne")])
+rewards = Array[Resource("res://addons/quest_editor/resources/rewards/quest_reward_res.gd")]([SubResource("Resource_y62bl")])
 
-[sub_resource type="Resource" id="Resource_45e1a"]
+[sub_resource type="Resource" id="Resource_3sgvg"]
 script = ExtResource("1_wn3po")
 stage_id = "002"
 quest_id = "quest_000"
 description = "Retrieve the Stolen Katana"
 after_finish_text = "Speak to Takeshi Miyamoto again to let him know you found the katana"
-stage_requirements = Array[ExtResource("4_x8t6f")]([SubResource("Resource_fqq1r")])
+stage_requirements = Array[ExtResource("4_x8t6f")]([SubResource("Resource_4un1y")])
 mutually_exclusive = false
 
-[sub_resource type="Resource" id="Resource_hp8tp"]
+[sub_resource type="Resource" id="Resource_r3pab"]
 script = ExtResource("4_x8t6f")
 req_id = "001"
 stage_id = "001"
@@ -40,14 +40,14 @@ description = "Talk to Takeshi Miyamoto"
 optional = false
 rewards = Array[Resource("res://addons/quest_editor/resources/rewards/quest_reward_res.gd")]([])
 
-[sub_resource type="Resource" id="Resource_u0oqj"]
+[sub_resource type="Resource" id="Resource_c5jle"]
 script = ExtResource("1_wn3po")
 stage_id = "001"
 quest_id = "quest_000"
 description = "Head to the Miyamoto Estate and speak with the clan leader, Lord Takeshi Miyamoto. He will provide details about the missing Moonshadow Katana and express his concerns about the potential dishonor this incident may bring to the Miyamoto name."
 after_finish_text = ""
-stage_requirements = Array[ExtResource("4_x8t6f")]([SubResource("Resource_hp8tp")])
-next_stage = SubResource("Resource_45e1a")
+stage_requirements = Array[ExtResource("4_x8t6f")]([SubResource("Resource_r3pab")])
+next_stage = SubResource("Resource_3sgvg")
 mutually_exclusive = false
 
 [resource]
@@ -55,5 +55,5 @@ script = ExtResource("1_mcryw")
 quest_id = "quest_000"
 title = "The lost katana"
 description = "In the quaint village of Hikarimura, renowned for its serene cherry blossom groves and traditional tea ceremonies, a revered family heirloom has gone missing. The Miyamoto clan, custodians of the ancient and legendary Moonshadow Katana, seeks the assistance of a skilled and honorable adventurer to recover their prized possession."
-first_stage = SubResource("Resource_u0oqj")
+first_stage = SubResource("Resource_c5jle")
 prereq_quests_ids = Array[String]([])

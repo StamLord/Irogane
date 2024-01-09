@@ -104,7 +104,7 @@ func insert_item_at_first_available(item):
 			if grid[x][y] == false:
 				item.global_position = global_position + Vector2(x, y) * cell_size
 				if insert_item(item):
-					return true	
+					return true
 	return false
 	
 

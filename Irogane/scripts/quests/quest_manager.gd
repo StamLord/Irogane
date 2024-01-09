@@ -167,6 +167,24 @@ func advance_stage(quest_id: String):
 	return quest.advance_stage()
 	
 
+func has_kept_reward_items(quest_id: String):
+	if quest_id not in active_quests:
+		return false
+		
+	var quest = active_quests[quest_id]
+	
+	return quest.has_kept_reward_items()
+	
+
+func apply_kept_reward_items_if_possible(quest_id: String):
+	if quest_id not in active_quests:
+		return false
+		
+	var quest = active_quests[quest_id]
+	
+	return quest.apply_kept_reward_items_if_possible()
+	
+
 func complete_req(quest_id: String, stage_id: String, req_id: String):
 	if quest_id not in active_quests:
 		return false

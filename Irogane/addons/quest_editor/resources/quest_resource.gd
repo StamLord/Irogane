@@ -26,23 +26,30 @@ func advance_stage():
 	if not current_stage.completed:
 		return false # current stage not complete
 	
-	# finish stage
+	# Finish stage
 	current_stage.finish()
 	
 	# Apply rewards for completed reqs in current_stage
-	for req in current_stage.stage_requirements:
-		if req.completed:
-			for reward in req.rewards:
-				reward.apply_reward()
+	if not current_stage.apply_rewards_if_possible():
+		return false
 	
+	# If last stage, complete quest
 	if current_stage.next_stage == null:
 		complete_quest()
-		return true
+	else:
+		# Start next stage
+		current_stage = current_stage.next_stage
+		current_stage.start()
 	
-	# Start next stage
-	current_stage = current_stage.next_stage
-	current_stage.start()
 	return true
+	
+
+func has_kept_reward_items():
+	return current_stage.has_kept_reward_items()
+	
+
+func apply_kept_reward_items_if_possible():
+	return current_stage.apply_kept_reward_items_if_possible()
 	
 
 func can_complete_quest():

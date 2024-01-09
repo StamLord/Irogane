@@ -38,6 +38,8 @@ Takeshi Miyamoto: Ah, you return! Do you bear good news? Has the Moonshadow Kata
 	Takeshi Miyamoto: May the spirits guide you.
 - Yes [if QuestManager.is_stage_complete("quest_000", "002")]
 	{{PlayerEntity.player_name}}: Yes, Lord Miyamoto. The katana is here.
-	Takeshi Miyamoto: You have done a great service to the Miyamoto clan. The Moonshadow Katana is returned, and honor is restored. You are a true hero. Accept this humble reward as a token of our gratitude.
-	do QuestManager.advance_stage("quest_000")
+	if QuestManager.advance_stage("quest_000")
+		Takeshi Miyamoto: You have done a great service to the Miyamoto clan. The Moonshadow Katana is returned, and honor is restored. You are a true hero. Accept this humble reward as a token of our gratitude.
+	else
+		Takeshi Miyamoto: You have done a great service to the Miyamoto clan. The Moonshadow Katana is returned, and honor is restored. You are a true hero. It seems you do not have room for my reward, i'll hold on to this untill you do.
 => END

@@ -120,28 +120,47 @@ func remove_item(item_id):
 	return grid.remove_first_item_with_id(item_id)
 	
 
-func add_item(item_id, amount):
-	var item = item_base.instantiate()
-	item.set_meta("id", item_id)
-	item.texture = load(ItemDB.get_item(item_id)["icon"])
-	add_child(item)
-	if not grid.insert_item_at_first_available(item):
+func remove_items(items: Array):
+	for item in items:
+		grid.remove_item_from_grid(item)
 		item.queue_free()
 	
 
-func pickup_item(item_id):
+# items: { item_id: amount }
+# Trys to add a collection of items with various amounts
+# If not possible, removes all items and returns false
+# If possible, all items will be added and returns true
+func add_items_if_possible(items: Dictionary):
+	var items_added = []
 	
+	for item_id in items:
+		for i in items[item_id]:
+			var result = add_item(item_id)
+			if not result[0]:
+				remove_items(items_added)
+				return false
+			items_added.push_back(result[1])
+	
+	return true
+	
+
+func add_item(item_id):
 	var item = item_base.instantiate()
 	item.set_meta("id", item_id)
 	item.texture = load(ItemDB.get_item(item_id)["icon"])
 	add_child(item)
+	
 	if not grid.insert_item_at_first_available(item):
 		item.queue_free()
-		return false
+		return [false, null]
 	
+	return [true, item]
+	
+
+func pickup_item(item_id):
+	var result = add_item(item_id)[0]
 	EventManager.item_picked_up(item_id)
-	
-	return true
+	return result
 	
 
 func get_container_scale(container, item):
@@ -208,8 +227,12 @@ func add_debug_commands():
 	
 
 func add_item_command(args: Array):
+	var added = 0
 	for i in args[1]:
-		pickup_item(args[0])
+		if add_item(args[0])[0]:
+			added += 1
+		
+	return "Added %s/%s" % [added, args[1]]
 	
 
 func remove_item_command(args: Array):
@@ -220,7 +243,6 @@ func remove_item_command(args: Array):
 		
 	return "Removed %s/%s" % [removed, args[1]]
 	
-
 
 func get_item_keys_from_db(_args: Array):
 	return str(ItemDB.get_item_keys())
