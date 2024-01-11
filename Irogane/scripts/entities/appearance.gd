@@ -177,11 +177,14 @@ func set_face_index(index: int):
 	current_face = index
 	
 
+func get_face_index():
+	return face_material.get_shader_parameter("face")
+	
+
 func cycle_face_variation(forward = true):
 	var num_options = face_material.get_shader_parameter("max_cells")
-	var curr_selection = face_material.get_shader_parameter("face")
 	
-	var next_selection = curr_selection + 1 if forward else curr_selection - 1
+	var next_selection = current_face + 1 if forward else current_face - 1
 	
 	if next_selection == num_options:
 		next_selection = 0
@@ -189,13 +192,11 @@ func cycle_face_variation(forward = true):
 	if next_selection == -1:
 		next_selection = num_options -1
 	
-	face_material.set_shader_parameter("face", next_selection)
-		
-	return next_selection
-
-func get_face_selection():
-	return face_material.get_shader_parameter("face")
+	set_face_index(next_selection)
 	
+	return next_selection
+	
+
 
 func randomize_face_variation():
 	var rng = RandomNumberGenerator.new()
