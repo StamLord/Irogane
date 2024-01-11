@@ -274,11 +274,32 @@ func cycle_color_preset(part_name: String, increment = 1):
 func update_button_selection_text(_button: Button, button_text: String, index: int, color: bool = false):
 	if index == -1:
 		if color:
-			_button.text = "< %s CUSTOM >" % button_text
+			_button.text = "%s CUSTOM" % button_text
 		else:
-			_button.text = "< %s >" % button_text
+			_button.text = "%s" % button_text
 	else:
-		_button.text = "< %s %s >" % [button_text, index]
+		_button.text = "%s %s" % [button_text, index]
+	
+	if _button.has_focus():
+		_button.text = "< %s >" % _button.text
+	
+
+func refresh_button_text(part_name: String, color: bool = false):
+	var part
+	
+	if color:
+		part = PART_COLORS[part_name]
+	else:
+		part = MODEL_PARTS[part_name]
+	
+	var index
+	
+	if color:
+		index = current_preset_selection[part_name]
+	else:
+		index = character.get_visible_part_index(part_name)
+	
+	update_button_selection_text(part.button, part.text, index, color)
 	
 
 func update_part_color_slider(part_name: String, value: int, rgb_color: String):
@@ -543,12 +564,12 @@ func _on_randomize_button_pressed():
 		
 		var new_color
 		var preset_selection
-		if randomize_custom_color_checkbox.button_pressed:
-			preset_selection = -1
-			new_color = randomize_color()
-		else:
-			preset_selection = rng.randi_range(0, part_color.presets.size() - 1)
-			new_color = part_color.presets[preset_selection]
+#		if randomize_custom_color_checkbox.button_pressed:
+#			preset_selection = -1
+#			new_color = randomize_color()
+#		else:
+		preset_selection = rng.randi_range(0, part_color.presets.size() - 1)
+		new_color = part_color.presets[preset_selection]
 			
 		apply_color_to_part(part_name, new_color)
 		# These are important to have after updating the slider, as the value_changed function updates items 
@@ -639,16 +660,8 @@ func _on_head_button_pressed():
 	cycle_part_variation("head")
 	
 
-func _on_head_right_arrow_pressed():
-	cycle_part_variation("head")
-	
-
 func _on_top_left_arrow_pressed():
 	cycle_part_variation("top", -1)
-	
-
-func _on_top_right_arrow_pressed():
-	cycle_part_variation("top")
 	
 
 func _on_mask_left_arrow_pressed():
@@ -696,10 +709,13 @@ func _on_shoes_right_arrow_pressed():
 func select_sex(sex: String):
 	if sex == "male":
 		current_sex_selection = "male"
-		sex_button.text = "< MALE >"
+		sex_button.text = "MALE"
 	elif sex == "female":
 		current_sex_selection = "female"
-		sex_button.text = "< FEMALE >"
+		sex_button.text = "FEMALE"
+	
+	if sex_button.has_focus():
+		sex_button.text = "< %s >" % sex_button.text
 	
 
 func toggle_sex_selection():
@@ -843,10 +859,12 @@ func _on_skin_lock_pressed():
 
 func _on_skin_color_button_focus_entered():
 	update_color_lock_texture("skin")
+	refresh_button_text("skin", true)
 	
 
 func _on_skin_color_button_focus_exited():
 	update_color_lock_texture("skin")
+	refresh_button_text("skin", true)
 	
 
 func _on_sex_lock_pressed():
@@ -856,10 +874,12 @@ func _on_sex_lock_pressed():
 
 func _on_sex_button_focus_entered():
 	update_lock_texture(sex_lock, lock_selection["sex"], sex_button.has_focus())
+	select_sex(current_sex_selection)
 	
 
 func _on_sex_button_focus_exited():
 	update_lock_texture(sex_lock, lock_selection["sex"], sex_button.has_focus())
+	select_sex(current_sex_selection)
 	
 
 func _on_face_lock_pressed():
@@ -869,10 +889,13 @@ func _on_face_lock_pressed():
 
 func _on_face_button_focus_entered():
 	update_lock_texture(face_lock, lock_selection["face"], face_button.has_focus())
+	print(character.current_face)
+	update_button_selection_text(face_button, FACE_LABEL, character.current_face, false)
 	
 
 func _on_face_button_focus_exited():
 	update_lock_texture(face_lock, lock_selection["face"], face_button.has_focus())
+	update_button_selection_text(face_button, FACE_LABEL, character.current_face, false)
 	
 
 func _on_hair_lock_pressed():
@@ -882,10 +905,12 @@ func _on_hair_lock_pressed():
 
 func _on_hair_button_focus_entered():
 	update_part_lock_texture("hair")
+	refresh_button_text("hair", false)
 	
 
 func _on_hair_button_focus_exited():
 	update_part_lock_texture("hair")
+	refresh_button_text("hair", false)
 	
 
 func _on_hair_color_button_gui_input(event):
@@ -894,10 +919,12 @@ func _on_hair_color_button_gui_input(event):
 
 func _on_hair_color_button_focus_entered():
 	update_color_lock_texture("hair")
+	refresh_button_text("hair", true)
 	
 
 func _on_hair_color_button_focus_exited():
 	update_color_lock_texture("hair")
+	refresh_button_text("hair", true)
 	
 
 func _on_hair_color_lock_pressed():
@@ -911,10 +938,12 @@ func _on_bangs_button_gui_input(event):
 
 func _on_bangs_button_focus_entered():
 	update_part_lock_texture("bangs")
+	refresh_button_text("bangs", false)
 	
 
 func _on_bangs_button_focus_exited():
 	update_part_lock_texture("bangs")
+	refresh_button_text("bangs", false)
 	
 
 func _on_bangs_lock_pressed():
@@ -928,10 +957,12 @@ func _on_facial_button_gui_input(event):
 
 func _on_facial_button_focus_entered():
 	update_part_lock_texture("facial")
+	refresh_button_text("facial", false)
 	
 
 func _on_facial_button_focus_exited():
 	update_part_lock_texture("facial")
+	refresh_button_text("facial", false)
 	
 
 func _on_facial_lock_pressed():

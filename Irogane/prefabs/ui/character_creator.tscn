@@ -1,13 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=18 format=3 uid="uid://bp7x42n7e2h48"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
-[ext_resource type="Texture2D" uid="uid://drfncp5uxc1iv" path="res://assets/textures/ui/theme/character_creation_title.png" id="3_46iht"]
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
-[ext_resource type="Texture2D" uid="uid://cyxplhvugrsmq" path="res://assets/textures/ui/theme/cc_appearance_window.png" id="6_gduyu"]
-[ext_resource type="Theme" uid="uid://cbbpua6uwpg0h" path="res://themes/bordered_buttons.tres" id="7_4amj3"]
+[ext_resource type="Texture2D" uid="uid://dp7xeaaby52fw" path="res://assets/textures/ui/theme/cc_appearance_window.png" id="6_gduyu"]
 [ext_resource type="Theme" uid="uid://7jcq7wedtuis" path="res://themes/char_creation_menu.tres" id="7_la3gu"]
+[ext_resource type="Texture2D" uid="uid://dltbyebvhv1ga" path="res://assets/textures/vfx/maple_leaf.png" id="7_r7foo"]
 [ext_resource type="Texture2D" uid="uid://byjk3juxhhoy5" path="res://assets/textures/ui/theme/unlocked_icon.png" id="7_vmxa6"]
 [ext_resource type="Script" path="res://scripts/ui/ui_checkbox.gd" id="8_oidp0"]
 [ext_resource type="Texture2D" uid="uid://bnlwkulgl74nj" path="res://assets/textures/ui/theme/undo_icon.png" id="10_3g8ee"]
@@ -71,8 +70,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -9.0
-offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -93,17 +90,6 @@ scale = Vector2(1, 0.991)
 texture_normal = ExtResource("3_u1qym")
 stretch_mode = 0
 
-[node name="title_margin" type="MarginContainer" parent="appearance_UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-
-[node name="title" type="TextureRect" parent="appearance_UI/title_margin"]
-layout_mode = 2
-texture = ExtResource("3_46iht")
-
 [node name="appearance_bg" type="TextureRect" parent="appearance_UI"]
 layout_mode = 1
 anchors_preset = 2
@@ -116,21 +102,21 @@ offset_bottom = -50.0
 grow_vertical = 0
 texture = ExtResource("6_gduyu")
 
-[node name="undo_redo_container" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
-layout_mode = 0
-offset_left = 470.0
+[node name="undo_redo_header" type="HBoxContainer" parent="appearance_UI/appearance_bg"]
+layout_mode = 1
+offset_left = 50.0
 offset_top = 10.0
-offset_right = 524.0
-offset_bottom = 106.0
+offset_right = 162.0
+offset_bottom = 56.0
 
-[node name="undo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_container"]
+[node name="undo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
 layout_mode = 2
 tooltip_text = "Undo"
 focus_neighbor_bottom = NodePath("../redo_button")
 focus_next = NodePath("../redo_button")
 texture_normal = ExtResource("10_3g8ee")
 
-[node name="redo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_container"]
+[node name="redo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
 layout_mode = 2
 tooltip_text = "Redo"
 focus_neighbor_top = NodePath("../undo_button")
@@ -139,12 +125,24 @@ focus_next = NodePath("../../appearance_menu_list/sex_button")
 focus_previous = NodePath("../undo_button")
 texture_normal = ExtResource("11_evdjq")
 
+[node name="randomize_button" type="TextureButton" parent="appearance_UI/appearance_bg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -66.0
+offset_top = 20.0
+offset_right = -50.0
+offset_bottom = 66.0
+grow_horizontal = 0
+texture_normal = ExtResource("7_r7foo")
+
 [node name="appearance_menu_list" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
 layout_mode = 2
 offset_left = 46.5
-offset_top = 54.0
+offset_top = 74.0
 offset_right = 416.5
-offset_bottom = 817.0
+offset_bottom = 837.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("7_la3gu")
@@ -157,11 +155,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../undo_redo_container/redo_button")
+focus_neighbor_top = NodePath("../../undo_redo_header/redo_button")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../SkinColorHBoxContainer/Skin Color Button")
 focus_next = NodePath("../SkinColorHBoxContainer/Skin Color Button")
-focus_previous = NodePath("../../undo_redo_container/redo_button")
+focus_previous = NodePath("../../undo_redo_header/redo_button")
 text = "< MALE >"
 flat = true
 
@@ -656,59 +654,19 @@ offset_right = 272.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="randomize_button" type="Button" parent="appearance_UI/appearance_bg/randomize_container"]
-custom_minimum_size = Vector2(230, 61)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme = ExtResource("7_4amj3")
-text = "RANDOMIZE"
-
-[node name="randomize custom color" type="CheckBox" parent="appearance_UI/appearance_bg/randomize_container"]
-unique_name_in_owner = true
-layout_mode = 2
-tooltip_text = "Randomize Custom Color"
-
 [node name="next_button" type="TextureButton" parent="appearance_UI"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -345.0
-offset_top = -50.0
-offset_right = -30.0
-offset_bottom = 50.0
-grow_horizontal = 0
-grow_vertical = 2
-texture_normal = ExtResource("10_ja5oy")
-texture_pressed = ExtResource("11_ueydr")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="appearance_UI"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -514.0
-offset_top = -111.0
-offset_right = -50.0
-offset_bottom = -50.0
+offset_left = -315.0
+offset_top = -100.0
 grow_horizontal = 0
 grow_vertical = 0
-theme = ExtResource("7_4amj3")
-
-[node name="save_preset" type="Button" parent="appearance_UI/HBoxContainer"]
-custom_minimum_size = Vector2(230, 61)
-layout_mode = 2
-text = "SAVE PRESET"
-
-[node name="load_preset" type="Button" parent="appearance_UI/HBoxContainer"]
-custom_minimum_size = Vector2(230, 61)
-layout_mode = 2
-text = "LOAD PRESET"
+texture_normal = ExtResource("10_ja5oy")
+texture_pressed = ExtResource("11_ueydr")
 
 [node name="ScreenMargin" type="MarginContainer" parent="appearance_UI"]
 visible = false
@@ -1046,6 +1004,7 @@ theme_override_constants/separation = 20
 [connection signal="mouse_entered" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_entered"]
 [connection signal="mouse_exited" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_exited"]
 [connection signal="pressed" from="appearance_UI/camera_control_panel/ResetCamera" to="appearance_UI" method="_on_reset_camera_pressed"]
+[connection signal="pressed" from="appearance_UI/appearance_bg/randomize_button" to="appearance_UI" method="_on_randomize_button_pressed"]
 [connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_entered"]
 [connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_focus_exited"]
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/sex_button" to="appearance_UI" method="_on_sex_button_gui_input"]
@@ -1088,7 +1047,6 @@ theme_override_constants/separation = 20
 [connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_value_changed"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_value_changed"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
-[connection signal="pressed" from="appearance_UI/appearance_bg/randomize_container/randomize_button" to="appearance_UI" method="_on_randomize_button_pressed"]
 [connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/head_left_arrow" to="appearance_UI" method="_on_head_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/Head Button" to="appearance_UI" method="_on_head_button_pressed"]
