@@ -22,11 +22,11 @@ noise = SubResource("FastNoiseLite_mr3tj")
 [resource]
 render_priority = 0
 shader = ExtResource("1_qehbe")
-shader_parameter/highlight_distance = 0.25
+shader_parameter/highlight_distance = 0.0
 shader_parameter/wave_speed = 0.05
 shader_parameter/speed = Vector2(0, -0.025)
 shader_parameter/scale = Vector2(2, 1)
-shader_parameter/alpha = 0.0
-shader_parameter/min_alpha = 0.0
+shader_parameter/alpha = 0.8
+shader_parameter/min_alpha = 0.5
 shader_parameter/water_texture = SubResource("NoiseTexture2D_02olu")
 shader_parameter/gradient_map = SubResource("GradientTexture1D_23cfy")

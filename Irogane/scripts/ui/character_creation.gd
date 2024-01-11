@@ -174,6 +174,8 @@ func _ready():
 	load_default_character()
 	reset_attributes()
 	
+	default_camera_position = camera.position
+	
 
 func reset_attributes():
 	current_available_points = DEFAULT_AVAILABLE_POINTS
@@ -297,7 +299,7 @@ func try_set_attribute_value(attr_name: String, points: int):
 	
 
 # Camera and character movement logic
-const DEFAULT_CAMERA_POSITION = Vector3(0, 1.8, 2) 
+var default_camera_position = Vector3(0, 1.8, 2)
 const DEFAULT_CHARACTER_ROTATION = Vector3(0, 22, 0) 
 
 const SCROLL_SPEED = 0.1
@@ -407,7 +409,7 @@ func _on_reset_button_pressed():
 	
 
 func _on_reset_camera_pressed():
-	move_camera(DEFAULT_CAMERA_POSITION, 0.2)
+	move_camera(default_camera_position, 0.2)
 	rotate_character(DEFAULT_CHARACTER_ROTATION, 0.2)
 	reset_camera_button.hide()
 	

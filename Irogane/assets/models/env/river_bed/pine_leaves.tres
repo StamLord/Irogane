@@ -10,4 +10,6 @@ alpha_antialiasing_mode = 0
 cull_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_41qsl")
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
 texture_filter = 0

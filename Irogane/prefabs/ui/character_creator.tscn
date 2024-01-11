@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=22 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
 [ext_resource type="PackedScene" uid="uid://dpeedxe6o5at0" path="res://assets/models/env/river_bed/river_bed_3.glb" id="5_amh3m"]
 [ext_resource type="Shader" path="res://assets/materials/sky/sky_shader.gdshader" id="6_7xd1u"]
+[ext_resource type="Texture2D" uid="uid://bwwjj4qojll55" path="res://assets/textures/vfx/puff_1.png" id="7_ewshu"]
+[ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="8_ckvvo"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
@@ -16,6 +18,7 @@ draw_center = false
 
 [sub_resource type="SystemFont" id="SystemFont_3sii3"]
 font_names = PackedStringArray("Marcellus SC")
+subpixel_positioning = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wgrw0"]
 shader = ExtResource("6_7xd1u")
@@ -61,12 +64,64 @@ sky = SubResource("Sky_iielw")
 ambient_light_source = 2
 ambient_light_color = Color(0.211765, 0.372549, 0.721569, 1)
 ambient_light_sky_contribution = 0.5
-fog_light_color = Color(0.486275, 0.792157, 0.839216, 1)
+fog_light_color = Color(0.27451, 0.627451, 0.607843, 1)
 fog_light_energy = 0.4
-fog_density = 0.1
+fog_density = 0.0767
 fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
 volumetric_fog_albedo = Color(0.00722328, 0.0464815, 0.0163539, 1)
-volumetric_fog_emission = Color(0.576471, 0.686275, 0.756863, 1)
+volumetric_fog_emission = Color(0.240548, 0.612873, 0.73007, 1)
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="Gradient" id="Gradient_vyevh"]
+offsets = PackedFloat32Array(0, 0.161765, 0.818627, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ifb66"]
+gradient = SubResource("Gradient_vyevh")
+
+[sub_resource type="Curve" id="Curve_qjbgk"]
+_data = [Vector2(0, 0), 0.0, 5.39713, 0, 0, Vector2(0.246808, 0.68421), 1.01858, 1.01858, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xgthk"]
+curve = SubResource("Curve_qjbgk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twp0a"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 0.1, 0.5)
+direction = Vector3(0, 1, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.4
+angular_velocity_min = -40.0
+angular_velocity_max = 40.0
+angle_max = 360.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_xgthk")
+color = Color(1, 1, 1, 0.14902)
+color_ramp = SubResource("GradientTexture1D_ifb66")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtmp0"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_ewshu")
+emission_energy_multiplier = 0.23
+emission_texture = ExtResource("8_ckvvo")
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_q4x6l"]
+material = SubResource("StandardMaterial3D_mtmp0")
 
 [node name="CharacterCreation" type="Node3D"]
 unique_name_in_owner = true
@@ -75,7 +130,7 @@ unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.920505, 0.390731, 0, -0.390731, 0.920505, 0, 1.8, 2)
+transform = Transform3D(0.951057, 0.0642483, -0.302264, 0, 0.978148, 0.207912, 0.309017, -0.197736, 0.930274, -0.8, 1.6, 2.5)
 current = true
 fov = 55.0
 
@@ -867,13 +922,20 @@ spot_angle = 29.1564
 environment = SubResource("Environment_vqamt")
 
 [node name="sun" type="DirectionalLight3D" parent="env"]
-transform = Transform3D(0.819152, -0.439385, 0.368688, 0, 0.642788, 0.766044, -0.573576, -0.627507, 0.526541, 0, 0, 0)
-light_color = Color(0.996078, 1, 0.737255, 1)
-light_energy = 0.5
+transform = Transform3D(0.819152, -0.242404, 0.519837, 0, 0.906308, 0.422618, -0.573576, -0.346189, 0.742404, 0, 0, 0)
+light_color = Color(0.996078, 1, 0.941176, 1)
 shadow_enabled = true
 
 [node name="river_bed_3" parent="env" instance=ExtResource("5_amh3m")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 8)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.252878, -4.04888)
+amount = 100
+lifetime = 6.0
+preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_twp0a")
+draw_pass_1 = SubResource("QuadMesh_q4x6l")
 
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
