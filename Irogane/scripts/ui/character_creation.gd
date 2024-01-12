@@ -14,6 +14,12 @@ extends UIWindow
 
 @onready var slider_click = load("res://assets/audio/ui/char_creation/Button08.mp3")
 
+@onready var lock_sound = load("res://assets/audio/ui/char_creation/DoorLock 6018_29_1.wav")
+@onready var unlock_sound = load("res://assets/audio/ui/char_creation/DoorLock 6018_29_4.wav")
+
+@onready var toggle_sound = load("res://assets/audio/ui/char_creation/Button05.mp3")
+@onready var untoggle_sound = load("res://assets/audio/ui/char_creation/Button03.mp3")
+
 # Customization Buttons
 @onready var char_name = %LineEdit
 @onready var sex_button = %sex_button
@@ -343,20 +349,14 @@ func update_lock_texture(lock: TextureButton, locked: bool, highlight: bool):
 			lock.texture_normal = locked_highlight_texture
 		else:
 			lock.texture_normal = locked_texture
-		var new_modulate = lock.get_modulate()
-		new_modulate.a = 1
-		lock.set_modulate(new_modulate)
+		lock.visible = true
 	else:
 		if highlight:
 			lock.texture_normal = unlocked_highlight_texture
-			var new_modulate = lock.get_modulate()
-			new_modulate.a = 1
-			lock.set_modulate(new_modulate)
+			lock.visible = true
 		else:
 			lock.texture_normal = unlocked_texture
-			var new_modulate = lock.get_modulate()
-			new_modulate.a = 0
-			lock.set_modulate(new_modulate)
+			lock.visible = false
 	
 
 func update_color_lock_texture(part_name: String):
@@ -392,6 +392,11 @@ func toggle_lock(part_name: String, is_color: bool = false):
 			update_lock_texture(sex_lock, new_val, sex_button.has_focus())
 		elif part_name == "face":
 			update_lock_texture(face_lock, new_val, face_button.has_focus())
+	
+	if new_val:
+		audio_player.play(lock_sound)
+	else:
+		audio_player.play(unlock_sound)
 	
 
 # Attributes Logic
@@ -623,8 +628,10 @@ func _on_b_skin_slider_value_changed(value):
 
 func _on_custom_hair_color_button_pressed():
 	if custom_hair_color_button.button_pressed:
+		audio_player.play(toggle_sound)
 		custom_hair_color_sliders_container.show()
 	else:
+		audio_player.play(untoggle_sound)
 		custom_hair_color_sliders_container.hide()
 	
 
@@ -830,8 +837,10 @@ func load_preset():
 
 func _on_custom_skin_color_button_pressed():
 	if custom_skin_color_button.button_pressed:
+		audio_player.play(toggle_sound)
 		custom_skin_color_sliders_container.show()
 	else:
+		audio_player.play(untoggle_sound)
 		custom_skin_color_sliders_container.hide()
 	
 
