@@ -31,6 +31,9 @@ extends UIWindow
 @onready var custom_hair_color_button = %CustomHairColorButton
 @onready var custom_hair_color_sliders_container = %custom_hair_color
 
+@onready var custom_skin_color_focus = %c_skin_focus_text
+@onready var custom_hair_color_focus = %c_hair_focus_text
+
 #@onready var randomize_custom_color_checkbox = %"randomize custom color"
 
 @onready var reset_camera_button = %ResetCamera
@@ -1016,4 +1019,21 @@ func _on_redo_button_pressed():
 
 func _on_r_skin_slider_changed():
 	audio_player.play(slider_click)
+	
+
+func _on_custom_hair_color_button_focus_entered():
+	custom_hair_color_focus.visible = true
+	
+
+func _on_custom_hair_color_button_focus_exited():
+	custom_hair_color_focus.visible = false
+	
+
+
+func _on_custom_skin_color_button_focus_entered():
+	custom_skin_color_focus.visible = true
+	
+
+func _on_custom_skin_color_button_focus_exited():
+	custom_skin_color_focus.visible = false
 	

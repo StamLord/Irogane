@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=52 format=3 uid="uid://bp7x42n7e2h48"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://uaydylyofhpq" path="res://assets/textures/ui/theme/slider_green.png" id="17_33iy5"]
 [ext_resource type="Texture2D" uid="uid://dqa365215hi43" path="res://assets/textures/ui/theme/slider_button_hover.png" id="18_r2cye"]
 [ext_resource type="Script" path="res://scripts/ui/slider_audio.gd" id="21_ph74t"]
-[ext_resource type="Texture2D" uid="uid://ty4vbjslb884" path="res://assets/textures/ui/theme/dark_indent.png" id="25_0woak"]
+[ext_resource type="Texture2D" uid="uid://c78d44s1om6wv" path="res://assets/textures/ui/theme/next_button_highlight.png" id="26_knr0y"]
 [ext_resource type="AudioStream" uid="uid://c1hl8mujkj7ri" path="res://assets/audio/ui/char_creation/paint_5.ogg" id="27_kcerp"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="27_qsw0s"]
 
@@ -210,8 +210,12 @@ theme_override_constants/separation = 10
 [node name="undo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
 layout_mode = 2
 tooltip_text = "Undo"
-focus_neighbor_bottom = NodePath("../redo_button")
+focus_neighbor_left = NodePath("../../../next_button")
+focus_neighbor_top = NodePath("../../../next_button")
+focus_neighbor_right = NodePath("../redo_button")
+focus_neighbor_bottom = NodePath("../../appearance_menu_list/sex_button")
 focus_next = NodePath("../redo_button")
+focus_previous = NodePath("../../../next_button")
 texture_normal = ExtResource("5_3cmbn")
 texture_pressed = ExtResource("6_54rgk")
 texture_hover = ExtResource("7_arsi1")
@@ -220,9 +224,11 @@ texture_focused = ExtResource("9_kkng3")
 [node name="redo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
 layout_mode = 2
 tooltip_text = "Redo"
+focus_neighbor_left = NodePath("../undo_button")
 focus_neighbor_top = NodePath("../undo_button")
+focus_neighbor_right = NodePath("../../randomize_button")
 focus_neighbor_bottom = NodePath("../../appearance_menu_list/sex_button")
-focus_next = NodePath("../../appearance_menu_list/sex_button")
+focus_next = NodePath("../../randomize_button")
 focus_previous = NodePath("../undo_button")
 texture_normal = ExtResource("9_7778k")
 texture_pressed = ExtResource("10_torot")
@@ -366,6 +372,23 @@ focus_next = NodePath("../../../FaceStyleHBoxContainer/Face Button")
 focus_previous = NodePath("../../SkinColorHBoxContainer/Skin Color Button")
 text = "CUSTOM"
 alignment = 1
+
+[node name="c_skin_focus_text" type="TextureRect" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -33.5
+offset_right = 2.0
+offset_bottom = 33.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("9_kkng3")
 
 [node name="FaceStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
@@ -528,6 +551,23 @@ focus_previous = NodePath("../../HairColorHBoxContainer/Hair Color Button")
 text = "CUSTOM"
 alignment = 2
 
+[node name="c_hair_focus_text" type="TextureRect" parent="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -33.5
+offset_right = 2.0
+offset_bottom = 33.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("9_kkng3")
+
 [node name="BangsStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
 alignment = 1
@@ -622,7 +662,6 @@ texture_normal = ExtResource("7_vmxa6")
 
 [node name="custom_skin_color" type="TextureRect" parent="appearance_UI/appearance_bg"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -885,6 +924,7 @@ offset_left = -315.0
 offset_top = -100.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(0.7, 0.7)
 focus_neighbor_left = NodePath("../appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
 focus_neighbor_top = NodePath("../appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
 focus_neighbor_right = NodePath("../appearance_bg/undo_redo_header/undo_button")
@@ -893,7 +933,8 @@ focus_next = NodePath("../appearance_bg/undo_redo_header/undo_button")
 focus_previous = NodePath("../appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
 texture_normal = ExtResource("10_ja5oy")
 texture_pressed = ExtResource("11_ueydr")
-texture_focused = ExtResource("25_0woak")
+texture_hover = ExtResource("26_knr0y")
+texture_focused = ExtResource("9_kkng3")
 
 [node name="ScreenMargin" type="MarginContainer" parent="appearance_UI"]
 visible = false
@@ -1290,6 +1331,8 @@ unique_name_in_owner = true
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button/skin_color_left_arrow" to="appearance_UI" method="_on_skin_color_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button/skin_lock" to="appearance_UI" method="_on_skin_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_focus_exited"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_pressed"]
 [connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_entered"]
 [connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_exited"]
@@ -1306,6 +1349,8 @@ unique_name_in_owner = true
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button/hair_color_left_arrow" to="appearance_UI" method="_on_hair_color_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button/hair_color_lock" to="appearance_UI" method="_on_hair_color_lock_pressed"]
+[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_focus_entered"]
+[connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_focus_exited"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_pressed"]
 [connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_entered"]
 [connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_exited"]
