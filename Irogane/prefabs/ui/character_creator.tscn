@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=51 format=3 uid="uid://bp7x42n7e2h48"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://ig7e17c41hc7" path="res://assets/textures/ui/theme/undo_hover.png" id="7_arsi1"]
 [ext_resource type="Theme" uid="uid://7jcq7wedtuis" path="res://themes/char_creation_menu.tres" id="7_la3gu"]
 [ext_resource type="Texture2D" uid="uid://byjk3juxhhoy5" path="res://assets/textures/ui/theme/unlocked_icon.png" id="7_vmxa6"]
-[ext_resource type="Script" path="res://scripts/ui/ui_checkbox.gd" id="8_oidp0"]
 [ext_resource type="Texture2D" uid="uid://co4j0lytgpewx" path="res://assets/textures/ui/theme/random_normal.png" id="9_6m0pj"]
 [ext_resource type="Texture2D" uid="uid://dt5mqwks847qg" path="res://assets/textures/ui/theme/redo_normal.png" id="9_7778k"]
 [ext_resource type="Texture2D" uid="uid://b7j5k22d0v3ts" path="res://assets/textures/ui/theme/random_pressed.png" id="10_2kg7i"]
@@ -25,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://cy1eoaolfvcek" path="res://assets/textures/ui/theme/slider_button.png" id="15_8wpma"]
 [ext_resource type="Texture2D" uid="uid://uaydylyofhpq" path="res://assets/textures/ui/theme/slider_green.png" id="17_33iy5"]
 [ext_resource type="Texture2D" uid="uid://dqa365215hi43" path="res://assets/textures/ui/theme/slider_button_hover.png" id="18_r2cye"]
+[ext_resource type="Script" path="res://scripts/ui/slider_audio.gd" id="21_ph74t"]
+[ext_resource type="Texture2D" uid="uid://ty4vbjslb884" path="res://assets/textures/ui/theme/dark_indent.png" id="25_0woak"]
 [ext_resource type="AudioStream" uid="uid://c1hl8mujkj7ri" path="res://assets/audio/ui/char_creation/paint_5.ogg" id="27_kcerp"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="27_qsw0s"]
 
@@ -361,7 +362,6 @@ focus_next = NodePath("../../../FaceStyleHBoxContainer/Face Button")
 focus_previous = NodePath("../../SkinColorHBoxContainer/Skin Color Button")
 text = "CUSTOM"
 alignment = 1
-script = ExtResource("8_oidp0")
 
 [node name="FaceStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
@@ -523,7 +523,6 @@ focus_next = NodePath("../../../BangsStyleHBoxContainer/Bangs Button")
 focus_previous = NodePath("../../HairColorHBoxContainer/Hair Color Button")
 text = "CUSTOM"
 alignment = 2
-script = ExtResource("8_oidp0")
 
 [node name="BangsStyleHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/appearance_menu_list"]
 layout_mode = 2
@@ -583,6 +582,8 @@ size_flags_horizontal = 4
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
 focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../next_button")
+focus_next = NodePath("../../../../next_button")
 focus_previous = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
 text = "< FACIAL >"
 flat = true
@@ -663,6 +664,11 @@ theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_xxliy")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_l3e27")
 max_value = 255.0
 
+[node name="Node" type="Node" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer/RSkinSlider" node_paths=PackedStringArray("audio_player", "slider")]
+script = ExtResource("21_ph74t")
+audio_player = NodePath("../../../../../../../AudioPlayer")
+slider = NodePath("..")
+
 [node name="RSkinLabel" type="Label" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 0)
@@ -690,6 +696,11 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_n33ca")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_6xpdl")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_0ns8b")
 max_value = 255.0
+
+[node name="Node" type="Node" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer/GSkinSlider" node_paths=PackedStringArray("audio_player", "slider")]
+script = ExtResource("21_ph74t")
+audio_player = NodePath("../../../../../../../AudioPlayer")
+slider = NodePath("..")
 
 [node name="GSkinLabel" type="Label" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer"]
 unique_name_in_owner = true
@@ -719,6 +730,11 @@ theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_vnxew")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_qj8ol")
 max_value = 255.0
 
+[node name="Node" type="Node" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer/BSkinSlider" node_paths=PackedStringArray("audio_player", "slider")]
+script = ExtResource("21_ph74t")
+audio_player = NodePath("../../../../../../../AudioPlayer")
+slider = NodePath("..")
+
 [node name="BSkinLabel" type="Label" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 0)
@@ -731,7 +747,6 @@ clip_text = true
 
 [node name="custom_hair_color" type="TextureRect" parent="appearance_UI/appearance_bg"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -778,6 +793,11 @@ theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_ayj7g")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_if0pr")
 max_value = 255.0
 
+[node name="Node" type="Node" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/RSHBoxContainer/RHairSlider" node_paths=PackedStringArray("audio_player", "slider")]
+script = ExtResource("21_ph74t")
+audio_player = NodePath("../../../../../../../AudioPlayer")
+slider = NodePath("..")
+
 [node name="RHairLabel" type="Label" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/RSHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 0)
@@ -803,6 +823,11 @@ theme_override_styles/slider = SubResource("StyleBoxTexture_am4qk")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_a5o5t")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_ydaa8")
 max_value = 255.0
+
+[node name="Node" type="Node" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/GSHBoxContainer/GHairSlider" node_paths=PackedStringArray("audio_player", "slider")]
+script = ExtResource("21_ph74t")
+audio_player = NodePath("../../../../../../../AudioPlayer")
+slider = NodePath("..")
 
 [node name="GHairLabel" type="Label" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/GSHBoxContainer"]
 unique_name_in_owner = true
@@ -830,6 +855,11 @@ theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_anvj7")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_3ekqm")
 max_value = 255.0
 
+[node name="Node" type="Node" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" node_paths=PackedStringArray("audio_player", "slider")]
+script = ExtResource("21_ph74t")
+audio_player = NodePath("../../../../../../../AudioPlayer")
+slider = NodePath("..")
+
 [node name="BHairLabel" type="Label" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 0)
@@ -851,8 +881,15 @@ offset_left = -315.0
 offset_top = -100.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
+focus_neighbor_top = NodePath("../appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
+focus_neighbor_right = NodePath("../appearance_bg/undo_redo_header/undo_button")
+focus_neighbor_bottom = NodePath("../appearance_bg/undo_redo_header/undo_button")
+focus_next = NodePath("../appearance_bg/undo_redo_header/undo_button")
+focus_previous = NodePath("../appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
 texture_normal = ExtResource("10_ja5oy")
 texture_pressed = ExtResource("11_ueydr")
+texture_focused = ExtResource("25_0woak")
 
 [node name="ScreenMargin" type="MarginContainer" parent="appearance_UI"]
 visible = false
@@ -1231,34 +1268,6 @@ bus = &"Sound"
 stream = ExtResource("27_kcerp")
 bus = &"Sound"
 
-[node name="audio11" type="AudioStreamPlayer2D" parent="AudioPlayer"]
-stream = ExtResource("27_kcerp")
-bus = &"Sound"
-
-[node name="audio12" type="AudioStreamPlayer2D" parent="AudioPlayer"]
-stream = ExtResource("27_kcerp")
-bus = &"Sound"
-
-[node name="audio13" type="AudioStreamPlayer2D" parent="AudioPlayer"]
-stream = ExtResource("27_kcerp")
-bus = &"Sound"
-
-[node name="audio14" type="AudioStreamPlayer2D" parent="AudioPlayer"]
-stream = ExtResource("27_kcerp")
-bus = &"Sound"
-
-[node name="audio15" type="AudioStreamPlayer2D" parent="AudioPlayer"]
-stream = ExtResource("27_kcerp")
-bus = &"Sound"
-
-[node name="audio16" type="AudioStreamPlayer2D" parent="AudioPlayer"]
-stream = ExtResource("27_kcerp")
-bus = &"Sound"
-
-[node name="audio17" type="AudioStreamPlayer2D" parent="AudioPlayer"]
-stream = ExtResource("27_kcerp")
-bus = &"Sound"
-
 [node name="slider_audio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 
@@ -1277,7 +1286,6 @@ unique_name_in_owner = true
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button" to="appearance_UI" method="_on_skin_color_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button/skin_color_left_arrow" to="appearance_UI" method="_on_skin_color_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button/skin_lock" to="appearance_UI" method="_on_skin_lock_pressed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_focus_entered"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton" to="appearance_UI" method="_on_custom_skin_color_button_pressed"]
 [connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_entered"]
 [connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button" to="appearance_UI" method="_on_face_button_focus_exited"]
@@ -1294,7 +1302,6 @@ unique_name_in_owner = true
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button" to="appearance_UI" method="_on_hair_color_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button/hair_color_left_arrow" to="appearance_UI" method="_on_hair_color_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button/hair_color_lock" to="appearance_UI" method="_on_hair_color_lock_pressed"]
-[connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_focus_entered"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton" to="appearance_UI" method="_on_custom_hair_color_button_pressed"]
 [connection signal="focus_entered" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_entered"]
 [connection signal="focus_exited" from="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button" to="appearance_UI" method="_on_bangs_button_focus_exited"]
@@ -1306,7 +1313,6 @@ unique_name_in_owner = true
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_left_arrow" to="appearance_UI" method="_on_facial_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_lock" to="appearance_UI" method="_on_facial_lock_pressed"]
-[connection signal="changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_changed"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_value_changed"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_value_changed"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_value_changed"]

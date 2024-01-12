@@ -3,24 +3,29 @@ class_name AudioPlayer
 
 @onready var players = get_children()
 
+
 func _ready():
 	for p in players:
 		p.finished.connect(reset_position.bind(p))
 	
 
-func play(sound, sound_position = null):
+func play(sound, sound_position = null, pitch: float = 1):
 	if players:
 		for p in players:
 			if not p.playing:
 				if sound_position and p is Node3D:
 					p.global_position = sound_position
+				
 				p.stream = sound
+				
+				if pitch:
+					p.pitch_scale = pitch
+				
 				p.play()
 				return
+	
 	print(get_parent().name + "." + name + ": Not enought stream players!")
 	
-
-
 
 func reset_position(player):
 	# Reset to local 0,0,0

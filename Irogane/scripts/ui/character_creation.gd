@@ -12,7 +12,7 @@ extends UIWindow
 @onready var focus_sound = load("res://assets/audio/ui/char_creation/paint_3.ogg")
 @onready var click_bamboo = load("res://assets/audio/ui/char_creation/click_bamboo.wav")
 
-@onready var slider_click = load("res://assets/audio/ui/char_creation/Button08.mp3")
+@onready var slider_click = load("res://assets/audio/ui/char_creation/elegant_click.ogg")
 
 @onready var lock_sound = load("res://assets/audio/ui/char_creation/DoorLock 6018_29_1.wav")
 @onready var unlock_sound = load("res://assets/audio/ui/char_creation/DoorLock 6018_29_4.wav")
@@ -260,9 +260,13 @@ func cycle_part_variation(part: String, increment = 1):
 func apply_color_to_part(part_name: String, color: Color):
 	var part_color = PART_COLORS[part_name]
 	
-	part_color.sliders.r.value = color.r8
-	part_color.sliders.g.value = color.g8
-	part_color.sliders.b.value = color.b8
+	part_color.sliders.r.set_value_no_signal(color.r8)
+	part_color.sliders.g.set_value_no_signal(color.g8)
+	part_color.sliders.b.set_value_no_signal(color.b8)
+	
+	part_color.labels.r.text = "%s" % color.r8
+	part_color.labels.g.text = "%s" % color.g8
+	part_color.labels.b.text = "%s" % color.b8
 	
 	for setter in part_color.color_setters:
 		character.call(setter, color)
@@ -1002,14 +1006,6 @@ func _on_next_button_pressed():
 	save_preset()
 	
 
-func _on_custom_skin_color_button_focus_entered():
-	audio_player.play(focus_sound)
-	
-
-func _on_custom_hair_color_button_focus_entered():
-	audio_player.play(focus_sound)
-	
-
 func _on_undo_button_pressed():
 	audio_player.play(click_bamboo)
 	
@@ -1018,6 +1014,6 @@ func _on_redo_button_pressed():
 	audio_player.play(click_bamboo)
 	
 
-
 func _on_r_skin_slider_changed():
 	audio_player.play(slider_click)
+	
