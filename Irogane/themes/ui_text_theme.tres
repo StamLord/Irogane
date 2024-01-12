@@ -1,8 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://2j2x3dxdxl2n"]
-
-[ext_resource type="FontFile" uid="uid://c8ohdy7lcrv8l" path="res://assets/fonts/otsutome/Otsutome.otf" id="1_pd7fu"]
-
-[resource]
-Label/colors/font_color = Color(0.145098, 0.137255, 0.121569, 1)
-Label/font_sizes/font_size = 24
-Label/fonts/font = ExtResource("1_pd7fu")
