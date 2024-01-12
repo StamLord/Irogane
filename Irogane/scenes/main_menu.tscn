@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
 [ext_resource type="Shader" uid="uid://c4q8tb0y1fq6a" path="res://assets/shaders/ink_canvase_item.tres" id="2_ghgom"]
-[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/game_save_load_window.tscn" id="2_ifvaf"]
+[ext_resource type="PackedScene" path="res://prefabs/ui/game_save_load_window.tscn" id="2_ifvaf"]
 [ext_resource type="Texture2D" uid="uid://brufi7iodim6" path="res://assets/images/main_menu_vingette.png" id="3_4hocg"]
 [ext_resource type="Texture2D" uid="uid://vu67v5m4a1rh" path="res://assets/images/main_menu_highlight.png" id="3_6d7bo"]
 [ext_resource type="Texture2D" uid="uid://dqpsiw2722c4l" path="res://assets/images/watercolor_mask.png" id="3_m1oa2"]
@@ -272,6 +272,8 @@ offset_bottom = 231.5
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_xnqn3")
 autoplay = true
+bus = &"Music"
+area_mask = 33554433
 
 [connection signal="pressed" from="VBoxContainer/bottom/menu_container/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/bottom/menu_container/load_button" to="." method="_on_load_button_pressed"]

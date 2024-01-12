@@ -4,6 +4,15 @@ extends UIWindow
 @onready var character = $"../male"
 @onready var camera = %Camera3D
 
+# Sound
+@onready var audio_player = %AudioPlayer
+
+@onready var press_sound = load("res://assets/audio/ui/char_creation/paint_5.ogg")
+@onready var press_back_sound = load("res://assets/audio/ui/char_creation/paint_6.ogg")
+@onready var focus_sound = load("res://assets/audio/ui/char_creation/paint_3.ogg")
+@onready var click_bamboo = load("res://assets/audio/ui/char_creation/click_bamboo.wav")
+
+@onready var slider_click = load("res://assets/audio/ui/char_creation/Button08.mp3")
 
 # Customization Buttons
 @onready var char_name = %LineEdit
@@ -16,7 +25,7 @@ extends UIWindow
 @onready var custom_hair_color_button = %CustomHairColorButton
 @onready var custom_hair_color_sliders_container = %custom_hair_color
 
-@onready var randomize_custom_color_checkbox = %"randomize custom color"
+#@onready var randomize_custom_color_checkbox = %"randomize custom color"
 
 @onready var reset_camera_button = %ResetCamera
 
@@ -271,7 +280,7 @@ func cycle_color_preset(part_name: String, increment = 1):
 	update_button_selection_text(part_color.button, part_color.text, new_preset_selection)
 	
 
-func update_button_selection_text(_button: Button, button_text: String, index: int, color: bool = false):
+func update_button_selection_text(_button: Button, button_text: String, index: int):
 	if index == -1:
 		_button.text = "%s" % button_text
 	else:
@@ -296,15 +305,18 @@ func refresh_button_text(part_name: String, color: bool = false):
 	else:
 		index = character.get_visible_part_index(part_name)
 	
-	update_button_selection_text(part.button, part.text, index, color)
+	update_button_selection_text(part.button, part.text, index)
+	
+	if part.button.has_focus():
+		audio_player.play(focus_sound)
 	
 
 func update_part_color_slider(part_name: String, value: int, rgb_color: String):
-	const color_label = {
-		"r": R_LABEL,
-		"g": G_LABEL,
-		"b": B_LABEL,
-	}
+#	const color_label = {
+#		"r": R_LABEL,
+#		"g": G_LABEL,
+#		"b": B_LABEL,
+#	}
 	
 	var part_color = PART_COLORS[part_name]
 	#part_color.labels[rgb_color].text = "%s %s" % [color_label[rgb_color], value]
@@ -322,7 +334,7 @@ func update_part_color_slider(part_name: String, value: int, rgb_color: String):
 		character.call(setter, new_color)
 	
 	current_preset_selection[part_name] = -1
-	update_button_selection_text(part_color.button, part_color.text, -1, true)
+	update_button_selection_text(part_color.button, part_color.text, -1)
 	
 
 func update_lock_texture(lock: TextureButton, locked: bool, highlight: bool):
@@ -537,6 +549,8 @@ func randomize_part(part_name):
 	
 
 func _on_randomize_button_pressed():
+	audio_player.play(click_bamboo)
+	
 	if not lock_selection["sex"]:
 		var sex_options = ["male", "female"]
 		var sex_index = rng.randi_range(0, sex_options.size() - 1)
@@ -572,7 +586,7 @@ func _on_randomize_button_pressed():
 		apply_color_to_part(part_name, new_color)
 		# These are important to have after updating the slider, as the value_changed function updates items 
 		current_preset_selection[part_name] = preset_selection
-		update_button_selection_text(part_color.button, part_color.text, preset_selection, true)
+		update_button_selection_text(part_color.button, part_color.text, preset_selection)
 	
 
 func _on_hair_button_pressed():
@@ -644,6 +658,7 @@ func _on_hair_color_left_arrow_pressed():
 func cycle_face_selection(forward = true):
 	var next_value = character.cycle_face_variation(forward)
 	update_button_selection_text(face_button, FACE_LABEL, next_value)
+	
 
 func _on_face_left_arrow_pressed():
 	cycle_face_selection(false)
@@ -825,13 +840,18 @@ func manage_gui_input(event, forward_func: Callable, backwards_func: Callable):
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				forward_func.call()
+				audio_player.play(press_sound)
 			MOUSE_BUTTON_RIGHT:
 				backwards_func.call()
-	
+				audio_player.play(press_back_sound)
+				
 	if event.is_action_pressed("arrow_right") or event.is_action_pressed("ui_accept"):
 		forward_func.call()
+		audio_player.play(press_sound)
+		
 	elif event.is_action_pressed("arrow_left"):
 		backwards_func.call()
+		audio_player.play(press_back_sound)
 	
 
 func _on_sex_button_gui_input(event):
@@ -873,6 +893,7 @@ func _on_sex_lock_pressed():
 func _on_sex_button_focus_entered():
 	update_lock_texture(sex_lock, lock_selection["sex"], sex_button.has_focus())
 	select_sex(current_sex_selection)
+	audio_player.play(focus_sound)
 	
 
 func _on_sex_button_focus_exited():
@@ -887,13 +908,13 @@ func _on_face_lock_pressed():
 
 func _on_face_button_focus_entered():
 	update_lock_texture(face_lock, lock_selection["face"], face_button.has_focus())
-	print(character.current_face)
-	update_button_selection_text(face_button, FACE_LABEL, character.current_face, false)
+	update_button_selection_text(face_button, FACE_LABEL, character.current_face)
+	audio_player.play(focus_sound)
 	
 
 func _on_face_button_focus_exited():
 	update_lock_texture(face_lock, lock_selection["face"], face_button.has_focus())
-	update_button_selection_text(face_button, FACE_LABEL, character.current_face, false)
+	update_button_selection_text(face_button, FACE_LABEL, character.current_face)
 	
 
 func _on_hair_lock_pressed():
@@ -971,3 +992,23 @@ func _on_facial_lock_pressed():
 func _on_next_button_pressed():
 	save_preset()
 	
+
+func _on_custom_skin_color_button_focus_entered():
+	audio_player.play(focus_sound)
+	
+
+func _on_custom_hair_color_button_focus_entered():
+	audio_player.play(focus_sound)
+	
+
+func _on_undo_button_pressed():
+	audio_player.play(click_bamboo)
+	
+
+func _on_redo_button_pressed():
+	audio_player.play(click_bamboo)
+	
+
+
+func _on_r_skin_slider_changed():
+	audio_player.play(slider_click)
