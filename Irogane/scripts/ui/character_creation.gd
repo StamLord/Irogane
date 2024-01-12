@@ -12,9 +12,9 @@ extends UIWindow
 @onready var face_button = %"Face Button"
 @onready var face_lock = %face_lock
 @onready var custom_skin_color_button = %CustomSkinColorButton
-@onready var custom_skin_color_sliders_container = %CustonColorVBoxContainer
+@onready var custom_skin_color_sliders_container = %custom_skin_color
 @onready var custom_hair_color_button = %CustomHairColorButton
-@onready var custom_hair_color_sliders_container = %CustonHairVBoxContainer
+@onready var custom_hair_color_sliders_container = %custom_hair_color
 
 @onready var randomize_custom_color_checkbox = %"randomize custom color"
 
@@ -310,7 +310,8 @@ func update_part_color_slider(part_name: String, value: int, rgb_color: String):
 	}
 	
 	var part_color = PART_COLORS[part_name]
-	part_color.labels[rgb_color].text = "%s %s" % [color_label[rgb_color], value]
+	#part_color.labels[rgb_color].text = "%s %s" % [color_label[rgb_color], value]
+	part_color.labels[rgb_color].text = "%s" % value
 	
 	var new_color = Color(
 		part_color.sliders.r.value / 255.0,

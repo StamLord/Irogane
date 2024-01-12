@@ -1,23 +1,111 @@
-[gd_scene load_steps=18 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=46 format=3 uid="uid://bp7x42n7e2h48"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
-[ext_resource type="Texture2D" uid="uid://dp7xeaaby52fw" path="res://assets/textures/ui/theme/cc_appearance_window.png" id="6_gduyu"]
+[ext_resource type="Texture2D" uid="uid://c51xfh1tmqmm" path="res://assets/textures/ui/theme/undo_normal.png" id="5_3cmbn"]
+[ext_resource type="Texture2D" uid="uid://bd6cmobww0452" path="res://assets/textures/ui/theme/undo_pressed.png" id="6_54rgk"]
+[ext_resource type="Texture2D" uid="uid://dyep8mak4s71p" path="res://assets/textures/ui/theme/cc_appearance_window.png" id="6_gduyu"]
+[ext_resource type="Texture2D" uid="uid://b0dgjkjtr66yv" path="res://assets/textures/ui/theme/undo_hover.png" id="7_arsi1"]
 [ext_resource type="Theme" uid="uid://7jcq7wedtuis" path="res://themes/char_creation_menu.tres" id="7_la3gu"]
-[ext_resource type="Texture2D" uid="uid://dltbyebvhv1ga" path="res://assets/textures/vfx/maple_leaf.png" id="7_r7foo"]
 [ext_resource type="Texture2D" uid="uid://byjk3juxhhoy5" path="res://assets/textures/ui/theme/unlocked_icon.png" id="7_vmxa6"]
 [ext_resource type="Script" path="res://scripts/ui/ui_checkbox.gd" id="8_oidp0"]
-[ext_resource type="Texture2D" uid="uid://bnlwkulgl74nj" path="res://assets/textures/ui/theme/undo_icon.png" id="10_3g8ee"]
+[ext_resource type="Texture2D" uid="uid://vthx5j0sidv6" path="res://assets/textures/ui/theme/random_normal.png" id="9_6m0pj"]
+[ext_resource type="Texture2D" uid="uid://oxio73kfpipr" path="res://assets/textures/ui/theme/random_pressed.png" id="10_2kg7i"]
 [ext_resource type="Texture2D" uid="uid://dbebo28iy7v82" path="res://assets/textures/ui/theme/next_button_normal.png" id="10_ja5oy"]
 [ext_resource type="Texture2D" uid="uid://dx8s1wsl7tfx" path="res://assets/textures/ui/theme/redo_icon.png" id="11_evdjq"]
+[ext_resource type="Texture2D" uid="uid://i10n5xxvooth" path="res://assets/textures/ui/theme/random_hover.png" id="11_qyltp"]
 [ext_resource type="Texture2D" uid="uid://dqmpsyl3uiaqd" path="res://assets/textures/ui/theme/next_button_pressed.png" id="11_ueydr"]
+[ext_resource type="Texture2D" uid="uid://c4sitejojxmtd" path="res://assets/textures/ui/theme/cc_slider_window.png" id="13_68b5o"]
+[ext_resource type="Texture2D" uid="uid://ff4joj7wkrr3" path="res://assets/textures/ui/theme/slider_blue.png" id="14_vsk26"]
+[ext_resource type="Texture2D" uid="uid://caujtcv846km4" path="res://assets/textures/ui/theme/slider_red.png" id="15_0air2"]
+[ext_resource type="Texture2D" uid="uid://bsqjmshbfjkau" path="res://assets/textures/ui/theme/slider_button.png" id="15_8wpma"]
+[ext_resource type="Texture2D" uid="uid://crfxkuaai3ft5" path="res://assets/textures/ui/theme/slider_green.png" id="17_33iy5"]
+[ext_resource type="Texture2D" uid="uid://bode4h1dbk3wv" path="res://assets/textures/ui/theme/slider_button_hover.png" id="18_r2cye"]
 
 [sub_resource type="Environment" id="Environment_vqamt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fh7o0"]
+content_margin_top = 93.0
+content_margin_bottom = 93.0
+texture = ExtResource("15_0air2")
+texture_margin_left = 14.0
+texture_margin_top = 226.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxliy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3e27"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n33ca"]
+content_margin_top = 93.0
+content_margin_bottom = 93.0
+texture = ExtResource("17_33iy5")
+texture_margin_left = 14.0
+texture_margin_top = 226.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xpdl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ns8b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ljol"]
+content_margin_top = 93.0
+content_margin_bottom = 93.0
+texture = ExtResource("14_vsk26")
+texture_margin_left = 14.0
+texture_margin_top = 226.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vnxew"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj8ol"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_47sq1"]
+content_margin_top = 93.0
+content_margin_bottom = 93.0
+texture = ExtResource("15_0air2")
+texture_margin_left = 14.0
+texture_margin_top = 226.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ayj7g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_if0pr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_am4qk"]
+content_margin_top = 93.0
+content_margin_bottom = 93.0
+texture = ExtResource("17_33iy5")
+texture_margin_left = 14.0
+texture_margin_top = 226.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5o5t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydaa8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ogga"]
+content_margin_top = 93.0
+content_margin_bottom = 93.0
+texture = ExtResource("14_vsk26")
+texture_margin_left = 14.0
+texture_margin_top = 226.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_anvj7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ekqm"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
@@ -92,29 +180,33 @@ stretch_mode = 0
 
 [node name="appearance_bg" type="TextureRect" parent="appearance_UI"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = -921.0
-offset_right = 563.0
-offset_bottom = -50.0
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -464.0
+offset_right = 617.0
+offset_bottom = 464.0
+grow_vertical = 2
+theme = ExtResource("7_la3gu")
 texture = ExtResource("6_gduyu")
+stretch_mode = 2
 
 [node name="undo_redo_header" type="HBoxContainer" parent="appearance_UI/appearance_bg"]
 layout_mode = 1
-offset_left = 50.0
-offset_top = 10.0
-offset_right = 162.0
-offset_bottom = 56.0
+offset_left = 90.0
+offset_top = 70.0
+offset_right = 202.0
+offset_bottom = 116.0
 
 [node name="undo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
 layout_mode = 2
 tooltip_text = "Undo"
 focus_neighbor_bottom = NodePath("../redo_button")
 focus_next = NodePath("../redo_button")
-texture_normal = ExtResource("10_3g8ee")
+texture_normal = ExtResource("5_3cmbn")
+texture_pressed = ExtResource("6_54rgk")
+texture_hover = ExtResource("7_arsi1")
 
 [node name="redo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
 layout_mode = 2
@@ -130,22 +222,30 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -66.0
-offset_top = 20.0
-offset_right = -50.0
-offset_bottom = 66.0
+offset_left = -146.0
+offset_top = 70.0
+offset_right = -90.0
+offset_bottom = 127.0
 grow_horizontal = 0
-texture_normal = ExtResource("7_r7foo")
+texture_normal = ExtResource("9_6m0pj")
+texture_pressed = ExtResource("10_2kg7i")
+texture_hover = ExtResource("11_qyltp")
 
 [node name="appearance_menu_list" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
-layout_mode = 2
-offset_left = 46.5
-offset_top = 74.0
-offset_right = 416.5
-offset_bottom = 837.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -341.5
+offset_right = 185.0
+offset_bottom = 421.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("7_la3gu")
 theme_override_constants/separation = 18
 
 [node name="sex_button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list"]
@@ -501,158 +601,228 @@ grow_vertical = 2
 focus_mode = 0
 texture_normal = ExtResource("7_vmxa6")
 
-[node name="CustonColorVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
+[node name="custom_skin_color" type="TextureRect" parent="appearance_UI/appearance_bg"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -386.0
+offset_right = 196.0
+offset_bottom = 26.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("13_68b5o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/custom_skin_color"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -132.0
+offset_right = 108.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="RVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer"]
 layout_mode = 2
-offset_left = 470.0
-offset_top = 211.0
-offset_right = 770.0
-offset_bottom = 297.0
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="RSkinSlider" type="VSlider" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("15_8wpma")
+theme_override_icons/grabber_highlight = ExtResource("18_r2cye")
+theme_override_styles/slider = SubResource("StyleBoxTexture_fh7o0")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_xxliy")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_l3e27")
+max_value = 255.0
+
+[node name="RSkinLabel" type="Label" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="RHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="RSkinLabel" type="Label" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/RHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
 size_flags_vertical = 1
-text = "R 255"
+text = "255"
+horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 
-[node name="RSkinSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/RHBoxContainer"]
+[node name="GVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="GSkinSlider" type="VSlider" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("15_8wpma")
+theme_override_icons/grabber_highlight = ExtResource("18_r2cye")
+theme_override_styles/slider = SubResource("StyleBoxTexture_n33ca")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_6xpdl")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_0ns8b")
 max_value = 255.0
 
-[node name="GHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="GSkinLabel" type="Label" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/GHBoxContainer"]
+[node name="GSkinLabel" type="Label" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_vertical = 1
-text = "G 255"
+text = "255"
+horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 
-[node name="GSkinSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/GHBoxContainer"]
+[node name="BHBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="BSkinSlider" type="VSlider" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("15_8wpma")
+theme_override_icons/grabber_highlight = ExtResource("18_r2cye")
+theme_override_styles/slider = SubResource("StyleBoxTexture_2ljol")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_vnxew")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_qj8ol")
 max_value = 255.0
 
-[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="BSkinLabel" type="Label" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/BHBoxContainer"]
+[node name="BSkinLabel" type="Label" parent="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 size_flags_vertical = 1
-text = "B 255"
+text = "255"
+horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 
-[node name="BSkinSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonColorVBoxContainer/BHBoxContainer"]
+[node name="custom_hair_color" type="TextureRect" parent="appearance_UI/appearance_bg"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="CustonHairVBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-offset_left = 470.0
-offset_top = 551.0
-offset_right = 770.0
-offset_bottom = 637.0
-size_flags_horizontal = 4
-
-[node name="RSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="RHairLabel" type="Label" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/RSHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "R 255"
-vertical_alignment = 1
-
-[node name="RHairSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/RSHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="GSHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="GHairLabel" type="Label" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/GSHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "G 255"
-vertical_alignment = 1
-
-[node name="GHairSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/GSHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="BHBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="BHairLabel" type="Label" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(45, 0)
-layout_mode = 2
-size_flags_vertical = 1
-text = "B 255"
-vertical_alignment = 1
-
-[node name="BHairSlider" type="HSlider" parent="appearance_UI/appearance_bg/CustonHairVBoxContainer/BHBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 255.0
-
-[node name="randomize_container" type="HBoxContainer" parent="appearance_UI/appearance_bg"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -61.0
-offset_right = 272.0
+offset_left = -31.0
+offset_top = -432.0
+offset_right = 196.0
+offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
+texture = ExtResource("13_68b5o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="appearance_UI/appearance_bg/custom_hair_color"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.5
+offset_top = -119.5
+offset_right = 81.5
+offset_bottom = 119.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="RSHBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="RHairSlider" type="VSlider" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/RSHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 1
+theme_override_styles/slider = SubResource("StyleBoxTexture_47sq1")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_ayj7g")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_if0pr")
+max_value = 255.0
+
+[node name="RHairLabel" type="Label" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/RSHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "255"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="GSHBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="GHairSlider" type="VSlider" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/GSHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxTexture_am4qk")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_a5o5t")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_ydaa8")
+max_value = 255.0
+
+[node name="GHairLabel" type="Label" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/GSHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "255"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="BHBoxContainer" type="VBoxContainer" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 2
+
+[node name="BHairSlider" type="VSlider" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxTexture_8ogga")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_anvj7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_3ekqm")
+max_value = 255.0
+
+[node name="BHairLabel" type="Label" parent="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "255"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
 
 [node name="next_button" type="TextureButton" parent="appearance_UI"]
 layout_mode = 1
@@ -1041,12 +1211,12 @@ theme_override_constants/separation = 20
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_left_arrow" to="appearance_UI" method="_on_facial_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_lock" to="appearance_UI" method="_on_facial_lock_pressed"]
-[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonColorVBoxContainer/RHBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonColorVBoxContainer/GHBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonColorVBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_value_changed"]
-[connection signal="value_changed" from="appearance_UI/appearance_bg/CustonHairVBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_value_changed"]
+[connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
 [connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/head_left_arrow" to="appearance_UI" method="_on_head_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/Head Button" to="appearance_UI" method="_on_head_button_pressed"]
