@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=51 format=3 uid="uid://bp7x42n7e2h48"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/ui/ui_checkbox.gd" id="8_oidp0"]
 [ext_resource type="Texture2D" uid="uid://co4j0lytgpewx" path="res://assets/textures/ui/theme/random_normal.png" id="9_6m0pj"]
 [ext_resource type="Texture2D" uid="uid://dt5mqwks847qg" path="res://assets/textures/ui/theme/redo_normal.png" id="9_7778k"]
+[ext_resource type="Texture2D" uid="uid://bfnxangbb35eu" path="res://assets/textures/ui/theme/focused.png" id="9_kkng3"]
 [ext_resource type="Texture2D" uid="uid://b7j5k22d0v3ts" path="res://assets/textures/ui/theme/random_pressed.png" id="10_2kg7i"]
 [ext_resource type="Texture2D" uid="uid://dbebo28iy7v82" path="res://assets/textures/ui/theme/next_button_normal.png" id="10_ja5oy"]
 [ext_resource type="Texture2D" uid="uid://c3jeooyrn7n5c" path="res://assets/textures/ui/theme/redo_pressed.png" id="10_torot"]
@@ -213,6 +214,7 @@ focus_next = NodePath("../redo_button")
 texture_normal = ExtResource("5_3cmbn")
 texture_pressed = ExtResource("6_54rgk")
 texture_hover = ExtResource("7_arsi1")
+texture_focused = ExtResource("9_kkng3")
 
 [node name="redo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
 layout_mode = 2
@@ -224,6 +226,7 @@ focus_previous = NodePath("../undo_button")
 texture_normal = ExtResource("9_7778k")
 texture_pressed = ExtResource("10_torot")
 texture_hover = ExtResource("11_ib4a6")
+texture_focused = ExtResource("9_kkng3")
 
 [node name="randomize_button" type="TextureButton" parent="appearance_UI/appearance_bg"]
 layout_mode = 1
@@ -238,6 +241,7 @@ grow_horizontal = 0
 texture_normal = ExtResource("9_6m0pj")
 texture_pressed = ExtResource("10_2kg7i")
 texture_hover = ExtResource("11_qyltp")
+texture_focused = ExtResource("9_kkng3")
 
 [node name="appearance_menu_list" type="VBoxContainer" parent="appearance_UI/appearance_bg"]
 layout_mode = 1
