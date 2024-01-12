@@ -273,10 +273,7 @@ func cycle_color_preset(part_name: String, increment = 1):
 
 func update_button_selection_text(_button: Button, button_text: String, index: int, color: bool = false):
 	if index == -1:
-		if color:
-			_button.text = "%s CUSTOM" % button_text
-		else:
-			_button.text = "%s" % button_text
+		_button.text = "%s" % button_text
 	else:
 		_button.text = "%s %s" % [button_text, index]
 	
@@ -346,7 +343,7 @@ func update_lock_texture(lock: TextureButton, locked: bool, highlight: bool):
 		else:
 			lock.texture_normal = unlocked_texture
 			var new_modulate = lock.get_modulate()
-			new_modulate.a = 0.4
+			new_modulate.a = 0
 			lock.set_modulate(new_modulate)
 	
 

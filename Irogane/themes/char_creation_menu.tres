@@ -2,11 +2,11 @@
 
 [ext_resource type="FontFile" uid="uid://bdjuw50a266le" path="res://assets/fonts/otsutome/Otsutome.ttf" id="1_hvsot"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="2_lqrex"]
-[ext_resource type="Texture2D" uid="uid://dgxy88gc3bg0" path="res://assets/textures/ui/theme/toggled.png" id="3_31av7"]
-[ext_resource type="Texture2D" uid="uid://b7kby28wid3qx" path="res://assets/textures/ui/theme/untoggled.png" id="4_oixyd"]
-[ext_resource type="Texture2D" uid="uid://bsqjmshbfjkau" path="res://assets/textures/ui/theme/slider_button.png" id="5_6q87d"]
-[ext_resource type="Texture2D" uid="uid://bode4h1dbk3wv" path="res://assets/textures/ui/theme/slider_button_hover.png" id="6_umkdy"]
-[ext_resource type="Texture2D" uid="uid://caujtcv846km4" path="res://assets/textures/ui/theme/slider_red.png" id="7_p0njs"]
+[ext_resource type="Texture2D" uid="uid://bsanurcnqsi7j" path="res://assets/textures/ui/theme/toggle_checked.png" id="3_dhjd2"]
+[ext_resource type="Texture2D" uid="uid://cjfkf15g2ap44" path="res://assets/textures/ui/theme/toggle_unchecked.png" id="4_towek"]
+[ext_resource type="Texture2D" uid="uid://cy1eoaolfvcek" path="res://assets/textures/ui/theme/slider_button.png" id="5_6q87d"]
+[ext_resource type="Texture2D" uid="uid://dqa365215hi43" path="res://assets/textures/ui/theme/slider_button_hover.png" id="6_umkdy"]
+[ext_resource type="Texture2D" uid="uid://b4yim6tybxoo2" path="res://assets/textures/ui/theme/slider_red.png" id="7_p0njs"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1idgo"]
 texture = ExtResource("2_lqrex")
@@ -25,19 +25,19 @@ texture_margin_top = 226.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im32v"]
 
 [resource]
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 28
+Button/colors/font_color = Color(0.145098, 0.137255, 0.121569, 1)
+Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("1_hvsot")
 Button/styles/focus = SubResource("StyleBoxTexture_1idgo")
 Button/styles/hover = null
 CheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
-CheckButton/constants/check_v_offset = -4
+CheckButton/constants/h_separation = 8
 CheckButton/font_sizes/font_size = 20
-CheckButton/icons/checked = ExtResource("3_31av7")
-CheckButton/icons/unchecked = ExtResource("4_oixyd")
+CheckButton/icons/checked = ExtResource("3_dhjd2")
+CheckButton/icons/unchecked = ExtResource("4_towek")
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_cqlkb")
 Label/colors/font_color = Color(0, 0, 0, 1)
-Label/font_sizes/font_size = 20
+Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hvsot")
 VSlider/icons/grabber = ExtResource("5_6q87d")
 VSlider/icons/grabber_highlight = ExtResource("6_umkdy")
