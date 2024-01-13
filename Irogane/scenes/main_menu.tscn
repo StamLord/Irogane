@@ -1,10 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://dfy8qdkjnd4tc"]
+[gd_scene load_steps=26 format=3 uid="uid://dfy8qdkjnd4tc"]
 
+[ext_resource type="Theme" uid="uid://bob8i5q8v8mum" path="res://themes/main_theme.tres" id="1_djy4j"]
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_xac4n"]
 [ext_resource type="Shader" uid="uid://c4q8tb0y1fq6a" path="res://assets/shaders/ink_canvase_item.tres" id="2_ghgom"]
-[ext_resource type="PackedScene" path="res://prefabs/ui/game_save_load_window.tscn" id="2_ifvaf"]
+[ext_resource type="PackedScene" uid="uid://ccdnbbmarggif" path="res://prefabs/ui/game_save_load_window.tscn" id="2_ifvaf"]
 [ext_resource type="Texture2D" uid="uid://brufi7iodim6" path="res://assets/images/main_menu_vingette.png" id="3_4hocg"]
-[ext_resource type="Texture2D" uid="uid://vu67v5m4a1rh" path="res://assets/images/main_menu_highlight.png" id="3_6d7bo"]
 [ext_resource type="Texture2D" uid="uid://dqpsiw2722c4l" path="res://assets/images/watercolor_mask.png" id="3_m1oa2"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="4_gtrqj"]
 [ext_resource type="Texture2D" uid="uid://bhlqu5o7l3p2c" path="res://assets/images/main_menu_art.png" id="4_plq28"]
@@ -12,7 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://dltbyebvhv1ga" path="res://assets/textures/vfx/maple_leaf.png" id="7_drwhy"]
 [ext_resource type="Script" path="res://scripts/ui/focus_on_hover_button.gd" id="7_snhy3"]
 [ext_resource type="Script" path="res://scripts/vfx/gpu_particles_2d_color_space_corrector.gd" id="8_416y4"]
+[ext_resource type="Texture2D" uid="uid://vu67v5m4a1rh" path="res://assets/images/main_menu_highlight.png" id="10_lqfkg"]
+[ext_resource type="AudioStream" uid="uid://bgo2jx4ngf2gt" path="res://assets/audio/ui/char_creation/paint_3.ogg" id="11_v83cs"]
 [ext_resource type="AudioStream" uid="uid://dwgcapky45k16" path="res://assets/audio/music/main_menu_theme.ogg" id="13_xnqn3"]
+[ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="14_y5c64"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl7wu"]
 bg_color = Color(0.996078, 0.996078, 0.996078, 1)
@@ -53,48 +56,25 @@ turbulence_influence_min = 0.01
 turbulence_influence_max = 0.01
 turbulence_influence_over_life = SubResource("CurveTexture_tn0dv")
 
-[sub_resource type="SystemFont" id="SystemFont_8pshx"]
-font_names = PackedStringArray("Marcellus SC")
-font_italic = true
-subpixel_positioning = 0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2q356"]
+content_margin_left = 350.0
+texture = ExtResource("10_lqfkg")
+expand_margin_left = 50.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5sclo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_klx2w"]
+content_margin_left = 350.0
+texture = ExtResource("10_lqfkg")
+expand_margin_left = 50.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tluq7"]
-texture = ExtResource("3_6d7bo")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s5ule"]
+content_margin_left = 350.0
+texture = ExtResource("10_lqfkg")
+expand_margin_left = 50.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ku0ye"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qla45"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqsy5"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fchx"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ey3wh"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1rbs2"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r0xqf"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l571t"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g8lot"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wo1q"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uq8rm"]
-texture = ExtResource("3_6d7bo")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_owyvs"]
-texture = ExtResource("3_6d7bo")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nu8rx"]
+content_margin_left = 350.0
+texture = ExtResource("10_lqfkg")
+expand_margin_left = 50.0
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -103,6 +83,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_djy4j")
 script = ExtResource("1_xac4n")
 close_on_back = false
 
@@ -174,83 +155,63 @@ size_flags_vertical = 4
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="start_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
+[node name="start_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(330, 60)
+custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxEmpty_5sclo")
-theme_override_styles/hover = SubResource("StyleBoxTexture_tluq7")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ku0ye")
-theme_override_styles/focus = SubResource("StyleBoxTexture_qla45")
-text = "   New Game"
+theme_type_variation = &"MainMenuButton"
+theme_override_font_sizes/font_size = 0
+theme_override_styles/focus = SubResource("StyleBoxTexture_2q356")
+text = "NEW GAME"
+flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
+audio_player = NodePath("../../../../sounds")
+button_sound = ExtResource("11_v83cs")
 
-[node name="load_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
-custom_minimum_size = Vector2(330, 60)
+[node name="load_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
+custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.992157, 0.992157, 0.992157, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxEmpty_iqsy5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_8fchx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8fchx")
-theme_override_styles/focus = SubResource("StyleBoxTexture_8fchx")
-text = "   Load Game"
+theme_type_variation = &"MainMenuButton"
+theme_override_styles/focus = SubResource("StyleBoxTexture_klx2w")
+text = "LOAD GAME"
+flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
+audio_player = NodePath("../../../../sounds")
+button_sound = ExtResource("11_v83cs")
 
-[node name="settings_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
-custom_minimum_size = Vector2(330, 60)
+[node name="settings_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
+custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ey3wh")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1rbs2")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_r0xqf")
-theme_override_styles/focus = SubResource("StyleBoxTexture_l571t")
-text = "   Settings"
+theme_type_variation = &"MainMenuButton"
+theme_override_styles/focus = SubResource("StyleBoxTexture_s5ule")
+text = "SETTINGS"
+flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
+audio_player = NodePath("../../../../sounds")
+button_sound = ExtResource("11_v83cs")
 
-[node name="quit_button" type="Button" parent="VBoxContainer/bottom/menu_container"]
-custom_minimum_size = Vector2(330, 60)
+[node name="quit_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
+custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = SubResource("SystemFont_8pshx")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxEmpty_g8lot")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1wo1q")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_uq8rm")
-theme_override_styles/focus = SubResource("StyleBoxTexture_owyvs")
-text = "   Quit
-"
+theme_type_variation = &"MainMenuButton"
+theme_override_styles/focus = SubResource("StyleBoxTexture_nu8rx")
+text = "QUIT"
+flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
+audio_player = NodePath("../../../../sounds")
+button_sound = ExtResource("11_v83cs")
 
 [node name="game_load_window" parent="." instance=ExtResource("2_ifvaf")]
 visible = false
@@ -263,17 +224,41 @@ offset_bottom = 200.0
 window_type = 1
 
 [node name="settings_window" parent="." instance=ExtResource("4_gtrqj")]
+visible = false
 layout_mode = 1
 offset_left = -300.0
 offset_top = -231.5
 offset_right = 300.0
 offset_bottom = 231.5
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_xnqn3")
 autoplay = true
 bus = &"Music"
 area_mask = 33554433
+
+[node name="sounds" type="Node3D" parent="."]
+script = ExtResource("14_y5c64")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D6" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D7" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D8" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D9" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="AudioStreamPlayer2D10" type="AudioStreamPlayer2D" parent="sounds"]
 
 [connection signal="pressed" from="VBoxContainer/bottom/menu_container/start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/bottom/menu_container/load_button" to="." method="_on_load_button_pressed"]

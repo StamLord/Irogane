@@ -5,6 +5,8 @@ extends UIWindow
 @onready var settings_window = $settings_window
 @onready var start_button = %start_button
 
+@onready var start_sound = load("res://assets/audio/ui/char_creation/China Taiko Hit.wav")
+
 func _ready():
 	visible = true
 	UIManager.add_window(self)
@@ -12,6 +14,7 @@ func _ready():
 	
 
 func _on_start_button_pressed():
+	GlobalAudio.play_audio(start_sound)
 	close()
 	scene_manager.goto_scene("res://prefabs/ui/character_creator.tscn")
 	

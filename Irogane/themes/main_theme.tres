@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://7jcq7wedtuis"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bob8i5q8v8mum"]
 
 [ext_resource type="FontFile" uid="uid://bdjuw50a266le" path="res://assets/fonts/otsutome/Otsutome.ttf" id="1_hvsot"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="2_lqrex"]
@@ -25,6 +25,7 @@ texture_margin_top = 226.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im32v"]
 
 [resource]
+default_font = ExtResource("1_hvsot")
 Button/colors/font_color = Color(0.145098, 0.137255, 0.121569, 1)
 Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("1_hvsot")
@@ -43,8 +44,11 @@ CheckButton/styles/focus = SubResource("StyleBoxEmpty_cqlkb")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hvsot")
+MainMenuButton/base_type = &"Button"
+MainMenuButton/font_sizes/font_size = 50
 VSlider/icons/grabber = ExtResource("5_6q87d")
 VSlider/icons/grabber_highlight = ExtResource("6_umkdy")
 VSlider/styles/grabber_area = SubResource("StyleBoxTexture_loj3b")
 VSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_h5dqr")
 VSlider/styles/slider = SubResource("StyleBoxEmpty_im32v")
+test_type/base_type = &"MainMenuButton"

@@ -1,14 +1,14 @@
-[gd_scene load_steps=52 format=3 uid="uid://bp7x42n7e2h48"]
+[gd_scene load_steps=52 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
+[ext_resource type="Theme" uid="uid://bob8i5q8v8mum" path="res://themes/main_theme.tres" id="4_c8e2i"]
 [ext_resource type="Texture2D" uid="uid://b8o2qigh2iqg5" path="res://assets/textures/ui/theme/undo_normal.png" id="5_3cmbn"]
 [ext_resource type="Texture2D" uid="uid://kp3dhik6l5ar" path="res://assets/textures/ui/theme/undo_pressed.png" id="6_54rgk"]
 [ext_resource type="Texture2D" uid="uid://bwtr6vg141o5k" path="res://assets/textures/ui/theme/cc_appearance_window.png" id="6_gduyu"]
 [ext_resource type="Texture2D" uid="uid://ig7e17c41hc7" path="res://assets/textures/ui/theme/undo_hover.png" id="7_arsi1"]
-[ext_resource type="Theme" uid="uid://7jcq7wedtuis" path="res://themes/char_creation_menu.tres" id="7_la3gu"]
 [ext_resource type="Texture2D" uid="uid://byjk3juxhhoy5" path="res://assets/textures/ui/theme/unlocked_icon.png" id="7_vmxa6"]
 [ext_resource type="Texture2D" uid="uid://co4j0lytgpewx" path="res://assets/textures/ui/theme/random_normal.png" id="9_6m0pj"]
 [ext_resource type="Texture2D" uid="uid://dt5mqwks847qg" path="res://assets/textures/ui/theme/redo_normal.png" id="9_7778k"]
@@ -195,7 +195,7 @@ offset_top = -464.0
 offset_right = 617.0
 offset_bottom = 464.0
 grow_vertical = 2
-theme = ExtResource("7_la3gu")
+theme = ExtResource("4_c8e2i")
 texture = ExtResource("6_gduyu")
 stretch_mode = 2
 

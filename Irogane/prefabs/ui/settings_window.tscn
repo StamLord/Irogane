@@ -4,10 +4,9 @@
 [ext_resource type="Script" path="res://scripts/ui/audio_bus_slider.gd" id="2_p4xaa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q284v"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.964706, 0.666667, 0.498039, 1)
 
 [node name="setting_window" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,6 +102,7 @@ theme_override_constants/margin_left = 64
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin"]
 layout_mode = 2
+theme_override_constants/separation = 22
 
 [node name="resolution" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
 layout_mode = 2

@@ -650,6 +650,7 @@ func _on_skin_color_left_arrow_pressed():
 func _on_hair_left_arrow_pressed():
 	cycle_part_variation("hair", -1)
 	MODEL_PARTS.hair.button.grab_focus()
+	audio_player.play(press_back_sound)
 	
 
 func _on_r_hair_slider_value_changed(value):
@@ -667,6 +668,8 @@ func _on_b_hair_slider_value_changed(value):
 func _on_hair_color_left_arrow_pressed():
 	cycle_color_preset("hair", -1)
 	PART_COLORS.hair.button.grab_focus()
+	audio_player.play(press_back_sound)
+	audio_player.play(press_back_sound)
 	
 
 func cycle_face_selection(forward = true):
@@ -677,6 +680,7 @@ func cycle_face_selection(forward = true):
 func _on_face_left_arrow_pressed():
 	cycle_face_selection(false)
 	face_button.grab_focus()
+	audio_player.play(press_back_sound)
 	
 
 func _on_head_left_arrow_pressed():
@@ -719,6 +723,7 @@ func _on_facial_left_arrow_pressed():
 func _on_bangs_left_arrow_pressed():
 	cycle_part_variation("bangs", -1)
 	MODEL_PARTS.bangs.button.grab_focus()
+	audio_player.play(press_back_sound)
 	
 
 func _on_shoes_left_arrow_pressed():
