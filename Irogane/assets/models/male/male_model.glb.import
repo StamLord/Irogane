@@ -1,0 +1,95 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bc2ieqwfpwab5"
+path="res://.godot/imported/male_model.glb-c16701e454628da2ee9624c95b718781.scn"
+
+[deps]
+
+source_file="res://assets/models/male/male_model.glb"
+dest_files=["res://.godot/imported/male_model.glb-c16701e454628da2ee9624c95b718781.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"armor": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/armor.tres"
+},
+"beads_0": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/beads_0.tres"
+},
+"fundoshi": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/fundoshi.tres"
+},
+"hair_1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/hair_1.tres"
+},
+"hat_0": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/hat_0.tres"
+},
+"hat_1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/hat_1.tres"
+},
+"hat_2": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/hat_2.tres"
+},
+"kimono_0": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/kimono_0.tres"
+},
+"kimono_1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/kimono_1.tres"
+},
+"kimono_2": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/kimono_2.tres"
+},
+"male_face": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/male_face.tres"
+},
+"male_skin": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/male_skin.tres"
+},
+"mask_1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/mask_1.tres"
+},
+"shoes_1": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/shoes_1.tres"
+},
+"shoes_2": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/shoes_2.tres"
+}
+}
+}
+gltf/embedded_image_handling=0

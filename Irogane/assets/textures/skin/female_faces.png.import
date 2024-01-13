@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dprw81qvtr1s2"
-path="res://.godot/imported/human_styl_7_hat_4.png-d1413495058c75e6ef536602d57b9bc2.ctex"
+uid="uid://be40lloup0i04"
+path="res://.godot/imported/female_faces.png-0f16b2c86e12cb738688f2083067b46c.ctex"
 metadata={
 "vram_texture": false
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/male/human_styl_7_hat_4.png"
-dest_files=["res://.godot/imported/human_styl_7_hat_4.png-d1413495058c75e6ef536602d57b9bc2.ctex"]
+source_file="res://assets/textures/skin/female_faces.png"
+dest_files=["res://.godot/imported/female_faces.png-0f16b2c86e12cb738688f2083067b46c.ctex"]
 
 [params]
 
@@ -22,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
