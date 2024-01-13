@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=143 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -22,12 +22,8 @@
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="26_wvciu"]
 [ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
-[ext_resource type="Script" path="res://scripts/procedural/tree.gd" id="30_wm6fm"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
-[ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="38_h4jui"]
-[ext_resource type="Script" path="res://scripts/save/save_buttons_updater.gd" id="38_tiyp4"]
-[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/load_window.tscn" id="39_u7kw6"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="42_58ctm"]
 [ext_resource type="Script" path="res://scenes/teleporter.gd" id="43_qmx60"]
 [ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://scenes/underwater_2.tres" id="44_r542y"]
@@ -480,23 +476,6 @@ scale_curve = SubResource("CurveTexture_p6o7h")
 color_ramp = SubResource("GradientTexture1D_y42m6")
 
 [sub_resource type="QuadMesh" id="QuadMesh_0oj5h"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
-font_size = 24
-
-[sub_resource type="Gradient" id="Gradient_b3wm8"]
-colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.25098)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_htpd5"]
-gradient = SubResource("Gradient_b3wm8")
-width = 256
-height = 256
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b83ot"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q284v"]
-bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3i6oh"]
 radius = 0.25
@@ -1698,7 +1677,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_15umm")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.797521, 0, -0.603292, 0, 1, 0, 0.603292, 0, 0.797521, -8.74275, 0.0379796, 9.07988)
+transform = Transform3D(0.797521, 0, -0.603292, 0, 1, 0, 0.603292, 0, 0.797521, -8.74275, 0.0379796, 7.10393)
 
 [node name="collider" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -1718,10 +1697,38 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("26_wvciu")
 dialogue = "Hiroshi"
-initial_dialog = "stolen_katana_quest"
+initial_dialog = "greetings"
 interaction_text = "Talk"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/interactive"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_a1qq5")
+
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.797521, 0, -0.603292, 0, 1, 0, 0.603292, 0, 0.797521, -8.74275, -3.53131, 30.8901)
+
+[node name="collider" type="CollisionShape3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_5ynb6")
+
+[node name="mesh" type="MeshInstance3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_k1ph2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.45)
+mesh = SubResource("BoxMesh_m4oe0")
+surface_material_override/0 = SubResource("StandardMaterial3D_0t601")
+
+[node name="interactive" type="Area3D" parent="CharacterBody3D2"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("26_wvciu")
+dialogue = "TakeshiMiyamoto"
+initial_dialog = "greetings"
+interaction_text = "Talk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D2/interactive"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("SphereShape3D_a1qq5")
 

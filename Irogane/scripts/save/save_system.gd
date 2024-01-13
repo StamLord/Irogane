@@ -243,6 +243,7 @@ func load_game(index = 0):
 
 	PlayerEntity.create_player_node_if_needed()
 	UIManager.create_ui_node_if_needed()
+	QuestManager.load_quest_files()  # reset quest info
 	
 	SceneManager.goto_scene(scene_name)
 	await SceneManager.on_scene_loaded
@@ -290,7 +291,6 @@ func load_game(index = 0):
 	for i in save_nodes:
 		print("Erasing node: ", i)
 		i.queue_free()
-		
 	
 
 func create_thumbnail(index):

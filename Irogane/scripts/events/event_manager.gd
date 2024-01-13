@@ -1,6 +1,7 @@
 extends Node
 
 signal on_item_pickup(item_id)
+signal on_item_drop(item_id)
 
 var enemies_slain = {}
 var items_picked_up = {}
@@ -19,3 +20,6 @@ func item_picked_up(item_id):
 	items_picked_up[item_id] += 1
 	on_item_pickup.emit(item_id)
 	
+
+func item_dropped(item_id):
+	on_item_drop.emit(item_id)

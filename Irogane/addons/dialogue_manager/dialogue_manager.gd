@@ -42,6 +42,7 @@ var translation_source: TranslationSource = TranslationSource.Guess
 
 var _node_properties: Array = []
 
+var current_balloon
 
 func _ready() -> void:
 	# Make the dialogue manager available as a singleton
@@ -207,11 +208,17 @@ func show_example_dialogue_balloon(resource: DialogueResource, title: String = "
 
 
 func show_dialogue(resource: DialogueResource, title: String = "0", extra_game_states: Array = []) -> void:
-	var baloon = load("res://addons/dialogue_manager/example_balloon/crpg_balloon.tscn")
+	var balloon_scene = load("res://addons/dialogue_manager/example_balloon/crpg_balloon.tscn")
 	
-	var balloon: Node = baloon.instantiate()
-	get_tree().current_scene.add_child(balloon)
-	balloon.start(resource, title, extra_game_states)
+	current_balloon = balloon_scene.instantiate()
+	get_tree().current_scene.add_child(current_balloon)
+	current_balloon.start(resource, title, extra_game_states)
+	
+
+func hide_dialouge():
+	if current_balloon:
+		current_balloon.closed()
+	
 
 ### Dotnet bridge
 
