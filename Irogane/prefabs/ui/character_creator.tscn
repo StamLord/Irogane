@@ -781,6 +781,7 @@ texture_normal = ExtResource("7_vmxa6")
 
 [node name="custom_skin_color" type="TextureRect" parent="appearance_UI/appearance_bg"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -912,6 +913,7 @@ clip_text = true
 
 [node name="custom_hair_color" type="TextureRect" parent="appearance_UI/appearance_bg"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
