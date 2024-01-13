@@ -322,6 +322,8 @@ offset_bottom = 137.0
 theme_override_constants/separation = 10
 
 [node name="undo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 tooltip_text = "Undo"
 focus_neighbor_left = NodePath("../../../next_button")
@@ -336,6 +338,8 @@ texture_hover = ExtResource("7_arsi1")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="redo_button" type="TextureButton" parent="appearance_UI/appearance_bg/undo_redo_header"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 tooltip_text = "Redo"
 focus_neighbor_left = NodePath("../undo_button")
@@ -1520,11 +1524,17 @@ bus = &"Sound"
 [connection signal="gui_input" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button" to="appearance_UI" method="_on_facial_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_left_arrow" to="appearance_UI" method="_on_facial_left_arrow_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button/facial_lock" to="appearance_UI" method="_on_facial_lock_pressed"]
+[connection signal="drag_started" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_drag_started"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/RVBoxContainer/RSkinSlider" to="appearance_UI" method="_on_r_skin_slider_value_changed"]
+[connection signal="drag_started" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_drag_started"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/GVBoxContainer/GSkinSlider" to="appearance_UI" method="_on_g_skin_slider_value_changed"]
+[connection signal="drag_started" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_drag_started"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_skin_color/HBoxContainer/BHBoxContainer/BSkinSlider" to="appearance_UI" method="_on_b_skin_slider_value_changed"]
+[connection signal="drag_started" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_drag_started"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/RSHBoxContainer/RHairSlider" to="appearance_UI" method="_on_r_hair_slider_value_changed"]
+[connection signal="drag_started" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_drag_started"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/GSHBoxContainer/GHairSlider" to="appearance_UI" method="_on_g_hair_slider_value_changed"]
+[connection signal="drag_started" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_drag_started"]
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
 [connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="pressed" from="appearance_UI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer2/HeadStyleHBoxContainer/head_left_arrow" to="appearance_UI" method="_on_head_left_arrow_pressed"]

@@ -40,6 +40,9 @@ extends UIWindow
 
 @onready var available_points_label = %availablepointsLabel
 
+@onready var undo_button = %undo_button
+@onready var redo_button = %redo_button
+
 # Textures 
 @onready var unlocked_highlight_texture =  load("res://assets/textures/ui/theme/unlocked_highlight_icon.png")
 @onready var unlocked_texture =  load("res://assets/textures/ui/theme/unlocked_icon.png")
@@ -200,6 +203,8 @@ var rng = RandomNumberGenerator.new()
 
 const preset_filename = "preset.chr"
 
+var change_log = []
+var redo_stack = []
 
 # Customization logic
 func _ready():
@@ -347,9 +352,6 @@ func update_part_color_slider(part_name: String, value: int, rgb_color: String):
 	
 	for setter in part_color.color_setters:
 		character.call(setter, new_color)
-	
-	current_preset_selection[part_name] = -1
-	update_button_selection_text(part_color.button, part_color.text, -1)
 	
 
 func update_lock_texture(lock: TextureButton, locked: bool, highlight: bool):
@@ -563,6 +565,7 @@ func randomize_part(part_name):
 	
 
 func _on_randomize_button_pressed():
+	save_changes()
 	audio_player.play(click_bamboo)
 	
 	if not lock_selection["sex"]:
@@ -645,11 +648,13 @@ func _on_custom_hair_color_button_pressed():
 	
 
 func _on_skin_color_left_arrow_pressed():
+	save_changes()
 	cycle_color_preset("skin", -1)
 	PART_COLORS.skin.button.grab_focus()
 	
 
 func _on_hair_left_arrow_pressed():
+	save_changes()
 	cycle_part_variation("hair", -1)
 	MODEL_PARTS.hair.button.grab_focus()
 	audio_player.play(press_back_sound)
@@ -668,6 +673,7 @@ func _on_b_hair_slider_value_changed(value):
 	
 
 func _on_hair_color_left_arrow_pressed():
+	save_changes()
 	cycle_color_preset("hair", -1)
 	PART_COLORS.hair.button.grab_focus()
 	audio_player.play(press_back_sound)
@@ -680,6 +686,7 @@ func cycle_face_selection(forward = true):
 	
 
 func _on_face_left_arrow_pressed():
+	save_changes()
 	cycle_face_selection(false)
 	face_button.grab_focus()
 	audio_player.play(press_back_sound)
@@ -718,11 +725,13 @@ func _on_pants_right_arrow_pressed():
 	
 
 func _on_facial_left_arrow_pressed():
+	save_changes()
 	cycle_part_variation("facial", -1)
 	MODEL_PARTS.facial.button.grab_focus()
 	
 
 func _on_bangs_left_arrow_pressed():
+	save_changes()
 	cycle_part_variation("bangs", -1)
 	MODEL_PARTS.bangs.button.grab_focus()
 	audio_player.play(press_back_sound)
@@ -827,6 +836,80 @@ func save_preset():
 	close()
 	
 
+func get_current_data():
+	var data = {
+		"sex": current_sex_selection,
+		"appearance" : character.save_appearance().duplicate(true),
+		"color_presets": {
+			"hair": current_preset_selection["hair"],
+			"skin": current_preset_selection["skin"],
+		}
+	}
+	
+	return data
+	
+
+func save_changes():
+	var data = get_current_data()
+	change_log.push_back(data)
+	
+	if change_log.size() > 100:
+		change_log.pop_front()
+	
+	undo_button.visible = true
+	redo_stack = []
+	redo_button.visible = false
+	
+
+func undo_last_change():
+	var curr_data = get_current_data()
+	var prev_data = change_log.pop_back()
+	
+	if change_log.size() == 0:
+		undo_button.visible = false
+	
+	redo_stack.push_back(curr_data)
+	redo_button.visible = true
+	
+	apply_data(prev_data)
+	
+
+func redo_last_change():
+	var curr_data = get_current_data()
+	var prev_data = redo_stack.pop_back()
+	
+	if redo_stack.size() == 0:
+		redo_button.visible = false
+	
+	change_log.push_back(curr_data)
+	undo_button.visible = true
+	
+	apply_data(prev_data)
+	
+
+func apply_data(data):
+	current_sex_selection = data["sex"]
+	select_sex(current_sex_selection)
+	
+	character.load_appearance(data.appearance)
+	
+	current_preset_selection["skin"] = data.color_presets.skin
+	update_button_selection_text(PART_COLORS.skin.button, PART_COLORS.skin.text, data.color_presets.skin)
+	
+	update_button_selection_text(face_button, FACE_LABEL, data.appearance.face)
+	
+	update_button_selection_text(MODEL_PARTS.hair.button, MODEL_PARTS.hair.text, data.appearance.parts.hair)
+	
+	current_preset_selection["hair"] = data.color_presets.hair
+	update_button_selection_text(PART_COLORS.hair.button, PART_COLORS.hair.text, data.color_presets.hair)
+	
+	update_button_selection_text(MODEL_PARTS.bangs.button, MODEL_PARTS.bangs.text, data.appearance.parts.bangs)
+	update_button_selection_text(MODEL_PARTS.facial.button, MODEL_PARTS.facial.text, data.appearance.parts.facial)
+	
+	apply_color_to_part("hair", Color(data.appearance.hair_color[0], data.appearance.hair_color[1], data.appearance.hair_color[2]))
+	apply_color_to_part("skin", Color(data.appearance.skin_color[0], data.appearance.skin_color[1], data.appearance.skin_color[2]))
+	
+
 func load_preset():
 	var save_game = FileAccess.open("user://".path_join(preset_filename), FileAccess.READ)
 	while save_game.get_position() < save_game.get_length():
@@ -862,19 +945,23 @@ func manage_gui_input(event, forward_func: Callable, backwards_func: Callable):
 	if event is InputEventMouseButton and event.pressed:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
-				forward_func.call()
 				audio_player.play(press_sound)
+				save_changes()
+				forward_func.call()
 			MOUSE_BUTTON_RIGHT:
-				backwards_func.call()
 				audio_player.play(press_back_sound)
+				save_changes()
+				backwards_func.call()
 				
 	if event.is_action_pressed("arrow_right") or event.is_action_pressed("ui_accept"):
-		forward_func.call()
 		audio_player.play(press_sound)
+		save_changes()
+		forward_func.call()
 		
 	elif event.is_action_pressed("arrow_left"):
-		backwards_func.call()
 		audio_player.play(press_back_sound)
+		save_changes()
+		backwards_func.call()
 	
 
 func _on_sex_button_gui_input(event):
@@ -1018,10 +1105,12 @@ func _on_next_button_pressed():
 
 func _on_undo_button_pressed():
 	audio_player.play(click_bamboo)
+	undo_last_change()
 	
 
 func _on_redo_button_pressed():
 	audio_player.play(click_bamboo)
+	redo_last_change()
 	
 
 func _on_r_skin_slider_changed():
@@ -1043,4 +1132,35 @@ func _on_custom_skin_color_button_focus_entered():
 
 func _on_custom_skin_color_button_focus_exited():
 	custom_skin_color_focus.visible = false
+	
+
+func slider_drag_started(part_name):
+	save_changes()
+	current_preset_selection[part_name] = -1
+	var part_color = PART_COLORS[part_name]
+	update_button_selection_text(part_color.button, part_color.text, -1)
+	
+
+func _on_r_skin_slider_drag_started():
+	slider_drag_started("skin")
+	
+
+func _on_g_skin_slider_drag_started():
+	slider_drag_started("skin")
+	
+
+func _on_b_skin_slider_drag_started():
+	slider_drag_started("skin")
+	
+
+func _on_r_hair_slider_drag_started():
+	slider_drag_started("hair")
+	
+
+func _on_g_hair_slider_drag_started():
+	slider_drag_started("hair")
+	
+
+func _on_b_hair_slider_drag_started():
+	slider_drag_started("hair")
 	
