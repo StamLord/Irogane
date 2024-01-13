@@ -26,6 +26,8 @@ texture_margin_top = 226.0
 
 [resource]
 default_font = ExtResource("1_hvsot")
+BlackLabel/base_type = &"Label"
+BlackLabel/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_color = Color(0.145098, 0.137255, 0.121569, 1)
 Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("1_hvsot")
@@ -41,7 +43,7 @@ CheckButton/font_sizes/font_size = 20
 CheckButton/icons/checked = ExtResource("3_dhjd2")
 CheckButton/icons/unchecked = ExtResource("4_towek")
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_cqlkb")
-Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_color = Color(1, 1, 1, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hvsot")
 MainMenuButton/base_type = &"Button"
