@@ -7,18 +7,18 @@ extends UIWindow
 # Sound
 @onready var audio_player = %AudioPlayer
 
-@onready var press_sound = load("res://assets/audio/ui/char_creation/paint_5.ogg")
-@onready var press_back_sound = load("res://assets/audio/ui/char_creation/paint_6.ogg")
-@onready var focus_sound = load("res://assets/audio/ui/char_creation/paint_3.ogg")
-@onready var click_bamboo = load("res://assets/audio/ui/char_creation/click_bamboo.wav")
+@onready var press_sound = load("res://assets/audio/ui/fast_brush_1.ogg")
+@onready var press_back_sound = load("res://assets/audio/ui/fast_brush_2.ogg")
+@onready var focus_sound = load("res://assets/audio/ui/long_brush_1.ogg")
+@onready var click_bamboo = load("res://assets/audio/ui/bamboo_click_1.ogg")
 
-@onready var slider_click = load("res://assets/audio/ui/char_creation/elegant_click.ogg")
+@onready var slider_click = load("res://assets/audio/ui/slider_click.ogg")
 
-@onready var lock_sound = load("res://assets/audio/ui/char_creation/DoorLock 6018_29_1.wav")
-@onready var unlock_sound = load("res://assets/audio/ui/char_creation/DoorLock 6018_29_4.wav")
+@onready var lock_sound = load("res://assets/audio/ui/lock_1.ogg")
+@onready var unlock_sound = load("res://assets/audio/ui/unlock_1.ogg")
 
-@onready var toggle_sound = load("res://assets/audio/ui/char_creation/Button05.mp3")
-@onready var untoggle_sound = load("res://assets/audio/ui/char_creation/Button03.mp3")
+@onready var toggle_sound = load("res://assets/audio/ui/button_5.ogg")
+@onready var untoggle_sound = load("res://assets/audio/ui/button_3.ogg")
 
 # Customization Buttons
 @onready var char_name = %LineEdit

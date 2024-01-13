@@ -5,7 +5,7 @@ extends UIWindow
 @onready var settings_window = $settings_window
 @onready var start_button = %start_button
 
-@onready var start_sound = load("res://assets/audio/ui/char_creation/China Taiko Hit.wav")
+@onready var start_sound = load("res://assets/audio/ui/taiko_hit_1.ogg")
 
 func _ready():
 	visible = true

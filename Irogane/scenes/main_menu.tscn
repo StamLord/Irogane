@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://scripts/ui/focus_on_hover_button.gd" id="7_snhy3"]
 [ext_resource type="Script" path="res://scripts/vfx/gpu_particles_2d_color_space_corrector.gd" id="8_416y4"]
 [ext_resource type="Texture2D" uid="uid://vu67v5m4a1rh" path="res://assets/images/main_menu_highlight.png" id="10_lqfkg"]
-[ext_resource type="AudioStream" uid="uid://bgo2jx4ngf2gt" path="res://assets/audio/ui/char_creation/paint_3.ogg" id="11_v83cs"]
+[ext_resource type="AudioStream" uid="uid://cm16i7x2i25ro" path="res://assets/audio/ui/long_brush_1.ogg" id="12_tkjlu"]
 [ext_resource type="AudioStream" uid="uid://dwgcapky45k16" path="res://assets/audio/music/main_menu_theme.ogg" id="13_xnqn3"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="14_y5c64"]
 
@@ -169,7 +169,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("11_v83cs")
+button_sound = ExtResource("12_tkjlu")
 
 [node name="load_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
 custom_minimum_size = Vector2(400, 80)
@@ -183,7 +183,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("11_v83cs")
+button_sound = ExtResource("12_tkjlu")
 
 [node name="settings_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
 custom_minimum_size = Vector2(400, 80)
@@ -197,7 +197,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("11_v83cs")
+button_sound = ExtResource("12_tkjlu")
 
 [node name="quit_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
 custom_minimum_size = Vector2(400, 80)
@@ -211,7 +211,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("11_v83cs")
+button_sound = ExtResource("12_tkjlu")
 
 [node name="game_load_window" parent="." instance=ExtResource("2_ifvaf")]
 visible = false
