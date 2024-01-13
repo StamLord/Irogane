@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://y4gch7pyr6gp"]
 
-[ext_resource type="PackedScene" uid="uid://c160otnn57cdd" path="res://assets/models/human_model/human_styl_7.glb" id="1_kbwdw"]
+[ext_resource type="PackedScene" uid="uid://c160otnn57cdd" path="res://assets/models/male/human_styl_7.glb" id="1_gw7ay"]
 [ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="2_l38ku"]
 
-[node name="human_styl_7" instance=ExtResource("1_kbwdw")]
+[node name="human_styl_7" instance=ExtResource("1_gw7ay")]
 script = ExtResource("2_l38ku")
 
 [node name="bangs_01" parent="Armature/Skeleton3D" index="0"]

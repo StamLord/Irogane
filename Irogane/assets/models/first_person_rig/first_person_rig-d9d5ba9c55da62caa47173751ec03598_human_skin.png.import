@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc2qjb2cuukyn"
-path="res://.godot/imported/human_styl_7_hat_3.png-e4c88137b9817a04780e8704b29ee8e6.ctex"
+uid="uid://batwa6syki2rm"
+path="res://.godot/imported/first_person_rig-d9d5ba9c55da62caa47173751ec03598_human_skin.png-74d60cbfac42b6d63f38dfe0c0670259.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,8 +11,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/human_model/human_styl_7_hat_3.png"
-dest_files=["res://.godot/imported/human_styl_7_hat_3.png-e4c88137b9817a04780e8704b29ee8e6.ctex"]
+source_file="res://assets/models/first_person_rig/first_person_rig-d9d5ba9c55da62caa47173751ec03598_human_skin.png"
+dest_files=["res://.godot/imported/first_person_rig-d9d5ba9c55da62caa47173751ec03598_human_skin.png-74d60cbfac42b6d63f38dfe0c0670259.ctex"]
 
 [params]
 
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

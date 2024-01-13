@@ -2,21 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj1cuxedtltjx"
-path="res://.godot/imported/human_styl_7_malu_tex.png-456a7b86db4df5952a8d450a268f59ed.ctex"
+uid="uid://ccpat48hwh14x"
+path.s3tc="res://.godot/imported/first_person_rig-a27d0438b3bbf434e6d49f84e134d404_human_skin.png-b6f5ee151a6a0cb01a5c728125c7aa2e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={}
 
 [deps]
 
-source_file="res://assets/models/human/human_styl_7_malu_tex.png"
-dest_files=["res://.godot/imported/human_styl_7_malu_tex.png-456a7b86db4df5952a8d450a268f59ed.ctex"]
+source_file="res://assets/models/first_person_rig/first_person_rig-a27d0438b3bbf434e6d49f84e134d404_human_skin.png"
+dest_files=["res://.godot/imported/first_person_rig-a27d0438b3bbf434e6d49f84e134d404_human_skin.png-b6f5ee151a6a0cb01a5c728125c7aa2e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
