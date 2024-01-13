@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=66 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="1_k3j8k"]
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
@@ -6,10 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://djvfocm7vqhrr" path="res://assets/textures/icons/undo.png" id="3_u1qym"]
 [ext_resource type="Theme" uid="uid://bob8i5q8v8mum" path="res://themes/main_theme.tres" id="4_c8e2i"]
 [ext_resource type="Texture2D" uid="uid://b8o2qigh2iqg5" path="res://assets/textures/ui/theme/undo_normal.png" id="5_3cmbn"]
+[ext_resource type="PackedScene" uid="uid://dpeedxe6o5at0" path="res://assets/models/env/river_bed/river_bed_3.glb" id="5_amh3m"]
+[ext_resource type="Shader" path="res://assets/materials/sky/sky_shader.gdshader" id="6_7xd1u"]
 [ext_resource type="Texture2D" uid="uid://kp3dhik6l5ar" path="res://assets/textures/ui/theme/undo_pressed.png" id="6_54rgk"]
 [ext_resource type="Texture2D" uid="uid://bwtr6vg141o5k" path="res://assets/textures/ui/theme/cc_appearance_window.png" id="6_gduyu"]
 [ext_resource type="Texture2D" uid="uid://ig7e17c41hc7" path="res://assets/textures/ui/theme/undo_hover.png" id="7_arsi1"]
+[ext_resource type="Texture2D" uid="uid://bwwjj4qojll55" path="res://assets/textures/vfx/puff_1.png" id="7_ewshu"]
 [ext_resource type="Texture2D" uid="uid://byjk3juxhhoy5" path="res://assets/textures/ui/theme/unlocked_icon.png" id="7_vmxa6"]
+[ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="8_ckvvo"]
+[ext_resource type="AudioStream" uid="uid://c8n86kf50d0gp" path="res://assets/audio/water/Amb__Waterfall_Distant.mp3" id="9_5uw0b"]
 [ext_resource type="Texture2D" uid="uid://co4j0lytgpewx" path="res://assets/textures/ui/theme/random_normal.png" id="9_6m0pj"]
 [ext_resource type="Texture2D" uid="uid://dt5mqwks847qg" path="res://assets/textures/ui/theme/redo_normal.png" id="9_7778k"]
 [ext_resource type="Texture2D" uid="uid://bfnxangbb35eu" path="res://assets/textures/ui/theme/focused.png" id="9_kkng3"]
@@ -29,11 +34,60 @@
 [ext_resource type="Texture2D" uid="uid://c78d44s1om6wv" path="res://assets/textures/ui/theme/next_button_highlight.png" id="26_knr0y"]
 [ext_resource type="AudioStream" uid="uid://c1hl8mujkj7ri" path="res://assets/audio/ui/char_creation/paint_5.ogg" id="27_kcerp"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="27_qsw0s"]
-[ext_resource type="PackedScene" uid="uid://dpeedxe6o5at0" path="res://assets/models/env/river_bed/river_bed_3.glb" id="5_amh3m"]
-[ext_resource type="Shader" path="res://assets/materials/sky/sky_shader.gdshader" id="6_7xd1u"]
-[ext_resource type="Texture2D" uid="uid://bwwjj4qojll55" path="res://assets/textures/vfx/puff_1.png" id="7_ewshu"]
-[ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="8_ckvvo"]
-[ext_resource type="AudioStream" uid="uid://c8n86kf50d0gp" path="res://assets/audio/water/Amb__Waterfall_Distant.mp3" id="9_5uw0b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgrw0"]
+shader = ExtResource("6_7xd1u")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/moon_texture_angle_x = null
+shader_parameter/moon_texture_angle_y = null
+shader_parameter/moon_texture_angle_z = null
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/stars_brightness = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_iielw"]
+sky_material = SubResource("ShaderMaterial_wgrw0")
+
+[sub_resource type="Environment" id="Environment_vqamt"]
+background_mode = 2
+sky = SubResource("Sky_iielw")
+ambient_light_source = 2
+ambient_light_color = Color(0.211765, 0.372549, 0.721569, 1)
+ambient_light_sky_contribution = 0.5
+fog_light_color = Color(0.27451, 0.627451, 0.607843, 1)
+fog_light_energy = 0.4
+fog_density = 0.0767
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0.00722328, 0.0464815, 0.0163539, 1)
+volumetric_fog_emission = Color(0.240548, 0.612873, 0.73007, 1)
+volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
@@ -123,60 +177,6 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_3sii3"]
 font_names = PackedStringArray("Marcellus SC")
 subpixel_positioning = 0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgrw0"]
-shader = ExtResource("6_7xd1u")
-shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
-shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
-shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
-shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
-shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
-shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
-shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
-shader_parameter/horizon_blur = 0.05
-shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
-shader_parameter/sun_size = 0.2
-shader_parameter/sun_blur = 10.0
-shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
-shader_parameter/moon_size = 0.06
-shader_parameter/moon_blur = 0.1
-shader_parameter/moon_texture_angle_x = null
-shader_parameter/moon_texture_angle_y = null
-shader_parameter/moon_texture_angle_z = null
-shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
-shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
-shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
-shader_parameter/clouds_speed = 2.0
-shader_parameter/clouds_direction = 0.2
-shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_cutoff = 0.3
-shader_parameter/clouds_fuzziness = 0.5
-shader_parameter/clouds_weight = 0.0
-shader_parameter/clouds_blur = 0.25
-shader_parameter/stars_speed = 1.0
-shader_parameter/stars_brightness = 1.0
-shader_parameter/overwritten_time = 0.0
-
-[sub_resource type="Sky" id="Sky_iielw"]
-sky_material = SubResource("ShaderMaterial_wgrw0")
-
-[sub_resource type="Environment" id="Environment_vqamt"]
-background_mode = 2
-sky = SubResource("Sky_iielw")
-ambient_light_source = 2
-ambient_light_color = Color(0.211765, 0.372549, 0.721569, 1)
-ambient_light_sky_contribution = 0.5
-fog_light_color = Color(0.27451, 0.627451, 0.607843, 1)
-fog_light_energy = 0.4
-fog_density = 0.0767
-fog_sky_affect = 0.0
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.1
-volumetric_fog_albedo = Color(0.00722328, 0.0464815, 0.0163539, 1)
-volumetric_fog_emission = Color(0.240548, 0.612873, 0.73007, 1)
-volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="Gradient" id="Gradient_vyevh"]
 offsets = PackedFloat32Array(0, 0.161765, 0.818627, 1)
@@ -1423,9 +1423,6 @@ bus = &"Sound"
 [node name="slider_audio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 
-[connection signal="mouse_entered" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_entered"]
-[connection signal="mouse_exited" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_exited"]
-[connection signal="pressed" from="appearance_UI/camera_control_panel/ResetCamera" to="appearance_UI" method="_on_reset_camera_pressed"]
 [node name="env" type="Node3D" parent="."]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="env"]
@@ -1463,7 +1460,12 @@ draw_pass_1 = SubResource("QuadMesh_q4x6l")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="env"]
 stream = ExtResource("9_5uw0b")
+autoplay = true
+bus = &"Sound"
 
+[connection signal="mouse_entered" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_entered"]
+[connection signal="mouse_exited" from="appearance_UI/camera_control_panel" to="appearance_UI" method="_on_central_panel_mouse_exited"]
+[connection signal="pressed" from="appearance_UI/camera_control_panel/ResetCamera" to="appearance_UI" method="_on_reset_camera_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/undo_redo_header/undo_button" to="appearance_UI" method="_on_undo_button_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/undo_redo_header/redo_button" to="appearance_UI" method="_on_redo_button_pressed"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/randomize_button" to="appearance_UI" method="_on_randomize_button_pressed"]
