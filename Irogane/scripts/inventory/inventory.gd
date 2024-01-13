@@ -93,7 +93,6 @@ func release(cursor_pos):
 func drop_item():
 	var item_id = item_held.get_meta("id")
 	if item_id:
-		#ItemDB.get_item(item_id)["pickup"])
 		var pickup = pickup_base.instantiate()
 		get_tree().get_root().add_child(pickup)
 		
@@ -107,6 +106,7 @@ func drop_item():
 	# Destroy gui item
 	item_held.queue_free()
 	item_held = null
+	EventManager.item_dropped(item_id)
 	
 
 func return_item():
@@ -116,18 +116,51 @@ func return_item():
 	item_held = null
 	
 
-func pickup_item(item_id):
+func remove_item(item_id):
+	return grid.remove_first_item_with_id(item_id)
+	
+
+func remove_items(items: Array):
+	for item in items:
+		grid.remove_item_from_grid(item)
+		item.queue_free()
+	
+
+# items: { item_id: amount }
+# Trys to add a collection of items with various amounts
+# If not possible, removes all items and returns false
+# If possible, all items will be added and returns true
+func add_items_if_possible(items: Dictionary):
+	var items_added = []
+	
+	for item_id in items:
+		for i in items[item_id]:
+			var result = add_item(item_id)
+			if not result[0]:
+				remove_items(items_added)
+				return false
+			items_added.push_back(result[1])
+	
+	return true
+	
+
+func add_item(item_id):
 	var item = item_base.instantiate()
 	item.set_meta("id", item_id)
 	item.texture = load(ItemDB.get_item(item_id)["icon"])
 	add_child(item)
+	
 	if not grid.insert_item_at_first_available(item):
 		item.queue_free()
-		return false
+		return [false, null]
 	
+	return [true, item]
+	
+
+func pickup_item(item_id):
+	var result = add_item(item_id)[0]
 	EventManager.item_picked_up(item_id)
-	
-	return true
+	return result
 	
 
 func get_container_scale(container, item):
@@ -148,10 +181,14 @@ func get_container_scale(container, item):
 		return Vector2.ONE * container_size / largest_dimension
 	
 
+func get_all_items():
+	return grid.get_grid_items()
+	
+
 func add_debug_commands():
 	DebugCommandsManager.add_command(
 		"add_item",
-		add_item,
+		add_item_command,
 		 [{
 				"arg_name" : "item",
 				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
@@ -166,6 +203,22 @@ func add_debug_commands():
 		)
 	
 	DebugCommandsManager.add_command(
+		"remove_item",
+		remove_item_command,
+		 [{
+				"arg_name" : "item",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Item name in database"
+			},
+			{
+				"arg_name" : "amount",
+				"arg_type" : DebugCommandsManager.ArgumentType.INT,
+				"arg_desc" : "Amount to remove"
+		}],
+		"Removes item(s) from your inventory"
+		)
+	
+	DebugCommandsManager.add_command(
 		"get_item_keys",
 		get_item_keys_from_db,
 		 [],
@@ -173,9 +226,22 @@ func add_debug_commands():
 		)
 	
 
-func add_item(args: Array):
+func add_item_command(args: Array):
+	var added = 0
 	for i in args[1]:
-		pickup_item(args[0])
+		if add_item(args[0])[0]:
+			added += 1
+		
+	return "Added %s/%s" % [added, args[1]]
+	
+
+func remove_item_command(args: Array):
+	var removed = 0
+	for i in args[1]:
+		if remove_item(args[0]):
+			removed += 1
+		
+	return "Removed %s/%s" % [removed, args[1]]
 	
 
 func get_item_keys_from_db(_args: Array):

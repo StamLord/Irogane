@@ -1,3 +1,17 @@
+~ greetings
+if QuestManager.can_start_quest("quest_000")
+	=> stolen_katana_quest
+elif QuestManager.is_quest_active("quest_000")
+	Hiroshi: Did you speak to Takeshi yet? He is eager to find the katana.
+	- Understood
+elif QuestManager.is_quest_complete("quest_000")
+	Hiroshi: Thank you so much for helping the Miyamoto clan
+	- Don't mention it
+else
+	Hiroshi: Greetings traveller
+	- Hello
+=> END
+
 ~ stolen_katana_quest
 Hiroshi: Oh, honored traveler! You have the look of one who can help in times of need. \nOur Miyamoto clan is in great distress – the Moonshadow Katana, our ancestral blade, has been stolen. Lord Miyamoto seeks a noble soul to recover it and restore honor to our name. Will you be the one to aid us?
 - Tell me more about the stolen katana.
@@ -9,4 +23,5 @@ Hiroshi: Oh, honored traveler! You have the look of one who can help in times of
 ~ stolen_katana_quest_agreed
 {{PlayerEntity.player_name}}: I am at your service. What must I do?
 Hiroshi: Head to the Miyamoto Estate, speak to Lord Miyamoto, and learn more about the theft. The Moonshadow Katana must be recovered, and honor restored.
+do QuestManager.start_quest("quest_000")
 => END

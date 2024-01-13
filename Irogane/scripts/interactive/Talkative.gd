@@ -21,5 +21,6 @@ func _process(_delta):
 	var dist = talking_to.global_position.distance_to(global_position)
 	
 	if dist > 5:
+		DialogueManager.hide_dialouge()
 		talking_to = null
 	

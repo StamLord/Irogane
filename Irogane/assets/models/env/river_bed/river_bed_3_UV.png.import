@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3baj6rygkb3f"
-path.s3tc="res://.godot/imported/update.svg-f1628866ed4eb2e13e3b81f75443687e.s3tc.ctex"
+uid="uid://gic2upi48ppe"
+path.s3tc="res://.godot/imported/river_bed_3_UV.png-58cf7befbe6fde0813ea6bee80d52765.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://addons/dialogue_manager/assets/update.svg"
-dest_files=["res://.godot/imported/update.svg-f1628866ed4eb2e13e3b81f75443687e.s3tc.ctex"]
+source_file="res://assets/models/env/river_bed/river_bed_3_UV.png"
+dest_files=["res://.godot/imported/river_bed_3_UV.png-58cf7befbe6fde0813ea6bee80d52765.s3tc.ctex"]
 
 [params]
 
@@ -33,6 +34,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c65nb3qjpw7iy"]
+
+[ext_resource type="Texture2D" uid="uid://0pbhjfpoieli" path="res://assets/models/env/river_bed/river_bed_3_pebbles.png" id="1_ejl8o"]
+
+[resource]
+resource_name = "pebbles"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ejl8o")
+metallic_specular = 0.0
+uv1_triplanar = true
+texture_filter = 2

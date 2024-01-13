@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://crfxa6bkikyfi"]
+
+[ext_resource type="Shader" uid="uid://cwkqpenyrj2p" path="res://assets/models/env/river_bed/river_shader.tres" id="1_qehbe"]
+
+[sub_resource type="Gradient" id="Gradient_22eja"]
+offsets = PackedFloat32Array(0.178571, 0.459821, 1)
+colors = PackedColorArray(0.0308141, 0.239181, 0.336594, 1, 0.313293, 0.53789, 0.788657, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_23cfy"]
+gradient = SubResource("Gradient_22eja")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mr3tj"]
+noise_type = 0
+seed = 1
+frequency = 0.02
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_02olu"]
+seamless = true
+noise = SubResource("FastNoiseLite_mr3tj")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qehbe")
+shader_parameter/highlight_distance = 0.0
+shader_parameter/wave_speed = 0.05
+shader_parameter/speed = Vector2(0, -0.025)
+shader_parameter/scale = Vector2(2, 1)
+shader_parameter/alpha = 0.8
+shader_parameter/min_alpha = 0.5
+shader_parameter/water_texture = SubResource("NoiseTexture2D_02olu")
+shader_parameter/gradient_map = SubResource("GradientTexture1D_23cfy")

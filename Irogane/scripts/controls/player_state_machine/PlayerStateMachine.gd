@@ -76,6 +76,7 @@ func save_data():
 		"appearance": model.save_appearance(),
 		"sex": PlayerEntity.get_sex(),
 		"name": PlayerEntity.get_player_name(),
+		"quests": QuestManager.save_quests_data(),
 	}
 	
 	return data
@@ -105,4 +106,6 @@ func load_data(data):
 	# name and sex
 	PlayerEntity.set_sex(data["sex"])
 	PlayerEntity.set_player_name(data["name"])
+	
+	QuestManager.load_quests_data(data["quests"])
 	

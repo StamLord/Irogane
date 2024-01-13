@@ -58,6 +58,10 @@ func quest_clicked(quest: QuestResource):
 
 func update_selected_quest():
 	if selected_quest:
+		if selected_quest.quest_id not in QuestManager.active_quests.keys():
+			clear_selected_quest()
+			return 
+		
 		quest_info.bbcode_text = build_quest_info()
 	
 
@@ -78,9 +82,11 @@ func build_stage_info(quest_info: String, stage: QuestStageResource, current: bo
 				quest_info = str(quest_info, "[s]%s[/s]" % req.get_req_description(), "\n")
 			else:
 				quest_info = str(quest_info, req.get_req_description(), "\n")
+				
+		quest_info = str(quest_info, "\n")
 		
 		if stage.completed and stage.after_finish_text != "":
-			quest_info = str(quest_info, "\n", stage.after_finish_text, "\n\n")
+			quest_info = str(quest_info, stage.after_finish_text, "\n\n")
 	
 	return quest_info
 	

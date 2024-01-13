@@ -93,6 +93,7 @@ text = "Description
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+wrap_mode = 1
 
 [node name="after_finish_box2" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -107,6 +108,7 @@ text = "After Finish Prompt"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+wrap_mode = 1
 
 [node name="mutex" type="CheckBox" parent="."]
 unique_name_in_owner = true

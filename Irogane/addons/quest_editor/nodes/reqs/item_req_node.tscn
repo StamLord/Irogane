@@ -101,6 +101,7 @@ text = "Description
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+wrap_mode = 1
 
 [node name="item_name_Box" type="HBoxContainer" parent="."]
 layout_mode = 2

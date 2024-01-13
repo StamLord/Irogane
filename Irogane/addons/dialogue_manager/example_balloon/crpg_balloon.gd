@@ -29,7 +29,7 @@ var dialogue_line: DialogueLine:
 		
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
-			queue_free()
+			closed()
 			return
 		
 		dialogue_line = next_dialogue_line
@@ -88,6 +88,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
 	get_viewport().set_input_as_handled()
 
+var fake_window = UIWindow.new()
 
 ## Start some dialogue
 func start(dialogue_resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:
@@ -95,10 +96,25 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 	is_waiting_for_input = false
 	resource = dialogue_resource
 	self.dialogue_line = await resource.get_next_dialogue_line(title, temporary_game_states)
-	
+	opened()
 	# Set character label to first character
 	character_label.text = dialogue_resource.character_names[0].capitalize()
+	
 
+func _process(_delta):
+	if Input.is_action_just_pressed("exit"):
+		closed()
+	
+
+func opened():
+	UIManager.add_window(fake_window)
+	
+
+func closed():
+	DialogueManager.current_balloon = null
+	UIManager.remove_window(fake_window)
+	queue_free()
+	
 
 ## Go to the next line
 func next(next_id: String) -> void:

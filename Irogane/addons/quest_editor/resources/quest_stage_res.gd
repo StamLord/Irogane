@@ -10,10 +10,10 @@ extends Resource
 @export var mutually_exclusive: bool = false # only one req can be completed
 
 var completed = false
-
+var kept_reward_items = null # Holds the items if the user has no room
 
 func start():
-	QuestManager.on_quest_req_complete.connect(req_completed)
+	QuestManager.on_quest_req_updated.connect(req_updated)
 	QuestManager.on_quest_stage_started.emit(stage_id, quest_id)
 	
 	for req in stage_requirements:
@@ -23,21 +23,23 @@ func start():
 	QuestManager.quests_updated.emit()
 	
 
-func req_completed(_req_id: String, _stage_id:String, _quest_id: String):
+func req_updated(_req_id: String, _stage_id: String, _quest_id: String):
 	if _quest_id != quest_id or _stage_id != stage_id:
 		return
 	
-	complete_if_possible()
+	check_completion()
 	
 
-func complete_if_possible():
+func check_completion():
 	for req in stage_requirements:
 		if mutually_exclusive and req.completed:
 			next_stage = req.next_stage
 			complete_stage()
 			return
 	
+	for req in stage_requirements:
 		if not req.completed and not req.optional:
+			completed = false
 			return
 	
 	complete_stage()
@@ -48,6 +50,46 @@ func complete_stage():
 	QuestManager.on_quest_stage_complete.emit(stage_id, quest_id)
 	QuestManager.quests_updated.emit()
 	
-	if QuestManager.on_quest_req_complete.is_connected(req_completed):
-		QuestManager.on_quest_req_complete.disconnect(req_completed)
+
+func apply_rewards_if_possible():
+	var reward_items = {}
+	
+	for req in stage_requirements:
+		if req.completed:
+			for reward in req.rewards:
+				if reward is ItemRewardResource:
+					if reward.item_name not in reward_items:
+						reward_items[reward.item_name] = 0
+					
+					reward_items[reward.item_name] += reward.amount
+				else:
+					reward.apply_reward()
+		
+	if reward_items:
+		if not UIManager.get_inventory().add_items_if_possible(reward_items):
+			kept_reward_items = reward_items
+			return false
+		
+	return true
+	
+
+func has_kept_reward_items():
+	return kept_reward_items != null
+	
+
+func apply_kept_reward_items_if_possible():
+	if UIManager.get_inventory().add_items_if_possible(kept_reward_items):
+		kept_reward_items = null
+		return true
+	
+	return false 
+	
+
+func finish():
+	if QuestManager.on_quest_req_updated.is_connected(req_updated):
+		QuestManager.on_quest_req_updated.disconnect(req_updated)
+	
+	for req in stage_requirements:
+		if req.completed:
+			req.finish()
 	

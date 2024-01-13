@@ -97,6 +97,7 @@ text = "Description
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+wrap_mode = 1
 
 [node name="prereq_quests" type="Label" parent="."]
 layout_mode = 2

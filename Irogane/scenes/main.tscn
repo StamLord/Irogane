@@ -1677,7 +1677,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_15umm")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.797521, 0, -0.603292, 0, 1, 0, 0.603292, 0, 0.797521, -8.74275, 0.0379796, 9.07988)
+transform = Transform3D(0.797521, 0, -0.603292, 0, 1, 0, 0.603292, 0, 0.797521, -8.74275, 0.0379796, 7.10393)
 
 [node name="collider" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -1697,10 +1697,38 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("26_wvciu")
 dialogue = "Hiroshi"
-initial_dialog = "stolen_katana_quest"
+initial_dialog = "greetings"
 interaction_text = "Talk"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/interactive"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_a1qq5")
+
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.797521, 0, -0.603292, 0, 1, 0, 0.603292, 0, 0.797521, -8.74275, -3.53131, 30.8901)
+
+[node name="collider" type="CollisionShape3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_5ynb6")
+
+[node name="mesh" type="MeshInstance3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_k1ph2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D2/mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.45)
+mesh = SubResource("BoxMesh_m4oe0")
+surface_material_override/0 = SubResource("StandardMaterial3D_0t601")
+
+[node name="interactive" type="Area3D" parent="CharacterBody3D2"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("26_wvciu")
+dialogue = "TakeshiMiyamoto"
+initial_dialog = "greetings"
+interaction_text = "Talk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D2/interactive"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("SphereShape3D_a1qq5")
 
