@@ -1,0 +1,264 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceiret2tl16se"]
+
+[ext_resource type="PackedScene" uid="uid://bc2ieqwfpwab5" path="res://assets/models/male/male_model.glb" id="1_cthuh"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rluiv"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mwskw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wc7uf"]
+states/Start/position = Vector2(212, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_rluiv")
+states/idle/position = Vector2(525, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mwskw")]
+
+[node name="male_model" instance=ExtResource("1_cthuh")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, -0.133508, 0)
+bones/1/rotation = Quaternion(-0.0205695, -0.755053, -0.0132716, 0.655206)
+bones/2/position = Vector3(-0.180717, 0.37072, -0.00647604)
+bones/2/rotation = Quaternion(-0.106169, -0.131112, 0.979971, 0.105805)
+bones/3/rotation = Quaternion(0.21966, -0.00479617, -0.0212956, 0.975332)
+bones/4/rotation = Quaternion(-0.163817, -0.00357678, 0.021534, 0.986249)
+bones/5/rotation = Quaternion(0.27979, -0.174793, 0.202235, 0.922099)
+bones/7/rotation = Quaternion(0.0541487, 0.708904, -0.0941904, 0.696887)
+bones/8/rotation = Quaternion(-0.0165385, -0.0573013, 0.00756105, 0.998191)
+bones/9/rotation = Quaternion(-0.0998345, 0.0272244, -0.0104446, 0.994577)
+bones/11/rotation = Quaternion(-0.056139, -0.00195339, 0.00606097, 0.998403)
+bones/12/rotation = Quaternion(-0.161715, 0.00135474, -0.0328892, 0.986288)
+bones/13/rotation = Quaternion(-0.0702424, 0.687418, 0.133933, 0.710341)
+bones/15/rotation = Quaternion(-0.0589393, 0.0295508, 0.00738197, 0.997797)
+bones/16/rotation = Quaternion(-0.129011, 0.76407, 0.189219, 0.603116)
+bones/17/rotation = Quaternion(-0.0965925, -0.00550275, 0.0146358, 0.995201)
+bones/18/rotation = Quaternion(-0.103504, -0.0178049, -0.00716292, 0.994444)
+bones/20/rotation = Quaternion(0.191971, 0.0848545, -0.0210509, 0.977499)
+bones/21/rotation = Quaternion(-0.133879, 3.91635e-09, 4.73201e-08, 0.990998)
+bones/38/position = Vector3(0.18168, 0.370733, -0.00178184)
+bones/38/rotation = Quaternion(0.191582, 0.0885396, -0.967801, 0.137181)
+bones/39/rotation = Quaternion(0.208455, 0.00455148, 0.0213493, 0.977789)
+bones/40/rotation = Quaternion(-0.119114, -0.00392258, 0.0326784, 0.992335)
+bones/41/rotation = Quaternion(0.277163, 0.260892, -0.213592, 0.899719)
+bones/43/rotation = Quaternion(0.0562063, 0.0427068, -0.126454, 0.989458)
+bones/44/rotation = Quaternion(-0.103929, -0.405008, 0.0174814, 0.908219)
+bones/45/rotation = Quaternion(-0.0329061, -0.365069, -0.0147515, 0.930282)
+bones/46/rotation = Quaternion(-0.152992, -0.678453, -0.202386, 0.689445)
+bones/47/rotation = Quaternion(-0.122065, -0.00155064, 0.0122949, 0.992445)
+bones/48/rotation = Quaternion(-0.0774178, 0.000793479, 0.0329075, 0.996455)
+bones/49/rotation = Quaternion(-0.112636, -0.715916, -0.161029, 0.66996)
+bones/50/rotation = Quaternion(-0.129114, -0.00216815, 0.0205813, 0.991414)
+bones/51/rotation = Quaternion(-0.0749137, -0.000970321, -0.0242319, 0.996895)
+bones/52/rotation = Quaternion(-0.0905472, -0.757809, -0.164775, 0.6248)
+bones/53/rotation = Quaternion(-0.22482, -0.00532058, 0.0154658, 0.974263)
+bones/54/rotation = Quaternion(-0.216225, -0.000868614, 0.00430951, 0.976334)
+bones/56/rotation = Quaternion(0.614977, -0.135032, 0.770842, 0.0968135)
+bones/57/rotation = Quaternion(0.354667, 0.00286404, -0.0118585, 0.934913)
+bones/58/rotation = Quaternion(-0.299634, -0.543973, 0.33681, 0.707723)
+bones/59/rotation = Quaternion(-0.281747, 0.649695, 0.300304, 0.639009)
+bones/60/rotation = Quaternion(0.638445, 0.0667422, 0.765506, -0.0439756)
+bones/62/rotation = Quaternion(-0.392849, 0.492568, -0.408696, 0.660313)
+
+[node name="bangs_01" parent="Armature/Skeleton3D" index="0"]
+visible = false
+
+[node name="bangs_02" parent="Armature/Skeleton3D" index="1"]
+visible = false
+
+[node name="bangs_03" parent="Armature/Skeleton3D" index="2"]
+visible = false
+
+[node name="bangs_06" parent="Armature/Skeleton3D" index="3"]
+visible = false
+
+[node name="bangs_07" parent="Armature/Skeleton3D" index="4"]
+visible = false
+
+[node name="bangs_08" parent="Armature/Skeleton3D" index="5"]
+visible = false
+
+[node name="bangs_09" parent="Armature/Skeleton3D" index="6"]
+visible = false
+
+[node name="bangs_10" parent="Armature/Skeleton3D" index="7"]
+visible = false
+
+[node name="bangs_11" parent="Armature/Skeleton3D" index="8"]
+visible = false
+
+[node name="bangs_12" parent="Armature/Skeleton3D" index="9"]
+visible = false
+
+[node name="bangs_13" parent="Armature/Skeleton3D" index="10"]
+visible = false
+
+[node name="bangs_14" parent="Armature/Skeleton3D" index="11"]
+visible = false
+
+[node name="bangs_15" parent="Armature/Skeleton3D" index="12"]
+visible = false
+
+[node name="bangs_16" parent="Armature/Skeleton3D" index="13"]
+visible = false
+
+[node name="bangs_04" parent="Armature/Skeleton3D" index="14"]
+visible = false
+
+[node name="bangs_05" parent="Armature/Skeleton3D" index="15"]
+visible = false
+
+[node name="bangs_17" parent="Armature/Skeleton3D" index="16"]
+visible = false
+
+[node name="bangs_18" parent="Armature/Skeleton3D" index="17"]
+visible = false
+
+[node name="bangs_19" parent="Armature/Skeleton3D" index="18"]
+visible = false
+
+[node name="bangs_20" parent="Armature/Skeleton3D" index="19"]
+visible = false
+
+[node name="bottom_01" parent="Armature/Skeleton3D" index="21"]
+visible = false
+
+[node name="bottom_02" parent="Armature/Skeleton3D" index="22"]
+visible = false
+
+[node name="bottom_03" parent="Armature/Skeleton3D" index="23"]
+visible = false
+
+[node name="bottom_04" parent="Armature/Skeleton3D" index="24"]
+visible = false
+
+[node name="bottom_05" parent="Armature/Skeleton3D" index="25"]
+visible = false
+
+[node name="facial_01" parent="Armature/Skeleton3D" index="26"]
+visible = false
+
+[node name="facial_02" parent="Armature/Skeleton3D" index="27"]
+visible = false
+
+[node name="facial_03" parent="Armature/Skeleton3D" index="28"]
+visible = false
+
+[node name="facial_04" parent="Armature/Skeleton3D" index="29"]
+visible = false
+
+[node name="facial_05" parent="Armature/Skeleton3D" index="30"]
+visible = false
+
+[node name="facial_06" parent="Armature/Skeleton3D" index="31"]
+visible = false
+
+[node name="facial_07" parent="Armature/Skeleton3D" index="32"]
+visible = false
+
+[node name="facial_08" parent="Armature/Skeleton3D" index="33"]
+visible = false
+
+[node name="facial_09" parent="Armature/Skeleton3D" index="34"]
+visible = false
+
+[node name="facial_10" parent="Armature/Skeleton3D" index="35"]
+visible = false
+
+[node name="facial_11" parent="Armature/Skeleton3D" index="36"]
+visible = false
+
+[node name="hair_01" parent="Armature/Skeleton3D" index="37"]
+visible = false
+
+[node name="hair_02" parent="Armature/Skeleton3D" index="38"]
+visible = false
+
+[node name="hair_03" parent="Armature/Skeleton3D" index="39"]
+visible = false
+
+[node name="hair_04" parent="Armature/Skeleton3D" index="40"]
+visible = false
+
+[node name="hair_05" parent="Armature/Skeleton3D" index="41"]
+visible = false
+
+[node name="hair_06" parent="Armature/Skeleton3D" index="42"]
+visible = false
+
+[node name="hair_07" parent="Armature/Skeleton3D" index="43"]
+visible = false
+
+[node name="hair_08" parent="Armature/Skeleton3D" index="44"]
+visible = false
+
+[node name="hair_09" parent="Armature/Skeleton3D" index="45"]
+visible = false
+
+[node name="hair_10" parent="Armature/Skeleton3D" index="46"]
+visible = false
+
+[node name="hair_11" parent="Armature/Skeleton3D" index="47"]
+visible = false
+
+[node name="hat_0" parent="Armature/Skeleton3D" index="48"]
+visible = false
+
+[node name="hat_1" parent="Armature/Skeleton3D" index="49"]
+visible = false
+
+[node name="hat_2" parent="Armature/Skeleton3D" index="50"]
+visible = false
+
+[node name="hat_3" parent="Armature/Skeleton3D" index="51"]
+visible = false
+
+[node name="hat_4" parent="Armature/Skeleton3D" index="52"]
+visible = false
+
+[node name="hat_5" parent="Armature/Skeleton3D" index="53"]
+visible = false
+
+[node name="mask_01" parent="Armature/Skeleton3D" index="54"]
+visible = false
+
+[node name="mask_02" parent="Armature/Skeleton3D" index="55"]
+visible = false
+
+[node name="mask_04" parent="Armature/Skeleton3D" index="56"]
+visible = false
+
+[node name="necklace_01" parent="Armature/Skeleton3D" index="57"]
+visible = false
+
+[node name="shoes_01" parent="Armature/Skeleton3D" index="58"]
+visible = false
+
+[node name="shoes_02" parent="Armature/Skeleton3D" index="59"]
+visible = false
+
+[node name="shoulder_guards" parent="Armature/Skeleton3D" index="60"]
+visible = false
+
+[node name="top_01" parent="Armature/Skeleton3D" index="61"]
+visible = false
+
+[node name="top_02" parent="Armature/Skeleton3D" index="62"]
+visible = false
+
+[node name="top_03" parent="Armature/Skeleton3D" index="63"]
+visible = false
+
+[node name="top_04" parent="Armature/Skeleton3D" index="64"]
+visible = false
+
+[node name="top_05" parent="Armature/Skeleton3D" index="65"]
+visible = false
+
+[node name="top_06" parent="Armature/Skeleton3D" index="66"]
+visible = false
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_wc7uf")
+anim_player = NodePath("../AnimationPlayer")
+active = true

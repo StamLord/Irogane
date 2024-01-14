@@ -13,7 +13,7 @@ extends Node3D
 @onready var player = $"../head/main_camera"
 @onready var light_cast = $light_cast
 
-@onready var light_beads_material = preload("res://assets/models/light_beads_3d.tres")
+@onready var light_beads_material = preload("res://assets/models/first_person_rig/light_beads_3d.tres")
 
 var detection_rate = .1
 var last_detection = 0
