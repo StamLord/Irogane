@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bv6ndt1w33qw0"]
 
-[ext_resource type="Texture2D" uid="uid://bpsyvalmb2j0w" path="res://assets/models/human_model/human_styl_7_top_armor_black.png" id="1_y72q1"]
+[ext_resource type="Texture2D" uid="uid://bpsyvalmb2j0w" path="res://assets/models/male/human_styl_7_top_armor_black.png" id="1_y72q1"]
+
 
 [resource]
 resource_name = "armor"

@@ -1,9 +1,10 @@
 [gd_scene load_steps=84 format=3 uid="uid://bba44d8rksvrn"]
 
-[ext_resource type="PackedScene" uid="uid://c54hb80sgqu3t" path="res://assets/models/first_person_rig.fbx" id="1_mh3ev"]
+[ext_resource type="PackedScene" uid="uid://c54hb80sgqu3t" path="res://assets/models/first_person_rig/first_person_rig.fbx" id="1_mh3ev"]
 [ext_resource type="Script" path="res://scripts/procedural/hands_ik.gd" id="2_cklb0"]
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="3_wmsrh"]
-[ext_resource type="Material" uid="uid://dpvfaaebswwjw" path="res://assets/models/light_beads_3d.tres" id="4_blvjm"]
+[ext_resource type="Material" uid="uid://dpvfaaebswwjw" path="res://assets/models/first_person_rig/light_beads_3d.tres" id="4_blvjm"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmlv1"]
 albedo_color = Color(0.769531, 0.558594, 0.378906, 1)

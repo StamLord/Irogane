@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dioo72qaq21yv"]
+
+[ext_resource type="Texture2D" uid="uid://call11g7b8n21" path="res://assets/textures/equipment/top_armor_black.png" id="1_d0yjr"]
+
+[resource]
+resource_name = "armor"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_d0yjr")
+texture_filter = 2
