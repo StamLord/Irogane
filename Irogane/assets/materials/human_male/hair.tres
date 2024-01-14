@@ -1,6 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bji2j0f0onpfi"]
 
-[ext_resource type="Texture2D" uid="uid://b4goym2p48m04" path="res://assets/models/human_model/human_styl_7_hair_1.png" id="1_xcgww"]
+[ext_resource type="Texture2D" uid="uid://b4goym2p48m04" path="res://assets/models/male/human_styl_7_hair_1.png" id="1_xcgww"]
+
 
 [resource]
 resource_name = "hair"

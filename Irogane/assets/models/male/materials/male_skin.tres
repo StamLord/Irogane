@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dmc6b0m47av2c"]
+
+[ext_resource type="Texture2D" uid="uid://bd2d53j1rdhtw" path="res://assets/models/male/textures/male_skin.png" id="1_avy6i"]
+
+[resource]
+resource_name = "male_skin"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_avy6i")
+metallic_specular = 0.0
+texture_filter = 2

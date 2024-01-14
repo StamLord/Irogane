@@ -1,8 +1,8 @@
 extends Node3D
 
-var skin_material: StandardMaterial3D = load("res://assets/materials/human_male/human_skin.tres").duplicate()
-var face_material: ShaderMaterial = load("res://assets/materials/human_male/male_faces.tres").duplicate()
-var hair_material: StandardMaterial3D = load("res://assets/materials/human_male/hair.tres").duplicate()
+var skin_material: StandardMaterial3D = load("res://assets/models/male/materials/male_skin.tres").duplicate()
+var face_material: ShaderMaterial = load("res://assets/models/male/materials/male_face.tres").duplicate()
+var hair_material: StandardMaterial3D = load("res://assets/models/male/materials/hair_1.tres").duplicate()
 
 # Defines part names and default values
 var default_selections = {
@@ -12,7 +12,7 @@ var default_selections = {
 	"facial": -1,
 	"mask": -1,
 	"top": -1,
-	"pants": -1,
+	"bottom": -1,
 	"shoes": -1
 	}
 
