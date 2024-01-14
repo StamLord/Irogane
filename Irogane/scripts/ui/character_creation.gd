@@ -43,6 +43,7 @@ extends UIWindow
 
 @onready var undo_button = %undo_button
 @onready var redo_button = %redo_button
+@onready var randomize_button = %randomize_button
 
 # Textures 
 @onready var unlocked_highlight_texture =  load("res://assets/textures/ui/theme/unlocked_highlight_icon.png")
@@ -1200,4 +1201,29 @@ func _on_g_hair_slider_drag_started():
 
 func _on_b_hair_slider_drag_started():
 	slider_drag_started("hair")
+	
+
+func _on_randomize_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		randomize_button.release_focus()
+	
+
+func _on_undo_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		undo_button.release_focus()
+	
+
+func _on_redo_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		redo_button.release_focus()
+	
+
+func _on_custom_skin_color_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		custom_skin_color_button.release_focus()
+	
+
+func _on_custom_hair_color_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		custom_hair_color_button.release_focus()
 	
