@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=23 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bwwjj4qojll55" path="res://assets/textures/vfx/puff_1.png" id="7_ewshu"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="8_ckvvo"]
 [ext_resource type="AudioStream" uid="uid://c8n86kf50d0gp" path="res://assets/audio/water/Amb__Waterfall_Distant.mp3" id="9_5uw0b"]
-[ext_resource type="PackedScene" uid="uid://ceiret2tl16se" path="res://assets/models/male/scene/male_model.tscn" id="9_kf4vn"]
-[ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="10_sk6vb"]
+[ext_resource type="PackedScene" uid="uid://c8lpxncjkcjqb" path="res://assets/models/male/scene/male_model.tscn" id="9_kf4vn"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
@@ -924,31 +923,29 @@ stream = ExtResource("9_5uw0b")
 autoplay = true
 bus = &"Sound"
 
-[node name="male_model" parent="env" instance=ExtResource("9_kf4vn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
-script = ExtResource("10_sk6vb")
+[node name="rotate_around" type="Node3D" parent="env"]
 
-[node name="rotate_around" type="Node3D" parent="env/male_model"]
-
-[node name="Camera3D" type="Camera3D" parent="env/male_model/rotate_around"]
+[node name="Camera3D" type="Camera3D" parent="env/rotate_around"]
 unique_name_in_owner = true
 transform = Transform3D(0.951057, 0.0642482, -0.302264, 0, 0.978148, 0.207912, 0.309017, -0.197736, 0.930274, -0.8, 1.575, 2.5)
 current = true
 fov = 55.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="env/male_model/rotate_around"]
+[node name="SpotLight3D" type="SpotLight3D" parent="env/rotate_around"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2, 1.375, 2.5)
 light_energy = 1.5
 distance_fade_begin = 44.05
 spot_range = 6.75493
 spot_angle = 29.1564
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="env/male_model/rotate_around"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="env/rotate_around"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2, 1.375, 2.5)
 light_energy = 1.5
 distance_fade_begin = 44.05
 spot_range = 6.75493
 spot_angle = 29.1564
+
+[node name="male_model" parent="env" instance=ExtResource("9_kf4vn")]
 
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
