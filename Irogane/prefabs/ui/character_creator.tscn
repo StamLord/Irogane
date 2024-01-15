@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=69 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://crr0tdf7434o0" path="res://assets/textures/ui/theme/slider_blue.png" id="14_vsk26"]
 [ext_resource type="Texture2D" uid="uid://b4yim6tybxoo2" path="res://assets/textures/ui/theme/slider_red.png" id="15_0air2"]
 [ext_resource type="Texture2D" uid="uid://cy1eoaolfvcek" path="res://assets/textures/ui/theme/slider_button.png" id="15_8wpma"]
+[ext_resource type="Script" path="res://scripts/ui/focus_on_hover_button.gd" id="16_m1hp5"]
 [ext_resource type="Texture2D" uid="uid://uaydylyofhpq" path="res://assets/textures/ui/theme/slider_green.png" id="17_33iy5"]
 [ext_resource type="Texture2D" uid="uid://dqa365215hi43" path="res://assets/textures/ui/theme/slider_button_hover.png" id="18_r2cye"]
 [ext_resource type="Script" path="res://scripts/ui/slider_audio.gd" id="21_ph74t"]
@@ -376,6 +377,7 @@ focus_next = NodePath("../SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Bu
 focus_previous = NodePath("../../redo_button")
 text = "< MALE >"
 flat = true
+script = ExtResource("16_m1hp5")
 
 [node name="sex_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/sex_button"]
 unique_name_in_owner = true
@@ -415,6 +417,7 @@ focus_previous = NodePath("../../../sex_button")
 button_mask = 3
 text = "< SKIN CUSTOM >"
 flat = true
+script = ExtResource("16_m1hp5")
 
 [node name="skin_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button"]
 custom_minimum_size = Vector2(135, 0)
@@ -503,6 +506,7 @@ focus_next = NodePath("../../HairStyleHBoxContainer/Hair Button")
 focus_previous = NodePath("../../SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton")
 text = "< FACE >"
 flat = true
+script = ExtResource("16_m1hp5")
 
 [node name="face_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
 layout_mode = 1
@@ -548,6 +552,7 @@ focus_next = NodePath("../../HairVBoxContainer/HairColorHBoxContainer/Hair Color
 focus_previous = NodePath("../../FaceStyleHBoxContainer/Face Button")
 text = "< HAIR >"
 flat = true
+script = ExtResource("16_m1hp5")
 
 [node name="hair_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
 layout_mode = 1
@@ -597,6 +602,7 @@ focus_next = NodePath("../../custom_hair_color_wrapper/CustomHairColorButton")
 focus_previous = NodePath("../../../HairStyleHBoxContainer/Hair Button")
 text = "< HAIR COLOR >"
 flat = true
+script = ExtResource("16_m1hp5")
 
 [node name="hair_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button"]
 custom_minimum_size = Vector2(85, 77)
@@ -681,6 +687,7 @@ focus_next = NodePath("../../FacialstyleHBoxContainer/facial button")
 focus_previous = NodePath("../../HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton")
 text = "< BANGS >"
 flat = true
+script = ExtResource("16_m1hp5")
 
 [node name="bangs_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
 custom_minimum_size = Vector2(125, 77)
@@ -727,6 +734,7 @@ focus_next = NodePath("../../../../next_button")
 focus_previous = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
 text = "< FACIAL >"
 flat = true
+script = ExtResource("16_m1hp5")
 
 [node name="facial_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
 layout_mode = 1
@@ -1442,6 +1450,7 @@ draw_pass_1 = SubResource("QuadMesh_q4x6l")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 stream = ExtResource("9_5uw0b")
+volume_db = -14.0
 autoplay = true
 bus = &"Sound"
 

@@ -8,9 +8,9 @@ extends UIWindow
 # Sound
 @onready var audio_player = %AudioPlayer
 
-@onready var press_sound = load("res://assets/audio/ui/fast_brush_1.ogg")
-@onready var press_back_sound = load("res://assets/audio/ui/fast_brush_2.ogg")
-@onready var focus_sound = load("res://assets/audio/ui/long_brush_1.ogg")
+@onready var press_sound = load("res://assets/audio/ui/fast_brush_1_soft.ogg")
+@onready var press_back_sound = load("res://assets/audio/ui/fast_brush_2_soft.ogg")
+@onready var focus_sound = load("res://assets/audio/ui/slow_brush_1.ogg")
 @onready var click_bamboo = load("res://assets/audio/ui/bamboo_click_1.ogg")
 
 @onready var slider_click = load("res://assets/audio/ui/slider_click.ogg")
@@ -211,7 +211,7 @@ var redo_stack = []
 # Customization logic
 func _ready():
 	UIManager.add_window(self)
-	load_default_character()
+	load_default_character(true)
 	reset_attributes()
 	sex_button.grab_focus()
 	
@@ -229,9 +229,10 @@ func reset_attributes():
 		attr.spin.set_value_no_signal(attr.default)
 	
 
-func load_default_character():
+func load_default_character(init: bool = false):
 	# Load defaults
-	character.load_defaults()
+	if not init:
+		character.load_defaults()
 	
 	update_button_selection_text(face_button, FACE_LABEL, character.default_face)
 	
@@ -689,6 +690,7 @@ func _on_skin_color_left_arrow_pressed():
 	save_changes()
 	cycle_color_preset("skin", -1)
 	PART_COLORS.skin.button.grab_focus()
+	audio_player.play(press_back_sound)
 	
 
 func _on_hair_left_arrow_pressed():
@@ -714,7 +716,6 @@ func _on_hair_color_left_arrow_pressed():
 	save_changes()
 	cycle_color_preset("hair", -1)
 	PART_COLORS.hair.button.grab_focus()
-	audio_player.play(press_back_sound)
 	audio_player.play(press_back_sound)
 	
 
