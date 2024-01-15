@@ -3,8 +3,7 @@ extends UIWindow
 # Nodes
 @onready var character = $"../env/male_model"
 @onready var camera = %Camera3D
-@onready var node_to_rotate = $"../env/male_model/rotate_around"
-
+@onready var node_to_rotate = $"../env/male_model"
 
 # Customization Buttons
 @onready var char_name = %LineEdit

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=24 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="8_ckvvo"]
 [ext_resource type="AudioStream" uid="uid://c8n86kf50d0gp" path="res://assets/audio/water/Amb__Waterfall_Distant.mp3" id="9_5uw0b"]
 [ext_resource type="PackedScene" uid="uid://c8lpxncjkcjqb" path="res://assets/models/male/scene/male_model.tscn" id="9_kf4vn"]
+[ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="10_sk6vb"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
@@ -920,6 +921,7 @@ draw_pass_1 = SubResource("QuadMesh_q4x6l")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 stream = ExtResource("9_5uw0b")
+volume_db = -12.0
 autoplay = true
 bus = &"Sound"
 
@@ -946,6 +948,7 @@ spot_range = 6.75493
 spot_angle = 29.1564
 
 [node name="male_model" parent="env" instance=ExtResource("9_kf4vn")]
+script = ExtResource("10_sk6vb")
 
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
