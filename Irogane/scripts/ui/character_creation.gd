@@ -438,7 +438,7 @@ var default_node_rotation = Vector3(0, 22, 0)
 const SCROLL_SPEED = 0.1
 
 const MAX_SCROLL = 0.0
-const MIN_SCROLL = -1.5
+const MIN_SCROLL = -2.0
 const MAX_VERTICAL_MOVE = 0.5
 const MIN_VERTICAL_MOVE = -0.5
 const MAX_HORIZONTAL_MOVE = 0.5
