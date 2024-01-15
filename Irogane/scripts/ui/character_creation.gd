@@ -8,9 +8,9 @@ extends UIWindow
 # Sound
 @onready var audio_player = %AudioPlayer
 
-@onready var press_sound = load("res://assets/audio/ui/fast_brush_1.ogg")
-@onready var press_back_sound = load("res://assets/audio/ui/fast_brush_2.ogg")
-@onready var focus_sound = load("res://assets/audio/ui/long_brush_1.ogg")
+@onready var press_sound = load("res://assets/audio/ui/fast_brush_1_soft.ogg")
+@onready var press_back_sound = load("res://assets/audio/ui/fast_brush_2_soft.ogg")
+@onready var focus_sound = load("res://assets/audio/ui/slow_brush_1.ogg")
 @onready var click_bamboo = load("res://assets/audio/ui/bamboo_click_1.ogg")
 
 @onready var slider_click = load("res://assets/audio/ui/slider_click.ogg")
@@ -43,6 +43,7 @@ extends UIWindow
 
 @onready var undo_button = %undo_button
 @onready var redo_button = %redo_button
+@onready var randomize_button = %randomize_button
 
 # Textures 
 @onready var unlocked_highlight_texture =  load("res://assets/textures/ui/theme/unlocked_highlight_icon.png")
@@ -210,7 +211,7 @@ var redo_stack = []
 # Customization logic
 func _ready():
 	UIManager.add_window(self)
-	load_default_character()
+	load_default_character(true)
 	reset_attributes()
 	sex_button.grab_focus()
 	
@@ -228,9 +229,10 @@ func reset_attributes():
 		attr.spin.set_value_no_signal(attr.default)
 	
 
-func load_default_character():
+func load_default_character(init: bool = false):
 	# Load defaults
-	character.load_defaults()
+	if not init:
+		character.load_defaults()
 	
 	update_button_selection_text(face_button, FACE_LABEL, character.default_face)
 	
@@ -688,6 +690,7 @@ func _on_skin_color_left_arrow_pressed():
 	save_changes()
 	cycle_color_preset("skin", -1)
 	PART_COLORS.skin.button.grab_focus()
+	audio_player.play(press_back_sound)
 	
 
 func _on_hair_left_arrow_pressed():
@@ -713,7 +716,6 @@ func _on_hair_color_left_arrow_pressed():
 	save_changes()
 	cycle_color_preset("hair", -1)
 	PART_COLORS.hair.button.grab_focus()
-	audio_player.play(press_back_sound)
 	audio_player.play(press_back_sound)
 	
 
@@ -1200,4 +1202,29 @@ func _on_g_hair_slider_drag_started():
 
 func _on_b_hair_slider_drag_started():
 	slider_drag_started("hair")
+	
+
+func _on_randomize_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		randomize_button.release_focus()
+	
+
+func _on_undo_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		undo_button.release_focus()
+	
+
+func _on_redo_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		redo_button.release_focus()
+	
+
+func _on_custom_skin_color_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		custom_skin_color_button.release_focus()
+	
+
+func _on_custom_hair_color_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		custom_hair_color_button.release_focus()
 	

@@ -4,7 +4,7 @@ extends Node
 @export var slider: Slider
 @export var rate_limit: float = 0.07
 
-@onready var slider_sound = load("res://assets/audio/ui/slider_click.ogg")
+@onready var slider_sound = load("res://assets/audio/ui/slider_click_soft.ogg")
 
 var last_sound_timestamp 
 
