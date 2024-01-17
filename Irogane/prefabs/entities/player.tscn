@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
-[ext_resource type="PackedScene" uid="uid://lsod62yvvsph" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
+[ext_resource type="PackedScene" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_nkdgy"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_y8at0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_hicbf"]
@@ -34,7 +34,7 @@
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
 [ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
-[ext_resource type="PackedScene" uid="uid://y4gch7pyr6gp" path="res://prefabs/entities/male_model.tscn" id="36_y7hmg"]
+[ext_resource type="PackedScene" uid="uid://c8lpxncjkcjqb" path="res://assets/models/male/scene/male_model.tscn" id="36_y7hmg"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
 [ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
@@ -482,9 +482,6 @@ script = ExtResource("18_u5xda")
 [node name="melee" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
 script = ExtResource("20_14b7v")
 
-[node name="first_person_rig" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
-
 [node name="moves_display" type="Control" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
 layout_mode = 3
 anchors_preset = 15
@@ -563,6 +560,9 @@ bus = &"Sound"
 
 [node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
 bus = &"Sound"
+
+[node name="first_person_rig" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 
 [node name="sword" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
 visible = false
