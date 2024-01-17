@@ -39,14 +39,19 @@ const SKIN_COLOR_PRESETS = [
 	Color(1, 1, 1, 1),
 ]
 
-const HAIR_COLOR_PRESETS = [
-	Color(0.25, 0.25, 0.18, 1),
-	Color(0.6039, 0.2941, 0, 1),
-	Color(0.8118, 0.4667, 0, 1),
-	Color(1, 0.7608, 0, 1),
-	Color(1, 0.2745, 0, 1),
-	Color(0.5882, 0.5882, 0.5882, 1),
-	Color(1, 1, 1, 1),
+@export var hair_color_presets = [
+	Color.html("#404033"),
+	Color.html("#783f04"),
+	Color.html("#ce7600"),
+	Color.html("#ffc200"),
+	Color.html("#ff4500"),
+	Color.html("#979797"),
+	Color.html("#6e4d2d"),
+	Color.html("#ffffff"),
+	Color.html("#5082ca"),
+	Color.html("#8b74ae"),
+	Color.html("#c26691"),
+	Color.html("#5e9a62"),
 ]
 
 
@@ -124,7 +129,7 @@ const HAIR_COLOR_PRESETS = [
 			"g": %GHairLabel,
 			"b": %BHairLabel,
 		},
-		"presets": HAIR_COLOR_PRESETS,
+		"presets": hair_color_presets,
 		"color_setters": ["set_hair_color"],
 	},
 }
