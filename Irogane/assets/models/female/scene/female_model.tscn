@@ -1,0 +1,267 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqsrjwav14qip"]
+
+[ext_resource type="PackedScene" uid="uid://bmubqhf331eam" path="res://assets/models/female/female_model.glb" id="1_eothb"]
+[ext_resource type="Script" path="res://addons/wigglebone/wiggle_bone.gd" id="2_g8q1a"]
+[ext_resource type="Script" path="res://addons/wigglebone/wiggle_properties.gd" id="3_2ilsm"]
+
+[sub_resource type="Resource" id="Resource_ccy5p"]
+script = ExtResource("3_2ilsm")
+mode = 0
+stiffness = 0.1
+damping = 0.25
+gravity = Vector3(0, 0, 0)
+length = 0.2
+max_distance = 0.2
+max_degrees = 10.0
+
+[sub_resource type="Resource" id="Resource_jrklb"]
+script = ExtResource("3_2ilsm")
+mode = 0
+stiffness = 0.1
+damping = 0.25
+gravity = Vector3(0, 0, 0)
+length = 0.2
+max_distance = 0.2
+max_degrees = 10.0
+
+[sub_resource type="Resource" id="Resource_jygah"]
+script = ExtResource("3_2ilsm")
+mode = 0
+stiffness = 0.02
+damping = 0.05
+gravity = Vector3(0, -1, 0)
+length = 1.0
+max_distance = 0.5
+max_degrees = 40.0
+
+[node name="female_model" instance=ExtResource("1_eothb")]
+
+[node name="bangs_01" parent="Armature/Skeleton3D" index="0"]
+visible = false
+
+[node name="bangs_02" parent="Armature/Skeleton3D" index="1"]
+visible = false
+
+[node name="bangs_03" parent="Armature/Skeleton3D" index="2"]
+visible = false
+
+[node name="bangs_06" parent="Armature/Skeleton3D" index="3"]
+visible = false
+
+[node name="bangs_07" parent="Armature/Skeleton3D" index="4"]
+visible = false
+
+[node name="bangs_08" parent="Armature/Skeleton3D" index="5"]
+visible = false
+
+[node name="bangs_09" parent="Armature/Skeleton3D" index="6"]
+visible = false
+
+[node name="bangs_10" parent="Armature/Skeleton3D" index="7"]
+visible = false
+
+[node name="bangs_11" parent="Armature/Skeleton3D" index="8"]
+visible = false
+
+[node name="bangs_12" parent="Armature/Skeleton3D" index="9"]
+visible = false
+
+[node name="bangs_13" parent="Armature/Skeleton3D" index="10"]
+visible = false
+
+[node name="bangs_14" parent="Armature/Skeleton3D" index="11"]
+visible = false
+
+[node name="bangs_15" parent="Armature/Skeleton3D" index="12"]
+visible = false
+
+[node name="bangs_04" parent="Armature/Skeleton3D" index="13"]
+visible = false
+
+[node name="bangs_05" parent="Armature/Skeleton3D" index="14"]
+visible = false
+
+[node name="bangs_16" parent="Armature/Skeleton3D" index="15"]
+visible = false
+
+[node name="bottom_02" parent="Armature/Skeleton3D" index="17"]
+visible = false
+
+[node name="bottom_04" parent="Armature/Skeleton3D" index="18"]
+visible = false
+
+[node name="facial_01" parent="Armature/Skeleton3D" index="19"]
+visible = false
+
+[node name="facial_02" parent="Armature/Skeleton3D" index="20"]
+visible = false
+
+[node name="facial_03" parent="Armature/Skeleton3D" index="21"]
+visible = false
+
+[node name="facial_04" parent="Armature/Skeleton3D" index="22"]
+visible = false
+
+[node name="facial_05" parent="Armature/Skeleton3D" index="23"]
+visible = false
+
+[node name="facial_06" parent="Armature/Skeleton3D" index="24"]
+visible = false
+
+[node name="facial_07" parent="Armature/Skeleton3D" index="25"]
+visible = false
+
+[node name="facial_08" parent="Armature/Skeleton3D" index="26"]
+visible = false
+
+[node name="facial_09" parent="Armature/Skeleton3D" index="27"]
+visible = false
+
+[node name="facial_10" parent="Armature/Skeleton3D" index="28"]
+visible = false
+
+[node name="facial_11" parent="Armature/Skeleton3D" index="29"]
+visible = false
+
+[node name="hair_01" parent="Armature/Skeleton3D" index="30"]
+visible = false
+
+[node name="hair_02" parent="Armature/Skeleton3D" index="31"]
+visible = false
+
+[node name="hair_03" parent="Armature/Skeleton3D" index="32"]
+visible = false
+
+[node name="hair_04" parent="Armature/Skeleton3D" index="33"]
+visible = false
+
+[node name="hair_05" parent="Armature/Skeleton3D" index="34"]
+visible = false
+
+[node name="hair_06" parent="Armature/Skeleton3D" index="35"]
+visible = false
+
+[node name="hair_07" parent="Armature/Skeleton3D" index="36"]
+visible = false
+
+[node name="hair_08" parent="Armature/Skeleton3D" index="37"]
+visible = false
+
+[node name="hair_09" parent="Armature/Skeleton3D" index="38"]
+visible = false
+
+[node name="hair_12" parent="Armature/Skeleton3D" index="39"]
+visible = false
+
+[node name="hair_13" parent="Armature/Skeleton3D" index="40"]
+visible = false
+
+[node name="hair_14" parent="Armature/Skeleton3D" index="41"]
+visible = false
+
+[node name="hair_15" parent="Armature/Skeleton3D" index="42"]
+visible = false
+
+[node name="hair_16" parent="Armature/Skeleton3D" index="43"]
+visible = false
+
+[node name="hair_17" parent="Armature/Skeleton3D" index="44"]
+visible = false
+
+[node name="hair_18" parent="Armature/Skeleton3D" index="45"]
+visible = false
+
+[node name="hair_19" parent="Armature/Skeleton3D" index="46"]
+visible = false
+
+[node name="hat_0" parent="Armature/Skeleton3D" index="47"]
+visible = false
+
+[node name="hat_1" parent="Armature/Skeleton3D" index="48"]
+visible = false
+
+[node name="hat_2" parent="Armature/Skeleton3D" index="49"]
+visible = false
+
+[node name="hat_3" parent="Armature/Skeleton3D" index="50"]
+visible = false
+
+[node name="hat_4" parent="Armature/Skeleton3D" index="51"]
+visible = false
+
+[node name="hat_5" parent="Armature/Skeleton3D" index="52"]
+visible = false
+
+[node name="mask_1" parent="Armature/Skeleton3D" index="53"]
+visible = false
+
+[node name="mask_2" parent="Armature/Skeleton3D" index="54"]
+visible = false
+
+[node name="necklace_01" parent="Armature/Skeleton3D" index="55"]
+visible = false
+
+[node name="shoes_0" parent="Armature/Skeleton3D" index="56"]
+visible = false
+
+[node name="shoes_1" parent="Armature/Skeleton3D" index="57"]
+visible = false
+
+[node name="shoulder_guards" parent="Armature/Skeleton3D" index="58"]
+visible = false
+
+[node name="top_01" parent="Armature/Skeleton3D" index="59"]
+visible = false
+
+[node name="top_02" parent="Armature/Skeleton3D" index="60"]
+visible = false
+
+[node name="top_03" parent="Armature/Skeleton3D" index="61"]
+visible = false
+
+[node name="top_04" parent="Armature/Skeleton3D" index="62"]
+visible = false
+
+[node name="top_05" parent="Armature/Skeleton3D" index="63"]
+visible = false
+
+[node name="top_armor" parent="Armature/Skeleton3D" index="64"]
+visible = false
+
+[node name="under_bot_1" parent="Armature/Skeleton3D" index="66"]
+visible = false
+
+[node name="WiggleBone_chest_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="68"]
+transform = Transform3D(0.271969, -0.387521, -0.880829, -0.880829, -0.468853, -0.0656964, -0.387521, 0.793727, -0.468854, 2.7481e-07, 2.53983, 2.38419e-07)
+bone_name = "chest_r"
+bone_idx = 18
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_ccy5p")
+
+[node name="WiggleBone_chest_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="69"]
+transform = Transform3D(0.271969, 0.387521, 0.880829, 0.880829, -0.468854, -0.0656963, 0.387521, 0.793727, -0.468854, 3.07881e-07, 2.53983, 3.27826e-07)
+bone_name = "chest_l"
+bone_idx = 14
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_jrklb")
+
+[node name="WiggleBone_hair_0" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="70"]
+transform = Transform3D(1, -6.27441e-08, -3.43397e-07, -1.11298e-08, -0.988945, 0.148286, -3.48904e-07, -0.148286, -0.988949, 2.38719e-07, 3.66146, -0.758391)
+bone_name = "hair_0"
+bone_idx = 4
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_jygah")
+
+[node name="WiggleBone_hair_1" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="71"]
+transform = Transform3D(1, -2.43247e-08, 1.23824e-07, -2.07528e-08, -0.999586, -0.0287656, 1.24472e-07, 0.0287655, -0.99959, 1.59263e-07, 2.40911, -0.946172)
+bone_name = "hair_1"
+bone_idx = 5
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_jygah")
+
+[node name="WiggleBone_hair_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="72"]
+transform = Transform3D(0.997491, 0.0340169, 0.0620926, 0.0404646, -0.993572, -0.105728, 0.0580967, 0.107974, -0.992459, 1.34261e-07, 1.11201, -0.908845)
+bone_name = "hair_2"
+bone_idx = 6
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_jygah")

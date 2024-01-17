@@ -1843,6 +1843,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/fundoshi.tres"
 },
+"hair_0": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/male/materials/hair_0.tres"
+},
 "hair_1": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/hair_1.tres"

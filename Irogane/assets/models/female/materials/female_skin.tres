@@ -1,10 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c14ik2dw0eueq"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b4sfvp66tik6f"]
 
-[ext_resource type="Texture2D" uid="uid://d20vw5shdg6ch" path="res://assets/models/female/female_female_skin.png" id="1_3tlna"]
+[ext_resource type="Texture2D" uid="uid://cbj0ckseolk72" path="res://assets/models/female/textures/female_skin.png" id="1_14fes"]
 
 [resource]
 resource_name = "female_skin"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_3tlna")
+albedo_texture = ExtResource("1_14fes")
+metallic_specular = 0.0
 texture_filter = 2
