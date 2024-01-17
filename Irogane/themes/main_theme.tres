@@ -1,12 +1,16 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bob8i5q8v8mum"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://bob8i5q8v8mum"]
 
 [ext_resource type="FontFile" uid="uid://bdjuw50a266le" path="res://assets/fonts/otsutome/Otsutome.ttf" id="1_hvsot"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="2_lqrex"]
 [ext_resource type="Texture2D" uid="uid://bsanurcnqsi7j" path="res://assets/textures/ui/theme/toggle_checked.png" id="3_dhjd2"]
 [ext_resource type="Texture2D" uid="uid://cjfkf15g2ap44" path="res://assets/textures/ui/theme/toggle_unchecked.png" id="4_towek"]
 [ext_resource type="Texture2D" uid="uid://cy1eoaolfvcek" path="res://assets/textures/ui/theme/slider_button.png" id="5_6q87d"]
+[ext_resource type="Texture2D" uid="uid://bfnxangbb35eu" path="res://assets/textures/ui/theme/focused.png" id="5_mk68f"]
+[ext_resource type="Texture2D" uid="uid://hweb3dypawxd" path="res://assets/textures/ui/theme/square_button_hover.png" id="6_atbfv"]
 [ext_resource type="Texture2D" uid="uid://dqa365215hi43" path="res://assets/textures/ui/theme/slider_button_hover.png" id="6_umkdy"]
+[ext_resource type="Texture2D" uid="uid://g4u5nbk45yfn" path="res://assets/textures/ui/theme/square_button_normal.png" id="7_8p8og"]
 [ext_resource type="Texture2D" uid="uid://b4yim6tybxoo2" path="res://assets/textures/ui/theme/slider_red.png" id="7_p0njs"]
+[ext_resource type="Texture2D" uid="uid://crrshaec0tal6" path="res://assets/textures/ui/theme/square_button_pressed.png" id="8_4eg65"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1idgo"]
 texture = ExtResource("2_lqrex")
@@ -14,6 +18,18 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqlkb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2uobp"]
+texture = ExtResource("5_mk68f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_swahn"]
+texture = ExtResource("6_atbfv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6dli1"]
+texture = ExtResource("7_8p8og")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pd1ym"]
+texture = ExtResource("8_4eg65")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_loj3b"]
 texture = ExtResource("7_p0njs")
@@ -48,6 +64,26 @@ Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hvsot")
 MainMenuButton/base_type = &"Button"
 MainMenuButton/font_sizes/font_size = 50
+RedLabel/base_type = &"Label"
+RedLabel/colors/font_color = Color(0.784314, 0.321569, 0.184314, 1)
+SmallButton/base_type = &"Button"
+SmallButton/colors/font_color = Color(0.784314, 0.321569, 0.184314, 1)
+SmallButton/colors/font_focus_color = Color(0.784314, 0.321569, 0.184314, 1)
+SmallButton/colors/font_hover_color = Color(0.784314, 0.321569, 0.184314, 1)
+SmallButton/colors/font_hover_pressed_color = Color(0.784314, 0.321569, 0.184314, 1)
+SmallButton/colors/font_outline_color = Color(0, 0, 0, 1)
+SmallButton/colors/font_pressed_color = Color(0.784314, 0.321569, 0.184314, 1)
+SmallButton/constants/outline_size = 3
+SmallButton/font_sizes/font_size = 34
+SmallButton/styles/focus = SubResource("StyleBoxTexture_2uobp")
+SmallButton/styles/hover = SubResource("StyleBoxTexture_swahn")
+SmallButton/styles/normal = SubResource("StyleBoxTexture_6dli1")
+SmallButton/styles/pressed = SubResource("StyleBoxTexture_pd1ym")
+SmallButtonLabel/base_type = &"Label"
+SmallButtonLabel/colors/font_color = Color(0.784314, 0.321569, 0.184314, 1)
+SmallButtonLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+SmallButtonLabel/constants/outline_size = 3
+SmallButtonLabel/font_sizes/font_size = 34
 VSlider/icons/grabber = ExtResource("5_6q87d")
 VSlider/icons/grabber_highlight = ExtResource("6_umkdy")
 VSlider/styles/grabber_area = SubResource("StyleBoxTexture_loj3b")
