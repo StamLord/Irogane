@@ -1,9 +1,9 @@
 extends UIWindow
 
 # Nodes
-@onready var character = $"../env/male_model"
+@onready var character = $"../env/human_model"
 @onready var camera = %Camera3D
-@onready var node_to_rotate = $"../env/male_model"
+@onready var node_to_rotate = $"../env/human_model"
 
 # Customization Buttons
 @onready var char_name = %LineEdit
@@ -677,10 +677,12 @@ func _on_shoes_right_arrow_pressed():
 
 func _on_male_button_pressed():
 	current_sex_selection = "male"
+	character.set_male_gender()
 	
 
 func _on_female_button_pressed():
 	current_sex_selection = "female"
+	character.set_female_gender()
 	
 
 func _on_str_spin_box_value_changed(value):

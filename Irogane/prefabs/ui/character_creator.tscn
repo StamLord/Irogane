@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=25 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
 [ext_resource type="Texture2D" uid="uid://c0qqppxuvmsq2" path="res://assets/textures/icons/arrow16.png" id="2_lsn8j"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://c8n86kf50d0gp" path="res://assets/audio/water/Amb__Waterfall_Distant.mp3" id="9_5uw0b"]
 [ext_resource type="PackedScene" uid="uid://c8lpxncjkcjqb" path="res://assets/models/male/scene/male_model.tscn" id="9_kf4vn"]
 [ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="10_sk6vb"]
+[ext_resource type="PackedScene" uid="uid://cqsrjwav14qip" path="res://assets/models/female/scene/female_model.tscn" id="11_qjq4y"]
 
 [sub_resource type="SystemFont" id="SystemFont_diugm"]
 font_names = PackedStringArray("Marcellus SC")
@@ -947,11 +948,16 @@ distance_fade_begin = 44.05
 spot_range = 6.75493
 spot_angle = 29.1564
 
-[node name="male_model" parent="env" instance=ExtResource("9_kf4vn")]
+[node name="human_model" type="Node3D" parent="env"]
 script = ExtResource("10_sk6vb")
 
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="." method="_on_male_button_pressed"]
-[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="." method="_on_female_button_pressed"]
+[node name="male_model" parent="env/human_model" instance=ExtResource("9_kf4vn")]
+
+[node name="female_model" parent="env/human_model" instance=ExtResource("11_qjq4y")]
+visible = false
+
+[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="CharacterCreationUI" method="_on_male_button_pressed"]
+[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="CharacterCreationUI" method="_on_female_button_pressed"]
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer/skin_color_left_arrow" to="CharacterCreationUI" method="_on_skin_color_left_arrow_pressed"]
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer/Skin Color Button" to="CharacterCreationUI" method="_on_skin_color_button_pressed"]
 [connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/AppearanceContainer/VBoxContainer/VBoxContainer/SkinColorHBoxContainer/skin_color_right_arrow" to="CharacterCreationUI" method="_on_skin_color_right_arrow_pressed"]
