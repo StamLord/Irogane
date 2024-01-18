@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqsrjwav14qip"]
+[gd_scene load_steps=8 format=3 uid="uid://cqsrjwav14qip"]
 
 [ext_resource type="PackedScene" uid="uid://bmubqhf331eam" path="res://assets/models/female/female_model.glb" id="1_eothb"]
 [ext_resource type="Script" path="res://addons/wigglebone/wiggle_bone.gd" id="2_g8q1a"]
@@ -25,6 +25,16 @@ max_distance = 0.2
 max_degrees = 10.0
 
 [sub_resource type="Resource" id="Resource_jygah"]
+script = ExtResource("3_2ilsm")
+mode = 0
+stiffness = 0.02
+damping = 0.05
+gravity = Vector3(0, -1, 0)
+length = 1.0
+max_distance = 0.5
+max_degrees = 40.0
+
+[sub_resource type="Resource" id="Resource_eg1b4"]
 script = ExtResource("3_2ilsm")
 mode = 0
 stiffness = 0.02
@@ -231,37 +241,79 @@ visible = false
 [node name="under_bot_1" parent="Armature/Skeleton3D" index="66"]
 visible = false
 
-[node name="WiggleBone_chest_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="68"]
+[node name="wiggle_chest_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="68"]
 transform = Transform3D(0.271969, -0.387521, -0.880829, -0.880829, -0.468853, -0.0656964, -0.387521, 0.793727, -0.468854, 2.7481e-07, 2.53983, 2.38419e-07)
 bone_name = "chest_r"
 bone_idx = 18
 script = ExtResource("2_g8q1a")
 properties = SubResource("Resource_ccy5p")
 
-[node name="WiggleBone_chest_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="69"]
+[node name="wiggle_chest_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="69"]
 transform = Transform3D(0.271969, 0.387521, 0.880829, 0.880829, -0.468854, -0.0656963, 0.387521, 0.793727, -0.468854, 3.07881e-07, 2.53983, 3.27826e-07)
 bone_name = "chest_l"
 bone_idx = 14
 script = ExtResource("2_g8q1a")
 properties = SubResource("Resource_jrklb")
 
-[node name="WiggleBone_hair_0" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="70"]
-transform = Transform3D(1, -6.27441e-08, -3.43397e-07, -1.11298e-08, -0.988945, 0.148286, -3.48904e-07, -0.148286, -0.988949, 2.38719e-07, 3.66146, -0.758391)
+[node name="wiggle_hair_long_0" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="70"]
+transform = Transform3D(1, -2.9214e-08, -3.41696e-07, 2.17595e-08, -0.988952, 0.148235, -3.4225e-07, -0.148234, -0.988956, 2.38719e-07, 3.66146, -0.758391)
 bone_name = "hair_0"
 bone_idx = 4
 script = ExtResource("2_g8q1a")
 properties = SubResource("Resource_jygah")
 
-[node name="WiggleBone_hair_1" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="71"]
-transform = Transform3D(1, -2.43247e-08, 1.23824e-07, -2.07528e-08, -0.999586, -0.0287656, 1.24472e-07, 0.0287655, -0.99959, 1.59263e-07, 2.40911, -0.946172)
+[node name="wiggle_hair_long_1" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="71"]
+transform = Transform3D(1, 1.4183e-07, 1.30132e-07, 1.45563e-07, -0.999575, -0.0291524, 1.25941e-07, 0.0291523, -0.999579, 2.01724e-07, 2.4091, -0.946107)
 bone_name = "hair_1"
 bone_idx = 5
 script = ExtResource("2_g8q1a")
 properties = SubResource("Resource_jygah")
 
-[node name="WiggleBone_hair_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="72"]
-transform = Transform3D(0.997491, 0.0340169, 0.0620926, 0.0404646, -0.993572, -0.105728, 0.0580967, 0.107974, -0.992459, 1.34261e-07, 1.11201, -0.908845)
+[node name="wiggle_hair_long_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="72"]
+transform = Transform3D(0.997492, 0.034017, 0.0620785, 0.0404677, -0.993563, -0.105804, 0.0580796, 0.10805, -0.992452, 3.92329e-07, 1.11202, -0.908279)
 bone_name = "hair_2"
 bone_idx = 6
 script = ExtResource("2_g8q1a")
 properties = SubResource("Resource_jygah")
+
+[node name="wiggle_hair_med_1_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="73"]
+transform = Transform3D(-0.999934, 0.0193996, -1.1419e-06, -0.019402, -0.999812, 5.66224e-05, -4.32342e-08, 5.66339e-05, 1, 0.536415, 4.57338, 0.616809)
+bone_name = "hair_med_1_l"
+bone_idx = 7
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_eg1b4")
+
+[node name="wiggle_hair_med_2_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="74"]
+transform = Transform3D(-0.999934, 0.0193997, -1.13691e-06, -0.019402, -0.999812, 5.64307e-05, -4.19613e-08, 5.64422e-05, 1, 0.530838, 4.57338, -0.258679)
+bone_name = "hair_med_2_l"
+bone_idx = 8
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_eg1b4")
+
+[node name="wiggle_hair_med_1_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="75"]
+transform = Transform3D(-0.999934, -0.0193998, 1.38032e-06, 0.0194021, -0.999812, 5.65756e-05, 2.82537e-07, 5.65918e-05, 1, -0.536414, 4.57338, 0.616809)
+bone_name = "hair_med_1_r"
+bone_idx = 9
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_eg1b4")
+
+[node name="wiggle_hair_med_2_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="76"]
+transform = Transform3D(-0.999934, -0.0193997, 1.37533e-06, 0.0194021, -0.999812, 5.63842e-05, 2.81268e-07, 5.64003e-05, 1, -0.530837, 4.57338, -0.258678)
+bone_name = "hair_med_2_r"
+bone_idx = 10
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_eg1b4")
+
+[node name="wiggle_sleeve_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="77"]
+transform = Transform3D(-0.999695, -5.7444e-06, -0.0246999, -0.000616431, -0.999683, 0.0251817, -0.0246922, 0.0251892, 0.999378, 5.25001, 3.29702, -0.0200072)
+bone_name = "sleeve_l"
+bone_idx = 13
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_eg1b4")
+
+[node name="wiggle_sleeve_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="78"]
+transform = Transform3D(-0.999705, 1.96791e-06, 0.0243031, 0.0006102, -0.999683, 0.0251814, 0.0242955, 0.0251888, 0.999387, -5.25, 3.29702, -0.0200062)
+bone_name = "sleeve_r"
+bone_idx = 17
+script = ExtResource("2_g8q1a")
+properties = SubResource("Resource_eg1b4")
