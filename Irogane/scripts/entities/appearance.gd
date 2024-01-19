@@ -9,8 +9,8 @@ var female_skin_material: StandardMaterial3D = load("res://assets/models/female/
 var female_face_material: ShaderMaterial = load("res://assets/models/female/materials/female_face.tres").duplicate()
 
 # Shared hair material
-const HAIR_MATERIAL_0_PATH = "res://assets/models/male/materials/hair_0.tres"
-const HAIR_MATERIAL_1_PATH = "res://assets/models/male/materials/hair_1.tres"
+const HAIR_MATERIAL_0_PATH = "res://assets/materials/hair/hair_0.tres"
+const HAIR_MATERIAL_1_PATH = "res://assets/materials/hair/hair_1.tres"
 
 var hair_material_0: StandardMaterial3D = load(HAIR_MATERIAL_0_PATH).duplicate()
 var hair_material_1: StandardMaterial3D = load(HAIR_MATERIAL_1_PATH).duplicate()
