@@ -1,10 +1,9 @@
 extends UIWindow
 
 # Nodes
-@onready var character = $"../env/male_model"
+@onready var character = $"../env/human_model"
 @onready var camera = %Camera3D
-@onready var node_to_rotate = $"../env/male_model/rotate_around"
-
+@onready var node_to_rotate = $"../env/human_model"
 
 # Customization Buttons
 @onready var char_name = %LineEdit
@@ -40,14 +39,19 @@ const SKIN_COLOR_PRESETS = [
 	Color(1, 1, 1, 1),
 ]
 
-const HAIR_COLOR_PRESETS = [
-	Color(0.25, 0.25, 0.18, 1),
-	Color(0.6039, 0.2941, 0, 1),
-	Color(0.8118, 0.4667, 0, 1),
-	Color(1, 0.7608, 0, 1),
-	Color(1, 0.2745, 0, 1),
-	Color(0.5882, 0.5882, 0.5882, 1),
-	Color(1, 1, 1, 1),
+@export var hair_color_presets = [
+	Color.html("#404033"),
+	Color.html("#783f04"),
+	Color.html("#ce7600"),
+	Color.html("#ffc200"),
+	Color.html("#ff4500"),
+	Color.html("#979797"),
+	Color.html("#6e4d2d"),
+	Color.html("#ffffff"),
+	Color.html("#5082ca"),
+	Color.html("#8b74ae"),
+	Color.html("#c26691"),
+	Color.html("#5e9a62"),
 ]
 
 
@@ -125,7 +129,7 @@ const HAIR_COLOR_PRESETS = [
 			"g": %GHairLabel,
 			"b": %BHairLabel,
 		},
-		"presets": HAIR_COLOR_PRESETS,
+		"presets": hair_color_presets,
 		"color_setters": ["set_hair_color"],
 	},
 }
@@ -673,10 +677,12 @@ func _on_shoes_right_arrow_pressed():
 
 func _on_male_button_pressed():
 	current_sex_selection = "male"
+	character.set_male_gender()
 	
 
 func _on_female_button_pressed():
 	current_sex_selection = "female"
+	character.set_female_gender()
 	
 
 func _on_str_spin_box_value_changed(value):
