@@ -269,21 +269,18 @@ func set_hair_color(color: Color):
 	current_colors["hair"] = color
 	
 
-# Called from character_creation and should update visible parts
 func set_male_gender():
 	set_gender(GENDER.MALE)
 	hide_all_parts() # Reset appearance first to avoid last selection being visible
 	load_appearance(save_appearance())
 	
 
-# Called from character_creation and should update visible parts
 func set_female_gender():
 	set_gender(GENDER.FEMALE)
 	hide_all_parts() # Reset appearance first to avoid last selection being visible
 	load_appearance(save_appearance())
 	
 
-# MUST NOT update visible parts if called from load_appearance to prevent recursion
 func set_gender(gender : GENDER):
 	current_gender = gender
 	var is_male = (gender == GENDER.MALE)
