@@ -9,7 +9,11 @@ var female_skin_material: StandardMaterial3D = load("res://assets/models/female/
 var female_face_material: ShaderMaterial = load("res://assets/models/female/materials/female_face.tres").duplicate()
 
 # Shared hair material
-var hair_material: StandardMaterial3D = load("res://assets/models/male/materials/hair_1.tres").duplicate()
+const HAIR_MATERIAL_0_PATH = "res://assets/models/male/materials/hair_0.tres"
+const HAIR_MATERIAL_1_PATH = "res://assets/models/male/materials/hair_1.tres"
+
+var hair_material_0: StandardMaterial3D = load(HAIR_MATERIAL_0_PATH).duplicate()
+var hair_material_1: StandardMaterial3D = load(HAIR_MATERIAL_1_PATH).duplicate()
 
 @onready var male_model = $male_model
 @onready var female_model = $female_model
@@ -72,10 +76,27 @@ func init_parts_on_model(model_node, parts_dict, skin_material, face_material):
 		
 		# Set duplicate materials
 		if part_name in ["hair", "bangs", "facial"]:
-			child.set_surface_override_material(0, hair_material)
+			if child is MeshInstance3D and child.mesh != null:
+				var material_0 = child.mesh.surface_get_material(0)
+				var material_1 = child.mesh.surface_get_material(1)
+				if material_0 != null:
+					child.set_surface_override_material(0, get_duplicate_material(material_0))
+				if material_1 != null:
+					child.set_surface_override_material(1, get_duplicate_material(material_1))
 		elif part_name in ["body"]:
 			child.set_surface_override_material(0, skin_material)
 			child.set_surface_override_material(1, face_material)
+	
+
+func get_duplicate_material(material : Material):
+	var path = material.get_path()
+	if path == HAIR_MATERIAL_0_PATH:
+		return hair_material_0
+	elif path == HAIR_MATERIAL_1_PATH:
+		return hair_material_1
+	
+	# Default
+	return hair_material_0
 	
 
 func mask_parts(parts_to_mask, mask: bool):
@@ -243,34 +264,33 @@ func set_skin_color(color: Color):
 	
 
 func set_hair_color(color: Color):
-	hair_material.albedo_color = color
+	hair_material_0.albedo_color = color
+	hair_material_1.albedo_color = color
 	current_colors["hair"] = color
 	
 
 # Called from character_creation and should update visible parts
 func set_male_gender():
-	set_gender(GENDER.MALE, true)
+	set_gender(GENDER.MALE)
+	hide_all_parts() # Reset appearance first to avoid last selection being visible
+	load_appearance(save_appearance())
 	
 
 # Called from character_creation and should update visible parts
 func set_female_gender():
-	set_gender(GENDER.FEMALE, true)
+	set_gender(GENDER.FEMALE)
+	hide_all_parts() # Reset appearance first to avoid last selection being visible
+	load_appearance(save_appearance())
 	
 
 # MUST NOT update visible parts if called from load_appearance to prevent recursion
-func set_gender(gender : GENDER, should_update_parts = false):
+func set_gender(gender : GENDER):
 	current_gender = gender
-	
 	var is_male = (gender == GENDER.MALE)
 	
 	# Display relevant model
 	male_model.visible = is_male
 	female_model.visible = not is_male
-	
-	# Update parts on new model if needed
-	if should_update_parts:
-		hide_all_parts() # Reset appearance first to avoid last selection being visible
-		load_appearance(save_appearance())
 	
 
 func save_appearance():
