@@ -39,7 +39,7 @@
 [ext_resource type="Script" path="res://scripts/ui/slider_audio.gd" id="21_ph74t"]
 [ext_resource type="Texture2D" uid="uid://c78d44s1om6wv" path="res://assets/textures/ui/theme/next_button_highlight.png" id="26_knr0y"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="27_qsw0s"]
-[ext_resource type="Script" path="res://prefabs/ui/attributes_ui.gd" id="30_hhs6y"]
+[ext_resource type="Script" path="res://scripts/ui/char_creation/attributes_ui.gd" id="31_ekaxc"]
 [ext_resource type="AudioStream" uid="uid://5wluh3usi0w" path="res://assets/audio/ui/slow_brush_1.ogg" id="34_2wqo7"]
 [ext_resource type="Texture2D" uid="uid://dnp0eovqbqf80" path="res://assets/textures/ui/theme/cc_attributes_window.png" id="34_5mpxc"]
 [ext_resource type="Texture2D" uid="uid://cefkn38oia5a7" path="res://assets/textures/ui/theme/cc_tooltip_window.png" id="34_87qom"]
@@ -1091,7 +1091,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("30_hhs6y")
+script = ExtResource("31_ekaxc")
 
 [node name="attributes_bg" type="TextureRect" parent="attributes_UI"]
 layout_mode = 1
