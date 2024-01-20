@@ -1706,6 +1706,7 @@ spot_range = 6.75493
 spot_angle = 29.1564
 
 [node name="human_model" type="Node3D" parent="env"]
+unique_name_in_owner = true
 script = ExtResource("10_sk6vb")
 
 [node name="male_model" parent="env/human_model" instance=ExtResource("9_kf4vn")]

@@ -2,7 +2,7 @@ extends Panel
 
 @onready var camera = %Camera3D
 @onready var reset_camera_button = %ResetCamera
-@onready var node_to_rotate = %rotate_around
+@onready var node_to_rotate = %human_model #%rotate_around
 
 # Camera and character movement logic
 var default_camera_position = Vector3(0, 1.8, 2)

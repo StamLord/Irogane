@@ -294,126 +294,126 @@ visible = false
 visible = false
 
 [node name="wiggle_hair_long_1" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="67"]
-transform = Transform3D(0.999441, -0.00550939, -0.0329628, -0.000590897, -0.989077, 0.147399, -0.0334147, -0.147297, -0.98853, -0.00388886, 0.525915, -0.155694)
+transform = Transform3D(0.999439, -0.00824635, -0.0324548, -0.000156367, -0.970342, 0.241737, -0.0334856, -0.241596, -0.969801, -0.00413073, 0.525662, -0.154436)
 bone_name = "hair_long_1"
 bone_idx = 4
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_alcap")
 
 [node name="wiggle_hair_long_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="68"]
-transform = Transform3D(0.999437, -0.00341438, -0.0333821, -0.00333734, -0.999992, 0.00236328, -0.0333898, -0.00225053, -0.999442, -0.00500385, 0.325745, -0.185504)
+transform = Transform3D(0.999439, -0.00268806, -0.0333782, -0.000156349, -0.997137, 0.0756221, -0.0334859, -0.0755735, -0.99658, -0.00579964, 0.329284, -0.20333)
 bone_name = "hair_long_2"
 bone_idx = 5
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_long_3" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="69"]
-transform = Transform3D(0.999415, 0.00616377, -0.0336464, 0.00272864, -0.994862, -0.101201, -0.0340973, 0.10105, -0.994299, -0.00564596, 0.137688, -0.185927)
+transform = Transform3D(0.999439, 0.00177457, -0.033439, -0.000156367, -0.998337, -0.0576532, -0.0334856, 0.0576273, -0.997779, -0.00630515, 0.141763, -0.217542)
 bone_name = "hair_long_3"
 bone_idx = 6
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_med_bun_1" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="70"]
-transform = Transform3D(0.999421, -0.0324102, -0.0102922, -0.000708584, -0.322447, 0.946587, -0.0339978, -0.946032, -0.322283, -0.00134009, 0.74246, -0.0841565)
+transform = Transform3D(0.999439, -0.031376, 0.0116983, -0.000156143, 0.344979, 0.93861, -0.0334855, -0.938086, 0.344781, -0.00172456, 0.74245, -0.0836315)
 bone_name = "hair_med_bun_1"
 bone_idx = 11
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_med_bun_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="71"]
-transform = Transform3D(0.999418, 0.00415445, -0.0338427, -0.000152693, -0.991994, -0.126284, -0.0340964, 0.126216, -0.991416, -0.00528201, 0.703242, -0.199219)
+transform = Transform3D(0.999439, -0.0149012, -0.029988, -0.000156262, -0.897598, 0.440814, -0.0334858, -0.440562, -0.897097, -0.0055407, 0.784408, -0.197727)
 bone_name = "hair_med_bun_2"
 bone_idx = 12
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_med_bun_3" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="72"]
-transform = Transform3D(0.999473, 0.00704344, -0.0316703, -0.00400516, -0.941898, -0.335874, -0.0321959, 0.335825, -0.941374, -0.00478494, 0.584551, -0.184117)
+transform = Transform3D(0.999439, -0.000449324, -0.0334832, -0.000156365, -0.999962, 0.0087513, -0.0334859, -0.00874108, -0.999401, -0.00732363, 0.677011, -0.25044)
 bone_name = "hair_med_bun_3"
 bone_idx = 13
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_long_bun_1" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="73"]
-transform = Transform3D(0.999421, -0.0325576, -0.00986387, -0.000699546, -0.309559, 0.95088, -0.0340118, -0.950323, -0.309402, -0.00134009, 0.74246, -0.0841565)
+transform = Transform3D(0.999439, -0.0311687, 0.01224, -0.000156145, 0.361186, 0.932494, -0.0334855, -0.931973, 0.360979, -0.00172456, 0.74245, -0.0836315)
 bone_name = "hair_long_bun_1"
 bone_idx = 14
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_long_bun_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="74"]
-transform = Transform3D(0.999418, 0.00409123, -0.0338548, -0.000196869, -0.992069, -0.125699, -0.0341006, 0.125633, -0.99149, -0.00625371, 0.695741, -0.22758)
+transform = Transform3D(0.999439, -0.0150496, -0.0299138, -0.000156261, -0.895404, 0.445256, -0.0334858, -0.445001, -0.894904, -0.00642857, 0.79696, -0.224286)
 bone_name = "hair_long_bun_2"
 bone_idx = 15
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_long_bun_3" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="75"]
-transform = Transform3D(0.999465, 0.00413975, -0.0324342, -0.00474317, -0.963104, -0.269088, -0.0323514, 0.269098, -0.962569, -0.00551512, 0.516643, -0.2049)
+transform = Transform3D(0.999439, -0.00433434, -0.0332045, -0.000156337, -0.992181, 0.124808, -0.0334859, -0.124733, -0.991626, -0.00914548, 0.635313, -0.304622)
 bone_name = "hair_long_bun_3"
 bone_idx = 16
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_long_bun_4" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="76"]
-transform = Transform3D(0.999407, -0.0181405, -0.0292669, -0.0259263, -0.95579, -0.292904, -0.0226595, 0.293489, -0.955694, -0.00466326, 0.318459, -0.149525)
+transform = Transform3D(0.999439, 0.00527305, -0.0330685, -0.000156406, -0.986778, -0.162078, -0.0334859, 0.161992, -0.986224, -0.0100374, 0.431145, -0.330289)
 bone_name = "hair_long_bun_4"
 bone_idx = 17
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_med_1_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="77"]
-transform = Transform3D(0.997938, 0.044695, 0.0451498, 0.0427004, -0.998111, 0.0441777, 0.0470371, -0.0421605, -0.998002, 0.0775449, 0.651471, 0.062984)
+transform = Transform3D(0.996175, 0.0753812, 0.0432476, 0.0721945, -0.994862, 0.0709759, 0.0483737, -0.067585, -0.996539, 0.0772285, 0.652013, 0.0638123)
 bone_name = "hair_med_1_l"
 bone_idx = 8
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_med_2_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="78"]
-transform = Transform3D(0.991188, 0.0838318, 0.102583, 0.069673, -0.988451, 0.134573, 0.11268, -0.12624, -0.985582, 0.064258, 0.663108, -0.0492407)
+transform = Transform3D(0.98589, 0.139681, 0.0922736, 0.116612, -0.968475, 0.220131, 0.120113, -0.206264, -0.971099, 0.0639286, 0.663261, -0.0484505)
 bone_name = "hair_med_2_l"
 bone_idx = 7
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_med_1_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="79"]
-transform = Transform3D(0.992511, -0.0486146, -0.111692, -0.0439016, -0.998055, 0.0442598, -0.113622, -0.0390266, -0.992756, -0.0703437, 0.651577, 0.0679321)
+transform = Transform3D(0.99068, -0.0800468, -0.10983, -0.0725053, -0.994837, 0.0709997, -0.114942, -0.0623774, -0.99141, -0.0706599, 0.652036, 0.0687672)
 bone_name = "hair_med_1_r"
 bone_idx = 19
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_med_2_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="80"]
-transform = Transform3D(0.981353, -0.093306, -0.16803, -0.0709024, -0.988343, 0.134723, -0.178642, -0.120298, -0.976529, -0.0645712, 0.663201, -0.0449303)
+transform = Transform3D(0.975599, -0.153477, -0.156991, -0.116919, -0.968429, 0.220169, -0.185825, -0.196443, -0.962743, -0.0649004, 0.663281, -0.0441342)
 bone_name = "hair_med_2_r"
 bone_idx = 18
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_short_bun_1" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="81"]
-transform = Transform3D(0.999416, -0.0338192, -0.00490515, -0.000569239, -0.159994, 0.987118, -0.0341683, -0.986539, -0.15992, -0.00134008, 0.74246, -0.0841565)
+transform = Transform3D(0.999439, -0.0283626, 0.017801, -0.000156367, 0.527635, 0.849472, -0.0334856, -0.848998, 0.527335, -0.00172456, 0.74245, -0.0836315)
 bone_name = "hair_short_bun_1"
 bone_idx = 9
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_hair_short_bun_2" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="82"]
-transform = Transform3D(0.999353, 0.0160335, -0.0321931, 0.00236691, -0.922508, -0.385971, -0.0358868, 0.385645, -0.921949, -0.00420334, 0.728914, -0.16768)
+transform = Transform3D(0.999439, -0.00192898, -0.0334302, -0.00015638, -0.998598, 0.0529456, -0.0334854, -0.0529106, -0.998038, -0.00412584, 0.787121, -0.155511)
 bone_name = "hair_short_bun_2"
 bone_idx = 10
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_sleeve_l" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="83"]
-transform = Transform3D(-0.670595, -0.685666, -0.283133, 0.662666, -0.725242, 0.186812, -0.333431, -0.0623472, 0.940711, 0.448671, -0.134151, 0.0498569)
+transform = Transform3D(-0.288693, -0.940847, -0.177383, 0.911037, -0.326919, 0.25127, -0.294397, -0.0890624, 0.951524, 0.448656, -0.134968, 0.0497936)
 bone_name = "sleeve_l"
 bone_idx = 22
 script = ExtResource("2_482ea")
 properties = SubResource("Resource_aafn1")
 
 [node name="wiggle_sleeve_r" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="84"]
-transform = Transform3D(-0.660175, 0.713726, 0.234016, -0.65059, -0.699064, 0.296719, 0.375368, 0.0436377, 0.925848, -0.421965, -0.141816, 0.00607437)
+transform = Transform3D(-0.271069, 0.960788, 0.0583759, -0.877102, -0.27153, 0.396187, 0.396503, 0.0561923, 0.916312, -0.421862, -0.142648, 0.00606986)
 bone_name = "sleeve_r"
 bone_idx = 25
 script = ExtResource("2_482ea")
