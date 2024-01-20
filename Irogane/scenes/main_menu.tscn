@@ -169,7 +169,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("12_m3ie3")
+focus_sound = ExtResource("12_m3ie3")
 
 [node name="load_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
 custom_minimum_size = Vector2(400, 80)
@@ -183,7 +183,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("12_m3ie3")
+focus_sound = ExtResource("12_m3ie3")
 
 [node name="settings_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
 custom_minimum_size = Vector2(400, 80)
@@ -197,7 +197,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("12_m3ie3")
+focus_sound = ExtResource("12_m3ie3")
 
 [node name="quit_button" type="Button" parent="VBoxContainer/bottom/menu_container" node_paths=PackedStringArray("audio_player")]
 custom_minimum_size = Vector2(400, 80)
@@ -211,7 +211,7 @@ flat = true
 alignment = 0
 script = ExtResource("7_snhy3")
 audio_player = NodePath("../../../../sounds")
-button_sound = ExtResource("12_m3ie3")
+focus_sound = ExtResource("12_m3ie3")
 
 [node name="game_load_window" parent="." instance=ExtResource("2_ifvaf")]
 visible = false

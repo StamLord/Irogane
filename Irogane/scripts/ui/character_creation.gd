@@ -1,8 +1,12 @@
 extends Control
 
-var current_ui_screen_index = 0
 @onready var ui_screens = [$appearance_UI, $attributes_UI]
 
+var current_ui_screen_index = 0
+var char_name = null
+var char_sex = null
+var appearance_data = null
+var attributes_data = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -23,11 +27,10 @@ func prev_ui_screen():
 
 func next_ui_screen():
 	if current_ui_screen_index == ui_screens.size() - 1:
-		pass #max screen
+		start_new_game()
 	
 	var curr_ui_screen
 	
-
 	curr_ui_screen = ui_screens[current_ui_screen_index]
 	
 	curr_ui_screen.visible = false
@@ -41,4 +44,24 @@ func next_ui_screen():
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
 		prev_ui_screen()
+	
+
+func load_appearance(data):
+	char_sex = data.sex
+	appearance_data = data.appearance
+	
+
+func load_attributes(data):
+	attributes_data = data
+	
+
+func start_new_game():
+	var char_dict = {
+		"name": char_name,
+		"sex": char_sex,
+		"appearance" : appearance_data,
+		"attributes": attributes_data,
+	}
+	SceneManager.goto_scene("res://scenes/main.tscn")
+	PlayerEntity.load_player_data(char_dict)
 	

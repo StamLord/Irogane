@@ -24,33 +24,40 @@ extends Control
 @onready var wis_inc = %wis_inc
 @onready var wis_dec = %wis_dec
 
+@onready var info_text = %info_text
+
 # Data
 @onready var ATTRIBUTES = {
 	"strength": {
+		"info": "STR",
 		"points_label": %str_points,
-		"label": %str_label,
+		"label": %str_button,
 		"default": 1,
 	},
 	"agility": {
+		"info": "aGI",
 		"points_label": %agi_points,
-		"label": %agi_label,
+		"label": %agi_button,
 		"default": 1,
 	},
 	"dexterity": {
+		"info": "Dexterity is your ability to perform with precision in combat. A higher Dexterity stat improves your chances of landing critical hits, increases damage when using swords and ranged weapons, and speeds up your rate of fire. Invest in Dexterity to enhance your combat finesse and make your attacks more effective.",
 		"points_label": %dex_points,
-		"label": %dex_label,
+		"label": %dex_button,
 		"default": 1,
 	},
 	"wisdom": {
+		"info": "WIS",
 		"points_label": %wis_points,
-		"label": %wis_label,
+		"label": %wis_button,
 		"default": 1,
 	},
 }
  
-var rng = RandomNumberGenerator.new()
-var current_focused_attr = null
 const DEFAULT_AVAILABLE_POINTS = 10
+var rng = RandomNumberGenerator.new()
+
+var current_focused_attr = null
 
 var current_available_points = DEFAULT_AVAILABLE_POINTS
 var current_attribute_allocation = {}
@@ -58,6 +65,7 @@ var current_attribute_allocation = {}
 
 func _ready():
 	reset_attributes()
+	ATTRIBUTES.strength.label.grab_focus()
 	
 
 func reset_attributes():
@@ -71,31 +79,19 @@ func reset_attributes():
 	avail_points.text = str(current_available_points)
 	
 
-func focus_attr(attr_name: String):
-	var attr = ATTRIBUTES[attr_name]
+@onready var inc_buttons = [str_inc, agi_inc, dex_inc, wis_inc]
 
-	if current_focused_attr == attr:
-		return
-		
-	audio_player.play(focus_sound)
-	unfocus_current_attr()
-	current_focused_attr = attr
-	attr.label.add_theme_stylebox_override("normal", focus_texture)
-	attr.label.add_theme_color_override("font_color", Color.WHITE)
-	attr.points_label.add_theme_color_override("font_color", Color.WHITE)
+func hide_all_inc_attr_buttons():
+	for button in inc_buttons:
+		button.disabled = true
 	
 
-func unfocus_current_attr():
-	if current_focused_attr:
-		var attr = current_focused_attr
-		attr.label.remove_theme_stylebox_override("normal")
-		attr.label.remove_theme_color_override("font_color")
-		attr.points_label.remove_theme_color_override("font_color")
-		current_focused_attr = null
+func show_all_inc_attr_buttons():
+	for button in inc_buttons:
+		button.disabled = false
 	
 
 func increase_attribute_if_possible(attr_name: String):
-	focus_attr(attr_name)
 	if current_available_points < 1:
 		return
 	
@@ -105,11 +101,16 @@ func increase_attribute_if_possible(attr_name: String):
 	current_attribute_allocation[attr_name] += 1
 	attr.points_label.text = str(current_attribute_allocation[attr_name])
 	
+	if current_available_points == 0:
+		hide_all_inc_attr_buttons()
+	
 
 func decrease_attribute_if_possible(attr_name: String):
-	focus_attr(attr_name)
 	if current_attribute_allocation[attr_name] < 1:
 		return
+	
+	if current_available_points == 0:
+		show_all_inc_attr_buttons()
 	
 	var attr = ATTRIBUTES[attr_name]
 	current_available_points += 1
@@ -138,7 +139,7 @@ func _on_attr_randomize_button_pressed():
 	
 			attr_names.remove_at(index)
 	
-	unfocus_current_attr()
+	hide_all_inc_attr_buttons()
 	
 
 func _on_attr_randomize_button_gui_input(event):
@@ -148,9 +149,8 @@ func _on_attr_randomize_button_gui_input(event):
 
 func _on_attr_reset_button_pressed():
 	audio_player.play(click_bamboo)
-	unfocus_current_attr()
 	reset_attributes()
-	
+	show_all_inc_attr_buttons()
 
 func _on_attr_reset_button_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -158,85 +158,155 @@ func _on_attr_reset_button_gui_input(event):
 	
 
 func _on_str_inc_pressed():
+	ATTRIBUTES.strength.label.grab_focus()
 	increase_attribute_if_possible("strength")
 	audio_player.play(click_bamboo)
 	
 
-func _on_str_inc_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		str_inc.release_focus()
-	
-
 func _on_str_dec_pressed():
+	ATTRIBUTES.strength.label.grab_focus()
 	decrease_attribute_if_possible("strength")
 	audio_player.play(click_bamboo)
 	
 
-func _on_str_dec_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		str_dec.release_focus()
-	
-
 func _on_agi_dec_pressed():
+	ATTRIBUTES.agility.label.grab_focus()
 	decrease_attribute_if_possible("agility")
 	audio_player.play(click_bamboo)
 	
 
-func _on_agi_dec_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		agi_dec.release_focus()
-	
-
 func _on_agi_inc_pressed():
+	ATTRIBUTES.agility.label.grab_focus()
 	increase_attribute_if_possible("agility")
 	audio_player.play(click_bamboo)
 	
 
-func _on_agi_inc_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		agi_inc.release_focus()
-	
-
 func _on_dex_dec_pressed():
+	ATTRIBUTES.dexterity.label.grab_focus()
 	decrease_attribute_if_possible("dexterity")
 	audio_player.play(click_bamboo)
 	
 
-func _on_dex_dec_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		dex_dec.release_focus()
-	
-
 func _on_dex_inc_pressed():
+	ATTRIBUTES.dexterity.label.grab_focus()
 	increase_attribute_if_possible("dexterity")
 	audio_player.play(click_bamboo)
 	
 
-func _on_dex_inc_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		dex_inc.release_focus()
-	
-
 func _on_wis_dec_pressed():
+	ATTRIBUTES.wisdom.label.grab_focus()
 	decrease_attribute_if_possible("wisdom")
 	audio_player.play(click_bamboo)
 	
 
-func _on_wis_dec_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		wis_dec.release_focus()
-	
-
 func _on_wis_inc_pressed():
+	ATTRIBUTES.wisdom.label.grab_focus()
 	increase_attribute_if_possible("wisdom")
 	audio_player.play(click_bamboo)
 	
 
-func _on_wis_inc_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		wis_inc.release_focus()
+func _on_attr_next_button_pressed():
+	var attr_data = {
+		"strength": { 
+			"value": current_attribute_allocation.strength,
+			"modifier_dict": {},
+		},
+		"agility": { 
+			"value": current_attribute_allocation.agility,
+			"modifier_dict": {},
+		},
+		"dexterity": { 
+			"value": current_attribute_allocation.dexterity,
+			"modifier_dict": {},
+		},
+		"wisdom": { 
+			"value": current_attribute_allocation.wisdom,
+			"modifier_dict": {},
+		},
+		"attr_points": current_available_points, 
+	}
+	owner.load_attributes(attr_data)
+	owner.next_ui_screen()
 	
 
+func _on_attr_back_button_pressed():
+	owner.prev_ui_screen()
+	
 
-func _on_str_label_focus_entered():
-	focus_attr("strength")
+func manage_gui_input(event, forward_func: Callable, backwards_func: Callable):
+	if event.is_action_pressed("arrow_right"):
+		audio_player.play(click_bamboo)
+		forward_func.call()
+		
+	elif event.is_action_pressed("arrow_left"):
+		audio_player.play(click_bamboo)
+		backwards_func.call()
+	
+
+func _on_str_button_gui_input(event):
+	manage_gui_input(event, increase_attribute_if_possible.bind("strength"), decrease_attribute_if_possible.bind("strength"))
+	
+
+func _on_agi_button_gui_input(event):
+	manage_gui_input(event, increase_attribute_if_possible.bind("agility"), decrease_attribute_if_possible.bind("agility"))
+	
+
+func _on_dex_button_gui_input(event):
+	manage_gui_input(event, increase_attribute_if_possible.bind("dexterity"), decrease_attribute_if_possible.bind("dexterity"))
+	
+
+func _on_wis_button_gui_input(event):
+	manage_gui_input(event, increase_attribute_if_possible.bind("wisdom"), decrease_attribute_if_possible.bind("wisdom"))
+	
+
+func _on_str_h_box_container_mouse_entered():
+	ATTRIBUTES.strength.label.grab_focus()
+	
+
+func _on_agi_h_box_container_mouse_entered():
+	ATTRIBUTES.agility.label.grab_focus()
+	
+
+func _on_dex_h_box_container_mouse_entered():
+	ATTRIBUTES.dexterity.label.grab_focus()
+	
+
+func _on_wis_h_box_container_mouse_entered():
+	ATTRIBUTES.wisdom.label.grab_focus()
+	
+
+func _on_str_button_focus_entered():
+	ATTRIBUTES.strength.points_label.add_theme_color_override("font_color", Color.WHITE)
+	info_text.bbcode_text = ATTRIBUTES.strength.info
+	
+
+func _on_str_button_focus_exited():
+	ATTRIBUTES.strength.points_label.remove_theme_color_override("font_color")
+	
+
+func _on_agi_button_focus_entered():
+	ATTRIBUTES.agility.points_label.add_theme_color_override("font_color", Color.WHITE)
+	info_text.bbcode_text = ATTRIBUTES.agility.info
+	
+
+func _on_agi_button_focus_exited():
+	ATTRIBUTES.agility.points_label.remove_theme_color_override("font_color")
+	
+
+func _on_dex_button_focus_entered():
+	ATTRIBUTES.dexterity.points_label.add_theme_color_override("font_color", Color.WHITE)
+	info_text.bbcode_text = ATTRIBUTES.dexterity.info
+	
+
+func _on_dex_button_focus_exited():
+	ATTRIBUTES.dexterity.points_label.remove_theme_color_override("font_color")
+	
+
+func _on_wis_button_focus_entered():
+	ATTRIBUTES.wisdom.points_label.add_theme_color_override("font_color", Color.WHITE)
+	info_text.bbcode_text = ATTRIBUTES.wisdom.info
+	
+
+func _on_wis_button_focus_exited():
+	ATTRIBUTES.wisdom.points_label.remove_theme_color_override("font_color")
+	

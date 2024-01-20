@@ -57,11 +57,10 @@ func load_player_data(player_data):
 	initial_scene_position = Vector3.ZERO
 	
 	player_node.get_node(model_node_path).load_appearance(player_data.appearance)
-	player_node.stats.load_data(player_data.stats)
+	player_node.stats.load_data(player_data.attributes)
 	
 	player_name = player_data.name
 	sex = player_data.sex
-	
 
 func get_sex():
 	return sex

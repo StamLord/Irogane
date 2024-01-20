@@ -43,7 +43,7 @@ texture_margin_top = 226.0
 [resource]
 default_font = ExtResource("1_hvsot")
 BlackLabel/base_type = &"Label"
-BlackLabel/colors/font_color = Color(0, 0, 0, 1)
+BlackLabel/colors/font_color = Color(0.145098, 0.137255, 0.121569, 1)
 Button/colors/font_color = Color(0.145098, 0.137255, 0.121569, 1)
 Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("1_hvsot")
@@ -66,6 +66,7 @@ MainMenuButton/base_type = &"Button"
 MainMenuButton/font_sizes/font_size = 50
 RedLabel/base_type = &"Label"
 RedLabel/colors/font_color = Color(0.784314, 0.321569, 0.184314, 1)
+RichTextLabel/font_sizes/normal_font_size = 24
 SmallButton/base_type = &"Button"
 SmallButton/colors/font_color = Color(0.784314, 0.321569, 0.184314, 1)
 SmallButton/colors/font_focus_color = Color(0.784314, 0.321569, 0.184314, 1)

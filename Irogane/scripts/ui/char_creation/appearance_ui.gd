@@ -722,6 +722,11 @@ func _on_facial_lock_pressed():
 	
 
 func _on_next_button_pressed():
+	var char_data = {
+		"sex": current_sex_selection,
+		"appearance" : character.save_appearance(),
+	}
+	owner.load_appearance(char_data)
 	owner.next_ui_screen()
 	
 
@@ -746,7 +751,6 @@ func _on_custom_hair_color_button_focus_entered():
 func _on_custom_hair_color_button_focus_exited():
 	custom_hair_color_focus.visible = false
 	
-
 
 func _on_custom_skin_color_button_focus_entered():
 	custom_skin_color_focus.visible = true
