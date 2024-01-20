@@ -1,7 +1,7 @@
 [gd_scene load_steps=82 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
-[ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_sa5v5"]
+[ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
 [ext_resource type="Texture2D" uid="uid://dywdpw61h3qlr" path="res://assets/textures/ui/theme/camera_reset_normal.png" id="2_a30yf"]
 [ext_resource type="Texture2D" uid="uid://c8nh68kltucwj" path="res://assets/textures/ui/theme/camera_reset_pressed.png" id="3_ia28h"]
 [ext_resource type="Theme" uid="uid://bob8i5q8v8mum" path="res://themes/main_theme.tres" id="4_c8e2i"]
@@ -263,7 +263,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sa5v5")
+script = ExtResource("1_bindm")
 
 [node name="camera_control_panel" type="Panel" parent="."]
 clip_contents = true
