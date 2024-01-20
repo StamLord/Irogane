@@ -19,11 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://c8n86kf50d0gp" path="res://assets/audio/water/Amb__Waterfall_Distant.mp3" id="9_5uw0b"]
 [ext_resource type="Texture2D" uid="uid://co4j0lytgpewx" path="res://assets/textures/ui/theme/random_normal.png" id="9_6m0pj"]
 [ext_resource type="Texture2D" uid="uid://dt5mqwks847qg" path="res://assets/textures/ui/theme/redo_normal.png" id="9_7778k"]
-[ext_resource type="PackedScene" path="res://assets/models/male/scene/male_model.tscn" id="9_kf4vn"]
 [ext_resource type="Texture2D" uid="uid://bfnxangbb35eu" path="res://assets/textures/ui/theme/focused.png" id="9_kkng3"]
 [ext_resource type="Texture2D" uid="uid://b7j5k22d0v3ts" path="res://assets/textures/ui/theme/random_pressed.png" id="10_2kg7i"]
 [ext_resource type="Texture2D" uid="uid://dbebo28iy7v82" path="res://assets/textures/ui/theme/next_button_normal.png" id="10_ja5oy"]
-[ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="10_sk6vb"]
 [ext_resource type="Texture2D" uid="uid://c3jeooyrn7n5c" path="res://assets/textures/ui/theme/redo_pressed.png" id="10_torot"]
 [ext_resource type="Texture2D" uid="uid://dgmde4d0b4jkl" path="res://assets/textures/ui/theme/redo_hover.png" id="11_ib4a6"]
 [ext_resource type="Texture2D" uid="uid://cpcnl40ncrlmk" path="res://assets/textures/ui/theme/random_hover.png" id="11_qyltp"]
@@ -47,6 +45,13 @@
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="35_ci8l6"]
 [ext_resource type="Texture2D" uid="uid://ty4vbjslb884" path="res://assets/textures/ui/theme/dark_indent.png" id="35_pgwqd"]
 [ext_resource type="Texture2D" uid="uid://bkjgmhfgvjouq" path="res://assets/textures/ui/theme/back_button_highlight.png" id="36_stvtc"]
+[ext_resource type="PackedScene" uid="uid://c8lpxncjkcjqb" path="res://assets/models/male/scene/male_model.tscn" id="9_kf4vn"]
+[ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="10_sk6vb"]
+[ext_resource type="PackedScene" uid="uid://cqsrjwav14qip" path="res://assets/models/female/scene/female_model.tscn" id="11_qjq4y"]
+
+[sub_resource type="SystemFont" id="SystemFont_diugm"]
+font_names = PackedStringArray("Marcellus SC")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
@@ -1681,33 +1686,39 @@ volume_db = -12.0
 autoplay = true
 bus = &"Sound"
 
-[node name="male_model" parent="env" instance=ExtResource("9_kf4vn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
-script = ExtResource("10_sk6vb")
-
-[node name="rotate_around" type="Node3D" parent="env/male_model"]
+[node name="rotate_around" type="Node3D" parent="env"]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="env/male_model/rotate_around"]
+[node name="Camera3D" type="Camera3D" parent="env/rotate_around"]
 unique_name_in_owner = true
 transform = Transform3D(0.951057, 0.0642482, -0.302264, 0, 0.978148, 0.207912, 0.309017, -0.197736, 0.930274, -0.8, 1.575, 2.5)
 current = true
 fov = 55.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="env/male_model/rotate_around"]
+[node name="SpotLight3D" type="SpotLight3D" parent="env/rotate_around"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2, 1.375, 2.5)
 light_energy = 1.5
 distance_fade_begin = 44.05
 spot_range = 6.75493
 spot_angle = 29.1564
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="env/male_model/rotate_around"]
+[node name="SpotLight3D2" type="SpotLight3D" parent="env/rotate_around"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2, 1.375, 2.5)
 light_energy = 1.5
 distance_fade_begin = 44.05
 spot_range = 6.75493
 spot_angle = 29.1564
 
+[node name="human_model" type="Node3D" parent="env"]
+script = ExtResource("10_sk6vb")
+
+[node name="male_model" parent="env/human_model" instance=ExtResource("9_kf4vn")]
+
+[node name="female_model" parent="env/human_model" instance=ExtResource("11_qjq4y")]
+visible = false
+
+[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/MaleButton" to="CharacterCreationUI" method="_on_male_button_pressed"]
+[connection signal="pressed" from="CharacterCreationUI/ScreenMargin/ScreenVBoxContainer/ContentContainer/ContentHBoxContainer/LeftPanel/ScrollContainer/LeftPanelMarginContainer/LeftPanelVBoxContainer/SexContainer/VBoxContainer/HBoxContainer/FemaleButton" to="CharacterCreationUI" method="_on_female_button_pressed"]
 [connection signal="mouse_entered" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_exited"]
 [connection signal="pressed" from="camera_control_panel/ResetCamera" to="camera_control_panel" method="_on_reset_camera_pressed"]

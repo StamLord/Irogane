@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bc2ieqwfpwab5"
-path="res://.godot/imported/male_model.glb-c16701e454628da2ee9624c95b718781.scn"
+uid="uid://bmubqhf331eam"
+path="res://.godot/imported/female_model.glb-40e37a68de3c8ceee809cd55329eaaa2.scn"
 
 [deps]
 
-source_file="res://assets/models/male/male_model.glb"
-dest_files=["res://.godot/imported/male_model.glb-c16701e454628da2ee9624c95b718781.scn"]
+source_file="res://assets/models/female/female_model.glb"
+dest_files=["res://.godot/imported/female_model.glb-40e37a68de3c8ceee809cd55329eaaa2.scn"]
 
 [params]
 
@@ -1839,6 +1839,14 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/beads_0.tres"
 },
+"female_face": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/female/materials/female_face.tres"
+},
+"female_skin": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/female/materials/female_skin.tres"
+},
 "fundoshi": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/fundoshi.tres"
@@ -1855,11 +1863,11 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/hat_0.tres"
 },
-"hat_1": {
+"hat_3": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/hat_1.tres"
 },
-"hat_2": {
+"hat_4": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/hat_2.tres"
 },
@@ -1875,25 +1883,17 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/kimono_2.tres"
 },
-"male_face": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/models/male/materials/male_face.tres"
-},
-"male_skin": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/models/male/materials/male_skin.tres"
-},
 "mask_1": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/mask_1.tres"
 },
-"shoes_1": {
+"sarashi": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/female/materials/sarashi.tres"
+},
+"shoes_0": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/male/materials/shoes_1.tres"
-},
-"shoes_2": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/models/male/materials/shoes_2.tres"
 }
 }
 }

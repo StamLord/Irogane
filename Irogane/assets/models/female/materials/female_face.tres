@@ -1,11 +1,17 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://ekfe085fwyfr"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dd4pb3cchccn0"]
 
-[ext_resource type="Texture2D" uid="uid://bk8vdms4uno5x" path="res://assets/models/female/female_female_faces.png" id="1_oaxsd"]
-[ext_resource type="Shader" uid="uid://nlhmy1w7x8m4" path="res://assets/models/human/face_shader.tres" id="1_wr03l"]
+[ext_resource type="Shader" uid="uid://dsggxq8qirgoe" path="res://assets/materials/human_male/face_shader.tres" id="1_4u2vy"]
+[ext_resource type="Texture2D" uid="uid://bmgyossbwibmr" path="res://assets/models/female/textures/female_eye_mask.png" id="2_1n6kf"]
+[ext_resource type="Texture2D" uid="uid://be40lloup0i04" path="res://assets/models/female/textures/female_faces.png" id="3_ipj7t"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_wr03l")
+shader = ExtResource("1_4u2vy")
 shader_parameter/max_cells = 6
-shader_parameter/face = 8
-shader_parameter/Texture2DParameter = ExtResource("1_oaxsd")
+shader_parameter/face = 0
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/eye_mask = ExtResource("2_1n6kf")
+shader_parameter/face_texture = ExtResource("3_ipj7t")
