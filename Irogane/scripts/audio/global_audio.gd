@@ -9,6 +9,7 @@ func _ready():
 func create_audio_player_if_needed():
 	if not audio_player:
 		audio_player = AudioStreamPlayer2D.new()
+		audio_player.bus = &"Sound"
 		get_tree().root.add_child.call_deferred(audio_player)
 	
 

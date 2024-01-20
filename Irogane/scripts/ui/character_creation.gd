@@ -41,7 +41,7 @@ func next_ui_screen():
 	curr_ui_screen.visible = true
 	
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
 		prev_ui_screen()
 	

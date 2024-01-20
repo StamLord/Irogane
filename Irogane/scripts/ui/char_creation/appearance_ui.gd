@@ -1,7 +1,7 @@
 extends Control
 
 # Nodes
-@onready var character = $"../env/male_model"
+@onready var character = $"../env/human_model"
 
 # Sound
 @onready var audio_player = %AudioPlayer
@@ -58,14 +58,19 @@ const SKIN_COLOR_PRESETS = [
 	Color(1, 1, 1, 1),
 ]
 
-const HAIR_COLOR_PRESETS = [
-	Color(0.25, 0.25, 0.18, 1),
-	Color(0.6039, 0.2941, 0, 1),
-	Color(0.8118, 0.4667, 0, 1),
-	Color(1, 0.7608, 0, 1),
-	Color(1, 0.2745, 0, 1),
-	Color(0.5882, 0.5882, 0.5882, 1),
-	Color(1, 1, 1, 1),
+var HAIR_COLOR_PRESETS = [
+	Color.html("#404033"),
+	Color.html("#783f04"),
+	Color.html("#ce7600"),
+	Color.html("#ffc200"),
+	Color.html("#ff4500"),
+	Color.html("#979797"),
+	Color.html("#6e4d2d"),
+	Color.html("#ffffff"),
+	Color.html("#5082ca"),
+	Color.html("#8b74ae"),
+	Color.html("#c26691"),
+	Color.html("#5e9a62"),
 ]
 
 # Part Configuration
@@ -461,16 +466,23 @@ func _on_bangs_left_arrow_pressed():
 	audio_player.play(press_back_sound)
 	
 
-func select_sex(sex: String):
-	if sex == "male":
-		current_sex_selection = "male"
+func refresh_sex_text():
+	if current_sex_selection == "male":
 		sex_button.text = "MALE"
-	elif sex == "female":
-		current_sex_selection = "female"
+	elif current_sex_selection == "female":
 		sex_button.text = "FEMALE"
 	
 	if sex_button.has_focus():
 		sex_button.text = "< %s >" % sex_button.text
+	
+
+func select_sex(sex: String):
+	if sex == "male":
+		character.set_male_gender()
+	elif sex == "female":
+		character.set_female_gender()
+	
+	refresh_sex_text()
 	
 
 func toggle_sex_selection():
@@ -624,13 +636,13 @@ func _on_sex_lock_pressed():
 
 func _on_sex_button_focus_entered():
 	update_lock_texture(sex_lock, lock_selection["sex"], sex_button.has_focus())
-	select_sex(current_sex_selection)
+	refresh_sex_text()
 	audio_player.play(focus_sound)
 	
 
 func _on_sex_button_focus_exited():
 	update_lock_texture(sex_lock, lock_selection["sex"], sex_button.has_focus())
-	select_sex(current_sex_selection)
+	refresh_sex_text()
 	
 
 func _on_face_lock_pressed():
