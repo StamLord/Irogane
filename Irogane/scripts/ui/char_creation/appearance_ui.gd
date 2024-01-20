@@ -478,8 +478,10 @@ func refresh_sex_text():
 
 func select_sex(sex: String):
 	if sex == "male":
+		current_sex_selection = "male"
 		character.set_male_gender()
 	elif sex == "female":
+		current_sex_selection = "female"
 		character.set_female_gender()
 	
 	refresh_sex_text()
@@ -490,6 +492,8 @@ func toggle_sex_selection():
 		select_sex("female")
 	else:
 		select_sex("male")
+	
+	refresh_sex_text()
 	
 
 func get_current_data():
