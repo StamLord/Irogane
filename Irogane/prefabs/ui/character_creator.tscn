@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=100 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -62,6 +62,7 @@
 [ext_resource type="Texture2D" uid="uid://dhgja55h07pll" path="res://assets/textures/ui/theme/plus_button_hover.png" id="43_xmo2j"]
 [ext_resource type="StyleBox" path="res://assets/textures/ui/theme/attribute_label_texture.tres" id="45_rks1n"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="47_4l45c"]
+[ext_resource type="Script" path="res://prefabs/ui/skill_tree_leaf_ui.gd" id="51_32i56"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -1552,40 +1553,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
-position = Vector2(188.5, 73)
-points = PackedVector2Array(-4, 2, 10.444, 2, 29, 2, 41.3121, 2, 278, 2)
-width = 5.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
-position = Vector2(187.5, 163)
-points = PackedVector2Array(-4, 2, 10.444, 2, 29, 2, 41.3121, 2, 55.67, 2, 137.438, 2, 278, 2)
-width = 5.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Line2D3" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
-points = PackedVector2Array(417.5, 77, 417.5, 164)
-width = 5.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Line2D4" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
-points = PackedVector2Array(182.5, 254, 251.5, 254)
-width = 5.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Line2D5" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
-position = Vector2(0.5, 90)
-points = PackedVector2Array(182.5, 254, 227.896, 254, 251.5, 254)
-width = 5.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Line2D6" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
-position = Vector2(1.5, 182)
-points = PackedVector2Array(182.5, 254, 204.761, 254, 217.975, 254, 227.896, 254, 237.324, 254, 251.5, 254)
-width = 5.0
-default_color = Color(0, 0, 0, 1)
-
 [node name="guard_spin" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
@@ -1606,6 +1573,13 @@ offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
 text = "Whirlwind
 "
+script = ExtResource("51_32i56")
+required_node_paths = [NodePath("../guard_spin")]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/whirlwind"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="slowfall" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -1617,6 +1591,13 @@ offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
 text = "Slow Fall
 "
+script = ExtResource("51_32i56")
+required_node_paths = [NodePath("../whirlwind")]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/slowfall"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="disarm" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -1637,6 +1618,18 @@ offset_right = 586.0
 offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
 text = "Mass Disarm"
+script = ExtResource("51_32i56")
+required_node_paths = [NodePath("../disarm"), NodePath("../whirlwind")]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/mass_disarm"]
+points = PackedVector2Array(0, 25, -264, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/mass_disarm"]
+points = PackedVector2Array(0, 25, -32, 25, -32, -65, -64, -65)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="hop" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -1659,6 +1652,13 @@ offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
 text = "Ground Slam
 "
+script = ExtResource("51_32i56")
+required_node_paths = [NodePath("../hop")]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/ground_slam"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="trip" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -1678,8 +1678,14 @@ offset_top = 320.0
 offset_right = 386.0
 offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
-text = "Hop
-"
+text = "Slide Trip"
+script = ExtResource("51_32i56")
+required_node_paths = [NodePath("../trip")]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/slider_trip"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="focused_stike" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -1700,6 +1706,13 @@ offset_right = 386.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
 text = "Staff Flurry"
+script = ExtResource("51_32i56")
+required_node_paths = [NodePath("../focused_stike")]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/staff_flurry"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="scrolls" type="Control" parent="attributes_UI/skills_bg"]
 unique_name_in_owner = true
