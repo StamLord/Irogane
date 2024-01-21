@@ -1,9 +1,9 @@
-[gd_scene load_steps=98 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=99 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
 [ext_resource type="Texture2D" uid="uid://dywdpw61h3qlr" path="res://assets/textures/ui/theme/camera_reset_normal.png" id="2_a30yf"]
-[ext_resource type="Texture2D" uid="uid://ht5vh74wryar" path="res://themes/cc_skilltree_mockup.png" id="2_ond8v"]
+[ext_resource type="Texture2D" uid="uid://dlr4672i1gwmj" path="res://themes/cc_skilltree_mockup.png" id="2_ond8v"]
 [ext_resource type="Texture2D" uid="uid://c8nh68kltucwj" path="res://assets/textures/ui/theme/camera_reset_pressed.png" id="3_ia28h"]
 [ext_resource type="Theme" uid="uid://bob8i5q8v8mum" path="res://themes/main_theme.tres" id="4_c8e2i"]
 [ext_resource type="Texture2D" uid="uid://dwudefilbwrks" path="res://assets/textures/ui/theme/camera_reset_hover.png" id="4_n1o2n"]
@@ -60,8 +60,9 @@
 [ext_resource type="Script" path="res://scripts/ui/char_creation/skills_ui.gd" id="41_ocx4q"]
 [ext_resource type="Texture2D" uid="uid://gqsaggw7jcr5" path="res://assets/textures/ui/theme/plus_button_pressed.png" id="42_mnv2t"]
 [ext_resource type="Texture2D" uid="uid://dhgja55h07pll" path="res://assets/textures/ui/theme/plus_button_hover.png" id="43_xmo2j"]
-[ext_resource type="StyleBox" uid="uid://vr82c32cy8gn" path="res://assets/textures/ui/theme/attribute_label_texture.tres" id="45_rks1n"]
+[ext_resource type="StyleBox" path="res://assets/textures/ui/theme/attribute_label_texture.tres" id="45_rks1n"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="47_4l45c"]
+[ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
@@ -276,6 +277,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bindm")
+
+[node name="stats" parent="." instance=ExtResource("63_2eqoa")]
+unique_name_in_owner = true
 
 [node name="camera_control_panel" type="Panel" parent="."]
 clip_contents = true

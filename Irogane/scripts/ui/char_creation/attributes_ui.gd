@@ -1,5 +1,8 @@
 extends Control
 
+# Stats object to change
+@onready var stats = %stats
+
 # Sound
 @onready var audio_player = %AudioPlayer
 @onready var focus_sound = load("res://assets/audio/ui/slow_brush_1.ogg")
@@ -46,8 +49,6 @@ const DEFAULT_AVAILABLE_POINTS = 10
 var rng = RandomNumberGenerator.new()
 
 var current_available_points = DEFAULT_AVAILABLE_POINTS
-var current_attribute_allocation = {}
-
 
 func _ready():
 	reset_attributes()
@@ -55,36 +56,38 @@ func _ready():
 	
 
 func reset_attributes():
-	current_available_points = DEFAULT_AVAILABLE_POINTS
-	
 	for attr_name in ATTRIBUTES:
 		var attr = ATTRIBUTES[attr_name]
-		current_attribute_allocation[attr_name] = attr.default
-		attr.points_label.text = str(attr.default)
+		update_attribute(attr_name, attr.default)
 	
-	avail_points.text = str(current_available_points)
+	update_available_points(DEFAULT_AVAILABLE_POINTS)
 	
 
 func increase_attribute_if_possible(attr_name: String):
 	if current_available_points < 1:
 		return
 	
-	var attr = ATTRIBUTES[attr_name]
-	current_available_points -= 1
-	avail_points.text = str(current_available_points)
-	current_attribute_allocation[attr_name] += 1
-	attr.points_label.text = str(current_attribute_allocation[attr_name])
+	update_available_points(current_available_points - 1)
+	update_attribute(attr_name, stats[attr_name].get_unmodified() + 1)
 	
 
 func decrease_attribute_if_possible(attr_name: String):
-	if current_attribute_allocation[attr_name] < 2:
+	if stats[attr_name].get_unmodified() < 2:
 		return
 	
+	update_available_points(current_available_points + 1)
+	update_attribute(attr_name, stats[attr_name].get_unmodified() - 1)
+	
+
+func update_attribute(attr_name: String, new_value: int):
+	stats.set_attribute([attr_name, new_value])
 	var attr = ATTRIBUTES[attr_name]
-	current_available_points += 1
-	avail_points.text = str(current_available_points)
-	current_attribute_allocation[attr_name] -= 1
-	attr.points_label.text = str(current_attribute_allocation[attr_name])
+	attr.points_label.text = str(new_value)
+	
+
+func update_available_points(new_value: int):
+	current_available_points = new_value
+	avail_points.text = str(new_value)
 	
 
 func _on_attr_randomize_button_pressed():
@@ -174,19 +177,19 @@ func _on_wis_inc_pressed():
 func _on_attr_next_button_pressed():
 	var attr_data = {
 		"strength": { 
-			"value": current_attribute_allocation.strength,
+			"value": stats.strength.get_unmodified(),
 			"modifier_dict": {},
 		},
 		"agility": { 
-			"value": current_attribute_allocation.agility,
+			"value": stats.agility.get_unmodified(),
 			"modifier_dict": {},
 		},
 		"dexterity": { 
-			"value": current_attribute_allocation.dexterity,
+			"value": stats.dexterity.get_unmodified(),
 			"modifier_dict": {},
 		},
 		"wisdom": { 
-			"value": current_attribute_allocation.wisdom,
+			"value": stats.wisdom.get_unmodified(),
 			"modifier_dict": {},
 		},
 		"attr_points": current_available_points, 
