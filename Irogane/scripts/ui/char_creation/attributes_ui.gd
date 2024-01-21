@@ -17,25 +17,25 @@ extends Control
 # Data
 @onready var ATTRIBUTES = {
 	"strength": {
-		"info": "STR",
+		"info": "Strength, the sinews of a warrior's soul, reveals the might within. It's the power behind each strike, the resilience to endure, and the essence of unyielding resolve. With heightened Strength, you embody a formidable force on the battlefield, a master of physical challenges, and a guardian of unwavering fortitude.",
 		"points_label": %str_points,
 		"label": %str_button,
 		"default": 1,
 	},
 	"agility": {
-		"info": "aGI",
+		"info": "Agility, the dance of the sakura breeze, defines your grace amidst the chaos. It governs the swiftness of your steps, the height of your leaps, and the finesse of your traversal. A noble with elevated Agility moves with the fluidity of a shadow, avoiding falls with elegance and navigating obstacles as if part of a delicate kabuki performance.",
 		"points_label": %agi_points,
 		"label": %agi_button,
 		"default": 1,
 	},
 	"dexterity": {
-		"info": "Dexterity is your ability to perform with precision in combat. A higher Dexterity stat improves your chances of landing critical hits, increases damage when using swords and ranged weapons, and speeds up your rate of fire. Invest in Dexterity to enhance your combat finesse and make your attacks more effective.",
+		"info": "Dexterity, the artistry of the sword, hones the precision in each movement. It guides the finesse of your blade, the mastery of slashing and piercing strikes, and the subtlety of your technique. A warrior with heightened Dexterity is a virtuoso in combat, crafting a symphony of strikes that resonate with the subtleties of a delicate ikebana arrangement.",
 		"points_label": %dex_points,
 		"label": %dex_button,
 		"default": 1,
 	},
 	"wisdom": {
-		"info": "WIS",
+		"info": "Mind, the sanctuary of spiritual fortitude, opens doors to metaphysical realms. It dictates the flow of your inner energy, the potency of your spells, and the harmony of your connection to the divine. A soul with elevated Mind is a sage of the arcane, navigating the ethereal currents with the wisdom of a yamabushi on a sacred pilgrimage.",
 		"points_label": %wis_points,
 		"label": %wis_button,
 		"default": 1,
