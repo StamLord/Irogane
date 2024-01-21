@@ -20,25 +20,25 @@ extends Control
 # Data
 @onready var ATTRIBUTES = {
 	"strength": {
-		"info": "Strength, the sinews of a warrior's soul, reveals the might within. It's the power behind each strike, the resilience to endure, and the essence of unyielding resolve. With heightened Strength, you embody a formidable force on the battlefield, a master of physical challenges, and a guardian of unwavering fortitude.",
+		"info": "Strength is the power behind each strike, the resilience to endure and the resolve to lift heavy burdens.\nIt affects your melee damage, critical hit chance with blunt weapons, maximum health points, carry capacity and grants the ability to lift heavy objects.",
 		"points_label": %str_points,
 		"label": %str_button,
 		"default": 1,
 	},
 	"agility": {
-		"info": "Agility, the dance of the sakura breeze, defines your grace amidst the chaos. It governs the swiftness of your steps, the height of your leaps, and the finesse of your traversal. A noble with elevated Agility moves with the fluidity of a shadow, avoiding falls with elegance and navigating obstacles as if part of a delicate kabuki performance.",
+		"info": "Agility is your ability to move as swiftly as an autumn breeze, as untiring as a steed, or as quietly as a shadow gliding across a wall.\nIt affects your stamina, stamina regeneration, fall damage, and is a prerequisite for most skills in the mobility tree.",
 		"points_label": %agi_points,
 		"label": %agi_button,
 		"default": 1,
 	},
 	"dexterity": {
-		"info": "Dexterity, the artistry of the sword, hones the precision in each movement. It guides the finesse of your blade, the mastery of slashing and piercing strikes, and the subtlety of your technique. A warrior with heightened Dexterity is a virtuoso in combat, crafting a symphony of strikes that resonate with the subtleties of a delicate ikebana arrangement.",
+		"info": "Dexterity is the precision in your movements, the fineness of your blade and the subtlety of your underhanded techniques.\nIt affects your critical hit chance with slash and pierce weapons, as well as the accuracy and fire rate with ranged weapons, along with pickpocket chance.",
 		"points_label": %dex_points,
 		"label": %dex_button,
 		"default": 1,
 	},
 	"wisdom": {
-		"info": "Mind, the sanctuary of spiritual fortitude, opens doors to metaphysical realms. It dictates the flow of your inner energy, the potency of your spells, and the harmony of your connection to the divine. A soul with elevated Mind is a sage of the arcane, navigating the ethereal currents with the wisdom of a yamabushi on a sacred pilgrimage.",
+		"info": "Wisdom is the door to metaphysical realms, dictating the harmony within and the connection to the larger celestial powers at play.\nIt affects your Ki recharge rate, the potency of your spells, and your resistance to other spells. An  exceptionally high or low wisdom rating will change the dialogue options available to you.",
 		"points_label": %wis_points,
 		"label": %wis_button,
 		"default": 1,
@@ -226,22 +226,6 @@ func _on_dex_button_gui_input(event):
 
 func _on_wis_button_gui_input(event):
 	manage_gui_input(event, increase_attribute_if_possible.bind("wisdom"), decrease_attribute_if_possible.bind("wisdom"))
-	
-
-func _on_str_h_box_container_mouse_entered():
-	ATTRIBUTES.strength.label.grab_focus()
-	
-
-func _on_agi_h_box_container_mouse_entered():
-	ATTRIBUTES.agility.label.grab_focus()
-	
-
-func _on_dex_h_box_container_mouse_entered():
-	ATTRIBUTES.dexterity.label.grab_focus()
-	
-
-func _on_wis_h_box_container_mouse_entered():
-	ATTRIBUTES.wisdom.label.grab_focus()
 	
 
 func _on_str_button_focus_entered():

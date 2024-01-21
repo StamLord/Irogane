@@ -1221,6 +1221,7 @@ alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../AudioPlayer")
 focus_sound = ExtResource("34_2wqo7")
+node_hover_delegates = [NodePath(".."), NodePath("../HBoxContainer"), NodePath("../HBoxContainer/str_dec"), NodePath("../HBoxContainer/str_inc")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="attributes_UI/attributes_bg/attributes_box/strHBoxContainer"]
 layout_mode = 2
@@ -1279,6 +1280,7 @@ alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../AudioPlayer")
 focus_sound = ExtResource("34_2wqo7")
+node_hover_delegates = [NodePath(".."), NodePath("../HBoxContainer"), NodePath("../HBoxContainer/agi_dec"), NodePath("../HBoxContainer/agi_inc")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer"]
 layout_mode = 2
@@ -1334,6 +1336,7 @@ alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../AudioPlayer")
 focus_sound = ExtResource("34_2wqo7")
+node_hover_delegates = [NodePath(".."), NodePath("../HBoxContainer"), NodePath("../HBoxContainer/dex_dec"), NodePath("../HBoxContainer/dex_inc")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer"]
 layout_mode = 2
@@ -1387,6 +1390,7 @@ alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../AudioPlayer")
 focus_sound = ExtResource("34_2wqo7")
+node_hover_delegates = [NodePath("../HBoxContainer/wis_dec"), NodePath("../HBoxContainer/wis_inc"), NodePath("../HBoxContainer"), NodePath("..")]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer"]
 layout_mode = 2
@@ -2421,25 +2425,21 @@ visible = false
 [connection signal="pressed" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_pressed"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attr_randomize_button" to="attributes_UI" method="_on_attr_randomize_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attr_randomize_button" to="attributes_UI" method="_on_attr_randomize_button_pressed"]
-[connection signal="mouse_entered" from="attributes_UI/attributes_bg/attributes_box/strHBoxContainer" to="attributes_UI" method="_on_str_h_box_container_mouse_entered"]
 [connection signal="focus_entered" from="attributes_UI/attributes_bg/attributes_box/strHBoxContainer/str_button" to="attributes_UI" method="_on_str_button_focus_entered"]
 [connection signal="focus_exited" from="attributes_UI/attributes_bg/attributes_box/strHBoxContainer/str_button" to="attributes_UI" method="_on_str_button_focus_exited"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attributes_box/strHBoxContainer/str_button" to="attributes_UI" method="_on_str_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/strHBoxContainer/HBoxContainer/str_dec" to="attributes_UI" method="_on_str_dec_pressed"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/strHBoxContainer/HBoxContainer/str_inc" to="attributes_UI" method="_on_str_inc_pressed"]
-[connection signal="mouse_entered" from="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer" to="attributes_UI" method="_on_agi_h_box_container_mouse_entered"]
 [connection signal="focus_entered" from="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer/agi_button" to="attributes_UI" method="_on_agi_button_focus_entered"]
 [connection signal="focus_exited" from="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer/agi_button" to="attributes_UI" method="_on_agi_button_focus_exited"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer/agi_button" to="attributes_UI" method="_on_agi_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer/HBoxContainer/agi_dec" to="attributes_UI" method="_on_agi_dec_pressed"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer/HBoxContainer/agi_inc" to="attributes_UI" method="_on_agi_inc_pressed"]
-[connection signal="mouse_entered" from="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer" to="attributes_UI" method="_on_dex_h_box_container_mouse_entered"]
 [connection signal="focus_entered" from="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer/dex_button" to="attributes_UI" method="_on_dex_button_focus_entered"]
 [connection signal="focus_exited" from="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer/dex_button" to="attributes_UI" method="_on_dex_button_focus_exited"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer/dex_button" to="attributes_UI" method="_on_dex_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer/HBoxContainer/dex_dec" to="attributes_UI" method="_on_dex_dec_pressed"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer/HBoxContainer/dex_inc" to="attributes_UI" method="_on_dex_inc_pressed"]
-[connection signal="mouse_entered" from="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer" to="attributes_UI" method="_on_wis_h_box_container_mouse_entered"]
 [connection signal="focus_entered" from="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer/wis_button" to="attributes_UI" method="_on_wis_button_focus_entered"]
 [connection signal="focus_exited" from="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer/wis_button" to="attributes_UI" method="_on_wis_button_focus_exited"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer/wis_button" to="attributes_UI" method="_on_wis_button_gui_input"]
