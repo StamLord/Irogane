@@ -23,6 +23,14 @@ func set_value(value):
 	dirty_value = true
 	
 
+func get_minimum_value():
+	return min_max[0]
+	
+
+func get_maximum_value():
+	return min_max[1]
+	
+
 func get_value():
 	if not dirty_value:
 		return modified_value

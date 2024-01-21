@@ -64,7 +64,7 @@ func reset_attributes():
 	
 
 func increase_attribute_if_possible(attr_name: String):
-	if current_available_points < 1:
+	if current_available_points < 1 or stats[attr_name].get_unmodified() >= stats[attr_name].get_maximum_value():
 		return
 	
 	update_available_points(current_available_points - 1)
@@ -72,7 +72,7 @@ func increase_attribute_if_possible(attr_name: String):
 	
 
 func decrease_attribute_if_possible(attr_name: String):
-	if stats[attr_name].get_unmodified() < 2:
+	if stats[attr_name].get_unmodified() <= stats[attr_name].get_minimum_value():
 		return
 	
 	update_available_points(current_available_points + 1)
