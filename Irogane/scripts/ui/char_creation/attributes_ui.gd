@@ -53,11 +53,9 @@ extends Control
 		"default": 1,
 	},
 }
- 
+
 const DEFAULT_AVAILABLE_POINTS = 10
 var rng = RandomNumberGenerator.new()
-
-var current_focused_attr = null
 
 var current_available_points = DEFAULT_AVAILABLE_POINTS
 var current_attribute_allocation = {}

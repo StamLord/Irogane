@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=87 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -48,6 +48,11 @@
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="35_ci8l6"]
 [ext_resource type="Texture2D" uid="uid://ty4vbjslb884" path="res://assets/textures/ui/theme/dark_indent.png" id="35_pgwqd"]
 [ext_resource type="Texture2D" uid="uid://bkjgmhfgvjouq" path="res://assets/textures/ui/theme/back_button_highlight.png" id="36_stvtc"]
+[ext_resource type="Texture2D" uid="uid://dpo0fwqx7gi5b" path="res://assets/textures/ui/theme/cc_skilltree_window.png" id="40_8rtmb"]
+[ext_resource type="Texture2D" uid="uid://b807edcc2jh8n" path="res://assets/textures/ui/theme/scroll_button_base.png" id="40_tj5fb"]
+[ext_resource type="Script" path="res://scripts/ui/skill_scroll.gd" id="41_4end4"]
+[ext_resource type="Texture2D" uid="uid://b4rcjdoheqea1" path="res://assets/textures/ui/theme/scroll_button_color.png" id="41_6crep"]
+[ext_resource type="Script" path="res://scripts/ui/char_creation/skills_ui.gd" id="41_ocx4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
@@ -300,6 +305,7 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1083,7 +1089,6 @@ texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_UI" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1092,6 +1097,24 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("31_ekaxc")
+
+[node name="attr_back_button" type="TextureButton" parent="attributes_UI"]
+layout_mode = 1
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 345.0
+offset_bottom = 130.0
+scale = Vector2(0.7, 0.7)
+focus_neighbor_left = NodePath("../../appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
+focus_neighbor_top = NodePath("../../appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
+focus_neighbor_right = NodePath("../../appearance_UI/appearance_bg/undo_button")
+focus_neighbor_bottom = NodePath("../../appearance_UI/appearance_bg/undo_button")
+focus_next = NodePath("../../appearance_UI/appearance_bg/undo_button")
+focus_previous = NodePath("../../appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
+texture_normal = ExtResource("34_una8d")
+texture_pressed = ExtResource("35_2i41d")
+texture_hover = ExtResource("36_stvtc")
+texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_bg" type="TextureRect" parent="attributes_UI"]
 layout_mode = 1
@@ -1568,6 +1591,719 @@ grow_vertical = 2
 theme = ExtResource("4_c8e2i")
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
+[node name="skills_bg" type="TextureRect" parent="attributes_UI"]
+top_level = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -911.0
+offset_top = -356.0
+offset_right = -100.0
+offset_bottom = 356.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("40_8rtmb")
+script = ExtResource("41_ocx4q")
+
+[node name="dark_indent" type="TextureRect" parent="attributes_UI/skills_bg"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -370.0
+offset_top = -241.0
+offset_right = 370.0
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("35_pgwqd")
+expand_mode = 1
+
+[node name="skill_trees" type="Control" parent="attributes_UI/skills_bg/dark_indent"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="swords_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_trees"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="staff_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_trees"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+position = Vector2(188.5, 73)
+points = PackedVector2Array(-4, 2, 10.444, 2, 29, 2, 41.3121, 2, 278, 2)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+position = Vector2(187.5, 163)
+points = PackedVector2Array(-4, 2, 10.444, 2, 29, 2, 41.3121, 2, 55.67, 2, 137.438, 2, 278, 2)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D3" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+points = PackedVector2Array(417.5, 77, 417.5, 164)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D4" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+points = PackedVector2Array(182.5, 254, 251.5, 254)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D5" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+position = Vector2(0.5, 90)
+points = PackedVector2Array(182.5, 254, 227.896, 254, 251.5, 254)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D6" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+position = Vector2(1.5, 182)
+points = PackedVector2Array(182.5, 254, 204.761, 254, 217.975, 254, 227.896, 254, 237.324, 254, 251.5, 254)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="guard_spin" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 186.0
+offset_bottom = 100.0
+theme_type_variation = &"SkillButton"
+text = "Guard Spin"
+
+[node name="whirlwind" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 386.0
+offset_bottom = 100.0
+theme_type_variation = &"SkillButton"
+text = "Whirlwind
+"
+
+[node name="slowfall" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 450.0
+offset_top = 50.0
+offset_right = 586.0
+offset_bottom = 100.0
+theme_type_variation = &"SkillButton"
+text = "Slow Fall
+"
+
+[node name="disarm" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 140.0
+offset_right = 186.0
+offset_bottom = 190.0
+theme_type_variation = &"SkillButton"
+text = "Disarm"
+
+[node name="mass_disarm" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 450.0
+offset_top = 140.0
+offset_right = 586.0
+offset_bottom = 190.0
+theme_type_variation = &"SkillButton"
+text = "Mass Disarm"
+
+[node name="hop" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 230.0
+offset_right = 186.0
+offset_bottom = 280.0
+theme_type_variation = &"SkillButton"
+text = "Hop
+"
+
+[node name="ground_slam" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 250.0
+offset_top = 230.0
+offset_right = 386.0
+offset_bottom = 280.0
+theme_type_variation = &"SkillButton"
+text = "Ground Slam
+"
+
+[node name="trip" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 320.0
+offset_right = 186.0
+offset_bottom = 370.0
+theme_type_variation = &"SkillButton"
+text = "Trip"
+
+[node name="slider_trip" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 250.0
+offset_top = 320.0
+offset_right = 386.0
+offset_bottom = 370.0
+theme_type_variation = &"SkillButton"
+text = "Hop
+"
+
+[node name="focused_stike" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 410.0
+offset_right = 186.0
+offset_bottom = 460.0
+theme_type_variation = &"SkillButton"
+text = "Focused Strike"
+
+[node name="staff_flurry" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 250.0
+offset_top = 410.0
+offset_right = 386.0
+offset_bottom = 460.0
+theme_type_variation = &"SkillButton"
+text = "Staff Flurry"
+
+[node name="scrolls" type="Control" parent="attributes_UI/skills_bg"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="swords_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 36.0
+offset_right = 9.0
+offset_bottom = 86.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "swords"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
+modulate = Color(0.333333, 0.505882, 0.717647, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Swords"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="staff_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 86.0
+offset_right = 9.0
+offset_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "staff"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/staff_scroll"]
+modulate = Color(0.470588, 0.494118, 0.329412, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/staff_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Staff
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bow_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 136.0
+offset_right = 9.0
+offset_bottom = 186.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "bow"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
+modulate = Color(0.690196, 0.407843, 0.341176, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Bow
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="thrown_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 186.0
+offset_right = 9.0
+offset_bottom = 236.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "thrown"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/thrown_scroll"]
+modulate = Color(0.847059, 0.74902, 0.4, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/thrown_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Thrown
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="unarmed_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 236.0
+offset_right = 9.0
+offset_bottom = 286.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "unarmed"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/unarmed_scroll"]
+modulate = Color(0.901961, 0.890196, 0.870588, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/unarmed_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Thrown
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mobility_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 286.0
+offset_right = 9.0
+offset_bottom = 336.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "mobility"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/mobility_scroll"]
+modulate = Color(0.866667, 0.560784, 0.635294, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/mobility_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Mobility"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="stealth_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 336.0
+offset_right = 9.0
+offset_bottom = 386.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "stealth"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/stealth_scroll"]
+modulate = Color(0.356863, 0.321569, 0.509804, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/stealth_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Stealth
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="xaorin_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 386.0
+offset_right = 9.0
+offset_bottom = 436.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "xaorin"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/xaorin_scroll"]
+modulate = Color(0.803922, 0.337255, 0.25098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/xaorin_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Xaorin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="onmyodo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 436.0
+offset_right = 9.0
+offset_bottom = 486.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "onmyodo"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/onmyodo_scroll"]
+modulate = Color(0.188235, 0.568627, 0.584314, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/onmyodo_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Onmyodo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shugendo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = 486.0
+offset_right = 9.0
+offset_bottom = 536.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("40_tj5fb")
+script = ExtResource("41_4end4")
+skill_name = "shugendo"
+
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/shugendo_scroll"]
+modulate = Color(0.823529, 0.470588, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_6crep")
+
+[node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/shugendo_scroll"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_c8e2i")
+theme_type_variation = &"SkillScrollLabel"
+text = "Shugendo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="attr_next_button" type="TextureButton" parent="attributes_UI"]
 layout_mode = 1
 anchors_preset = 3
@@ -1589,24 +2325,6 @@ focus_previous = NodePath("../../appearance_UI/appearance_bg/appearance_menu_lis
 texture_normal = ExtResource("10_ja5oy")
 texture_pressed = ExtResource("11_ueydr")
 texture_hover = ExtResource("26_knr0y")
-texture_focused = ExtResource("9_kkng3")
-
-[node name="attr_back_button" type="TextureButton" parent="attributes_UI"]
-layout_mode = 1
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 345.0
-offset_bottom = 130.0
-scale = Vector2(0.7, 0.7)
-focus_neighbor_left = NodePath("../../appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
-focus_neighbor_top = NodePath("../../appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
-focus_neighbor_right = NodePath("../../appearance_UI/appearance_bg/undo_button")
-focus_neighbor_bottom = NodePath("../../appearance_UI/appearance_bg/undo_button")
-focus_next = NodePath("../../appearance_UI/appearance_bg/undo_button")
-focus_previous = NodePath("../../appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button")
-texture_normal = ExtResource("34_una8d")
-texture_pressed = ExtResource("35_2i41d")
-texture_hover = ExtResource("36_stvtc")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="AudioPlayer" type="Node3D" parent="."]
@@ -1779,6 +2497,7 @@ visible = false
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
 [connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="focus_entered" from="attributes_UI" to="attributes_UI" method="_on_focus_entered"]
+[connection signal="pressed" from="attributes_UI/attr_back_button" to="attributes_UI" method="_on_attr_back_button_pressed"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_pressed"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attr_randomize_button" to="attributes_UI" method="_on_attr_randomize_button_gui_input"]
@@ -1808,4 +2527,3 @@ visible = false
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/setters/wisHBoxContainer/HBoxContainer/wis_dec" to="attributes_UI" method="_on_wis_dec_pressed"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/setters/wisHBoxContainer/HBoxContainer/wis_inc" to="attributes_UI" method="_on_wis_inc_pressed"]
 [connection signal="pressed" from="attributes_UI/attr_next_button" to="attributes_UI" method="_on_attr_next_button_pressed"]
-[connection signal="pressed" from="attributes_UI/attr_back_button" to="attributes_UI" method="_on_attr_back_button_pressed"]
