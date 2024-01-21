@@ -12,18 +12,6 @@ extends Control
 @onready var reset_button = %attr_reset_button
 @onready var avail_points = %available_points
 
-@onready var str_inc = %str_inc
-@onready var str_dec = %str_dec
-
-@onready var agi_inc = %agi_inc
-@onready var agi_dec = %agi_dec
-
-@onready var dex_inc = %dex_inc
-@onready var dex_dec = %dex_dec
-
-@onready var wis_inc = %wis_inc
-@onready var wis_dec = %wis_dec
-
 @onready var info_text = %info_text
 
 # Data
@@ -77,18 +65,6 @@ func reset_attributes():
 	avail_points.text = str(current_available_points)
 	
 
-@onready var inc_buttons = [str_inc, agi_inc, dex_inc, wis_inc]
-
-func hide_all_inc_attr_buttons():
-	for button in inc_buttons:
-		button.disabled = true
-	
-
-func show_all_inc_attr_buttons():
-	for button in inc_buttons:
-		button.disabled = false
-	
-
 func increase_attribute_if_possible(attr_name: String):
 	if current_available_points < 1:
 		return
@@ -99,16 +75,10 @@ func increase_attribute_if_possible(attr_name: String):
 	current_attribute_allocation[attr_name] += 1
 	attr.points_label.text = str(current_attribute_allocation[attr_name])
 	
-	if current_available_points == 0:
-		hide_all_inc_attr_buttons()
-	
 
 func decrease_attribute_if_possible(attr_name: String):
-	if current_attribute_allocation[attr_name] < 1:
+	if current_attribute_allocation[attr_name] < 2:
 		return
-	
-	if current_available_points == 0:
-		show_all_inc_attr_buttons()
 	
 	var attr = ATTRIBUTES[attr_name]
 	current_available_points += 1
@@ -137,8 +107,6 @@ func _on_attr_randomize_button_pressed():
 	
 			attr_names.remove_at(index)
 	
-	hide_all_inc_attr_buttons()
-	
 
 func _on_attr_randomize_button_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -148,7 +116,7 @@ func _on_attr_randomize_button_gui_input(event):
 func _on_attr_reset_button_pressed():
 	audio_player.play(click_bamboo)
 	reset_attributes()
-	show_all_inc_attr_buttons()
+	
 
 func _on_attr_reset_button_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
