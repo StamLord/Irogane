@@ -1210,7 +1210,7 @@ size_flags_horizontal = 8
 focus_mode = 2
 alignment = 2
 
-[node name="str_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/strHBoxContainer" node_paths=PackedStringArray("audio_player")]
+[node name="str_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/strHBoxContainer" node_paths=PackedStringArray("audio_player", "node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
@@ -1269,7 +1269,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
 
-[node name="agi_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer" node_paths=PackedStringArray("audio_player")]
+[node name="agi_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/agiHBoxContainer" node_paths=PackedStringArray("audio_player", "node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
@@ -1325,7 +1325,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 alignment = 2
 
-[node name="dex_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer" node_paths=PackedStringArray("audio_player")]
+[node name="dex_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/dexHBoxContainer" node_paths=PackedStringArray("audio_player", "node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
@@ -1379,7 +1379,7 @@ texture_hover = ExtResource("43_xmo2j")
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="wis_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer" node_paths=PackedStringArray("audio_player")]
+[node name="wis_button" type="Button" parent="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer" node_paths=PackedStringArray("audio_player", "node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 0)
 layout_mode = 2
