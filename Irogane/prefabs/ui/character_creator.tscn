@@ -1,9 +1,9 @@
-[gd_scene load_steps=100 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=101 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
 [ext_resource type="Texture2D" uid="uid://dywdpw61h3qlr" path="res://assets/textures/ui/theme/camera_reset_normal.png" id="2_a30yf"]
-[ext_resource type="Texture2D" uid="uid://dlr4672i1gwmj" path="res://themes/cc_skilltree_mockup.png" id="2_ond8v"]
+[ext_resource type="Texture2D" uid="uid://ht5vh74wryar" path="res://themes/cc_skilltree_mockup.png" id="2_ond8v"]
 [ext_resource type="Texture2D" uid="uid://c8nh68kltucwj" path="res://assets/textures/ui/theme/camera_reset_pressed.png" id="3_ia28h"]
 [ext_resource type="Theme" uid="uid://bob8i5q8v8mum" path="res://themes/main_theme.tres" id="4_c8e2i"]
 [ext_resource type="Texture2D" uid="uid://dwudefilbwrks" path="res://assets/textures/ui/theme/camera_reset_hover.png" id="4_n1o2n"]
@@ -60,9 +60,10 @@
 [ext_resource type="Script" path="res://scripts/ui/char_creation/skills_ui.gd" id="41_ocx4q"]
 [ext_resource type="Texture2D" uid="uid://gqsaggw7jcr5" path="res://assets/textures/ui/theme/plus_button_pressed.png" id="42_mnv2t"]
 [ext_resource type="Texture2D" uid="uid://dhgja55h07pll" path="res://assets/textures/ui/theme/plus_button_hover.png" id="43_xmo2j"]
-[ext_resource type="StyleBox" path="res://assets/textures/ui/theme/attribute_label_texture.tres" id="45_rks1n"]
+[ext_resource type="StyleBox" uid="uid://vr82c32cy8gn" path="res://assets/textures/ui/theme/attribute_label_texture.tres" id="45_rks1n"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="47_4l45c"]
 [ext_resource type="Script" path="res://prefabs/ui/skill_tree_leaf_ui.gd" id="51_32i56"]
+[ext_resource type="Texture2D" uid="uid://d3o75s0qlg677" path="res://assets/textures/ui/theme/scroll_button_card.png" id="55_6rmyd"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -317,7 +318,6 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
-visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1094,6 +1094,7 @@ texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_UI" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1752,11 +1753,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
 layout_mode = 1
@@ -1802,11 +1814,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/staff_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/staff_scroll"]
 layout_mode = 1
@@ -1853,11 +1876,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
 layout_mode = 1
@@ -1904,11 +1938,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/thrown_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/thrown_scroll"]
 layout_mode = 1
@@ -1955,11 +2000,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/unarmed_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/unarmed_scroll"]
 layout_mode = 1
@@ -2006,11 +2062,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/mobility_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/mobility_scroll"]
 layout_mode = 1
@@ -2056,11 +2123,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/stealth_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/stealth_scroll"]
 layout_mode = 1
@@ -2107,11 +2185,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/xaorin_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/xaorin_scroll"]
 layout_mode = 1
@@ -2157,11 +2246,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/onmyodo_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/onmyodo_scroll"]
 layout_mode = 1
@@ -2207,11 +2307,22 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = -6.0
+offset_left = -3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
+
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/shugendo_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("55_6rmyd")
 
 [node name="Label" type="Label" parent="attributes_UI/skills_bg/scrolls/shugendo_scroll"]
 layout_mode = 1
