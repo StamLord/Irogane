@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=103 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -63,6 +63,8 @@
 [ext_resource type="StyleBox" uid="uid://vr82c32cy8gn" path="res://assets/textures/ui/theme/attribute_label_texture.tres" id="45_rks1n"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="47_4l45c"]
 [ext_resource type="Script" path="res://prefabs/ui/skill_tree_leaf_ui.gd" id="51_32i56"]
+[ext_resource type="Script" path="res://scripts/skills/skill_tree.gd" id="51_66pgn"]
+[ext_resource type="Script" path="res://scripts/skills/skill_tree_manager.gd" id="51_g1cca"]
 [ext_resource type="Texture2D" uid="uid://d3o75s0qlg677" path="res://assets/textures/ui/theme/scroll_button_card.png" id="55_6rmyd"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
 
@@ -1509,10 +1511,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -50.0
-offset_top = 58.0
-offset_right = 50.0
-offset_bottom = 103.0
+offset_left = -49.5
+offset_top = 60.0
+offset_right = 50.5
+offset_bottom = 105.0
 grow_horizontal = 2
 theme_type_variation = &"RedLabel"
 theme_override_styles/normal = SubResource("StyleBoxTexture_elwnq")
@@ -1536,22 +1538,23 @@ grow_vertical = 2
 texture = ExtResource("35_pgwqd")
 expand_mode = 1
 
-[node name="skill_trees" type="Control" parent="attributes_UI/skills_bg/dark_indent"]
+[node name="skill_tree_manager" type="Control" parent="attributes_UI/skills_bg/dark_indent"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("51_g1cca")
 
-[node name="swords_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_trees"]
+[node name="swords_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager"]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="staff_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_trees"]
+[node name="staff_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -1559,8 +1562,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("51_66pgn")
 
-[node name="guard_spin" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="guard_spin" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -1569,8 +1573,9 @@ offset_right = 186.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
 text = "Guard Spin"
+script = ExtResource("51_32i56")
 
-[node name="whirlwind" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="whirlwind" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -1578,17 +1583,18 @@ offset_top = 50.0
 offset_right = 386.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Whirlwind
 "
 script = ExtResource("51_32i56")
-required_node_paths = [NodePath("../guard_spin")]
+skill_requirments = ["guard_spin"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/whirlwind"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree/whirlwind"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="slowfall" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="slowfall" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 450.0
@@ -1596,17 +1602,18 @@ offset_top = 50.0
 offset_right = 586.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Slow Fall
 "
 script = ExtResource("51_32i56")
-required_node_paths = [NodePath("../whirlwind")]
+skill_requirments = ["whirlwind"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/slowfall"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree/slowfall"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="disarm" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="disarm" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -1615,8 +1622,9 @@ offset_right = 186.0
 offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
 text = "Disarm"
+script = ExtResource("51_32i56")
 
-[node name="mass_disarm" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="mass_disarm" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 450.0
@@ -1624,21 +1632,22 @@ offset_top = 140.0
 offset_right = 586.0
 offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Mass Disarm"
 script = ExtResource("51_32i56")
-required_node_paths = [NodePath("../disarm"), NodePath("../whirlwind")]
+skill_requirments = ["whirlwind", "disarm"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/mass_disarm"]
-points = PackedVector2Array(0, 25, -264, 25)
-width = 5.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/mass_disarm"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree/mass_disarm"]
 points = PackedVector2Array(0, 25, -32, 25, -32, -65, -64, -65)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="hop" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree/mass_disarm"]
+points = PackedVector2Array(0, 25, -264, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="hop" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -1648,8 +1657,9 @@ offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
 text = "Hop
 "
+script = ExtResource("51_32i56")
 
-[node name="ground_slam" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="ground_slam" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -1657,17 +1667,18 @@ offset_top = 230.0
 offset_right = 386.0
 offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Ground Slam
 "
 script = ExtResource("51_32i56")
-required_node_paths = [NodePath("../hop")]
+skill_requirments = ["hop"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/ground_slam"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree/ground_slam"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="trip" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="trip" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -1676,8 +1687,9 @@ offset_right = 186.0
 offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
 text = "Trip"
+script = ExtResource("51_32i56")
 
-[node name="slider_trip" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="slider_trip" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -1685,16 +1697,17 @@ offset_top = 320.0
 offset_right = 386.0
 offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Slide Trip"
 script = ExtResource("51_32i56")
-required_node_paths = [NodePath("../trip")]
+skill_requirments = ["trip"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/slider_trip"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree/slider_trip"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="focused_stike" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="focused_strike" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -1703,8 +1716,9 @@ offset_right = 186.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
 text = "Focused Strike"
+script = ExtResource("51_32i56")
 
-[node name="staff_flurry" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree"]
+[node name="staff_flurry" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -1712,11 +1726,12 @@ offset_top = 410.0
 offset_right = 386.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Staff Flurry"
 script = ExtResource("51_32i56")
-required_node_paths = [NodePath("../focused_stike")]
+skill_requirments = ["focused_strike"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_trees/staff_tree/staff_flurry"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/staff_tree/staff_flurry"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
@@ -2037,7 +2052,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_c8e2i")
 theme_type_variation = &"SkillScrollLabel"
-text = "Thrown
+text = "Unarmed
 "
 horizontal_alignment = 1
 vertical_alignment = 1

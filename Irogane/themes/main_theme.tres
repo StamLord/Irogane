@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=32 format=3 uid="uid://bob8i5q8v8mum"]
+[gd_resource type="Theme" load_steps=39 format=3 uid="uid://bob8i5q8v8mum"]
 
 [ext_resource type="FontFile" uid="uid://bdjuw50a266le" path="res://assets/fonts/otsutome/Otsutome.ttf" id="1_hvsot"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="2_lqrex"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://b2yjpv6xaj710" path="res://assets/textures/ui/theme/long_small_button_pressed.png" id="7_436b0"]
 [ext_resource type="Texture2D" uid="uid://b4yim6tybxoo2" path="res://assets/textures/ui/theme/slider_red.png" id="7_p0njs"]
 [ext_resource type="Texture2D" uid="uid://crrshaec0tal6" path="res://assets/textures/ui/theme/square_button_pressed.png" id="8_4eg65"]
+[ext_resource type="Texture2D" uid="uid://d307rv0b5jh6d" path="res://assets/textures/ui/theme/long_marked_button_hover.png" id="8_uojy8"]
+[ext_resource type="Texture2D" uid="uid://0ay4qn0ywmlp" path="res://assets/textures/ui/theme/long_marked_button_normal.png" id="9_d8sih"]
+[ext_resource type="Texture2D" uid="uid://ca1ib7sp3fi5j" path="res://assets/textures/ui/theme/long_marked_button_pressed.png" id="10_3ldhx"]
 [ext_resource type="Texture2D" uid="uid://dyjeekpeuhciw" path="res://assets/textures/ui/theme/plus_button_normal.png" id="10_ywax8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31nua"]
@@ -51,6 +54,17 @@ texture = ExtResource("5_f7mvo")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ys768"]
 texture = ExtResource("7_436b0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phqiv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qhm6s"]
+texture = ExtResource("8_uojy8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_habl7"]
+texture = ExtResource("9_d8sih")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a2dsm"]
+texture = ExtResource("10_3ldhx")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2uobp"]
 texture = ExtResource("5_mk68f")
@@ -136,6 +150,15 @@ SkillButton/styles/focus = SubResource("StyleBoxEmpty_ntpve")
 SkillButton/styles/hover = SubResource("StyleBoxTexture_4klwf")
 SkillButton/styles/normal = SubResource("StyleBoxTexture_mvg0n")
 SkillButton/styles/pressed = SubResource("StyleBoxTexture_ys768")
+SkillLearnedButton/base_type = &"Button"
+SkillLearnedButton/colors/font_color = Color(1, 1, 1, 1)
+SkillLearnedButton/colors/font_outline_color = Color(0, 0, 0, 1)
+SkillLearnedButton/constants/outline_size = 5
+SkillLearnedButton/font_sizes/font_size = 20
+SkillLearnedButton/styles/focus = SubResource("StyleBoxEmpty_phqiv")
+SkillLearnedButton/styles/hover = SubResource("StyleBoxTexture_qhm6s")
+SkillLearnedButton/styles/normal = SubResource("StyleBoxTexture_habl7")
+SkillLearnedButton/styles/pressed = SubResource("StyleBoxTexture_a2dsm")
 SkillScrollLabel/base_type = &"Label"
 SkillScrollLabel/colors/font_color = Color(1, 1, 1, 1)
 SkillScrollLabel/colors/font_outline_color = Color(0, 0, 0, 1)

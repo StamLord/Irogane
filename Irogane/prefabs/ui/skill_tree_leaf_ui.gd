@@ -1,9 +1,21 @@
 @tool
 extends Button
+class_name Skill
 
+# Skill Data
+var skill_tree = null
+
+@export var cost = 1
+@export var stat_requirements = {} # attribute_name : minimum_value
+@export var skill_requirments = [] # [skill_name, skill_name..]
+var is_learned = false
+
+signal learned(_skill_name)
+signal unlearned(_skill_name)
+
+# Line Data
 @onready var lines = get_children()
 
-@export var required_node_paths = []
 enum line_origin_enum {TOP, BOTTOM, LEFT, RIGHT}
 @export var line_origin = line_origin_enum.LEFT
 
@@ -15,17 +27,115 @@ func _enter_tree() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		initialize()
 		update_all_lines()
 	
 
 func _ready():
-	for path in required_node_paths:
-		required_nodes.append(get_node(path))
+	initialize()
+	set_button_enabled(can_learn())
+	
+
+func _pressed():
+	if skill_tree == null:
+		return
+	
+	if is_learned:
+		unlearn()
+		skill_tree.increase_skill_points(cost)
+	elif can_learn():
+		if skill_tree.is_enough_skill_points(cost):
+			skill_tree.decrease_skill_points(cost)
+			learn()
+	
+
+# Skill Logic
+func can_learn(stats = null) -> bool:
+	# Check skill requirements
+	for req in skill_requirments:
+		var skill = skill_tree.get_skill(req)
+		if skill != null and not skill.is_learned:
+			return false
+	
+	# Check stat requirements
+	if stats != null:
+		for stat_req in stat_requirements:
+			if stats[stat_req].get_unmodified() < stat_requirements[stat_req]:
+				return false
+		
+	return true
+	
+
+func learn():
+	is_learned = true
+	learned.emit(name)
+	if skill_tree != null:
+		skill_tree.update_state(name)
+	set_button_theme_variation()
+	
+
+func unlearn():
+	is_learned = false
+	unlearned.emit(name)
+	if skill_tree != null:
+		skill_tree.update_state(name)
+	set_button_theme_variation()
+	
+
+func update_state(updated_skill_name):
+	# Don't update due to self
+	if name == updated_skill_name:
+		return
+	
+	# If relevant skill, change button state
+	if updated_skill_name in skill_requirments:
+		var _can_learn = can_learn()
+		
+		# Unlearn and refund points
+		if is_learned and _can_learn == false:
+			unlearn()
+			skill_tree.increase_skill_points(cost)
+		
+		set_button_enabled(_can_learn)
+		
+		return
+	
+
+func set_button_enabled(state):
+	disabled = not state
+	
+
+func set_button_theme_variation():
+	theme_type_variation = "SkillLearnedButton" if is_learned else "SkillButton"
+	
+
+# Line Logic
+func initialize():
+	# Get parent if it's a SkillTree
+	var parent = get_parent()
+	if parent is SkillTree:
+		skill_tree = parent
+	
+	get_required_nodes()
+	
+
+func get_required_nodes():
+	if skill_tree == null:
+		return
+	
+	skill_tree.init_skill_dict()
+	
+	required_nodes.clear()
+	for skill_name in skill_requirments:
+		var skill = skill_tree.get_skill(skill_name)
+		if skill != null:
+			required_nodes.append(skill)
 	
 
 func update_all_lines():
 	for i in range(lines.size()):
-		update_line(required_nodes[i], lines[i])
+		if i < required_nodes.size():
+			update_line(required_nodes[i], lines[i])
 	
 
 func update_line(node, line):
