@@ -318,6 +318,7 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1094,7 +1095,6 @@ texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_UI" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1737,15 +1737,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 36.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 86.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "swords"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
 modulate = Color(0.333333, 0.505882, 0.717647, 1)
@@ -1798,15 +1799,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 86.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 136.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "staff"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/staff_scroll"]
 modulate = Color(0.470588, 0.494118, 0.329412, 1)
@@ -1860,15 +1862,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 136.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 186.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "bow"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
 modulate = Color(0.690196, 0.407843, 0.341176, 1)
@@ -1922,15 +1925,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 186.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 236.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "thrown"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/thrown_scroll"]
 modulate = Color(0.847059, 0.74902, 0.4, 1)
@@ -1984,15 +1988,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 236.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 286.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "unarmed"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/unarmed_scroll"]
 modulate = Color(0.901961, 0.890196, 0.870588, 1)
@@ -2046,15 +2051,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 286.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 336.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "mobility"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/mobility_scroll"]
 modulate = Color(0.866667, 0.560784, 0.635294, 1)
@@ -2107,15 +2113,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 336.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 386.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "stealth"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/stealth_scroll"]
 modulate = Color(0.356863, 0.321569, 0.509804, 1)
@@ -2169,15 +2176,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 386.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 436.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "xaorin"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/xaorin_scroll"]
 modulate = Color(0.803922, 0.337255, 0.25098, 1)
@@ -2230,15 +2238,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 436.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 486.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "onmyodo"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/onmyodo_scroll"]
 modulate = Color(0.188235, 0.568627, 0.584314, 1)
@@ -2291,15 +2300,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -171.0
+offset_left = -80.0
 offset_top = 486.0
-offset_right = 9.0
+offset_right = 100.0
 offset_bottom = 536.0
 grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "shugendo"
+duration = 0.05
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/shugendo_scroll"]
 modulate = Color(0.823529, 0.470588, 0, 1)
