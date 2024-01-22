@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=105 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -66,6 +66,7 @@
 [ext_resource type="Script" path="res://scripts/skills/skill_tree.gd" id="51_66pgn"]
 [ext_resource type="Script" path="res://scripts/skills/skill_tree_manager.gd" id="51_g1cca"]
 [ext_resource type="Texture2D" uid="uid://d3o75s0qlg677" path="res://assets/textures/ui/theme/scroll_button_card.png" id="55_6rmyd"]
+[ext_resource type="Script" path="res://prefabs/ui/skills_learned_label.gd" id="55_gmvcn"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -1593,6 +1594,25 @@ text = "Swords"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = -194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
+
 [node name="staff_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
 z_index = -1
@@ -1655,6 +1675,26 @@ text = "Staff
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/staff_scroll" node_paths=PackedStringArray("skill_tree")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
+skill_tree = NodePath("../../../dark_indent/skill_tree_manager/staff_tree")
 
 [node name="bow_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
@@ -1719,6 +1759,25 @@ text = "Bow
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_right = -194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
+
 [node name="thrown_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
 z_index = -1
@@ -1781,6 +1840,25 @@ text = "Thrown
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/thrown_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
 
 [node name="unarmed_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
@@ -1845,6 +1923,25 @@ text = "Unarmed
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/unarmed_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
+
 [node name="mobility_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
 z_index = -1
@@ -1906,6 +2003,25 @@ theme_type_variation = &"SkillScrollLabel"
 text = "Mobility"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/mobility_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
 
 [node name="stealth_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
@@ -1970,6 +2086,25 @@ text = "Stealth
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/stealth_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
+
 [node name="xaorin_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
 z_index = -1
@@ -2031,6 +2166,25 @@ theme_type_variation = &"SkillScrollLabel"
 text = "Xaorin"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/xaorin_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
 
 [node name="onmyodo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
@@ -2094,6 +2248,25 @@ text = "Onmyodo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/onmyodo_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
+
 [node name="shugendo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
 unique_name_in_owner = true
 z_index = -1
@@ -2155,6 +2328,25 @@ theme_type_variation = &"SkillScrollLabel"
 text = "Shugendo"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="learned_label" type="Label" parent="attributes_UI/skills_bg/scrolls/shugendo_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_right = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"RedLabel"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.74902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("55_gmvcn")
 
 [node name="block_input" type="Panel" parent="attributes_UI/skills_bg"]
 layout_mode = 1

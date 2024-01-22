@@ -5,6 +5,8 @@ class_name SkillTree
 @onready var skill_tree_manager = $".."
 var skill_dict = {}
 
+signal state_updated()
+
 func _ready():
 	init_skill_dict()
 	
@@ -18,6 +20,8 @@ func init_skill_dict():
 func update_state(skill_name : String):
 	for skill in skill_dict:
 		skill_dict[skill].update_state(skill_name)
+	
+	state_updated.emit()
 	
 
 func get_skill(skill_name : String):
