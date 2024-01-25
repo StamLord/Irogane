@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=114 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -68,6 +68,8 @@
 [ext_resource type="Texture2D" uid="uid://d3o75s0qlg677" path="res://assets/textures/ui/theme/scroll_button_card.png" id="55_6rmyd"]
 [ext_resource type="Script" path="res://prefabs/ui/skills_learned_label.gd" id="55_gmvcn"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
+[ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
+[ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
@@ -275,6 +277,50 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_q4x6l"]
 material = SubResource("StandardMaterial3D_mtmp0")
 
+[sub_resource type="Gradient" id="Gradient_ew0ab"]
+offsets = PackedFloat32Array(0.275862, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jjrp2"]
+gradient = SubResource("Gradient_ew0ab")
+
+[sub_resource type="Curve" id="Curve_52vgi"]
+_data = [Vector2(0, 0.336842), 0.0, 1.95354, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kd8eq"]
+curve = SubResource("Curve_52vgi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hx5fg"]
+emission_shape = 3
+emission_box_extents = Vector3(2, 0.25, 0.25)
+direction = Vector3(0, 0, 1)
+spread = 20.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_kd8eq")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_jjrp2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubalm"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("70_ai3hn")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8o406"]
+material = SubResource("StandardMaterial3D_ubalm")
+orientation = 2
+
 [node name="CharacterCreation" type="Control"]
 unique_name_in_owner = true
 layout_mode = 3
@@ -323,7 +369,6 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
-visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1100,6 +1145,7 @@ texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_UI" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2711,6 +2757,31 @@ script = ExtResource("10_sk6vb")
 
 [node name="female_model" parent="env/human_model" instance=ExtResource("11_qjq4y")]
 visible = false
+
+[node name="tree_01" parent="." instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.34774, 1.14568, -2.36326)
+
+[node name="tree_02" parent="." instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.91547, 1.31658, -0.855397)
+
+[node name="tree_03" parent="." instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.2882, 2.87572, -6.26079)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.18224, -7.70857)
+amount = 256
+lifetime = 2.0
+visibility_aabb = AABB(-4, -4, -4.76404, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_hx5fg")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.81954, -11.9613)
+amount = 256
+lifetime = 2.0
+visibility_aabb = AABB(-4, -4, -4.76404, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_hx5fg")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
 
 [connection signal="mouse_entered" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_exited"]

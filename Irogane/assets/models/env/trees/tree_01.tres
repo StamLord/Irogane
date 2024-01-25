@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://g0f38x8d7vnl"]
+
+[ext_resource type="Shader" uid="uid://byamy1p2oawa" path="res://assets/shaders/seasons_tree.tres" id="1_14bph"]
+[ext_resource type="Texture2D" uid="uid://8og75pxupa17" path="res://assets/models/env/trees/tree01_fall.png" id="2_y44j8"]
+[ext_resource type="Texture2D" uid="uid://b3rxex4cllrp3" path="res://assets/models/env/trees/tree01_spring.png" id="3_cpubw"]
+[ext_resource type="Texture2D" uid="uid://c1078fnni78mq" path="res://assets/models/env/trees/tree01_summer.png" id="4_jmn1x"]
+[ext_resource type="Texture2D" uid="uid://cxr7fauttf0eo" path="res://assets/models/env/trees/tree01_winter.png" id="5_6beff"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_14bph")
+shader_parameter/season = 0.0
+shader_parameter/FloatParameter = 0.0
+shader_parameter/spring_texture = ExtResource("3_cpubw")
+shader_parameter/summer_texture = ExtResource("4_jmn1x")
+shader_parameter/fall_texture = ExtResource("2_y44j8")
+shader_parameter/winter_texture = ExtResource("5_6beff")
