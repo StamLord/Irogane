@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=146 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -70,6 +70,8 @@
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
 [ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
+[ext_resource type="PackedScene" uid="uid://dkcoap7i5mjnl" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
+[ext_resource type="PackedScene" uid="uid://blmgqak0mhkqx" path="res://prefabs/env/trees/tree_01_early_fall.tscn" id="72_y3ju1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
 draw_center = false
@@ -293,12 +295,12 @@ curve = SubResource("Curve_52vgi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hx5fg"]
 emission_shape = 3
-emission_box_extents = Vector3(2, 0.25, 0.25)
+emission_box_extents = Vector3(0.5, 0.25, 0.25)
 direction = Vector3(0, 0, 1)
 spread = 20.0
 gravity = Vector3(0, -2, 0)
-initial_velocity_min = 1.0
-initial_velocity_max = 2.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
 angle_max = 180.0
 scale_min = 0.5
 scale_max = 1.5
@@ -320,6 +322,180 @@ particles_anim_loop = false
 [sub_resource type="PlaneMesh" id="PlaneMesh_8o406"]
 material = SubResource("StandardMaterial3D_ubalm")
 orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_ts41r"]
+offsets = PackedFloat32Array(0.275862, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u8jdu"]
+gradient = SubResource("Gradient_ts41r")
+
+[sub_resource type="Curve" id="Curve_xyuda"]
+_data = [Vector2(0, 0.336842), 0.0, 1.95354, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uqusl"]
+curve = SubResource("Curve_xyuda")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kg7px"]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.25, 0.25)
+direction = Vector3(0, 0, 1)
+spread = 20.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_uqusl")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_u8jdu")
+
+[sub_resource type="Gradient" id="Gradient_dws3d"]
+offsets = PackedFloat32Array(0.275862, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fwm08"]
+gradient = SubResource("Gradient_dws3d")
+
+[sub_resource type="Curve" id="Curve_ju6mv"]
+_data = [Vector2(0, 0.336842), 0.0, 1.95354, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jj3n0"]
+curve = SubResource("Curve_ju6mv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o815r"]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.25, 0.25)
+direction = Vector3(0, 0, 1)
+spread = 20.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_jj3n0")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_fwm08")
+
+[sub_resource type="Gradient" id="Gradient_yriga"]
+offsets = PackedFloat32Array(0.275862, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bv6g0"]
+gradient = SubResource("Gradient_yriga")
+
+[sub_resource type="Curve" id="Curve_sc4rn"]
+_data = [Vector2(0, 0.336842), 0.0, 1.95354, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jarp"]
+curve = SubResource("Curve_sc4rn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_13464"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 0.25, 0.25)
+direction = Vector3(0, 0, 1)
+spread = 20.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_6jarp")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_bv6g0")
+
+[sub_resource type="Gradient" id="Gradient_54cqs"]
+offsets = PackedFloat32Array(0.275862, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dp6tg"]
+gradient = SubResource("Gradient_54cqs")
+
+[sub_resource type="Curve" id="Curve_60y8u"]
+_data = [Vector2(0, 0.336842), 0.0, 1.95354, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t1n5v"]
+curve = SubResource("Curve_60y8u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p2fkl"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 0.25, 0.25)
+direction = Vector3(0, 0, 1)
+spread = 20.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_t1n5v")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_dp6tg")
+
+[sub_resource type="Gradient" id="Gradient_s6ue0"]
+offsets = PackedFloat32Array(0.275862, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3lefq"]
+gradient = SubResource("Gradient_s6ue0")
+
+[sub_resource type="Curve" id="Curve_bwx6i"]
+_data = [Vector2(0, 0.336842), 0.0, 1.95354, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pkxor"]
+curve = SubResource("Curve_bwx6i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_apite"]
+emission_shape = 3
+emission_box_extents = Vector3(3, 0.25, 0.25)
+direction = Vector3(0, 0, 1)
+spread = 20.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_pkxor")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_3lefq")
+
+[sub_resource type="Gradient" id="Gradient_23aqj"]
+offsets = PackedFloat32Array(0.275862, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vrnb7"]
+gradient = SubResource("Gradient_23aqj")
+
+[sub_resource type="Curve" id="Curve_hd8xp"]
+_data = [Vector2(0, 0.336842), 0.0, 1.95354, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wa86y"]
+curve = SubResource("Curve_hd8xp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f6uyo"]
+emission_shape = 3
+emission_box_extents = Vector3(3, 0.25, 0.25)
+direction = Vector3(0, 1, 0)
+spread = 20.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+angle_max = 180.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_wa86y")
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_vrnb7")
 
 [node name="CharacterCreation" type="Control"]
 unique_name_in_owner = true
@@ -2710,15 +2886,6 @@ shadow_enabled = true
 [node name="river_bed_3" parent="env" instance=ExtResource("5_amh3m")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 8)
 
-[node name="waterfall_particles" type="GPUParticles3D" parent="env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.252878, -4.04888)
-amount = 100
-lifetime = 6.0
-preprocess = 4.0
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_twp0a")
-draw_pass_1 = SubResource("QuadMesh_q4x6l")
-
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="env"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 stream = ExtResource("9_5uw0b")
@@ -2758,30 +2925,138 @@ script = ExtResource("10_sk6vb")
 [node name="female_model" parent="env/human_model" instance=ExtResource("11_qjq4y")]
 visible = false
 
-[node name="tree_01" parent="." instance=ExtResource("69_o4b8y")]
+[node name="waterfall_particles2" type="Node3D" parent="env"]
+
+[node name="waterfall_mist" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.253, -3.7695)
+amount = 100
+lifetime = 6.0
+preprocess = 4.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_twp0a")
+draw_pass_1 = SubResource("QuadMesh_q4x6l")
+
+[node name="waterfall_splash" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(0.962772, 0, 0.270315, 0, 1, 0, -0.270315, 0, 0.962772, -0.493574, 2.18224, -6.01822)
+amount = 64
+lifetime = 4.0
+visibility_aabb = AABB(-4, -4, -4.78796, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_hx5fg")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="waterfall_splash6" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.909393, 2.18224, -6.28299)
+amount = 64
+lifetime = 4.0
+visibility_aabb = AABB(-4, -4, -4.78796, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_kg7px")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="waterfall_splash2" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(0.993158, 0, -0.116775, 0, 1, 0, 0.116775, 0, 0.993158, 2.204, 2.43559, -6.0416)
+amount = 128
+lifetime = 4.0
+visibility_aabb = AABB(-4, -4, -4.78796, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_o815r")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="waterfall_splash3" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 2.4289, 4.60452, -8.84507)
+amount = 128
+lifetime = 4.0
+visibility_aabb = AABB(-4, -4, -4.78796, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_13464")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="waterfall_splash4" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.23218, 4.98157, -9.76843)
+amount = 64
+lifetime = 4.0
+visibility_aabb = AABB(-4, -4, -4.78796, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_p2fkl")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="waterfall_splash5" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 6.39297, -12.9717)
+amount = 256
+lifetime = 4.0
+visibility_aabb = AABB(-4, -4, -4.78796, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_apite")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="waterfall_splash7" type="GPUParticles3D" parent="env/waterfall_particles2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.25, -3.7695)
+amount = 256
+lifetime = 4.0
+visibility_aabb = AABB(-4, -4, -4.78796, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_f6uyo")
+draw_pass_1 = SubResource("PlaneMesh_8o406")
+
+[node name="tree_01" parent="env" instance=ExtResource("69_o4b8y")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.34774, 1.14568, -2.36326)
 
-[node name="tree_02" parent="." instance=ExtResource("69_o4b8y")]
+[node name="tree_02" parent="env" instance=ExtResource("69_o4b8y")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.91547, 1.31658, -0.855397)
 
-[node name="tree_03" parent="." instance=ExtResource("69_o4b8y")]
+[node name="tree_03" parent="env" instance=ExtResource("69_o4b8y")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.2882, 2.87572, -6.26079)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.18224, -7.70857)
-amount = 256
-lifetime = 2.0
-visibility_aabb = AABB(-4, -4, -4.76404, 8, 8, 8)
-process_material = SubResource("ParticleProcessMaterial_hx5fg")
-draw_pass_1 = SubResource("PlaneMesh_8o406")
+[node name="tree_04" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.28467, 7.16961, -8.93699)
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.81954, -11.9613)
-amount = 256
-lifetime = 2.0
-visibility_aabb = AABB(-4, -4, -4.76404, 8, 8, 8)
-process_material = SubResource("ParticleProcessMaterial_hx5fg")
-draw_pass_1 = SubResource("PlaneMesh_8o406")
+[node name="tree_11" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.26051, 3.63232, -4.25047)
+
+[node name="tree_05" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.90906, 3.88845, -3.30924)
+
+[node name="tree_06" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.06658, 6.75282, -13.3834)
+
+[node name="tree_07" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.18273, 5.91038, -10.5655)
+
+[node name="tree_08" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.1901, 6.51457, -10.2488)
+
+[node name="tree_10" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12.8599, 7.00496, -11.2099)
+
+[node name="tree_09" parent="env" instance=ExtResource("69_o4b8y")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.06658, 6.48404, -9.88342)
+
+[node name="bush3" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1.58247, 0, 0, 0, 1.58247, 0, 0, 0, 1.58247, 4.40697, 0.433267, -2.36685)
+
+[node name="bush9" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1.58247, 0, 0, 0, 1.58247, 0, 0, 0, 1.58247, -2.95278, 0.335914, -4.1264)
+
+[node name="bush10" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47653, 1.13495, -3.09719)
+
+[node name="bush11" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03801, 1.59281, -5.02963)
+
+[node name="bush7" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27779, 2.37485, -5.31738)
+
+[node name="bush8" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1.48193, 0, 0, 0, 1.48193, 0, 0, 0, 1.48193, 4.98711, 2.59262, -6.29442)
+
+[node name="bush4" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71721, 0.670459, -1.41269)
+
+[node name="bush5" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.89654, 5.95026, -7.7593)
+
+[node name="bush6" parent="." instance=ExtResource("71_pwddk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14887, 5.87482, -8.32211)
+
+[node name="tree_01" parent="." instance=ExtResource("72_y3ju1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.35986, 5.49185, -7.20994)
+
+[node name="tree_02" parent="." instance=ExtResource("72_y3ju1")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.96249, 2.76471, -6.02812)
 
 [connection signal="mouse_entered" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_exited"]

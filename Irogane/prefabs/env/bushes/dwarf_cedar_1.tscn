@@ -33,9 +33,11 @@ bone_idx = 1
 script = ExtResource("3_2qwyd")
 properties = SubResource("Resource_5f6u8")
 
-[node name="stealth_area" type="Area3D" parent="." index="1"]
+[node name="stealth_area" type="Area3D" parent="." index="1" node_paths=PackedStringArray("wiggle_bone", "audio_player")]
 collision_layer = 16
 script = ExtResource("5_pam60")
+wiggle_bone = NodePath("../dwarf_cedar_rig/Skeleton3D/WiggleBone")
+audio_player = NodePath("../audio_player")
 wiggle_force = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stealth_area" index="0"]
