@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://srhyrd7x1jk1"
-path="res://.godot/imported/scroll_bar.png-c0a80cc91224303d59130da926b9b5c9.ctex"
+uid="uid://dv782ou05kwyt"
+path="res://.godot/imported/scroll_bar_h.png-bdbc8320258507ccb0309a0dfc3b3cc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/ui/theme/scroll_bar.png"
-dest_files=["res://.godot/imported/scroll_bar.png-c0a80cc91224303d59130da926b9b5c9.ctex"]
+source_file="res://assets/textures/ui/theme/scroll_bar_h.png"
+dest_files=["res://.godot/imported/scroll_bar_h.png-bdbc8320258507ccb0309a0dfc3b3cc2.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bx80xjf5v460"]
+[gd_scene load_steps=28 format=3 uid="uid://bx80xjf5v460"]
 
 [ext_resource type="Texture2D" uid="uid://b807edcc2jh8n" path="res://assets/textures/ui/theme/scroll_button_base.png" id="1_d64j8"]
 [ext_resource type="Texture2D" uid="uid://g4u5nbk45yfn" path="res://assets/textures/ui/theme/square_button_normal.png" id="1_gx5kc"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="22_5ng0p"]
 [ext_resource type="Texture2D" uid="uid://b2yjpv6xaj710" path="res://assets/textures/ui/theme/long_small_button_pressed.png" id="23_4b2uw"]
 [ext_resource type="Texture2D" uid="uid://b46iledi3eny5" path="res://assets/textures/ui/theme/long_small_button_highlight.png" id="24_g2ag1"]
+[ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="28_cigsl"]
 
 [node name="Control" type="Control"]
 texture_filter = 1
@@ -580,3 +581,192 @@ pivot_offset = Vector2(205, 36)
 texture_normal = ExtResource("10_svgom")
 texture_pressed = ExtResource("11_qewh2")
 texture_hover = ExtResource("12_kfiq0")
+
+[node name="v_scroll_container" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 595.0
+offset_top = 194.0
+offset_right = 833.0
+offset_bottom = 415.0
+theme = ExtResource("4_qw1og")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="v_scroll_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="v_scroll_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Label3" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="Label4" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Label5" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="Label6" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "6"
+
+[node name="Label7" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "7
+"
+
+[node name="Label8" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "8"
+
+[node name="Label9" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "9"
+
+[node name="Label10" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "10"
+
+[node name="Label11" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "11"
+
+[node name="Label12" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "12"
+
+[node name="Label13" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "13"
+
+[node name="Label14" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "14"
+
+[node name="Label15" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "15"
+
+[node name="VSlider" type="VSlider" parent="v_scroll_container" node_paths=PackedStringArray("scroll_container")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 1
+value = 100.0
+script = ExtResource("28_cigsl")
+scroll_container = NodePath("../ScrollContainer")
+
+[node name="h_scroll_container" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 595.0
+offset_top = 478.0
+offset_right = 833.0
+offset_bottom = 699.0
+theme = ExtResource("4_qw1og")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="h_scroll_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="h_scroll_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Label3" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="Label4" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Label5" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="Label6" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "6"
+
+[node name="Label7" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "7
+"
+
+[node name="Label8" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "8"
+
+[node name="Label9" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "9"
+
+[node name="Label10" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "10"
+
+[node name="Label11" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "11"
+
+[node name="Label12" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "12"
+
+[node name="Label13" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "13"
+
+[node name="Label14" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "14"
+
+[node name="Label15" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "15"
+
+[node name="HSlider" type="HSlider" parent="h_scroll_container" node_paths=PackedStringArray("scroll_container")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("28_cigsl")
+scroll_container = NodePath("../ScrollContainer")
