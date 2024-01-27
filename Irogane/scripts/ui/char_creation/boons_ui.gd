@@ -30,6 +30,26 @@ const BOONS = {
 		"title": "Commoner's Tongue",
 		"desc": "what dat mouf do",
 	},
+	"courtly_eloquence": {
+		"title": "Courtly Eloquence",
+		"desc": "court",
+	},
+	"demon_whisperer": {
+		"title": "Demon Whisperer",
+		"desc": "court",
+	},
+	"fast_healer": {
+		"title": "Fast Healer",
+		"desc": "court",
+	},
+	"honor_code": {
+		"title": "Honor Code",
+		"desc": "court",
+	},
+	"extra_boon": {
+		"title": "Extra Boon",
+		"desc": "court",
+	},
 }
 
 const FLAWS = {
@@ -181,6 +201,9 @@ func _on_boon_next_button_pressed():
 	
 
 func _on_visibility_changed():
+	if stats == null:
+		return
+	
 	str_val.text = str(stats.strength.get_value())
 	agi_val.text = str(stats.agility.get_value())
 	dex_val.text = str(stats.dexterity.get_value())

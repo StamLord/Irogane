@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=160 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -73,13 +73,14 @@
 [ext_resource type="Texture2D" uid="uid://ypn1g1i03dm6" path="res://assets/textures/ui/theme/cc_boons_window.png" id="60_2wkob"]
 [ext_resource type="Texture2D" uid="uid://dpaftjkw881hf" path="res://assets/textures/ui/theme/cc_balance_points_gradient.png" id="61_f4jlq"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="61_kfy4l"]
-[ext_resource type="Texture2D" uid="uid://bsanurcnqsi7j" path="res://assets/textures/ui/theme/toggle_checked.png" id="61_rlgkj"]
 [ext_resource type="Texture2D" uid="uid://cx6y5wg5w42r4" path="res://assets/textures/ui/theme/cc_ambition_window.png" id="62_i6v38"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="63_2eqoa"]
 [ext_resource type="Texture2D" uid="uid://dq27e6l7j0ysf" path="res://assets/textures/ui/theme/cc_summary_gradient.png" id="63_c61kh"]
+[ext_resource type="Texture2D" uid="uid://cixl3b2w06n0m" path="res://assets/textures/ui/theme/selected_stamp.png" id="65_xrv74"]
+[ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="66_4460i"]
 [ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
-[ext_resource type="PackedScene" uid="uid://dkcoap7i5mjnl" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
+[ext_resource type="PackedScene" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
 [ext_resource type="PackedScene" uid="uid://blmgqak0mhkqx" path="res://prefabs/env/trees/tree_01_early_fall.tscn" id="72_y3ju1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -173,7 +174,7 @@ spacing_bottom = 5
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_md57h"]
 texture = ExtResource("47_4l45c")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dsodj"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bywaw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxuy2"]
 
@@ -181,16 +182,23 @@ texture = ExtResource("47_4l45c")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_naa2m"]
 texture = ExtResource("61_kfy4l")
-expand_margin_left = 20.0
+expand_margin_left = 55.0
 expand_margin_top = 14.0
-expand_margin_right = 70.0
+expand_margin_right = 50.0
+expand_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_px414"]
+texture = ExtResource("61_kfy4l")
+expand_margin_left = 55.0
+expand_margin_top = 14.0
+expand_margin_right = 40.0
 expand_margin_bottom = 14.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei025"]
 texture = ExtResource("61_kfy4l")
-expand_margin_left = 20.0
+expand_margin_left = 50.0
 expand_margin_top = 14.0
-expand_margin_right = 30.0
+expand_margin_right = 50.0
 expand_margin_bottom = 14.0
 
 [sub_resource type="OggPacketSequence" id="OggPacketSequence_73fyh"]
@@ -570,6 +578,7 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1734,11 +1743,12 @@ offset_right = 478.0
 offset_bottom = 119.0
 grow_horizontal = 2
 theme_type_variation = &"SkillButton"
+theme_override_colors/font_hover_color = Color(0.898039, 0.898039, 0.898039, 1)
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_md57h")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_dsodj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_md57h")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_md57h")
-theme_override_styles/focus = SubResource("StyleBoxTexture_md57h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bywaw")
 text = "< CUSTOM PRESET >"
 
 [node name="skills_bg" type="TextureRect" parent="attributes_UI"]
@@ -2982,7 +2992,6 @@ texture_focused = ExtResource("9_kkng3")
 
 [node name="boons_UI" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -3048,19 +3057,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -180.0
+offset_top = -220.0
+offset_right = 180.0
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_c8e2i")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2sy7e")
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="boons_UI/boons/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 49
 theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="boons_list" type="VBoxContainer" parent="boons_UI/boons/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
@@ -3071,9 +3083,10 @@ theme_override_constants/separation = 30
 
 [node name="boon_Button" type="Button" parent="boons_UI/boons/ScrollContainer/MarginContainer/boons_list" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxTexture_naa2m")
-text = "Battle Hardened"
+text = "Battle Tendency"
 alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../../AudioPlayer")
@@ -3081,12 +3094,34 @@ focus_sound = ExtResource("34_2wqo7")
 
 [node name="selected_texture" type="TextureRect" parent="boons_UI/boons/ScrollContainer/MarginContainer/boons_list/boon_Button"]
 visible = false
-layout_mode = 0
-offset_left = -50.0
-offset_top = -11.0
-offset_right = 2.0
-offset_bottom = 41.0
-texture = ExtResource("61_rlgkj")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -17.0
+offset_right = -6.0
+offset_bottom = 17.0
+grow_vertical = 2
+texture = ExtResource("65_xrv74")
+stretch_mode = 2
+
+[node name="boons_slider" type="VSlider" parent="boons_UI/boons" node_paths=PackedStringArray("scroll_container")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -200.0
+offset_right = -29.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 100.0
+script = ExtResource("66_4460i")
+scroll_container = NodePath("../ScrollContainer")
 
 [node name="balance_bg" type="TextureRect" parent="boons_UI"]
 layout_mode = 1
@@ -3196,6 +3231,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_2sy7e")
 layout_mode = 2
 theme_override_constants/margin_left = 49
 theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 25
 
 [node name="flaws_list" type="VBoxContainer" parent="boons_UI/flaws/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
@@ -3206,8 +3242,10 @@ theme_override_constants/separation = 30
 
 [node name="flaw_Button" type="Button" parent="boons_UI/flaws/ScrollContainer/MarginContainer/flaws_list" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_naa2m")
+theme_override_styles/normal = SubResource("StyleBoxTexture_px414")
+theme_override_styles/focus = SubResource("StyleBoxTexture_px414")
 text = "Addiction (Gambling)"
 alignment = 0
 script = ExtResource("16_m1hp5")
@@ -3216,12 +3254,33 @@ focus_sound = ExtResource("34_2wqo7")
 
 [node name="selected_texture" type="TextureRect" parent="boons_UI/flaws/ScrollContainer/MarginContainer/flaws_list/flaw_Button"]
 visible = false
-layout_mode = 0
-offset_left = -50.0
-offset_top = -11.0
-offset_right = 2.0
-offset_bottom = 41.0
-texture = ExtResource("61_rlgkj")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -17.0
+offset_right = -6.0
+offset_bottom = 17.0
+grow_vertical = 2
+texture = ExtResource("65_xrv74")
+
+[node name="flaws_slider" type="VSlider" parent="boons_UI/flaws" node_paths=PackedStringArray("scroll_container")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -200.0
+offset_right = -29.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+value = 100.0
+script = ExtResource("66_4460i")
+scroll_container = NodePath("../ScrollContainer")
 
 [node name="ambition" type="TextureRect" parent="boons_UI"]
 layout_mode = 1
@@ -3297,12 +3356,16 @@ focus_sound = ExtResource("34_2wqo7")
 
 [node name="selected_texture" type="TextureRect" parent="boons_UI/ambition/ScrollContainer/MarginContainer/ambition_list/ambition_Button"]
 visible = false
-layout_mode = 0
-offset_left = -50.0
-offset_top = -11.0
-offset_right = 2.0
-offset_bottom = 41.0
-texture = ExtResource("61_rlgkj")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -17.0
+offset_right = -6.0
+offset_bottom = 17.0
+grow_vertical = 2
+texture = ExtResource("65_xrv74")
 
 [node name="info_bg" type="TextureRect" parent="boons_UI"]
 layout_mode = 1
@@ -3527,17 +3590,6 @@ texture_normal = ExtResource("10_ja5oy")
 texture_pressed = ExtResource("11_ueydr")
 texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
-
-[node name="REFERENCE_IMG" type="TextureRect" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.427451)
-top_level = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="AudioPlayer" type="Node3D" parent="."]
 unique_name_in_owner = true
