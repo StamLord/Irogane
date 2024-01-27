@@ -7,7 +7,7 @@ var initial_scene_position = null
 
 var inventory = null
 
-var model_node_path = "model/Character"
+var model_node_path = "model/human_model"
 
 const PLAYER_SCENE_PATH = "res://prefabs/entities/player.tscn"
 const NO_PLAYER_SCENES = ["res://prefabs/ui/character_creator.tscn", "res://scenes/main_menu.tscn"]

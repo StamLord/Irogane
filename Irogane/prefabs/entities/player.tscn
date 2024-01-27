@@ -1,8 +1,8 @@
-[gd_scene load_steps=98 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=97 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
+[ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="2_u6d7g"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Run.gd" id="3_nkdgy"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Jump.gd" id="4_y8at0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Air.gd" id="5_hicbf"]
@@ -29,13 +29,12 @@
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
+[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
-[ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="34_03ybc"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
 [ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
-[ext_resource type="PackedScene" uid="uid://c8lpxncjkcjqb" path="res://assets/models/male/scene/male_model.tscn" id="36_y7hmg"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
 [ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
@@ -753,9 +752,8 @@ draw_pass_1 = SubResource("SphereMesh_qy1qf")
 
 [node name="model" type="Node3D" parent="."]
 
-[node name="Character" parent="model" instance=ExtResource("36_y7hmg")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.2)
-script = ExtResource("34_03ybc")
+[node name="human_model" parent="model" instance=ExtResource("33_436od")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0.2)
 
 [node name="third_person_camera" type="Camera3D" parent="model"]
 transform = Transform3D(-1, 0, -8.74228e-08, -1.19085e-08, 0.990679, 0.136217, 8.66079e-08, 0.136217, -0.990679, 0, 1.35377, -1.7465)
