@@ -64,11 +64,11 @@
 [ext_resource type="Script" path="res://prefabs/ui/skill_tree_leaf_ui.gd" id="51_32i56"]
 [ext_resource type="Script" path="res://scripts/skills/skill_tree.gd" id="51_66pgn"]
 [ext_resource type="Script" path="res://scripts/skills/skill_tree_manager.gd" id="51_g1cca"]
+[ext_resource type="AudioStream" uid="uid://dm7pun1kyvfpe" path="res://assets/audio/ui/wood_1.ogg" id="53_g4inb"]
 [ext_resource type="Texture2D" uid="uid://d3o75s0qlg677" path="res://assets/textures/ui/theme/scroll_button_card.png" id="55_6rmyd"]
 [ext_resource type="Script" path="res://prefabs/ui/skills_learned_label.gd" id="55_gmvcn"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/boons_ui.gd" id="59_f8ur1"]
 [ext_resource type="Texture2D" uid="uid://ypn1g1i03dm6" path="res://assets/textures/ui/theme/cc_boons_window.png" id="60_2wkob"]
-[ext_resource type="Texture2D" path="res://themes/cc_boons_mockup.png" id="61_5m65f"]
 [ext_resource type="Texture2D" uid="uid://dpaftjkw881hf" path="res://assets/textures/ui/theme/cc_balance_points_gradient.png" id="61_f4jlq"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="61_kfy4l"]
 [ext_resource type="Texture2D" uid="uid://bsanurcnqsi7j" path="res://assets/textures/ui/theme/toggle_checked.png" id="61_rlgkj"]
@@ -568,6 +568,7 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1344,7 +1345,6 @@ texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_UI" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1777,7 +1777,7 @@ offset_top = 28.0
 offset_right = 40.0
 offset_bottom = 68.0
 
-[node name="swords_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="swords_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -1796,6 +1796,8 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "swords"
 duration = 0.05
+hover_sound = ExtResource("53_g4inb")
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
 modulate = Color(0.333333, 0.505882, 0.717647, 1)
@@ -1858,7 +1860,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="staff_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="staff_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -1877,6 +1879,8 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "staff"
 duration = 0.05
+hover_sound = ExtResource("53_g4inb")
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/staff_scroll"]
 modulate = Color(0.470588, 0.494118, 0.329412, 1)
@@ -1941,7 +1945,7 @@ vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 skill_tree = NodePath("../../../dark_indent/skill_tree_manager/staff_tree")
 
-[node name="bow_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="bow_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -1960,6 +1964,8 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "bow"
 duration = 0.05
+hover_sound = ExtResource("53_g4inb")
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
 modulate = Color(0.690196, 0.407843, 0.341176, 1)
@@ -2023,7 +2029,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="thrown_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="thrown_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2042,6 +2048,8 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "thrown"
 duration = 0.05
+hover_sound = ExtResource("53_g4inb")
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/thrown_scroll"]
 modulate = Color(0.847059, 0.74902, 0.4, 1)
@@ -2105,7 +2113,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="unarmed_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="unarmed_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2124,6 +2132,8 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "unarmed"
 duration = 0.05
+hover_sound = ExtResource("53_g4inb")
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/unarmed_scroll"]
 modulate = Color(0.901961, 0.890196, 0.870588, 1)
@@ -2187,7 +2197,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="mobility_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="mobility_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2206,6 +2216,7 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "mobility"
 duration = 0.05
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/mobility_scroll"]
 modulate = Color(0.866667, 0.560784, 0.635294, 1)
@@ -2268,7 +2279,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="stealth_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="stealth_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2287,6 +2298,7 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "stealth"
 duration = 0.05
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/stealth_scroll"]
 modulate = Color(0.356863, 0.321569, 0.509804, 1)
@@ -2350,7 +2362,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="xaorin_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="xaorin_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2369,6 +2381,7 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "xaorin"
 duration = 0.05
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/xaorin_scroll"]
 modulate = Color(0.803922, 0.337255, 0.25098, 1)
@@ -2431,7 +2444,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="onmyodo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="onmyodo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2450,6 +2463,7 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "onmyodo"
 duration = 0.05
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/onmyodo_scroll"]
 modulate = Color(0.188235, 0.568627, 0.584314, 1)
@@ -2512,7 +2526,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="shugendo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls"]
+[node name="shugendo_scroll" type="TextureButton" parent="attributes_UI/skills_bg/scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2531,6 +2545,7 @@ texture_normal = ExtResource("40_tj5fb")
 script = ExtResource("41_4end4")
 skill_name = "shugendo"
 duration = 0.05
+audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/shugendo_scroll"]
 modulate = Color(0.823529, 0.470588, 0, 1)
@@ -2625,6 +2640,104 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("51_g1cca")
+
+[node name="mobility_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("51_66pgn")
+
+[node name="dash" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 186.0
+offset_bottom = 100.0
+theme_type_variation = &"SkillButton"
+text = "Dash"
+script = ExtResource("51_32i56")
+
+[node name="after_image" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 386.0
+offset_bottom = 100.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "After Image
+"
+script = ExtResource("51_32i56")
+skill_requirments = ["dash"]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree/after_image"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="double_jump" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 140.0
+offset_right = 186.0
+offset_bottom = 190.0
+theme_type_variation = &"SkillButton"
+text = "Double Jump"
+script = ExtResource("51_32i56")
+
+[node name="triple_jump" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 250.0
+offset_top = 140.0
+offset_right = 386.0
+offset_bottom = 190.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Triple Jump"
+script = ExtResource("51_32i56")
+skill_requirments = ["double_jump"]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree/triple_jump"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="wall_jump" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 50.0
+offset_top = 230.0
+offset_right = 186.0
+offset_bottom = 280.0
+theme_type_variation = &"SkillButton"
+text = "Wall Jump"
+script = ExtResource("51_32i56")
+
+[node name="human_jump" type="Button" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 250.0
+offset_top = 230.0
+offset_right = 386.0
+offset_bottom = 280.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Human Jump"
+script = ExtResource("51_32i56")
+skill_requirments = ["wall_jump"]
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager/mobility_tree/human_jump"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="swords_tree" type="Control" parent="attributes_UI/skills_bg/dark_indent/skill_tree_manager"]
 unique_name_in_owner = true
@@ -2938,7 +3051,6 @@ alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../../AudioPlayer")
 focus_sound = ExtResource("34_2wqo7")
-value = "temp"
 
 [node name="selected_texture" type="TextureRect" parent="boons_UI/boons/ScrollContainer/MarginContainer/boons_list/boon_Button"]
 visible = false
@@ -3074,7 +3186,6 @@ alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../../AudioPlayer")
 focus_sound = ExtResource("34_2wqo7")
-value = "temp"
 
 [node name="selected_texture" type="TextureRect" parent="boons_UI/flaws/ScrollContainer/MarginContainer/flaws_list/flaw_Button"]
 visible = false
@@ -3156,7 +3267,6 @@ alignment = 0
 script = ExtResource("16_m1hp5")
 audio_player = NodePath("../../../../../../AudioPlayer")
 focus_sound = ExtResource("34_2wqo7")
-value = "temp"
 
 [node name="selected_texture" type="TextureRect" parent="boons_UI/ambition/ScrollContainer/MarginContainer/ambition_list/ambition_Button"]
 visible = false
@@ -3401,7 +3511,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("61_5m65f")
 
 [node name="AudioPlayer" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -3697,7 +3806,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.96249, 2.76471, -6.0
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
 [connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="focus_entered" from="attributes_UI" to="attributes_UI" method="_on_focus_entered"]
-[connection signal="visibility_changed" from="attributes_UI" to="attributes_UI" method="_on_visibility_changed"]
 [connection signal="pressed" from="attributes_UI/attr_back_button" to="attributes_UI" method="_on_attr_back_button_pressed"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_pressed"]

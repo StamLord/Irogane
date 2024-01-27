@@ -1,4 +1,4 @@
-extends TextureButton
+extends UIButton
 
 var initial_pos
 var selected = false
@@ -6,18 +6,27 @@ var selected = false
 @export var hover_offset = -75.0
 @export var select_offset = -100.0
 @export var duration = 0.02
+@export var hover_sound: AudioStream
+@export var unhover_sound: AudioStream
 
 signal skill_selected(skill_name)
+signal skill_hovered(skill_name)
 
 func _ready():
+	super()
 	initial_pos = get_position()
-	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
 	
 
 func _mouse_entered():
+	super()
+	skill_hovered.emit(skill_name)
+	
 	if selected:
 		return
+	
+	if hover_sound:
+		audio_player.play(hover_sound)
 	
 	animate_offset(initial_pos.x + hover_offset, duration)
 	
@@ -26,6 +35,8 @@ func _mouse_exited():
 	if selected:
 		return
 	
+	if unhover_sound:
+		audio_player.play(unhover_sound)
 	animate_offset(initial_pos.x, duration)
 	
 
@@ -41,7 +52,7 @@ func select():
 
 func deselect():
 	selected = false
-	set_position(initial_pos)
+	animate_offset(initial_pos.x, duration)
 	
 
 func _pressed():

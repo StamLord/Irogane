@@ -31,8 +31,8 @@ var current_focused_skill = null
 		"button": %unarmed_scroll,
 	},
 	"mobility": {
-		"info": "cut shit with a sword",
-		"skill_tree": %swords_tree,
+		"info": "Mobility focuses on enhancing the agility, speed, and maneuverability of the practitioner. From nimble footwork to daring aerial maneuvers, these skills empower warriors to navigate the battlefield with unparalleled grace and efficiency.",
+		"skill_tree": %mobility_tree,
 		"button": %mobility_scroll,
 	},
 	"stealth": {
@@ -62,6 +62,11 @@ func _ready():
 	for skill_name in SKILLS:
 		var skill = SKILLS[skill_name]
 		skill.button.skill_selected.connect(skill_selected)
+		skill.button.skill_hovered.connect(skill_hovered)
+	
+
+func skill_hovered(skill_name):
+	info_text.bbcode_text = SKILLS[skill_name].info
 	
 
 func skill_selected(skill_name):

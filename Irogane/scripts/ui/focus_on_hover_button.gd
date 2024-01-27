@@ -1,4 +1,5 @@
-extends Button
+class_name UIButton
+extends BaseButton
 
 @export var audio_player: AudioPlayer
 @export var focus_sound: AudioStream
