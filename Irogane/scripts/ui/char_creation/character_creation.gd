@@ -31,6 +31,7 @@ func prev_ui_screen():
 func next_ui_screen():
 	if current_ui_screen_index == ui_screens.size() - 1:
 		start_new_game()
+		return
 	
 	var curr_ui_screen
 	

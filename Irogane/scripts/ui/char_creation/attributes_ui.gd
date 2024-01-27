@@ -139,6 +139,10 @@ func _on_attr_randomize_button_pressed():
 	reset_attributes()
 	set_custom_preset()
 	
+	for attr in ATTRIBUTES:
+		while stats[attr].get_value() != stats[attr].get_minimum_value():
+			decrease_attribute_if_possible(attr)
+	
 	while current_available_points > 0:
 		var attr_names = []
 		
@@ -146,12 +150,18 @@ func _on_attr_randomize_button_pressed():
 			attr_names.append(attr)
 		
 		while attr_names.size() > 0:
+			if current_available_points == 0:
+				return
+
 			var index = rng.randi_range(0, attr_names.size() - 1)
-			var add_value = rng.randi_range(0, current_available_points)
+			var attr_name = attr_names[index]
+			var remainder_to_max = stats[attr_name].get_maximum_value() -  stats[attr_name].get_value()
+			var max_points = current_available_points if current_available_points < remainder_to_max else remainder_to_max
+			var add_value = rng.randi_range(0, max_points)
 			
 			for i in add_value:
-				increase_attribute_if_possible(attr_names[index])
-	
+				increase_attribute_if_possible(attr_name)
+
 			attr_names.remove_at(index)
 	
 
