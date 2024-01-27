@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=3 uid="uid://d33kntovmxuqa"]
+[gd_scene load_steps=162 format=3 uid="uid://d33kntovmxuqa"]
 
 [ext_resource type="Script" path="res://scripts/ui/char_creation/camera_control_panel.gd" id="1_2c0og"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/character_creation.gd" id="1_bindm"]
@@ -65,9 +65,11 @@
 [ext_resource type="Script" path="res://scripts/skills/skill_tree.gd" id="51_66pgn"]
 [ext_resource type="Script" path="res://scripts/skills/skill_tree_manager.gd" id="51_g1cca"]
 [ext_resource type="AudioStream" uid="uid://bby6iauwteq2g" path="res://assets/audio/ui/paper_2.ogg" id="53_j0lsy"]
+[ext_resource type="AudioStream" uid="uid://baf015efclx4i" path="res://assets/audio/ui/book_3.ogg" id="54_7nmnx"]
 [ext_resource type="AudioStream" uid="uid://dend0uuum8g3u" path="res://assets/audio/ui/fast_brush_2_soft.ogg" id="54_65u7w"]
 [ext_resource type="AudioStream" uid="uid://k5db6cmj5ryw" path="res://assets/audio/ui/fast_brush_1_soft.ogg" id="54_thdym"]
 [ext_resource type="Texture2D" uid="uid://d3o75s0qlg677" path="res://assets/textures/ui/theme/scroll_button_card.png" id="55_6rmyd"]
+[ext_resource type="AudioStream" uid="uid://d3mtdp1hunnm7" path="res://assets/audio/ui/book_1.ogg" id="55_d8ki3"]
 [ext_resource type="Script" path="res://prefabs/ui/skills_learned_label.gd" id="55_gmvcn"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/boons_ui.gd" id="59_f8ur1"]
 [ext_resource type="Texture2D" uid="uid://ypn1g1i03dm6" path="res://assets/textures/ui/theme/cc_boons_window.png" id="60_2wkob"]
@@ -557,6 +559,7 @@ script = ExtResource("1_2c0og")
 
 [node name="ResetCamera" type="TextureButton" parent="camera_control_panel"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
@@ -578,7 +581,6 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
-visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1817,8 +1819,8 @@ script = ExtResource("41_4end4")
 skill_name = "swords"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_thdym")
-unhover_sound = ExtResource("54_65u7w")
+hover_sound = ExtResource("54_7nmnx")
+unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/swords_scroll"]
@@ -1902,8 +1904,8 @@ script = ExtResource("41_4end4")
 skill_name = "staff"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_thdym")
-unhover_sound = ExtResource("54_65u7w")
+hover_sound = ExtResource("54_7nmnx")
+unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/staff_scroll"]
@@ -1989,8 +1991,8 @@ script = ExtResource("41_4end4")
 skill_name = "bow"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_thdym")
-unhover_sound = ExtResource("54_65u7w")
+hover_sound = ExtResource("54_7nmnx")
+unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_bg/scrolls/bow_scroll"]
@@ -3000,12 +3002,14 @@ texture_focused = ExtResource("9_kkng3")
 
 [node name="boons_UI" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("59_f8ur1")
 
 [node name="boon_back_button" type="TextureButton" parent="boons_UI"]
