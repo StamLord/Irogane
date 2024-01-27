@@ -55,15 +55,17 @@ func apply_rewards_if_possible():
 	var reward_items = {}
 	
 	for req in stage_requirements:
-		if req.completed:
-			for reward in req.rewards:
-				if reward is ItemRewardResource:
-					if reward.item_name not in reward_items:
-						reward_items[reward.item_name] = 0
-					
-					reward_items[reward.item_name] += reward.amount
-				else:
-					reward.apply_reward()
+		if not req.completed:
+			continue
+		
+		for reward in req.rewards:
+			if reward is ItemRewardResource:
+				if reward.item_name not in reward_items:
+					reward_items[reward.item_name] = 0
+				
+				reward_items[reward.item_name] += reward.amount
+			else:
+				reward.apply_reward()
 		
 	if reward_items:
 		if not UIManager.get_inventory().add_items_if_possible(reward_items):
