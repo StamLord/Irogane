@@ -159,7 +159,8 @@ func add_item(item_id):
 
 func pickup_item(item_id):
 	var result = add_item(item_id)[0]
-	EventManager.item_picked_up(item_id)
+	if result:
+		EventManager.item_picked_up(item_id)
 	return result
 	
 
