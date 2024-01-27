@@ -327,16 +327,6 @@ func _on_wis_button_focus_exited():
 	ATTRIBUTES.wisdom.points_label.remove_theme_color_override("font_color")
 	
 
-
-func _on_preset_selection_pressed():
-	current_preset += 1
-	if current_preset >= PRESETS.size():
-		set_custom_preset()
-	else:
-		preset_selection.text = "< %s >" % PRESETS.keys()[current_preset]
-		apply_preset()
-	
-
 func apply_preset():
 	if current_preset < 0 or current_preset >= PRESETS.size():
 		return
@@ -357,4 +347,55 @@ func apply_preset():
 func set_custom_preset():
 	current_preset = -1
 	preset_selection.text = "< CUSTOM PRESET >"
+	
+
+func next_preset():
+	current_preset += 1
+	if current_preset >= PRESETS.size():
+		set_custom_preset()
+	else:
+		preset_selection.text = "< %s >" % PRESETS.keys()[current_preset]
+		apply_preset()
+	
+
+func prev_preset():
+	if current_preset == -1:
+		current_preset = PRESETS.size()
+	
+	current_preset -= 1
+	if current_preset < 0:
+		set_custom_preset()
+	else:
+		preset_selection.text = "< %s >" % PRESETS.keys()[current_preset]
+		apply_preset()
+	
+
+func _on_preset_selection_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				audio_player.play(click_bamboo)
+				next_preset()
+			MOUSE_BUTTON_RIGHT:
+				audio_player.play(click_bamboo)
+				prev_preset()
+	
+
+func _on_texture_button_pressed():
+	audio_player.play(click_bamboo)
+	prev_preset()
+	
+
+func _on_preset_selection_mouse_entered():
+	if current_preset < 0:
+		preset_selection.text = "<  CUSTOM PRESET  >"
+	else:
+		preset_selection.text = "<  %s  >" % PRESETS.keys()[current_preset]
+	
+
+func _on_preset_selection_mouse_exited():
+	if current_preset < 0:
+		preset_selection.text = "< CUSTOM PRESET >"
+	else:
+		preset_selection.text = "< %s >" % PRESETS.keys()[current_preset]
 	

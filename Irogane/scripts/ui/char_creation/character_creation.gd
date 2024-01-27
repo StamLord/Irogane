@@ -26,7 +26,6 @@ func prev_ui_screen():
 	
 	curr_ui_screen = ui_screens[current_ui_screen_index]
 	curr_ui_screen.visible = true
-	
 
 func next_ui_screen():
 	if current_ui_screen_index == ui_screens.size() - 1:

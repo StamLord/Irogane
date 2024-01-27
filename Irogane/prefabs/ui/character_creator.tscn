@@ -1355,7 +1355,6 @@ texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_UI" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1743,13 +1742,21 @@ offset_right = 478.0
 offset_bottom = 119.0
 grow_horizontal = 2
 theme_type_variation = &"SkillButton"
-theme_override_colors/font_hover_color = Color(0.898039, 0.898039, 0.898039, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.784314, 0.321569, 0.184314, 1)
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_md57h")
 theme_override_styles/hover = SubResource("StyleBoxTexture_md57h")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_md57h")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bywaw")
 text = "< CUSTOM PRESET >"
+
+[node name="TextureButton" type="TextureButton" parent="attributes_UI/preset_selection"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 300.0
+grow_vertical = 2
 
 [node name="skills_bg" type="TextureRect" parent="attributes_UI"]
 layout_mode = 1
@@ -2992,6 +2999,7 @@ texture_focused = ExtResource("9_kkng3")
 
 [node name="boons_UI" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -3910,7 +3918,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.96249, 2.76471, -6.0
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer/wis_button" to="attributes_UI" method="_on_wis_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer/HBoxContainer/wis_dec" to="attributes_UI" method="_on_wis_dec_pressed"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attributes_box/wisHBoxContainer/HBoxContainer/wis_inc" to="attributes_UI" method="_on_wis_inc_pressed"]
-[connection signal="pressed" from="attributes_UI/preset_selection" to="attributes_UI" method="_on_preset_selection_pressed"]
+[connection signal="gui_input" from="attributes_UI/preset_selection" to="attributes_UI" method="_on_preset_selection_gui_input"]
+[connection signal="mouse_entered" from="attributes_UI/preset_selection" to="attributes_UI" method="_on_preset_selection_mouse_entered"]
+[connection signal="mouse_exited" from="attributes_UI/preset_selection" to="attributes_UI" method="_on_preset_selection_mouse_exited"]
+[connection signal="pressed" from="attributes_UI/preset_selection/TextureButton" to="attributes_UI" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="attributes_UI/attr_next_button" to="attributes_UI" method="_on_attr_next_button_pressed"]
 [connection signal="visibility_changed" from="boons_UI" to="boons_UI" method="_on_visibility_changed"]
 [connection signal="pressed" from="boons_UI/boon_back_button" to="boons_UI" method="_on_boon_back_button_pressed"]
