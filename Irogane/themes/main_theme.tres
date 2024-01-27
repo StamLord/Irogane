@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=39 format=3 uid="uid://bob8i5q8v8mum"]
+[gd_resource type="Theme" load_steps=43 format=3 uid="uid://bob8i5q8v8mum"]
 
 [ext_resource type="FontFile" uid="uid://bdjuw50a266le" path="res://assets/fonts/otsutome/Otsutome.ttf" id="1_hvsot"]
 [ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="2_lqrex"]
@@ -11,12 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://hweb3dypawxd" path="res://assets/textures/ui/theme/square_button_hover.png" id="6_atbfv"]
 [ext_resource type="Texture2D" uid="uid://dqa365215hi43" path="res://assets/textures/ui/theme/slider_button_hover.png" id="6_umkdy"]
 [ext_resource type="Texture2D" uid="uid://b2yjpv6xaj710" path="res://assets/textures/ui/theme/long_small_button_pressed.png" id="7_436b0"]
-[ext_resource type="Texture2D" uid="uid://b4yim6tybxoo2" path="res://assets/textures/ui/theme/slider_red.png" id="7_p0njs"]
+[ext_resource type="Texture2D" uid="uid://dv782ou05kwyt" path="res://assets/textures/ui/theme/scroll_bar_h.png" id="7_upg1x"]
 [ext_resource type="Texture2D" uid="uid://crrshaec0tal6" path="res://assets/textures/ui/theme/square_button_pressed.png" id="8_4eg65"]
 [ext_resource type="Texture2D" uid="uid://d307rv0b5jh6d" path="res://assets/textures/ui/theme/long_marked_button_hover.png" id="8_uojy8"]
 [ext_resource type="Texture2D" uid="uid://0ay4qn0ywmlp" path="res://assets/textures/ui/theme/long_marked_button_normal.png" id="9_d8sih"]
 [ext_resource type="Texture2D" uid="uid://ca1ib7sp3fi5j" path="res://assets/textures/ui/theme/long_marked_button_pressed.png" id="10_3ldhx"]
 [ext_resource type="Texture2D" uid="uid://dyjeekpeuhciw" path="res://assets/textures/ui/theme/plus_button_normal.png" id="10_ywax8"]
+[ext_resource type="Texture2D" uid="uid://srhyrd7x1jk1" path="res://assets/textures/ui/theme/scroll_bar_v.png" id="18_r7lti"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31nua"]
 content_margin_left = 4.0
@@ -43,6 +44,17 @@ axis_stretch_vertical = 1
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fw34k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqlkb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcosn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unhwg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edyu6"]
+texture = ExtResource("7_upg1x")
+texture_margin_left = 20.0
+texture_margin_top = 5.0
+texture_margin_right = 20.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntpve"]
 
@@ -78,14 +90,16 @@ texture = ExtResource("10_ywax8")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pd1ym"]
 texture = ExtResource("8_4eg65")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_loj3b"]
-texture = ExtResource("7_p0njs")
-texture_margin_left = 14.0
-texture_margin_top = 226.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ewhc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h5dqr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im32v"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tbbvr"]
+texture = ExtResource("18_r7lti")
+texture_margin_left = 5.0
+texture_margin_top = 20.0
+texture_margin_right = 5.0
+texture_margin_bottom = 20.0
 
 [resource]
 default_font = ExtResource("1_hvsot")
@@ -132,6 +146,11 @@ CheckButton/font_sizes/font_size = 20
 CheckButton/icons/checked = ExtResource("3_dhjd2")
 CheckButton/icons/unchecked = ExtResource("4_towek")
 CheckButton/styles/focus = SubResource("StyleBoxEmpty_cqlkb")
+HSlider/icons/grabber = ExtResource("5_6q87d")
+HSlider/icons/grabber_highlight = ExtResource("6_umkdy")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_xcosn")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_unhwg")
+HSlider/styles/slider = SubResource("StyleBoxTexture_edyu6")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hvsot")
@@ -184,7 +203,7 @@ SmallButtonLabel/constants/outline_size = 3
 SmallButtonLabel/font_sizes/font_size = 34
 VSlider/icons/grabber = ExtResource("5_6q87d")
 VSlider/icons/grabber_highlight = ExtResource("6_umkdy")
-VSlider/styles/grabber_area = SubResource("StyleBoxTexture_loj3b")
+VSlider/styles/grabber_area = SubResource("StyleBoxEmpty_4ewhc")
 VSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_h5dqr")
-VSlider/styles/slider = SubResource("StyleBoxEmpty_im32v")
+VSlider/styles/slider = SubResource("StyleBoxTexture_tbbvr")
 test_type/base_type = &"MainMenuButton"
