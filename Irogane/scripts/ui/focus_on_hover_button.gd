@@ -3,6 +3,10 @@ extends Button
 @export var audio_player: AudioPlayer
 @export var focus_sound: AudioStream
 @export var node_hover_delegates: Array[Node]
+@export var value: String
+
+signal ui_button_pressed(value, button)
+signal ui_button_focused(value, button)
 
 func _ready():
 	mouse_entered.connect(_mouse_entered)
@@ -21,6 +25,12 @@ func delegate_grab_focus():
 	
 
 func _focus_entered():
+	ui_button_focused.emit(value, self)
+	
 	if audio_player and focus_sound:
 		audio_player.play(focus_sound)
+	
+
+func _pressed():
+	ui_button_pressed.emit(value, self)
 	

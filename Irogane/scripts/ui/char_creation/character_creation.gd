@@ -1,12 +1,15 @@
 extends Control
 
-@onready var ui_screens = [$appearance_UI, $attributes_UI]
+@onready var ui_screens = [$appearance_UI, $attributes_UI, $boons_UI]
 
 var current_ui_screen_index = 0
 var char_name = null
 var char_sex = null
 var appearance_data = null
 var attributes_data = null
+var boons = []
+var flaws = []
+var ambition = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -53,6 +56,12 @@ func load_appearance(data):
 
 func load_attributes(data):
 	attributes_data = data
+	
+
+func load_boons(data):
+	boons = data.boons
+	flaws = data.flaws
+	ambition = data.ambition
 	
 
 func start_new_game():
