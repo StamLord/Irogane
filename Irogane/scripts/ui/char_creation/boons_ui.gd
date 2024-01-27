@@ -15,6 +15,8 @@ extends Control
 @onready var dex_val = %dex_val
 @onready var wis_val = %wis_val
 
+@onready var stats = %stats
+
 const BOONS = {
 	"battle_hardened" : {
 		"title": "Battle Hardened",
@@ -87,30 +89,27 @@ func _ready():
 		var boon = BOONS[boon_key]
 		var boon_button = boon_button_template.duplicate()
 		boon_button.text = boon.title
-		boon_button.value = boon_key
 		boon_button.visible = true
-		boon_button.ui_button_pressed.connect(boon_button_pressed)
-		boon_button.ui_button_focused.connect(boon_button_focused)
+		boon_button.ui_button_pressed.connect(boon_button_pressed.bind(boon_key, boon_button))
+		boon_button.ui_button_focused.connect(boon_button_focused.bind(boon_key))
 		boons_list.add_child(boon_button)
 	
 	for flaw_key in FLAWS:
 		var flaw = FLAWS[flaw_key]
 		var flaw_button = flaw_button_template.duplicate()
 		flaw_button.text = flaw.title
-		flaw_button.value = flaw_key
 		flaw_button.visible = true
-		flaw_button.ui_button_pressed.connect(flaw_button_pressed)
-		flaw_button.ui_button_focused.connect(flaw_button_focused)
+		flaw_button.ui_button_pressed.connect(flaw_button_pressed.bind(flaw_key, flaw_button))
+		flaw_button.ui_button_focused.connect(flaw_button_focused.bind(flaw_key))
 		flaws_list.add_child(flaw_button)
 	
 	for ambition_key in AMBITIONS:
 		var ambition = AMBITIONS[ambition_key]
 		var ambition_button = ambition_button_template.duplicate()
 		ambition_button.text = ambition.title
-		ambition_button.value = ambition_key
 		ambition_button.visible = true
-		ambition_button.ui_button_pressed.connect(ambition_button_pressed)
-		ambition_button.ui_button_focused.connect(ambition_button_focused)
+		ambition_button.ui_button_pressed.connect(ambition_button_pressed.bind(ambition_key, ambition_button))
+		ambition_button.ui_button_focused.connect(ambition_button_focused.bind(ambition_key))
 		ambitions_list.add_child(ambition_button)
 	
 
@@ -119,17 +118,17 @@ func update_points_balance(new_val):
 	balance_points.text = str(new_val)
 	
 
-func boon_button_focused(value, _boon_button):
+func boon_button_focused(value):
 	var boon = BOONS[value]
 	boons_info_text.bbcode_text = boon.desc
 	
 
-func flaw_button_focused(value, _flaw_button):
+func flaw_button_focused(value):
 	var flaw = FLAWS[value]
 	boons_info_text.bbcode_text = flaw.desc
 	
 
-func ambition_button_focused(value, _flaw_button):
+func ambition_button_focused(value):
 	var ambition = AMBITIONS[value]
 	boons_info_text.bbcode_text = ambition.desc
 	
@@ -182,10 +181,9 @@ func _on_boon_next_button_pressed():
 	
 
 func _on_visibility_changed():
-	var stats = owner.attributes_data
-	str_val.text = str(stats.strength.value)
-	agi_val.text = str(stats.agility.value)
-	dex_val.text = str(stats.dexterity.value)
-	wis_val.text = str(stats.wisdom.value)
+	str_val.text = str(stats.strength.get_value())
+	agi_val.text = str(stats.agility.get_value())
+	dex_val.text = str(stats.dexterity.get_value())
+	wis_val.text = str(stats.wisdom.get_value())
 	
 
