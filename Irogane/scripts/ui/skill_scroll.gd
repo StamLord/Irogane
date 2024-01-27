@@ -6,6 +6,7 @@ var selected = false
 @export var hover_offset = -75.0
 @export var select_offset = -100.0
 @export var duration = 0.02
+@export var select_sound: AudioStream
 @export var hover_sound: AudioStream
 @export var unhover_sound: AudioStream
 
@@ -48,6 +49,9 @@ func select():
 	var new_pos = initial_pos
 	new_pos.x += select_offset
 	set_position(new_pos)
+	
+	if select_sound:
+		audio_player.play(select_sound)
 	
 
 func deselect():
