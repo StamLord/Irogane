@@ -17,6 +17,9 @@ extends Control
 
 @onready var stats = %stats
 
+@onready var audio_player = %AudioPlayer
+@onready var button_sound = load("res://assets/audio/ui/button_1.ogg")
+
 const BOONS = {
 	"battle_hardened" : {
 		"title": "Battle Hardened",
@@ -158,11 +161,13 @@ func boon_button_pressed(value, boon_button):
 		update_points_balance(available_points + 1)
 		selected_boons.erase(value)
 		boon_button.get_node("selected_texture").visible = false
+		audio_player.play(button_sound)
 	else:
 		if available_points > 0:
 			update_points_balance(available_points - 1)
 			selected_boons[value] = true
 			boon_button.get_node("selected_texture").visible = true
+			audio_player.play(button_sound)
 	
 
 func flaw_button_pressed(value, flaw_button):
@@ -171,19 +176,23 @@ func flaw_button_pressed(value, flaw_button):
 			update_points_balance(available_points - 1)
 			selected_flaws.erase(value)
 			flaw_button.get_node("selected_texture").visible = false
+			audio_player.play(button_sound)
 	else:
 		update_points_balance(available_points + 1)
 		selected_flaws[value] = true
 		flaw_button.get_node("selected_texture").visible = true
+		audio_player.play(button_sound)
 	
 
 func ambition_button_pressed(value, ambition_button):
 	if selected_ambition == null:
 		selected_ambition = value
 		ambition_button.get_node("selected_texture").visible = true
+		audio_player.play(button_sound)
 	elif selected_ambition == value:
 		selected_ambition = null
 		ambition_button.get_node("selected_texture").visible = false
+		audio_player.play(button_sound)
 	
 
 func _on_boon_back_button_pressed():

@@ -1355,6 +1355,7 @@ texture_hover = ExtResource("26_knr0y")
 texture_focused = ExtResource("9_kkng3")
 
 [node name="attributes_UI" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2999,7 +3000,6 @@ texture_focused = ExtResource("9_kkng3")
 
 [node name="boons_UI" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -3252,7 +3252,6 @@ theme_override_constants/separation = 30
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_px414")
 theme_override_styles/focus = SubResource("StyleBoxTexture_px414")
 text = "Addiction (Gambling)"
 alignment = 0
