@@ -32,6 +32,7 @@ DebugCanvas="*res://scripts/utils/debug_canvas.gd"
 EventManager="*res://scripts/events/event_manager.gd"
 QuestManager="*res://scripts/quests/quest_manager.gd"
 GlobalAudio="*res://scripts/audio/global_audio.gd"
+QualityDb="*res://scripts/stats/quality_db.gd"
 
 [dialogic]
 

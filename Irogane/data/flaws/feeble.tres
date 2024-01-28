@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Flaw" load_steps=6 format=3 uid="uid://cc3j81n7f8eqn"]
+
+[ext_resource type="Script" path="res://scripts/stats/modifier.gd" id="1_tlg8m"]
+[ext_resource type="Script" path="res://scripts/stats/flaw.gd" id="1_xdnd0"]
+[ext_resource type="Script" path="res://scripts/stats/effect.gd" id="2_j2rjr"]
+
+[sub_resource type="Resource" id="Resource_2lih5"]
+script = ExtResource("1_tlg8m")
+modifier_name = "Feeble"
+flat_amount = -1
+multiply_amount = 0.0
+
+[sub_resource type="Resource" id="Resource_qxci8"]
+script = ExtResource("2_j2rjr")
+modifier = SubResource("Resource_2lih5")
+attribute_name = "strength"
+signal_name = ""
+signal_path = ""
+flag_name = ""
+is_hook_path_local = false
+
+[resource]
+script = ExtResource("1_xdnd0")
+_name = "Feeble"
+effects = Array[ExtResource("2_j2rjr")]([SubResource("Resource_qxci8")])
