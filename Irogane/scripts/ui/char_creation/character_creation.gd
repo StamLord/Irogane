@@ -1,10 +1,10 @@
 extends Control
 
 @onready var ui_screens = [$appearance_UI, $attributes_UI, $boons_UI]
+@onready var stats = %stats
 
 var current_ui_screen_index = 0
 var char_name = null
-var char_sex = null
 var appearance_data = null
 var attributes_data = null
 var boons = []
@@ -50,7 +50,6 @@ func _process(_delta):
 	
 
 func load_appearance(data):
-	char_sex = data.sex
 	appearance_data = data.appearance
 	
 
@@ -65,12 +64,12 @@ func load_boons(data):
 	
 
 func start_new_game():
-	var char_dict = {
-		"name": char_name,
-		"sex": char_sex,
-		"appearance" : appearance_data,
-		"attributes": attributes_data,
-	}
 	SceneManager.goto_scene("res://scenes/main.tscn")
-	PlayerEntity.load_player_data(char_dict)
+	
+	var player_data = {
+		"stats" : stats.save_data(),
+		"appearance" : appearance_data
+	}
+	
+	PlayerEntity.load_player_data(player_data)
 	

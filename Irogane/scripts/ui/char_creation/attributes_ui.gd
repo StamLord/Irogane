@@ -91,8 +91,6 @@ var current_preset = -1
 const DEFAULT_AVAILABLE_POINTS = 8
 var rng = RandomNumberGenerator.new()
 
-var current_available_points = DEFAULT_AVAILABLE_POINTS
-
 func _ready():
 	reset_attributes()
 	ATTRIBUTES.strength.label.grab_focus()
@@ -107,10 +105,10 @@ func reset_attributes():
 	
 
 func increase_attribute_if_possible(attr_name: String):
-	if current_available_points < 1 or stats[attr_name].get_unmodified() >= stats[attr_name].get_maximum_value():
+	if stats.attr_points < 1 or stats[attr_name].get_unmodified() >= stats[attr_name].get_maximum_value():
 		return
 	
-	update_available_points(current_available_points - 1)
+	update_available_points(stats.attr_points - 1)
 	update_attribute(attr_name, stats[attr_name].get_unmodified() + 1)
 	
 
@@ -118,7 +116,7 @@ func decrease_attribute_if_possible(attr_name: String):
 	if stats[attr_name].get_unmodified() <= stats[attr_name].get_minimum_value():
 		return
 	
-	update_available_points(current_available_points + 1)
+	update_available_points(stats.attr_points + 1)
 	update_attribute(attr_name, stats[attr_name].get_unmodified() - 1)
 	
 
@@ -129,7 +127,7 @@ func update_attribute(attr_name: String, new_value: int):
 	
 
 func update_available_points(new_value: int):
-	current_available_points = new_value
+	stats.attr_points = new_value
 	avail_points.text = str(new_value)
 	
 
@@ -143,20 +141,20 @@ func _on_attr_randomize_button_pressed():
 		while stats[attr].get_value() != stats[attr].get_minimum_value():
 			decrease_attribute_if_possible(attr)
 	
-	while current_available_points > 0:
+	while stats.attr_points > 0:
 		var attr_names = []
 		
 		for attr in ATTRIBUTES:
 			attr_names.append(attr)
 		
 		while attr_names.size() > 0:
-			if current_available_points == 0:
+			if stats.attr_points == 0:
 				return
 
 			var index = rng.randi_range(0, attr_names.size() - 1)
 			var attr_name = attr_names[index]
 			var remainder_to_max = stats[attr_name].get_maximum_value() -  stats[attr_name].get_value()
-			var max_points = current_available_points if current_available_points < remainder_to_max else remainder_to_max
+			var max_points = stats.attr_points if stats.attr_points < remainder_to_max else remainder_to_max
 			var add_value = rng.randi_range(0, max_points)
 			
 			for i in add_value:
@@ -255,7 +253,7 @@ func _on_attr_next_button_pressed():
 			"value": stats.wisdom.get_unmodified(),
 			"modifier_dict": {},
 		},
-		"attr_points": current_available_points, 
+		"attr_points": stats.attr_points, 
 	}
 	owner.load_attributes(attr_data)
 	owner.next_ui_screen()

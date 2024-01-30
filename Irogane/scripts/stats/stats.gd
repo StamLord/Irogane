@@ -160,6 +160,8 @@ func save_data():
 		"agility" : agility.save_data(),
 		"dexterity" : dexterity.save_data(),
 		"wisdom" : wisdom.save_data(),
+		"boons" : boons,
+		"flaws" : flaws,
 	}
 	
 	return data
@@ -178,6 +180,9 @@ func load_data(data):
 	agility.load_data(data["agility"])
 	dexterity.load_data(data["dexterity"])
 	wisdom.load_data(data["wisdom"])
+	
+	boons = data["boons"]
+	flaws = data["flaws"]
 	
 
 func add_debug_commands():
@@ -218,7 +223,51 @@ func add_debug_commands():
 		}],
 		"Sets stamina to a new value"
 		)
-		
+	
+	DebugCommandsManager.add_command(
+		"add_boon",
+		add_boon,
+		[{
+			"arg_name" : "name",
+			"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+			"arg_desc" : "Boon name"
+		}],
+		"Adds a boon"
+		)
+	
+	DebugCommandsManager.add_command(
+		"remove_boon",
+		remove_boon,
+		[{
+			"arg_name" : "name",
+			"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+			"arg_desc" : "Boon name"
+		}],
+		"Removes a boon"
+		)
+	
+	DebugCommandsManager.add_command(
+		"add_flaw",
+		add_flaw,
+		[{
+			"arg_name" : "name",
+			"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+			"arg_desc" : "Flaw name"
+		}],
+		"Adds a flaw"
+		)
+	
+	DebugCommandsManager.add_command(
+		"remove_flaw",
+		remove_flaw,
+		[{
+			"arg_name" : "name",
+			"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+			"arg_desc" : "Flaw name"
+		}],
+		"Removes a flaw"
+		)
+	
 	DebugCommandsManager.add_command(
 		"godmode",
 		set_godmode,
