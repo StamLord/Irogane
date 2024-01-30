@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Boon" load_steps=6 format=3 uid="uid://cub68hyws1lyv"]
+
+[ext_resource type="Script" path="res://scripts/stats/modifier.gd" id="1_gdlhf"]
+[ext_resource type="Script" path="res://scripts/stats/effect.gd" id="2_23adm"]
+[ext_resource type="Script" path="res://scripts/stats/boon.gd" id="3_qccu3"]
+
+[sub_resource type="Resource" id="Resource_0gpux"]
+script = ExtResource("1_gdlhf")
+modifier_name = "Caligraphy Expert"
+flat_amount = 1
+multiply_amount = 0.0
+
+[sub_resource type="Resource" id="Resource_7ja4i"]
+script = ExtResource("2_23adm")
+modifier = SubResource("Resource_0gpux")
+attribute_name = "dexterity"
+signal_name = ""
+signal_path = ""
+flag_name = ""
+is_signal_path_local = false
+
+[resource]
+script = ExtResource("3_qccu3")
+_name = "Caligraphy Expert"
+effects = Array[ExtResource("2_23adm")]([SubResource("Resource_7ja4i")])

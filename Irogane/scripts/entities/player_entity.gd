@@ -1,8 +1,6 @@
 extends Node
 
 var player_node = null
-var player_name
-var sex
 var initial_scene_position = null
 
 var inventory = null
@@ -33,10 +31,6 @@ func set_player_node(node):
 	player_node = node
 	
 
-func set_player_name(new_name):
-	player_name = new_name
-	
-
 func create_player_node_if_needed():
 	if player_node == null:
 		var player_scene = ResourceLoader.load(PLAYER_SCENE_PATH)
@@ -56,22 +50,8 @@ func load_player_data(player_data):
 	
 	initial_scene_position = Vector3.ZERO
 	
-	player_node.get_node(model_node_path).load_appearance(player_data.appearance)
-	player_node.stats.load_data(player_data.attributes)
-	
-	player_name = player_data.name
-	sex = player_data.sex
-
-func get_sex():
-	return sex
-	
-
-func set_sex(new_sex):
-	sex = new_sex
-	
-
-func get_player_name():
-	return player_name
+	player_node.get_node(model_node_path).load_appearance(player_data["appearance"])
+	player_node.stats.load_data(player_data["stats"])
 	
 
 func set_inventory(_inventory):
@@ -92,4 +72,8 @@ func get_quick_slots():
 
 func on_slot_changed(slot_index):
 	slot_changed.emit(slot_index)
+	
+
+func get_player_name():
+	return player_node.stats.name
 	

@@ -10,6 +10,7 @@ extends Control
 @onready var ambition_button_template = %ambition_Button
 @onready var boons_info_text = %boons_info_text
 
+# Character Summary
 @onready var str_val = %str_val
 @onready var agi_val = %agi_val
 @onready var dex_val = %dex_val
@@ -21,7 +22,7 @@ extends Control
 @onready var button_sound = load("res://assets/audio/ui/button_1.ogg")
 
 const BOONS = {
-	"battle_hardened" : {
+	"battle_tendency" : {
 		"title": "Battle Hardened",
 		"desc": "You a boss ass bitch",
 	},
@@ -162,12 +163,16 @@ func boon_button_pressed(value, boon_button):
 		selected_boons.erase(value)
 		boon_button.get_node("selected_texture").visible = false
 		audio_player.play(button_sound)
+		stats.remove_boon(value)
+		update_character_summary()
 	else:
 		if available_points > 0:
 			update_points_balance(available_points - 1)
 			selected_boons[value] = true
 			boon_button.get_node("selected_texture").visible = true
 			audio_player.play(button_sound)
+			stats.add_boon(value)
+			update_character_summary()
 	
 
 func flaw_button_pressed(value, flaw_button):
@@ -177,11 +182,15 @@ func flaw_button_pressed(value, flaw_button):
 			selected_flaws.erase(value)
 			flaw_button.get_node("selected_texture").visible = false
 			audio_player.play(button_sound)
+			stats.remove_flaw(value)
+			update_character_summary()
 	else:
 		update_points_balance(available_points + 1)
 		selected_flaws[value] = true
 		flaw_button.get_node("selected_texture").visible = true
 		audio_player.play(button_sound)
+		stats.add_flaw(value)
+		update_character_summary()
 	
 
 func ambition_button_pressed(value, ambition_button):
@@ -210,6 +219,10 @@ func _on_boon_next_button_pressed():
 	
 
 func _on_visibility_changed():
+	update_character_summary()
+	
+
+func update_character_summary():
 	if stats == null:
 		return
 	
@@ -218,4 +231,3 @@ func _on_visibility_changed():
 	dex_val.text = str(stats.dexterity.get_value())
 	wis_val.text = str(stats.wisdom.get_value())
 	
-
