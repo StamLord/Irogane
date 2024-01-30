@@ -7,6 +7,7 @@ var current_ui_screen_index = 0
 var char_name = null
 var appearance_data = null
 var attributes_data = null
+var skills = null
 var boons = []
 var flaws = []
 var ambition = null
@@ -54,6 +55,8 @@ func load_appearance(data):
 	
 
 func load_attributes(data):
+	skills = data.skills
+	data.erase(skills)
 	attributes_data = data
 	
 
