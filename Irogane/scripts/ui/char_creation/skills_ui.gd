@@ -68,8 +68,8 @@ func _ready():
 		
 		skill.skill_tree.state_updated.connect(skill_tree_state_updated.bind(skill_tree_name, skill.skill_tree))
 		
-		for skill_selection in skill.skill_tree.get_children():
-			skill_selection.mouse_entered.connect(skill_selection_hovered.bind(skill_selection.description))
+		for selected_skill in skill.skill_tree.get_children():
+			selected_skill.mouse_entered.connect(skill_selection_hovered.bind(selected_skill.description))
 	
 
 func skill_tree_state_updated(tree_name, skill_tree):

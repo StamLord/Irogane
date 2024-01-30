@@ -546,7 +546,6 @@ script = ExtResource("1_bindm")
 unique_name_in_owner = true
 
 [node name="camera_control_panel" type="Panel" parent="."]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
