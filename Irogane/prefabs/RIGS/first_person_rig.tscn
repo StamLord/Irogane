@@ -405,7 +405,7 @@ magnet = Vector3(1, 0, 0)
 target_node = NodePath("../../../../target_r")
 
 [node name="right_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.490548, -0.869449, -0.0584891, 0.206366, 0.181118, -0.961566, 0.846626, 0.459624, 0.268272, 0.00149368, 0.00205876, 0.0151879)
+transform = Transform3D(0.490548, -0.869449, -0.0584899, 0.206366, 0.18112, -0.961566, 0.846626, 0.459624, 0.268273, 0.00149368, 0.00205876, 0.0151879)
 bone_name = "hand_r"
 bone_idx = 3
 
@@ -425,7 +425,7 @@ material_override = SubResource("StandardMaterial3D_xay4s")
 mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="left_hand_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="8"]
-transform = Transform3D(0.152363, 0.472137, 0.868258, 0.0281014, 0.87609, -0.481328, -0.987925, 0.097736, 0.120216, -0.000794361, 0.00570128, 0.0148037)
+transform = Transform3D(0.152364, 0.472136, 0.868259, 0.0281015, 0.876091, -0.481326, -0.987925, 0.097736, 0.120217, -0.000794369, 0.00570128, 0.0148037)
 bone_name = "hand_l"
 bone_idx = 25
 
@@ -445,7 +445,7 @@ material_override = SubResource("StandardMaterial3D_2lwfv")
 mesh = SubResource("BoxMesh_s7qe5")
 
 [node name="left_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="9"]
-transform = Transform3D(0.220606, 0.444366, 0.868258, 0.15754, 0.862267, -0.481328, -0.962556, 0.242969, 0.120216, -0.00219291, 0.00298748, 0.014039)
+transform = Transform3D(0.220606, 0.444364, 0.868259, 0.15754, 0.862268, -0.481326, -0.962556, 0.242969, 0.120216, -0.00219291, 0.00298748, 0.014039)
 bone_name = "arm_l"
 bone_idx = 24
 
@@ -466,7 +466,7 @@ material_override = SubResource("StandardMaterial3D_2lwfv")
 mesh = SubResource("SphereMesh_mag5f")
 
 [node name="right_elbow_attach" type="BoneAttachment3D" parent="RootNode/first_person_rig/Skeleton3D" index="10"]
-transform = Transform3D(0.640978, -0.765327, -0.0584893, 0.169847, 0.215737, -0.961566, 0.748531, 0.606409, 0.268271, 0.00390238, 0.00137978, 0.0132793)
+transform = Transform3D(0.640979, -0.765327, -0.05849, 0.169847, 0.215739, -0.961566, 0.748531, 0.606409, 0.268272, 0.00390238, 0.00137977, 0.0132793)
 bone_name = "arm_r"
 bone_idx = 2
 

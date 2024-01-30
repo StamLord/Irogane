@@ -10,6 +10,7 @@ extends Control
 @onready var press_back_sound = load("res://assets/audio/ui/fast_brush_2_soft.ogg")
 @onready var focus_sound = load("res://assets/audio/ui/slow_brush_1.ogg")
 @onready var click_bamboo = load("res://assets/audio/ui/bamboo_click_1.ogg")
+@onready var button_6 = load("res://assets/audio/ui/button_6.ogg")
 
 @onready var slider_click = load("res://assets/audio/ui/slider_click.ogg")
 
@@ -738,6 +739,7 @@ func _on_facial_lock_pressed():
 	
 
 func _on_next_button_pressed():
+	audio_player.play(button_6)
 	var char_data = {
 		"sex": current_sex_selection,
 		"appearance" : character.save_appearance(),

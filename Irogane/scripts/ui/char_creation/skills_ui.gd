@@ -58,11 +58,26 @@ var current_focused_skill = null
 	
 }
 
+var skill_selection = {}
+
 func _ready():
-	for skill_name in SKILLS:
-		var skill = SKILLS[skill_name]
+	for skill_tree_name in SKILLS:
+		var skill = SKILLS[skill_tree_name]
 		skill.button.skill_selected.connect(skill_selected)
 		skill.button.skill_hovered.connect(skill_hovered)
+		
+		skill.skill_tree.state_updated.connect(skill_tree_state_updated.bind(skill_tree_name, skill.skill_tree))
+		
+		for skill_selection in skill.skill_tree.get_children():
+			skill_selection.mouse_entered.connect(skill_selection_hovered.bind(skill_selection.description))
+	
+
+func skill_tree_state_updated(tree_name, skill_tree):
+	skill_selection[tree_name] = skill_tree.get_learned_skills()
+	
+
+func skill_selection_hovered(skill_desc):
+	info_text.bbcode_text = skill_desc
 	
 
 func skill_hovered(skill_name):

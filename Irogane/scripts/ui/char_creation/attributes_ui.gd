@@ -7,6 +7,7 @@ extends Control
 @onready var audio_player = %AudioPlayer
 @onready var focus_sound = load("res://assets/audio/ui/slow_brush_1.ogg")
 @onready var click_bamboo = load("res://assets/audio/ui/bamboo_click_1.ogg")
+@onready var button_6 = load("res://assets/audio/ui/button_6.ogg")
 
 # Buttons
 @onready var focus_texture = load("res://assets/textures/ui/theme/attribute_label_texture.tres")
@@ -18,6 +19,7 @@ extends Control
 @onready var info_text = %info_text
 
 @onready var preset_selection = $preset_selection
+@onready var skill_trees =  %skill_trees
 
 # Data
 @onready var ATTRIBUTES = {
@@ -238,6 +240,7 @@ func _on_wis_inc_pressed():
 	
 
 func _on_attr_next_button_pressed():
+	audio_player.play(button_6)
 	var attr_data = {
 		"strength": { 
 			"value": stats.strength.get_unmodified(),
@@ -255,13 +258,15 @@ func _on_attr_next_button_pressed():
 			"value": stats.wisdom.get_unmodified(),
 			"modifier_dict": {},
 		},
-		"attr_points": current_available_points, 
+		"attr_points": current_available_points,
+		"skills": skill_trees.skill_selection,
 	}
 	owner.load_attributes(attr_data)
 	owner.next_ui_screen()
 	
 
 func _on_attr_back_button_pressed():
+	audio_player.play(button_6)
 	owner.prev_ui_screen()
 	
 

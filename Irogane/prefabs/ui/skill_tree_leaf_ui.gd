@@ -1,10 +1,10 @@
 @tool
 extends Button
 class_name Skill
-
 # Skill Data
 var skill_tree = null
 
+@export var description = ""
 @export var cost = 1
 @export var stat_requirements = {} # attribute_name : minimum_value
 @export var skill_requirments = [] # [skill_name, skill_name..]
@@ -20,6 +20,11 @@ enum line_origin_enum {TOP, BOTTOM, LEFT, RIGHT}
 @export var line_origin = line_origin_enum.LEFT
 
 var required_nodes = []
+
+# Audio
+@onready var audio_player = %AudioPlayer
+@onready var select_sound = load("res://assets/audio/ui/fast_brush_4.ogg")
+@onready var deselect_sound = load("res://assets/audio/ui/button_1_2.ogg")
 
 func _enter_tree() -> void:
 	set_notify_transform(true)
@@ -41,11 +46,13 @@ func _pressed():
 		return
 	
 	if is_learned:
+		audio_player.play(deselect_sound)
 		unlearn()
 		skill_tree.increase_skill_points(cost)
 	elif can_learn():
 		if skill_tree.is_enough_skill_points(cost):
 			skill_tree.decrease_skill_points(cost)
+			audio_player.play(select_sound)
 			learn()
 	
 
