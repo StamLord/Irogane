@@ -82,7 +82,7 @@
 [ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="66_4460i"]
 [ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
-[ext_resource type="PackedScene" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
+[ext_resource type="PackedScene" uid="uid://dkcoap7i5mjnl" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
 [ext_resource type="PackedScene" uid="uid://blmgqak0mhkqx" path="res://prefabs/env/trees/tree_01_early_fall.tscn" id="72_y3ju1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -546,7 +546,6 @@ script = ExtResource("1_bindm")
 unique_name_in_owner = true
 
 [node name="camera_control_panel" type="Panel" parent="."]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -2711,7 +2710,6 @@ offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
 text = "Dash"
 script = ExtResource("51_32i56")
-description = "Dash in the air"
 
 [node name="after_image" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -2725,7 +2723,6 @@ disabled = true
 text = "After Image
 "
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["dash"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/after_image"]
@@ -2743,7 +2740,6 @@ offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
 text = "Double Jump"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="triple_jump" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -2756,7 +2752,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Triple Jump"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["double_jump"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/triple_jump"]
@@ -2774,7 +2769,6 @@ offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
 text = "Wall Jump"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="human_jump" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -2787,7 +2781,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Human Jump"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["wall_jump"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/human_jump"]
@@ -2805,7 +2798,6 @@ offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
 text = "Ledge Climb"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="wall_climb" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -2818,7 +2810,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Wall Climb"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["ledge_climb"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/wall_climb"]
@@ -2836,7 +2827,6 @@ offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
 text = "Wind Stride"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="gale_stride" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -2849,7 +2839,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Gale Stride"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["wind_stride"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/gale_stride"]
@@ -2868,7 +2857,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Lightspeed"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["gale_stride"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/lightspeed"]
@@ -2905,7 +2893,6 @@ offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
 text = "Guard Spin"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="whirlwind" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -2919,7 +2906,6 @@ disabled = true
 text = "Whirlwind
 "
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["guard_spin"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/whirlwind"]
@@ -2939,7 +2925,6 @@ disabled = true
 text = "Slow Fall
 "
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["whirlwind"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/slowfall"]
@@ -2957,7 +2942,6 @@ offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
 text = "Disarm"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="mass_disarm" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -2970,7 +2954,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Mass Disarm"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["whirlwind", "disarm"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/mass_disarm"]
@@ -2994,7 +2977,6 @@ theme_type_variation = &"SkillButton"
 text = "Hop
 "
 script = ExtResource("51_32i56")
-description = null
 
 [node name="ground_slam" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -3008,7 +2990,6 @@ disabled = true
 text = "Ground Slam
 "
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["hop"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/ground_slam"]
@@ -3026,7 +3007,6 @@ offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
 text = "Trip"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="slider_trip" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -3039,7 +3019,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Slide Trip"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["trip"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/slider_trip"]
@@ -3057,7 +3036,6 @@ offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
 text = "Focused Strike"
 script = ExtResource("51_32i56")
-description = null
 
 [node name="staff_flurry" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
@@ -3070,7 +3048,6 @@ theme_type_variation = &"SkillButton"
 disabled = true
 text = "Staff Flurry"
 script = ExtResource("51_32i56")
-description = null
 skill_requirments = ["focused_strike"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/staff_flurry"]
@@ -3773,8 +3750,13 @@ unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="env/rotate_around"]
 unique_name_in_owner = true
-transform = Transform3D(0.951057, 0.0642482, -0.302264, 0, 0.978148, 0.207912, 0.309017, -0.197736, 0.930274, -0.8, 1.575, 2.5)
+transform = Transform3D(0.951057, 0.0642482, -0.302264, 0, 0.978148, 0.207912, 0.309017, -0.197736, 0.930274, -0.96, 1.5, 2.45)
 current = true
+fov = 55.0
+
+[node name="face_camera" type="Camera3D" parent="env/rotate_around"]
+unique_name_in_owner = true
+transform = Transform3D(0.951057, 0, -0.309017, 0, 1, 0, 0.309017, 0, 0.951057, -0.14, 1.75, 0.4)
 fov = 55.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="env/rotate_around"]
@@ -3793,6 +3775,7 @@ spot_angle = 29.1564
 
 [node name="human_model" type="Node3D" parent="env"]
 unique_name_in_owner = true
+transform = Transform3D(0.927184, 0, -0.374607, 0, 1, 0, 0.374607, 0, 0.927184, 0, 0, 0)
 script = ExtResource("10_sk6vb")
 
 [node name="male_model" parent="env/human_model" instance=ExtResource("9_kf4vn")]
@@ -3900,37 +3883,37 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12.8599, 7.00496, -11.2
 [node name="tree_09" parent="env" instance=ExtResource("69_o4b8y")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.06658, 6.48404, -9.88342)
 
-[node name="bush3" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush3" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1.58247, 0, 0, 0, 1.58247, 0, 0, 0, 1.58247, 4.40697, 0.433267, -2.36685)
 
-[node name="bush9" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush9" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1.58247, 0, 0, 0, 1.58247, 0, 0, 0, 1.58247, -2.95278, 0.335914, -4.1264)
 
-[node name="bush10" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush10" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47653, 1.13495, -3.09719)
 
-[node name="bush11" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush11" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.03801, 1.59281, -5.02963)
 
-[node name="bush7" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush7" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27779, 2.37485, -5.31738)
 
-[node name="bush8" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush8" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1.48193, 0, 0, 0, 1.48193, 0, 0, 0, 1.48193, 4.98711, 2.59262, -6.29442)
 
-[node name="bush4" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush4" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71721, 0.670459, -1.41269)
 
-[node name="bush5" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush5" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.89654, 5.95026, -7.7593)
 
-[node name="bush6" parent="." instance=ExtResource("71_pwddk")]
+[node name="bush6" parent="env" instance=ExtResource("71_pwddk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14887, 5.87482, -8.32211)
 
-[node name="tree_01" parent="." instance=ExtResource("72_y3ju1")]
+[node name="tree_12" parent="env" instance=ExtResource("72_y3ju1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.35986, 5.49185, -7.20994)
 
-[node name="tree_02" parent="." instance=ExtResource("72_y3ju1")]
+[node name="tree_13" parent="env" instance=ExtResource("72_y3ju1")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.96249, 2.76471, -6.02812)
 
 [connection signal="mouse_entered" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_entered"]
