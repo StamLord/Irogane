@@ -51,7 +51,7 @@ func _process(_delta):
 	
 
 func load_appearance(data):
-	appearance_data = data.appearance
+	appearance_data = data
 	
 
 func load_attributes(data):
@@ -71,8 +71,8 @@ func start_new_game():
 	
 	var player_data = {
 		"stats" : stats.save_data(),
-		"appearance" : appearance_data
+		"appearance" : appearance_data,
+		"skills": skills,
 	}
-	
 	PlayerEntity.load_player_data(player_data)
 	

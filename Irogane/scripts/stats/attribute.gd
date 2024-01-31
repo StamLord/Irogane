@@ -18,8 +18,8 @@ func remove_point(points):
 	set_value(value - points)
 	
 
-func set_value(value):
-	self.value = clamp(value, min_max.x, min_max.y)
+func set_value(_value):
+	self.value = clamp(_value, min_max.x, min_max.y)
 	dirty_value = true
 	
 

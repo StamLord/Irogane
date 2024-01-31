@@ -142,7 +142,7 @@ var current_preset_selection = {
 }
 
 var lock_selection = {}
-var current_sex_selection = "male"
+
 var change_log = []
 var redo_stack = []
 
@@ -468,9 +468,9 @@ func _on_bangs_left_arrow_pressed():
 	
 
 func refresh_sex_text():
-	if current_sex_selection == "male":
+	if character.get_gender() == character.GENDER.MALE:
 		sex_button.text = "MALE"
-	elif current_sex_selection == "female":
+	elif character.get_gender() == character.GENDER.FEMALE:
 		sex_button.text = "FEMALE"
 	
 	if sex_button.has_focus():
@@ -479,17 +479,15 @@ func refresh_sex_text():
 
 func select_sex(sex: String):
 	if sex == "male":
-		current_sex_selection = "male"
 		character.set_male_gender()
 	elif sex == "female":
-		current_sex_selection = "female"
 		character.set_female_gender()
 	
 	refresh_sex_text()
 	
 
 func toggle_sex_selection():
-	if current_sex_selection == "male":
+	if character.get_gender() == character.GENDER.MALE:
 		select_sex("female")
 	else:
 		select_sex("male")
@@ -499,7 +497,6 @@ func toggle_sex_selection():
 
 func get_current_data():
 	var data = {
-		"sex": current_sex_selection,
 		"appearance" : character.save_appearance().duplicate(true),
 		"color_presets": {
 			"hair": current_preset_selection["hair"],
@@ -549,11 +546,8 @@ func redo_last_change():
 	
 
 func apply_data(data):
-	current_sex_selection = data["sex"]
-	select_sex(current_sex_selection)
-	
 	character.load_appearance(data.appearance)
-	
+	refresh_sex_text()
 	current_preset_selection["skin"] = data.color_presets.skin
 	update_button_selection_text(PART_COLORS.skin.button, PART_COLORS.skin.text, data.color_presets.skin)
 	
@@ -740,11 +734,7 @@ func _on_facial_lock_pressed():
 
 func _on_next_button_pressed():
 	audio_player.play(button_6)
-	var char_data = {
-		"sex": current_sex_selection,
-		"appearance" : character.save_appearance(),
-	}
-	owner.load_appearance(char_data)
+	owner.load_appearance(character.save_appearance())
 	owner.next_ui_screen()
 	
 
