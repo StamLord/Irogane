@@ -1,9 +1,13 @@
 extends Panel
 
+@onready var audio_player = %AudioPlayer
+
 @onready var camera = %Camera3D
 @onready var reset_camera_button = %ResetCamera
 @onready var node_to_rotate = %human_model #%rotate_around
 @onready var face_camera = %face_camera
+
+@onready var click_bamboo = load("res://assets/audio/ui/bamboo_click_1.ogg")
 
 # Camera and character movement logic
 var default_camera_position = Vector3(0, 1.8, 2)
@@ -158,7 +162,13 @@ func rotate_character(target_vector: Vector3, duration: float):
 	
 
 func _on_reset_camera_pressed():
+	audio_player.play(click_bamboo)
 	move_camera(default_camera_position, 0.2)
 	rotate_character(default_node_rotation, 0.2)
 	reset_camera_button.hide()
+	
+
+func _on_reset_camera_gui_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		reset_camera_button.release_focus()
 	
