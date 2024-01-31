@@ -297,6 +297,10 @@ func set_gender(gender : GENDER):
 	female_model.visible = not is_male
 	
 
+func get_gender():
+	return current_gender
+	
+
 func save_appearance():
 	var data = {
 		"gender" : str(current_gender),

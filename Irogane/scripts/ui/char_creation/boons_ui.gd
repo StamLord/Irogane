@@ -20,6 +20,7 @@ extends Control
 
 @onready var audio_player = %AudioPlayer
 @onready var button_sound = load("res://assets/audio/ui/button_1.ogg")
+@onready var button_6 = load("res://assets/audio/ui/button_6.ogg")
 
 const BOONS = {
 	"battle_tendency" : {
@@ -205,6 +206,7 @@ func ambition_button_pressed(value, ambition_button):
 	
 
 func _on_boon_back_button_pressed():
+	audio_player.play(button_6)
 	owner.prev_ui_screen()
 	
 
