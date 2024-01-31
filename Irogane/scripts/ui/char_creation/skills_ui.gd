@@ -77,11 +77,11 @@ func skill_tree_state_updated(tree_name, skill_tree):
 	
 
 func skill_selection_hovered(skill_desc):
-	info_text.bbcode_text = skill_desc
+	info_text.text = skill_desc
 	
 
 func skill_hovered(skill_name):
-	info_text.bbcode_text = SKILLS[skill_name].info
+	info_text.text = SKILLS[skill_name].info
 	
 
 func skill_selected(skill_name):

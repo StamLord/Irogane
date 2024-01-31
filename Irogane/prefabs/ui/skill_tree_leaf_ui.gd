@@ -4,10 +4,10 @@ class_name Skill
 # Skill Data
 var skill_tree = null
 
-@export var description = ""
-@export var cost = 1
 @export var stat_requirements = {} # attribute_name : minimum_value
 @export var skill_requirments = [] # [skill_name, skill_name..]
+var description = ""
+var cost = 1
 var is_learned = false
 
 signal learned(_skill_name)
@@ -118,6 +118,11 @@ func set_button_theme_variation():
 
 # Line Logic
 func initialize():
+	var skill = SkillsDB.get_skill(name)
+	if skill != null:
+		description = skill["description"]
+		cost = skill["cost"]
+	
 	# Get parent if it's a SkillTree
 	var parent = get_parent()
 	if parent is SkillTree:
