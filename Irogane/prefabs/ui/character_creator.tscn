@@ -676,7 +676,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 14
 
-[node name="sex_button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list"]
+[node name="sex_button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list" node_paths=PackedStringArray("node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
@@ -690,6 +690,7 @@ focus_next = NodePath("../SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Bu
 focus_previous = NodePath("../../redo_button")
 text = "< MALE >"
 script = ExtResource("16_m1hp5")
+node_hover_delegates = [NodePath("sex_lock")]
 
 [node name="sex_lock" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/sex_button"]
 unique_name_in_owner = true
@@ -715,7 +716,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Skin Color Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer"]
+[node name="Skin Color Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer" node_paths=PackedStringArray("node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
@@ -729,6 +730,7 @@ focus_previous = NodePath("../../../sex_button")
 button_mask = 3
 text = "< SKIN CUSTOM >"
 script = ExtResource("16_m1hp5")
+node_hover_delegates = [NodePath("skin_color_left_arrow"), NodePath("skin_lock")]
 
 [node name="skin_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/SkinVBoxContainer/SkinColorHBoxContainer/Skin Color Button"]
 custom_minimum_size = Vector2(135, 0)
@@ -804,7 +806,7 @@ texture = ExtResource("9_kkng3")
 layout_mode = 2
 alignment = 1
 
-[node name="Face Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer"]
+[node name="Face Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer" node_paths=PackedStringArray("node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
@@ -817,6 +819,7 @@ focus_next = NodePath("../../HairStyleHBoxContainer/Hair Button")
 focus_previous = NodePath("../../SkinVBoxContainer/custom_skin_color_wrapper/CustomSkinColorButton")
 text = "< FACE >"
 script = ExtResource("16_m1hp5")
+node_hover_delegates = [NodePath("face_left_arrow"), NodePath("face_lock")]
 
 [node name="face_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FaceStyleHBoxContainer/Face Button"]
 layout_mode = 1
@@ -849,7 +852,7 @@ texture_normal = ExtResource("7_vmxa6")
 layout_mode = 2
 alignment = 1
 
-[node name="Hair Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer"]
+[node name="Hair Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer" node_paths=PackedStringArray("node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
@@ -862,6 +865,7 @@ focus_next = NodePath("../../HairVBoxContainer/HairColorHBoxContainer/Hair Color
 focus_previous = NodePath("../../FaceStyleHBoxContainer/Face Button")
 text = "< HAIR >"
 script = ExtResource("16_m1hp5")
+node_hover_delegates = [NodePath("hair_left_arrow"), NodePath("hair_lock")]
 
 [node name="hair_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairStyleHBoxContainer/Hair Button"]
 layout_mode = 1
@@ -898,7 +902,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 alignment = 1
 
-[node name="Hair Color Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer"]
+[node name="Hair Color Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer" node_paths=PackedStringArray("node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
@@ -911,6 +915,7 @@ focus_next = NodePath("../../custom_hair_color_wrapper/CustomHairColorButton")
 focus_previous = NodePath("../../../HairStyleHBoxContainer/Hair Button")
 text = "< HAIR COLOR >"
 script = ExtResource("16_m1hp5")
+node_hover_delegates = [NodePath("hair_color_left_arrow"), NodePath("hair_color_lock")]
 
 [node name="hair_color_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/HairVBoxContainer/HairColorHBoxContainer/Hair Color Button"]
 custom_minimum_size = Vector2(85, 77)
@@ -982,7 +987,7 @@ texture = ExtResource("9_kkng3")
 layout_mode = 2
 alignment = 1
 
-[node name="Bangs Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer"]
+[node name="Bangs Button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer" node_paths=PackedStringArray("node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
@@ -995,6 +1000,7 @@ focus_next = NodePath("../../FacialstyleHBoxContainer/facial button")
 focus_previous = NodePath("../../HairVBoxContainer/custom_hair_color_wrapper/CustomHairColorButton")
 text = "< BANGS >"
 script = ExtResource("16_m1hp5")
+node_hover_delegates = [NodePath("bangs_left_arrow"), NodePath("bangs_lock")]
 
 [node name="bangs_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/BangsStyleHBoxContainer/Bangs Button"]
 custom_minimum_size = Vector2(125, 77)
@@ -1028,7 +1034,7 @@ texture_normal = ExtResource("7_vmxa6")
 layout_mode = 2
 alignment = 1
 
-[node name="facial button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer"]
+[node name="facial button" type="Button" parent="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer" node_paths=PackedStringArray("node_hover_delegates")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(370, 77)
 layout_mode = 2
@@ -1041,6 +1047,7 @@ focus_next = NodePath("../../../../next_button")
 focus_previous = NodePath("../../BangsStyleHBoxContainer/Bangs Button")
 text = "< FACIAL >"
 script = ExtResource("16_m1hp5")
+node_hover_delegates = [NodePath("facial_left_arrow"), NodePath("facial_lock")]
 
 [node name="facial_left_arrow" type="TextureButton" parent="appearance_UI/appearance_bg/appearance_menu_list/FacialstyleHBoxContainer/facial button"]
 layout_mode = 1
