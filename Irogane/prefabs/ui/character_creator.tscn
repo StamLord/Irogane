@@ -80,7 +80,7 @@
 [ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="66_4460i"]
 [ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
-[ext_resource type="PackedScene" uid="uid://dkcoap7i5mjnl" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
+[ext_resource type="PackedScene" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
 [ext_resource type="PackedScene" uid="uid://blmgqak0mhkqx" path="res://prefabs/env/trees/tree_01_early_fall.tscn" id="72_y3ju1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -3917,6 +3917,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.96249, 2.76471, -6.0
 
 [connection signal="mouse_entered" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="camera_control_panel" to="camera_control_panel" method="_on_mouse_exited"]
+[connection signal="gui_input" from="camera_control_panel/ResetCamera" to="camera_control_panel" method="_on_reset_camera_gui_input"]
 [connection signal="pressed" from="camera_control_panel/ResetCamera" to="camera_control_panel" method="_on_reset_camera_pressed"]
 [connection signal="gui_input" from="appearance_UI/appearance_bg/undo_button" to="appearance_UI" method="_on_undo_button_gui_input"]
 [connection signal="pressed" from="appearance_UI/appearance_bg/undo_button" to="appearance_UI" method="_on_undo_button_pressed"]
