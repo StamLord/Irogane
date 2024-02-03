@@ -1,17 +1,18 @@
 @tool
 extends Button
 class_name Skill
-# Skill Data
-var skill_tree = null
 
+# Skill Data
 @export var stat_requirements = {} # attribute_name : minimum_value
 @export var skill_requirments = [] # [skill_name, skill_name..]
-var description = ""
-var cost = 1
-var is_learned = false
 
 signal learned(_skill_name)
 signal unlearned(_skill_name)
+
+var skill_tree = null
+var description = ""
+var cost = 1
+var is_learned = false
 
 # Line Data
 @onready var lines = get_children()
@@ -25,6 +26,7 @@ var required_nodes = []
 @onready var audio_player = %AudioPlayer
 @onready var select_sound = load("res://assets/audio/ui/fast_brush_4.ogg")
 @onready var deselect_sound = load("res://assets/audio/ui/button_1_2.ogg")
+
 
 func _enter_tree() -> void:
 	set_notify_transform(true)
@@ -118,15 +120,15 @@ func set_button_theme_variation():
 
 # Line Logic
 func initialize():
-	var skill = SkillsDB.get_skill(name)
-	if skill != null:
-		description = skill["description"]
-		cost = skill["cost"]
-	
 	# Get parent if it's a SkillTree
 	var parent = get_parent()
 	if parent is SkillTree:
 		skill_tree = parent
+	
+	var skill = SkillDB.get_skill(skill_tree.skill_tree_name, name)
+	if skill != null:
+		description = skill["description"]
+		cost = skill["cost"]
 	
 	get_required_nodes()
 	

@@ -67,7 +67,7 @@
 [ext_resource type="AudioStream" uid="uid://bby6iauwteq2g" path="res://assets/audio/ui/paper_2.ogg" id="53_j0lsy"]
 [ext_resource type="AudioStream" uid="uid://baf015efclx4i" path="res://assets/audio/ui/book_3.ogg" id="54_7nmnx"]
 [ext_resource type="Texture2D" uid="uid://d3o75s0qlg677" path="res://assets/textures/ui/theme/scroll_button_card.png" id="55_6rmyd"]
-[ext_resource type="AudioStream" uid="uid://d3mtdp1hunnm7" path="res://assets/audio/ui/book_1.ogg" id="55_d8ki3"]
+[ext_resource type="AudioStream" uid="uid://djvs0y20yhnto" path="res://assets/audio/ui/book_1.ogg" id="55_d8ki3"]
 [ext_resource type="Script" path="res://prefabs/ui/skills_learned_label.gd" id="55_gmvcn"]
 [ext_resource type="Script" path="res://scripts/ui/char_creation/boons_ui.gd" id="59_f8ur1"]
 [ext_resource type="Texture2D" uid="uid://ypn1g1i03dm6" path="res://assets/textures/ui/theme/cc_boons_window.png" id="60_2wkob"]
@@ -1762,7 +1762,7 @@ anchor_bottom = 1.0
 offset_right = 300.0
 grow_vertical = 2
 
-[node name="skill_trees" type="TextureRect" parent="attributes_UI"]
+[node name="skills_ui" type="TextureRect" parent="attributes_UI"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
@@ -1776,7 +1776,7 @@ grow_horizontal = 0
 texture = ExtResource("40_8rtmb")
 script = ExtResource("41_ocx4q")
 
-[node name="available_skill_points" type="Label" parent="attributes_UI/skill_trees"]
+[node name="available_skill_points" type="Label" parent="attributes_UI/skills_ui"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 44)
 layout_mode = 1
@@ -1794,14 +1794,14 @@ text = "20"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="scrolls" type="Control" parent="attributes_UI/skill_trees"]
+[node name="skill_tree_scrolls" type="Control" parent="attributes_UI/skills_ui"]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_top = 28.0
 offset_right = 40.0
 offset_bottom = 68.0
 
-[node name="swords_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="swords_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -1821,11 +1821,11 @@ script = ExtResource("41_4end4")
 skill_name = "swords"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/swords_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/swords_scroll"]
 modulate = Color(0.333333, 0.505882, 0.717647, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -1837,7 +1837,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/swords_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/swords_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1848,7 +1848,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/swords_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/swords_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1867,7 +1867,7 @@ text = "Swords"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/swords_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/swords_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1886,7 +1886,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="staff_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="staff_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -1906,11 +1906,11 @@ script = ExtResource("41_4end4")
 skill_name = "staff"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/staff_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/staff_scroll"]
 modulate = Color(0.470588, 0.494118, 0.329412, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -1922,7 +1922,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/staff_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/staff_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1933,7 +1933,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/staff_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/staff_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1953,7 +1953,7 @@ text = "Staff
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/staff_scroll" node_paths=PackedStringArray("skill_tree")]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/staff_scroll" node_paths=PackedStringArray("skill_tree")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1971,9 +1971,9 @@ theme_override_constants/outline_size = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
-skill_tree = NodePath("../../../dark_indent/skill_tree_manager/staff_tree")
+skill_tree = NodePath("../../../skill_trees_indent/skill_tree_manager/staff_tree")
 
-[node name="bow_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="bow_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -1993,11 +1993,11 @@ script = ExtResource("41_4end4")
 skill_name = "bow"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/bow_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/bow_scroll"]
 modulate = Color(0.690196, 0.407843, 0.341176, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2009,7 +2009,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/bow_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/bow_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2020,7 +2020,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/bow_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/bow_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2040,7 +2040,7 @@ text = "Bow
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/bow_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/bow_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2059,7 +2059,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="thrown_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="thrown_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2079,11 +2079,11 @@ script = ExtResource("41_4end4")
 skill_name = "thrown"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/thrown_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/thrown_scroll"]
 modulate = Color(0.847059, 0.74902, 0.4, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2095,7 +2095,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/thrown_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/thrown_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2106,7 +2106,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/thrown_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/thrown_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2126,7 +2126,7 @@ text = "Thrown
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/thrown_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/thrown_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2145,7 +2145,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="unarmed_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="unarmed_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2165,11 +2165,11 @@ script = ExtResource("41_4end4")
 skill_name = "unarmed"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/unarmed_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/unarmed_scroll"]
 modulate = Color(0.901961, 0.890196, 0.870588, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2181,7 +2181,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/unarmed_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/unarmed_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2192,7 +2192,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/unarmed_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/unarmed_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2212,7 +2212,7 @@ text = "Unarmed
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/unarmed_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/unarmed_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2231,7 +2231,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="mobility_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="mobility_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2251,11 +2251,11 @@ script = ExtResource("41_4end4")
 skill_name = "mobility"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/mobility_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/mobility_scroll"]
 modulate = Color(0.866667, 0.560784, 0.635294, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2267,7 +2267,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/mobility_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/mobility_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2278,7 +2278,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/mobility_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/mobility_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2297,7 +2297,7 @@ text = "Mobility"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/mobility_scroll" node_paths=PackedStringArray("skill_tree")]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/mobility_scroll" node_paths=PackedStringArray("skill_tree")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2315,9 +2315,9 @@ theme_override_constants/outline_size = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
-skill_tree = NodePath("../../../dark_indent/skill_tree_manager/mobility_tree")
+skill_tree = NodePath("../../../skill_trees_indent/skill_tree_manager/mobility_tree")
 
-[node name="stealth_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="stealth_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2337,11 +2337,11 @@ script = ExtResource("41_4end4")
 skill_name = "stealth"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/stealth_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/stealth_scroll"]
 modulate = Color(0.356863, 0.321569, 0.509804, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2353,7 +2353,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/stealth_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/stealth_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2364,7 +2364,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/stealth_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/stealth_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2384,7 +2384,7 @@ text = "Stealth
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/stealth_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/stealth_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2403,7 +2403,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="xaorin_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="xaorin_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2423,11 +2423,11 @@ script = ExtResource("41_4end4")
 skill_name = "xaorin"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/xaorin_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/xaorin_scroll"]
 modulate = Color(0.803922, 0.337255, 0.25098, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2439,7 +2439,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/xaorin_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/xaorin_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2450,7 +2450,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/xaorin_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/xaorin_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2469,7 +2469,7 @@ text = "Xaorin"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/xaorin_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/xaorin_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2488,7 +2488,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="onmyodo_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="onmyodo_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2508,11 +2508,11 @@ script = ExtResource("41_4end4")
 skill_name = "onmyodo"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/onmyodo_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/onmyodo_scroll"]
 modulate = Color(0.188235, 0.568627, 0.584314, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2524,7 +2524,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/onmyodo_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/onmyodo_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2535,7 +2535,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/onmyodo_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/onmyodo_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2554,7 +2554,7 @@ text = "Onmyodo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/onmyodo_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/onmyodo_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2573,7 +2573,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="shugendo_scroll" type="TextureButton" parent="attributes_UI/skill_trees/scrolls" node_paths=PackedStringArray("audio_player")]
+[node name="shugendo_scroll" type="TextureButton" parent="attributes_UI/skills_ui/skill_tree_scrolls" node_paths=PackedStringArray("audio_player")]
 unique_name_in_owner = true
 z_index = -1
 layout_mode = 1
@@ -2593,11 +2593,11 @@ script = ExtResource("41_4end4")
 skill_name = "shugendo"
 duration = 0.05
 select_sound = ExtResource("53_j0lsy")
-hover_sound = ExtResource("54_7nmnx")
 unhover_sound = ExtResource("55_d8ki3")
 audio_player = NodePath("../../../../AudioPlayer")
+focus_sound = ExtResource("54_7nmnx")
 
-[node name="TextureRect" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/shugendo_scroll"]
+[node name="TextureRect" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/shugendo_scroll"]
 modulate = Color(0.823529, 0.470588, 0, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -2609,7 +2609,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_6crep")
 
-[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skill_trees/scrolls/shugendo_scroll"]
+[node name="TextureRect2" type="TextureRect" parent="attributes_UI/skills_ui/skill_tree_scrolls/shugendo_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2620,7 +2620,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("55_6rmyd")
 
-[node name="Label" type="Label" parent="attributes_UI/skill_trees/scrolls/shugendo_scroll"]
+[node name="Label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/shugendo_scroll"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2639,7 +2639,7 @@ text = "Shugendo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="learned_label" type="Label" parent="attributes_UI/skill_trees/scrolls/shugendo_scroll"]
+[node name="learned_label" type="Label" parent="attributes_UI/skills_ui/skill_tree_scrolls/shugendo_scroll"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2658,7 +2658,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("55_gmvcn")
 
-[node name="block_input" type="Panel" parent="attributes_UI/skill_trees"]
+[node name="block_input" type="Panel" parent="attributes_UI/skills_ui"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -2666,7 +2666,7 @@ offset_right = 175.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mxuy2")
 
-[node name="dark_indent" type="TextureRect" parent="attributes_UI/skill_trees"]
+[node name="skill_trees_indent" type="TextureRect" parent="attributes_UI/skills_ui"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2682,7 +2682,8 @@ grow_vertical = 2
 texture = ExtResource("35_pgwqd")
 expand_mode = 1
 
-[node name="skill_tree_manager" type="Control" parent="attributes_UI/skill_trees/dark_indent"]
+[node name="skill_tree_manager" type="Control" parent="attributes_UI/skills_ui/skill_trees_indent"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2691,7 +2692,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("51_g1cca")
 
-[node name="mobility_tree" type="Control" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager"]
+[node name="mobility_tree" type="Control" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -2700,8 +2701,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("51_66pgn")
+skill_tree_name = "mobility"
 
-[node name="dash" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="dash" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2712,7 +2714,7 @@ theme_type_variation = &"SkillButton"
 text = "Dash"
 script = ExtResource("51_32i56")
 
-[node name="after_image" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="after_image" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -2720,18 +2722,17 @@ offset_top = 50.0
 offset_right = 386.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "After Image
 "
 script = ExtResource("51_32i56")
 skill_requirments = ["dash"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/after_image"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/after_image"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="double_jump" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="double_jump" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2742,7 +2743,7 @@ theme_type_variation = &"SkillButton"
 text = "Double Jump"
 script = ExtResource("51_32i56")
 
-[node name="triple_jump" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="triple_jump" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -2750,17 +2751,16 @@ offset_top = 140.0
 offset_right = 386.0
 offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Triple Jump"
 script = ExtResource("51_32i56")
 skill_requirments = ["double_jump"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/triple_jump"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/triple_jump"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="wall_jump" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="wall_jump" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2771,7 +2771,7 @@ theme_type_variation = &"SkillButton"
 text = "Wall Jump"
 script = ExtResource("51_32i56")
 
-[node name="human_jump" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="human_jump" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -2779,17 +2779,16 @@ offset_top = 230.0
 offset_right = 386.0
 offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Human Jump"
 script = ExtResource("51_32i56")
 skill_requirments = ["wall_jump"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/human_jump"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/human_jump"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="ledge_climb" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="ledge_climb" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2800,7 +2799,7 @@ theme_type_variation = &"SkillButton"
 text = "Ledge Climb"
 script = ExtResource("51_32i56")
 
-[node name="wall_climb" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="wall_climb" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -2808,17 +2807,16 @@ offset_top = 320.0
 offset_right = 386.0
 offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Wall Climb"
 script = ExtResource("51_32i56")
 skill_requirments = ["ledge_climb"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/wall_climb"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/wall_climb"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="wind_stride" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="wind_stride" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2829,7 +2827,7 @@ theme_type_variation = &"SkillButton"
 text = "Wind Stride"
 script = ExtResource("51_32i56")
 
-[node name="gale_stride" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="gale_stride" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -2837,17 +2835,16 @@ offset_top = 410.0
 offset_right = 386.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Gale Stride"
 script = ExtResource("51_32i56")
 skill_requirments = ["wind_stride"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/gale_stride"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/gale_stride"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="lightspeed" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree"]
+[node name="lightspeed" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 450.0
@@ -2855,25 +2852,25 @@ offset_top = 410.0
 offset_right = 586.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Lightspeed"
 script = ExtResource("51_32i56")
 skill_requirments = ["gale_stride"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/mobility_tree/lightspeed"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/lightspeed"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="swords_tree" type="Control" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager"]
+[node name="swords_tree" type="Control" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager"]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("51_66pgn")
+skill_tree_name = "swords"
 
-[node name="staff_tree" type="Control" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager"]
+[node name="staff_tree" type="Control" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -2883,8 +2880,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("51_66pgn")
+skill_tree_name = "staff"
 
-[node name="guard_spin" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="guard_spin" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2895,7 +2893,7 @@ theme_type_variation = &"SkillButton"
 text = "Guard Spin"
 script = ExtResource("51_32i56")
 
-[node name="whirlwind" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="whirlwind" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -2903,18 +2901,17 @@ offset_top = 50.0
 offset_right = 386.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Whirlwind
 "
 script = ExtResource("51_32i56")
 skill_requirments = ["guard_spin"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/whirlwind"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/whirlwind"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="slowfall" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="slowfall" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 450.0
@@ -2922,18 +2919,17 @@ offset_top = 50.0
 offset_right = 586.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Slow Fall
 "
 script = ExtResource("51_32i56")
 skill_requirments = ["whirlwind"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/slowfall"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/slowfall"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="disarm" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="disarm" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2944,7 +2940,7 @@ theme_type_variation = &"SkillButton"
 text = "Disarm"
 script = ExtResource("51_32i56")
 
-[node name="mass_disarm" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="mass_disarm" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 450.0
@@ -2952,22 +2948,21 @@ offset_top = 140.0
 offset_right = 586.0
 offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Mass Disarm"
 script = ExtResource("51_32i56")
 skill_requirments = ["whirlwind", "disarm"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/mass_disarm"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/mass_disarm"]
 points = PackedVector2Array(0, 25, -32, 25, -32, -65, -64, -65)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="Line2D2" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/mass_disarm"]
+[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/mass_disarm"]
 points = PackedVector2Array(0, 25, -264, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="hop" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="hop" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -2979,7 +2974,7 @@ text = "Hop
 "
 script = ExtResource("51_32i56")
 
-[node name="ground_slam" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="ground_slam" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -2987,18 +2982,17 @@ offset_top = 230.0
 offset_right = 386.0
 offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Ground Slam
 "
 script = ExtResource("51_32i56")
 skill_requirments = ["hop"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/ground_slam"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/ground_slam"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="trip" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="trip" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -3009,7 +3003,7 @@ theme_type_variation = &"SkillButton"
 text = "Trip"
 script = ExtResource("51_32i56")
 
-[node name="slider_trip" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="slider_trip" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -3017,17 +3011,16 @@ offset_top = 320.0
 offset_right = 386.0
 offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Slide Trip"
 script = ExtResource("51_32i56")
 skill_requirments = ["trip"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/slider_trip"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/slider_trip"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="focused_strike" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="focused_strike" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 50.0
@@ -3038,7 +3031,7 @@ theme_type_variation = &"SkillButton"
 text = "Focused Strike"
 script = ExtResource("51_32i56")
 
-[node name="staff_flurry" type="Button" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree"]
+[node name="staff_flurry" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree"]
 custom_minimum_size = Vector2(136, 50)
 layout_mode = 1
 offset_left = 250.0
@@ -3046,12 +3039,11 @@ offset_top = 410.0
 offset_right = 386.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
-disabled = true
 text = "Staff Flurry"
 script = ExtResource("51_32i56")
 skill_requirments = ["focused_strike"]
 
-[node name="Line2D" type="Line2D" parent="attributes_UI/skill_trees/dark_indent/skill_tree_manager/staff_tree/staff_flurry"]
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/staff_flurry"]
 points = PackedVector2Array(0, 25, -64, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)

@@ -2,10 +2,11 @@
 extends Control
 class_name SkillTree
 
+@export var skill_tree_name: String
 @onready var skill_tree_manager = $".."
 var skill_dict = {}
 
-signal state_updated()
+signal state_updated(skill_tree_name, skill_tree)
 
 func _ready():
 	init_skill_dict()
@@ -21,7 +22,7 @@ func update_state(skill_name : String):
 	for skill in skill_dict:
 		skill_dict[skill].update_state(skill_name)
 	
-	state_updated.emit()
+	state_updated.emit(skill_tree_name, self)
 	
 
 func get_skill(skill_name : String):

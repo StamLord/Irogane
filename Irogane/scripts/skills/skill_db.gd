@@ -1,56 +1,126 @@
 extends Node
-class_name SkillsDB
 
-static var skills_db = {
-	"guard_spin" : {
-		"cost" : 1,
-		"description" : "",
+var skills_db = {
+	"swords": {
+		"description": "Swords desc",
+		"skills": {
+			
+		}
 	},
-	"whirlwind" : {
-		"cost" : 1,
-		"description" : "",
+	"staff": {
+		"description": "Bo Staff action",
+		"skills": {
+			"guard_spin" : {
+				"cost" : 1,
+				"description" : "Guard Spin",
+			},
+			"whirlwind" : {
+				"cost" : 1,
+				"description" : "Whril",
+			},
+			"slowfall" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"disarm" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"mass_disarm" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"hop" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"ground_slam" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"trip" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"slider_trip" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"focused_strike" : {
+				"cost" : 1,
+				"description" : "",
+			},
+			"staff_flurry" : {
+				"cost" : 1,
+				"description" : "",
+			}
+		}
 	},
-	"slowfall" : {
-		"cost" : 1,
-		"description" : "",
+	"bow": {
+		"description": "Bow action",
+		"skills": {
+			
+		}
 	},
-	"disarm" : {
-		"cost" : 1,
-		"description" : "",
+	"thrown": {
+		"description": "thrown action",
+		"skills": {
+			
+		}
 	},
-	"mass_disarm" : {
-		"cost" : 1,
-		"description" : "",
+	"unarmed": {
+		"description": "unarmed action",
+		"skills": {
+			
+		}
 	},
-	"hop" : {
-		"cost" : 1,
-		"description" : "",
+	"mobility": {
+		"description": "Mobility focuses on enhancing the agility, speed, and maneuverability of the practitioner. From nimble footwork to daring aerial maneuvers, these skills empower warriors to navigate the battlefield with unparalleled grace and efficiency.",
+		"skills": {
+			
+		}
 	},
-	"ground_slam" : {
-		"cost" : 1,
-		"description" : "",
+	"stealth": {
+		"description": "stealth action",
+		"skills": {
+			
+		}
 	},
-	"trip" : {
-		"cost" : 1,
-		"description" : "",
+	"xaorin": {
+		"description": "xaorin action",
+		"skills": {
+			
+		}
 	},
-	"slider_trip" : {
-		"cost" : 1,
-		"description" : "",
+	"onmyodo": {
+		"description": "Bonmyodo action",
+		"skills": {
+			
+		}
 	},
-	"focused_strike" : {
-		"cost" : 1,
-		"description" : "",
+	"shugendo": {
+		"description": "shengu action",
+		"skills": {
+			
+		}
 	},
-	"staff_flurry" : {
-		"cost" : 1,
-		"description" : "",
-	}
 }
 
-static func get_skill(skill_name):
-	if skills_db.has(skill_name):
-		return skills_db[skill_name]
+
+func get_skill_tree(skill_tree_name):
+	if skills_db.has(skill_tree_name):
+		return skills_db[skill_tree_name]
+	
+	return null
+	
+
+func get_skill(skill_tree_name, skill_name):
+	var skill_tree = get_skill_tree(skill_tree_name)
+	
+	if skill_tree:
+		
+		if skill_tree.skills.has(skill_name):
+			return skill_tree.skills[skill_name]
 	
 	return null
 	

@@ -19,7 +19,7 @@ extends Control
 @onready var info_text = %info_text
 
 @onready var preset_selection = $preset_selection
-@onready var skill_trees =  %skill_trees
+@onready var skills_ui = %skills_ui
 
 # Data
 @onready var ATTRIBUTES = {
@@ -257,8 +257,9 @@ func _on_attr_next_button_pressed():
 			"modifier_dict": {},
 		},
 		"attr_points": stats.attr_points,
-		"skills": skill_trees.skill_selection,
+		"skills": skills_ui.skill_selection,
 	}
+	print("attr_data ", attr_data)
 	owner.load_attributes(attr_data)
 	owner.next_ui_screen()
 	
