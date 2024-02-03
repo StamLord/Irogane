@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://oiip3qsg1ts6"]
+
+[ext_resource type="PackedScene" path="res://assets/models/weapons/shuriken.glb" id="1_wui5k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y7cc7"]
+size = Vector3(0.15, 0.15, 0.03)
+
+[node name="shuriken" type="RigidBody3D"]
+
+[node name="shuriken" parent="." instance=ExtResource("1_wui5k")]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_y7cc7")

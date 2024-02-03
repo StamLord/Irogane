@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=99 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -24,12 +24,14 @@
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
+[ext_resource type="Script" path="res://scripts/weapons/throwable.gd" id="26_5mim7"]
 [ext_resource type="Shader" uid="uid://bdh8h54vakscc" path="res://assets/shaders/bubble.tres" id="26_ud12e"]
+[ext_resource type="PackedScene" path="res://assets/models/weapons/shuriken.glb" id="27_imo88"]
 [ext_resource type="Script" path="res://scripts/stealth/night_vision.gd" id="27_wn7je"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
@@ -571,6 +573,13 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -0.226465, -0.666647)
 layers = 2
 size = Vector3(0.05, 1.5, 0.1)
+
+[node name="shuriken" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
+visible = false
+script = ExtResource("26_5mim7")
+
+[node name="shuriken_model" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/shuriken" instance=ExtResource("27_imo88")]
+transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626, 0.0405095, -0.00263428, -0.0424863, 0.0262293, 0.350353, -0.25896, -0.423049)
 
 [node name="interaction" type="Node3D" parent="head/main_camera"]
 script = ExtResource("19_s7wsu")
