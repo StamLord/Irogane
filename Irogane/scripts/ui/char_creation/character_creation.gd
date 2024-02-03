@@ -1,4 +1,4 @@
-extends Control
+extends UIWindow
 
 @onready var ui_screens = [$appearance_UI, $attributes_UI, $boons_UI]
 @onready var stats = %stats
@@ -13,7 +13,7 @@ var flaws = []
 var ambition = null
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	open()
 	
 
 func prev_ui_screen():
@@ -67,6 +67,7 @@ func load_boons(data):
 	
 
 func start_new_game():
+	close()
 	SceneManager.goto_scene("res://scenes/main.tscn")
 	
 	var player_data = {

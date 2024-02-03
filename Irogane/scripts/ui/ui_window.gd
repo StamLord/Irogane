@@ -33,9 +33,11 @@ func open():
 	visible = true
 	UIManager.add_window(self)
 	
+
 func close():
 	visible = false
 	UIManager.remove_window(self)
+	
 
 func _input(event):
 	if event is InputEventMouseButton:

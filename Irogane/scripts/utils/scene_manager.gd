@@ -33,6 +33,7 @@ func _process(_delta):
 			get_tree().current_scene = current_scene
 			on_scene_loaded.emit(loading_scene_name)
 			loading_scene_name = null
+			UIManager.update_cursor()
 	
 
 func _deferred_goto_scene_no_load(path):
@@ -43,6 +44,7 @@ func _deferred_goto_scene_no_load(path):
 	get_tree().root.add_child(current_scene)
 	get_tree().current_scene = current_scene
 	on_scene_loaded.emit(path)
+	UIManager.update_cursor()
 	
 
 func _deferred_goto_scene(path):
