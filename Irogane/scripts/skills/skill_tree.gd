@@ -18,7 +18,7 @@ func init_skill_dict():
 			skill_dict[child.name] = child
 	
 
-func update_state(skill_name : String):
+func update_state(skill_name: String):
 	for skill in skill_dict:
 		skill_dict[skill].update_state(skill_name)
 	
@@ -28,6 +28,7 @@ func update_state(skill_name : String):
 func get_skill(skill_name : String):
 	if skill_dict.has(skill_name):
 		return skill_dict[skill_name]
+	
 	return null
 	
 

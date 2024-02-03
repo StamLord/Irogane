@@ -2725,7 +2725,6 @@ theme_type_variation = &"SkillButton"
 text = "After Image
 "
 script = ExtResource("51_32i56")
-skill_requirments = ["dash"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/after_image"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2753,7 +2752,6 @@ offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
 text = "Triple Jump"
 script = ExtResource("51_32i56")
-skill_requirments = ["double_jump"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/triple_jump"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2781,7 +2779,6 @@ offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
 text = "Human Jump"
 script = ExtResource("51_32i56")
-skill_requirments = ["wall_jump"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/human_jump"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2809,7 +2806,6 @@ offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
 text = "Wall Climb"
 script = ExtResource("51_32i56")
-skill_requirments = ["ledge_climb"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/wall_climb"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2837,7 +2833,6 @@ offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
 text = "Gale Stride"
 script = ExtResource("51_32i56")
-skill_requirments = ["wind_stride"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/gale_stride"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2854,7 +2849,6 @@ offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
 text = "Lightspeed"
 script = ExtResource("51_32i56")
-skill_requirments = ["gale_stride"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/mobility_tree/lightspeed"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2904,7 +2898,6 @@ theme_type_variation = &"SkillButton"
 text = "Whirlwind
 "
 script = ExtResource("51_32i56")
-skill_requirments = ["guard_spin"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/whirlwind"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2922,7 +2915,6 @@ theme_type_variation = &"SkillButton"
 text = "Slow Fall
 "
 script = ExtResource("51_32i56")
-skill_requirments = ["whirlwind"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/slowfall"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -2950,7 +2942,6 @@ offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
 text = "Mass Disarm"
 script = ExtResource("51_32i56")
-skill_requirments = ["whirlwind", "disarm"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/mass_disarm"]
 points = PackedVector2Array(0, 25, -32, 25, -32, -65, -64, -65)
@@ -2985,7 +2976,6 @@ theme_type_variation = &"SkillButton"
 text = "Ground Slam
 "
 script = ExtResource("51_32i56")
-skill_requirments = ["hop"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/ground_slam"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -3013,7 +3003,6 @@ offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
 text = "Slide Trip"
 script = ExtResource("51_32i56")
-skill_requirments = ["trip"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/slider_trip"]
 points = PackedVector2Array(0, 25, -64, 25)
@@ -3041,7 +3030,6 @@ offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
 text = "Staff Flurry"
 script = ExtResource("51_32i56")
-skill_requirments = ["focused_strike"]
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/staff_flurry"]
 points = PackedVector2Array(0, 25, -64, 25)

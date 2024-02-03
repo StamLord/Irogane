@@ -7,7 +7,7 @@ func _ready():
 		skill_tree.state_updated.connect(update_label)
 	
 
-func update_label():
+func update_label(_tree_name, _skill_tree):
 	if skill_tree == null:
 		return
 	

@@ -2,13 +2,12 @@
 extends Button
 class_name Skill
 
-# Skill Data
-@export var stat_requirements = {} # attribute_name : minimum_value
-@export var skill_requirments = [] # [skill_name, skill_name..]
-
 signal learned(_skill_name)
 signal unlearned(_skill_name)
 
+# Skill Data
+var stat_requirements = {} # attribute_name : minimum_value
+var skill_requirments = [] # [skill_name, skill_name..]
 var skill_tree = null
 var description = ""
 var cost = 1
@@ -76,6 +75,9 @@ func can_learn(stats = null) -> bool:
 	
 
 func learn():
+	if is_learned:
+		return 
+	
 	is_learned = true
 	learned.emit(name)
 	if skill_tree != null:
@@ -84,6 +86,9 @@ func learn():
 	
 
 func unlearn():
+	if not is_learned:
+		return
+	
 	is_learned = false
 	unlearned.emit(name)
 	if skill_tree != null:
@@ -127,9 +132,11 @@ func initialize():
 	
 	var skill = SkillDB.get_skill(skill_tree.skill_tree_name, name)
 	if skill != null:
-		description = skill["description"]
-		cost = skill["cost"]
-	
+		cost = skill.cost
+		description = skill.description
+		skill_requirments = skill.skill_requirments
+		stat_requirements = skill.stat_requirements
+		
 	get_required_nodes()
 	
 

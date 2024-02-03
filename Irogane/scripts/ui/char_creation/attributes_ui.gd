@@ -259,7 +259,7 @@ func _on_attr_next_button_pressed():
 		"attr_points": stats.attr_points,
 		"skills": skills_ui.skill_selection,
 	}
-	print("attr_data ", attr_data)
+	
 	owner.load_attributes(attr_data)
 	owner.next_ui_screen()
 	

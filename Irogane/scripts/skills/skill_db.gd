@@ -13,46 +13,68 @@ var skills_db = {
 			"guard_spin" : {
 				"cost" : 1,
 				"description" : "Guard Spin",
+				"skill_requirments": [],
+				"stat_requirements": {},
 			},
 			"whirlwind" : {
 				"cost" : 1,
 				"description" : "Whril",
+				"skill_requirments": ["guard_spin"],
+				"stat_requirements": {},
 			},
 			"slowfall" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": ["whirlwind"],
+				"stat_requirements": {},
 			},
 			"disarm" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": [],
+				"stat_requirements": {},
 			},
 			"mass_disarm" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": ["whirlwind", "disarm"],
+				"stat_requirements": {},
 			},
 			"hop" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": [],
+				"stat_requirements": {},
 			},
 			"ground_slam" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": ["hop"],
+				"stat_requirements": {},
 			},
 			"trip" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": [],
+				"stat_requirements": {},
 			},
 			"slider_trip" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": ["trip"],
+				"stat_requirements": {},
 			},
 			"focused_strike" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": [],
+				"stat_requirements": {},
 			},
 			"staff_flurry" : {
 				"cost" : 1,
 				"description" : "",
+				"skill_requirments": ["focused_strike"],
+				"stat_requirements": {},
 			}
 		}
 	},
@@ -77,7 +99,72 @@ var skills_db = {
 	"mobility": {
 		"description": "Mobility focuses on enhancing the agility, speed, and maneuverability of the practitioner. From nimble footwork to daring aerial maneuvers, these skills empower warriors to navigate the battlefield with unparalleled grace and efficiency.",
 		"skills": {
-			
+			"dash" : {
+				"cost" : 1,
+				"description" : "Dash",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"after_image" : {
+				"cost" : 1,
+				"description" : "After image",
+				"skill_requirments": ["dash"],
+				"stat_requirements": {},
+			},
+			"double_jump" : {
+				"cost" : 1,
+				"description" : "Double jump",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"triple_jump" : {
+				"cost" : 1,
+				"description" : "Triple jump",
+				"skill_requirments": ["double_jump"],
+				"stat_requirements": {},
+			},
+			"wall_jump" : {
+				"cost" : 1,
+				"description" : "Wall jump",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"human_jump" : {
+				"cost" : 1,
+				"description" : "Human jump",
+				"skill_requirments": ["wall_jump"],
+				"stat_requirements": {},
+			},
+			"ledge_climb" : {
+				"cost" : 1,
+				"description" : "Ledge climb",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"wall_climb" : {
+				"cost" : 1,
+				"description" : "Wall climb",
+				"skill_requirments": ["ledge_climb"],
+				"stat_requirements": {},
+			},
+			"wind_stride" : {
+				"cost" : 1,
+				"description" : "Wind stride",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"gale_stride" : {
+				"cost" : 1,
+				"description" : "wind stride",
+				"skill_requirments": ["wind_stride"],
+				"stat_requirements": {},
+			},
+			"lightspeed" : {
+				"cost" : 1,
+				"description" : "light speed",
+				"skill_requirments": ["gale_stride"],
+				"stat_requirements": {},
+			},
 		}
 	},
 	"stealth": {
