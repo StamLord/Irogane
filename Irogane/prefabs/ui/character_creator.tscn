@@ -80,7 +80,7 @@
 [ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="66_4460i"]
 [ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
-[ext_resource type="PackedScene" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
+[ext_resource type="PackedScene" uid="uid://dkcoap7i5mjnl" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
 [ext_resource type="PackedScene" uid="uid://blmgqak0mhkqx" path="res://prefabs/env/trees/tree_01_early_fall.tscn" id="72_y3ju1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -280,14 +280,14 @@ curve = SubResource("Curve_qjbgk")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twp0a"]
 emission_shape = 3
 emission_box_extents = Vector3(5, 0.1, 0.5)
+angle_max = 360.0
 direction = Vector3(0, 1, 1)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 0.2
 initial_velocity_max = 0.4
 angular_velocity_min = -40.0
 angular_velocity_max = 40.0
-angle_max = 360.0
+gravity = Vector3(0, 0, 0)
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_xgthk")
 color = Color(1, 1, 1, 0.14902)
@@ -329,12 +329,12 @@ curve = SubResource("Curve_52vgi")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hx5fg"]
 emission_shape = 3
 emission_box_extents = Vector3(0.5, 0.25, 0.25)
+angle_max = 180.0
 direction = Vector3(0, 0, 1)
 spread = 20.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
-angle_max = 180.0
+gravity = Vector3(0, -2, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_kd8eq")
@@ -373,12 +373,12 @@ curve = SubResource("Curve_xyuda")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kg7px"]
 emission_shape = 3
 emission_box_extents = Vector3(0.5, 0.25, 0.25)
+angle_max = 180.0
 direction = Vector3(0, 0, 1)
 spread = 20.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
-angle_max = 180.0
+gravity = Vector3(0, -2, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_uqusl")
@@ -402,12 +402,12 @@ curve = SubResource("Curve_ju6mv")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o815r"]
 emission_shape = 3
 emission_box_extents = Vector3(0.5, 0.25, 0.25)
+angle_max = 180.0
 direction = Vector3(0, 0, 1)
 spread = 20.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.5
-angle_max = 180.0
+gravity = Vector3(0, -2, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_jj3n0")
@@ -431,12 +431,12 @@ curve = SubResource("Curve_sc4rn")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_13464"]
 emission_shape = 3
 emission_box_extents = Vector3(1, 0.25, 0.25)
+angle_max = 180.0
 direction = Vector3(0, 0, 1)
 spread = 20.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
-angle_max = 180.0
+gravity = Vector3(0, -2, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_6jarp")
@@ -460,12 +460,12 @@ curve = SubResource("Curve_60y8u")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p2fkl"]
 emission_shape = 3
 emission_box_extents = Vector3(1, 0.25, 0.25)
+angle_max = 180.0
 direction = Vector3(0, 0, 1)
 spread = 20.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
-angle_max = 180.0
+gravity = Vector3(0, -2, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_t1n5v")
@@ -489,12 +489,12 @@ curve = SubResource("Curve_bwx6i")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_apite"]
 emission_shape = 3
 emission_box_extents = Vector3(3, 0.25, 0.25)
+angle_max = 180.0
 direction = Vector3(0, 0, 1)
 spread = 20.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
-angle_max = 180.0
+gravity = Vector3(0, -2, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_pkxor")
@@ -518,12 +518,12 @@ curve = SubResource("Curve_hd8xp")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f6uyo"]
 emission_shape = 3
 emission_box_extents = Vector3(3, 0.25, 0.25)
+angle_max = 180.0
 direction = Vector3(0, 1, 0)
 spread = 20.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 0.5
 initial_velocity_max = 1.0
-angle_max = 180.0
+gravity = Vector3(0, -2, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_wa86y")

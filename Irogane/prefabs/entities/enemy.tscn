@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="2_itryu"]
 [ext_resource type="Script" path="res://scripts/ai/states/Chase.gd" id="3_f7qx7"]
 [ext_resource type="Script" path="res://scripts/ai/NpcStateMachine.gd" id="3_rsg64"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/stats.tscn" id="3_vke2l"]
+[ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="3_vke2l"]
 [ext_resource type="Script" path="res://scripts/ai/states/Search.gd" id="4_u5p12"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="6_vj0q5"]
 [ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="7_dmvk0"]

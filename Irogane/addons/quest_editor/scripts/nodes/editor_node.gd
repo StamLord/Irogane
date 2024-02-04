@@ -4,7 +4,7 @@ extends GraphNode
 
 func _ready():
 	resize_request.connect(_on_resize_request)
-	close_request.connect(_on_close_request)
+	delete_request.connect(_on_close_request)
 	
 
 func _on_resize_request(new_minsize):

@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bs7un86s3rdtb" path="res://assets/models/env/house_modular/textures/roof_tiles.png" id="1_iovhv"]
 
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugq7j"]
 resource_name = "house_roof"
 cull_mode = 2
@@ -14,11 +13,12 @@ texture_filter = 2
 [sub_resource type="ArrayMesh" id="ArrayMesh_qk14a"]
 _surfaces = [{
 "aabb": AABB(-2, 3.6, -0.5, 4, 0.40001, 1),
-"format": 4097,
+"format": 34359742465,
 "index_count": 6,
 "index_data": PackedByteArray(1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0),
 "name": "house_roof",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
 "vertex_data": PackedByteArray(0, 0, 0, 192, 0, 0, 128, 64, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 128, 64, 0, 0, 0, 191, 0, 0, 0, 192, 103, 102, 102, 64, 0, 0, 0, 63, 0, 0, 0, 64, 103, 102, 102, 64, 0, 0, 0, 63)
 }]
@@ -29,14 +29,15 @@ resource_name = "roof_edge_mid_4_Plane_011"
 _surfaces = [{
 "aabb": AABB(-2, 3.6, -0.5, 4, 0.40001, 1),
 "attribute_data": PackedByteArray(0, 128, 89, 56, 1, 0, 64, 63, 152, 252, 127, 63, 1, 0, 64, 63, 0, 128, 89, 56, 152, 252, 127, 63, 151, 252, 127, 63, 153, 252, 127, 63),
-"format": 4119,
+"format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray(1, 0, 2, 0, 0, 0, 1, 0, 3, 0, 2, 0),
 "material": SubResource("StandardMaterial3D_ugq7j"),
 "name": "house_roof",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray(0, 0, 0, 192, 0, 0, 128, 64, 0, 0, 0, 191, 255, 127, 108, 219, 255, 255, 255, 191, 0, 0, 0, 64, 0, 0, 128, 64, 0, 0, 0, 191, 255, 127, 108, 219, 255, 255, 255, 191, 0, 0, 0, 192, 103, 102, 102, 64, 0, 0, 0, 63, 255, 127, 108, 219, 255, 255, 255, 191, 0, 0, 0, 64, 103, 102, 102, 64, 0, 0, 0, 63, 255, 127, 108, 219, 255, 255, 255, 191)
+"vertex_data": PackedByteArray(0, 0, 0, 192, 0, 0, 128, 64, 0, 0, 0, 191, 0, 0, 0, 64, 0, 0, 128, 64, 0, 0, 0, 191, 0, 0, 0, 192, 103, 102, 102, 64, 0, 0, 0, 63, 0, 0, 0, 64, 103, 102, 102, 64, 0, 0, 0, 63, 255, 127, 108, 219, 255, 255, 255, 191, 255, 127, 108, 219, 255, 255, 255, 191, 255, 127, 108, 219, 255, 255, 255, 191, 255, 127, 108, 219, 255, 255, 255, 191)
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qk14a")

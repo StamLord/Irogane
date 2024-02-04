@@ -5,11 +5,12 @@
 [sub_resource type="ArrayMesh" id="ArrayMesh_t1gwp"]
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -4.76837e-07, 1, 4, 1e-05),
-"format": 4097,
+"format": 34359742465,
 "index_count": 6,
 "index_data": PackedByteArray(2, 0, 1, 0, 3, 0, 2, 0, 0, 0, 1, 0),
 "name": "house_walll",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
 "vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 181, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 0, 181, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 181, 0, 0, 0, 63, 0, 0, 128, 64, 0, 0, 0, 181)
 }]
@@ -20,14 +21,15 @@ resource_name = "house_wall_b_1x4_Cube_028"
 _surfaces = [{
 "aabb": AABB(-0.5, 0, -4.76837e-07, 1, 4, 1e-05),
 "attribute_data": PackedByteArray(200, 1, 0, 63, 0, 0, 128, 63, 200, 1, 0, 63, 0, 0, 0, 0, 228, 0, 64, 63, 0, 0, 128, 63, 228, 0, 64, 63, 0, 0, 0, 0),
-"format": 4119,
+"format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray(2, 0, 1, 0, 3, 0, 2, 0, 0, 0, 1, 0),
 "material": ExtResource("1_lc86k"),
 "name": "house_walll",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191, 0, 0, 0, 63, 0, 0, 128, 64, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191)
+"vertex_data": PackedByteArray(0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 181, 0, 0, 0, 191, 0, 0, 128, 64, 0, 0, 0, 181, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 181, 0, 0, 0, 63, 0, 0, 128, 64, 0, 0, 0, 181, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t1gwp")
