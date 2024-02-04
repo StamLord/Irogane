@@ -131,6 +131,7 @@ func initialize():
 		skill_tree = parent
 	
 	var skill = SkillDB.get_skill(skill_tree.skill_tree_name, name)
+	
 	if skill != null:
 		cost = skill.cost
 		description = skill.description

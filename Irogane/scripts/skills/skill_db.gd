@@ -1,5 +1,5 @@
+@tool
 extends Node
-
 var skills_db = {
 	"swords": {
 		"description": "Swords desc",
@@ -87,7 +87,78 @@ var skills_db = {
 	"thrown": {
 		"description": "thrown action",
 		"skills": {
-			
+			"triple_throw" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"octo_throw" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": ["triple_throw"],
+				"stat_requirements": {},
+			},
+			"metal_shower" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": ["octo_throw"],
+				"stat_requirements": {},
+			},
+			"bouncing_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"multiplying_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": ["bouncing_shuriken"],
+				"stat_requirements": {},
+			},
+			"burning_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"exploding_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": ["burning_shuriken", "decoy_shuriken"],
+				"stat_requirements": {},
+			},
+			"decoy_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"body_switch" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": ["decoy_shuriken", "multiplying_shuriken"],
+				"stat_requirements": {},
+			},
+			"poison_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": [],
+				"stat_requirements": {},
+			},
+			"draining_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": ["poison_shuriken"],
+				"stat_requirements": {},
+			},
+			"paralysis_shuriken" : {
+				"cost" : 1,
+				"description" : "TBD",
+				"skill_requirments": ["draining_shuriken"],
+				"stat_requirements": {},
+			},
 		}
 	},
 	"unarmed": {

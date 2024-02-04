@@ -2694,6 +2694,7 @@ script = ExtResource("51_g1cca")
 
 [node name="mobility_tree" type="Control" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2722,6 +2723,7 @@ offset_top = 50.0
 offset_right = 386.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "After Image
 "
 script = ExtResource("51_32i56")
@@ -2750,6 +2752,7 @@ offset_top = 140.0
 offset_right = 386.0
 offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Triple Jump"
 script = ExtResource("51_32i56")
 
@@ -2777,6 +2780,7 @@ offset_top = 230.0
 offset_right = 386.0
 offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Human Jump"
 script = ExtResource("51_32i56")
 
@@ -2804,6 +2808,7 @@ offset_top = 320.0
 offset_right = 386.0
 offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Wall Climb"
 script = ExtResource("51_32i56")
 
@@ -2831,6 +2836,7 @@ offset_top = 410.0
 offset_right = 386.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Gale Stride"
 script = ExtResource("51_32i56")
 
@@ -2847,6 +2853,7 @@ offset_top = 410.0
 offset_right = 586.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Lightspeed"
 script = ExtResource("51_32i56")
 
@@ -2895,6 +2902,7 @@ offset_top = 50.0
 offset_right = 386.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Whirlwind
 "
 script = ExtResource("51_32i56")
@@ -2912,6 +2920,7 @@ offset_top = 50.0
 offset_right = 586.0
 offset_bottom = 100.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Slow Fall
 "
 script = ExtResource("51_32i56")
@@ -2940,6 +2949,7 @@ offset_top = 140.0
 offset_right = 586.0
 offset_bottom = 190.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Mass Disarm"
 script = ExtResource("51_32i56")
 
@@ -2973,6 +2983,7 @@ offset_top = 230.0
 offset_right = 386.0
 offset_bottom = 280.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Ground Slam
 "
 script = ExtResource("51_32i56")
@@ -3001,6 +3012,7 @@ offset_top = 320.0
 offset_right = 386.0
 offset_bottom = 370.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Slide Trip"
 script = ExtResource("51_32i56")
 
@@ -3028,11 +3040,211 @@ offset_top = 410.0
 offset_right = 386.0
 offset_bottom = 460.0
 theme_type_variation = &"SkillButton"
+disabled = true
 text = "Staff Flurry"
 script = ExtResource("51_32i56")
 
 [node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/staff_tree/staff_flurry"]
 points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="thrown_tree" type="Control" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("51_66pgn")
+skill_tree_name = "thrown"
+
+[node name="triple_throw" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 45.0
+offset_top = 44.0
+offset_right = 181.0
+offset_bottom = 94.0
+theme_type_variation = &"SkillButton"
+text = "Triple Trow"
+script = ExtResource("51_32i56")
+
+[node name="octo_throw" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 244.0
+offset_top = 44.0
+offset_right = 380.0
+offset_bottom = 94.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Octo Throw
+"
+script = ExtResource("51_32i56")
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/octo_throw"]
+points = PackedVector2Array(0, 25, -63, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="metal_shower" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 444.0
+offset_top = 44.0
+offset_right = 580.0
+offset_bottom = 94.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Metal Shower
+"
+script = ExtResource("51_32i56")
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/metal_shower"]
+points = PackedVector2Array(0, 25, -64, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="bouncing_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 45.0
+offset_top = 135.0
+offset_right = 181.0
+offset_bottom = 185.0
+theme_type_variation = &"SkillButton"
+text = "Bouncing"
+script = ExtResource("51_32i56")
+
+[node name="multiplying_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 244.0
+offset_top = 135.0
+offset_right = 380.0
+offset_bottom = 185.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Multiplying"
+script = ExtResource("51_32i56")
+
+[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/multiplying_shuriken"]
+points = PackedVector2Array(0, 25, -63, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="burning_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 45.0
+offset_top = 226.0
+offset_right = 181.0
+offset_bottom = 276.0
+theme_type_variation = &"SkillButton"
+text = "Burning"
+script = ExtResource("51_32i56")
+
+[node name="exploding_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 242.0
+offset_top = 275.0
+offset_right = 378.0
+offset_bottom = 325.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Exploding"
+script = ExtResource("51_32i56")
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/exploding_shuriken"]
+points = PackedVector2Array(0, 25, -30.5, 25, -30.5, -24, -61, -24)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/exploding_shuriken"]
+position = Vector2(0, -1)
+points = PackedVector2Array(0, 25, -30.5, 25, -30.5, 83, -61, 83)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="decoy_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 45.0
+offset_top = 333.0
+offset_right = 181.0
+offset_bottom = 383.0
+theme_type_variation = &"SkillButton"
+text = "Decoy"
+script = ExtResource("51_32i56")
+
+[node name="body_switch" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 442.0
+offset_top = 333.0
+offset_right = 578.0
+offset_bottom = 383.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Body Switch"
+script = ExtResource("51_32i56")
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/body_switch"]
+points = PackedVector2Array(0, 25, -261, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/body_switch"]
+points = PackedVector2Array(0, 25, -31, 25, -31, -173, -62, -173)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="poison_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 45.0
+offset_top = 433.0
+offset_right = 181.0
+offset_bottom = 483.0
+theme_type_variation = &"SkillButton"
+text = "Poison"
+script = ExtResource("51_32i56")
+
+[node name="draining_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 239.0
+offset_top = 432.0
+offset_right = 375.0
+offset_bottom = 482.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Draining"
+script = ExtResource("51_32i56")
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/draining_shuriken"]
+points = PackedVector2Array(0, 25, -29, 25, -29, 26, -58, 26)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="paralysis_shuriken" type="Button" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree"]
+custom_minimum_size = Vector2(136, 50)
+layout_mode = 1
+offset_left = 442.0
+offset_top = 432.0
+offset_right = 578.0
+offset_bottom = 482.0
+theme_type_variation = &"SkillButton"
+disabled = true
+text = "Paralysis"
+script = ExtResource("51_32i56")
+
+[node name="Line2D" type="Line2D" parent="attributes_UI/skills_ui/skill_trees_indent/skill_tree_manager/thrown_tree/paralysis_shuriken"]
+points = PackedVector2Array(0, 25, -67, 25)
 width = 5.0
 default_color = Color(0, 0, 0, 1)
 
