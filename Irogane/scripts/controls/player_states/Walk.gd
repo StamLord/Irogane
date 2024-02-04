@@ -27,7 +27,7 @@ func Enter(body):
 	step_separation.disabled = false
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 

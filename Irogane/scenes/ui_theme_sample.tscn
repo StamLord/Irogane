@@ -1,0 +1,772 @@
+[gd_scene load_steps=28 format=3 uid="uid://bx80xjf5v460"]
+
+[ext_resource type="Texture2D" uid="uid://b807edcc2jh8n" path="res://assets/textures/ui/theme/scroll_button_base.png" id="1_d64j8"]
+[ext_resource type="Texture2D" uid="uid://g4u5nbk45yfn" path="res://assets/textures/ui/theme/square_button_normal.png" id="1_gx5kc"]
+[ext_resource type="Texture2D" uid="uid://crrshaec0tal6" path="res://assets/textures/ui/theme/square_button_pressed.png" id="2_gohwh"]
+[ext_resource type="Texture2D" uid="uid://b4rcjdoheqea1" path="res://assets/textures/ui/theme/scroll_button_color.png" id="2_q4sdr"]
+[ext_resource type="Texture2D" uid="uid://hweb3dypawxd" path="res://assets/textures/ui/theme/square_button_hover.png" id="3_dln5b"]
+[ext_resource type="Theme" uid="uid://bob8i5q8v8mum" path="res://themes/main_theme.tres" id="4_qw1og"]
+[ext_resource type="Texture2D" uid="uid://cbv4mlc03ec5c" path="res://assets/textures/ui/theme/locked_icon.png" id="5_c10d5"]
+[ext_resource type="FontFile" uid="uid://c8ohdy7lcrv8l" path="res://assets/fonts/otsutome/Otsutome.otf" id="5_mti5c"]
+[ext_resource type="Texture2D" uid="uid://ddl2iowk6kwdv" path="res://assets/textures/ui/theme/locked_highlight_icon.png" id="6_5rhht"]
+[ext_resource type="Texture2D" uid="uid://dbebo28iy7v82" path="res://assets/textures/ui/theme/next_button_normal.png" id="7_12cxm"]
+[ext_resource type="Texture2D" uid="uid://dqmpsyl3uiaqd" path="res://assets/textures/ui/theme/next_button_pressed.png" id="8_eo514"]
+[ext_resource type="Texture2D" uid="uid://c78d44s1om6wv" path="res://assets/textures/ui/theme/next_button_highlight.png" id="9_2v3ih"]
+[ext_resource type="Texture2D" uid="uid://cqihv8vbxwbru" path="res://assets/textures/ui/theme/back_button_normal.png" id="10_svgom"]
+[ext_resource type="Texture2D" uid="uid://b0msj8kguigjo" path="res://assets/textures/ui/theme/back_button_pressed.png" id="11_qewh2"]
+[ext_resource type="Texture2D" uid="uid://bkjgmhfgvjouq" path="res://assets/textures/ui/theme/back_button_highlight.png" id="12_kfiq0"]
+[ext_resource type="Texture2D" uid="uid://dnp0eovqbqf80" path="res://assets/textures/ui/theme/cc_attributes_window.png" id="13_auew8"]
+[ext_resource type="Texture2D" uid="uid://cefkn38oia5a7" path="res://assets/textures/ui/theme/cc_tooltip_window.png" id="14_xlueg"]
+[ext_resource type="Texture2D" uid="uid://ty4vbjslb884" path="res://assets/textures/ui/theme/dark_indent.png" id="15_xqvpy"]
+[ext_resource type="Texture2D" uid="uid://dpo0fwqx7gi5b" path="res://assets/textures/ui/theme/cc_skilltree_window.png" id="16_dq0lo"]
+[ext_resource type="Texture2D" uid="uid://bwccw8o72un0g" path="res://assets/textures/ui/theme/button_2_normal.png" id="17_8d2f3"]
+[ext_resource type="Texture2D" uid="uid://bem3h4sf06gmy" path="res://assets/textures/ui/theme/button_2_pressed.png" id="18_bonk6"]
+[ext_resource type="Texture2D" uid="uid://chaldjyol7e6e" path="res://assets/textures/ui/theme/button_2_highlight.png" id="19_u30su"]
+[ext_resource type="Texture2D" uid="uid://c5ympbmhhxkg7" path="res://assets/textures/ui/theme/long_small_button_normal.png" id="22_4xfhq"]
+[ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="22_5ng0p"]
+[ext_resource type="Texture2D" uid="uid://b2yjpv6xaj710" path="res://assets/textures/ui/theme/long_small_button_pressed.png" id="23_4b2uw"]
+[ext_resource type="Texture2D" uid="uid://b46iledi3eny5" path="res://assets/textures/ui/theme/long_small_button_highlight.png" id="24_g2ag1"]
+[ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="28_cigsl"]
+
+[node name="Control" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="skill_scroll" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 95.0
+offset_right = 1074.0
+offset_bottom = 145.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll"]
+modulate = Color(0.333333, 0.505882, 0.717647, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+text = "Sword"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 871.0
+offset_top = 158.0
+offset_right = 1051.0
+offset_bottom = 208.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll2"]
+modulate = Color(0.470588, 0.494118, 0.329412, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+text = "Staff"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 222.0
+offset_right = 1074.0
+offset_bottom = 272.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll3"]
+modulate = Color(0.690196, 0.407843, 0.341176, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+text = "Bow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll4" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 287.0
+offset_right = 1074.0
+offset_bottom = 337.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll4"]
+modulate = Color(0.847059, 0.74902, 0.4, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 28
+text = "Thrown"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll5" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 352.0
+offset_right = 1074.0
+offset_bottom = 402.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll5"]
+modulate = Color(0.901961, 0.890196, 0.870588, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 28
+text = "Unarmed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll6" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 423.0
+offset_right = 1074.0
+offset_bottom = 473.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll6"]
+modulate = Color(0.866667, 0.560784, 0.635294, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 26
+text = "Mobility"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll7" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 489.0
+offset_right = 1074.0
+offset_bottom = 539.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll7"]
+modulate = Color(0.356863, 0.321569, 0.509804, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+text = "Stealth"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll8" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 557.0
+offset_right = 1074.0
+offset_bottom = 607.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll8"]
+modulate = Color(0.803922, 0.337255, 0.25098, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+text = "Xaorin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll9" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 622.0
+offset_right = 1074.0
+offset_bottom = 672.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll9"]
+modulate = Color(0.188235, 0.568627, 0.584314, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 26
+text = "Onmyodo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill_scroll10" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 690.0
+offset_right = 1074.0
+offset_bottom = 740.0
+texture_normal = ExtResource("1_d64j8")
+
+[node name="TextureRect" type="TextureRect" parent="skill_scroll10"]
+modulate = Color(0.823529, 0.470588, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4sdr")
+
+[node name="Label" type="Label" parent="skill_scroll10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 26
+text = "Shugendo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="cc_skill_tree_window" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 57.0
+offset_right = 1860.0
+offset_bottom = 769.0
+texture = ExtResource("16_dq0lo")
+
+[node name="dark_indent" type="NinePatchRect" parent="cc_skill_tree_window"]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 93.0
+offset_right = 779.0
+offset_bottom = 620.0
+texture = ExtResource("15_xqvpy")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="cc_tooltip_window" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 783.0
+offset_right = 913.0
+offset_bottom = 1058.0
+texture = ExtResource("14_xlueg")
+
+[node name="dark_indent" type="NinePatchRect" parent="cc_tooltip_window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 58.0
+offset_right = -24.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_xqvpy")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="cc_tooltip_window/dark_indent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="cc_tooltip_window/dark_indent/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_qw1og")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_mti5c")
+text = "Dexterity is your ability to perform with precision in combat. A higher Dexterity stat improves your chances of landing critical hits, increases damage when using swords and ranged weapons, and speeds up your rate of fire. Invest in Dexterity to enhance your combat finesse and make your attacks more effective. "
+autowrap_mode = 2
+
+[node name="cc_attributes_window" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 74.0
+offset_top = 177.0
+offset_right = 557.0
+offset_bottom = 668.0
+texture = ExtResource("13_auew8")
+
+[node name="small_button" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 158.0
+offset_top = 205.0
+offset_right = 208.0
+offset_bottom = 255.0
+texture_normal = ExtResource("1_gx5kc")
+texture_pressed = ExtResource("2_gohwh")
+texture_hover = ExtResource("3_dln5b")
+
+[node name="Label" type="Label" parent="small_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_colors/font_color = Color(0.788235, 0.321569, 0.278431, 1)
+theme_override_colors/font_outline_color = Color(0.145098, 0.137255, 0.121569, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lock_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 262.0
+offset_right = 201.0
+offset_bottom = 299.0
+toggle_mode = true
+texture_normal = ExtResource("5_c10d5")
+texture_pressed = ExtResource("6_5rhht")
+texture_hover = ExtResource("6_5rhht")
+texture_disabled = ExtResource("5_c10d5")
+texture_focused = ExtResource("6_5rhht")
+stretch_mode = 3
+
+[node name="long_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 201.0
+offset_right = 459.0
+offset_bottom = 262.0
+texture_normal = ExtResource("17_8d2f3")
+texture_pressed = ExtResource("18_bonk6")
+texture_hover = ExtResource("19_u30su")
+
+[node name="Label" type="Label" parent="long_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+text = "RANDOMIZE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="long_small_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 270.0
+offset_right = 365.0
+offset_bottom = 320.0
+texture_normal = ExtResource("22_4xfhq")
+texture_pressed = ExtResource("23_4b2uw")
+texture_hover = ExtResource("24_g2ag1")
+
+[node name="Label" type="Label" parent="long_small_button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 20
+text = "Swords"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="brush_highlight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 364.0
+offset_right = 502.0
+offset_bottom = 441.0
+texture = ExtResource("22_5ng0p")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 329.0
+offset_right = 346.0
+offset_bottom = 372.0
+theme = ExtResource("4_qw1og")
+theme_override_font_sizes/font_size = 40
+text = "STRENGTH"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 381.0
+offset_right = 300.0
+offset_bottom = 424.0
+theme = ExtResource("4_qw1og")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "AGILITY"
+
+[node name="next_button" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1595.0
+offset_top = 960.0
+offset_right = 1907.0
+offset_bottom = 1060.0
+pivot_offset = Vector2(205, 36)
+texture_normal = ExtResource("7_12cxm")
+texture_pressed = ExtResource("8_eo514")
+texture_hover = ExtResource("9_2v3ih")
+
+[node name="back_button" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 15.0
+offset_right = 330.0
+offset_bottom = 115.0
+pivot_offset = Vector2(205, 36)
+texture_normal = ExtResource("10_svgom")
+texture_pressed = ExtResource("11_qewh2")
+texture_hover = ExtResource("12_kfiq0")
+
+[node name="v_scroll_container" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 595.0
+offset_top = 194.0
+offset_right = 833.0
+offset_bottom = 415.0
+theme = ExtResource("4_qw1og")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="v_scroll_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="v_scroll_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Label3" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="Label4" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Label5" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="Label6" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "6"
+
+[node name="Label7" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "7
+"
+
+[node name="Label8" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "8"
+
+[node name="Label9" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "9"
+
+[node name="Label10" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "10"
+
+[node name="Label11" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "11"
+
+[node name="Label12" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "12"
+
+[node name="Label13" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "13"
+
+[node name="Label14" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "14"
+
+[node name="Label15" type="Label" parent="v_scroll_container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "15"
+
+[node name="VSlider" type="VSlider" parent="v_scroll_container" node_paths=PackedStringArray("scroll_container")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 1
+value = 100.0
+script = ExtResource("28_cigsl")
+scroll_container = NodePath("../ScrollContainer")
+
+[node name="h_scroll_container" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 595.0
+offset_top = 478.0
+offset_right = 833.0
+offset_bottom = 699.0
+theme = ExtResource("4_qw1og")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="h_scroll_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="h_scroll_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Label3" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="Label4" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Label5" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="Label6" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "6"
+
+[node name="Label7" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "7
+"
+
+[node name="Label8" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "8"
+
+[node name="Label9" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "9"
+
+[node name="Label10" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "10"
+
+[node name="Label11" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "11"
+
+[node name="Label12" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "12"
+
+[node name="Label13" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "13"
+
+[node name="Label14" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "14"
+
+[node name="Label15" type="Label" parent="h_scroll_container/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "15"
+
+[node name="HSlider" type="HSlider" parent="h_scroll_container" node_paths=PackedStringArray("scroll_container")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("28_cigsl")
+scroll_container = NodePath("../ScrollContainer")

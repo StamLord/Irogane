@@ -25,11 +25,8 @@ func _ready():
 	pickup_item("katana")
 	pickup_item("robes")
 	pickup_item("onigiri")
+	pickup_item("shuriken")
 	pickup_item("godot cube")
-	pickup_item("godot cube")
-	pickup_item("godot cube")
-	#pickup_item("test")w
-	#pickup_item("test")
 	
 
 func _process(_delta):
@@ -93,7 +90,7 @@ func release(cursor_pos):
 func drop_item():
 	var item_id = item_held.get_meta("id")
 	if item_id:
-		var pickup = pickup_base.instantiate()
+		var pickup = ItemDB.get_item(item_id)["pickup"].instantiate()
 		get_tree().get_root().add_child(pickup)
 		
 		pickup.global_position = drop_origin.global_position + drop_origin.get_global_transform().basis * drop_offset

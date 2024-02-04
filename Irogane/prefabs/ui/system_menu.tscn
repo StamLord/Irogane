@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvok8nvjcehcs"]
+[gd_scene load_steps=7 format=3 uid="uid://c8gfwufu2qdh8"]
 
 [ext_resource type="Script" path="res://scripts/ui/system_menu.gd" id="1_51a4q"]
 [ext_resource type="PackedScene" uid="uid://l1in21agp8ff" path="res://prefabs/ui/settings_window.tscn" id="2_uccdj"]
-[ext_resource type="PackedScene" uid="uid://c7rws2ccjc5l7" path="res://prefabs/ui/game_save_load_window.tscn" id="3_rgxg2"]
+[ext_resource type="PackedScene" uid="uid://ccdnbbmarggif" path="res://prefabs/ui/game_save_load_window.tscn" id="3_rgxg2"]
 
 [sub_resource type="Gradient" id="Gradient_umlgj"]
 colors = PackedColorArray(0, 0, 0, 0.784314, 0, 0, 0, 0.25098)
@@ -60,50 +60,51 @@ alignment = 1
 
 [node name="continue" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.784314, 0.321569, 0.184314, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "CONTINUE"
 alignment = 0
 
 [node name="save" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.784314, 0.321569, 0.184314, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "SAVE"
 alignment = 0
 
 [node name="load" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.784314, 0.321569, 0.184314, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "LOAD"
 alignment = 0
 
 [node name="settings" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.784314, 0.321569, 0.184314, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "SETTINGS"
 alignment = 0
 
 [node name="quit" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.784314, 0.321569, 0.184314, 1)
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 text = "QUIT"
 alignment = 0
 
 [node name="settings_window" parent="." instance=ExtResource("2_uccdj")]
+visible = false
 layout_mode = 1
 
 [node name="game_load_window" parent="." instance=ExtResource("3_rgxg2")]

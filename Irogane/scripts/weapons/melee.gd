@@ -102,6 +102,9 @@ func _ready():
 	glide.glide_ended.connect(stop_animate_glide)
 
 func _process(delta):
+	if not visible:
+		return
+		
 	if is_swimming:
 		# Smooth the swim input to avoid instant direction shift
 		last_swim_input = lerp(last_swim_input, swim.input_dir, delta * 10)

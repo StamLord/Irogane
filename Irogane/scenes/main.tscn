@@ -1531,6 +1531,8 @@ cull_mask = 4
 
 [node name="hurtbox" type="Area3D" parent="dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("25_urnjo")
 
 [node name="shape" type="CollisionShape3D" parent="dummy/hurtbox"]

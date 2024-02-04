@@ -6,7 +6,7 @@ class_name Jump
 
 var direction = Vector3.ZERO
 
-func Enter(body):
+func Enter(_body):
 	pass
 
 func Update(_delta):
@@ -20,5 +20,5 @@ func PhysicsUpdate(body, _delta):
 	# Air State
 	Transitioned.emit(self, "air")
 
-func Exit(body):
+func Exit(_body):
 	pass

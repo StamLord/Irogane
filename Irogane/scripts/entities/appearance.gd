@@ -77,11 +77,14 @@ func init_parts_on_model(model_node, parts_dict, skin_material, face_material):
 		# Set duplicate materials
 		if part_name in ["hair", "bangs", "facial"]:
 			if child is MeshInstance3D and child.mesh != null:
-				var material_0 = child.mesh.surface_get_material(0)
-				var material_1 = child.mesh.surface_get_material(1)
-				if material_0 != null:
+				var material_count = child.mesh.get_surface_count()
+				
+				if material_count > 0:
+					var material_0 = child.mesh.surface_get_material(0)
 					child.set_surface_override_material(0, get_duplicate_material(material_0))
-				if material_1 != null:
+				
+				if material_count > 1:
+					var material_1 = child.mesh.surface_get_material(1)
 					child.set_surface_override_material(1, get_duplicate_material(material_1))
 		elif part_name in ["body"]:
 			child.set_surface_override_material(0, skin_material)
@@ -217,11 +220,14 @@ func set_face_index(index: int):
 	current_face = index
 	
 
+func get_face_index():
+	return get_face_material().get_shader_parameter("face")
+	
+
 func cycle_face_variation(forward = true):
 	var num_options = get_face_material().get_shader_parameter("max_cells")
-	var curr_selection = get_face_material().get_shader_parameter("face")
 	
-	var next_selection = curr_selection + 1 if forward else curr_selection - 1
+	var next_selection = current_face + 1 if forward else current_face - 1
 	
 	if next_selection == num_options:
 		next_selection = 0
@@ -237,6 +243,7 @@ func cycle_face_variation(forward = true):
 func get_face_selection():
 	return get_face_material().get_shader_parameter("face")
 	
+
 
 func randomize_face_variation():
 	var rng = RandomNumberGenerator.new()
@@ -288,6 +295,10 @@ func set_gender(gender : GENDER):
 	# Display relevant model
 	male_model.visible = is_male
 	female_model.visible = not is_male
+	
+
+func get_gender():
+	return current_gender
 	
 
 func save_appearance():

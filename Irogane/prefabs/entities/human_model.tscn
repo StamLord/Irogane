@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8udnda5f5r68"]
+
+[ext_resource type="Script" path="res://scripts/entities/appearance.gd" id="1_w5rxd"]
+[ext_resource type="PackedScene" uid="uid://c8lpxncjkcjqb" path="res://assets/models/male/scene/male_model.tscn" id="2_wjmpe"]
+[ext_resource type="PackedScene" uid="uid://cqsrjwav14qip" path="res://assets/models/female/scene/female_model.tscn" id="3_q2sp8"]
+
+[node name="human_model" type="Node3D"]
+script = ExtResource("1_w5rxd")
+
+[node name="male_model" parent="." instance=ExtResource("2_wjmpe")]
+
+[node name="female_model" parent="." instance=ExtResource("3_q2sp8")]
+visible = false

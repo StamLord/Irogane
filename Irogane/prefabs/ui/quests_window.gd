@@ -2,9 +2,6 @@ extends Window
 
 @onready var button_template = %button_template
 @onready var quest_list = %quest_list
-@onready var quest_title = %quest_title
-@onready var quest_desc = %quest_desc
-@onready var quest_stage = %quest_stage
 @onready var quest_info = %quest_info_text
 
 var fake_window = UIWindow.new()

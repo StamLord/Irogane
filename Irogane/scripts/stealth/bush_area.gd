@@ -1,7 +1,7 @@
 extends Area3D
 
-@onready var wiggle_bone = $"../dwarf_cedar_rig/Skeleton3D/WiggleBone"
-@onready var audio_player = $"../audio_player"
+@export var wiggle_bone : WiggleBone
+@export var audio_player : AudioPlayer
 
 @export var wiggle_force = 5.0
 
@@ -21,15 +21,13 @@ func bush_exited(body):
 	
 
 func bush_movement_behaviour(body):
-	if not wiggle_bone:
-		return
-	
 	# StaticBodies don't move so we shouldn't interact with them
 	if body is StaticBody3D:
 		return
 	
-	var movement_direction = (global_position - body.global_position).normalized()
-	wiggle_bone.apply_impulse(movement_direction * wiggle_force)
+	if wiggle_bone:
+		var movement_direction = (global_position - body.global_position).normalized()
+		wiggle_bone.apply_impulse(movement_direction * wiggle_force)
 	
 	if audio_player:
 		audio_player.play(sound_clip)

@@ -13,10 +13,10 @@ class_name WeaponManager
 
 @onready var melee = $melee
 @onready var sword = $sword
+@onready var shuriken = $shuriken
 @export var staff : Node3D
 @export var kanabo : Node3D
 @export var bow : Node3D
-@export var shuriken : Node3D
 @export var bomb : Node3D
 @export var grappling_hook : Node3D
 
@@ -68,6 +68,8 @@ func switch_to(new_index):
 		activate_template(melee)
 	elif item.get_meta("id")  == "katana":
 		activate_template(sword)
+	elif item.get_meta("id") == "shuriken":
+		activate_template(shuriken)
 	
 
 func activate_template(template):

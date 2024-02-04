@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://vr82c32cy8gn"]
+
+[ext_resource type="Texture2D" uid="uid://dayusdk5ad2f7" path="res://assets/textures/ui/theme/brush_highlight.png" id="1_d7epm"]
+
+[resource]
+texture = ExtResource("1_d7epm")
+expand_margin_left = 33.0
+expand_margin_top = 24.0
+expand_margin_right = 138.0
+expand_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

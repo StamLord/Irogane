@@ -34,6 +34,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/env/river_bed/bark.tres"
 },
+"forest_ground": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/env/river_bed/forest_ground.tres"
+},
 "grass": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/env/river_bed/grass.tres"
@@ -45,6 +49,10 @@ _subresources={
 "pine_leaves": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/models/env/river_bed/pine_leaves.tres"
+},
+"rock": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/models/env/river_bed/rock.tres"
 },
 "water": {
 "use_external/enabled": true,

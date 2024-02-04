@@ -24,9 +24,9 @@ func _process(_delta):
 		last_replenish = Time.get_ticks_msec()
 	
 
-func set_value(value):
-	self.value = clamp(value, min_value, max_value)
-	value_changed.emit(value)
+func set_value(_value):
+	self.value = clamp(_value, min_value, max_value)
+	value_changed.emit(_value)
 	
 
 func get_value():

@@ -1,13 +1,11 @@
 extends Node
 
 var player_node = null
-var player_name
-var sex
 var initial_scene_position = null
 
 var inventory = null
 
-var model_node_path = "model/Character"
+var model_node_path = "model/human_model"
 
 const PLAYER_SCENE_PATH = "res://prefabs/entities/player.tscn"
 const NO_PLAYER_SCENES = ["res://prefabs/ui/character_creator.tscn", "res://scenes/main_menu.tscn"]
@@ -33,10 +31,6 @@ func set_player_node(node):
 	player_node = node
 	
 
-func set_player_name(new_name):
-	player_name = new_name
-	
-
 func create_player_node_if_needed():
 	if player_node == null:
 		var player_scene = ResourceLoader.load(PLAYER_SCENE_PATH)
@@ -47,6 +41,7 @@ func create_player_node_if_needed():
 func delete_player_node_if_needed(scene_name):
 	if player_node != null and scene_name in NO_PLAYER_SCENES:
 		player_node.free()
+		UIManager.delete_ui_node()
 	
 
 func load_player_data(player_data):
@@ -55,23 +50,8 @@ func load_player_data(player_data):
 	
 	initial_scene_position = Vector3.ZERO
 	
-	player_node.get_node(model_node_path).load_appearance(player_data.appearance)
-	player_node.stats.load_data(player_data.stats)
-	
-	player_name = player_data.name
-	sex = player_data.sex
-	
-
-func get_sex():
-	return sex
-	
-
-func set_sex(new_sex):
-	sex = new_sex
-	
-
-func get_player_name():
-	return player_name
+	player_node.get_node(model_node_path).load_appearance(player_data["appearance"])
+	player_node.stats.load_data(player_data["stats"])
 	
 
 func set_inventory(_inventory):
@@ -92,4 +72,8 @@ func get_quick_slots():
 
 func on_slot_changed(slot_index):
 	slot_changed.emit(slot_index)
+	
+
+func get_player_name():
+	return player_node.stats.name
 	

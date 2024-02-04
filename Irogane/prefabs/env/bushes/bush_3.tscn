@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkcoap7i5mjnl"]
+
+[ext_resource type="PackedScene" uid="uid://ddf3eib0af1v3" path="res://assets/models/env/bushes/bush3.glb" id="1_0swat"]
+[ext_resource type="Script" path="res://scripts/stealth/bush_area.gd" id="3_jsb5t"]
+[ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="4_si4mu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_86n6w"]
+
+[node name="bush3" instance=ExtResource("1_0swat")]
+
+[node name="stealth_area" type="Area3D" parent="." index="1" node_paths=PackedStringArray("audio_player")]
+collision_layer = 16
+script = ExtResource("3_jsb5t")
+audio_player = NodePath("../audio_player")
+wiggle_force = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stealth_area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("SphereShape3D_86n6w")
+
+[node name="audio_player" type="Node3D" parent="." index="2"]
+script = ExtResource("4_si4mu")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="audio_player" index="0"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="audio_player" index="1"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="audio_player" index="2"]
+bus = &"Sound"

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Boon" load_steps=6 format=3 uid="uid://cvogf2ubji170"]
+
+[ext_resource type="Script" path="res://scripts/stats/boon.gd" id="1_3dxw7"]
+[ext_resource type="Script" path="res://scripts/stats/modifier.gd" id="1_egeeb"]
+[ext_resource type="Script" path="res://scripts/stats/effect.gd" id="2_1uwlh"]
+
+[sub_resource type="Resource" id="Resource_0gpux"]
+script = ExtResource("1_egeeb")
+modifier_name = "Battle Tendency"
+flat_amount = 1
+multiply_amount = 0.0
+
+[sub_resource type="Resource" id="Resource_7ja4i"]
+script = ExtResource("2_1uwlh")
+modifier = SubResource("Resource_0gpux")
+attribute_name = "strength"
+signal_name = "started_battle"
+signal_path = ""
+flag_name = "in_battle"
+is_signal_path_local = true
+
+[resource]
+script = ExtResource("1_3dxw7")
+_name = "Battle Tendency"
+effects = Array[ExtResource("2_1uwlh")]([SubResource("Resource_7ja4i")])

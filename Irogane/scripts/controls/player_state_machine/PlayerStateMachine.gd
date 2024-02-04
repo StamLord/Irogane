@@ -4,7 +4,7 @@ class_name PlayerStateMachine
 # States Parent
 @onready var states_parent = $states
 @onready var stats = $stats
-@onready var model = $model/Character
+@onready var model = $model/human_model
 
 # Variables
 @export var push_force = 15
@@ -74,12 +74,11 @@ func save_data():
 		"last_speed" : last_speed,
 		"stats" : stats.save_data(),
 		"appearance": model.save_appearance(),
-		"sex": PlayerEntity.get_sex(),
-		"name": PlayerEntity.get_player_name(),
 		"quests": QuestManager.save_quests_data(),
 	}
 	
 	return data
+	
 
 func load_data(data):
 	# Set transform
@@ -102,10 +101,6 @@ func load_data(data):
 	
 	#load appearance
 	model.load_appearance(data["appearance"])
-	
-	# name and sex
-	PlayerEntity.set_sex(data["sex"])
-	PlayerEntity.set_player_name(data["name"])
 	
 	QuestManager.load_quests_data(data["quests"])
 	

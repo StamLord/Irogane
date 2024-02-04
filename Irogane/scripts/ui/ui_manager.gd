@@ -23,6 +23,11 @@ func create_ui_node_if_needed():
 		get_tree().root.add_child(ui_node)
 	
 
+func delete_ui_node():
+	if ui_node:
+		ui_node.queue_free()
+	
+
 func close_all_windows():
 	var windows_to_close = []
 	

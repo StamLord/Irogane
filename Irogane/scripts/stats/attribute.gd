@@ -18,9 +18,17 @@ func remove_point(points):
 	set_value(value - points)
 	
 
-func set_value(value):
-	self.value = clamp(value, min_max.x, min_max.y)
+func set_value(_value):
+	self.value = clamp(_value, min_max.x, min_max.y)
 	dirty_value = true
+	
+
+func get_minimum_value():
+	return min_max[0]
+	
+
+func get_maximum_value():
+	return min_max[1]
 	
 
 func get_value():
@@ -29,10 +37,8 @@ func get_value():
 	
 	# Recalculate modified value
 	modified_value = value
-	
-	for mod in get_children():
-		if mod is Modifier:
-			modified_value = mod.modify(modified_value)
+	for mod in modifier_dict.values():
+		modified_value = mod.modify(modified_value)
 	
 	# Clamp
 	modified_value = clamp(modified_value, modified_min_max.x, modified_min_max.y)
@@ -49,20 +55,18 @@ func add_modifier(modifier):
 	if not modifier is Modifier:
 		return
 	
-	if modifier_dict.has(modifier.name):
+	if modifier_dict.has(modifier.modifier_name):
 		return
 	
-	add_child(modifier)
-	modifier_dict[modifier.name] = modifier
+	modifier_dict[modifier.modifier_name] = modifier
 	dirty_value = true # Flags that we need to recalculate mods
 	
 
 func remove_modifier(modifier):
-	if not modifier_dict.has(modifier.name):
+	if not modifier_dict.has(modifier.modifier_name):
 		return
 	
-	remove_child(modifier_dict[modifier.name])
-	modifier_dict.erase(modifier.name)
+	modifier_dict.erase(modifier.modifier_name)
 	dirty_value = true # Flags that we need to recalculate mods
 	
 
