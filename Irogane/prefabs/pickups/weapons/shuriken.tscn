@@ -8,9 +8,11 @@ size = Vector3(0.15, 0.15, 0.03)
 
 [node name="shuriken" type="Node3D"]
 script = ExtResource("1_2vlqt")
+collision_mask = 1
 
 [node name="shuriken" parent="." instance=ExtResource("1_wui5k")]
-transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+transform = Transform3D(-8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_y7cc7")

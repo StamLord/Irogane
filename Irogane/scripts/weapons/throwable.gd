@@ -1,10 +1,6 @@
 extends Node3D
 
-const item_base = preload("res://scripts/ui/item_base.tscn")
-const pickup_base = preload("res://prefabs/pickups/pickup.tscn")
-@onready var drop_origin = PlayerEntity.player_node
-var drop_offset = Vector3(0, 1.8, -1.5)
-@export var throw_force = 15.0
+var drop_offset = Vector3(0, 0, -0.6)
 
 
 func _process(delta):
@@ -16,8 +12,11 @@ func _process(delta):
 		var pickup =  ItemDB.get_item(item_id)["pickup"].instantiate()
 		get_tree().get_root().add_child(pickup)
 		
-		pickup.global_position = global_position #drop_origin.global_position + drop_origin.get_global_transform().basis * drop_offset
+		pickup.global_position = (CameraEntity.main_camera.global_basis * drop_offset) + global_position
+		pickup.global_rotation = CameraEntity.main_camera.global_rotation
+		
 		pickup.restart()
+		
 		# Set item
 		for child in pickup.get_children():
 			if child is Pickup:

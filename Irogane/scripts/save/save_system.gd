@@ -90,7 +90,7 @@ func get_save_file_info(filename):
 	
 	# Get player level
 	var player_data = _parse_json_string(save_file.get_line())
-	info["name"] = player_data["name"]
+	#info["name"] = player_data["name"]
 	info["level"] = player_data["stats"]["level"]
 	
 	return info

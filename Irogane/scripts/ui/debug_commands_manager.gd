@@ -103,3 +103,4 @@ func get_all_commands():
 
 func set_main_camera(camera):
 	main_camera = camera
+	
