@@ -259,9 +259,9 @@ curve_z = SubResource("Curve_imq2h")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wraie"]
 particle_flag_rotate_y = true
-gravity = Vector3(0, 0, 0)
 angle_min = 90.0
 angle_max = 90.0
+gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 4.0
 scale_curve = SubResource("CurveXYZTexture_whtbi")
@@ -295,9 +295,9 @@ curve_z = SubResource("Curve_expe6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gf8nx"]
 particle_flag_rotate_y = true
-gravity = Vector3(0, 0, 0)
 angle_min = 45.0
 angle_max = 45.0
+gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 4.0
 scale_curve = SubResource("CurveXYZTexture_13qd1")
@@ -331,9 +331,9 @@ curve_z = SubResource("Curve_3gvl4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cnouc"]
 particle_flag_rotate_y = true
-gravity = Vector3(0, 0, 0)
 angle_min = -45.0
 angle_max = -45.0
+gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 5.0
 scale_curve = SubResource("CurveXYZTexture_6looo")
@@ -356,12 +356,12 @@ curve = SubResource("Curve_rt8cv")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f536d"]
 emission_shape = 1
 emission_sphere_radius = 0.25
+angle_max = 360.0
 direction = Vector3(0, 1, 0)
 spread = 12.0
-gravity = Vector3(0, -2, 0)
 initial_velocity_min = 2.0
 initial_velocity_max = 3.0
-angle_max = 360.0
+gravity = Vector3(0, -2, 0)
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_11nu5")
 color_ramp = SubResource("GradientTexture1D_82daa")
@@ -469,9 +469,9 @@ point_count = 3
 curve = SubResource("Curve_p00gd")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x1ask"]
-gravity = Vector3(0, 5, 0)
 angle_min = -180.0
 angle_max = 180.0
+gravity = Vector3(0, 5, 0)
 scale_curve = SubResource("CurveTexture_p6o7h")
 color_ramp = SubResource("GradientTexture1D_y42m6")
 
@@ -512,9 +512,9 @@ emission_shape = 3
 emission_box_extents = Vector3(4, 4, 4)
 direction = Vector3(0, 0, 1)
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 30.0
 initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.2
 color = Color(1, 1, 1, 0.25098)

@@ -31,7 +31,7 @@
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
@@ -56,8 +56,8 @@ point_count = 2
 curve = SubResource("Curve_2gwt4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_285xo"]
-gravity = Vector3(0, 0, 0)
 angle_max = 360.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.7
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_301sp")
@@ -192,12 +192,12 @@ curve = SubResource("Curve_pvrf3")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30waa"]
 emission_shape = 1
 emission_sphere_radius = 0.2
-direction = Vector3(0, 1, 0)
-gravity = Vector3(0, 1, 0)
-initial_velocity_min = 0.2
-initial_velocity_max = 0.4
 angle_max = 360.0
 angle_curve = SubResource("CurveTexture_ibynj")
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.4
+gravity = Vector3(0, 1, 0)
 scale_min = 2.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_le6v8")

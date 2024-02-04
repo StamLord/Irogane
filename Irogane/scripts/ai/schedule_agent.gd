@@ -40,14 +40,14 @@ func _process(delta):
 	#print(get_current_task())
 	pass
 
-func add_task(start_time, task_type : task_type, location, extra_data = null):
+func add_task(start_time, _task_type : task_type, location, extra_data = null):
 	if schedule.has(start_time):
 		return false
 	
 	if not is_valid_time(start_time):
 		return false
 	
-	var task = {"task_type" : task_type,
+	var task = {"task_type" : _task_type,
 				"location" : location,
 				"extra_data" : extra_data}
 	

@@ -13,11 +13,12 @@ texture_filter = 2
 [sub_resource type="ArrayMesh" id="ArrayMesh_e1bjy"]
 _surfaces = [{
 "aabb": AABB(-0.5, 1.5, -3.7998e-07, 1.00001, 1.00001, 1e-05),
-"format": 4097,
+"format": 34359742465,
 "index_count": 6,
 "index_data": PackedByteArray(3, 0, 1, 0, 0, 0, 3, 0, 2, 0, 1, 0),
 "name": "house_window",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
 "vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 32, 64, 0, 0, 204, 180, 0, 0, 0, 191, 0, 0, 32, 64, 0, 0, 204, 180, 0, 0, 0, 191, 0, 0, 192, 63, 0, 0, 204, 180, 0, 0, 0, 63, 0, 0, 192, 63, 0, 0, 204, 180)
 }]
@@ -28,14 +29,15 @@ resource_name = "house_window_Cube_039"
 _surfaces = [{
 "aabb": AABB(-0.5, 1.5, -3.7998e-07, 1.00001, 1.00001, 1e-05),
 "attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 253, 255, 127, 63, 0, 0, 0, 0, 255, 255, 127, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63),
-"format": 4119,
+"format": 34359742487,
 "index_count": 6,
 "index_data": PackedByteArray(3, 0, 1, 0, 0, 0, 3, 0, 2, 0, 1, 0),
 "material": SubResource("StandardMaterial3D_o73di"),
 "name": "house_window",
 "primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 4,
-"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 32, 64, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63, 0, 0, 0, 191, 0, 0, 32, 64, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63, 0, 0, 0, 191, 0, 0, 192, 63, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63, 0, 0, 0, 63, 0, 0, 192, 63, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63)
+"vertex_data": PackedByteArray(0, 0, 0, 63, 0, 0, 32, 64, 0, 0, 204, 180, 0, 0, 0, 191, 0, 0, 32, 64, 0, 0, 204, 180, 0, 0, 0, 191, 0, 0, 192, 63, 0, 0, 204, 180, 0, 0, 0, 63, 0, 0, 192, 63, 0, 0, 204, 180, 255, 127, 255, 127, 0, 0, 255, 63, 255, 127, 255, 127, 0, 0, 255, 63, 255, 127, 255, 127, 0, 0, 255, 63, 255, 127, 255, 127, 0, 0, 255, 63)
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_e1bjy")

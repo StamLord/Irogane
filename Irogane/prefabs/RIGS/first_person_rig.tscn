@@ -69,7 +69,7 @@ nodes/Animation/position = Vector2(-300, 240)
 nodes/blend/node = SubResource("AnimationNodeBlend3_fath8")
 nodes/blend/position = Vector2(60, 60)
 nodes/output/position = Vector2(220, 120)
-node_connections = [&"output", 0, &"blend", &"blend", 0, &"Animation 3", &"blend", 1, &"Animation 2", &"blend", 2, &"Animation"]
+node_connections = [&"blend", 0, &"Animation 3", &"blend", 1, &"Animation 2", &"blend", 2, &"Animation", &"output", 0, &"blend"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5vpgu"]
 animation = &"first_person_rig|unarmed_glide"

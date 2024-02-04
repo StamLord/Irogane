@@ -10,7 +10,7 @@ var selected_quest_node = null
 func get_all_node_connections(node_name: String):
 	var connections = []
 	for conn in get_connection_list():
-		if conn.from == node_name or conn.to == node_name:
+		if conn.from_node == node_name or conn.to_node == node_name:
 			connections.push_back(conn)
 	
 	return connections
@@ -18,8 +18,8 @@ func get_all_node_connections(node_name: String):
 
 func remove_all_node_connections(node_name: String):
 	for conn in get_connection_list():
-		if conn.from == node_name or conn.to == node_name:
-			disconnect_node(conn.from, conn.from_port, conn.to, conn.to_port)
+		if conn.from_node == node_name or conn.to_node == node_name:
+			disconnect_node(conn.from_node, conn.from_port, conn.to_node, conn.to_port)
 	
 
 func _on_connection_request(from_node, from_port, to_node, to_port):
