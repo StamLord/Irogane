@@ -1,6 +1,5 @@
 extends Node3D
 
-
 @export_flags_3d_physics var collision_mask
 
 var start_time
@@ -9,6 +8,8 @@ var last_pos
 var start_speed
 var speed = 20
 var stopped = false
+
+var item_id = null
 
 func _ready():
 	restart()
@@ -63,4 +64,9 @@ func collision_check(delta):
 		get_tree().get_root().remove_child(self)
 		result.collider.add_child(self)
 		global_position = result.position
+			
+		for child in get_children():
+			if child is Pickup:
+				child.item_id = item_id
+				child.get_children()[0].disabled = false
 	

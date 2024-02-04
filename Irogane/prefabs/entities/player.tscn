@@ -31,7 +31,7 @@
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]

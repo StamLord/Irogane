@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://oiip3qsg1ts6"]
+
+[ext_resource type="Script" path="res://scripts/weapons/projectiles/projectile.gd" id="1_g5mtn"]
+[ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="2_0ywhw"]
+[ext_resource type="Script" path="res://scripts/interactive/Pickup.gd" id="3_44y6i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dcbxx"]
+radius = 0.1
+
+[node name="shuriken" type="Node3D"]
+script = ExtResource("1_g5mtn")
+collision_mask = 1
+
+[node name="model" parent="." instance=ExtResource("2_0ywhw")]
+transform = Transform3D(-8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0, 0, 0)
+
+[node name="interactive_area" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_44y6i")
+item_id = "godot cube"
+mesh = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
+shape = SubResource("SphereShape3D_dcbxx")
+disabled = true
