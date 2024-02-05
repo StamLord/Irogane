@@ -20,16 +20,27 @@ var start_mouse_pos = Vector2.ZERO
 var current_selection = 0
 var section_size = 0
 var sections = []
+var labels = []
 
 signal item_selected(selection_name)
 
 func _ready():
-	# Ensure not visible at start
-	visible = false
+	last_mouse_mode = Input.mouse_mode
+	initialize()
+	
+
+func initialize():
+	# Ensure closed at start
+	if visible:
+		close()
 	
 	# Get section sizes
 	section_size = 360.0 / items.size()
 	
+	# Clear old textures & labels ( Needed if we call initialize during game because items have changed )
+	clear_array(sections)
+	clear_array(labels)
+		
 	# Create section textures & labels
 	section_texture.value = (section_size / 360.0) * (section_texture.max_value - section_texture.min_value)
 	section_texture.modulate.a = item_alpha
@@ -51,9 +62,18 @@ func _ready():
 		var label_center = new_label.size * 0.5 
 		var rotated_position = Vector2(0, -150).rotated(deg_to_rad((i + 0.5) * section_size))
 		new_label.position = parent_center + rotated_position - label_center
+		labels.append(new_label)
+	
+
+func initialize_items(selection_items : Array[String]):
+	items = selection_items
+	initialize()
 	
 
 func _process(delta):
+	if Input.is_action_just_pressed("jump"):
+		initialize_items(["Shuriken", "Jump", "Stance", "Kobey", "Tim Cain"])
+	
 	if Input.is_action_just_pressed(open_button) and not visible:
 		open()
 	elif not Input.is_action_pressed(open_button) and visible:
@@ -118,4 +138,10 @@ func open_animation():
 	
 	if open_rotation_curve:
 		section_parent.rotation = open_rotation_curve.curve.sample(1.0)
+	
+
+func clear_array(array : Array):
+	for member in array:
+		member.queue_free()
+	array.clear()
 	
