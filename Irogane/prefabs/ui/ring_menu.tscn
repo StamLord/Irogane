@@ -1,14 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxw02lxwj46a0"]
+[gd_scene load_steps=8 format=3 uid="uid://dxw02lxwj46a0"]
 
 [ext_resource type="Script" path="res://scripts/ui/ring_menu.gd" id="1_xj3y0"]
 [ext_resource type="Texture2D" uid="uid://66i1dp4x35e6" path="res://assets/textures/equipment/sarashi.png" id="2_3cr8l"]
 
 [sub_resource type="Curve" id="Curve_yk6au"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), -2.80414, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.56702, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_2hvx5"]
 curve = SubResource("Curve_yk6au")
+
+[sub_resource type="Curve" id="Curve_og8jn"]
+min_value = -5.0
+max_value = 0.0
+_data = [Vector2(0, -5), 0.0, 10.4823, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x84r8"]
+curve = SubResource("Curve_og8jn")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2jvm"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -29,6 +38,7 @@ open_button = "ring_menu"
 items = Array[String](["1", "2", "3", "4"])
 open_duration = 0.15
 open_scale_curve = SubResource("CurveTexture_2hvx5")
+open_rotation_curve = SubResource("CurveTexture_x84r8")
 
 [node name="background" type="Panel" parent="."]
 clip_children = 2

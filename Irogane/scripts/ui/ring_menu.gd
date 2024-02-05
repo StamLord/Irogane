@@ -5,6 +5,7 @@ class_name RingMenu
 @export var items : Array[String]
 @export var open_duration = 0.1
 @export var open_scale_curve : CurveTexture
+@export var open_rotation_curve : CurveTexture
 
 @onready var section_parent = $background
 @onready var section_texture = $background/section_prefab
@@ -81,10 +82,15 @@ func open_animation():
 	while Time.get_ticks_msec() - start_time <= duration:
 		var t = (Time.get_ticks_msec() - start_time) / duration
 		
+		# Scale
 		if open_scale_curve:
 			section_parent.scale = Vector2.ONE * open_scale_curve.curve.sample(t)
 		else:
 			section_parent.scale = lerp(Vector2.ZERO, Vector2.ONE, t)
+		
+		# Rotation
+		if open_rotation_curve:
+			section_parent.rotation = open_rotation_curve.curve.sample(t)
 		
 		await get_tree().process_frame
 	
@@ -92,4 +98,7 @@ func open_animation():
 		section_parent.scale = Vector2.ONE * open_scale_curve.curve.sample(1.0)
 	else:
 		section_parent.scale = lerp(Vector2.ZERO, Vector2.ONE, 1.0)
+	
+	if open_rotation_curve:
+		section_parent.rotation = open_rotation_curve.curve.sample(1.0)
 	
