@@ -71,9 +71,6 @@ func initialize_items(selection_items : Array[String]):
 	
 
 func _process(delta):
-	if Input.is_action_just_pressed("jump"):
-		initialize_items(["Shuriken", "Jump", "Stance", "Kobey", "Tim Cain"])
-	
 	if Input.is_action_just_pressed(open_button) and not visible:
 		open()
 	elif not Input.is_action_pressed(open_button) and visible:
