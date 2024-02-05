@@ -2,7 +2,7 @@ extends Interactive
 
 @export var dialogue : String
 @export var initial_dialog : String
-@onready var resource = load("res://dialogues/" + dialogue + ".dialogue")
+@onready var resource = load("res://data/dialogues/" + dialogue + ".dialogue")
 
 var talking_to
 
