@@ -81,6 +81,17 @@ mouse_cursor/custom_image="res://assets/textures/ui/cursor/mouse_cursor.png"
 
 enabled=PackedStringArray("res://addons/building_blocks/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/quest_editor/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://data/": "gray",
+"res://prefabs/": "red",
+"res://scenes/": "green",
+"res://scripts/": "yellow",
+"res://themes/": "purple"
+}
+
 [gui]
 
 theme/custom="res://themes/main_theme.tres"
@@ -318,7 +329,7 @@ arrow_left={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/farmer.dialogue", "res://dialogues/TakeshiMiyamoto.dialogue", "res://dialogues/Hiroshi.dialogue")
+locale/translations_pot_files=PackedStringArray("res://data/dialogues/farmer.dialogue", "res://data/dialogues/Hiroshi.dialogue", "res://data/dialogues/TakeshiMiyamoto.dialogue")
 
 [layer_names]
 
