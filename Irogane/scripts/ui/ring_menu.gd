@@ -7,8 +7,13 @@ class_name RingMenu
 @export var open_scale_curve : CurveTexture
 @export var open_rotation_curve : CurveTexture
 
+# Alpha values of item textures
+@export var item_selected_alpha = 0.5
+@export var item_alpha = 0.0
+
 @onready var section_parent = $background
 @onready var section_texture = $background/section_prefab
+@onready var section_label = $background/section_label
 
 var last_mouse_mode : Input.MouseMode
 var start_mouse_pos = Vector2.ZERO
@@ -25,15 +30,27 @@ func _ready():
 	# Get section sizes
 	section_size = 360.0 / items.size()
 	
-	# Create section textures
+	# Create section textures & labels
 	section_texture.value = (section_size / 360.0) * (section_texture.max_value - section_texture.min_value)
+	section_texture.modulate.a = item_alpha
 	for i in range(items.size()):
-		var new_section = section_texture.duplicate()
-		new_section.visible = true
-		section_parent.add_child(new_section)
-		new_section.position = Vector2.ZERO
-		new_section.rotation_degrees = i * section_size
-		sections.append(new_section)
+		# Texture
+		var new_texture = section_texture.duplicate()
+		new_texture.visible = true
+		section_parent.add_child(new_texture)
+		new_texture.position = Vector2.ZERO
+		new_texture.rotation_degrees = i * section_size
+		sections.append(new_texture)
+		
+		# Label
+		var new_label = section_label.duplicate()
+		new_label.visible = true
+		new_label.text = items[i]
+		section_parent.add_child(new_label)
+		var parent_center = section_parent.size * 0.5 
+		var label_center = new_label.size * 0.5 
+		var rotated_position = Vector2(0, -150).rotated(deg_to_rad((i + 0.5) * section_size))
+		new_label.position = parent_center + rotated_position - label_center
 	
 
 func _process(delta):
@@ -52,11 +69,11 @@ func _process(delta):
 		current_selection = floori(positive_angle / section_size)
 		
 		# Highlight current selection
-		sections[current_selection].modulate.a = 1
+		sections[current_selection].modulate.a = item_selected_alpha
 		
 		# Dehighlight last selection
 		if last_selection != current_selection:
-			sections[last_selection].modulate.a = 0.5
+			sections[last_selection].modulate.a = item_alpha
 		
 	
 
