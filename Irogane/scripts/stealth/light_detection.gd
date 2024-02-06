@@ -4,8 +4,6 @@ extends Node3D
 @onready var bot_viewport = $Control/SubViewportContainer2/bot_viewport
 @onready var front_viewport = $Control/SubViewportContainer3/front_viewport
 
-@onready var top_camera = $Control/SubViewportContainer/top_viewport/top_camera
-@onready var bot_camera = $Control/SubViewportContainer2/bot_viewport/bot_camera
 @onready var front_camera = $Control/SubViewportContainer3/front_viewport/front_camera
 
 @onready var light_stone = $Control/light_stone
