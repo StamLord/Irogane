@@ -81,6 +81,17 @@ mouse_cursor/custom_image="res://assets/textures/ui/cursor/mouse_cursor.png"
 
 enabled=PackedStringArray("res://addons/building_blocks/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/quest_editor/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://data/": "gray",
+"res://prefabs/": "red",
+"res://scenes/": "green",
+"res://scripts/": "yellow",
+"res://themes/": "purple"
+}
+
 [gui]
 
 theme/custom="res://themes/main_theme.tres"
@@ -315,10 +326,15 @@ arrow_left={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+ring_menu={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/farmer.dialogue", "res://dialogues/TakeshiMiyamoto.dialogue", "res://dialogues/Hiroshi.dialogue")
+locale/translations_pot_files=PackedStringArray("res://data/dialogues/farmer.dialogue", "res://data/dialogues/Hiroshi.dialogue", "res://data/dialogues/TakeshiMiyamoto.dialogue")
 
 [layer_names]
 

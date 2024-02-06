@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxw02lxwj46a0"]
+
+[ext_resource type="Script" path="res://scripts/ui/ring_menu.gd" id="1_xj3y0"]
+[ext_resource type="Texture2D" uid="uid://dqmnh0voa7ym7" path="res://assets/textures/ui/hud/ring_menu_bg.png" id="2_4eyui"]
+[ext_resource type="Texture2D" uid="uid://cjuwos8qcwkco" path="res://assets/textures/ui/hud/ring_menu_highlight.png" id="3_2g64g"]
+
+[sub_resource type="Curve" id="Curve_yk6au"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), -1.56702, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2hvx5"]
+curve = SubResource("Curve_yk6au")
+
+[sub_resource type="Curve" id="Curve_og8jn"]
+min_value = -5.0
+max_value = 0.0
+_data = [Vector2(0, -5), 0.0, 10.4823, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x84r8"]
+curve = SubResource("Curve_og8jn")
+
+[node name="ring_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xj3y0")
+open_button = "ring_menu"
+items = Array[String](["1", "2", "3", "4"])
+open_duration = 0.15
+open_scale_curve = SubResource("CurveTexture_2hvx5")
+open_rotation_curve = SubResource("CurveTexture_x84r8")
+item_selected_alpha = 0.75
+
+[node name="background" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -254.0
+offset_top = -254.0
+offset_right = 254.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(254, 254)
+texture = ExtResource("2_4eyui")
+
+[node name="section_prefab" type="TextureProgressBar" parent="background"]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(254, 254)
+value = 33.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("3_2g64g")
+
+[node name="section_label" type="Label" parent="background"]
+visible = false
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_left = 254.0
+offset_top = 254.0
+offset_right = 454.0
+offset_bottom = 354.0
+pivot_offset = Vector2(100, 50)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Shuriken"
+horizontal_alignment = 1
+vertical_alignment = 1
