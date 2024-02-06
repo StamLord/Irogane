@@ -11,6 +11,8 @@ class_name WeaponManager
 		return quick_slots
 	
 
+@onready var ring_menu = %ring_menu
+
 @onready var melee = $melee
 @onready var sword = $sword
 @onready var shuriken = $shuriken
@@ -70,6 +72,9 @@ func switch_to(new_index):
 		activate_template(sword)
 	elif item.get_meta("id") == "shuriken":
 		activate_template(shuriken)
+		ring_menu.disabled = true
+		var skills: Array[String] = ["Shuriken", "Jump", "Stance", "Kobey", "Tim Cain"]
+		ring_menu.initialize_items(skills)
 	
 
 func activate_template(template):
@@ -87,6 +92,7 @@ func activate_template(template):
 
 func deactivate_template(template):
 	template.visible = false
+	ring_menu.disabled = true
 	
 
 func on_slot_changed(slot_index):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=100 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/controls/mouse_look.gd" id="9_nfdeu"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/ClimbRope.gd" id="10_7bwsl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
+[ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="14_km1at"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
 [ext_resource type="Script" path="res://scripts/controls/camera_copy.gd" id="17_6vema"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
@@ -448,6 +449,9 @@ acceleration = 5
 buoyancy = 0.0
 surface_offset = -1.5
 
+[node name="ring_menu" parent="." instance=ExtResource("14_km1at")]
+unique_name_in_owner = true
+
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 script = ExtResource("9_nfdeu")
@@ -800,6 +804,7 @@ render_target_update_mode = 0
 
 [node name="top_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer/top_viewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+current = true
 fov = 55.0
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="light_detection/Control"]
@@ -824,6 +829,7 @@ render_target_update_mode = 0
 
 [node name="bot_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer2/bot_viewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+current = true
 fov = 55.0
 
 [node name="SubViewportContainer3" type="SubViewportContainer" parent="light_detection/Control"]
@@ -848,6 +854,7 @@ render_target_update_mode = 0
 
 [node name="front_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer3/front_viewport"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, -1)
+current = true
 fov = 25.0
 
 [node name="light_stone" type="TextureRect" parent="light_detection/Control"]
@@ -904,6 +911,7 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("node_to_follow")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0)
 projection = 1
+current = true
 size = 7.0
 script = ExtResource("38_510aq")
 node_to_follow = NodePath("../../..")
