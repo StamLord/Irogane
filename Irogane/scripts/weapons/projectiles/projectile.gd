@@ -1,8 +1,9 @@
 extends Node3D
 
 @export_flags_3d_physics var collision_mask
+@onready var hitbox = %hitbox
+@export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
-# Can be set by parent
 var speed = 20
 var item_id = null
 
@@ -15,6 +16,16 @@ var stopped = false
 
 func _ready():
 	restart()
+	hitbox.set_active(true)
+	hitbox.on_collision.connect(hit)
+	
+
+func hit(area, hitbox):
+	if area is Hurtbox:
+		var attack_info = attack_info.clone()
+		attack_info.force = get_global_transform().basis * attack_info.force
+		
+		area.hit(attack_info)
 	
 
 func restart():
@@ -25,8 +36,14 @@ func restart():
 	stopped = false
 	
 
+func deactivate_hitbox():
+	await get_tree().create_timer(0.1).timeout
+	hitbox.set_active(false)
+	
+
 func _process(delta):
 	if stopped:
+		deactivate_hitbox()
 		return
 	
 	# Calculate position
@@ -67,7 +84,7 @@ func collision_check(delta):
 		result.collider.add_child(self)
 		global_rotation = CameraEntity.main_camera.global_rotation
 		global_position = result.position
-			
+		
 		for child in get_children():
 			if child is Pickup:
 				child.item_id = item_id

@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var projectile_scene = load("res://prefabs/weapons/projectiles/shuriken.tscn")
 
-var drop_offset = Vector3(0.2, 0, -0.5)
+var drop_offset = Vector3(0, 0, -0.5)
 
 const ITEM_ID = "shuriken"
 
