@@ -2,14 +2,16 @@ extends Node3D
 
 @export_flags_3d_physics var collision_mask
 
+# Can be set by parent
+var speed = 20
+var item_id = null
+
+# Internal vars
 var start_time
 var start_pos
 var last_pos
 var start_speed
-var speed = 20
 var stopped = false
-
-var item_id = null
 
 func _ready():
 	restart()
@@ -63,6 +65,7 @@ func collision_check(delta):
 		stopped = true
 		get_tree().get_root().remove_child(self)
 		result.collider.add_child(self)
+		global_rotation = CameraEntity.main_camera.global_rotation
 		global_position = result.position
 			
 		for child in get_children():

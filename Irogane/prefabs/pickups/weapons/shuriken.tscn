@@ -11,12 +11,11 @@ size = Vector3(0.15, 0.15, 0.03)
 
 [node name="shuriken" type="RigidBody3D"]
 
-[node name="interactive_area" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
+[node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_21odp")
 item_id = "godot cube"
-mesh = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 shape = SubResource("SphereShape3D_etjtd")

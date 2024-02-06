@@ -14,12 +14,11 @@ collision_mask = 1
 [node name="model" parent="." instance=ExtResource("2_0ywhw")]
 transform = Transform3D(-8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0, 0, 0)
 
-[node name="interactive_area" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
+[node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("3_44y6i")
 item_id = "godot cube"
-mesh = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 shape = SubResource("SphereShape3D_dcbxx")
