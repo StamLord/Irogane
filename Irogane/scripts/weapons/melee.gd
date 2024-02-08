@@ -100,6 +100,7 @@ func _ready():
 	
 	glide.glide_started.connect(start_animate_glide)
 	glide.glide_ended.connect(stop_animate_glide)
+	
 
 func _process(delta):
 	if not visible:
@@ -153,6 +154,7 @@ func _process(delta):
 	if not combo.is_empty() and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
 		reset_combo()
 	
+
 func add_to_combo(move):
 	combo.append(move)
 	last_combo_addition = Time.get_ticks_msec()
@@ -171,7 +173,7 @@ func add_to_combo(move):
 		display_move(move)
 		if matching_combo != null:
 			highlight_display_combo(matching_combo.combo.length())
-		
+	
 
 func is_primary_and_secondary():
 	var both_pressed = Input.is_action_just_pressed("attack_primary") and Input.is_action_just_pressed("attack_secondary")
@@ -185,6 +187,7 @@ func is_jumping():
 
 func reset_combo():
 	combo.clear()
+	
 
 func valid_state_for_input():
 	var state = anim_state_machine.get_current_node()
@@ -192,6 +195,7 @@ func valid_state_for_input():
 		if valid in state:
 			return true
 	return false
+	
 
 func validate_combo(combo):
 	#print(combo)
@@ -228,6 +232,7 @@ func validate_combo(combo):
 			longest_combo = c
 	
 	return longest_combo
+	
 
 func display_move(character):
 	var count = moves_container.get_child_count()
@@ -242,11 +247,13 @@ func display_move(character):
 		moves_container.move_child(move, count - 1)
 	
 	move.text = character.capitalize()
+	
 
 func highlight_display_combo(length):
 	var count = moves_container.get_child_count()
 	for i in range(length):
 		moves_container.get_child(count - 1 - i).add_theme_color_override("font_color", Color.RED)
+	
 
 func hit(area, hitbox):
 	if area is Hurtbox:
@@ -267,49 +274,59 @@ func hit(area, hitbox):
 		ripple_vfx.emit_particle(ripple_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 		
 		audio.play(hit_sounds.pick_random(), hitbox.global_position)
+	
 
 func start_animate_air():
 	anim_idle_state_machine.travel("air")
 	anim_tree["parameters/StateMachine/idle/conditions/is_air"] = true
 	
+
 func stop_animate_air():
 	anim_idle_state_machine.travel("idle")
 	anim_tree["parameters/StateMachine/idle/conditions/is_air"] = false
+	
 
 func start_animate_vault(ledge_position):
 	anim_state_machine.start("open_hands")
 	anim_hands_ik.start_ik()
 	var hand_offset = global_transform.basis * Vector3.RIGHT * 0.25
 	anim_hands_ik.set_targets(ledge_position - hand_offset, ledge_position + hand_offset)
+	
 
 func stop_animate_vault(_ledge_position):
 	anim_state_machine.start("idle")
 	anim_hands_ik.stop_ik()
+	
 
 func start_animate_swim():
 	anim_idle_state_machine.travel("swim")
 	is_swimming = true
 	anim_tree[anim_idle_path + "/conditions/is_swim"] = true
 	
+
 func stop_animate_swim():
 	anim_idle_state_machine.travel("idle")
 	is_swimming = false
 	anim_tree[anim_idle_path + "/conditions/is_swim"] = false
+	
 
 func start_animate_climb_rope():
 	anim_idle_state_machine.travel("climb_rope")
 	is_climb_rope = true
 	anim_tree[anim_idle_path + "/conditions/is_climb_rope"] = true
 	
+
 func stop_animate_climb_rope():
 	anim_idle_state_machine.travel("idle")
 	is_climb_rope = false
 	anim_tree[anim_idle_path + "/conditions/is_climb_rope"] = false
 	
+
 func start_animate_glide():
 	anim_idle_state_machine.travel("glide")
 	anim_tree[anim_idle_path + "/conditions/is_glide"] = true
 	
+
 func stop_animate_glide():
 	anim_idle_state_machine.travel("idle")
 	anim_tree[anim_idle_path + "/conditions/is_glide"] = false
