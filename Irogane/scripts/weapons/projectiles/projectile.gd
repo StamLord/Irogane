@@ -20,7 +20,7 @@ func _ready():
 	hitbox.on_collision.connect(hit)
 	
 
-func hit(area, hitbox):
+func hit(area, _hitbox):
 	if area is Hurtbox:
 		var attack_info = attack_info.clone()
 		attack_info.force = get_global_transform().basis * attack_info.force
