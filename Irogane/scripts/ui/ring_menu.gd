@@ -2,11 +2,11 @@ extends UIWindow
 class_name RingMenu
 
 @export var open_button : String
-@export var items : Array[String]
+@export var items : Array
 @export var open_duration = 0.1
 @export var open_scale_curve : CurveTexture
 @export var open_rotation_curve : CurveTexture
-@export var disabled = false
+@export var disabled = true
 
 # Alpha values of item textures
 @export var item_selected_alpha = 0.5
@@ -64,7 +64,7 @@ func initialize():
 		labels.append(new_label)
 	
 
-func initialize_items(selection_items: Array[String]):
+func initialize_items(selection_items: Array):
 	items = selection_items
 	initialize()
 	
