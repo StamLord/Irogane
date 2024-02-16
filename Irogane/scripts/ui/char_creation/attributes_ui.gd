@@ -403,3 +403,8 @@ func _on_preset_selection_mouse_exited():
 	else:
 		preset_selection.text = "< %s >" % PRESETS.keys()[current_preset]
 	
+
+func _on_visibility_changed():
+	if visible:
+		skills_ui.scrolls_wave()
+	

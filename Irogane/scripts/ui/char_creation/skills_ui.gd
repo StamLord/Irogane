@@ -3,6 +3,7 @@ extends TextureRect
 @onready var info_text = %info_text
 @onready var skill_scrolls = %skill_tree_scrolls
 @onready var skill_trees = %skill_tree_manager
+@onready var timer = %Timer
 
 
 var current_focused_skill_tree = null
@@ -82,4 +83,24 @@ func skill_scroll_selected(skill_tree_name, skill_tree_scroll):
 	if skill_trees_metadata[skill_tree_name].skill_tree:
 		var skill_tree = skill_trees_metadata[skill_tree_name].skill_tree
 		skill_tree.visible = true
+	
+
+func scrolls_wave():
+	var prev_scroll = null
+	var delay = 0.08
+	
+	for skill_scroll in skill_scrolls.get_children():
+		timer.set_wait_time(delay)
+		timer.start()
+		await timer.timeout
+		
+		if prev_scroll:
+			prev_scroll._mouse_exited()
+		skill_scroll._mouse_entered()
+		prev_scroll = skill_scroll
+	
+	timer.set_wait_time(delay)
+	timer.start()
+	await timer.timeout
+	prev_scroll._mouse_exited()
 	

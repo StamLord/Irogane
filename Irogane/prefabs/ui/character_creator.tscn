@@ -80,7 +80,7 @@
 [ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="66_4460i"]
 [ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
-[ext_resource type="PackedScene" uid="uid://dkcoap7i5mjnl" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
+[ext_resource type="PackedScene" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
 [ext_resource type="PackedScene" uid="uid://blmgqak0mhkqx" path="res://prefabs/env/trees/tree_01_early_fall.tscn" id="72_y3ju1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -1775,6 +1775,9 @@ offset_bottom = 904.0
 grow_horizontal = 0
 texture = ExtResource("40_8rtmb")
 script = ExtResource("41_ocx4q")
+
+[node name="Timer" type="Timer" parent="attributes_UI/skills_ui"]
+unique_name_in_owner = true
 
 [node name="available_skill_points" type="Label" parent="attributes_UI/skills_ui"]
 unique_name_in_owner = true
@@ -4173,6 +4176,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.96249, 2.76471, -6.0
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
 [connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="focus_entered" from="attributes_UI" to="attributes_UI" method="_on_focus_entered"]
+[connection signal="visibility_changed" from="attributes_UI" to="attributes_UI" method="_on_visibility_changed"]
 [connection signal="pressed" from="attributes_UI/attr_back_button" to="attributes_UI" method="_on_attr_back_button_pressed"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_pressed"]
