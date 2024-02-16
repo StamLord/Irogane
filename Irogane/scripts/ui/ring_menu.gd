@@ -28,6 +28,13 @@ func _ready():
 	initialize()
 	
 
+func parse_label(text: String):
+	var text_array = text.split("_")
+	for i in text_array.size():
+		text_array[i] = text_array[i].capitalize()
+	return " ".join(text_array)
+	
+
 func initialize():
 	# Ensure closed at start
 	if visible:
@@ -55,7 +62,7 @@ func initialize():
 		# Label
 		var new_label = section_label.duplicate()
 		new_label.visible = true
-		new_label.text = items[i]
+		new_label.text = parse_label(items[i])
 		section_parent.add_child(new_label)
 		var parent_center = section_parent.size * 0.5 
 		var label_center = new_label.size * 0.5 
