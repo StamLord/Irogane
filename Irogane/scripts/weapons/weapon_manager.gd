@@ -79,7 +79,7 @@ func switch_to(new_index):
 	elif item.get_meta("id") == "shuriken":
 		activate_template(shuriken)
 		var skills: Array = PlayerEntity.get_skills_in_tree("thrown")
-		print(skills)
+	
 		if skills:
 			ring_menu.disabled = false
 			ring_menu.initialize_items(skills)
