@@ -8,38 +8,37 @@ extends Node3D
 	{
 		"state" : "light_1",
 		"combo" : "l",
-		"movement" : Vector3(0, 0, -2),
-		"movement_duration" : 0.1,
+		#"movement" : Vector3(0, 0, -2),
+		#"movement_duration" : 0.1,
 	},
 	{
 		"state" : "light_2",
 		"combo" : "ll",
-		"movement" : Vector3(0, 0, -2),
-		"movement_duration" : 0.1,
+		#"movement" : Vector3(0, 0, -2),
+		#"movement_duration" : 0.1,
 	},
 	{
 		"state" : "light_3",
 		"combo" : "lll",
-		"movement" : Vector3(0, 0, -2),
-		"movement_duration" : 0.1,
-	},
-	{
-		"state" : "light_3",
-		"combo" : "lllr",
-		"movement" : Vector3(0, 0, -6),
-		"movement_duration" : 0.1,
+		#"movement" : Vector3(0, 0, -2),
+		#"movement_duration" : 0.1,
 	},
 	{
 		"state" : "heavy_1",
+		"charge_state" : "heavy_1_charge",
 		"combo" : "r",
 	},
 	{
 		"state" : "heavy_2",
-		"combo" : "rr",
+		"charge_state" : "heavy_2_charge",
+		"combo" : "llr",
 	},
 	{
 		"state" : "heavy_3",
-		"combo" : "rrr",
+		"charge_state" : "heavy_3_charge",
+		"combo" : "lllr",
+		"movement" : Vector3(0, 0, -6),
+		"movement_duration" : 0.1,
 	},
 	{
 		"state" : "uppward",
@@ -52,18 +51,30 @@ extends Node3D
 @export var max_display_moves = 10
 @export var jump_input_window = 0.25
 
+@export var heavy_charged_duration = 2.00
+@export var heavy_projectile_duration = 4.00
+
 @onready var anim_tree : AnimationTree = $katana_pov_hands/AnimationTree
 @onready var anim_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/playback"]
 @onready var moves_container = $moves_display/moves_container
 
+# Hitboxes
 @onready var hitbox = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/hitbox
 @onready var upward_hitbox = $katana_pov_hands/upward_hitbox
+
+# VFX
+@onready var charging_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/charging
+@onready var charged_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/charged
+@onready var projectile_charging_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/projectile_charging
 
 var combo = []
 var last_combo_addition = 0
 var last_primary = -1
 var last_secondary = -1
 var last_jump = -1
+
+var is_secondary_pressed = false
+var secondary_press_start = -1
 
 func _ready():
 	hitbox.on_collision.connect(hit)
@@ -77,6 +88,18 @@ func _process(delta):
 	if UIManager.window_count() > 0:
 		return
 	
+	if is_secondary_pressed:
+		var time_pressed = Time.get_ticks_msec() - secondary_press_start
+		var is_charged = time_pressed >= heavy_charged_duration * 1000
+		var is_projectile = time_pressed >= heavy_projectile_duration * 1000
+		
+		if is_projectile:
+			turn_on_charging_vfx(null)
+		elif is_charged:
+			turn_on_charging_vfx(projectile_charging_vfx)
+		else:
+			turn_on_charging_vfx(charging_vfx)
+		
 	var state = anim_state_machine.get_current_node()
 	if state == "idle":
 		hitbox.set_active(false)
@@ -86,11 +109,45 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("defend"):
 		anim_state_machine.start("defend_start")
+	# Primary attack is on press
 	elif Input.is_action_just_pressed("attack_primary"):
 		add_to_combo("l")
 		hitbox.clear_collisions()
 		hitbox.set_active(true)
+	# Secondary attack is on release
 	elif Input.is_action_just_pressed("attack_secondary"):
+		is_secondary_pressed = true
+		secondary_press_start = Time.get_ticks_msec()
+		
+		var move = "r"
+		if is_jumping():
+			move = "j+r"
+		
+		# Test for valid combo without adding the move (will be added on release)
+		var combo_copy = combo.duplicate()
+		combo_copy.append(move)
+		
+		var matching_combo = validate_combo(combo_copy)
+		
+		# If no combo exists with the new move added,
+		# start a new combo with only this move
+		if matching_combo == null:
+			combo_copy.clear()
+			combo_copy.append(move)
+			matching_combo = validate_combo(combo_copy)
+		
+		# Play charge state animation if a combo was found
+		if matching_combo != null and matching_combo.has("charge_state"):
+			anim_state_machine.start(matching_combo.charge_state)
+		
+	elif Input.is_action_just_released("attack_secondary"):
+		is_secondary_pressed = false
+		
+		# Check charge time
+		var time_pressed = Time.get_ticks_msec() - secondary_press_start
+		var is_charged = time_pressed >= heavy_charged_duration * 1000
+		var is_projectile = time_pressed >= heavy_projectile_duration * 1000
+		
 		if is_jumping():
 			add_to_combo("j+r")
 		else:
@@ -98,8 +155,10 @@ func _process(delta):
 		
 		hitbox.clear_collisions()
 		hitbox.set_active(true)
+		
+		turn_on_charging_vfx(null)
 	
-	if not combo.is_empty() and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
+	if not combo.is_empty() and not is_secondary_pressed and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
 		reset_combo()
 	
 
@@ -117,14 +176,12 @@ func add_to_combo(move):
 		matching_combo = validate_combo(combo)
 	
 	# Play animation state if a combo was found
-	if matching_combo != null:
+	if matching_combo != null and matching_combo.has("state"):
 		anim_state_machine.start(matching_combo.state)
 		if matching_combo.has("movement"):
 			animate_movement(matching_combo.movement, matching_combo.movement_duration)
-	
-	if display_moves: 
-		display_move(move)
-		if matching_combo != null:
+		if display_moves: 
+			display_move(move)
 			highlight_display_combo(matching_combo.combo.length())
 	
 
@@ -212,4 +269,9 @@ func animate_movement(local_vector : Vector3, duration : float):
 		await get_tree().process_frame
 	
 	owner.global_position = target_pos
+	
+
+func turn_on_charging_vfx(particles):
+	for vfx in [charging_vfx, projectile_charging_vfx]:
+		vfx.emitting = vfx == particles
 	
