@@ -151,6 +151,7 @@ func exit_battle():
 
 func save_data():
 	var data = {
+		"name" : char_name,
 		"level" : level,
 		"experience" : experience,
 		"health" : health.save_data(),
@@ -168,6 +169,7 @@ func save_data():
 	
 
 func load_data(data):
+	char_name = data["name"]
 	level = data["level"] if "level" in data else 1
 	experience = data["experience"] if "experience" in data else 0
 	
