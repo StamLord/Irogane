@@ -80,10 +80,12 @@ func collision_check(delta):
 	
 	if result:
 		stopped = true
+		var global_rot = global_rotation
 		get_tree().get_root().remove_child(self)
 		result.collider.add_child(self)
-		global_rotation = CameraEntity.main_camera.global_rotation
 		global_position = result.position
+		global_rotation = global_rot
+		#global_rotation = CameraEntity.main_camera.global_rotation
 		
 		for child in get_children():
 			if child is Pickup:
