@@ -25,17 +25,17 @@ extends Node3D
 	},
 	{
 		"state" : "heavy_1",
-		"charge_state" : "heavy_1_charge",
+		"charge_state" : "heavy_1_charging",
 		"combo" : "r",
 	},
 	{
 		"state" : "heavy_2",
-		"charge_state" : "heavy_2_charge",
+		"charge_state" : "heavy_2_charging",
 		"combo" : "llr",
 	},
 	{
 		"state" : "heavy_3",
-		"charge_state" : "heavy_3_charge",
+		"charge_state" : "heavy_3_charging",
 		"combo" : "lllr",
 		"movement" : Vector3(0, 0, -6),
 		"movement_duration" : 0.1,
