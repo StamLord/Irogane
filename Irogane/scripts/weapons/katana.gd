@@ -64,8 +64,11 @@ extends Node3D
 
 # VFX
 @onready var charging_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/charging
-@onready var charged_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/charged
 @onready var projectile_charging_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/projectile_charging
+@onready var decal_raycast = $decal_raycast
+@onready var decal_prefab = $decal_prefab
+@onready var blade_alignment = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment
+
 
 var combo = []
 var last_combo_addition = 0
@@ -99,10 +102,6 @@ func _process(delta):
 			turn_on_charging_vfx(projectile_charging_vfx)
 		else:
 			turn_on_charging_vfx(charging_vfx)
-		
-	var state = anim_state_machine.get_current_node()
-	if state == "idle":
-		hitbox.set_active(false)
 	
 	if Input.is_action_just_pressed("jump"):
 		last_jump = Time.get_ticks_msec()
@@ -112,8 +111,6 @@ func _process(delta):
 	# Primary attack is on press
 	elif Input.is_action_just_pressed("attack_primary"):
 		add_to_combo("l")
-		hitbox.clear_collisions()
-		hitbox.set_active(true)
 	# Secondary attack is on release
 	elif Input.is_action_just_pressed("attack_secondary"):
 		is_secondary_pressed = true
@@ -153,9 +150,6 @@ func _process(delta):
 		else:
 			add_to_combo("r")
 		
-		hitbox.clear_collisions()
-		hitbox.set_active(true)
-		
 		turn_on_charging_vfx(null)
 	
 	if not combo.is_empty() and not is_secondary_pressed and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
@@ -178,6 +172,7 @@ func add_to_combo(move):
 	# Play animation state if a combo was found
 	if matching_combo != null and matching_combo.has("state"):
 		anim_state_machine.start(matching_combo.state)
+		animation_changed(matching_combo.state)
 		if matching_combo.has("movement"):
 			animate_movement(matching_combo.movement, matching_combo.movement_duration)
 		if display_moves: 
@@ -229,11 +224,13 @@ func hit(area, hitbox):
 			attack_info = uppward_attack_info
 		
 		area.hit(attack_info)
-	
+		
 	print("HIT: ", area)
 	
 	# VFX
 	CameraShaker.shake(0.25, 0.2)
+	if decal_raycast.is_colliding():
+		create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
 	
 	#audio.play(hit_sounds.pick_random(), hitbox.global_position)
 	
@@ -271,7 +268,34 @@ func animate_movement(local_vector : Vector3, duration : float):
 	owner.global_position = target_pos
 	
 
+func animation_changed(new_name):
+	if new_name == "idle":
+		hitbox.set_active(false)
+		upward_hitbox.set_active(false)
+	elif new_name in ["light_1", "light_2", "light_3", "heavy_1", "heavy_3"]:
+		hitbox.clear_collisions() # Needed in case of attack to attack transition
+		hitbox.set_active(true)
+		upward_hitbox.set_active(false)
+	elif new_name in ["heavy_2"]:
+		upward_hitbox.clear_collisions() # Needed in case of attack to attack transition
+		upward_hitbox.set_active(true)
+		hitbox.set_active(false)
+	
+
 func turn_on_charging_vfx(particles):
 	for vfx in [charging_vfx, projectile_charging_vfx]:
 		vfx.emitting = vfx == particles
+	
+
+func create_decal(_position, _rotation, parent):
+	var new_decal = decal_prefab.duplicate()
+	new_decal.visible = true
+	parent.add_child(new_decal)
+	new_decal.global_position = _position
+	new_decal.global_rotation = _rotation
+	new_decal.fade_over.connect(free_decal.bind(new_decal))
+	
+
+func free_decal(decal):
+	decal.queue_free
 	
