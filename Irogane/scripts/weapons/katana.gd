@@ -54,7 +54,7 @@ extends Node3D
 @onready var moves_container = $moves_display/moves_container
 
 # Skill Menu
-@onready var ring_menu = $ring_menu
+@onready var ring_menu = $sword_ring_menu
 
 # Hitboxes
 @onready var hitbox = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/hitbox

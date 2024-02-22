@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://scripts/controls/mouse_look.gd" id="9_nfdeu"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/ClimbRope.gd" id="10_7bwsl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
-[ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="14_km1at"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
@@ -31,12 +30,12 @@
 [ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="27_o0xak"]
 [ext_resource type="Script" path="res://scripts/stealth/night_vision.gd" id="27_wn7je"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
-[ext_resource type="Texture2D" uid="uid://r0xkg11t2ggh" path="res://assets/textures/vfx/bleeding_scratch_decal.png" id="29_qtgr7"]
+[ext_resource type="Texture2D" path="res://assets/textures/vfx/bleeding_scratch_decal.png" id="29_qtgr7"]
 [ext_resource type="Script" path="res://scripts/vfx/decal_fade.gd" id="30_05bud"]
 [ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="31_ep6ff"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
@@ -453,7 +452,7 @@ acceleration = 5
 buoyancy = 0.0
 surface_offset = -1.5
 
-[node name="ring_menu" parent="." instance=ExtResource("14_km1at")]
+[node name="ring_menu" parent="." instance=ExtResource("31_ep6ff")]
 unique_name_in_owner = true
 
 [node name="head" type="Node3D" parent="."]
@@ -614,9 +613,10 @@ texture_albedo = ExtResource("29_qtgr7")
 emission_energy = 4.0
 script = ExtResource("30_05bud")
 
-[node name="ring_menu" parent="head/main_camera/weapon_manager/sword" instance=ExtResource("31_ep6ff")]
+[node name="sword_ring_menu" parent="head/main_camera/weapon_manager/sword" instance=ExtResource("31_ep6ff")]
 visible = false
 open_button = ""
+disabled = false
 
 [node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
 visible = false
