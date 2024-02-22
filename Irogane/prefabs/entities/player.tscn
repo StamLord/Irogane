@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=103 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
 [ext_resource type="Texture2D" uid="uid://r0xkg11t2ggh" path="res://assets/textures/vfx/bleeding_scratch_decal.png" id="29_qtgr7"]
 [ext_resource type="Script" path="res://scripts/vfx/decal_fade.gd" id="30_05bud"]
+[ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="31_ep6ff"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
 [ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
@@ -608,6 +609,10 @@ size = Vector3(1, 1, 1)
 texture_albedo = ExtResource("29_qtgr7")
 emission_energy = 4.0
 script = ExtResource("30_05bud")
+
+[node name="ring_menu" parent="head/main_camera/weapon_manager/sword" instance=ExtResource("31_ep6ff")]
+visible = false
+open_button = ""
 
 [node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
 visible = false

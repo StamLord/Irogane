@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://kc3pcjl0elxi"]
+[gd_scene load_steps=70 format=3 uid="uid://kc3pcjl0elxi"]
 
 [ext_resource type="PackedScene" uid="uid://ba8hebcklle12" path="res://assets/models/katana_pov/katana_pov_hands.glb" id="1_3485n"]
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="2_gy3ob"]
@@ -9696,6 +9696,9 @@ animation = &"katana_light_3"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nvhy2"]
 animation = &"katana_heavy_1"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_75buu"]
+animation = &"katana_heavy_1_charging"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vntf5"]
 advance_mode = 2
 
@@ -9749,10 +9752,12 @@ states/light_2/node = SubResource("AnimationNodeAnimation_urd55")
 states/light_2/position = Vector2(200, -32)
 states/light_3/node = SubResource("AnimationNodeAnimation_q0qci")
 states/light_3/position = Vector2(200, -94)
-states/uppward/node = SubResource("AnimationNodeAnimation_nvhy2")
-states/uppward/position = Vector2(355, -94)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_vntf5"), "light_1", "idle", SubResource("AnimationNodeStateMachineTransition_2hrt4"), "light_3", "idle", SubResource("AnimationNodeStateMachineTransition_i518s"), "light_2", "idle", SubResource("AnimationNodeStateMachineTransition_0xif7"), "uppward", "idle", SubResource("AnimationNodeStateMachineTransition_ody5h"), "heavy_3", "idle", SubResource("AnimationNodeStateMachineTransition_negys"), "heavy_1", "idle", SubResource("AnimationNodeStateMachineTransition_pcgr7"), "heavy_2", "idle", SubResource("AnimationNodeStateMachineTransition_runwx")]
-graph_offset = Vector2(-40, -143)
+states/upward/node = SubResource("AnimationNodeAnimation_nvhy2")
+states/upward/position = Vector2(355, -94)
+states/upward_charging/node = SubResource("AnimationNodeAnimation_75buu")
+states/upward_charging/position = Vector2(355, -158)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_vntf5"), "light_1", "idle", SubResource("AnimationNodeStateMachineTransition_2hrt4"), "light_3", "idle", SubResource("AnimationNodeStateMachineTransition_i518s"), "light_2", "idle", SubResource("AnimationNodeStateMachineTransition_0xif7"), "upward", "idle", SubResource("AnimationNodeStateMachineTransition_ody5h"), "heavy_3", "idle", SubResource("AnimationNodeStateMachineTransition_negys"), "heavy_1", "idle", SubResource("AnimationNodeStateMachineTransition_pcgr7"), "heavy_2", "idle", SubResource("AnimationNodeStateMachineTransition_runwx")]
+graph_offset = Vector2(-152, -232)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wavfg"]
 size = Vector3(0.8, 1.5, 0.5)
@@ -9767,10 +9772,10 @@ size = Vector3(0.8, 1.5, 0.5)
 [node name="katana_pov_hands" instance=ExtResource("1_3485n")]
 
 [node name="Skeleton3D" parent="first_person_rig" index="0"]
-bones/1/rotation = Quaternion(0.795221, -0.190191, 0.420509, 0.393222)
+bones/1/rotation = Quaternion(0.790443, -0.179993, 0.42647, 0.401156)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(-3.5774e-07, -7.99113e-08, -0.777513, 0.628867)
-bones/3/rotation = Quaternion(-0.31193, 0.905229, -0.0595407, 0.28234)
+bones/2/rotation = Quaternion(-3.47931e-07, -1.10725e-07, -0.783519, 0.621367)
+bones/3/rotation = Quaternion(-0.328563, 0.887643, -0.0206161, 0.322042)
 bones/4/rotation = Quaternion(0.477939, -0.317071, 0.406253, 0.711336)
 bones/4/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(-0.608816, 0.0411796, -0.00471234, 0.792228)
@@ -9784,10 +9789,10 @@ bones/11/scale = Vector3(1, 1, 1)
 bones/12/rotation = Quaternion(-0.412384, 0.623502, 0.333517, 0.574414)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(0.918503, -0.107199, -0.205656, 0.32026)
+bones/18/rotation = Quaternion(0.916766, -0.112788, -0.205144, 0.323628)
 bones/18/scale = Vector3(1, 1, 1)
-bones/19/rotation = Quaternion(-2.44882e-07, 1.21576e-07, 0.579212, 0.815177)
-bones/20/rotation = Quaternion(-0.439592, -0.760419, 0.11014, 0.46518)
+bones/19/rotation = Quaternion(-2.71566e-07, 1.539e-07, 0.58263, 0.812737)
+bones/20/rotation = Quaternion(-0.434972, -0.779267, 0.125849, 0.433249)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(0.621156, 0.604252, -0.30506, 0.394947)
 bones/21/scale = Vector3(1, 1, 1)
@@ -9810,17 +9815,17 @@ bones/33/rotation = Quaternion(-0.68227, 0.166852, 0.173608, 0.69031)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/rotation = Quaternion(-0.381078, -0.0178313, -0.0219727, 0.92411)
 bones/34/scale = Vector3(1, 1, 1)
-bones/35/position = Vector3(0.172453, 1.38931, -0.376571)
-bones/35/rotation = Quaternion(-0.696505, 0.0891919, 0.0113165, 0.711898)
+bones/35/position = Vector3(0.168384, 1.40346, -0.376571)
+bones/35/rotation = Quaternion(-0.699963, 0.0559081, 0.0452196, 0.71055)
 bones/36/position = Vector3(0.512855, 1.94647, -0.487335)
 bones/36/rotation = Quaternion(0.5, 0.5, 0.5, 0.5)
-bones/37/position = Vector3(0.113947, 1.30628, -0.368157)
-bones/37/rotation = Quaternion(0.744523, -0.00620208, 0.0977569, -0.660372)
+bones/37/position = Vector3(0.117978, 1.31514, -0.368157)
+bones/37/rotation = Quaternion(0.743973, 0.0292751, 0.0661848, -0.664279)
 bones/37/scale = Vector3(1, 1, 1)
 bones/38/rotation = Quaternion(0.5, -0.5, -0.5, 0.5)
 
 [node name="hand_r_attachment" type="BoneAttachment3D" parent="first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.983665, -0.141215, 0.11163, -0.108431, 0.0301702, 0.993646, -0.143685, -0.989519, 0.0143654, 0.172272, 1.38951, -0.376386)
+transform = Transform3D(0.989664, -0.142497, 0.016118, -0.0139854, 0.0159561, 0.999774, -0.142722, -0.989667, 0.0137985, 0.168377, 1.40345, -0.376612)
 bone_name = "hand_r"
 bone_idx = 3
 

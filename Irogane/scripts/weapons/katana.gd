@@ -8,20 +8,14 @@ extends Node3D
 	{
 		"state" : "light_1",
 		"combo" : "l",
-		#"movement" : Vector3(0, 0, -2),
-		#"movement_duration" : 0.1,
 	},
 	{
 		"state" : "light_2",
 		"combo" : "ll",
-		#"movement" : Vector3(0, 0, -2),
-		#"movement_duration" : 0.1,
 	},
 	{
 		"state" : "light_3",
 		"combo" : "lll",
-		#"movement" : Vector3(0, 0, -2),
-		#"movement_duration" : 0.1,
 	},
 	{
 		"state" : "heavy_1",
@@ -41,7 +35,8 @@ extends Node3D
 		"movement_duration" : 0.1,
 	},
 	{
-		"state" : "uppward",
+		"state" : "upward",
+		"charge_state" : "upward_charging",
 		"combo" : "j+r",
 	},
 ]
@@ -57,6 +52,9 @@ extends Node3D
 @onready var anim_tree : AnimationTree = $katana_pov_hands/AnimationTree
 @onready var anim_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/playback"]
 @onready var moves_container = $moves_display/moves_container
+
+# Skill Menu
+@onready var ring_menu = $ring_menu
 
 # Hitboxes
 @onready var hitbox = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/hitbox
@@ -90,6 +88,14 @@ func _process(delta):
 	
 	if UIManager.window_count() > 0:
 		return
+	
+	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
+		#var ring_items = PlayerEntity.player.get_node("stats")
+		var ring_items : Array[String] = ["Rain Stance", "River Stance", "Lightning Stance"]
+		ring_menu.initialize_items(ring_items)
+		ring_menu.open()
+	elif not Input.is_action_pressed("ring_menu") and ring_menu.visible:
+		ring_menu.close()
 	
 	if is_secondary_pressed:
 		var time_pressed = Time.get_ticks_msec() - secondary_press_start
