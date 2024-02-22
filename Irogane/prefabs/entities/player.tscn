@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=103 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
 [ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="14_km1at"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
-[ext_resource type="Script" path="res://scripts/controls/camera_copy.gd" id="17_6vema"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
@@ -26,10 +25,15 @@
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 [ext_resource type="Script" path="res://scripts/weapons/throwable.gd" id="26_5mim7"]
+[ext_resource type="Script" path="res://scripts/weapons/katana.gd" id="26_fyhdv"]
 [ext_resource type="Shader" uid="uid://bdh8h54vakscc" path="res://assets/shaders/bubble.tres" id="26_ud12e"]
 [ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="27_imo88"]
+[ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="27_o0xak"]
 [ext_resource type="Script" path="res://scripts/stealth/night_vision.gd" id="27_wn7je"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
+[ext_resource type="Texture2D" uid="uid://r0xkg11t2ggh" path="res://assets/textures/vfx/bleeding_scratch_decal.png" id="29_qtgr7"]
+[ext_resource type="Script" path="res://scripts/vfx/decal_fade.gd" id="30_05bud"]
+[ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="31_ep6ff"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
 [ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
@@ -460,131 +464,6 @@ script = ExtResource("9_nfdeu")
 current = true
 script = ExtResource("18_bhey3")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="head/main_camera"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="head/main_camera/SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1920, 1080)
-render_target_update_mode = 0
-
-[node name="weapons_camera" type="Camera3D" parent="head/main_camera/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
-cull_mask = 2
-current = true
-fov = 55.0
-script = ExtResource("17_6vema")
-
-[node name="weapon_manager" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera"]
-script = ExtResource("18_u5xda")
-
-[node name="melee" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
-script = ExtResource("20_14b7v")
-
-[node name="moves_display" type="Control" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="moves_container" type="VBoxContainer" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/moves_display"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -36.0
-offset_top = -148.0
-offset_bottom = 148.0
-grow_horizontal = 0
-grow_vertical = 2
-alignment = 2
-
-[node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
-emitting = false
-amount = 24
-lifetime = 0.4
-process_material = SubResource("ParticleProcessMaterial_285xo")
-draw_pass_1 = SubResource("QuadMesh_mrejr")
-
-[node name="ripple_vfx_old" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
-emitting = false
-amount = 24
-lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_6uluk")
-draw_pass_1 = SubResource("QuadMesh_wkuo3")
-
-[node name="ripple_vfx" type="GPUParticles3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
-emitting = false
-amount = 24
-lifetime = 0.6
-process_material = SubResource("ParticleProcessMaterial_teee7")
-draw_pass_1 = SubResource("SphereMesh_1d4nr")
-
-[node name="audio" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee"]
-script = ExtResource("29_c2b1q")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee/audio"]
-bus = &"Sound"
-
-[node name="first_person_rig" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
-
-[node name="sword" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
-visible = false
-
-[node name="CSGBox3D" type="CSGBox3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/sword"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -0.226465, -0.666647)
-layers = 2
-size = Vector3(0.05, 1.5, 0.1)
-
-[node name="shuriken" type="Node3D" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager"]
-visible = false
-script = ExtResource("26_5mim7")
-
-[node name="shuriken_model" parent="head/main_camera/SubViewportContainer/SubViewport/weapons_camera/weapon_manager/shuriken" instance=ExtResource("27_imo88")]
-transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626, 0.0405095, -0.00263428, -0.0424863, 0.0262293, 0.350353, -0.25896, -0.423049)
-
 [node name="interaction" type="Node3D" parent="head/main_camera"]
 script = ExtResource("19_s7wsu")
 carry_layer = 4
@@ -603,6 +482,148 @@ light_energy = 0.1
 spot_range = 20.0
 spot_angle = 60.0
 script = ExtResource("27_wn7je")
+
+[node name="weapon_manager" type="Node3D" parent="head/main_camera"]
+script = ExtResource("18_u5xda")
+
+[node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
+visible = false
+script = ExtResource("20_14b7v")
+
+[node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/melee"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="moves_container" type="VBoxContainer" parent="head/main_camera/weapon_manager/melee/moves_display"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -148.0
+offset_bottom = 148.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
+emitting = false
+amount = 24
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_285xo")
+draw_pass_1 = SubResource("QuadMesh_mrejr")
+
+[node name="ripple_vfx_old" type="GPUParticles3D" parent="head/main_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
+emitting = false
+amount = 24
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_6uluk")
+draw_pass_1 = SubResource("QuadMesh_wkuo3")
+
+[node name="ripple_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/melee"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.660947)
+emitting = false
+amount = 24
+lifetime = 0.6
+process_material = SubResource("ParticleProcessMaterial_teee7")
+draw_pass_1 = SubResource("SphereMesh_1d4nr")
+
+[node name="audio" type="Node3D" parent="head/main_camera/weapon_manager/melee"]
+script = ExtResource("29_c2b1q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/melee/audio"]
+bus = &"Sound"
+
+[node name="first_person_rig" parent="head/main_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
+
+[node name="sword" type="Node3D" parent="head/main_camera/weapon_manager"]
+script = ExtResource("26_fyhdv")
+
+[node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/sword"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="moves_container" type="VBoxContainer" parent="head/main_camera/weapon_manager/sword/moves_display"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -148.0
+offset_bottom = 148.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="head/main_camera/weapon_manager/sword/moves_display/moves_container"]
+layout_mode = 2
+
+[node name="katana_pov_hands" parent="head/main_camera/weapon_manager/sword" instance=ExtResource("27_o0xak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
+
+[node name="decal_raycast" type="RayCast3D" parent="head/main_camera/weapon_manager/sword"]
+target_position = Vector3(0, 0, -1)
+
+[node name="decal_prefab" type="Decal" parent="head/main_camera/weapon_manager/sword"]
+transform = Transform3D(-1, -3.82137e-15, 8.74228e-08, -8.74228e-08, 4.37114e-08, -1, 0, -1, -4.37114e-08, 0, 0.936865, 0)
+visible = false
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("29_qtgr7")
+emission_energy = 4.0
+script = ExtResource("30_05bud")
+
+[node name="ring_menu" parent="head/main_camera/weapon_manager/sword" instance=ExtResource("31_ep6ff")]
+visible = false
+open_button = ""
+
+[node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
+visible = false
+script = ExtResource("26_5mim7")
+
+[node name="shuriken_model" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("27_imo88")]
+transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626, 0.0405095, -0.00263428, -0.0424863, 0.0262293, 0.350353, -0.25896, -0.423049)
 
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16

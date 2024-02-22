@@ -63,19 +63,16 @@ func get_save_file_info(filename):
 	
 	if version_dict == null:
 		info["version"] = "ERROR"
-		
-	var version = version_dict["version"]
+	else:
+		info["version"] = version_dict["version"]
 	
 	# Second line is scene name
 	var scene_dict = _parse_json_string(save_file.get_line())
 	
 	if scene_dict == null:
 		info["scene_name"] = "ERROR"
-	
-	var scene_name = scene_dict["scene"]
-	
-	info["version"] = version
-	info["scene_name"] = scene_name
+	else:
+		info["scene_name"] = scene_dict["scene"]
 	
 	# Get Date
 	info["date"] = FileAccess.get_modified_time(save_file_path)
@@ -90,8 +87,20 @@ func get_save_file_info(filename):
 	
 	# Get player level
 	var player_data = _parse_json_string(save_file.get_line())
-	#info["name"] = player_data["name"]
-	info["level"] = player_data["stats"]["level"]
+	
+	if player_data == null:
+		info["name"] = "ERROR"
+		info["level"] = "ERROR"
+	else:
+		if player_data["stats"].has("name"):
+			info["name"] = player_data["stats"]["name"]
+		else:
+			info["name"] = "?"
+		
+		if player_data["stats"].has("level"):
+			info["level"] = player_data["stats"]["level"]
+		else:
+			info["level"] = "?"
 	
 	return info
 
