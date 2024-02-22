@@ -1,38 +1,65 @@
 extends Node3D
 
+@export_flags_3d_physics var collision_mask
+@onready var hitbox = %hitbox
+@export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
+var speed = 20
+var item_id = null
+
+# Internal vars
 var start_time
 var start_pos
+var last_pos
 var start_speed
-var speed = 0.005
+var stopped = false
 
 func _ready():
 	restart()
+	hitbox.set_active(true)
+	hitbox.on_collision.connect(hit)
+	
+
+func hit(area, _hitbox):
+	if area is Hurtbox:
+		var attack_info = attack_info.clone()
+		attack_info.force = get_global_transform().basis * attack_info.force
+		
+		area.hit(attack_info)
 	
 
 func restart():
 	start_time = Time.get_ticks_msec()
 	start_pos = global_position
-	start_speed = basis.z * speed
+	last_pos = start_pos
+	start_speed = -basis.z * speed
+	stopped = false
+	
+
+func deactivate_hitbox():
+	await get_tree().create_timer(0.1).timeout
+	hitbox.set_active(false)
 	
 
 func _process(delta):
+	if stopped:
+		deactivate_hitbox()
+		return
+	
 	# Calculate position
-	var time_passed = Time.get_ticks_msec() - start_time;
+	var time_passed = (Time.get_ticks_msec() - start_time) / 1000.0;
 	var new_pos = start_pos + start_speed * time_passed;
-
-	# Gravity
-	#if(gravity)
-	#	if(useGlobalGravity)
-	#		newPos.y = startPos.y + startSpeed.y * timePassed + Physics.gravity.y *.5f * timePassed * timePassed;
-	#	else
-	#		newPos.y = startPos.y + startSpeed.y * timePassed + customGravity.y *.5f * timePassed * timePassed;
+	
+	# Add gravity
+	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+	new_pos.y = start_pos.y + start_speed.y * time_passed - gravity * time_passed  * time_passed * 0.5
 	
 	# Set new position
 	global_position = new_pos;
+	
 	# Rotate in direction of flight
 	#transform.forward = transform.position - lastPosition;
-
+	
 	# Rotate visual object
 	#if(visual) 
 	#{
@@ -40,4 +67,28 @@ func _process(delta):
 	#	visual.transform.RotateAround(visual.transform.right, visualRotationPerSecond.x * Time.deltaTime);
 	#	visual.transform.RotateAround(transform.forward, visualRotationPerSecond.z * Time.deltaTime);
 	#}
+	
+	collision_check(delta)
+	last_pos = new_pos;
+	
+
+func collision_check(delta):
+	var ray_origin = global_position
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(last_pos, ray_origin, collision_mask)
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		stopped = true
+		var global_rot = global_rotation
+		get_tree().get_root().remove_child(self)
+		result.collider.add_child(self)
+		global_position = result.position
+		global_rotation = global_rot
+		#global_rotation = CameraEntity.main_camera.global_rotation
+		
+		for child in get_children():
+			if child is Pickup:
+				child.item_id = item_id
+				child.get_children()[0].disabled = false
 	

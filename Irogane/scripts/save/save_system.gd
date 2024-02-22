@@ -87,6 +87,7 @@ func get_save_file_info(filename):
 	
 	# Get player level
 	var player_data = _parse_json_string(save_file.get_line())
+	
 	if player_data == null:
 		info["name"] = "ERROR"
 		info["level"] = "ERROR"

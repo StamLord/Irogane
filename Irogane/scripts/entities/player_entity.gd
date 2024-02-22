@@ -4,6 +4,7 @@ var player_node = null
 var initial_scene_position = null
 
 var inventory = null
+var skills = {}
 
 var model_node_path = "model/human_model"
 
@@ -52,7 +53,7 @@ func load_player_data(player_data):
 	
 	player_node.get_node(model_node_path).load_appearance(player_data["appearance"])
 	player_node.stats.load_data(player_data["stats"])
-	
+	skills = player_data["skills"]
 
 func set_inventory(_inventory):
 	inventory = _inventory
@@ -76,4 +77,19 @@ func on_slot_changed(slot_index):
 
 func get_player_name():
 	return player_node.stats.name
+	
+
+func get_learned_skills():
+	return skills
+	
+
+func get_skills_in_tree(tree_name: String):
+	if skills.has(tree_name):
+		return skills[tree_name]
+	else:
+		return []
+	
+
+func set_learned_skills(skills_data):
+	skills = skills_data
 	

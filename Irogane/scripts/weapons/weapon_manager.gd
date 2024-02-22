@@ -11,6 +11,8 @@ class_name WeaponManager
 		return quick_slots
 	
 
+@onready var ring_menu = %ring_menu
+
 @onready var melee = $melee
 @onready var sword = $sword
 @onready var shuriken = $shuriken
@@ -22,9 +24,11 @@ class_name WeaponManager
 
 var index = 0
 @onready var current_template = null
+var active_skill = null
 
 func _ready():
 	PlayerEntity.slot_changed.connect(on_slot_changed)
+	ring_menu.item_selected.connect(skill_selected)
 	
 
 func _process(delta):
@@ -54,6 +58,10 @@ func _process(delta):
 		switch_to(9)
 	
 
+func skill_selected(skill_name):
+	active_skill = skill_name
+	
+
 func switch_to(new_index):
 	if new_index < 0:
 		new_index += 10
@@ -70,12 +78,19 @@ func switch_to(new_index):
 		activate_template(sword)
 	elif item.get_meta("id") == "shuriken":
 		activate_template(shuriken)
+		var skills: Array = PlayerEntity.get_skills_in_tree("thrown")
+	
+		if skills:
+			ring_menu.disabled = false
+			ring_menu.initialize_items(skills)
 	
 
 func activate_template(template):
 	if current_template == template:
 		print("Same Template")
 		return
+	
+	active_skill = null  # Todo: we can remember selected skill for each 
 	
 	if current_template != null:
 		deactivate_template(current_template)
@@ -87,6 +102,7 @@ func activate_template(template):
 
 func deactivate_template(template):
 	template.visible = false
+	ring_menu.disabled = true
 	
 
 func on_slot_changed(slot_index):

@@ -61,7 +61,7 @@ func display_save_info(filename):
 	date = date.replace("T", " ")
 	date_label.text = date
 	version_label.text = "Version %s" % info["version"]
-	name_label.text = info["name"]
+	#name_label.text = info["name"]
 	level_label.text = "Level %s" % info["level"]
 	
 	# Thumbnail

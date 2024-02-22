@@ -1,11 +1,12 @@
-extends Control
+extends UIWindow
 class_name RingMenu
 
 @export var open_button : String
-@export var items : Array[String]
+@export var items : Array
 @export var open_duration = 0.1
 @export var open_scale_curve : CurveTexture
 @export var open_rotation_curve : CurveTexture
+@export var disabled = true
 
 # Alpha values of item textures
 @export var item_selected_alpha = 0.5
@@ -15,7 +16,6 @@ class_name RingMenu
 @onready var section_texture = $background/section_prefab
 @onready var section_label = $background/section_label
 
-var last_mouse_mode : Input.MouseMode
 var start_mouse_pos = Vector2.ZERO
 var current_selection = 0
 var section_size = 0
@@ -25,8 +25,14 @@ var labels = []
 signal item_selected(selection_name)
 
 func _ready():
-	last_mouse_mode = Input.mouse_mode
 	initialize()
+	
+
+func parse_label(text: String):
+	var text_array = text.split("_")
+	for i in text_array.size():
+		text_array[i] = text_array[i].capitalize()
+	return " ".join(text_array)
 	
 
 func initialize():
@@ -56,7 +62,7 @@ func initialize():
 		# Label
 		var new_label = section_label.duplicate()
 		new_label.visible = true
-		new_label.text = items[i]
+		new_label.text = parse_label(items[i])
 		section_parent.add_child(new_label)
 		var parent_center = section_parent.size * 0.5 
 		var label_center = new_label.size * 0.5 
@@ -65,12 +71,15 @@ func initialize():
 		labels.append(new_label)
 	
 
-func initialize_items(selection_items : Array[String]):
+func initialize_items(selection_items: Array):
 	items = selection_items
 	initialize()
 	
 
 func _process(delta):
+	if disabled:
+		return
+	
 	if Input.is_action_just_pressed(open_button) and not visible:
 		open()
 	elif not Input.is_action_pressed(open_button) and visible:
@@ -91,22 +100,20 @@ func _process(delta):
 		# Dehighlight last selection
 		if last_selection != current_selection:
 			sections[last_selection].modulate.a = item_alpha
-		
 	
 
 func open():
+	super()
 	visible = true
 	start_mouse_pos = get_global_mouse_position()
-	last_mouse_mode = Input.mouse_mode
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	open_animation()
 	
 
 func close():
+	super()
 	visible = false
-	item_selected.emit(current_selection)
-	Input.mouse_mode = last_mouse_mode
+	item_selected.emit(items[current_selection])
 	
 
 func open_animation():

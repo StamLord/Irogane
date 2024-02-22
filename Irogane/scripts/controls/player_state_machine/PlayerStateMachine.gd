@@ -75,6 +75,7 @@ func save_data():
 		"stats" : stats.save_data(),
 		"appearance": model.save_appearance(),
 		"quests": QuestManager.save_quests_data(),
+		"skills": PlayerEntity.get_learned_skills(),
 	}
 	
 	return data
@@ -103,4 +104,5 @@ func load_data(data):
 	model.load_appearance(data["appearance"])
 	
 	QuestManager.load_quests_data(data["quests"])
+	PlayerEntity.set_learned_skills(data["skills"])
 	
