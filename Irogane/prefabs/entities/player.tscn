@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="27_o0xak"]
 [ext_resource type="Script" path="res://scripts/stealth/night_vision.gd" id="27_wn7je"]
 [ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="29_c2b1q"]
-[ext_resource type="Texture2D" path="res://assets/textures/vfx/bleeding_scratch_decal.png" id="29_qtgr7"]
+[ext_resource type="Texture2D" uid="uid://r0xkg11t2ggh" path="res://assets/textures/vfx/bleeding_scratch_decal.png" id="29_qtgr7"]
 [ext_resource type="Script" path="res://scripts/vfx/decal_fade.gd" id="30_05bud"]
 [ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="31_ep6ff"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
@@ -452,9 +452,6 @@ acceleration = 5
 buoyancy = 0.0
 surface_offset = -1.5
 
-[node name="ring_menu" parent="." instance=ExtResource("31_ep6ff")]
-unique_name_in_owner = true
-
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 script = ExtResource("9_nfdeu")
@@ -616,7 +613,6 @@ script = ExtResource("30_05bud")
 [node name="sword_ring_menu" parent="head/main_camera/weapon_manager/sword" instance=ExtResource("31_ep6ff")]
 visible = false
 open_button = ""
-disabled = false
 
 [node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
 visible = false
@@ -624,6 +620,10 @@ script = ExtResource("26_5mim7")
 
 [node name="shuriken_model" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("27_imo88")]
 transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626, 0.0405095, -0.00263428, -0.0424863, 0.0262293, 0.350353, -0.25896, -0.423049)
+
+[node name="shuriken_ring_menu" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("31_ep6ff")]
+visible = false
+open_button = ""
 
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
