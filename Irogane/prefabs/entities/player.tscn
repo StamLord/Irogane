@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=105 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -34,9 +34,11 @@
 [ext_resource type="Script" path="res://scripts/vfx/decal_fade.gd" id="30_05bud"]
 [ext_resource type="PackedScene" uid="uid://dxw02lxwj46a0" path="res://prefabs/ui/ring_menu.tscn" id="31_ep6ff"]
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
+[ext_resource type="Script" path="res://scripts/ui/stance_label.gd" id="32_bgsca"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
 [ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
+[ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="33_vi4em"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
@@ -613,6 +615,60 @@ script = ExtResource("30_05bud")
 [node name="sword_ring_menu" parent="head/main_camera/weapon_manager/sword" instance=ExtResource("31_ep6ff")]
 visible = false
 open_button = ""
+
+[node name="stance_label" type="Control" parent="head/main_camera/weapon_manager/sword"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -403.0
+offset_right = 200.0
+offset_bottom = -353.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 25)
+script = ExtResource("32_bgsca")
+fade_duration = 0.25
+
+[node name="TextureRect" type="TextureRect" parent="head/main_camera/weapon_manager/sword/stance_label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -445.0
+offset_top = -41.5
+offset_right = 445.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("33_vi4em")
+
+[node name="stance_label" type="Label" parent="head/main_camera/weapon_manager/sword/stance_label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -25.0
+offset_right = 200.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 25)
+theme_override_font_sizes/font_size = 48
+text = "Lightning Stance"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("32_bgsca")
+fade_duration = 0.25
 
 [node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
 visible = false
