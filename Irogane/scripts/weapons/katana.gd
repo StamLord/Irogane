@@ -77,9 +77,12 @@ var last_jump = -1
 var is_secondary_pressed = false
 var secondary_press_start = -1
 
+var current_skill = ""
+
 func _ready():
 	hitbox.on_collision.connect(hit)
 	upward_hitbox.on_collision.connect(hit)
+	ring_menu.item_selected.connect(skill_selected)
 	
 
 func _process(delta):
@@ -90,10 +93,11 @@ func _process(delta):
 		return
 	
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
-		#var ring_items = PlayerEntity.player.get_node("stats")
+		#var ring_items: Array = PlayerEntity.get_skills_in_tree("sword")
 		var ring_items : Array[String] = ["Rain Stance", "River Stance", "Lightning Stance"]
-		ring_menu.initialize_items(ring_items)
-		ring_menu.open()
+		if ring_items:
+			ring_menu.initialize_items(ring_items)
+			ring_menu.open()
 	elif not Input.is_action_pressed("ring_menu") and ring_menu.visible:
 		ring_menu.close()
 	
@@ -304,4 +308,8 @@ func create_decal(_position, _rotation, parent):
 
 func free_decal(decal):
 	decal.queue_free
+	
+
+func skill_selected(skill_name):
+	current_skill = skill_name
 	
