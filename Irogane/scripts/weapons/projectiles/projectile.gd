@@ -2,6 +2,7 @@ extends Node3D
 
 @export_flags_3d_physics var collision_mask
 @onready var hitbox = %hitbox
+@onready var trail3d = $trail3d
 @export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
 var speed = 20
@@ -34,6 +35,9 @@ func restart():
 	last_pos = start_pos
 	start_speed = -basis.z * speed
 	stopped = false
+	
+	if trail3d:
+		trail3d.trailEnabled = true
 	
 
 func deactivate_hitbox():
@@ -91,4 +95,7 @@ func collision_check(delta):
 			if child is Pickup:
 				child.item_id = item_id
 				child.get_children()[0].disabled = false
+		
+		if trail3d:
+			trail3d.trailEnabled = false
 	

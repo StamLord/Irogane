@@ -1,3 +1,4 @@
+@tool
 extends MeshInstance3D
 class_name Trail3D
 
@@ -15,8 +16,7 @@ var lifePoints = []
 @export var lifespan = 1.0
 
 @export var scaleTexture = true
-@export var startColor = Color(1.0, 1.0, 1.0, 1.0)
-@export var endColor = Color(1.0, 1.0, 1.0, 0.0)
+@export var color : Gradient
 
 @export var rotate = false
 
@@ -52,7 +52,7 @@ func _process(delta):
 	mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
 	for i in range(points.size()):
 		var t = float(i) / (points.size() - 1.0)
-		var currColor = startColor.lerp(endColor, 1 - t)
+		var currColor = color.sample(1 - t)
 		mesh.surface_set_color(currColor)
 		
 		var currWidth = widths[i][0] - pow(1-t, scaleAcceleration) * widths[i][1]
