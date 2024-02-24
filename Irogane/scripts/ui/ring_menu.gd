@@ -103,9 +103,11 @@ func _process(delta):
 
 func open():
 	visible = true
-	start_mouse_pos = get_global_mouse_position()
 	last_mouse_mode = Input.mouse_mode
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	start_mouse_pos = get_global_mouse_position()
+	Input.warp_mouse(start_mouse_pos)
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	
 	open_animation()
 	
 
