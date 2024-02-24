@@ -4176,7 +4176,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.96249, 2.76471, -6.0
 [connection signal="value_changed" from="appearance_UI/appearance_bg/custom_hair_color/HBoxContainer/BHBoxContainer/BHairSlider" to="appearance_UI" method="_on_b_hair_slider_value_changed"]
 [connection signal="pressed" from="appearance_UI/next_button" to="appearance_UI" method="_on_next_button_pressed"]
 [connection signal="focus_entered" from="attributes_UI" to="attributes_UI" method="_on_focus_entered"]
-[connection signal="visibility_changed" from="attributes_UI" to="attributes_UI" method="_on_visibility_changed"]
 [connection signal="pressed" from="attributes_UI/attr_back_button" to="attributes_UI" method="_on_attr_back_button_pressed"]
 [connection signal="gui_input" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_gui_input"]
 [connection signal="pressed" from="attributes_UI/attributes_bg/attr_reset_button" to="attributes_UI" method="_on_attr_reset_button_pressed"]
