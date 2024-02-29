@@ -28,30 +28,17 @@ func _ready():
 	
 
 func _process(delta):
+	if not InputContextManager.is_current_context(InputContextType.GAME):
+		return
+	
 	if Input.is_action_just_pressed("scroll_up"):
 		switch_to(index + 1)
 	elif Input.is_action_just_pressed("scroll_down"):
 		switch_to(index - 1)
-	elif Input.is_action_just_pressed("alpha1"):
-		switch_to(0)
-	elif Input.is_action_just_pressed("alpha2"):
-		switch_to(1)
-	elif Input.is_action_just_pressed("alpha3"):
-		switch_to(2)
-	elif Input.is_action_just_pressed("alpha4"):
-		switch_to(3)
-	elif Input.is_action_just_pressed("alpha5"):
-		switch_to(4)
-	elif Input.is_action_just_pressed("alpha6"):
-		switch_to(5)
-	elif Input.is_action_just_pressed("alpha7"):
-		switch_to(6)
-	elif Input.is_action_just_pressed("alpha8"):
-		switch_to(7)
-	elif Input.is_action_just_pressed("alpha9"):
-		switch_to(8)
-	elif Input.is_action_just_pressed("alpha0"):
-		switch_to(9)
+	else:
+		var hotkey = InputUtils.get_hotkeys_input()
+		if hotkey != null and hotkey > 0 and hotkey <= quick_slots.slots.size():
+			switch_to(hotkey - 1)
 	
 
 func switch_to(new_index):

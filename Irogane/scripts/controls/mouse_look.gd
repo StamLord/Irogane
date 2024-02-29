@@ -18,7 +18,6 @@ var height_duration = 4
 var new_tilt = 20
 var tilt_duration = 4
 
-var look_enabled = true
 var is_tilting = false
 
 # Fov
@@ -27,16 +26,15 @@ var original_fov = 75
 func _ready():
 	original_height = position.y
 	original_fov = camera.fov
-	UIManager.cursor_lock.connect(enable_look)
-	UIManager.cursor_unlock.connect(disable_look)
 	
 	add_debug_commands()
+	
 
 func _input(event):
 	if is_tilting:
 		return
 	
-	if not look_enabled:
+	if not InputContextManager.is_current_context(InputContextType.GAME):
 		return
 	
 	if event is InputEventMouseMotion:
@@ -113,14 +111,6 @@ func fov_animate(new_fov, duration):
 		await get_tree().process_frame
 	
 	camera.fov = new_fov
-
-
-func enable_look():
-	look_enabled = true
-	
-
-func disable_look():
-	look_enabled = false
 	
 
 func set_tilt(tilt):

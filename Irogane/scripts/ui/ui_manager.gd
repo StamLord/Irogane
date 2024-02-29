@@ -3,9 +3,6 @@ extends Node
 var windows : Array[UIWindow]
 var ui_node = null
 
-signal cursor_lock()
-signal cursor_unlock()
-
 signal open_system_menu()
 
 const UI_SCENE_PATH = "res://prefabs/ui/game_ui.tscn"
@@ -13,7 +10,7 @@ const UI_SCENE_PATH = "res://prefabs/ui/game_ui.tscn"
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	SaveSystem.on_game_load.connect(on_game_load)
-	update_cursor()
+	update_context()
 	
 
 func create_ui_node_if_needed():
@@ -39,7 +36,8 @@ func close_all_windows():
 		window.close()
 	
 	windows = []
-	update_cursor()
+	
+	update_context()
 	
 
 func on_game_load():
@@ -54,13 +52,15 @@ func _process(_delta):
 func add_window(window):
 	if window is UIWindow:
 		windows.push_front(window)
-	update_cursor()
+	
+	update_context()
 	
 
 func remove_window(window):
 	if window is UIWindow:
 		windows.erase(window)
-	update_cursor()
+	
+	update_context()
 	
 
 func close_last_window():
@@ -76,10 +76,8 @@ func close_last_window():
 func update_cursor():
 	if windows.size() > 0:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		cursor_unlock.emit()
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		cursor_lock.emit()
 	
 
 func window_count():
@@ -101,3 +99,15 @@ func get_inventory():
 		return null
 	
 	return ui_node.get_node("inventory_window/inventory")
+	
+
+func update_context():
+	if window_count() > 0:
+		InputContextManager.switch_context(InputContextType.UI)
+	else:
+		InputContextManager.switch_context(InputContextType.GAME)
+		
+	# Cursor must be updated after context switched, 
+	# to avoid mouse mode being overriden by context manager listeners
+	update_cursor()
+	

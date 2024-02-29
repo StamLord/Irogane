@@ -35,6 +35,20 @@ func _process(_delta):
 	if item_held != null:
 		item_held.global_position = cursor_pos + item_offset * item_held.scale
 		item_held.scale = get_container_scale(get_container_under_cursor(cursor_pos), item_held)
+	else:
+		# Fast equip to hotkey
+		var hotkey = InputUtils.get_hotkeys_input()
+		
+		if hotkey != null and hotkey > 0 and hotkey <= quick_slots.slots.size():
+			var c = get_container_under_cursor(cursor_pos)
+			if c != null and c.has_method("grab_item"):
+				var item = c.grab_item(cursor_pos)
+				if item != null:
+					item.scale = get_container_scale(quick_slots, item)
+					
+					if not quick_slots.insert_item_at_index(item, hotkey - 1):
+						item.scale = get_container_scale(c, item)
+						c.insert_item(item)
 	
 
 func _input(event):
