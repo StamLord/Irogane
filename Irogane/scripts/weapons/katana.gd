@@ -173,7 +173,9 @@ func _process(delta):
 	if can_focus() or can_projectile():
 		if Input.is_action_just_pressed("attack_secondary"):
 			charge_secondary_attack()
-		elif Input.is_action_just_released("attack_secondary"):
+		# Check is_secondary_pressed to avoid attacking when key 
+		# is pressed in UI context and realeased in game context
+		elif Input.is_action_just_released("attack_secondary") and is_secondary_pressed:
 			execute_secondary_attack()
 	else:
 		if Input.is_action_just_pressed("attack_secondary"):

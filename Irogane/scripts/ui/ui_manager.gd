@@ -47,6 +47,8 @@ func on_game_load():
 func _process(_delta):
 	if Input.is_action_just_pressed("exit"):
 		close_last_window()
+	elif Input.is_action_just_pressed("attack_secondary"):
+		call_deferred("close_last_window", false) # Deferred to avoid attacking in same frame
 	
 
 func add_window(window):
@@ -63,10 +65,11 @@ func remove_window(window):
 	update_context()
 	
 
-func close_last_window():
-		# If no windows to close, open system menu
+func close_last_window(can_open_menu = true):
+	# If no windows to close, open system menu
 	if windows.size() < 1:
-		open_system_menu.emit()
+		if can_open_menu:
+			open_system_menu.emit()
 		return
 	
 	if windows[0].close_on_back:
