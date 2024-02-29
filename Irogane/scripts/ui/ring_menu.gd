@@ -110,10 +110,16 @@ func open():
 	
 	open_animation()
 	
+	InputContextManager.switch_context(InputContextType.RING_MENU)
+	
 
 func close():
-	visible = false
+	close_no_signal()
 	item_selected.emit(items[current_selection])
+	
+
+func close_no_signal():
+	visible = false
 	Input.mouse_mode = last_mouse_mode
 	
 

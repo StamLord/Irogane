@@ -122,22 +122,30 @@ func _ready():
 	hitbox.on_collision.connect(hit)
 	upward_hitbox.on_collision.connect(hit)
 	ring_menu.item_selected.connect(skill_selected)
+	InputContextManager.context_changed.connect(context_changed)
 	
 
 func _process(delta):
 	if not visible:
 		return
 	
-	if UIManager.window_count() > 0:
+	# Close ring menu if open
+	if InputContextManager.is_current_context(InputContextType.RING_MENU):
+		if not Input.is_action_pressed("ring_menu") and ring_menu.visible:
+			ring_menu.close()
+			InputContextManager.switch_context(InputContextType.GAME)
+	
+	# Process only if in GAME context
+	if not InputContextManager.is_current_context(InputContextType.GAME):
 		return
 	
+	# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("sword")
 		if katana_stances:
 			ring_menu.initialize_items(katana_stances)
 			ring_menu.open()
-	elif not Input.is_action_pressed("ring_menu") and ring_menu.visible:
-		ring_menu.close()
+			return
 	
 	# Update charging vfx
 	if is_secondary_pressed:
@@ -421,4 +429,11 @@ func can_focus():
 
 func can_projectile():
 	return  "Projectile" in katana_skills
+	
+
+func context_changed(old_context, new_context):
+	# In case context changed, we cancel the ring menu without activating a skill
+	if old_context == InputContextType.RING_MENU and new_context != old_context:
+		if ring_menu.visible == true:
+			ring_menu.close_no_signal()
 	

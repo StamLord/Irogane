@@ -28,6 +28,9 @@ func _ready():
 	
 
 func _process(delta):
+	if not InputContextManager.is_current_context(InputContextType.GAME):
+		return
+	
 	if Input.is_action_just_pressed("scroll_up"):
 		switch_to(index + 1)
 	elif Input.is_action_just_pressed("scroll_down"):
