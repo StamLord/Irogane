@@ -12,6 +12,7 @@ signal slot_changed(slot_index)
 func _ready():
 	for slot in slots:
 		items[slot] = null
+	
 
 func valid_item(item):
 	# Get item slot data if not null
@@ -48,6 +49,14 @@ func insert_item(item):
 	if slot == null:
 		return false
 	
+	return insert_item_in_slot(item, slot)
+	
+
+func insert_item_at_index(item, index : int):
+	return insert_item_in_slot(item, slots[index])
+	
+
+func insert_item_in_slot(item, slot):
 	# Wrong slot
 	if not valid_item(item):
 		return false
@@ -63,6 +72,7 @@ func insert_item(item):
 	slot_changed.emit(slots.find(slot))
 	
 	return true
+	
 
 func grab_item(pos):
 	var item = get_item_under_pos(pos)
@@ -78,18 +88,22 @@ func grab_item(pos):
 	slot_changed.emit(slots.find(slot))
 	
 	return item
+	
 
 func get_slot_under_pos(pos):
 	return get_thing_under_pos(slots, pos)
+	
 
 func get_item_under_pos(pos):
 	return get_thing_under_pos(items.values(), pos)
 	
+
 func get_thing_under_pos(arr, pos):
 	for thing in arr:
 		if thing != null and thing.get_global_rect().has_point(pos):
 			return thing
 	return null
+	
 
 func get_item_in_slot(index):
 	if index >= slots.size():
@@ -98,3 +112,4 @@ func get_item_in_slot(index):
 		return null
 		
 	return items[slots[index]]
+	

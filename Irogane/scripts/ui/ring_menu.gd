@@ -103,15 +103,23 @@ func _process(delta):
 
 func open():
 	visible = true
-	start_mouse_pos = get_global_mouse_position()
 	last_mouse_mode = Input.mouse_mode
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	start_mouse_pos = get_global_mouse_position()
+	Input.warp_mouse(start_mouse_pos)
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	
 	open_animation()
+	
+	InputContextManager.switch_context(InputContextType.RING_MENU)
 	
 
 func close():
-	visible = false
+	close_no_signal()
 	item_selected.emit(items[current_selection])
+	
+
+func close_no_signal():
+	visible = false
 	Input.mouse_mode = last_mouse_mode
 	
 
