@@ -14,7 +14,9 @@ var shurikens_map = {}
 
 func _ready():
 	ring_menu.item_selected.connect(skill_selected)
+	InputContextManager.context_changed.connect(context_changed)
 	
+
 func save_shuriken(type, shuriken):
 	if type not in shurikens_map:
 		shurikens_map[type] = []
@@ -40,14 +42,25 @@ func _process(delta):
 	if not visible:
 		return
 	
+	# Close ring menu if open
+	if InputContextManager.is_current_context(InputContextType.RING_MENU):
+		if not Input.is_action_pressed("ring_menu") and ring_menu.visible:
+			ring_menu.close()
+			InputContextManager.switch_context(InputContextType.GAME)
+	
+	# Process only if in GAME context
+	if not InputContextManager.is_current_context(InputContextType.GAME):
+		return
+	
+		# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("throw")
 		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken"]
 		if ring_items:
 			ring_menu.initialize_items(ring_items)
 			ring_menu.open()
-	elif not Input.is_action_pressed("ring_menu") and ring_menu.visible:
-		ring_menu.close()
+		
+		return
 	
 	if Input.is_action_just_pressed("attack_primary"):
 		var position_offset = INITIAL_POS_OFFSET
@@ -180,4 +193,11 @@ func throw_multiplying():
 	var position_offset = INITIAL_POS_OFFSET
 	var rotation_offset = Vector3.ZERO
 	fire_shuriken(position_offset, rotation_offset, "multiplying_shuriken")
+	
+
+func context_changed(old_context, new_context):
+	# In case context changed, we cancel the ring menu without activating a skill
+	if old_context == InputContextType.RING_MENU and new_context != old_context:
+		if ring_menu.visible == true:
+			ring_menu.close_no_signal()
 	
