@@ -41,16 +41,16 @@ func _process(delta):
 		return
 	
 	if Input.is_action_just_pressed("scroll_up"):
-		switch_to(index + 1)
+		switch_to(index + 1, false)
 	elif Input.is_action_just_pressed("scroll_down"):
-		switch_to(index - 1)
+		switch_to(index - 1, false)
 	else:
 		var hotkey = InputUtils.get_hotkeys_input()
 		if hotkey != null and hotkey > 0 and hotkey <= quick_slots.slots.size():
 			switch_to(hotkey - 1)
 	
 
-func switch_to(new_index):
+func switch_to(new_index, activate_slot = true):
 	if new_index < 0:
 		new_index += 10
 	elif new_index > 9:
@@ -70,9 +70,10 @@ func switch_to(new_index):
 	
 	# If item is MEDICINE, activate it without switching to it
 	if item_data.type == "MEDICINE":
-		var used = stats.use_medicine(item_data)
-		if used:
-			quick_slots.remove_item_at_index(new_index)
+		if activate_slot:
+			var used = stats.use_medicine(item_data)
+			if used:
+				quick_slots.remove_item_at_index(new_index)
 		return
 	
 	# Activate corresponding template
@@ -83,13 +84,11 @@ func switch_to(new_index):
 
 func activate_template(template):
 	if current_template == template:
-		print("Same Template")
 		return
 	
 	if current_template != null:
 		deactivate_template(current_template)
 	
-	print("Activating: " + str(template))
 	template.visible = true
 	current_template = template
 	
@@ -100,5 +99,5 @@ func deactivate_template(template):
 
 func on_slot_changed(slot_index):
 	if index == slot_index:
-		switch_to(slot_index)
+		switch_to(slot_index, false)
 	

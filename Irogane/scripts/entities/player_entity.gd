@@ -12,6 +12,7 @@ const PLAYER_SCENE_PATH = "res://prefabs/entities/player.tscn"
 const NO_PLAYER_SCENES = ["res://prefabs/ui/character_creator.tscn", "res://scenes/main_menu.tscn"]
 
 signal slot_changed(slot_index)
+signal player_node_created(player_node)
 
 func _ready():
 	SceneManager.on_scene_loaded.connect(on_scene_loaded)
@@ -30,6 +31,7 @@ func on_scene_loaded(_scene_name):
 
 func set_player_node(node):
 	player_node = node
+	player_node_created.emit(player_node)
 	
 
 func create_player_node_if_needed():
@@ -37,6 +39,7 @@ func create_player_node_if_needed():
 		var player_scene = ResourceLoader.load(PLAYER_SCENE_PATH)
 		player_node = player_scene.instantiate()
 		get_tree().root.add_child(player_node)
+		player_node_created.emit(player_node)
 	
 
 func delete_player_node_if_needed(scene_name):
@@ -54,6 +57,7 @@ func load_player_data(player_data):
 	player_node.get_node(model_node_path).load_appearance(player_data["appearance"])
 	player_node.stats.load_data(player_data["stats"])
 	skills = player_data["skills"]
+	
 
 func set_inventory(_inventory):
 	inventory = _inventory
