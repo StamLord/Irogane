@@ -27,6 +27,7 @@ func _ready():
 	pickup_item("onigiri")
 	pickup_item("shuriken")
 	pickup_item("godot cube")
+	pickup_item("medicine")
 	
 
 func _process(_delta):

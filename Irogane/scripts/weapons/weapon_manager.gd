@@ -10,10 +10,13 @@ class_name WeaponManager
 			print("Got quick_slots null from player entity! This shouldn't happen!")
 		return quick_slots
 	
+@onready var stats = %stats
 
 @onready var melee = $melee
 @onready var sword = $sword
 @onready var shuriken = $shuriken
+@onready var food = $food
+
 @export var staff : Node3D
 @export var kanabo : Node3D
 @export var bow : Node3D
@@ -22,6 +25,12 @@ class_name WeaponManager
 
 var index = 0
 @onready var current_template = null
+
+@onready var template_dict = {
+	"SWORD" : sword,
+	"THROWABLE" : shuriken,
+	"FOOD" : food,
+	}
 
 func _ready():
 	PlayerEntity.slot_changed.connect(on_slot_changed)
@@ -47,16 +56,29 @@ func switch_to(new_index):
 	elif new_index > 9:
 		new_index -= 10
 	
-	index = new_index
-	
-	var item = quick_slots.get_item_in_slot(index)
-	
+	# Fallback to melee if item is null or has no id
+	var item = quick_slots.get_item_in_slot(new_index)
 	if item == null or item.get_meta("id") == "":
 		activate_template(melee)
-	elif item.get_meta("id")  == "katana":
-		activate_template(sword)
-	elif item.get_meta("id") == "shuriken":
-		activate_template(shuriken)
+		return
+	
+	# Fallback if item doesn't exist or has no type
+	var item_data = ItemDB.get_item(item.get_meta("id"))
+	if item_data == null or not item_data.has("type"):
+		activate_template(melee)
+		return
+	
+	# If item is MEDICINE, activate it without switching to it
+	if item_data.type == "MEDICINE":
+		var used = stats.use_medicine(item_data)
+		if used:
+			quick_slots.remove_item_at_index(new_index)
+		return
+	
+	# Activate corresponding template
+	activate_template(template_dict[item_data.type])
+	
+	index = new_index
 	
 
 func activate_template(template):
