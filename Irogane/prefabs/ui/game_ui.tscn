@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=23 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -13,10 +13,34 @@
 [ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
 [ext_resource type="PackedScene" uid="uid://c8gfwufu2qdh8" path="res://prefabs/ui/system_menu.tscn" id="12_dwafj"]
 [ext_resource type="Script" path="res://prefabs/ui/quests_window.gd" id="14_amsqm"]
+[ext_resource type="Script" path="res://scripts/vfx/screen_vfx.gd" id="15_l8i5o"]
+[ext_resource type="Shader" uid="uid://bcfjtc6qqrdw4" path="res://prefabs/vfx/vignette_shader.tres" id="16_ikay5"]
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
+[ext_resource type="Shader" uid="uid://bx4wlincejp4h" path="res://prefabs/ui/hurt_vfx.tres" id="17_lk0xl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
 font_size = 24
+
+[sub_resource type="Curve" id="Curve_3ssjj"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 26.1538, 0, 0, Vector2(0.219048, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ugfdm"]
+max_value = 0.1
+_data = [Vector2(0, 0), 0.0, 2.35385, 0, 0, Vector2(0.128571, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dha70"]
+shader = ExtResource("16_ikay5")
+shader_parameter/FloatParameter = 0.01
+shader_parameter/color = Color(0.380392, 1, 0, 1)
+shader_parameter/center = -0.25
+shader_parameter/strength = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dkd7g"]
+shader = ExtResource("17_lk0xl")
+shader_parameter/distortion_amount = 0.0
 
 [node name="game_ui" type="Control"]
 texture_filter = 1
@@ -339,5 +363,34 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
+
+[node name="screen_vfx" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_l8i5o")
+medicine_curve = SubResource("Curve_3ssjj")
+hurt_curve = SubResource("Curve_ugfdm")
+
+[node name="medicine_vfx" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dha70")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hurt_vfx" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dkd7g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]

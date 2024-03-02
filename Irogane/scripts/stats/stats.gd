@@ -25,6 +25,9 @@ var in_battle = false
 signal started_battle()
 signal ended_battle()
 
+var last_medicine = null
+signal medicine_used(medicine)
+
 func _ready():
 	if get_owner().name == "player":
 		add_debug_commands()
@@ -147,6 +150,17 @@ func start_battle():
 
 func exit_battle():
 	ended_battle.emit()
+	
+
+func use_medicine(medicine):
+	if medicine.has("hp_restore"):
+		health.replenish(medicine.hp_restore)
+	if medicine.has("st_restore"):
+		stamina.replenish(medicine.st_restore)
+	
+	last_medicine = Time.get_ticks_msec()
+	medicine_used.emit(medicine)
+	return true
 	
 
 func save_data():

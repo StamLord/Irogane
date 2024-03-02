@@ -14,7 +14,19 @@ const ITEMS = {
 	"onigiri" : {
 		"icon" : ICON_PATH + "onigiri.png",
 		"slot" : "CONSUMABLE",
-		"type" : "CONSUMABLE",
+		"type" : "FOOD",
+		"pickup" : preload(PICKUP_PATH + "pickup.tscn")
+	},
+	"medicine" : {
+		"icon" : ICON_PATH + "onigiri.png",
+		"slot" : "CONSUMABLE",
+		"type" : "MEDICINE",
+		"hp_restore" : 10,
+		"php_restore" : 20,
+		"st_restore" : 0,
+		"pst_restore" : 0,
+		"inflict" : [],
+		"cure" : [],
 		"pickup" : preload(PICKUP_PATH + "pickup.tscn")
 	},
 	"shuriken" : {
@@ -51,3 +63,4 @@ static func get_item(id):
 
 static func get_item_keys():
 	return ITEMS.keys()
+	

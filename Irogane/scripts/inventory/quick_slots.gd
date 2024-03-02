@@ -74,6 +74,14 @@ func insert_item_in_slot(item, slot):
 	return true
 	
 
+func remove_item_at_index(index : int):
+	var slot = slots[index]
+	items[slot].queue_free()
+	items[slot] = null
+	
+	slot_changed.emit(index)
+	
+
 func grab_item(pos):
 	var item = get_item_under_pos(pos)
 	if item == null:
