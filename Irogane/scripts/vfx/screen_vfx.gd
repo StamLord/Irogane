@@ -2,7 +2,7 @@ extends Control
 
 @onready var medicine_texture = $medicine_vfx
 @export var medicine_curve : Curve
-var medicine_duration = 1.5
+var medicine_duration = 1.0
 var medicine_start = null
 
 @onready var hurt_texture = $hurt_vfx

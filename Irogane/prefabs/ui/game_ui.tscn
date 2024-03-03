@@ -22,8 +22,8 @@
 font_size = 24
 
 [sub_resource type="Curve" id="Curve_3ssjj"]
-max_value = 2.0
-_data = [Vector2(0, 0), 0.0, 26.1538, 0, 0, Vector2(0.219048, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+max_value = 4.0
+_data = [Vector2(0, 0), 0.0, 26.1538, 0, 0, Vector2(0.245763, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_ugfdm"]
@@ -35,7 +35,7 @@ point_count = 3
 shader = ExtResource("16_ikay5")
 shader_parameter/FloatParameter = 0.01
 shader_parameter/color = Color(0.380392, 1, 0, 1)
-shader_parameter/center = -0.25
+shader_parameter/center = 0.0
 shader_parameter/strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dkd7g"]
@@ -371,6 +371,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("15_l8i5o")
 medicine_curve = SubResource("Curve_3ssjj")
 hurt_curve = SubResource("Curve_ugfdm")
