@@ -19,7 +19,7 @@ func _ready():
 	restart()
 	hitbox.set_active(true)
 	hitbox.on_collision.connect(hit)
-	hitbox.on_guard.connect(hit_guarded)
+	hitbox.on_block.connect(hit_guarded)
 	
 
 func hit(area, _hitbox):
@@ -31,7 +31,7 @@ func hit(area, _hitbox):
 	
 
 func hit_guarded(area : Guardbox, _hitbox):
-	if area.type == Guardbox.guard_type.PERFECT:
+	if area.is_perfect:
 		reflect_trajectory(global_basis.z)
 	else:
 		reflect_trajectory(area.global_basis.z)

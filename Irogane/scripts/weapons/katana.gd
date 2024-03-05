@@ -135,9 +135,9 @@ var prev_animation = null
 
 func _ready():
 	hitbox.on_collision.connect(hit)
-	hitbox.on_guard.connect(hit_guarded)
+	hitbox.on_block.connect(hit_guarded)
 	upward_hitbox.on_collision.connect(hit)
-	upward_hitbox.on_guard.connect(hit_guarded)
+	upward_hitbox.on_block.connect(hit_guarded)
 	
 	guard_hitbox.on_guard.connect(guarded)
 	guard_hitbox.on_perfect_guard.connect(perfect_guarded)
@@ -340,7 +340,7 @@ func hit(area, hitbox):
 	
 
 func hit_guarded(area : Guardbox, hitbox):
-	if area.type == Guardbox.guard_type.PERFECT:
+	if area.is_perfect:
 		CameraShaker.shake(0.5, 0.2)
 	else:
 		CameraShaker.shake(0.25, 0.2)

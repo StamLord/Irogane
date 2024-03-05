@@ -14,7 +14,7 @@ static var debug = false
 var collisions = []
 
 signal on_collision(area, hitbox)
-signal on_guard(area : Guardbox, hitbox)
+signal on_block(area : Guardbox, hitbox)
 
 func set_active(active):
 	monitoring = active
@@ -39,7 +39,7 @@ func collision_check():
 	
 	for col in colliders:
 		if col is Guardbox:
-			on_guard.emit(col, self)
+			on_block.emit(col, self)
 			set_active(false)
 			#print(name + ": guarded by " + col.name)
 			return
