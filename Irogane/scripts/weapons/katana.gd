@@ -350,16 +350,16 @@ func hit_guarded(area : Guardbox, hitbox):
 		attack_info = uppward_attack_info
 	area.guard(attack_info, hitbox)
 	
-	guard_vfx.restart()
+	play_guard_vfx(hitbox.global_position)
 	anim_state_machine.start("idle")
 	
 
 func guarded(attack_info, hitbox):
-	play_guard_vfx(lerp(hitbox.global_position, guard_hitbox.global_position, 0.5))
+	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
 	
 
 func perfect_guarded(attack_info, hitbox):
-	var pos = lerp(hitbox.global_position, guard_hitbox.global_position, 0.5)
+	var pos = hitbox.global_position + Vector3.UP * 0.1
 	play_guard_vfx(pos)
 	play_perfect_guard_vfx(pos)
 	
