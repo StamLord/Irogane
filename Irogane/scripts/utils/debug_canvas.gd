@@ -93,6 +93,12 @@ func debug_point(_position, color = Color.GREEN, radius = 7, duration = 0.1):
 	points.erase(point)
 	
 
+func debug_basis(_position, _basis, duration = 0.1):
+	DebugCanvas.debug_line(_position, _position + _basis.x, Color.RED, 3, duration)
+	DebugCanvas.debug_line(_position, _position + _basis.y, Color.GREEN_YELLOW, 3, duration)
+	DebugCanvas.debug_line(_position, _position + _basis.z, Color.BLUE, 3, duration)
+	
+
 func debug_text(string, _position, color = Color.RED, duration = 0.1):
 	var text = {
 		"string" : string,
