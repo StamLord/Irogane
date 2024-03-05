@@ -41,7 +41,7 @@ func collision_check():
 		if col is Guardbox:
 			on_guard.emit(col, self)
 			set_active(false)
-			print(name + ": guarded by " + col.name)
+			#print(name + ": guarded by " + col.name)
 			return
 		
 		if not collide_with_self and col.owner == self.owner:
@@ -54,7 +54,7 @@ func collision_check():
 		on_collision.emit(col, self)
 		
 		# Debug
-		print(name + ": collision with " + col.name)
+		#print(name + ": collision with " + col.name)
 	
 
 func collision(area):

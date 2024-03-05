@@ -101,6 +101,7 @@ extends Node3D
 # Hitboxes
 @onready var hitbox = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/hitbox
 @onready var upward_hitbox = $katana_pov_hands/upward_hitbox
+@onready var guard_hitbox = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_hitbox
 
 # VFX
 @onready var charging_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/charging
@@ -110,6 +111,7 @@ extends Node3D
 @onready var blade_alignment = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment
 @onready var stance_label = $stance_label
 @onready var trail_3d = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d
+@onready var guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_vfx
 
 var combo = []
 var last_combo_addition = 0
@@ -120,10 +122,11 @@ var last_jump = -1
 var is_secondary_pressed = false
 var secondary_press_start = -1
 
-var is_defending = false
+var is_guarding = false
+var guard_start = null
+var perfect_guard_window = 0.5
 
 var current_skill = "rain stance"
-
 var katana_skills : Array[String] = ["Focused", "Projectile"]
 var katana_stances : Array[String] = ["Rain Stance", "River Stance", "Lightning Stance"]
 
@@ -131,9 +134,12 @@ var prev_animation = null
 
 func _ready():
 	hitbox.on_collision.connect(hit)
-	hitbox.on_guard.connect(guarded)
+	hitbox.on_guard.connect(hit_guarded)
 	upward_hitbox.on_collision.connect(hit)
-	upward_hitbox.on_guard.connect(guarded)
+	upward_hitbox.on_guard.connect(hit_guarded)
+	
+	guard_hitbox.on_guard.connect(guarded)
+	guard_hitbox.on_perfect_guard.connect(perfect_guarded)
 	
 	ring_menu.item_selected.connect(skill_selected)
 	
@@ -179,12 +185,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		last_jump = Time.get_ticks_msec()
 	
-	if Input.is_action_just_released("defend") and is_defending:
-		is_defending = false
+	if Input.is_action_just_released("defend") and is_guarding:
+		stop_guard()
 		anim_state_machine.start("idle")
 	
 	if Input.is_action_just_pressed("defend"):
-		is_defending = true
+		start_guard()
 		anim_state_machine.start("defend")
 	# Primary attack is on press
 	elif Input.is_action_just_pressed("attack_primary"):
@@ -332,12 +338,35 @@ func hit(area, hitbox):
 	#audio.play(hit_sounds.pick_random(), hitbox.global_position)
 	
 
-func guarded(area : Guardbox, hitbox):
-	anim_state_machine.start("idle")
+func hit_guarded(area : Guardbox, hitbox):
 	if area.type == Guardbox.guard_type.PERFECT:
 		CameraShaker.shake(0.5, 0.2)
 	else:
 		CameraShaker.shake(0.25, 0.2)
+	
+	var attack_info = light_attack_info
+	if hitbox == upward_hitbox:
+		attack_info = uppward_attack_info
+	area.guard(attack_info, hitbox)
+	
+	guard_vfx.restart()
+	anim_state_machine.start("idle")
+	
+
+func guarded(attack_info, hitbox):
+	play_guard_vfx(lerp(hitbox.global_position, guard_hitbox.global_position, 0.5))
+	
+
+func perfect_guarded(attack_info, hitbox):
+	play_guard_vfx(lerp(hitbox.global_position, guard_hitbox.global_position, 0.5))
+	
+
+func play_guard_vfx(_position):
+	CameraShaker.shake(0.25, 0.2)
+	var prev_pos = guard_vfx.global_position
+	guard_vfx.global_position = _position
+	guard_vfx.restart()
+	guard_vfx.global_position = prev_pos
 	
 
 func animate_movement(local_vector : Vector3, duration : float):
@@ -471,4 +500,16 @@ func context_changed(old_context, new_context):
 	if old_context == InputContextType.RING_MENU and new_context != old_context:
 		if ring_menu.visible == true:
 			ring_menu.close_no_signal()
+	
+
+func start_guard():
+	is_guarding = true
+	guard_start = Time.get_ticks_msec()
+	guard_hitbox.set_active(true)
+	guard_hitbox.set_perfect(perfect_guard_window)
+	
+
+func stop_guard():
+	is_guarding = false
+	guard_hitbox.set_active(false)
 	

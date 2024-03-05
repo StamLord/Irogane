@@ -1,4 +1,5 @@
 extends Node3D
+class_name Throwable
 
 # Prefab
 @onready var projectile_scene = load("res://prefabs/weapons/projectiles/shuriken.tscn")
