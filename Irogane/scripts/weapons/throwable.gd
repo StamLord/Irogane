@@ -81,27 +81,68 @@ func _process(delta):
 				shurikens_map["multiplying_shuriken"]
 				var shuriken = shurikens_map["multiplying_shuriken"].pop_back()
 				if shuriken:
-					print(" i am active ", shuriken)
 					multiply_shuriken(shuriken)
-			
+	
+
+func generate_points_on_sphere(num_points, radius):
+	var points = []
+	
+	for i in range(num_points):
+		var new_point = random_point_on_sphere(radius)
+		points.append(new_point)
+	
+	return points
+	
+
+func random_point_on_sphere(radius):
+	var phi = randf_range(0, 2 * PI)
+	var costheta = randf_range(-1, 1)
+	var theta = acos(costheta)
+	
+	var x = radius * sin(theta) * cos(phi)
+	var y = radius * sin(theta) * sin(phi)
+	var z = radius * cos(theta)
+	
+	return Vector3(x, y, z)
 	
 
 func multiply_shuriken(shuriken):
 	var initial_pos = shuriken.global_position
 	shuriken.queue_free()
-	var position_offsets = []
-	var rotation_offsets = []
-	var count = 10
-	var part = 360 / count
-	DebugCanvas.debug_point(initial_pos)
-	for i in range(count):
-		var degrees = part * i
-		var rotation_offset = Vector3(0, degrees, 90)
-		
-		#position_offsets.append(position_offset)
-		rotation_offsets.append(rotation_offset)
 	
-	throw_many_static_shuriken_at_pos(initial_pos, rotation_offsets)
+	var points = [
+		Vector3(1.0, 0.0, 0.0),
+		Vector3(0.766, 0.642, 0.0),
+		Vector3(0.0, 1.0, 0.0),
+		Vector3(-0.766, 0.642, 0.0),
+		Vector3(-1.0, 0.0, 0.0),
+		Vector3(-0.766, -0.642, 0.0),
+		Vector3(0.0, -1.0, 0.0),
+		Vector3(0.766, -0.642, 0.0),
+		Vector3(0.766, 0.0, 0.642),
+		Vector3(0.5, 0.866, 0.0),
+		Vector3(0.0, 0.766, 0.642),
+		Vector3(-0.5, 0.866, 0.0),
+		Vector3(-0.766, 0.0, 0.642),
+		Vector3(-0.5, -0.866, 0.0),
+		Vector3(0.0, -0.766, 0.642),
+		Vector3(0.5, -0.866, 0.0),
+		Vector3(0.0, 0.0, 1.0),
+		Vector3(0.0, 0.0, -1.0),
+		Vector3(0.0, 0.766, -0.642),
+		Vector3(0.0, -0.766, -0.642),
+	]
+	
+	for point in points:
+		DebugCanvas.debug_point(initial_pos + point, Color.GREEN, 7, 10)
+		var projectile = projectile_scene.instantiate()
+		get_tree().get_root().add_child(projectile)
+
+		projectile.global_position = initial_pos
+		projectile.look_at(initial_pos + point)
+
+		projectile.item_id = ITEM_ID
+		projectile.restart()
 	
 
 func throw_many_shuriken(pos_offset_array: Array, rotation_offset_array: Array):
