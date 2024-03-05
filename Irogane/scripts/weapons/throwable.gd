@@ -56,7 +56,7 @@ func _process(delta):
 		# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("throw")
-		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken"]
+		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken", "body_switch"]
 		if ring_items:
 			ring_menu.initialize_items(ring_items)
 			ring_menu.open()
@@ -75,36 +75,28 @@ func _process(delta):
 			elif current_skill == "octo_throw":
 				octo_throw()
 			elif current_skill == "multiplying_shuriken":
-				throw_multiplying()
+				throw_special_shuriken("multiplying_shuriken")
+			elif current_skill == "body_switch":
+				throw_special_shuriken("body_switch")
 	elif Input.is_action_just_pressed("activate"):
 		if current_skill:
-			if current_skill == "multiplying_shuriken" and "multiplying_shuriken" in shurikens_map:
-				shurikens_map["multiplying_shuriken"]
-				var shuriken = shurikens_map["multiplying_shuriken"].pop_back()
-				if shuriken:
-					multiply_shuriken(shuriken)
+			activate_special_shuriken(current_skill)
 	
 
-func generate_points_on_sphere(num_points, radius):
-	var points = []
-	
-	for i in range(num_points):
-		var new_point = random_point_on_sphere(radius)
-		points.append(new_point)
-	
-	return points
+func activate_special_shuriken(type: String):
+	if type in shurikens_map:
+		var shuriken = shurikens_map[type].pop_back()
+		if shuriken:
+			if type == "multiplying_shuriken":
+				multiply_shuriken(shuriken)
+			elif type == "body_switch":
+				body_switch(shuriken)
 	
 
-func random_point_on_sphere(radius):
-	var phi = randf_range(0, 2 * PI)
-	var costheta = randf_range(-1, 1)
-	var theta = acos(costheta)
-	
-	var x = radius * sin(theta) * cos(phi)
-	var y = radius * sin(theta) * sin(phi)
-	var z = radius * cos(theta)
-	
-	return Vector3(x, y, z)
+func body_switch(shuriken):
+	var initial_pos = shuriken.global_position
+	shuriken.queue_free()
+	PlayerEntity.player_node.global_position = initial_pos
 	
 
 func multiply_shuriken(shuriken):
@@ -228,13 +220,12 @@ func octo_throw():
 
 func skill_selected(skill_name):
 	current_skill = skill_name
-	print(skill_name)
 	
 
-func throw_multiplying():
+func throw_special_shuriken(type: String):
 	var position_offset = INITIAL_POS_OFFSET
 	var rotation_offset = Vector3.ZERO
-	fire_shuriken(position_offset, rotation_offset, "multiplying_shuriken")
+	fire_shuriken(position_offset, rotation_offset, type)
 	
 
 func context_changed(old_context, new_context):
