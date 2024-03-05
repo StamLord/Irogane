@@ -112,6 +112,7 @@ extends Node3D
 @onready var stance_label = $stance_label
 @onready var trail_3d = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d
 @onready var guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_vfx
+@onready var perfect_guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/perfect_guard_vfx
 
 var combo = []
 var last_combo_addition = 0
@@ -358,15 +359,21 @@ func guarded(attack_info, hitbox):
 	
 
 func perfect_guarded(attack_info, hitbox):
-	play_guard_vfx(lerp(hitbox.global_position, guard_hitbox.global_position, 0.5))
+	var pos = lerp(hitbox.global_position, guard_hitbox.global_position, 0.5)
+	play_guard_vfx(pos)
+	play_perfect_guard_vfx(pos)
 	
 
 func play_guard_vfx(_position):
 	CameraShaker.shake(0.25, 0.2)
-	var prev_pos = guard_vfx.global_position
 	guard_vfx.global_position = _position
 	guard_vfx.restart()
-	guard_vfx.global_position = prev_pos
+	
+
+func play_perfect_guard_vfx(_position):
+	CameraShaker.shake(0.25, 0.2)
+	perfect_guard_vfx.global_position = _position
+	perfect_guard_vfx.restart()
 	
 
 func animate_movement(local_vector : Vector3, duration : float):

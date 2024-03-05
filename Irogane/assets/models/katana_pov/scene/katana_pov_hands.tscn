@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://kc3pcjl0elxi"]
+[gd_scene load_steps=109 format=3 uid="uid://kc3pcjl0elxi"]
 
 [ext_resource type="PackedScene" uid="uid://ba8hebcklle12" path="res://assets/models/katana_pov/katana_pov_hands.glb" id="1_3485n"]
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="2_gy3ob"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://cn7vmt8l2bpd7" path="res://assets/shaders/blade_trail.res" id="4_b60lb"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="4_sjv4e"]
 [ext_resource type="Script" path="res://scripts/hitbox/guardbox.gd" id="6_0w8fa"]
+[ext_resource type="Texture2D" uid="uid://jbv1ax4fsyx6" path="res://assets/textures/vfx/sparkle.png" id="7_5q3ao"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_y3y11"]
 size = Vector3(0.025, 0.05, 1)
@@ -123,10 +124,53 @@ transparency = 1
 albedo_color = Color(0.482353, 0.964706, 0, 0.384314)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jto0r"]
-size = Vector3(1, 0.25, 0.1)
+size = Vector3(1, 0.5, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_myjyw"]
-size = Vector3(1, 0.25, 0.1)
+size = Vector3(1, 0.5, 0.1)
+
+[sub_resource type="Curve" id="Curve_hvosf"]
+_data = [Vector2(0, 1), 0.0, -2.74725, 0, 0, Vector2(1, 0), -0.0484037, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_686m1"]
+curve = SubResource("Curve_hvosf")
+
+[sub_resource type="Curve" id="Curve_uhdfk"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ge510"]
+curve = SubResource("Curve_uhdfk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_48hrk"]
+angle_min = 45.0
+angle_max = 45.0
+angular_velocity_min = 180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ge510")
+alpha_curve = SubResource("CurveTexture_686m1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo1tg"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_5q3ao")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.0
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4rkok"]
+material = SubResource("StandardMaterial3D_wo1tg")
 
 [sub_resource type="Animation" id="Animation_qgcjg"]
 resource_name = "katana_counter"
@@ -12361,11 +12405,11 @@ size = Vector3(0.8, 1.5, 0.5)
 [node name="katana_pov_hands" instance=ExtResource("1_3485n")]
 
 [node name="Skeleton3D" parent="first_person_rig" index="0"]
-bones/1/rotation = Quaternion(-0.795328, 0.190407, -0.420375, -0.393044)
+bones/1/rotation = Quaternion(-0.793902, 0.187485, -0.422158, -0.395413)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(3.6123e-07, 1.19158e-07, 0.777031, -0.629462)
+bones/2/rotation = Quaternion(3.90267e-07, 1.23658e-07, 0.778996, -0.627029)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(0.311506, -0.90561, 0.0604359, -0.281392)
+bones/3/rotation = Quaternion(0.316804, -0.900631, 0.0489453, -0.293434)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.477939, -0.317071, 0.406253, 0.711336)
 bones/4/scale = Vector3(1, 1, 1)
@@ -12383,10 +12427,10 @@ bones/15/scale = Vector3(1, 1, 1)
 bones/16/rotation = Quaternion(-0.590271, -0.00398706, -0.00708661, 0.807164)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(0.918613, -0.106846, -0.205688, 0.320043)
+bones/18/rotation = Quaternion(0.918089, -0.108538, -0.205532, 0.321074)
 bones/18/scale = Vector3(1, 1, 1)
-bones/19/rotation = Quaternion(-2.52393e-07, 1.24163e-07, 0.578936, 0.815373)
-bones/20/rotation = Quaternion(-0.439695, -0.759957, 0.109775, 0.465922)
+bones/19/rotation = Quaternion(-2.58533e-07, 1.32174e-07, 0.580021, 0.814602)
+bones/20/rotation = Quaternion(-0.438354, -0.765787, 0.114443, 0.456419)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/rotation = Quaternion(-0.27445, -0.520935, -0.472578, 0.655724)
@@ -12409,17 +12453,17 @@ bones/32/rotation = Quaternion(0.46444, 0.722739, 0.295042, -0.418203)
 bones/33/rotation = Quaternion(-0.68227, 0.166852, 0.173608, 0.69031)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/scale = Vector3(1, 1, 1)
-bones/35/position = Vector3(0.172544, 1.38899, -0.376571)
-bones/35/rotation = Quaternion(-0.696404, 0.0899726, 0.0105185, 0.71191)
+bones/35/position = Vector3(0.171323, 1.39324, -0.376571)
+bones/35/rotation = Quaternion(-0.69762, 0.0800047, 0.0206979, 0.711687)
 bones/36/position = Vector3(0.512855, 1.94647, -0.487335)
 bones/36/rotation = Quaternion(0.5, 0.5, 0.5, 0.5)
-bones/37/position = Vector3(0.113844, 1.30605, -0.368157)
-bones/37/rotation = Quaternion(-0.744515, 0.00703669, -0.0984972, 0.660262)
+bones/37/position = Vector3(0.115073, 1.30875, -0.368157)
+bones/37/rotation = Quaternion(-0.74454, -0.00361077, -0.0890452, 0.661603)
 bones/38/position = Vector3(-0.512855, 1.94647, -0.487335)
 bones/38/rotation = Quaternion(0.5, -0.5, -0.5, 0.5)
 
 [node name="hand_r_attachment" type="BoneAttachment3D" parent="first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.983572, -0.140355, 0.113515, -0.110381, 0.0299394, 0.993438, -0.142833, -0.989648, 0.013955, 0.172528, 1.38899, -0.376592)
+transform = Transform3D(0.98634, -0.141089, 0.0850102, -0.0821738, 0.0258202, 0.996284, -0.142759, -0.98966, 0.0138738, 0.171319, 1.39322, -0.376605)
 bone_name = "hand_r"
 bone_idx = 3
 
@@ -12503,6 +12547,16 @@ skeleton = NodePath("../shape")
 
 [node name="shape" type="CollisionShape3D" parent="first_person_rig/Skeleton3D/hand_r_attachment/guard_hitbox" index="1"]
 shape = SubResource("BoxShape3D_myjyw")
+
+[node name="perfect_guard_vfx" type="GPUParticles3D" parent="first_person_rig/Skeleton3D/hand_r_attachment" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0.05, 0.5)
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_48hrk")
+draw_pass_1 = SubResource("QuadMesh_4rkok")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 libraries = {
