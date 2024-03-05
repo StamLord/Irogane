@@ -43,7 +43,8 @@ func collision_check():
 			set_active(false)
 			#print(name + ": guarded by " + col.name)
 			return
-		
+	
+	for col in colliders:
 		if not collide_with_self and col.owner == self.owner:
 			continue
 		
@@ -52,25 +53,6 @@ func collision_check():
 		
 		collisions.append(col)
 		on_collision.emit(col, self)
-		
-		# Debug
-		#print(name + ": collision with " + col.name)
-	
-
-func collision(area):
-	# Don't collide with other children of same owner (scene root)
-	if not collide_with_self and area.owner == self.owner:
-		return
-	
-	# Don't collide more than once with a collider (Resets when hitbox is deactivated)
-	if avoid_multiple_collisions and collisions.has(area):
-		return
-	
-	collisions.append(area)
-	on_collision.emit(area, self)
-	
-	# Debug
-	print(name + ": collision with " + area.name)
 	
 
 func clear_collisions():
