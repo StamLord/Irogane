@@ -53,7 +53,7 @@ func _process(delta):
 	if not InputContextManager.is_current_context(InputContextType.GAME):
 		return
 	
-		# Open ring menu
+	# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("throw")
 		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken", "body_switch"]
@@ -64,20 +64,17 @@ func _process(delta):
 		return
 	
 	if Input.is_action_just_pressed("attack_primary"):
-		var position_offset = INITIAL_POS_OFFSET
-		var rotation_offset = Vector3.ZERO
-		fire_shuriken(position_offset, rotation_offset)
+		fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO)
 	elif Input.is_action_just_pressed("attack_secondary"):
 		if current_skill:
-			print("activating skill ", current_skill)
 			if current_skill == "triple_throw":
 				triple_throw()
 			elif current_skill == "octo_throw":
 				octo_throw()
 			elif current_skill == "multiplying_shuriken":
-				throw_special_shuriken("multiplying_shuriken")
+				fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "multiplying_shuriken")
 			elif current_skill == "body_switch":
-				throw_special_shuriken("body_switch")
+				fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "body_switch")
 	elif Input.is_action_just_pressed("activate"):
 		if current_skill:
 			activate_special_shuriken(current_skill)
@@ -220,12 +217,6 @@ func octo_throw():
 
 func skill_selected(skill_name):
 	current_skill = skill_name
-	
-
-func throw_special_shuriken(type: String):
-	var position_offset = INITIAL_POS_OFFSET
-	var rotation_offset = Vector3.ZERO
-	fire_shuriken(position_offset, rotation_offset, type)
 	
 
 func context_changed(old_context, new_context):
