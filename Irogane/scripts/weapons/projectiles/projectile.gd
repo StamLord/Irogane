@@ -113,19 +113,19 @@ func collision_check(delta):
 func reflect_trajectory(normal):
 	# Reposition under root
 	var old_pos = global_position
+	var old_rot = global_rotation
 	var root = get_tree().get_root()
 	get_parent().remove_child(self)
 	root.add_child(self)
 	global_position = old_pos
+	global_rotation = old_rot
 	
 	# Orient to new reflected forward
 	var new_forward = global_basis.z.reflect(normal)
 	var new_basis = Basis()
-	new_basis.z = new_forward
+	new_basis.z = -new_forward
 	new_basis.x = Vector3.UP.cross(new_forward).normalized()
 	new_basis.y = new_basis.x.cross(new_basis.z).normalized()
-	
-	#DebugCanvas.debug_basis(global_position, new_basis, 10)
 	
 	global_basis = new_basis
 	restart()
