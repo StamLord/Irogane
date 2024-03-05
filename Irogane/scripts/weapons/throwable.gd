@@ -230,7 +230,7 @@ func throw_special_shuriken(type: String):
 
 func context_changed(old_context, new_context):
 	# In case context changed, we cancel the ring menu without activating a skill
-	if old_context == InputContextType.RING_MENU and new_context != old_context:
+	if InputContextManager.is_ring_menu_context() and new_context != old_context:
 		if ring_menu.visible == true:
 			ring_menu.close_no_signal()
 	
