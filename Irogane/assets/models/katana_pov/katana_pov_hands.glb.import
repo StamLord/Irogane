@@ -31,7 +31,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "animations": {
-"katana_idle": {
+"katana_defend": {
 "save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "",
@@ -1830,11 +1830,11 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 },
-"katana_uppward": {
-"save_to_file/enabled": true,
+"katana_idle": {
+"save_to_file/enabled": false,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://assets/models/katana_pov/animations/katana_upward.res",
-"settings/loop_mode": 0,
+"save_to_file/path": "",
+"settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",

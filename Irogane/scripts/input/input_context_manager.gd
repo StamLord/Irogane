@@ -11,3 +11,15 @@ func switch_context(new_context):
 func is_current_context(context):
 	return current_context == context
 	
+
+func is_game_context():
+	return current_context == InputContextType.GAME
+	
+
+func is_ring_menu_context():
+	return current_context == InputContextType.RING_MENU
+	
+
+func is_ui_context():
+	return current_context == InputContextType.UI
+	

@@ -14,6 +14,7 @@ static var debug = false
 var collisions = []
 
 signal on_collision(area, hitbox)
+signal on_block(area : Guardbox, hitbox)
 
 func set_active(active):
 	monitoring = active
@@ -23,30 +24,35 @@ func set_active(active):
 	
 	if mesh:
 		mesh.material_override.albedo_color = active_color if monitoring else inactive_color
-
-func _ready():
-	area_entered.connect(collision)
 	
 
 func _process(delta):
 	if mesh:
 		mesh.visible = debug
 	
+	if monitoring:
+		collision_check()
+	
 
-func collision(area):
-	# Don't collide with other children of same owner (scene root)
-	if not collide_with_self and area.owner == self.owner:
-		return
+func collision_check():
+	var colliders = get_overlapping_areas()
 	
-	# Don't collide more than once with a collider (Resets when hitbox is deactivated)
-	if avoid_multiple_collisions and collisions.has(area):
-		return
+	for col in colliders:
+		if col is Guardbox:
+			on_block.emit(col, self)
+			set_active(false)
+			#print(name + ": guarded by " + col.name)
+			return
 	
-	collisions.append(area)
-	on_collision.emit(area, self)
-	
-	# Debug
-	print(name + ": collision with " + area.name)
+	for col in colliders:
+		if not collide_with_self and col.owner == self.owner:
+			continue
+		
+		if avoid_multiple_collisions and collisions.has(col):
+			continue
+		
+		collisions.append(col)
+		on_collision.emit(col, self)
 	
 
 func clear_collisions():

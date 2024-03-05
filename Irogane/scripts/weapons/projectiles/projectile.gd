@@ -19,6 +19,7 @@ func _ready():
 	restart()
 	hitbox.set_active(true)
 	hitbox.on_collision.connect(hit)
+	hitbox.on_block.connect(hit_guarded)
 	
 
 func hit(area, _hitbox):
@@ -27,6 +28,15 @@ func hit(area, _hitbox):
 		attack_info.force = get_global_transform().basis * attack_info.force
 		
 		area.hit(attack_info)
+	
+
+func hit_guarded(area : Guardbox, _hitbox):
+	if area.is_perfect:
+		reflect_trajectory(global_basis.z)
+	else:
+		reflect_trajectory(area.global_basis.z)
+	
+	area.guard(attack_info, _hitbox)
 	
 
 func restart():
@@ -98,4 +108,25 @@ func collision_check(delta):
 		
 		if trail3d:
 			trail3d.trailEnabled = false
+	
+
+func reflect_trajectory(normal):
+	# Reposition under root
+	var old_pos = global_position
+	var old_rot = global_rotation
+	var root = get_tree().get_root()
+	get_parent().remove_child(self)
+	root.add_child(self)
+	global_position = old_pos
+	global_rotation = old_rot
+	
+	# Orient to new reflected forward
+	var new_forward = global_basis.z.reflect(normal)
+	var new_basis = Basis()
+	new_basis.z = -new_forward
+	new_basis.x = Vector3.UP.cross(new_forward).normalized()
+	new_basis.y = new_basis.x.cross(new_basis.z).normalized()
+	
+	global_basis = new_basis
+	restart()
 	

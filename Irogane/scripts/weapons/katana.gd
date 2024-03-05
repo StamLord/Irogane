@@ -6,28 +6,34 @@ extends Node3D
 
 @export var combo_list = [
 	{
+		"stance" : "rain stance",
 		"state" : "light_1",
 		"combo" : "l",
 	},
 	{
+		"stance" : "rain stance",
 		"state" : "light_2",
 		"combo" : "ll",
 	},
 	{
+		"stance" : "rain stance",
 		"state" : "light_3",
 		"combo" : "lll",
 	},
 	{
+		"stance" : "rain stance",
 		"state" : "heavy_1",
 		"charge_state" : "heavy_1_charging",
 		"combo" : "r",
 	},
 	{
+		"stance" : "rain stance",
 		"state" : "heavy_2",
 		"charge_state" : "heavy_2_charging",
 		"combo" : "llr",
 	},
 	{
+		"stance" : "rain stance",
 		"state" : "heavy_3",
 		"charge_state" : "heavy_3_charging",
 		"combo" : "lllr",
@@ -35,6 +41,7 @@ extends Node3D
 		"movement_duration" : 0.1,
 	},
 	{
+		"stance" : "rain stance",
 		"state" : "upward",
 		"charge_state" : "upward_charging",
 		"combo" : "j+r",
@@ -94,6 +101,7 @@ extends Node3D
 # Hitboxes
 @onready var hitbox = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/hitbox
 @onready var upward_hitbox = $katana_pov_hands/upward_hitbox
+@onready var guard_hitbox = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_hitbox
 
 # VFX
 @onready var charging_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/charging
@@ -102,6 +110,9 @@ extends Node3D
 @onready var decal_prefab = $decal_prefab
 @onready var blade_alignment = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment
 @onready var stance_label = $stance_label
+@onready var trail_3d = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d
+@onready var guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_vfx
+@onready var perfect_guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/perfect_guard_vfx
 
 var combo = []
 var last_combo_addition = 0
@@ -112,16 +123,27 @@ var last_jump = -1
 var is_secondary_pressed = false
 var secondary_press_start = -1
 
-var current_skill = ""
-var in_stance = false
+var is_guarding = false
+var guard_start = null
+var perfect_guard_window = 0.5
 
+var current_skill = "rain stance"
 var katana_skills : Array[String] = ["Focused", "Projectile"]
 var katana_stances : Array[String] = ["Rain Stance", "River Stance", "Lightning Stance"]
 
+var prev_animation = null
+
 func _ready():
 	hitbox.on_collision.connect(hit)
+	hitbox.on_block.connect(hit_guarded)
 	upward_hitbox.on_collision.connect(hit)
+	upward_hitbox.on_block.connect(hit_guarded)
+	
+	guard_hitbox.on_guard.connect(guarded)
+	guard_hitbox.on_perfect_guard.connect(perfect_guarded)
+	
 	ring_menu.item_selected.connect(skill_selected)
+	
 	InputContextManager.context_changed.connect(context_changed)
 	
 
@@ -129,14 +151,15 @@ func _process(delta):
 	if not visible:
 		return
 	
+	animation_change_check()
+	
 	# Close ring menu if open
-	if InputContextManager.is_current_context(InputContextType.RING_MENU):
-		if not Input.is_action_pressed("ring_menu") and ring_menu.visible:
+	if InputContextManager.is_ring_menu_context():
+		if ring_menu.visible and not Input.is_action_pressed("ring_menu"):
 			ring_menu.close()
 			InputContextManager.switch_context(InputContextType.GAME)
 	
-	# Process only if in GAME context
-	if not InputContextManager.is_current_context(InputContextType.GAME):
+	if not InputContextManager.is_game_context():
 		return
 	
 	# Open ring menu
@@ -163,8 +186,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		last_jump = Time.get_ticks_msec()
 	
+	if Input.is_action_just_released("defend") and is_guarding:
+		stop_guard()
+		anim_state_machine.start("idle")
+	
 	if Input.is_action_just_pressed("defend"):
-		anim_state_machine.start("defend_start")
+		start_guard()
+		anim_state_machine.start("defend")
 	# Primary attack is on press
 	elif Input.is_action_just_pressed("attack_primary"):
 		add_to_combo("l")
@@ -180,13 +208,9 @@ func _process(delta):
 	else:
 		if Input.is_action_just_pressed("attack_secondary"):
 			execute_secondary_attack()
-		
 	
 	if not combo.is_empty() and not is_secondary_pressed and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
 		reset_combo()
-	
-	#if in_stance and is_move_input_pressed():
-	#	exit_stance()
 	
 
 func charge_secondary_attack():
@@ -260,11 +284,8 @@ func validate_combo(moveset):
 	for combo in combo_list:
 		# Skip stance based combos if not in relevant state
 		if combo.has("stance"):
-			if not in_stance or combo.stance != current_skill:
+			if combo.stance != current_skill:
 				continue
-		# Skip combos without stance if we're in a stance
-		elif in_stance:
-			continue
 		
 		if combo.combo == joined_moveset:
 			return combo
@@ -318,6 +339,43 @@ func hit(area, hitbox):
 	#audio.play(hit_sounds.pick_random(), hitbox.global_position)
 	
 
+func hit_guarded(area : Guardbox, hitbox):
+	if area.is_perfect:
+		CameraShaker.shake(0.5, 0.2)
+	else:
+		CameraShaker.shake(0.25, 0.2)
+	
+	var attack_info = light_attack_info
+	if hitbox == upward_hitbox:
+		attack_info = uppward_attack_info
+	area.guard(attack_info, hitbox)
+	
+	play_guard_vfx(hitbox.global_position)
+	anim_state_machine.start("idle")
+	
+
+func guarded(attack_info, hitbox):
+	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
+	
+
+func perfect_guarded(attack_info, hitbox):
+	var pos = hitbox.global_position + Vector3.UP * 0.1
+	play_guard_vfx(pos)
+	play_perfect_guard_vfx(pos)
+	
+
+func play_guard_vfx(_position):
+	CameraShaker.shake(0.25, 0.2)
+	guard_vfx.global_position = _position
+	guard_vfx.restart()
+	
+
+func play_perfect_guard_vfx(_position):
+	CameraShaker.shake(0.25, 0.2)
+	perfect_guard_vfx.global_position = _position
+	perfect_guard_vfx.restart()
+	
+
 func animate_movement(local_vector : Vector3, duration : float):
 	duration *= 1000
 	var start_time = Time.get_ticks_msec()
@@ -351,24 +409,39 @@ func animate_movement(local_vector : Vector3, duration : float):
 	owner.global_position = target_pos
 	
 
+func animation_change_check():
+	var current_animation = anim_state_machine.get_current_node()
+	if current_animation != prev_animation:
+		animation_changed(current_animation)
+	prev_animation = current_animation
+	
+
 func animation_changed(new_name):
 	if new_name == "idle":
 		hitbox.set_active(false)
 		upward_hitbox.set_active(false)
+		set_trail_enabled(false)
 	elif new_name in ["light_1", "light_2", "light_3", "heavy_1", "heavy_3", 
 	"iaido_light_1", "iaido_light_2", "iaido_light_3", "iaido_light_4",]:
 		hitbox.clear_collisions() # Needed in case of attack to attack transition
 		hitbox.set_active(true)
 		upward_hitbox.set_active(false)
+		set_trail_enabled(true)
 	elif new_name in ["heavy_2"]:
 		upward_hitbox.clear_collisions() # Needed in case of attack to attack transition
 		upward_hitbox.set_active(true)
 		hitbox.set_active(false)
+		set_trail_enabled(true)
 	
 
 func turn_on_charging_vfx(particles):
 	for vfx in [charging_vfx, projectile_charging_vfx]:
 		vfx.emitting = vfx == particles
+	
+
+func set_trail_enabled(state):
+	if trail_3d:
+		trail_3d.trailEnabled = state
 	
 
 func create_decal(_position, _rotation, parent):
@@ -392,8 +465,6 @@ func skill_selected(skill_name):
 	
 
 func enter_stance(stance_name):
-	in_stance = true
-	
 	# Combo should not carry between stances
 	reset_combo()
 	
@@ -404,8 +475,6 @@ func enter_stance(stance_name):
 	
 
 func exit_stance():
-	in_stance = false
-	
 	# Animate stance ui
 	stance_label.show_text("Stance Broken")
 	
@@ -438,4 +507,16 @@ func context_changed(old_context, new_context):
 	if old_context == InputContextType.RING_MENU and new_context != old_context:
 		if ring_menu.visible == true:
 			ring_menu.close_no_signal()
+	
+
+func start_guard():
+	is_guarding = true
+	guard_start = Time.get_ticks_msec()
+	guard_hitbox.set_active(true)
+	guard_hitbox.set_perfect(perfect_guard_window)
+	
+
+func stop_guard():
+	is_guarding = false
+	guard_hitbox.set_active(false)
 	
