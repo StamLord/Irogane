@@ -8,8 +8,10 @@ class_name Stats
 
 @export var max_level = 20
 
-@onready var health = $health
-@onready var stamina = $stamina
+@onready var health : Depletable = $health
+@onready var stamina : Depletable = $stamina
+
+@export var hurtboxes : Array[Hurtbox]
 
 @export var attr_points = 10
 
@@ -17,6 +19,11 @@ class_name Stats
 @onready var agility = $agility
 @onready var dexterity = $dexterity
 @onready var wisdom = $wisdom
+
+var statuses = {} # status_name : { start_time : timestamp, last_update: timestamp }
+
+signal on_status_added(status_name)
+signal on_status_removed(status_name)
 
 var boons = []
 var flaws = []
@@ -31,6 +38,78 @@ signal medicine_used(medicine)
 func _ready():
 	if get_owner().name == "player":
 		add_debug_commands()
+	
+	for h in hurtboxes:
+		h.on_hit.connect(hit)
+	
+
+func _process(delta):
+	update_statuses()
+	
+
+func hit(attack_info : AttackInfo):
+	health.deplete(attack_info.soft_damage)
+	add_statuses(attack_info.statuses)
+	
+
+func add_statuses(new_statuses):
+	for s in new_statuses:
+		add_status(s)
+	
+
+func add_status(new_status_name) -> bool:
+	if validate_status(new_status_name):
+		var new_status = StatusDb.get_status(new_status_name)
+		if new_status == null:
+			return false
+		
+		for status_name in new_status.cures:
+			remove_status(status_name)
+		
+		if statuses.has(new_status_name):
+			statuses[new_status_name]["start_time"] = Time.get_ticks_msec()
+		else:
+			statuses[new_status_name] = {
+				"start_time" : Time.get_ticks_msec(),
+				"last_update" : Time.get_ticks_msec() - 1000 # We want the status update to trigger immediately
+				}
+		on_status_added.emit(new_status_name)
+		return true
+	
+	return false
+	
+
+func validate_status(new_status):
+	for s in statuses:
+		var status : Status = StatusDb.get_status(s)
+		if status and new_status in status.prevents:
+			return false
+	return true
+	
+
+func remove_status(status_name) -> bool:
+	if statuses.erase(status_name):
+		on_status_removed.emit(status_name)
+		return true
+	
+	return false
+	
+
+func update_statuses():
+	for status_name in statuses:
+		var status = StatusDb.get_status(status_name)
+		if status == null:
+			continue
+		
+		if Time.get_ticks_msec() - statuses[status_name]["last_update"] >= 1000:
+			health.deplete(status.health_per_sec)
+			stamina.deplete(status.stamina_per_sec)
+			statuses[status_name]["last_update"] = Time.get_ticks_msec()
+			print("update")
+		
+		if Time.get_ticks_msec() - statuses[status_name]["start_time"] >= status.duration_in_sec * 1000:
+			print(status_name, " expired!")
+			remove_status(status_name)
 	
 
 func add_boon(boon_name):
@@ -293,6 +372,28 @@ func add_debug_commands():
 			"arg_desc" : "1: True, 0: False"
 		}],
 		"Sets godmode on or off"
+		)
+	
+	DebugCommandsManager.add_command(
+		"add_status",
+		add_statuses,
+		 [{
+				"arg_name" : "status",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Status name"
+			}],
+		"Adds a status"
+		)
+	
+	DebugCommandsManager.add_command(
+		"remove_status",
+		remove_status,
+		 [{
+				"arg_name" : "status",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "Status name"
+			}],
+		"Removes a status"
 		)
 	
 

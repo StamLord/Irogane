@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://cl1or08pvvv4w"]
+
+[ext_resource type="Script" path="res://scripts/stats/status.gd" id="1_18hyb"]
+[ext_resource type="Texture2D" uid="uid://04lmhsirq5v2" path="res://assets/textures/icons/burn_24x24.png" id="1_is3qw"]
+
+[resource]
+script = ExtResource("1_18hyb")
+_name = "Burn"
+description = "The target is on flames and is dealt 5 Fire damage per second."
+icon = ExtResource("1_is3qw")
+duration_in_sec = 5
+health_per_sec = 5
+stamina_per_sec = 0
+cures = Array[String]([])
+prevents = Array[String]([])
+effects = Array[Resource("res://scripts/stats/effect.gd")]([])

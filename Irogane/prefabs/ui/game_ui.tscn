@@ -384,6 +384,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="hurt_vfx" type="Panel" parent="screen_vfx"]
 material = SubResource("ShaderMaterial_dkd7g")
@@ -393,5 +394,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]

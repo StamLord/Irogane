@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Status" load_steps=4 format=3 uid="uid://vgs3qylv21if"]
+
+[ext_resource type="Texture2D" uid="uid://cgcy52h8up0hx" path="res://assets/textures/icons/bleed_24x24.png" id="1_p3mwa"]
+[ext_resource type="Script" path="res://scripts/stats/status.gd" id="1_tvrc8"]
+[ext_resource type="PackedScene" uid="uid://cfksysdcoqnfg" path="res://prefabs/vfx/bleed_vfx.tscn" id="3_h8g3m"]
+
+[resource]
+script = ExtResource("1_tvrc8")
+_name = "Bleed"
+description = "The target is losing blood from open wounds and is dealt 1 Blunt damage per second."
+icon = ExtResource("1_p3mwa")
+vfx_prefab = ExtResource("3_h8g3m")
+duration_in_sec = 60
+health_per_sec = 1
+stamina_per_sec = 0
+cures = Array[String]([])
+prevents = Array[String]([])
+effects = Array[Resource("res://scripts/stats/effect.gd")]([])

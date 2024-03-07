@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi8n5t3pidiyf"]
+[gd_scene load_steps=7 format=3 uid="uid://bi8n5t3pidiyf"]
 
 [ext_resource type="Texture2D" uid="uid://ckmh48fg1bmtd" path="res://assets/textures/ui/hud/hud_bg.png" id="1_wia3m"]
 [ext_resource type="Texture2D" uid="uid://mdc10ua3xy2y" path="res://assets/textures/ui/hud/hp_bar.png" id="2_y4fov"]
 [ext_resource type="Script" path="res://scripts/ui/depletable_bar.gd" id="3_8e4ki"]
 [ext_resource type="Texture2D" uid="uid://dfqgmhp7kjh61" path="res://assets/textures/ui/hud/st_bar.png" id="4_q00q5"]
+[ext_resource type="Script" path="res://scripts/ui/status_icons.gd" id="5_gfq5l"]
+[ext_resource type="Texture2D" uid="uid://7iyl86m0clnh" path="res://assets/textures/icons/snake_24x24.png" id="6_wtsq6"]
 
 [node name="hud" type="TextureRect"]
 offset_left = 32.0
@@ -52,3 +54,27 @@ texture_progress = ExtResource("4_q00q5")
 tint_progress = Color(0.286275, 0.631373, 0.447059, 1)
 script = ExtResource("3_8e4ki")
 bar_name = "stamina"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 900.0
+offset_top = 55.0
+offset_right = 1677.0
+offset_bottom = 197.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_gfq5l")
+
+[node name="icon_prefab" type="TextureRect" parent="Control/HBoxContainer"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_wtsq6")

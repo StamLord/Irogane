@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=150 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://fdjjcjkxdo7o" path="res://icon.svg" id="25_g0vwl"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="25_urnjo"]
 [ext_resource type="Script" path="res://scripts/weapons/test_throw.gd" id="26_con6i"]
+[ext_resource type="PackedScene" uid="uid://cfksysdcoqnfg" path="res://prefabs/vfx/bleed_vfx.tscn" id="26_qmjwy"]
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="26_wvciu"]
 [ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
@@ -481,6 +482,10 @@ color_ramp = SubResource("GradientTexture1D_y42m6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kx1sd"]
 size = Vector3(0.75, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74lv6"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s53lw"]
 size = Vector3(0.75, 0.25, 0.25)
@@ -1535,6 +1540,7 @@ shape = SubResource("BoxShape3D_kx1sd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="dummy/guard_hitbox"]
 transform = Transform3D(1, 8.74228e-08, 8.74228e-08, -8.74228e-08, 1, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_74lv6")
 mesh = SubResource("BoxMesh_s53lw")
 
 [node name="shape" type="CollisionShape3D" parent="dummy"]
@@ -1561,6 +1567,9 @@ script = ExtResource("25_urnjo")
 
 [node name="shape" type="CollisionShape3D" parent="dummy/hurtbox"]
 shape = SubResource("CapsuleShape3D_otx07")
+
+[node name="bleed_vfx" parent="dummy" instance=ExtResource("26_qmjwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64634, -0.285702)
 
 [node name="dummy3" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.49509, 21)
