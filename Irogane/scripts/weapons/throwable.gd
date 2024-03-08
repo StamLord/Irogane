@@ -2,7 +2,7 @@ extends Node3D
 class_name Throwable
 
 # Prefab
-@onready var projectile_scene = load("res://prefabs/weapons/projectiles/shuriken.tscn")
+@onready var projectile_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
 
 # Skill Menu
 @onready var ring_menu = $shuriken_ring_menu
@@ -26,7 +26,7 @@ func track_shuriken(type, shuriken):
 	
 
 func fire_shuriken(position_offset, rotation_offset, type = null):
-	var projectile =  projectile_scene.instantiate()
+	var projectile =  projectile_prefab.instantiate()
 	
 	if type:
 		track_shuriken(type, projectile)
@@ -99,36 +99,26 @@ func body_switch(shuriken):
 	shuriken.global_position = player_pos
 	
 
+func generate_points_on_sphere(num_points):
+	var points = []
+	for i in range(num_points):
+		var phi = acos(1 - 2 * (i + 0.5) / num_points)
+		var theta = PI * (1 + sqrt(5)) * (i + 0.5)
+		var x = cos(theta) * sin(phi)
+		var y = sin(theta) * sin(phi)
+		var z = cos(phi)
+		points.append(Vector3(x, y, z))
+	return points
+	
+
 func multiply_shuriken(shuriken):
 	var initial_pos = shuriken.global_position
 	shuriken.queue_free()
 	
-	var points = [
-		Vector3(1.0, 0.0, 0.0),
-		Vector3(0.766, 0.642, 0.0),
-		Vector3(0.0, 1.0, 0.0),
-		Vector3(-0.766, 0.642, 0.0),
-		Vector3(-1.0, 0.0, 0.0),
-		Vector3(-0.766, -0.642, 0.0),
-		Vector3(0.0, -1.0, 0.0),
-		Vector3(0.766, -0.642, 0.0),
-		Vector3(0.766, 0.0, 0.642),
-		Vector3(0.5, 0.866, 0.0),
-		Vector3(0.0, 0.766, 0.642),
-		Vector3(-0.5, 0.866, 0.0),
-		Vector3(-0.766, 0.0, 0.642),
-		Vector3(-0.5, -0.866, 0.0),
-		Vector3(0.0, -0.766, 0.642),
-		Vector3(0.5, -0.866, 0.0),
-		Vector3(0.0, 0.0, 1.0),
-		Vector3(0.0, 0.0, -1.0),
-		Vector3(0.0, 0.766, -0.642),
-		Vector3(0.0, -0.766, -0.642),
-	]
 	
-	for point in points:
+	for point in generate_points_on_sphere(20):
 		DebugCanvas.debug_point(initial_pos + point, Color.GREEN, 7, 10)
-		var projectile = projectile_scene.instantiate()
+		var projectile = projectile_prefab.instantiate()
 		get_tree().get_root().add_child(projectile)
 
 		projectile.global_position = initial_pos
@@ -174,7 +164,7 @@ func triple_throw():
 	
 
 func fire_static_shuriken(position_offset, rotation_offset):
-	var projectile = projectile_scene.instantiate()
+	var projectile = projectile_prefab.instantiate()
 	get_tree().get_root().add_child(projectile)
 	
 	projectile.global_position = position_offset + global_position
@@ -185,7 +175,7 @@ func fire_static_shuriken(position_offset, rotation_offset):
 	
 
 func fire_static_shuriken_at_pos(position, rotation_offset):
-	var projectile = projectile_scene.instantiate()
+	var projectile = projectile_prefab.instantiate()
 	get_tree().get_root().add_child(projectile)
 	
 	projectile.global_position = position
