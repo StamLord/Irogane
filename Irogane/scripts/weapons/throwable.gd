@@ -38,6 +38,9 @@ func fire_shuriken(position_offset, rotation_offset, type = null):
 	projectile.item_id = ITEM_ID
 	projectile.restart()
 	
+	if type == "bouncing_shuriken":
+		projectile.bounce_count = 3
+	
 
 func _process(delta):
 	if not visible:
@@ -56,7 +59,7 @@ func _process(delta):
 	# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("throw")
-		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken", "body_switch"]
+		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken", "body_switch", "bouncing_shuriken"]
 		if ring_items:
 			ring_menu.initialize_items(ring_items)
 			ring_menu.open()
@@ -74,6 +77,8 @@ func _process(delta):
 			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "multiplying_shuriken")
 		elif current_skill == "body_switch":
 			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "body_switch")
+		elif current_skill == "bouncing_shuriken":
+			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "bouncing_shuriken")
 	elif Input.is_action_just_pressed("activate"):
 		activate_special_shuriken(current_skill)
 	

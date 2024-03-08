@@ -14,6 +14,7 @@ var start_pos
 var last_pos
 var start_speed
 var stopped = false
+var bounce_count = 0
 
 func _ready():
 	restart()
@@ -94,6 +95,12 @@ func collision_check(delta):
 	
 	if result:
 		stopped = true
+		
+		if bounce_count > 0:
+			reflect_trajectory(result.normal)
+			bounce_count -= 1
+			return
+		
 		var global_rot = global_rotation
 		get_tree().get_root().remove_child(self)
 		result.collider.add_child(self)
