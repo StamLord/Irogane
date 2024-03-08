@@ -66,18 +66,16 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack_primary"):
 		fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO)
 	elif Input.is_action_just_pressed("attack_secondary"):
-		if current_skill:
-			if current_skill == "triple_throw":
-				triple_throw()
-			elif current_skill == "octo_throw":
-				octo_throw()
-			elif current_skill == "multiplying_shuriken":
-				fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "multiplying_shuriken")
-			elif current_skill == "body_switch":
-				fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "body_switch")
+		if current_skill == "triple_throw":
+			triple_throw()
+		elif current_skill == "octo_throw":
+			octo_throw()
+		elif current_skill == "multiplying_shuriken":
+			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "multiplying_shuriken")
+		elif current_skill == "body_switch":
+			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "body_switch")
 	elif Input.is_action_just_pressed("activate"):
-		if current_skill:
-			activate_special_shuriken(current_skill)
+		activate_special_shuriken(current_skill)
 	
 
 func activate_special_shuriken(type: String):
