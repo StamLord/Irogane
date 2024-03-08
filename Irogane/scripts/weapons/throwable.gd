@@ -11,25 +11,25 @@ const ITEM_ID = "shuriken"
 const INITIAL_POS_OFFSET = Vector3(0, 0, -0.5)
 
 var current_skill = ""
-var shurikens_map = {}
+var active_shurikens = {}
 
 func _ready():
 	ring_menu.item_selected.connect(skill_selected)
 	InputContextManager.context_changed.connect(context_changed)
 	
 
-func save_shuriken(type, shuriken):
-	if type not in shurikens_map:
-		shurikens_map[type] = []
+func track_shuriken(type, shuriken):
+	if type not in active_shurikens:
+		active_shurikens[type] = []
 	
-	shurikens_map[type].append(shuriken)
+	active_shurikens[type].append(shuriken)
 	
 
 func fire_shuriken(position_offset, rotation_offset, type = null):
 	var projectile =  projectile_scene.instantiate()
 	
 	if type:
-		save_shuriken(type, projectile)
+		track_shuriken(type, projectile)
 	
 	get_tree().get_root().add_child(projectile)
 	
@@ -44,13 +44,13 @@ func _process(delta):
 		return
 	
 	# Close ring menu if open
-	if InputContextManager.is_current_context(InputContextType.RING_MENU):
+	if InputContextManager.is_ring_menu_context():
 		if not Input.is_action_pressed("ring_menu") and ring_menu.visible:
 			ring_menu.close()
 			InputContextManager.switch_context(InputContextType.GAME)
 	
 	# Process only if in GAME context
-	if not InputContextManager.is_current_context(InputContextType.GAME):
+	if not InputContextManager.is_game_context():
 		return
 	
 	# Open ring menu
@@ -81,8 +81,8 @@ func _process(delta):
 	
 
 func activate_special_shuriken(type: String):
-	if type in shurikens_map:
-		var shuriken = shurikens_map[type].pop_back()
+	if type in active_shurikens:
+		var shuriken = active_shurikens[type].pop_back()
 		if shuriken:
 			if type == "multiplying_shuriken":
 				multiply_shuriken(shuriken)
@@ -91,9 +91,12 @@ func activate_special_shuriken(type: String):
 	
 
 func body_switch(shuriken):
-	var initial_pos = shuriken.global_position
-	shuriken.queue_free()
-	PlayerEntity.player_node.global_position = initial_pos
+	var shuriken_pos = shuriken.global_position
+	var player_pos = PlayerEntity.player_node.global_position 
+	
+	PlayerEntity.player_node.global_position = shuriken_pos
+	shuriken.stopped = true
+	shuriken.global_position = player_pos
 	
 
 func multiply_shuriken(shuriken):
