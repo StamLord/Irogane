@@ -680,7 +680,7 @@ size = Vector3(10, 1, 10)
 material = SubResource("StandardMaterial3D_avcn8")
 
 [node name="stealth_paltform" type="CSGBox3D" parent="stage/navmesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -4, 48)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9317, -4.03825, 47.9785)
 use_collision = true
 size = Vector3(40, 1, 40)
 material = SubResource("StandardMaterial3D_avcn8")
@@ -723,6 +723,96 @@ material = SubResource("StandardMaterial3D_avcn8")
 
 [node name="wall11" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2, -5)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall19" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2, -19.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall26" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, -19.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall32" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -19.3826)
+use_collision = true
+size = Vector3(6, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall25" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10.4983, 3.99135, -17.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall27" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -7.4983, 3.99135, -17.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall33" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.4983, 3.99135, -17.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall28" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -7.4983, 3.99135, -15.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall30" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.51744, 3.9965, -15.4055)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall29" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10.4983, 3.99135, -15.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall20" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2, -13.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall31" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, -13.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall21" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37099e-08, -0.00813315, 0.999967, -3.55511e-10, 0.999967, 0.00813315, -1, 0, -4.37114e-08, -12.5, 2, -17.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall22" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.5, 2, -14.405)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall23" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.08211, 2.01476, -15.4084)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall24" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.07492, 2.00065, -18.3958)
 use_collision = true
 size = Vector3(3, 3, 1)
 material = SubResource("StandardMaterial3D_avcn8")
@@ -992,7 +1082,7 @@ interaction_text = "Open"
 shape = SubResource("BoxShape3D_4j3o6")
 
 [node name="door2" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.95, 1.5, 4)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.09677, 1.44797, 3.99423)
 size = Vector3(1, 2, 0.1)
 
 [node name="interactive" type="Area3D" parent="stage/navmesh/stealth_paltform/door2"]

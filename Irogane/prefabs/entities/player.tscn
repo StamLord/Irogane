@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/ui/stance_label.gd" id="32_bgsca"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="33_vi4em"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
@@ -486,7 +486,6 @@ script = ExtResource("27_wn7je")
 script = ExtResource("18_u5xda")
 
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
-visible = false
 script = ExtResource("20_14b7v")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/melee"]
@@ -572,6 +571,7 @@ bus = &"Sound"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 
 [node name="sword" type="Node3D" parent="head/main_camera/weapon_manager"]
+visible = false
 script = ExtResource("26_fyhdv")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/sword"]
