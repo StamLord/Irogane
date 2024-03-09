@@ -6,7 +6,7 @@ var hard_damage = 0
 var force = Vector3.ZERO
 var statuses = []
 
-func _init(soft_damage, hard_damage, force = Vector3.ZERO, statuses = []):
+func _init(soft_damage, hard_damage, force : Vector3 = Vector3.ZERO, statuses : Array = []):
 	self.soft_damage = soft_damage
 	self.hard_damage = hard_damage
 	self.force = force
