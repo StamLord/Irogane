@@ -48,7 +48,9 @@ func _process(delta):
 	
 
 func hit(attack_info : AttackInfo):
-	health.deplete(attack_info.soft_damage)
+	if health:
+		health.deplete(attack_info.soft_damage)
+	
 	add_statuses(attack_info.statuses)
 	
 
@@ -102,13 +104,13 @@ func update_statuses():
 			continue
 		
 		if Time.get_ticks_msec() - statuses[status_name]["last_update"] >= 1000:
-			health.deplete(status.health_per_sec)
-			stamina.deplete(status.stamina_per_sec)
+			if health:
+				health.deplete(status.health_per_sec)
+			if stamina:
+				stamina.deplete(status.stamina_per_sec)
 			statuses[status_name]["last_update"] = Time.get_ticks_msec()
-			print("update")
 		
 		if Time.get_ticks_msec() - statuses[status_name]["start_time"] >= status.duration_in_sec * 1000:
-			print(status_name, " expired!")
 			remove_status(status_name)
 	
 

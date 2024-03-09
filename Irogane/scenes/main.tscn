@@ -16,12 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://cx8myxrl1yfr4" path="res://prefabs/pickups/crate.tscn" id="10_f1q4q"]
 [ext_resource type="Script" path="res://scripts/interactive/SwitchListener.gd" id="10_vqe7y"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="23_fxejx"]
+[ext_resource type="Script" path="res://scripts/stats/stats.gd" id="23_lh13t"]
 [ext_resource type="Script" path="res://scripts/hitbox/guardbox.gd" id="23_vwjt4"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox_dummy.gd" id="24_fbhn0"]
+[ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="24_sohe2"]
 [ext_resource type="Texture2D" uid="uid://fdjjcjkxdo7o" path="res://icon.svg" id="25_g0vwl"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="25_urnjo"]
 [ext_resource type="Script" path="res://scripts/weapons/test_throw.gd" id="26_con6i"]
-[ext_resource type="PackedScene" uid="uid://cfksysdcoqnfg" path="res://prefabs/vfx/bleed_vfx.tscn" id="26_qmjwy"]
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="26_wvciu"]
 [ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
@@ -498,9 +499,6 @@ radius = 0.25
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_otx07"]
 radius = 0.25
-
-[sub_resource type="BoxMesh" id="BoxMesh_1cpit"]
-size = Vector3(0.5, 2, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqgkk"]
 transparency = 1
@@ -1529,16 +1527,25 @@ axis_lock_linear_z = true
 lock_rotation = true
 script = ExtResource("24_fbhn0")
 
-[node name="guard_hitbox" type="Area3D" parent="dummy"]
+[node name="Stats" type="Node" parent="dummy" node_paths=PackedStringArray("hurtboxes")]
+script = ExtResource("23_lh13t")
+hurtboxes = [NodePath("../hurtbox")]
+
+[node name="status_vfx" type="Node3D" parent="dummy" node_paths=PackedStringArray("stats")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.25)
+script = ExtResource("24_sohe2")
+stats = NodePath("../Stats")
+
+[node name="guardbox" type="Area3D" parent="dummy"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.55, -0.5)
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("23_vwjt4")
 
-[node name="shape" type="CollisionShape3D" parent="dummy/guard_hitbox"]
+[node name="shape" type="CollisionShape3D" parent="dummy/guardbox"]
 shape = SubResource("BoxShape3D_kx1sd")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="dummy/guard_hitbox"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="dummy/guardbox"]
 transform = Transform3D(1, 8.74228e-08, 8.74228e-08, -8.74228e-08, 1, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_74lv6")
 mesh = SubResource("BoxMesh_s53lw")
@@ -1568,8 +1575,46 @@ script = ExtResource("25_urnjo")
 [node name="shape" type="CollisionShape3D" parent="dummy/hurtbox"]
 shape = SubResource("CapsuleShape3D_otx07")
 
-[node name="bleed_vfx" parent="dummy" instance=ExtResource("26_qmjwy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64634, -0.285702)
+[node name="dummy2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.49509, 21)
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+lock_rotation = true
+script = ExtResource("24_fbhn0")
+
+[node name="Stats" type="Node" parent="dummy2" node_paths=PackedStringArray("hurtboxes")]
+script = ExtResource("23_lh13t")
+hurtboxes = [NodePath("../hurtbox")]
+
+[node name="status_vfx" type="Node3D" parent="dummy2" node_paths=PackedStringArray("stats")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.25)
+script = ExtResource("24_sohe2")
+stats = NodePath("../Stats")
+
+[node name="shape" type="CollisionShape3D" parent="dummy2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3i6oh")
+
+[node name="mesh" type="MeshInstance3D" parent="dummy2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 4
+mesh = SubResource("CapsuleMesh_6ohwg")
+
+[node name="Decal" type="Decal" parent="dummy2/mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.731313, -0.301767)
+size = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("25_g0vwl")
+upper_fade = 0.00485281
+cull_mask = 4
+
+[node name="hurtbox" type="Area3D" parent="dummy2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 33
+collision_mask = 33
+script = ExtResource("25_urnjo")
+
+[node name="shape" type="CollisionShape3D" parent="dummy2/hurtbox"]
+shape = SubResource("CapsuleShape3D_otx07")
 
 [node name="dummy3" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.49509, 21)
@@ -1577,6 +1622,15 @@ axis_lock_linear_x = true
 axis_lock_linear_z = true
 lock_rotation = true
 script = ExtResource("24_fbhn0")
+
+[node name="Stats" type="Node" parent="dummy3" node_paths=PackedStringArray("hurtboxes")]
+script = ExtResource("23_lh13t")
+hurtboxes = [NodePath("../hurtbox")]
+
+[node name="status_vfx" type="Node3D" parent="dummy3" node_paths=PackedStringArray("stats")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.25)
+script = ExtResource("24_sohe2")
+stats = NodePath("../Stats")
 
 [node name="shape" type="CollisionShape3D" parent="dummy3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -1606,38 +1660,6 @@ shape = SubResource("CapsuleShape3D_otx07")
 [node name="Node3D" type="Node3D" parent="dummy3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 script = ExtResource("26_con6i")
-
-[node name="dummy2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.49509, 21)
-axis_lock_linear_x = true
-axis_lock_linear_z = true
-lock_rotation = true
-script = ExtResource("24_fbhn0")
-
-[node name="shape" type="CollisionShape3D" parent="dummy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_3i6oh")
-
-[node name="mesh" type="MeshInstance3D" parent="dummy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-layers = 4
-mesh = SubResource("BoxMesh_1cpit")
-
-[node name="Decal" type="Decal" parent="dummy2/mesh"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.731313, -0.301767)
-size = Vector3(0.5, 0.5, 0.5)
-texture_albedo = ExtResource("25_g0vwl")
-upper_fade = 0.00485281
-cull_mask = 4
-
-[node name="hurtbox" type="Area3D" parent="dummy2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 33
-collision_mask = 33
-script = ExtResource("25_urnjo")
-
-[node name="shape" type="CollisionShape3D" parent="dummy2/hurtbox"]
-shape = SubResource("CapsuleShape3D_otx07")
 
 [node name="glide_elements" type="Node3D" parent="."]
 

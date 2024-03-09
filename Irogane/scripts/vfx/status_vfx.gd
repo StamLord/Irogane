@@ -14,7 +14,7 @@ func status_added(status_name):
 		return
 	
 	var status = StatusDb.get_status(status_name)
-	if status == null:
+	if status == null or status.vfx_prefab == null:
 		return
 	
 	var new_vfx = status.vfx_prefab.instantiate()
