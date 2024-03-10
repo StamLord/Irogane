@@ -156,11 +156,11 @@ material = SubResource("ShaderMaterial_qa7yc")
 radius = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
-radius = 0.49
+radius = 0.3
 height = 1.9
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_764jx"]
-radius = 0.45
+radius = 0.3
 height = 0.9
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnn1b"]

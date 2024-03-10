@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var light_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
-@export var heavy_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
+@export var light_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2, ["bleed"])
+@export var heavy_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2, ["bleed"])
 @export var uppward_attack_info = AttackInfo.new(5, 10, Vector3.UP * 6)
 
 @export var combo_list = [
@@ -113,6 +113,9 @@ extends Node3D
 @onready var trail_3d = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d
 @onready var guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_vfx
 @onready var perfect_guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/perfect_guard_vfx
+@onready var slash_0_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx
+@onready var slash_1_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_1_vfx
+@onready var slash_circle_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_circle_vfx
 
 var combo = []
 var last_combo_addition = 0
@@ -336,6 +339,10 @@ func hit(area, hitbox):
 	if decal_raycast.is_colliding():
 		create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
 	
+	slash_0_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+	slash_1_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+	slash_circle_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+	
 	#audio.play(hit_sounds.pick_random(), hitbox.global_position)
 	
 
@@ -355,11 +362,13 @@ func hit_guarded(area : Guardbox, hitbox):
 	
 
 func guarded(attack_info, hitbox):
+	anim_state_machine.start("guard_hit")
 	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
 	
 
 func perfect_guarded(attack_info, hitbox):
 	var pos = hitbox.global_position + Vector3.UP * 0.1
+	anim_state_machine.start("guard_hit")
 	play_guard_vfx(pos)
 	play_perfect_guard_vfx(pos)
 	
