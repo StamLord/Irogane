@@ -1,8 +1,9 @@
 extends Node3D
 
-@export var light_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2, ["bleed"])
-@export var heavy_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2, ["bleed"])
-@export var uppward_attack_info = AttackInfo.new(5, 10, Vector3.UP * 6)
+@export var stats : Stats
+@export var light_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.FORWARD * 2, ["bleed"])
+@export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.FORWARD * 2, ["bleed"])
+@export var uppward_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.UP * 6)
 
 @export var combo_list = [
 	{
@@ -129,6 +130,8 @@ var secondary_press_start = -1
 var is_guarding = false
 var guard_start = null
 var perfect_guard_window = 0.5
+var is_guard_broken = false
+var guard_break_duration = 2.0
 
 var current_skill = "rain stance"
 var katana_skills : Array[String] = ["Focused", "Projectile"]
@@ -138,9 +141,9 @@ var prev_animation = null
 
 func _ready():
 	hitbox.on_collision.connect(hit)
-	hitbox.on_block.connect(hit_guarded)
+	hitbox.on_block.connect(hit_blocked)
 	upward_hitbox.on_collision.connect(hit)
-	upward_hitbox.on_block.connect(hit_guarded)
+	upward_hitbox.on_block.connect(hit_blocked)
 	
 	guard_hitbox.on_guard.connect(guarded)
 	guard_hitbox.on_perfect_guard.connect(perfect_guarded)
@@ -346,7 +349,7 @@ func hit(area, hitbox):
 	#audio.play(hit_sounds.pick_random(), hitbox.global_position)
 	
 
-func hit_guarded(area : Guardbox, hitbox):
+func hit_blocked(area : Guardbox, hitbox):
 	if area.is_perfect:
 		CameraShaker.shake(0.5, 0.2)
 	else:
@@ -364,6 +367,11 @@ func hit_guarded(area : Guardbox, hitbox):
 func guarded(attack_info, hitbox):
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
+	
+	if stats:
+		stats.deplete_stamina(attack_info.soft_damage)
+		if stats.stamina.get_value() <= 0:
+			guard_break()
 	
 
 func perfect_guarded(attack_info, hitbox):
@@ -383,6 +391,16 @@ func play_perfect_guard_vfx(_position):
 	CameraShaker.shake(0.25, 0.2)
 	perfect_guard_vfx.global_position = _position
 	perfect_guard_vfx.restart()
+	
+
+func guard_break():
+	print("Guard Broken")
+	# Play animation
+	# Play vfx
+	
+	is_guard_broken = true
+	await get_tree().create_timer(guard_break_duration).timeout
+	is_guard_broken = false
 	
 
 func animate_movement(local_vector : Vector3, duration : float):

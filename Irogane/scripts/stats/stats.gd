@@ -48,10 +48,32 @@ func _process(delta):
 	
 
 func hit(attack_info : AttackInfo):
-	if health:
-		health.deplete(attack_info.soft_damage)
-	
+	deplete_health(attack_info.soft_damage)
 	add_statuses(attack_info.statuses)
+	
+
+func deplete_health(amount : int):
+	if health:
+		return health.deplete(amount)
+	return false
+	
+
+func replenish_health(amount: int):
+	if health:
+		return health.replenish(amount)
+	return false
+	
+
+func deplete_stamina(amount : int):
+	if stamina:
+		return stamina.deplete(amount)
+	return false
+	
+
+func replenish_stamina(amount: int):
+	if stamina:
+		return stamina.replenish(amount)
+	return false
 	
 
 func add_statuses(new_statuses):
@@ -104,10 +126,8 @@ func update_statuses():
 			continue
 		
 		if Time.get_ticks_msec() - statuses[status_name]["last_update"] >= 1000:
-			if health:
-				health.deplete(status.health_per_sec)
-			if stamina:
-				stamina.deplete(status.stamina_per_sec)
+			deplete_health(status.health_per_sec)
+			deplete_stamina(status.stamina_per_sec)
 			statuses[status_name]["last_update"] = Time.get_ticks_msec()
 		
 		if Time.get_ticks_msec() - statuses[status_name]["start_time"] >= status.duration_in_sec * 1000:
@@ -235,9 +255,9 @@ func exit_battle():
 
 func use_medicine(medicine):
 	if medicine.has("hp_restore"):
-		health.replenish(medicine.hp_restore)
+		replenish_health(medicine.hp_restore)
 	if medicine.has("st_restore"):
-		stamina.replenish(medicine.st_restore)
+		replenish_stamina(medicine.st_restore)
 	
 	last_medicine = Time.get_ticks_msec()
 	medicine_used.emit(medicine)

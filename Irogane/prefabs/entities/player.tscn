@@ -572,8 +572,9 @@ bus = &"Sound"
 [node name="first_person_rig" parent="head/main_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 
-[node name="sword" type="Node3D" parent="head/main_camera/weapon_manager"]
+[node name="sword" type="Node3D" parent="head/main_camera/weapon_manager" node_paths=PackedStringArray("stats")]
 script = ExtResource("26_fyhdv")
+stats = NodePath("../../../../stats")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/sword"]
 layout_mode = 3
