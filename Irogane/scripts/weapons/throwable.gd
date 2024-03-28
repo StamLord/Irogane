@@ -6,6 +6,7 @@ class_name Throwable
 
 # Skill Menu
 @onready var ring_menu = $shuriken_ring_menu
+@onready var skill_zone = %skill_zone
 
 const ITEM_ID = "shuriken"
 const INITIAL_POS_OFFSET = Vector3(0, 0, -0.5)
@@ -59,7 +60,7 @@ func _process(delta):
 	# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("throw")
-		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken", "body_switch", "bouncing_shuriken"]
+		var ring_items : Array[String] = ["triple_throw", "octo_throw", "multiplying_shuriken", "body_switch", "bouncing_shuriken", "metal_shower"]
 		if ring_items:
 			ring_menu.initialize_items(ring_items)
 			ring_menu.open()
@@ -79,8 +80,52 @@ func _process(delta):
 			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "body_switch")
 		elif current_skill == "bouncing_shuriken":
 			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "bouncing_shuriken")
+		elif current_skill == "metal_shower":
+			show_metal_shower_zone()
 	elif Input.is_action_just_pressed("activate"):
 		activate_special_shuriken(current_skill)
+	
+	if Input.is_action_just_released("attack_secondary"):
+		if current_skill == "metal_shower":
+			activate_metal_shower()
+	
+
+func show_metal_shower_zone():
+	skill_zone.visible = true
+	
+
+# Raycastas 10 meters up from a point, if it's available 
+func get_floating_throw_pos(pos: Vector3):
+	var default_height = Vector3(pos.x, pos.y + 10, pos.z)
+	var query = PhysicsRayQueryParameters3D.create(pos, default_height)
+	var camera3d = DebugCommandsManager.main_camera
+	var space_state = camera3d.get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		return result.position
+	
+	return default_height
+	
+
+func activate_metal_shower():
+	var initial_pos = skill_zone.global_position
+	DebugCanvas.debug_point(initial_pos, Color.BLUE, 7, 10)
+	for point in generate_points_inside_circle(20, 1.5):
+		var ground_pos = initial_pos + Vector3(point.x, 0, point.y)
+		var throw_pos = get_floating_throw_pos(ground_pos)
+		
+		DebugCanvas.debug_point(throw_pos, Color.GREEN, 7, 10)
+		DebugCanvas.debug_point(ground_pos, Color.RED, 7, 10)
+		
+		var projectile = projectile_prefab.instantiate()
+		get_tree().get_root().add_child(projectile)
+		projectile.global_position = throw_pos
+		projectile.look_at(ground_pos + Vector3(0.001, 0.0, 0.0))  # Small margin because look_at freaks out when ground_pos is almost identical to position
+		projectile.item_id = ITEM_ID
+		projectile.restart()
+	
+	skill_zone.visible = false
 	
 
 func activate_special_shuriken(type: String):
@@ -111,6 +156,19 @@ func generate_points_on_sphere(num_points):
 		var y = sin(theta) * sin(phi)
 		var z = cos(phi)
 		points.append(Vector3(x, y, z))
+	return points
+	
+
+func generate_points_inside_circle(num_points: int, radius: float) -> Array:
+	var points = []
+	var angle_increment = 2 * PI * (1 + sqrt(5)) / 2
+	var golden_ratio = (1 + sqrt(5)) / 2
+	for i in range(num_points):
+		var scaled_radius = sqrt(i + 0.5) / sqrt(num_points) * golden_ratio * radius
+		var angle = i * angle_increment
+		var x = cos(angle) * scaled_radius
+		var y = sin(angle) * scaled_radius
+		points.append(Vector2(x, y))
 	return points
 	
 

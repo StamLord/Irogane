@@ -5,7 +5,7 @@ extends Node3D
 @onready var trail3d = $trail3d
 @export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
-var speed = 20
+var speed = 80
 var item_id = null
 
 # Internal vars
