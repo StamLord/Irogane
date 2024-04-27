@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=62 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
 [ext_resource type="Shader" uid="uid://bx4wlincejp4h" path="res://prefabs/ui/hurt_vfx.tres" id="17_lk0xl"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="18_2kamu"]
+[ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="19_pclt2"]
 [ext_resource type="Texture2D" uid="uid://c01iri26vnldi" path="res://assets/textures/vfx/line_0.png" id="19_tddid"]
 [ext_resource type="Texture2D" uid="uid://cxkwbrybp8tjo" path="res://assets/textures/vfx/glare_0.png" id="20_80lkk"]
 
@@ -44,6 +45,54 @@ shader_parameter/strength = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dkd7g"]
 shader = ExtResource("17_lk0xl")
 shader_parameter/distortion_amount = 0.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a3otr"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6ckgb"]
+_data = [Vector2(0.754464, 1), 0.0, -4.07273, 0, 1, Vector2(1, 0), -4.07273, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lwbv7"]
+curve = SubResource("Curve_6ckgb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_veidk"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_max = 360.0
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 800.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+color = Color(0.388235, 0.560784, 0.772549, 1)
+alpha_curve = SubResource("CurveTexture_lwbv7")
+anim_offset_max = 1.0
+
+[sub_resource type="Curve" id="Curve_qc4ek"]
+_data = [Vector2(0.754464, 1), 0.0, -4.07273, 0, 1, Vector2(1, 0), -4.07273, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t8umn"]
+curve = SubResource("Curve_qc4ek")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x1bvm"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_max = 360.0
+initial_velocity_min = 100.0
+initial_velocity_max = 800.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+color = Color(0.784314, 0.321569, 0.184314, 1)
+alpha_curve = SubResource("CurveTexture_t8umn")
+anim_offset_max = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6y8ms"]
 bg_color = Color(0.784314, 0.321569, 0.184314, 1)
@@ -573,6 +622,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="blade_lock_break" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 960.0
+offset_top = 911.0
+offset_right = 960.0
+offset_bottom = 911.0
+
+[node name="blue_break" type="GPUParticles2D" parent="blade_lock_break"]
+material = SubResource("CanvasItemMaterial_a3otr")
+emitting = false
+amount = 48
+process_material = SubResource("ParticleProcessMaterial_veidk")
+texture = ExtResource("19_pclt2")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+
+[node name="red_break" type="GPUParticles2D" parent="blade_lock_break"]
+material = SubResource("CanvasItemMaterial_a3otr")
+emitting = false
+amount = 48
+process_material = SubResource("ParticleProcessMaterial_x1bvm")
+texture = ExtResource("19_pclt2")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+
 [node name="blade_lock_bar" type="ProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -581,9 +657,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -767.0
-offset_top = 348.0
+offset_top = 366.0
 offset_right = 767.0
-offset_bottom = 400.0
+offset_bottom = 382.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(767, 0)
@@ -592,6 +668,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_n2xuc")
 min_value = -100.0
 step = 1.0
 show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="blade_lock_bar"]
+layout_mode = 2
+offset_left = 892.0
+offset_top = -117.0
+offset_right = 892.0
+offset_bottom = 133.0
 
 [node name="blade_lock_vfx" type="HBoxContainer" parent="blade_lock_bar"]
 layout_mode = 1
@@ -725,7 +808,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jbucg")
 
 [node name="blue_line" type="GPUParticles2D" parent="blade_lock_bar"]
 material = SubResource("CanvasItemMaterial_pu4ev")
-position = Vector2(0, 26)
+position = Vector2(0, 8)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_ot4gv")
 texture = ExtResource("19_tddid")
@@ -745,7 +828,7 @@ trail_section_subdivisions = 1
 
 [node name="red_line" type="GPUParticles2D" parent="blade_lock_bar"]
 material = SubResource("CanvasItemMaterial_pu4ev")
-position = Vector2(1534, 26)
+position = Vector2(1534, 8)
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_6n47n")
 texture = ExtResource("19_tddid")

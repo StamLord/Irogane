@@ -7,6 +7,8 @@ var b : Stats
 var struggle_value = 0 # -100 .. 100
 var struggle_bar = null
 var struggle_vfx = null
+var blue_break_vfx = null
+var red_break_vfx = null
 var struggle_right_line = null
 
 var start_size_x = null
@@ -49,6 +51,15 @@ func start_struggle():
 		var right_line = bar.get_node("red_line")
 		if right_line:
 			struggle_right_line = right_line
+		
+		var vfx_break =  UIManager.ui_node.get_node("blade_lock_break")
+		if vfx_break:
+			var blue_break = vfx_break.get_node("blue_break")
+			var red_break = vfx_break.get_node("red_break")
+			if blue_break:
+				blue_break_vfx = blue_break
+			if red_break:
+				red_break_vfx = red_break
 	
 	align_sides()
 	
@@ -149,6 +160,7 @@ func update_struggle_value(amount):
 
 func end_struggle():
 	is_started = false
+	
 	struggle_bar.visible = false
 	reset_struggle_bar()
 	
@@ -156,8 +168,14 @@ func end_struggle():
 	
 	if struggle_value >= win_condition:
 		winner = a
+		if struggle_vfx and red_break_vfx:
+			red_break_vfx.global_position.x = struggle_vfx.global_position.x + struggle_vfx.size.x
+			red_break_vfx.restart()
 	elif struggle_value <= -win_condition:
 		winner = b
+		if struggle_vfx and blue_break_vfx:
+			blue_break_vfx.global_position.x = struggle_vfx.global_position.x + struggle_vfx.size.x
+			blue_break_vfx.restart()
 	
 	on_struggle_end.emit(winner)
 	
