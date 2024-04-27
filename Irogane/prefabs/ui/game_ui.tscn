@@ -96,9 +96,15 @@ anim_offset_max = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6y8ms"]
 bg_color = Color(0.784314, 0.321569, 0.184314, 1)
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2xuc"]
 bg_color = Color(0.388235, 0.560784, 0.772549, 1)
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj4uq"]
 
@@ -650,6 +656,7 @@ explosiveness = 1.0
 fixed_fps = 60
 
 [node name="blade_lock_bar" type="ProgressBar" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
