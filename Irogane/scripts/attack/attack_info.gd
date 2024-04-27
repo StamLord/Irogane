@@ -20,5 +20,5 @@ func _to_string():
 	
 
 func clone():
-	return AttackInfo.new(soft_damage, hard_damage, force, statuses)
+	return AttackInfo.new(soft_damage, hard_damage, damage_type, force, statuses)
 	

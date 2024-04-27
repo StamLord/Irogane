@@ -1,7 +1,9 @@
 extends Area3D
+class_name Hitbox
 
 @export var collide_with_self = false
 @export var avoid_multiple_collisions = true
+@export var is_heavy = false
 
 @export var inactive_color = Color("ff000040")
 @export var active_color = Color("ff0000c0")
@@ -15,6 +17,8 @@ var collisions = []
 
 signal on_collision(area, hitbox)
 signal on_block(area : Guardbox, hitbox)
+signal on_heavy_clash(area : Hitbox, hitbox)
+signal on_blade_lock_invite(stats : Stats)
 
 func set_active(active):
 	monitoring = active
@@ -41,7 +45,10 @@ func collision_check():
 		if col is Guardbox:
 			on_block.emit(col, self)
 			set_active(false)
-			#print(name + ": guarded by " + col.name)
+			return
+		elif is_heavy and col is Hitbox and col.is_heavy:
+			on_heavy_clash.emit(col, self)
+			set_active(false)
 			return
 	
 	for col in colliders:
@@ -57,4 +64,12 @@ func collision_check():
 
 func clear_collisions():
 	collisions.clear()
+	
+
+func set_heavy(state : bool):
+	is_heavy = state
+	
+
+func invite_to_blade_lock(blade_lock : BladeLock):
+	on_blade_lock_invite.emit(blade_lock)
 	

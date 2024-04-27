@@ -60,6 +60,10 @@ func on_child_transition(state, new_state_name):
 	on_state_enter.emit(new_state.name)
 	
 
+func transition(new_state_name):
+	on_child_transition(current_state, new_state_name)
+	
+
 func save_data():
 	var data = {
 		"filename" : get_scene_file_path(),

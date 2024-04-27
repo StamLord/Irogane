@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=107 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/controls/mouse_look.gd" id="9_nfdeu"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/ClimbRope.gd" id="10_7bwsl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Rooted.gd" id="14_pnpox"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
@@ -456,6 +457,9 @@ acceleration = 5
 buoyancy = 0.0
 surface_offset = -1.5
 
+[node name="rooted" type="Node" parent="states"]
+script = ExtResource("14_pnpox")
+
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 script = ExtResource("9_nfdeu")
@@ -572,9 +576,11 @@ bus = &"Sound"
 [node name="first_person_rig" parent="head/main_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 
-[node name="sword" type="Node3D" parent="head/main_camera/weapon_manager" node_paths=PackedStringArray("stats")]
+[node name="sword" type="Node3D" parent="head/main_camera/weapon_manager" node_paths=PackedStringArray("stats", "state_machine", "camera_look")]
 script = ExtResource("26_fyhdv")
 stats = NodePath("../../../../stats")
+state_machine = NodePath("../../../..")
+camera_look = NodePath("../../..")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/sword"]
 layout_mode = 3

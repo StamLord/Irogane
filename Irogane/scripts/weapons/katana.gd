@@ -1,6 +1,9 @@
 extends Node3D
 
 @export var stats : Stats
+@export var state_machine : PlayerStateMachine
+@export var camera_look : Node3D
+
 @export var light_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.FORWARD * 2, ["bleed"])
 @export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.FORWARD * 2, ["bleed"])
 @export var uppward_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.UP * 6)
@@ -117,6 +120,7 @@ extends Node3D
 @onready var slash_0_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx
 @onready var slash_1_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_1_vfx
 @onready var slash_circle_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_circle_vfx
+@onready var blade_lock_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_lock_vfx
 
 var combo = []
 var last_combo_addition = 0
@@ -133,6 +137,9 @@ var perfect_guard_window = 0.5
 var is_guard_broken = false
 var guard_break_duration = 2.0
 
+var is_in_blade_lock = false
+var current_blade_lock : BladeLock = null
+
 var current_skill = "rain stance"
 var katana_skills : Array[String] = ["Focused", "Projectile"]
 var katana_stances : Array[String] = ["Rain Stance", "River Stance", "Lightning Stance"]
@@ -142,6 +149,9 @@ var prev_animation = null
 func _ready():
 	hitbox.on_collision.connect(hit)
 	hitbox.on_block.connect(hit_blocked)
+	hitbox.on_heavy_clash.connect(heavy_clash)
+	hitbox.on_blade_lock_invite.connect(join_blade_lock)
+	
 	upward_hitbox.on_collision.connect(hit)
 	upward_hitbox.on_block.connect(hit_blocked)
 	
@@ -155,6 +165,10 @@ func _ready():
 
 func _process(delta):
 	if not visible:
+		return
+	
+	if is_in_blade_lock:
+		process_blade_lock(delta)
 		return
 	
 	animation_change_check()
@@ -403,6 +417,83 @@ func guard_break():
 	is_guard_broken = false
 	
 
+func heavy_clash(area : Hitbox, hitbox):
+	prepare_blade_lock_state()
+	
+	# Create new blade lock
+	var blade_lock = BladeLock.new()
+	get_tree().root.add_child(blade_lock)
+	
+	current_blade_lock = blade_lock
+	
+	blade_lock.register_a(stats)
+	blade_lock.on_struggle_end.connect(end_blade_lock)
+	
+	area.invite_to_blade_lock(blade_lock)
+	blade_lock.start_struggle()
+	
+	is_in_blade_lock = true
+	
+
+func join_blade_lock(blade_lock : BladeLock):
+	prepare_blade_lock_state()
+	
+	current_blade_lock = blade_lock
+	blade_lock.register_b(stats)
+	blade_lock.on_struggle_end.connect(end_blade_lock)
+	
+	is_in_blade_lock = true
+	
+
+func prepare_blade_lock_state():
+	# Lock player movement
+	if state_machine:
+		state_machine.transition("rooted")
+	
+	# Lock camera movement
+	if camera_look:
+		camera_look.disable_rotation()
+	
+	# Play animation & vfx
+	if anim_state_machine:
+		anim_state_machine.start("blade_lock")
+	
+	if blade_lock_vfx:
+		blade_lock_vfx.emitting = true
+	
+
+func process_blade_lock(delta):
+	if current_blade_lock == null:
+		is_in_blade_lock = false
+		return
+	
+	if anim_tree:
+		anim_tree.set("parameters/blade_lock/blend_position", current_blade_lock.get_value(stats))
+	
+	if Input.is_action_just_pressed("attack_primary"):
+		current_blade_lock.side_increase(stats, stats.strength.get_value())
+	
+
+func end_blade_lock(winner_stats):
+	is_in_blade_lock = false
+	
+	if current_blade_lock:
+		current_blade_lock.queue_free()
+		current_blade_lock = null
+	
+	if state_machine:
+		state_machine.transition("walk")
+	
+	if camera_look:
+		camera_look.enable_rotation()
+	
+	if anim_state_machine:
+		anim_state_machine.start("idle")
+	
+	if blade_lock_vfx:
+		blade_lock_vfx.emitting = false
+	
+
 func animate_movement(local_vector : Vector3, duration : float):
 	duration *= 1000
 	var start_time = Time.get_ticks_msec()
@@ -444,6 +535,7 @@ func animation_change_check():
 	
 
 func animation_changed(new_name):
+	var is_heavy = new_name in ["heavy_1", "heavy_3"]
 	if new_name == "idle":
 		hitbox.set_active(false)
 		upward_hitbox.set_active(false)
@@ -452,11 +544,13 @@ func animation_changed(new_name):
 	"iaido_light_1", "iaido_light_2", "iaido_light_3", "iaido_light_4",]:
 		hitbox.clear_collisions() # Needed in case of attack to attack transition
 		hitbox.set_active(true)
+		hitbox.set_heavy(is_heavy)
 		upward_hitbox.set_active(false)
 		set_trail_enabled(true)
 	elif new_name in ["heavy_2"]:
 		upward_hitbox.clear_collisions() # Needed in case of attack to attack transition
 		upward_hitbox.set_active(true)
+		upward_hitbox.set_heavy(is_heavy)
 		hitbox.set_active(false)
 		set_trail_enabled(true)
 	

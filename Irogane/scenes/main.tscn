@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=153 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -26,6 +26,9 @@
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="26_wvciu"]
 [ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
+[ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="28_asst7"]
+[ext_resource type="Script" path="res://scripts/weapons/test_blade_lock.gd" id="29_q0tns"]
+[ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="30_busl4"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="42_58ctm"]
@@ -486,7 +489,7 @@ size = Vector3(0.75, 0.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74lv6"]
 transparency = 1
-albedo_color = Color(0, 1, 0, 0.4)
+albedo_color = Color(1, 0, 0, 0.4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s53lw"]
 size = Vector3(0.75, 0.25, 0.25)
@@ -1521,7 +1524,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18383, 3, 2.71438)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.145396, 4)
 
 [node name="dummy" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49509, 21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.49509, 21)
 axis_lock_linear_x = true
 axis_lock_linear_z = true
 lock_rotation = true
@@ -1575,8 +1578,72 @@ script = ExtResource("25_urnjo")
 [node name="shape" type="CollisionShape3D" parent="dummy/hurtbox"]
 shape = SubResource("CapsuleShape3D_otx07")
 
+[node name="dummy4" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.49509, 21)
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+lock_rotation = true
+script = ExtResource("24_fbhn0")
+
+[node name="Stats" type="Node" parent="dummy4" node_paths=PackedStringArray("hurtboxes")]
+script = ExtResource("23_lh13t")
+hurtboxes = [NodePath("../../dummy/hurtbox")]
+
+[node name="status_vfx" type="Node3D" parent="dummy4" node_paths=PackedStringArray("stats")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.25)
+script = ExtResource("24_sohe2")
+stats = NodePath("../../dummy/Stats")
+
+[node name="heavy hitbox" type="Area3D" parent="dummy4"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1.55, -0.5)
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("28_asst7")
+is_heavy = true
+
+[node name="shape" type="CollisionShape3D" parent="dummy4/heavy hitbox"]
+shape = SubResource("BoxShape3D_kx1sd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="dummy4/heavy hitbox"]
+transform = Transform3D(1, 8.74228e-08, 8.74228e-08, -8.74228e-08, 1, -8.74228e-08, -8.74228e-08, 8.74228e-08, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_74lv6")
+mesh = SubResource("BoxMesh_s53lw")
+
+[node name="shape" type="CollisionShape3D" parent="dummy4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3i6oh")
+
+[node name="mesh" type="MeshInstance3D" parent="dummy4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 4
+mesh = SubResource("CapsuleMesh_6ohwg")
+
+[node name="Decal" type="Decal" parent="dummy4/mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.731313, -0.301767)
+size = Vector3(0.5, 0.5, 0.5)
+texture_albedo = ExtResource("25_g0vwl")
+upper_fade = 0.00485281
+cull_mask = 4
+
+[node name="hurtbox" type="Area3D" parent="dummy4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 33
+collision_mask = 33
+script = ExtResource("25_urnjo")
+
+[node name="shape" type="CollisionShape3D" parent="dummy4/hurtbox"]
+shape = SubResource("CapsuleShape3D_otx07")
+
+[node name="test_blade_lock" type="Node3D" parent="dummy4" node_paths=PackedStringArray("hitbox", "stats", "katana_hands")]
+script = ExtResource("29_q0tns")
+hitbox = NodePath("../heavy hitbox")
+stats = NodePath("../Stats")
+katana_hands = NodePath("../katana_pov_hands")
+
+[node name="katana_pov_hands" parent="dummy4" instance=ExtResource("30_busl4")]
+
 [node name="dummy2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.49509, 21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.49509, 21)
 axis_lock_linear_x = true
 axis_lock_linear_z = true
 lock_rotation = true
@@ -1617,7 +1684,7 @@ script = ExtResource("25_urnjo")
 shape = SubResource("CapsuleShape3D_otx07")
 
 [node name="dummy3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.49509, 21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49509, 21)
 axis_lock_linear_x = true
 axis_lock_linear_z = true
 lock_rotation = true
