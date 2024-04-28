@@ -121,6 +121,7 @@ extends Node3D
 @onready var slash_1_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_1_vfx
 @onready var slash_circle_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_circle_vfx
 @onready var blade_lock_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_lock_vfx
+@onready var guard_break_vfx = $"../../../../vfx/guard_break"
 
 var combo = []
 var last_combo_addition = 0
@@ -165,6 +166,9 @@ func _ready():
 
 func _process(delta):
 	if not visible:
+		return
+	
+	if is_guard_broken:
 		return
 	
 	if is_in_blade_lock:
@@ -408,10 +412,13 @@ func play_perfect_guard_vfx(_position):
 	
 
 func guard_break():
-	print("Guard Broken")
-	# Play animation
-	# Play vfx
+	stop_guard()
+	anim_state_machine.start("idle")
 	
+	# Play vfx
+	CameraShaker.shake(0.25, 0.2)
+	guard_break_vfx.restart()
+
 	is_guard_broken = true
 	await get_tree().create_timer(guard_break_duration).timeout
 	is_guard_broken = false

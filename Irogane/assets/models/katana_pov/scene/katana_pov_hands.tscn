@@ -143,7 +143,7 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/tint2 = Color(0.784314, 0.854902, 1, 1)
 shader_parameter/flash_speed = 24.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_dx6b8"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_gemdu"]
 
 [sub_resource type="Gradient" id="Gradient_gkv8e"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -14857,7 +14857,7 @@ transform = Transform3D(-4.37114e-08, -1.49012e-08, -1, 0, 1, -1.49012e-08, 1, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
 material_override = SubResource("ShaderMaterial_u02mt")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_dx6b8")
+mesh = SubResource("ImmediateMesh_gemdu")
 skeleton = NodePath("../../../../..")
 script = ExtResource("4_2oc77")
 motionDelta = 0.01
