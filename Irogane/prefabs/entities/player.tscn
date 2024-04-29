@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=117 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -49,6 +49,7 @@
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
+[ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -451,6 +452,10 @@ material = SubResource("ShaderMaterial_m4ab3")
 [sub_resource type="SphereShape3D" id="SphereShape3D_86t26"]
 radius = 5.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gw68j"]
+radius = 0.25
+height = 1.0
+
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
 collision_layer = 129
 collision_mask = 129
@@ -459,8 +464,9 @@ script = ExtResource("1_v2hnl")
 push_force = 2
 default_state = NodePath("states/walk")
 
-[node name="stats" parent="." instance=ExtResource("2_u6d7g")]
+[node name="stats" parent="." node_paths=PackedStringArray("hurtboxes") instance=ExtResource("2_u6d7g")]
 unique_name_in_owner = true
+hurtboxes = [NodePath("../hutboxes/body")]
 
 [node name="states" type="Node3D" parent="."]
 
@@ -1063,3 +1069,14 @@ node_to_follow = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("47_7x4l6")
 stats = NodePath("../stats")
+
+[node name="hutboxes" type="Node3D" parent="."]
+
+[node name="body" type="Area3D" parent="hutboxes"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("50_h51e5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hutboxes/body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_gw68j")
