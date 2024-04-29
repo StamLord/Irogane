@@ -13,8 +13,8 @@ func _process(delta):
 		last_throw = Time.get_ticks_msec()
 	
 
-func fire_shuriken(position_offset, rotation_offset):
-	var projectile = projectile_scene.instantiate()
+func fire_shuriken(position_offset, rotation_offset, type = null):
+	var projectile = projectile_prefab.instantiate()
 	get_tree().get_root().add_child(projectile)
 	
 	projectile.global_position = global_basis * position_offset + global_position

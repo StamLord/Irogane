@@ -85,16 +85,16 @@ func _ready():
 	
 
 func grab_object_with_ray_cast():
-		var mouse_pos = get_viewport().get_mouse_position()
-		var camera3d = DebugCommandsManager.main_camera
-		var from = camera3d.project_ray_origin(mouse_pos)
-		var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		var space_state = camera3d.get_world_3d().direct_space_state
-		var result = space_state.intersect_ray(query)
+	var mouse_pos = get_viewport().get_mouse_position()
+	var camera3d = DebugCommandsManager.main_camera
+	var from = camera3d.project_ray_origin(mouse_pos)
+	var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var space_state = camera3d.get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(query)
 	
-		if result:
-			input.text = str(input.text, result.collider.get_instance_id())
+	if result:
+		input.text = str(input.text, result.collider.get_instance_id())
 	
 
 func _process(_delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=107 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
-[ext_resource type="PackedScene" uid="uid://bba44d8rksvrn" path="res://prefabs/RIGS/first_person_rig.tscn" id="20_1s0sd"]
+[ext_resource type="PackedScene" uid="uid://bba44d8rksvrn" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
@@ -43,6 +43,8 @@
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
 [ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
+[ext_resource type="Texture2D" uid="uid://btf3hxn2ns85p" path="res://assets/textures/vfx/aoe_decal_1.png" id="36_yxiao"]
+[ext_resource type="Script" path="res://scripts/skills/skill_zone.gd" id="37_60ul2"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
 [ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
@@ -682,6 +684,20 @@ transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626,
 visible = false
 open_button = ""
 
+[node name="skill_zone" type="Decal" parent="head/main_camera/weapon_manager"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -3.5)
+visible = false
+size = Vector3(5, 5, 5)
+texture_albedo = ExtResource("36_yxiao")
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+script = ExtResource("37_60ul2")
+
+[node name="sub_decal" type="Decal" parent="head/main_camera/weapon_manager/skill_zone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
+visible = false
+
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
 collision_mask = 0
@@ -993,3 +1009,5 @@ current = true
 size = 7.0
 script = ExtResource("38_510aq")
 node_to_follow = NodePath("../../..")
+
+[connection signal="visibility_changed" from="head/main_camera/weapon_manager/skill_zone" to="head/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]

@@ -5,7 +5,7 @@ extends Node3D
 @onready var trail3d = $trail3d
 @export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
-var speed = 20
+var speed = 80
 var item_id = null
 
 # Internal vars
@@ -14,6 +14,7 @@ var start_pos
 var last_pos
 var start_speed
 var stopped = false
+var bounce_count = 0
 
 func _ready():
 	restart()
@@ -94,6 +95,12 @@ func collision_check(delta):
 	
 	if result:
 		stopped = true
+		
+		if bounce_count > 0:
+			reflect_trajectory(result.normal)
+			bounce_count -= 1
+			return
+		
 		var global_rot = global_rotation
 		get_tree().get_root().remove_child(self)
 		result.collider.add_child(self)
