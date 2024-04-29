@@ -8,17 +8,20 @@ var direction = Vector3.ZERO
 
 func Enter(_body):
 	pass
+	
 
 func Update(_delta):
 	pass
+	
 
 func PhysicsUpdate(body, _delta):
-	
 	body.velocity.y = jump_velocity
 	body.move_and_slide()
 	
 	# Air State
 	Transitioned.emit(self, "air")
+	
 
 func Exit(_body):
 	pass
+	

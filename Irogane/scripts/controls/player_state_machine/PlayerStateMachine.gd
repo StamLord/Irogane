@@ -31,6 +31,27 @@ func _ready():
 		default_state.Enter(self)
 		current_state = default_state
 	
+	var args = [
+		{
+			"arg_name": "x",
+			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
+			"arg_description": "X component of the force vector",
+		},
+		{
+			"arg_name": "y",
+			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
+			"arg_description": "Y component of the force vector",
+		},
+		{
+			"arg_name": "z",
+			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
+			"arg_description": "Y component of the force vector",
+		},
+	]
+	
+	DebugCommandsManager.add_command("push", debug_push_back, args)
+	
+
 func _process(delta):
 	if current_state:
 		current_state.Update(delta)
@@ -62,6 +83,16 @@ func on_child_transition(state, new_state_name):
 
 func transition(new_state_name):
 	on_child_transition(current_state, new_state_name)
+	
+
+func push_back(force_vector : Vector3):
+	transition("pushed")
+	current_state.direction = force_vector.normalized()
+	current_state.speed = force_vector.length()
+	
+
+func debug_push_back(args : Array):
+	push_back(Vector3(args[0], args[1], args[2]))
 	
 
 func save_data():

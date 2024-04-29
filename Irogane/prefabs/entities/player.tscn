@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=118 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/controls/player_states/Crouch.gd" id="7_826s0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Vault.gd" id="8_nprs7"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Glide.gd" id="9_c0lt0"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Pushed.gd" id="9_crd0n"]
 [ext_resource type="Script" path="res://scripts/controls/mouse_look.gd" id="9_nfdeu"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/ClimbRope.gd" id="10_7bwsl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
@@ -487,7 +488,9 @@ script = ExtResource("6_mtivl")
 
 [node name="dash" type="Node" parent="states"]
 script = ExtResource("12_0ox4n")
-exit_threshold = 1.0
+
+[node name="pushed" type="Node" parent="states"]
+script = ExtResource("9_crd0n")
 
 [node name="crouch" type="Node" parent="states"]
 script = ExtResource("7_826s0")
