@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="2_0ywhw"]
 [ext_resource type="Script" path="res://scripts/interactive/Pickup.gd" id="3_44y6i"]
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="4_iayb3"]
-[ext_resource type="Shader" path="res://assets/shaders/blade_trail.res" id="5_gb0gq"]
+[ext_resource type="Shader" uid="uid://cn7vmt8l2bpd7" path="res://assets/shaders/blade_trail.res" id="5_gb0gq"]
 [ext_resource type="Script" path="res://addons/godot_4_motion_trail/Trail3D.gd" id="6_2brft"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dcbxx"]
@@ -29,7 +29,7 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/tint2 = Color(0.784314, 0.854902, 1, 1)
 shader_parameter/flash_speed = 24.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_3rl1a"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_oy37j"]
 
 [sub_resource type="Gradient" id="Gradient_oe2j8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -39,7 +39,6 @@ script = ExtResource("1_g5mtn")
 collision_mask = 1
 
 [node name="model" parent="." instance=ExtResource("2_0ywhw")]
-transform = Transform3D(-8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0, 0, 0)
 
 [node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
@@ -71,7 +70,7 @@ mesh = SubResource("BoxMesh_yvk4c")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_gmgiv")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_3rl1a")
+mesh = SubResource("ImmediateMesh_oy37j")
 skeleton = NodePath("../../../../..")
 script = ExtResource("6_2brft")
 fromWidth = 0.1

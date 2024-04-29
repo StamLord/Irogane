@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/ui/stance_label.gd" id="32_bgsca"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="33_vi4em"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
@@ -678,7 +678,7 @@ visible = false
 script = ExtResource("26_5mim7")
 
 [node name="shuriken_model" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("27_imo88")]
-transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626, 0.0405095, -0.00263428, -0.0424863, 0.0262293, 0.350353, -0.25896, -0.423049)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, -0.4)
 
 [node name="shuriken_ring_menu" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("31_ep6ff")]
 visible = false

@@ -9,7 +9,8 @@ class_name Throwable
 @onready var skill_zone = %skill_zone
 
 const ITEM_ID = "shuriken"
-const INITIAL_POS_OFFSET = Vector3(0, 0, -0.5)
+const INITIAL_POS_OFFSET =  Vector3(0, 0, -0.5)
+const HIP_POS_OFFSET = Vector3(0.15, -0.1, -0.5)
 
 var current_skill = ""
 var active_shurikens = {}
@@ -26,6 +27,24 @@ func track_shuriken(type, shuriken):
 	active_shurikens[type].append(shuriken)
 	
 
+func get_target_point():
+	var RAY_LENGTH = 100
+	var mouse_pos = get_viewport().get_mouse_position()
+	var camera3d = CameraEntity.main_camera
+	var from = camera3d.project_ray_origin(mouse_pos)
+	var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var space_state = camera3d.get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		#DebugCanvas.debug_point(result.position, Color.BLUE, 7, 10)
+		return result.position
+	else:
+		#DebugCanvas.debug_point(to, Color.RED, 7, 10)
+		return to
+	
+
 func fire_shuriken(position_offset, rotation_offset, type = null):
 	var projectile =  projectile_prefab.instantiate()
 	
@@ -34,9 +53,11 @@ func fire_shuriken(position_offset, rotation_offset, type = null):
 	
 	get_tree().get_root().add_child(projectile)
 	
-	projectile.global_position = (CameraEntity.main_camera.global_basis * position_offset) + global_position
-	projectile.global_rotation = CameraEntity.main_camera.global_rotation + rotation_offset
+	projectile.global_position = (CameraEntity.main_camera.global_basis * position_offset) + CameraEntity.main_camera.global_position
+	projectile.global_rotation = rotation_offset
 	projectile.item_id = ITEM_ID
+	var target_point = get_target_point()
+	projectile.look_at(target_point)
 	projectile.restart()
 	
 	if type == "bouncing_shuriken":
@@ -68,7 +89,7 @@ func _process(delta):
 		return
 	
 	if Input.is_action_just_pressed("attack_primary"):
-		fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO)
+		fire_shuriken(HIP_POS_OFFSET, Vector3.ZERO)
 	elif Input.is_action_just_pressed("attack_secondary"):
 		if current_skill == "triple_throw":
 			triple_throw()
@@ -98,7 +119,7 @@ func show_metal_shower_zone():
 func get_floating_throw_pos(pos: Vector3):
 	var default_height = Vector3(pos.x, pos.y + 10, pos.z)
 	var query = PhysicsRayQueryParameters3D.create(pos, default_height)
-	var camera3d = DebugCommandsManager.main_camera
+	var camera3d = CameraEntity.main_camera
 	var space_state = camera3d.get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(query)
 	
@@ -123,6 +144,7 @@ func activate_metal_shower():
 		projectile.global_position = throw_pos
 		projectile.look_at(ground_pos + Vector3(0.001, 0.0, 0.0))  # Small margin because look_at freaks out when ground_pos is almost identical to position
 		projectile.item_id = ITEM_ID
+		
 		projectile.restart()
 	
 	skill_zone.visible = false
@@ -232,6 +254,7 @@ func fire_static_shuriken(position_offset, rotation_offset):
 	projectile.global_rotation_degrees = rotation_offset
 	
 	projectile.item_id = ITEM_ID
+	projectile.not_persistent = true
 	projectile.restart()
 	
 
