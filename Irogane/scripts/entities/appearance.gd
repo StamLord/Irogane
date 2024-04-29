@@ -294,7 +294,9 @@ func set_gender(gender : GENDER):
 	
 	# Display relevant model
 	male_model.visible = is_male
+	male_model.process_mode = Node.PROCESS_MODE_INHERIT if is_male else Node.PROCESS_MODE_DISABLED
 	female_model.visible = not is_male
+	female_model.process_mode = Node.PROCESS_MODE_INHERIT if not is_male else Node.PROCESS_MODE_DISABLED
 	
 
 func get_gender():
