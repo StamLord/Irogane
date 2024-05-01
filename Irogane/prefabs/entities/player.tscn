@@ -209,8 +209,7 @@ direction = Vector3(0, 1, 0)
 initial_velocity_min = 0.2
 initial_velocity_max = 0.4
 gravity = Vector3(0, 1, 0)
-scale_min = 2.0
-scale_max = 4.0
+scale_min = 0.5
 scale_curve = SubResource("CurveTexture_le6v8")
 color = Color(0.537255, 0.580392, 0.780392, 0.376471)
 color_ramp = SubResource("GradientTexture1D_3bx3h")
@@ -839,6 +838,28 @@ process_material = SubResource("ParticleProcessMaterial_30waa")
 draw_pass_1 = SubResource("QuadMesh_7s8xr")
 script = ExtResource("32_jglc7")
 emission_per_unit = 4
+
+[node name="push_back_dust_l" type="GPUParticles3D" parent="vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_30waa")
+draw_pass_1 = SubResource("QuadMesh_7s8xr")
+script = ExtResource("32_jglc7")
+emission_per_unit = 16
+
+[node name="push_back_dust_r" type="GPUParticles3D" parent="vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_30waa")
+draw_pass_1 = SubResource("QuadMesh_7s8xr")
+script = ExtResource("32_jglc7")
+emission_per_unit = 16
 
 [node name="guard_break" type="GPUParticles3D" parent="vfx"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.758, -1.5)

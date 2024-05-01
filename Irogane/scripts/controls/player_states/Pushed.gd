@@ -5,6 +5,8 @@ class_name Pushed
 @onready var head_check = $"../../head_check"
 @onready var head = $"../../head"
 @onready var rope_check = $"../../rope_check"
+@onready var push_back_dust_l = $"../../vfx/push_back_dust_l"
+@onready var push_back_dust_r = $"../../vfx/push_back_dust_r"
 
 # Variables
 @export var deceleration = 10
@@ -24,6 +26,8 @@ func Enter(body):
 	# Lower  head
 	head.change_height(dash_head_height, 0.2)
 	accumulated_gravity = 0.0
+	push_back_dust_l.active = true
+	push_back_dust_r.active = true
 	
 
 func Update(delta):
@@ -68,4 +72,7 @@ func Exit(body):
 	
 	# Return head to original height
 	head.reset_height(0.2)
+	
+	push_back_dust_l.active = false
+	push_back_dust_r.active = false
 	
