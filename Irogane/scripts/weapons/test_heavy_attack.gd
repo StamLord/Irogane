@@ -5,7 +5,7 @@ extends Node3D
 @onready var anim_tree : AnimationTree = $"../katana_pov_hands/AnimationTree"
 @onready var anim_state_machine : AnimationNodeStateMachinePlayback = anim_tree["parameters/playback"]
 
-@export var attack_info = AttackInfo.new(5, 10, DamageType.SLASH, true, Vector3.FORWARD * 2)
+@export var attack_info = AttackInfo.new(5, 10, DamageType.SLASH, true, Vector3.FORWARD * 10)
 @export var fire_cooldown = 1.0
 var last_attack = 0
 var prev_animation

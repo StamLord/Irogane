@@ -89,7 +89,7 @@ func transition(new_state_name):
 
 func push_back(force_vector : Vector3):
 	transition("pushed")
-	current_state.direction = global_basis * force_vector.normalized()
+	current_state.direction = global_basis * -force_vector.normalized()
 	current_state.speed = force_vector.length()
 	
 
