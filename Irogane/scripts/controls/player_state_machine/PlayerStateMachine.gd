@@ -31,6 +31,8 @@ func _ready():
 		default_state.Enter(self)
 		current_state = default_state
 	
+	stats.heavy_hit_during_guard_break.connect(push_back)
+	
 	var args = [
 		{
 			"arg_name": "x",
@@ -87,7 +89,7 @@ func transition(new_state_name):
 
 func push_back(force_vector : Vector3):
 	transition("pushed")
-	current_state.direction = force_vector.normalized()
+	current_state.direction = global_basis * force_vector.normalized()
 	current_state.speed = force_vector.length()
 	
 

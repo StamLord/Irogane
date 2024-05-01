@@ -4,8 +4,8 @@ extends Node3D
 @export var state_machine : PlayerStateMachine
 @export var camera_look : Node3D
 
-@export var light_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.FORWARD * 2, ["bleed"])
-@export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.FORWARD * 2, ["bleed"])
+@export var light_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, false, Vector3.FORWARD * 2, ["bleed"])
+@export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, true, Vector3.FORWARD * 2, ["bleed"])
 @export var uppward_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.UP * 6)
 
 @export var combo_list = [
@@ -135,7 +135,7 @@ var secondary_press_start = -1
 var is_guarding = false
 var guard_start = null
 var perfect_guard_window = 0.5
-var is_guard_broken = false
+
 var guard_break_duration = 2.0
 
 var is_in_blade_lock = false
@@ -168,7 +168,7 @@ func _process(delta):
 	if not visible:
 		return
 	
-	if is_guard_broken:
+	if stats.is_guard_broken:
 		return
 	
 	if is_in_blade_lock:
@@ -348,11 +348,13 @@ func hit(area, hitbox):
 	if area is Hurtbox:
 		var attack_info = light_attack_info
 		
+		if hitbox.is_heavy:
+			attack_info = heavy_attack_info
 		if hitbox == upward_hitbox:
 			attack_info = uppward_attack_info
 		
 		area.hit(attack_info)
-		
+	
 	print("HIT: ", area)
 	
 	# VFX
@@ -419,9 +421,9 @@ func guard_break():
 	CameraShaker.shake(0.25, 0.2)
 	guard_break_vfx.restart()
 
-	is_guard_broken = true
+	stats.is_guard_broken = true
 	await get_tree().create_timer(guard_break_duration).timeout
-	is_guard_broken = false
+	stats.is_guard_broken = false
 	
 
 func heavy_clash(area : Hitbox, hitbox):

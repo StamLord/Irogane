@@ -35,6 +35,9 @@ signal ended_battle()
 var last_medicine = null
 signal medicine_used(medicine)
 
+var is_guard_broken : bool = false
+signal heavy_hit_during_guard_break(force : Vector3)
+
 func _ready():
 	if get_owner().name == "player":
 		add_debug_commands()
@@ -50,6 +53,9 @@ func _process(delta):
 func hit(attack_info : AttackInfo):
 	deplete_health(attack_info.soft_damage)
 	add_statuses(attack_info.statuses)
+	
+	if attack_info.is_heavy and is_guard_broken:
+		heavy_hit_during_guard_break.emit(attack_info.force)
 	
 
 func deplete_health(amount : int):
@@ -262,6 +268,10 @@ func use_medicine(medicine):
 	last_medicine = Time.get_ticks_msec()
 	medicine_used.emit(medicine)
 	return true
+	
+
+func set_guard_break(state):
+	is_guard_broken = state
 	
 
 func save_data():
