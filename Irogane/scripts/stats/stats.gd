@@ -12,6 +12,8 @@ class_name Stats
 @onready var stamina : Depletable = $stamina
 
 @export var hurtboxes : Array[Hurtbox]
+@onready var guardboxes : Array[Guardbox] 
+#= $"../head/main_camera/weapon_manager/sword/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_hitbox"
 
 @export var attr_points = 10
 
@@ -45,6 +47,20 @@ func _ready():
 	for h in hurtboxes:
 		h.on_hit.connect(hit)
 	
+	var weapons_parent = get_node("../head/main_camera/weapon_manager")
+	if weapons_parent != null:
+		get_all_guardboxes(weapons_parent)
+	
+	for g in guardboxes:
+		g.on_guard.connect(guard)
+	
+
+func get_all_guardboxes(node : Node):
+	for n in node.get_children():
+		if n is Guardbox:
+			guardboxes.append(n)
+		get_all_guardboxes(n)
+	
 
 func _process(delta):
 	update_statuses()
@@ -54,7 +70,12 @@ func hit(attack_info : AttackInfo):
 	deplete_health(attack_info.soft_damage)
 	add_statuses(attack_info.statuses)
 	
-	if attack_info.is_heavy and is_guard_broken:
+	if attack_info.is_heavy:
+		heavy_hit_during_guard_break.emit(attack_info.force)
+	
+
+func guard(attack_info : AttackInfo, hitbox):
+	if attack_info.is_heavy:
 		heavy_hit_during_guard_break.emit(attack_info.force)
 	
 
