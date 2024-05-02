@@ -28,13 +28,12 @@ func animate_attack():
 	
 
 func hit(area, hitbox):
-	print("HITT")
 	if area is Hurtbox:
-		area.hit(attack_info)
+		area.hit(attack_info.get_translated(global_basis))
 	
 
 func hit_blocked(area : Guardbox, hitbox):
-	area.guard(attack_info, hitbox)
+	area.guard(attack_info.get_translated(global_basis), hitbox)
 	anim_state_machine.start("idle")
 	
 

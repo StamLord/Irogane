@@ -24,3 +24,9 @@ func _to_string():
 func clone():
 	return AttackInfo.new(soft_damage, hard_damage, damage_type, is_heavy, force, statuses)
 	
+
+func get_translated(basis : Basis):
+	var translated = clone()
+	translated.force = basis * translated.force
+	return translated
+	

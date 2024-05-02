@@ -353,7 +353,7 @@ func hit(area, hitbox):
 		if hitbox == upward_hitbox:
 			attack_info = uppward_attack_info
 		
-		area.hit(attack_info)
+		area.hit(attack_info.get_translated(global_basis))
 	
 	print("HIT: ", area)
 	
@@ -378,7 +378,7 @@ func hit_blocked(area : Guardbox, hitbox):
 	var attack_info = light_attack_info
 	if hitbox == upward_hitbox:
 		attack_info = uppward_attack_info
-	area.guard(attack_info, hitbox)
+	area.guard(attack_info.get_translated(global_basis), hitbox)
 	
 	play_guard_vfx(hitbox.global_position)
 	anim_state_machine.start("idle")

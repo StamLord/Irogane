@@ -57,6 +57,7 @@ func _ready():
 func _process(delta):
 	if current_state:
 		current_state.Update(delta)
+	
 
 func _physics_process(delta):
 	# State Process
@@ -89,7 +90,7 @@ func transition(new_state_name):
 
 func push_back(force_vector : Vector3):
 	transition("pushed")
-	current_state.direction = global_basis * -force_vector.normalized()
+	current_state.direction = force_vector.normalized()
 	current_state.speed = force_vector.length()
 	
 
