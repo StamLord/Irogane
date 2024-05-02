@@ -26,8 +26,6 @@ func Enter(body):
 	# Lower  head
 	head.change_height(dash_head_height, 0.2)
 	accumulated_gravity = 0.0
-	push_back_dust_l.active = true
-	push_back_dust_r.active = true
 	
 
 func Update(delta):
@@ -40,6 +38,9 @@ func PhysicsUpdate(body, delta):
 	# Decelerate when sliding on ground
 	if body.is_on_floor():
 		speed -= deceleration * delta
+	
+	# VFX active only when on ground
+	set_vfx_active(body.is_on_floor())
 	
 	# Stuck or too slowV
 	if speed < exit_threshold:
@@ -73,6 +74,10 @@ func Exit(body):
 	# Return head to original height
 	head.reset_height(0.2)
 	
-	push_back_dust_l.active = false
-	push_back_dust_r.active = false
+	set_vfx_active(false)
+	
+
+func set_vfx_active(state):
+	push_back_dust_l.active = state
+	push_back_dust_r.active = state
 	
