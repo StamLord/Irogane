@@ -674,11 +674,11 @@ script = ExtResource("32_bgsca")
 fade_duration = 0.25
 
 [node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, -0.4)
 visible = false
 script = ExtResource("26_5mim7")
 
 [node name="shuriken_model" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("27_imo88")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, -0.4)
 
 [node name="shuriken_ring_menu" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("31_ep6ff")]
 visible = false

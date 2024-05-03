@@ -1,8 +1,23 @@
 extends Node3D
 class_name Throwable
+	
+enum ShootPos {BOTTOM_RIGHT, BOTTOM_LEFT, TOP_RIGHT, TOP_LEFT}
 
+const shuriken_screen_offset = {
+	ShootPos.BOTTOM_RIGHT: Vector3(0.4, -0.25, -0.4),
+	ShootPos.BOTTOM_LEFT: Vector3(-0.4, -0.25, -0.4),
+	ShootPos.TOP_RIGHT: Vector3(0.4, 0.25, -0.4),
+	ShootPos.TOP_LEFT: Vector3(-0.4, 0.25, -0.4),
+}
+
+const shoot_pos_offset = {
+	ShootPos.BOTTOM_RIGHT: Vector3(0.15, -0.1, -0.5),
+	ShootPos.BOTTOM_LEFT: Vector3(-0.15, -0.1, -0.5),
+	ShootPos.TOP_RIGHT: Vector3(0.15, 0.1, -0.5),
+	ShootPos.TOP_LEFT: Vector3(-0.15, 0.1, -0.5)
+}
 # Prefab
-@onready var projectile_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
+@onready var shuriken_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
 
 # Skill Menu
 @onready var ring_menu = $shuriken_ring_menu
@@ -10,10 +25,11 @@ class_name Throwable
 
 const ITEM_ID = "shuriken"
 const INITIAL_POS_OFFSET =  Vector3(0, 0, -0.5)
-const HIP_POS_OFFSET = Vector3(0.15, -0.1, -0.5)
+
 
 var current_skill = ""
 var active_shurikens = {}
+var shoot_pos = ShootPos.BOTTOM_RIGHT
 
 func _ready():
 	ring_menu.item_selected.connect(skill_selected)
@@ -45,8 +61,28 @@ func get_target_point():
 		return to
 	
 
+func fire_shuriken_from_point_to_point(from_global_pos, to_global_pos):
+	var shuriken =  shuriken_prefab.instantiate()
+	
+	get_tree().get_root().add_child(shuriken)
+	
+	shuriken.global_position = from_global_pos
+	shuriken.item_id = ITEM_ID
+	shuriken.look_at(to_global_pos)
+	shuriken.restart()
+	
+	return shuriken
+	
+
+func fire_simple_shuriken():
+	var target_point = get_target_point()
+	var starting_point = shoot_pos_offset[shoot_pos]
+	var from_pos = (CameraEntity.main_camera.global_basis * starting_point) + CameraEntity.main_camera.global_position
+	var shuriken = fire_shuriken_from_point_to_point(from_pos, target_point)
+	
+
 func fire_shuriken(position_offset, rotation_offset, type = null):
-	var projectile =  projectile_prefab.instantiate()
+	var projectile =  shuriken_prefab.instantiate()
 	
 	if type:
 		track_shuriken(type, projectile)
@@ -64,6 +100,26 @@ func fire_shuriken(position_offset, rotation_offset, type = null):
 		projectile.bounce_count = 3
 	
 
+func change_shoot_pos_if_needed():
+	for pos in ShootPos.values():
+		var point = shoot_pos_offset[pos]
+		var mouse_pos = get_viewport().get_mouse_position()
+		var camera3d = CameraEntity.main_camera
+		var from = (CameraEntity.main_camera.global_basis * point) + CameraEntity.main_camera.global_position
+		var to = from + camera3d.project_ray_normal(mouse_pos) * 1.5
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		var space_state = camera3d.get_world_3d().direct_space_state
+		var result = space_state.intersect_ray(query)
+			
+		if not result:
+			shoot_pos = pos 
+			position = shuriken_screen_offset[shoot_pos]
+			return
+	
+	shoot_pos = ShootPos.BOTTOM_RIGHT
+	position = shuriken_screen_offset[shoot_pos]
+	
+
 func _process(delta):
 	if not visible:
 		return
@@ -78,6 +134,8 @@ func _process(delta):
 	if not InputContextManager.is_game_context():
 		return
 	
+	change_shoot_pos_if_needed()
+	
 	# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("throw")
@@ -89,7 +147,7 @@ func _process(delta):
 		return
 	
 	if Input.is_action_just_pressed("attack_primary"):
-		fire_shuriken(HIP_POS_OFFSET, Vector3.ZERO)
+		fire_simple_shuriken()
 	elif Input.is_action_just_pressed("attack_secondary"):
 		if current_skill == "triple_throw":
 			triple_throw()
@@ -139,7 +197,7 @@ func activate_metal_shower():
 		DebugCanvas.debug_point(throw_pos, Color.GREEN, 7, 10)
 		DebugCanvas.debug_point(ground_pos, Color.RED, 7, 10)
 		
-		var projectile = projectile_prefab.instantiate()
+		var projectile = shuriken_prefab.instantiate()
 		get_tree().get_root().add_child(projectile)
 		projectile.global_position = throw_pos
 		projectile.look_at(ground_pos + Vector3(0.001, 0.0, 0.0))  # Small margin because look_at freaks out when ground_pos is almost identical to position
@@ -201,7 +259,7 @@ func multiply_shuriken(shuriken):
 	
 	for point in generate_points_on_sphere(20):
 		DebugCanvas.debug_point(initial_pos + point, Color.GREEN, 7, 10)
-		var projectile = projectile_prefab.instantiate()
+		var projectile = shuriken_prefab.instantiate()
 		get_tree().get_root().add_child(projectile)
 
 		projectile.global_position = initial_pos
@@ -247,7 +305,7 @@ func triple_throw():
 	
 
 func fire_static_shuriken(position_offset, rotation_offset):
-	var projectile = projectile_prefab.instantiate()
+	var projectile = shuriken_prefab.instantiate()
 	get_tree().get_root().add_child(projectile)
 	
 	projectile.global_position = position_offset + global_position
@@ -259,7 +317,7 @@ func fire_static_shuriken(position_offset, rotation_offset):
 	
 
 func fire_static_shuriken_at_pos(position, rotation_offset):
-	var projectile = projectile_prefab.instantiate()
+	var projectile = shuriken_prefab.instantiate()
 	get_tree().get_root().add_child(projectile)
 	
 	projectile.global_position = position
