@@ -3,7 +3,7 @@ class_name Throwable
 	
 enum ShootPos {BOTTOM_RIGHT, BOTTOM_LEFT, TOP_RIGHT, TOP_LEFT}
 
-const shuriken_screen_offset = {
+const model_screen_pos = {
 	ShootPos.BOTTOM_RIGHT: Vector3(0.4, -0.25, -0.4),
 	ShootPos.BOTTOM_LEFT: Vector3(-0.4, -0.25, -0.4),
 	ShootPos.TOP_RIGHT: Vector3(0.4, 0.25, -0.4),
@@ -16,6 +16,7 @@ const shoot_pos_offset = {
 	ShootPos.TOP_RIGHT: Vector3(0.15, 0.1, -0.5),
 	ShootPos.TOP_LEFT: Vector3(-0.15, 0.1, -0.5)
 }
+
 # Prefab
 @onready var shuriken_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
 
@@ -25,7 +26,6 @@ const shoot_pos_offset = {
 
 const ITEM_ID = "shuriken"
 const INITIAL_POS_OFFSET =  Vector3(0, 0, -0.5)
-
 
 var current_skill = ""
 var active_shurikens = {}
@@ -113,11 +113,11 @@ func change_shoot_pos_if_needed():
 			
 		if not result:
 			shoot_pos = pos 
-			position = shuriken_screen_offset[shoot_pos]
+			position = model_screen_pos[shoot_pos]
 			return
 	
 	shoot_pos = ShootPos.BOTTOM_RIGHT
-	position = shuriken_screen_offset[shoot_pos]
+	position = model_screen_pos[shoot_pos]
 	
 
 func _process(delta):
