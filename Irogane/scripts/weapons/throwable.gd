@@ -96,6 +96,12 @@ func fire_shuriken_straight():
 func fire_special_shuriken_straight(type):
 	var shuriken = fire_shuriken_straight()
 	track_shuriken(type, shuriken)
+	return shuriken
+	
+
+func fire_bouncing_shuriken():
+	var shuriken = fire_special_shuriken_straight("bouncing_shuriken")
+	shuriken.bounce_count = 3
 	
 
 func change_shoot_pos_if_needed():
@@ -156,7 +162,7 @@ func _process(delta):
 		elif current_skill == "body_switch":
 			fire_special_shuriken_straight("body_switch")
 		elif current_skill == "bouncing_shuriken":
-			fire_special_shuriken_straight("bouncing_shuriken")
+			fire_bouncing_shuriken()
 		elif current_skill == "metal_shower":
 			show_metal_shower_zone()
 	elif Input.is_action_just_pressed("activate"):
