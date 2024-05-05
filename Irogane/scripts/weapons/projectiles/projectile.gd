@@ -89,29 +89,26 @@ func _process(delta):
 	
 
 func collision_check(delta):
-	var ray_origin = global_position
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(last_pos, ray_origin, collision_mask)
+	var query = PhysicsRayQueryParameters3D.create(last_pos, global_position, collision_mask)
 	var result = space_state.intersect_ray(query)
 	
 	if result:
-		stopped = true
+		global_position = result.position # Move back to ray collision to avoid clipping
 		
 		if bounce_count > 0:
 			reflect_trajectory(result.normal)
 			bounce_count -= 1
 			return
 		
-		var global_rot = global_rotation
+		stopped = true
+		
+		# Reparent under collider
+		var old_global_rot = global_rotation
 		get_tree().get_root().remove_child(self)
-		
-		if not_persistent:
-			return
-		
 		result.collider.add_child(self)
-		global_position = result.position
-		global_rotation = global_rot
-		#global_rotation = CameraEntity.main_camera.global_rotation
+		global_position = result.position # Needed after reparenting child
+		global_rotation = old_global_rot
 		
 		for child in get_children():
 			if child is Pickup:
@@ -124,13 +121,13 @@ func collision_check(delta):
 
 func reflect_trajectory(normal):
 	# Reposition under root
-	var old_pos = global_position
-	var old_rot = global_rotation
-	var root = get_tree().get_root()
-	get_parent().remove_child(self)
-	root.add_child(self)
-	global_position = old_pos
-	global_rotation = old_rot
+	#var old_pos = global_position
+	#var old_rot = global_rotation
+	#var root = get_tree().get_root()
+	#get_parent().remove_child(self)
+	#root.add_child(self)
+	#global_position = old_pos
+	#global_rotation = old_rot
 	
 	# Orient to new reflected forward
 	var new_forward = global_basis.z.reflect(normal)
