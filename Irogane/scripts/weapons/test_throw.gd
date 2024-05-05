@@ -9,12 +9,12 @@ func _ready():
 
 func _process(delta):
 	if Time.get_ticks_msec() - last_throw > fire_cooldown * 1000:
-		fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO)
+		fire_shuriken(shoot_pos_offset[ShootPos.BOTTOM_RIGHT], Vector3.ZERO)
 		last_throw = Time.get_ticks_msec()
 	
 
 func fire_shuriken(position_offset, rotation_offset, type = null):
-	var projectile = projectile_prefab.instantiate()
+	var projectile = shuriken_prefab.instantiate()
 	get_tree().get_root().add_child(projectile)
 	
 	projectile.global_position = global_basis * position_offset + global_position
