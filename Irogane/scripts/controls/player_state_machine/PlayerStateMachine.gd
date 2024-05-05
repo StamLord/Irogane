@@ -20,6 +20,8 @@ var last_body_velocity
 signal on_state_enter(state_name)
 signal on_state_exit(state_name)
 
+var debug = false
+
 func _ready():
 	PlayerEntity.set_player_node(self)
 	for child in states_parent.get_children():
@@ -57,6 +59,12 @@ func _ready():
 func _process(delta):
 	if current_state:
 		current_state.Update(delta)
+		
+		if debug:
+			var state_color_seed = current_state.name.to_utf8_buffer().hex_encode().hex_to_int()
+			var state_color = Utils.random_color(state_color_seed)
+			var state_debug_duration = 10.0
+			DebugCanvas.debug_point(global_position, state_color,12.0, state_debug_duration)
 	
 
 func _physics_process(delta):
@@ -73,7 +81,14 @@ func on_child_transition(state, new_state_name):
 	if not new_state:
 		return
 		
-	#print("EXITING: " + current_state.name)
+	if debug:
+		#print("EXITING: " + current_state.name)
+		var new_state_color_seed = new_state_name.to_utf8_buffer().hex_encode().hex_to_int()
+		var new_state_color = Utils.random_color(new_state_color_seed)
+		var new_state_debug_duration = 10.0
+		DebugCanvas.debug_point(global_position, new_state_color, 24.0, new_state_debug_duration)
+		DebugCanvas.debug_text(new_state_name, global_position + Vector3.UP, new_state_color, new_state_debug_duration)
+	
 	if current_state: 
 		current_state.Exit(self)
 		on_state_exit.emit(current_state.name)
