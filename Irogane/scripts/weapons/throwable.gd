@@ -11,10 +11,10 @@ const model_screen_pos = {
 }
 
 const shoot_pos_offset = {
-	ShootPos.BOTTOM_RIGHT: Vector3(0.15, -0.1, -0.5),
-	ShootPos.BOTTOM_LEFT: Vector3(-0.15, -0.1, -0.5),
-	ShootPos.TOP_RIGHT: Vector3(0.15, 0.1, -0.5),
-	ShootPos.TOP_LEFT: Vector3(-0.15, 0.1, -0.5)
+	ShootPos.BOTTOM_RIGHT: Vector3(0.15, -0.1, 0),
+	ShootPos.BOTTOM_LEFT: Vector3(-0.15, -0.1, 0),
+	ShootPos.TOP_RIGHT: Vector3(0.15, 0.1, 0),
+	ShootPos.TOP_LEFT: Vector3(-0.15, 0.1, 0)
 }
 
 # Prefab
