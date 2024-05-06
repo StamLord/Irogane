@@ -6,6 +6,7 @@ extends Node3D
 @export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
 var speed = 80
+var gravity_multiplier = 1.0
 var item_id = null
 
 # Internal vars
@@ -16,6 +17,9 @@ var start_speed
 var stopped = false
 var bounce_count = 0
 var not_persistent = false
+
+var original_speed = null
+var original_gravity_mult = null
 
 func _ready():
 	restart()
@@ -42,6 +46,12 @@ func hit_guarded(area : Guardbox, _hitbox):
 	
 
 func restart():
+	if original_speed != null:
+		speed = original_speed
+	
+	if original_gravity_mult != null:
+		gravity_multiplier = original_gravity_mult
+	
 	start_time = Time.get_ticks_msec()
 	start_pos = global_position
 	last_pos = start_pos
@@ -67,7 +77,7 @@ func _process(delta):
 	var new_pos = start_pos + start_speed * time_passed;
 	
 	# Add gravity
-	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier
 	new_pos.y = start_pos.y + start_speed.y * time_passed - gravity * time_passed  * time_passed * 0.5
 	
 	# Set new position
@@ -138,4 +148,15 @@ func reflect_trajectory(normal):
 	
 	global_basis = new_basis
 	restart()
+	
+
+func set_temp_speed(value : float):
+	original_speed = speed
+	speed = value
+	start_speed = -basis.z * speed
+	
+
+func set_temp_gravity_multiplier(value : float):
+	original_gravity_mult = gravity_multiplier
+	gravity_multiplier = value
 	

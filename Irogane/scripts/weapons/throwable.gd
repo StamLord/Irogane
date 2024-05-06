@@ -29,6 +29,8 @@ const ITEM_ID = "shuriken"
 var current_skill = ""
 var active_shurikens = {}
 var shoot_pos = ShootPos.BOTTOM_RIGHT
+var straight_shuriken_z_rotation = 33.0
+var last_straight_shuriken_rotation = 20.0
 
 func _ready():
 	ring_menu.item_selected.connect(skill_selected)
@@ -89,6 +91,13 @@ func fire_shuriken_straight():
 	var starting_pos = (CameraEntity.main_camera.global_basis * starting_offset) + CameraEntity.main_camera.global_position
 	var target_point = get_target_point_in_front()
 	var shuriken = fire_shuriken_from_point_to_point(starting_pos, target_point)
+	
+	# Rotate for variety
+	var max_rotation = straight_shuriken_z_rotation
+	if last_straight_shuriken_rotation >= 0.0:
+		max_rotation *= -1
+	shuriken.global_rotation_degrees.z = randf_range(0, max_rotation)
+	last_straight_shuriken_rotation = shuriken.global_rotation_degrees.z
 	
 	return shuriken
 	
@@ -252,7 +261,9 @@ func multiply_shuriken(shuriken):
 	shuriken.queue_free()
 	
 	for point in generate_points_on_sphere(20):
-		fire_shuriken_from_point_to_point(initial_pos, initial_pos + point)
+		var proj = fire_shuriken_from_point_to_point(initial_pos, initial_pos + point)
+		proj.set_temp_speed(proj.speed * 0.25)
+		proj.set_temp_gravity_multiplier(4.0)
 	
 
 func triple_throw():
