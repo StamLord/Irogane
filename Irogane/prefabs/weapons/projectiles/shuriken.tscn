@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://oiip3qsg1ts6"]
+[gd_scene load_steps=22 format=3 uid="uid://oiip3qsg1ts6"]
 
 [ext_resource type="Script" path="res://scripts/weapons/projectiles/projectile.gd" id="1_g5mtn"]
 [ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="2_0ywhw"]
@@ -29,10 +29,49 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/tint2 = Color(0.784314, 0.854902, 1, 1)
 shader_parameter/flash_speed = 24.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_nq2kj"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_4kk6i"]
 
 [sub_resource type="Gradient" id="Gradient_oe2j8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_r0pjt"]
+_data = [Vector2(0.5, 1), 0.0, -4.8924e-07, 0, 0, Vector2(1, 0), -2.1032, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_a7lac"]
+curve = SubResource("Curve_r0pjt")
+
+[sub_resource type="Curve" id="Curve_6jtda"]
+_data = [Vector2(0, 0), 0.0, 4.83736, 0, 0, Vector2(0.5, 1), 0.680192, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_4516u"]
+curve = SubResource("Curve_6jtda")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ayih6"]
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_4516u")
+alpha_curve = SubResource("CurveTexture_a7lac")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2vvji"]
+load_path = "res://.godot/imported/anime_burst_1.png-9b090b61066d8acbc81b4ba79efa13ce.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_quta0"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("CompressedTexture2D_2vvji")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_6xsv7"]
+material = SubResource("StandardMaterial3D_quta0")
 
 [node name="shuriken" type="Node3D"]
 script = ExtResource("1_g5mtn")
@@ -70,10 +109,18 @@ mesh = SubResource("BoxMesh_yvk4c")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_gmgiv")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_nq2kj")
+mesh = SubResource("ImmediateMesh_4kk6i")
 skeleton = NodePath("../../../../..")
 script = ExtResource("6_2brft")
 fromWidth = 0.1
 motionDelta = 0.01
 lifespan = 0.25
 color = SubResource("Gradient_oe2j8")
+
+[node name="impact_vfx" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ayih6")
+draw_pass_1 = SubResource("QuadMesh_6xsv7")

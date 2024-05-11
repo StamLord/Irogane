@@ -3,10 +3,14 @@ extends Node3D
 @export_flags_3d_physics var collision_mask
 @onready var hitbox = %hitbox
 @onready var trail3d = $trail3d
+@onready var impact_vfx = $impact_vfx
+@onready var model = $model
+
 @export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
-var speed = 80
+var speed = 60
 var gravity_multiplier = 1.0
+var rotation_x_speed = 1000.0
 var item_id = null
 
 # Internal vars
@@ -83,16 +87,10 @@ func _process(delta):
 	# Set new position
 	global_position = new_pos;
 	
-	# Rotate in direction of flight
-	#transform.forward = transform.position - lastPosition;
-	
-	# Rotate visual object
-	#if(visual) 
-	#{
-	#	//visual.transform.Rotate(visualRotationPerSecond.x * Time.deltaTime, 0, 0, Space.Self);
-	#	visual.transform.RotateAround(visual.transform.right, visualRotationPerSecond.x * Time.deltaTime);
-	#	visual.transform.RotateAround(transform.forward, visualRotationPerSecond.z * Time.deltaTime);
-	#}
+	# Visual rotation
+	if model:
+		model.rotate_x(rotation_x_speed * delta)
+
 	
 	collision_check(delta)
 	last_pos = new_pos;
@@ -127,6 +125,9 @@ func collision_check(delta):
 		
 		if trail3d:
 			trail3d.trailEnabled = false
+			
+		if impact_vfx:
+			impact_vfx.emit_particle(impact_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 	
 
 func reflect_trajectory(normal):
