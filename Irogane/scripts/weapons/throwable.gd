@@ -205,11 +205,16 @@ func activate_metal_shower():
 	
 	for point in generate_points_inside_circle(20, 1.5):
 		var ground_pos = initial_pos + Vector3(point.x, 0, point.y)
-		var throw_pos = get_floating_throw_pos(ground_pos)
+		var throw_pos = get_floating_throw_pos(ground_pos) + Vector3(randf_range(-1.0, 1.0), 0.0, randf_range(-1.0, 1.0))
 		var target_pos = ground_pos + Vector3(0.001, 0.0, 0.0) # Small margin because look_at freaks out when ground_pos is almost identical to position
-		fire_shuriken_from_point_to_point(throw_pos, target_pos)
+		delayed_fire_shuriken_from_point_to_point(throw_pos, target_pos, randf() * 0.2)
 	
 	skill_zone.visible = false
+	
+
+func delayed_fire_shuriken_from_point_to_point(from_global_pos, to_global_pos, delay: float):
+	await get_tree().create_timer(delay).timeout
+	fire_shuriken_from_point_to_point(from_global_pos, to_global_pos)
 	
 
 func activate_special_shuriken(type: String):
