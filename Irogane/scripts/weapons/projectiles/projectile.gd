@@ -65,6 +65,7 @@ func restart():
 	stopped = false
 	
 	if trail3d:
+		trail3d.set_lifespan(1.0)
 		trail3d.trailEnabled = true
 	
 
@@ -92,7 +93,7 @@ func _process(delta):
 	# Visual rotation
 	if model:
 		model.rotate_x(rotation_x_speed * delta)
-
+	
 	
 	collision_check(delta)
 	last_pos = new_pos;
@@ -130,6 +131,7 @@ func collision_check(delta):
 		
 		if trail3d:
 			trail3d.trailEnabled = false
+			trail3d.set_lifespan(0.25)
 	
 
 func reflect_trajectory(normal):

@@ -114,7 +114,6 @@ skeleton = NodePath("../../../../..")
 script = ExtResource("6_2brft")
 fromWidth = 0.1
 motionDelta = 0.01
-lifespan = 0.25
 color = SubResource("Gradient_oe2j8")
 
 [node name="impact_vfx" type="GPUParticles3D" parent="."]
