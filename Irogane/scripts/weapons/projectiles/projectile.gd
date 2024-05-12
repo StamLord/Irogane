@@ -25,6 +25,8 @@ var not_persistent = false
 var original_speed = null
 var original_gravity_mult = null
 
+signal on_stopped(projectile)
+
 func _ready():
 	restart()
 	hitbox.set_active(true)
@@ -104,12 +106,15 @@ func collision_check(delta):
 	if result:
 		global_position = result.position # Move back to ray collision to avoid clipping
 		
+		emit_impact_vfx()
+		
 		if bounce_count > 0:
 			reflect_trajectory(result.normal)
 			bounce_count -= 1
 			return
 		
 		stopped = true
+		on_stopped.emit(self)
 		
 		# Reparent under collider
 		var old_global_rot = global_rotation
@@ -125,21 +130,9 @@ func collision_check(delta):
 		
 		if trail3d:
 			trail3d.trailEnabled = false
-			
-		if impact_vfx:
-			impact_vfx.emit_particle(impact_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 	
 
 func reflect_trajectory(normal):
-	# Reposition under root
-	#var old_pos = global_position
-	#var old_rot = global_rotation
-	#var root = get_tree().get_root()
-	#get_parent().remove_child(self)
-	#root.add_child(self)
-	#global_position = old_pos
-	#global_rotation = old_rot
-	
 	# Orient to new reflected forward
 	var new_forward = global_basis.z.reflect(normal)
 	var new_basis = Basis()
@@ -160,4 +153,9 @@ func set_temp_speed(value : float):
 func set_temp_gravity_multiplier(value : float):
 	original_gravity_mult = gravity_multiplier
 	gravity_multiplier = value
+	
+
+func emit_impact_vfx():
+	if impact_vfx:
+		impact_vfx.emit_particle(impact_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 	

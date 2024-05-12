@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd3aunli781qp"]
+[gd_scene load_steps=4 format=3 uid="uid://dd3aunli781qp"]
 
 [ext_resource type="Script" path="res://scripts/interactive/Pickup.gd" id="1_21odp"]
-[ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="1_wui5k"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_etjtd"]
 radius = 0.1
@@ -9,7 +8,7 @@ radius = 0.1
 [sub_resource type="BoxShape3D" id="BoxShape3D_y7cc7"]
 size = Vector3(0.15, 0.15, 0.03)
 
-[node name="shuriken" type="RigidBody3D"]
+[node name="shuriken2" type="RigidBody3D"]
 
 [node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
@@ -20,7 +19,7 @@ item_id = "godot cube"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 shape = SubResource("SphereShape3D_etjtd")
 
-[node name="model" parent="." instance=ExtResource("1_wui5k")]
+[node name="model" type="Node3D" parent="."]
 transform = Transform3D(-8.74228e-10, 0, 0.02, 0, 0.02, 0, -0.02, 0, -8.74228e-10, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

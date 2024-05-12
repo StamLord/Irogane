@@ -19,6 +19,7 @@ const shoot_pos_offset = {
 
 # Prefab
 @onready var shuriken_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
+@onready var smoke_vanish_vfx = $smoke_vanish_vfx
 
 # Skill Menu
 @onready var ring_menu = $shuriken_ring_menu
@@ -74,6 +75,13 @@ func fire_shuriken_from_point_to_point(from_global_pos, to_global_pos):
 	var shuriken =  spawn_shuriken_at_pos(from_global_pos)
 	shuriken.look_at(to_global_pos)
 	shuriken.restart()
+	
+	return shuriken
+	
+
+func fire_vanishing_shuriken_from_point_to_point(from_global_pos, to_global_pos):
+	var shuriken = fire_shuriken_from_point_to_point(from_global_pos, to_global_pos)
+	shuriken.on_stopped.connect(vanish_shuriken)
 	
 	return shuriken
 	
@@ -207,14 +215,14 @@ func activate_metal_shower():
 		var ground_pos = initial_pos + Vector3(point.x, 0, point.y)
 		var throw_pos = get_floating_throw_pos(ground_pos) + Vector3(randf_range(-1.0, 1.0), 0.0, randf_range(-1.0, 1.0))
 		var target_pos = ground_pos + Vector3(0.001, 0.0, 0.0) # Small margin because look_at freaks out when ground_pos is almost identical to position
-		delayed_fire_shuriken_from_point_to_point(throw_pos, target_pos, randf() * 0.2)
+		delayed_vanishing_shuriken_from_point_to_point(throw_pos, target_pos, randf() * 0.2)
 	
 	skill_zone.visible = false
 	
 
-func delayed_fire_shuriken_from_point_to_point(from_global_pos, to_global_pos, delay: float):
+func delayed_vanishing_shuriken_from_point_to_point(from_global_pos, to_global_pos, delay: float):
 	await get_tree().create_timer(delay).timeout
-	fire_shuriken_from_point_to_point(from_global_pos, to_global_pos)
+	fire_vanishing_shuriken_from_point_to_point(from_global_pos, to_global_pos)
 	
 
 func activate_special_shuriken(type: String):
@@ -318,4 +326,12 @@ func context_changed(old_context, new_context):
 	if InputContextManager.is_ring_menu_context() and new_context != old_context:
 		if ring_menu.visible == true:
 			ring_menu.close_no_signal()
+	
+
+func vanish_shuriken(shuriken):
+	await get_tree().create_timer(1.0).timeout
+	if smoke_vanish_vfx:
+		for i in range(32):
+			smoke_vanish_vfx.emit_particle(shuriken.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+	shuriken.queue_free()
 	
