@@ -274,7 +274,7 @@ func multiply_shuriken(shuriken):
 	shuriken.queue_free()
 	
 	for point in generate_points_on_sphere(20):
-		var proj = fire_shuriken_from_point_to_point(initial_pos, initial_pos + point)
+		var proj = fire_vanishing_shuriken_from_point_to_point(initial_pos, initial_pos + point)
 		proj.set_temp_speed(proj.speed * 0.25)
 		proj.set_temp_gravity_multiplier(4.0)
 	
