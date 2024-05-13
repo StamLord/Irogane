@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://oiip3qsg1ts6"]
+[gd_scene load_steps=33 format=3 uid="uid://oiip3qsg1ts6"]
 
 [ext_resource type="Script" path="res://scripts/weapons/projectiles/projectile.gd" id="1_g5mtn"]
 [ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="2_0ywhw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="4_iayb3"]
 [ext_resource type="Shader" uid="uid://cn7vmt8l2bpd7" path="res://assets/shaders/blade_trail.res" id="5_gb0gq"]
 [ext_resource type="Script" path="res://addons/godot_4_motion_trail/Trail3D.gd" id="6_2brft"]
+[ext_resource type="Texture2D" uid="uid://7mhdq6kc4thq" path="res://assets/textures/vfx/burst_5.png" id="7_6ohj5"]
 [ext_resource type="Texture2D" uid="uid://dvmlm3w1lemag" path="res://assets/textures/vfx/crescent_1.png" id="7_8n4mp"]
 [ext_resource type="AudioStream" uid="uid://cpijaa28xj7rb" path="res://assets/audio/shuriken/shuriken_flight_1.ogg" id="8_qmri7"]
 
@@ -38,15 +39,23 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
 [sub_resource type="Curve" id="Curve_r0pjt"]
-_data = [Vector2(0.5, 1), 0.0, -4.8924e-07, 0, 0, Vector2(1, 0), -2.1032, 0.0, 0, 0]
+_data = [Vector2(0.5, 1), 0.0, -4.8924e-07, 0, 0, Vector2(1, 0), -4.05714, 0.0, 0, 0]
 point_count = 2
 metadata/_snap_enabled = true
 
 [sub_resource type="CurveTexture" id="CurveTexture_a7lac"]
 curve = SubResource("Curve_r0pjt")
 
+[sub_resource type="Curve" id="Curve_3q6dr"]
+min_value = -1.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.993, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5c3fs"]
+curve = SubResource("Curve_3q6dr")
+
 [sub_resource type="Curve" id="Curve_6jtda"]
-_data = [Vector2(0, 0), 0.0, 4.83736, 0, 0, Vector2(0.5, 1), 0.680192, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 3.43297, 0, 0, Vector2(1, 1), 3.76171e-07, 0.0, 0, 0]
 point_count = 2
 metadata/_snap_enabled = true
 
@@ -55,18 +64,18 @@ curve = SubResource("Curve_6jtda")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ayih6"]
 angle_max = 360.0
+angle_curve = SubResource("CurveTexture_5c3fs")
 gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
 scale_curve = SubResource("CurveTexture_4516u")
 alpha_curve = SubResource("CurveTexture_a7lac")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2vvji"]
-load_path = "res://.godot/imported/anime_burst_1.png-9b090b61066d8acbc81b4ba79efa13ce.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_quta0"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = SubResource("CompressedTexture2D_2vvji")
+albedo_texture = ExtResource("7_6ohj5")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -125,7 +134,7 @@ script = ExtResource("1_g5mtn")
 collision_mask = 1
 
 [node name="model" parent="." instance=ExtResource("2_0ywhw")]
-transform = Transform3D(1, 0, 0, 0, 0.660134, 0.755424, 0, -0.755424, 0.660134, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.884083, 0.473205, 0, -0.473205, 0.884083, 0, 0, 0)
 
 [node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
