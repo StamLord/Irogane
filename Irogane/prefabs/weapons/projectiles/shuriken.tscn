@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://oiip3qsg1ts6"]
+[gd_scene load_steps=31 format=3 uid="uid://oiip3qsg1ts6"]
 
 [ext_resource type="Script" path="res://scripts/weapons/projectiles/projectile.gd" id="1_g5mtn"]
 [ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="2_0ywhw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://cn7vmt8l2bpd7" path="res://assets/shaders/blade_trail.res" id="5_gb0gq"]
 [ext_resource type="Script" path="res://addons/godot_4_motion_trail/Trail3D.gd" id="6_2brft"]
 [ext_resource type="Texture2D" uid="uid://dvmlm3w1lemag" path="res://assets/textures/vfx/crescent_1.png" id="7_8n4mp"]
+[ext_resource type="AudioStream" uid="uid://cpijaa28xj7rb" path="res://assets/audio/shuriken/shuriken_flight_1.ogg" id="8_qmri7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dcbxx"]
 radius = 0.1
@@ -123,7 +124,7 @@ script = ExtResource("1_g5mtn")
 collision_mask = 1
 
 [node name="model" parent="." instance=ExtResource("2_0ywhw")]
-transform = Transform3D(1, 0, 0, 0, 0.700232, 0.715668, 0, -0.715668, 0.700232, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.739446, 0.677271, 0, -0.677271, 0.739446, 0, 0, 0)
 
 [node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
@@ -178,3 +179,7 @@ fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_5fb6x")
 draw_pass_1 = SubResource("QuadMesh_ii2s3")
+
+[node name="audio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_qmri7")
+volume_db = -18.0

@@ -8,6 +8,10 @@ extends Node3D
 @onready var impact_vfx = $impact_vfx
 @onready var model = $model
 
+@onready var audio = $audio
+const SHURIKEN_FLIGHT_SFX = preload("res://assets/audio/shuriken/shuriken_flight_1.ogg")
+const SHURIKEN_IMPACT_SFX = preload("res://assets/audio/shuriken/shuriken_impact_1.ogg")
+
 @export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
 @export var speed = 60
@@ -72,6 +76,11 @@ func restart():
 	if spin_vfx:
 		spin_vfx.visible = true
 	
+	if audio:
+		audio.stream = SHURIKEN_FLIGHT_SFX
+		audio.pitch_scale = 1.0 - randf_range(-0.05, 0.05)
+		audio.playing = true
+	
 	if trail3d:
 		trail3d.set_lifespan(1.0)
 		trail3d.trailEnabled = true
@@ -132,6 +141,11 @@ func collision_check(delta):
 		
 		if spin_vfx:
 			spin_vfx.visible = false
+		
+		if audio:
+			audio.stream = SHURIKEN_IMPACT_SFX
+			audio.pitch_scale = 1.0 - randf_range(-0.05, 0.05)
+			audio.play()
 		
 		# Reparent under collider
 		var old_global_rot = global_rotation
