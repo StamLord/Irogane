@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://oiip3qsg1ts6"]
+[gd_scene load_steps=30 format=3 uid="uid://oiip3qsg1ts6"]
 
 [ext_resource type="Script" path="res://scripts/weapons/projectiles/projectile.gd" id="1_g5mtn"]
 [ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="2_0ywhw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="4_iayb3"]
 [ext_resource type="Shader" uid="uid://cn7vmt8l2bpd7" path="res://assets/shaders/blade_trail.res" id="5_gb0gq"]
 [ext_resource type="Script" path="res://addons/godot_4_motion_trail/Trail3D.gd" id="6_2brft"]
+[ext_resource type="Texture2D" uid="uid://dvmlm3w1lemag" path="res://assets/textures/vfx/crescent_1.png" id="7_8n4mp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dcbxx"]
 radius = 0.1
@@ -29,7 +30,7 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/tint2 = Color(0.784314, 0.854902, 1, 1)
 shader_parameter/flash_speed = 24.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_4kk6i"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_i4vc1"]
 
 [sub_resource type="Gradient" id="Gradient_oe2j8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -73,11 +74,56 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_6xsv7"]
 material = SubResource("StandardMaterial3D_quta0")
 
+[sub_resource type="Curve" id="Curve_2nmk4"]
+max_value = 0.25
+_data = [Vector2(0, 0), 0.0, 12500.0, 0, 1, Vector2(1e-05, 0.125), 0.00487647, 0.00487647, 0, 0, Vector2(1, 0), -0.139325, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_p3e75"]
+curve = SubResource("Curve_2nmk4")
+
+[sub_resource type="Curve" id="Curve_igwf8"]
+_data = [Vector2(0, 0.791209), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_sx1em"]
+curve = SubResource("Curve_igwf8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5fb6x"]
+particle_flag_disable_z = true
+angle_max = 360.0
+direction = Vector3(-1, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_sx1em")
+alpha_curve = SubResource("CurveTexture_p3e75")
+sub_emitter_mode = 1
+sub_emitter_frequency = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6xcn"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_8n4mp")
+refraction_scale = 1.0
+texture_filter = 0
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ii2s3"]
+material = SubResource("StandardMaterial3D_u6xcn")
+
 [node name="shuriken" type="Node3D"]
 script = ExtResource("1_g5mtn")
 collision_mask = 1
 
 [node name="model" parent="." instance=ExtResource("2_0ywhw")]
+transform = Transform3D(1, 0, 0, 0, 0.700232, 0.715668, 0, -0.715668, 0.700232, 0, 0, 0)
 
 [node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
@@ -109,7 +155,7 @@ mesh = SubResource("BoxMesh_yvk4c")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_gmgiv")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_4kk6i")
+mesh = SubResource("ImmediateMesh_i4vc1")
 skeleton = NodePath("../../../../..")
 script = ExtResource("6_2brft")
 fromWidth = 0.1
@@ -123,3 +169,12 @@ lifetime = 0.25
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ayih6")
 draw_pass_1 = SubResource("QuadMesh_6xsv7")
+
+[node name="spin_vfx" type="GPUParticles3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
+amount = 16
+lifetime = 0.2
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_5fb6x")
+draw_pass_1 = SubResource("QuadMesh_ii2s3")

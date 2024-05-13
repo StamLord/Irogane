@@ -1,16 +1,18 @@
+@tool
 extends Node3D
 
 @export_flags_3d_physics var collision_mask
 @onready var hitbox = %hitbox
 @onready var trail3d = $trail3d
+@onready var spin_vfx = $spin_vfx
 @onready var impact_vfx = $impact_vfx
 @onready var model = $model
 
 @export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
-var speed = 60
-var gravity_multiplier = 1.0
-var rotation_x_speed = 1000.0
+@export var speed = 60
+@export var gravity_multiplier = 1.0
+@export var rotation_x_speed = 20.0
 var item_id = null
 
 # Internal vars
@@ -28,6 +30,9 @@ var original_gravity_mult = null
 signal on_stopped(projectile)
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
+	
 	restart()
 	hitbox.set_active(true)
 	hitbox.on_collision.connect(hit)
@@ -64,6 +69,9 @@ func restart():
 	start_speed = -basis.z * speed
 	stopped = false
 	
+	if spin_vfx:
+		spin_vfx.visible = true
+	
 	if trail3d:
 		trail3d.set_lifespan(1.0)
 		trail3d.trailEnabled = true
@@ -75,6 +83,10 @@ func deactivate_hitbox():
 	
 
 func _process(delta):
+	if Engine.is_editor_hint():
+		rotate_model(delta)
+		return
+	
 	if stopped:
 		deactivate_hitbox()
 		return
@@ -90,13 +102,14 @@ func _process(delta):
 	# Set new position
 	global_position = new_pos;
 	
-	# Visual rotation
-	if model:
-		model.rotate_x(rotation_x_speed * delta)
-	
-	
+	rotate_model(delta)
 	collision_check(delta)
 	last_pos = new_pos;
+	
+
+func rotate_model(delta):
+	if model:
+		model.rotate_x(rotation_x_speed * delta)
 	
 
 func collision_check(delta):
@@ -116,6 +129,9 @@ func collision_check(delta):
 		
 		stopped = true
 		on_stopped.emit(self)
+		
+		if spin_vfx:
+			spin_vfx.visible = false
 		
 		# Reparent under collider
 		var old_global_rot = global_rotation
