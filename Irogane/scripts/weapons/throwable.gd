@@ -292,9 +292,9 @@ func triple_throw():
 	var rotation2 = CameraEntity.main_camera.global_rotation + Vector3(0, SPREAD_ANGLE, deg_to_rad(90))
 	var rotation3 = CameraEntity.main_camera.global_rotation + Vector3(0, -SPREAD_ANGLE, deg_to_rad(90))
 	
-	fire_shuriken_from_point_in_direction(starting_pos, rotation1)
-	fire_shuriken_from_point_in_direction(position_offset2, rotation2)
-	fire_shuriken_from_point_in_direction(position_offset3, rotation3)
+	fire_shuriken_from_point_in_direction(starting_pos, rotation1).rotation.z = randf_range(-straight_shuriken_z_rotation, straight_shuriken_z_rotation)
+	fire_shuriken_from_point_in_direction(position_offset2, rotation2).rotation.z = randf_range(-straight_shuriken_z_rotation, straight_shuriken_z_rotation)
+	fire_shuriken_from_point_in_direction(position_offset3, rotation3).rotation.z = randf_range(-straight_shuriken_z_rotation, straight_shuriken_z_rotation)
 	
 
 func octo_throw():

@@ -82,7 +82,7 @@ func restart():
 		audio.playing = true
 	
 	if trail3d:
-		trail3d.set_lifespan(1.0)
+		trail3d.set_lifespan(0.5)
 		trail3d.trailEnabled = true
 	
 

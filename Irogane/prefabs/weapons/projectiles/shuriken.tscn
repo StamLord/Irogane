@@ -35,6 +35,7 @@ shader_parameter/flash_speed = 24.0
 
 [sub_resource type="Gradient" id="Gradient_oe2j8"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
 
 [sub_resource type="Curve" id="Curve_r0pjt"]
 _data = [Vector2(0.5, 1), 0.0, -4.8924e-07, 0, 0, Vector2(1, 0), -2.1032, 0.0, 0, 0]
@@ -124,7 +125,7 @@ script = ExtResource("1_g5mtn")
 collision_mask = 1
 
 [node name="model" parent="." instance=ExtResource("2_0ywhw")]
-transform = Transform3D(1, 0, 0, 0, 0.739446, 0.677271, 0, -0.677271, 0.739446, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.660134, 0.755424, 0, -0.755424, 0.660134, 0, 0, 0)
 
 [node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
@@ -161,6 +162,7 @@ skeleton = NodePath("../../../../..")
 script = ExtResource("6_2brft")
 fromWidth = 0.1
 motionDelta = 0.01
+lifespan = 0.5
 color = SubResource("Gradient_oe2j8")
 
 [node name="impact_vfx" type="GPUParticles3D" parent="."]
