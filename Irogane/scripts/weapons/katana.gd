@@ -152,9 +152,11 @@ func _ready():
 	hitbox.on_block.connect(hit_blocked)
 	hitbox.on_heavy_clash.connect(heavy_clash)
 	hitbox.on_blade_lock_invite.connect(join_blade_lock)
+	hitbox.add_ignore(owner)
 	
 	upward_hitbox.on_collision.connect(hit)
 	upward_hitbox.on_block.connect(hit_blocked)
+	upward_hitbox.add_ignore(owner)
 	
 	guard_hitbox.on_guard.connect(guarded)
 	guard_hitbox.on_perfect_guard.connect(perfect_guarded)
@@ -355,12 +357,12 @@ func hit(area, hitbox):
 		
 		area.hit(attack_info.get_translated(global_basis))
 	
-	print("HIT: ", area)
+	#print("HIT: ", area)
 	
 	# VFX
 	CameraShaker.shake(0.25, 0.2)
-	if decal_raycast.is_colliding():
-		create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
+	#if decal_raycast.is_colliding():
+		#create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
 	
 	slash_0_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 	slash_1_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)

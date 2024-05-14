@@ -14,6 +14,7 @@ static var debug = false
 
 # Array of collisions used to avoid multiple collisions on same object
 var collisions = []
+var ignore_targets = []
 
 signal on_collision(area, hitbox)
 signal on_block(area : Guardbox, hitbox)
@@ -52,9 +53,12 @@ func collision_check():
 			return
 	
 	for col in colliders:
-		if not collide_with_self and col.owner == self.owner:
+		# Good for when hitbox and hurtbox are under same scene
+		if not collide_with_self and col.owner == self.owner: 
 			continue
-		
+		# Good for when hurtbox sits under 'player' scene and hitbox sits in a nested scene like 'katana_hands'
+		if col.owner in ignore_targets:
+			continue
 		if avoid_multiple_collisions and collisions.has(col):
 			continue
 		
@@ -72,4 +76,13 @@ func set_heavy(state : bool):
 
 func invite_to_blade_lock(blade_lock : BladeLock):
 	on_blade_lock_invite.emit(blade_lock)
+	
+
+func add_ignore(node):
+	if not ignore_targets.has(node):
+		ignore_targets.append(node)
+	
+
+func remove_ignore(node):
+	ignore_targets.erase(node)
 	
