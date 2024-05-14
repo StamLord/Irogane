@@ -43,7 +43,7 @@ func collision_check():
 	var colliders = get_overlapping_areas()
 	
 	for col in colliders:
-		if col is Guardbox:
+		if col is Guardbox and col.owner != owner:
 			on_block.emit(col, self)
 			set_active(false)
 			return
