@@ -117,11 +117,16 @@ extends Node3D
 @onready var trail_3d = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d
 @onready var guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_vfx
 @onready var perfect_guard_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/perfect_guard_vfx
-@onready var slash_0_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx
-@onready var slash_1_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_1_vfx
-@onready var slash_circle_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/slash_0_vfx/slash_circle_vfx
+@onready var slash_0_vfx = $slash_0_vfx
+@onready var slash_1_vfx = $slash_1_vfx
+@onready var slash_circle_vfx = $slash_circle_vfx
 @onready var blade_lock_vfx = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_lock_vfx
 @onready var guard_break_vfx = $"../../../../vfx/guard_break"
+
+# Audio
+@onready var audio = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/audio
+const swing_sfx = [preload("res://assets/audio/katana/katana_swoosh_01.mp3"), preload("res://assets/audio/katana/katana_swoosh_02.mp3"), preload("res://assets/audio/katana/katana_swoosh_03.mp3"), preload("res://assets/audio/katana/katana_swoosh_04.mp3")]
+const hit_sfx = [preload("res://assets/audio/katana/katana_clash_01.mp3"), preload("res://assets/audio/katana/katana_clash_02.mp3"), preload("res://assets/audio/katana/katana_clash_03.mp3"), preload("res://assets/audio/katana/katana_clash_04.mp3")]
 
 var combo = []
 var last_combo_addition = 0
@@ -357,18 +362,17 @@ func hit(area, hitbox):
 		
 		area.hit(attack_info.get_translated(global_basis))
 	
-	#print("HIT: ", area)
-	
-	# VFX
 	CameraShaker.shake(0.25, 0.2)
+	
+	play_audio(hit_sfx.pick_random())
+	
 	#if decal_raycast.is_colliding():
 		#create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
 	
-	slash_0_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
-	slash_1_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
-	slash_circle_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
-	
-	#audio.play(hit_sounds.pick_random(), hitbox.global_position)
+	var camera_facing_transform = Transform3D(blade_alignment.global_transform)
+	slash_0_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 3)
+	slash_1_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 3)
+	slash_circle_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 3)
 	
 
 func hit_blocked(area : Guardbox, hitbox):
@@ -389,6 +393,7 @@ func hit_blocked(area : Guardbox, hitbox):
 func guarded(attack_info, hitbox):
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
+	play_audio(hit_sfx.pick_random())
 	
 	if stats:
 		stats.deplete_stamina(attack_info.soft_damage)
@@ -401,6 +406,7 @@ func perfect_guarded(attack_info, hitbox):
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(pos)
 	play_perfect_guard_vfx(pos)
+	play_audio(hit_sfx.pick_random())
 	
 
 func play_guard_vfx(_position):
@@ -444,6 +450,8 @@ func heavy_clash(area : Hitbox, hitbox):
 	blade_lock.start_struggle()
 	
 	is_in_blade_lock = true
+	
+	play_audio(hit_sfx.pick_random())
 	
 
 func join_blade_lock(blade_lock : BladeLock):
@@ -558,12 +566,17 @@ func animation_changed(new_name):
 		hitbox.set_heavy(is_heavy)
 		upward_hitbox.set_active(false)
 		set_trail_enabled(true)
+		
+		play_audio(swing_sfx.pick_random())
+		
 	elif new_name in ["heavy_2"]:
 		upward_hitbox.clear_collisions() # Needed in case of attack to attack transition
 		upward_hitbox.set_active(true)
 		upward_hitbox.set_heavy(is_heavy)
 		hitbox.set_active(false)
 		set_trail_enabled(true)
+		
+		play_audio(swing_sfx.pick_random())
 	
 
 func turn_on_charging_vfx(particles):
@@ -652,3 +665,8 @@ func stop_guard():
 	is_guarding = false
 	guard_hitbox.set_active(false)
 	
+
+func play_audio(clip):
+	if audio:
+		audio.stream = clip
+		audio.play()
