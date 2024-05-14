@@ -18,9 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
 [ext_resource type="Shader" uid="uid://bx4wlincejp4h" path="res://prefabs/ui/hurt_vfx.tres" id="17_lk0xl"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
-font_size = 24
-
 [sub_resource type="Curve" id="Curve_3ssjj"]
 max_value = 4.0
 _data = [Vector2(0, 0), 0.0, 26.1538, 0, 0, Vector2(0.245763, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -42,9 +39,42 @@ shader_parameter/strength = 0.0
 shader = ExtResource("17_lk0xl")
 shader_parameter/distortion_amount = 0.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
+font_size = 24
+
 [node name="game_ui" type="Control"]
 texture_filter = 1
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="screen_vfx" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("15_l8i5o")
+medicine_curve = SubResource("Curve_3ssjj")
+hurt_curve = SubResource("Curve_ugfdm")
+
+[node name="medicine_vfx" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dha70")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hurt_vfx" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dkd7g")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -298,14 +328,6 @@ script = ExtResource("10_pnsv3")
 [node name="glossary_ui" parent="." instance=ExtResource("11_tb3gr")]
 visible = false
 
-[node name="system_menu" parent="." instance=ExtResource("12_dwafj")]
-visible = false
-layout_mode = 1
-
-[node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
-visible = false
-layout_mode = 1
-
 [node name="quests_window" type="Window" parent="."]
 title = "Quests"
 initial_position = 2
@@ -364,34 +386,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 
-[node name="screen_vfx" type="Control" parent="."]
+[node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("15_l8i5o")
-medicine_curve = SubResource("Curve_3ssjj")
-hurt_curve = SubResource("Curve_ugfdm")
 
-[node name="medicine_vfx" type="Panel" parent="screen_vfx"]
-material = SubResource("ShaderMaterial_dha70")
+[node name="system_menu" parent="." instance=ExtResource("12_dwafj")]
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="hurt_vfx" type="Panel" parent="screen_vfx"]
-material = SubResource("ShaderMaterial_dkd7g")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]
