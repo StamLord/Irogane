@@ -23,6 +23,8 @@ var is_tilting = false
 # Fov
 var original_fov = 75
 
+var can_rotate = true
+
 func _ready():
 	original_height = position.y
 	original_fov = camera.fov
@@ -31,6 +33,9 @@ func _ready():
 	
 
 func _input(event):
+	if not can_rotate:
+		return
+	
 	if is_tilting:
 		return
 	
@@ -149,4 +154,16 @@ func add_debug_commands():
 func set_original_fov(args: Array):
 	original_fov = args[0]
 	camera.fov = args[0]
+	
+
+func look_at_lerp(target : Vector3):
+	look_at(target, Vector3.UP)
+	
+
+func enable_rotation():
+	can_rotate = true
+	
+
+func disable_rotation():
+	can_rotate = false
 	

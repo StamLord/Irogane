@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://be7novqig63as"]
+
+[ext_resource type="Script" path="res://scripts/stats/status.gd" id="1_jorce"]
+[ext_resource type="Texture2D" uid="uid://7iyl86m0clnh" path="res://assets/textures/icons/snake_24x24.png" id="1_lkthv"]
+
+[resource]
+script = ExtResource("1_jorce")
+_name = "Poison"
+description = "The target is poisoned and is dealt 1 damage per second."
+icon = ExtResource("1_lkthv")
+duration_in_sec = 60
+health_per_sec = 1
+stamina_per_sec = 0
+cures = Array[String]([])
+prevents = Array[String]([])
+effects = Array[Resource("res://scripts/stats/effect.gd")]([])

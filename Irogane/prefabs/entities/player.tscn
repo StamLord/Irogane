@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=144 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -10,9 +10,11 @@
 [ext_resource type="Script" path="res://scripts/controls/player_states/Crouch.gd" id="7_826s0"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Vault.gd" id="8_nprs7"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Glide.gd" id="9_c0lt0"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Pushed.gd" id="9_crd0n"]
 [ext_resource type="Script" path="res://scripts/controls/mouse_look.gd" id="9_nfdeu"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/ClimbRope.gd" id="10_7bwsl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Rooted.gd" id="14_pnpox"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
@@ -41,13 +43,19 @@
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="33_vi4em"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="35_853ua"]
+[ext_resource type="Texture2D" uid="uid://cpi0juna4kbhd" path="res://assets/textures/vfx/slash_0.png" id="36_bgtl7"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
 [ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
 [ext_resource type="Texture2D" uid="uid://btf3hxn2ns85p" path="res://assets/textures/vfx/aoe_decal_1.png" id="36_yxiao"]
 [ext_resource type="Script" path="res://scripts/skills/skill_zone.gd" id="37_60ul2"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
+[ext_resource type="Texture2D" uid="uid://b2gre3j56duto" path="res://assets/textures/vfx/slash_1.png" id="37_okqcx"]
 [ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
+[ext_resource type="Texture2D" uid="uid://d15my5xovi2rm" path="res://assets/textures/vfx/slash_2.png" id="38_e1qu1"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
+[ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
+[ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
+[ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -153,15 +161,130 @@ shader_parameter/glow = 4.0
 [sub_resource type="SphereMesh" id="SphereMesh_1d4nr"]
 material = SubResource("ShaderMaterial_qa7yc")
 
+[sub_resource type="Curve" id="Curve_ta0xo"]
+_data = [Vector2(0.496689, 1), 0.0, -0.0580084, 0, 0, Vector2(1, 0), -5.35975, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rlrbj"]
+curve = SubResource("Curve_ta0xo")
+
+[sub_resource type="Curve" id="Curve_ktdey"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_wdsb0"]
+_data = [Vector2(0, 0), 0.0, 3.06403, 0, 0, Vector2(1, 1), 0.195778, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gna2j"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_hd5v2"]
+curve_x = SubResource("Curve_ktdey")
+curve_y = SubResource("Curve_wdsb0")
+curve_z = SubResource("Curve_gna2j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2ni1"]
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveXYZTexture_hd5v2")
+alpha_curve = SubResource("CurveTexture_rlrbj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6n8k"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("36_bgtl7")
+texture_filter = 0
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_6bkg6"]
+material = SubResource("StandardMaterial3D_s6n8k")
+
+[sub_resource type="Curve" id="Curve_b0bcc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.21276, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7y8p5"]
+curve = SubResource("Curve_b0bcc")
+
+[sub_resource type="Curve" id="Curve_4yj2r"]
+_data = [Vector2(0, 0), 0.0, 2.47908, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nmgy6"]
+curve = SubResource("Curve_4yj2r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jcdkj"]
+particle_flag_rotate_y = true
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_nmgy6")
+alpha_curve = SubResource("CurveTexture_7y8p5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d51tt"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("37_okqcx")
+texture_filter = 0
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_h33fq"]
+material = SubResource("StandardMaterial3D_d51tt")
+
+[sub_resource type="Curve" id="Curve_j1li0"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.96504, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_1a2e4"]
+curve = SubResource("Curve_j1li0")
+
+[sub_resource type="Curve" id="Curve_xl1ol"]
+_data = [Vector2(0, 0), 0.0, 1.10439, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mfymx"]
+curve = SubResource("Curve_xl1ol")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0xiw"]
+particle_flag_rotate_y = true
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mfymx")
+alpha_curve = SubResource("CurveTexture_1a2e4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dxuj"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("38_e1qu1")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ftt2y"]
+material = SubResource("StandardMaterial3D_0dxuj")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
-radius = 0.49
+radius = 0.3
 height = 1.9
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_764jx"]
-radius = 0.45
+radius = 0.3
 height = 0.9
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnn1b"]
@@ -206,8 +329,7 @@ direction = Vector3(0, 1, 0)
 initial_velocity_min = 0.2
 initial_velocity_max = 0.4
 gravity = Vector3(0, 1, 0)
-scale_min = 2.0
-scale_max = 4.0
+scale_min = 0.5
 scale_curve = SubResource("CurveTexture_le6v8")
 color = Color(0.537255, 0.580392, 0.780392, 0.376471)
 color_ramp = SubResource("GradientTexture1D_3bx3h")
@@ -228,6 +350,52 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_7s8xr"]
 material = SubResource("StandardMaterial3D_uvrxs")
+
+[sub_resource type="Curve" id="Curve_mt1qp"]
+_data = [Vector2(0.75, 1), 0.0, -4.0, 0, 1, Vector2(1, 0), -4.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ly1p"]
+curve = SubResource("Curve_mt1qp")
+
+[sub_resource type="Curve" id="Curve_v8quj"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l30r6"]
+curve = SubResource("Curve_v8quj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrgww"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_l30r6")
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color = Color(0.388235, 0.560784, 0.772549, 1)
+alpha_curve = SubResource("CurveTexture_7ly1p")
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu3pd"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("40_xlxho")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_tb2lv"]
+material = SubResource("StandardMaterial3D_bu3pd")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3d1aj"]
 
@@ -404,6 +572,10 @@ material = SubResource("ShaderMaterial_m4ab3")
 [sub_resource type="SphereShape3D" id="SphereShape3D_86t26"]
 radius = 5.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gw68j"]
+radius = 0.25
+height = 1.0
+
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
 collision_layer = 129
 collision_mask = 129
@@ -412,8 +584,9 @@ script = ExtResource("1_v2hnl")
 push_force = 2
 default_state = NodePath("states/walk")
 
-[node name="stats" parent="." instance=ExtResource("2_u6d7g")]
+[node name="stats" parent="." node_paths=PackedStringArray("hurtboxes") instance=ExtResource("2_u6d7g")]
 unique_name_in_owner = true
+hurtboxes = [NodePath("../hutboxes/body")]
 
 [node name="states" type="Node3D" parent="."]
 
@@ -434,7 +607,9 @@ script = ExtResource("6_mtivl")
 
 [node name="dash" type="Node" parent="states"]
 script = ExtResource("12_0ox4n")
-exit_threshold = 1.0
+
+[node name="pushed" type="Node" parent="states"]
+script = ExtResource("9_crd0n")
 
 [node name="crouch" type="Node" parent="states"]
 script = ExtResource("7_826s0")
@@ -456,6 +631,9 @@ script = ExtResource("16_0qk7s")
 acceleration = 5
 buoyancy = 0.0
 surface_offset = -1.5
+
+[node name="rooted" type="Node" parent="states"]
+script = ExtResource("14_pnpox")
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -572,9 +750,13 @@ bus = &"Sound"
 [node name="first_person_rig" parent="head/main_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 
-[node name="sword" type="Node3D" parent="head/main_camera/weapon_manager"]
+
+[node name="sword" type="Node3D" parent="head/main_camera/weapon_manager" node_paths=PackedStringArray("stats", "state_machine", "camera_look")]
 visible = false
 script = ExtResource("26_fyhdv")
+stats = NodePath("../../../../stats")
+state_machine = NodePath("../../../..")
+camera_look = NodePath("../../..")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/sword"]
 layout_mode = 3
@@ -672,6 +854,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("32_bgsca")
 fade_duration = 0.25
+
+[node name="slash_0_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/sword"]
+transform = Transform3D(-0.999999, 9.97471e-08, -7.54979e-08, 8.48458e-08, 1, 1.10197e-08, 6.67022e-08, 1.39091e-08, -0.999999, 0.500363, 0.0093503, 0.519299)
+emitting = false
+amount = 16
+lifetime = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_e2ni1")
+draw_pass_1 = SubResource("QuadMesh_6bkg6")
+
+[node name="slash_1_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/sword"]
+transform = Transform3D(4.22219e-08, -1.13133e-08, 1, -0.258819, -0.965925, 0, 0.965925, -0.258819, -4.37114e-08, -0.03, 0.04, 0.53)
+emitting = false
+amount = 16
+lifetime = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_jcdkj")
+draw_pass_1 = SubResource("QuadMesh_h33fq")
+
+[node name="slash_circle_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/sword"]
+transform = Transform3D(-3.09086e-08, 3.09086e-08, 1, 0.707107, 0.707107, 0, -0.707107, 0.707107, -4.37114e-08, -0.03, 0.04, 0.53)
+emitting = false
+amount = 16
+lifetime = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_t0xiw")
+draw_pass_1 = SubResource("QuadMesh_ftt2y")
 
 [node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
 visible = false
@@ -791,6 +1000,38 @@ process_material = SubResource("ParticleProcessMaterial_30waa")
 draw_pass_1 = SubResource("QuadMesh_7s8xr")
 script = ExtResource("32_jglc7")
 emission_per_unit = 4
+
+[node name="push_back_dust_l" type="GPUParticles3D" parent="vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_30waa")
+draw_pass_1 = SubResource("QuadMesh_7s8xr")
+script = ExtResource("32_jglc7")
+emission_per_unit = 16
+
+[node name="push_back_dust_r" type="GPUParticles3D" parent="vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_30waa")
+draw_pass_1 = SubResource("QuadMesh_7s8xr")
+script = ExtResource("32_jglc7")
+emission_per_unit = 16
+
+[node name="guard_break" type="GPUParticles3D" parent="vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.758, -1.5)
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_xrgww")
+draw_pass_1 = SubResource("QuadMesh_tb2lv")
 
 [node name="footsteps" type="Node3D" parent="." node_paths=PackedStringArray("sound_emitter", "state_machine")]
 script = ExtResource("34_8v6om")
@@ -1009,5 +1250,21 @@ current = true
 size = 7.0
 script = ExtResource("38_510aq")
 node_to_follow = NodePath("../../..")
+
+[node name="status_vfx" type="Node3D" parent="." node_paths=PackedStringArray("stats")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("47_7x4l6")
+stats = NodePath("../stats")
+
+[node name="hutboxes" type="Node3D" parent="."]
+
+[node name="body" type="Area3D" parent="hutboxes"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("50_h51e5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hutboxes/body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_gw68j")
 
 [connection signal="visibility_changed" from="head/main_camera/weapon_manager/skill_zone" to="head/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]

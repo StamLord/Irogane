@@ -33,11 +33,16 @@ func get_value():
 	return value
 	
 
-func deplete(amount):
+func deplete(amount, is_greedy = true):
 	if godmode:
-		return
+		return true
+	
+	var is_enough = value >= amount
+	if not is_enough and not is_greedy:
+		return false
 	
 	set_value(value - amount)
+	return is_enough
 	
 
 func replenish(amount):

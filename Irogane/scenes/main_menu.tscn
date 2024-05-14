@@ -83,7 +83,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_djy4j")
 script = ExtResource("1_xac4n")
-close_on_back = false
 
 [node name="bg_white" type="Panel" parent="."]
 layout_mode = 1

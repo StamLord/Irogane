@@ -1,0 +1,80 @@
+[gd_scene load_steps=15 format=3 uid="uid://cwvoa7wq4kivt"]
+
+[ext_resource type="Shader" uid="uid://b2qra28rvub4s" path="res://assets/shaders/blood_particle_2.tres" id="1_8sxna"]
+[ext_resource type="Shader" uid="uid://dpjjtnpgmrq1q" path="res://assets/shaders/blood_splatter.tres" id="2_s0hwh"]
+
+[sub_resource type="Curve" id="Curve_fwefc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.46374, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dauy2"]
+curve = SubResource("Curve_fwefc")
+
+[sub_resource type="Curve" id="Curve_ysfxr"]
+_data = [Vector2(0, 0), 0.0, 2.78592, 0, 0, Vector2(1, 1), -0.0986331, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0h54t"]
+curve = SubResource("Curve_ysfxr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w812f"]
+direction = Vector3(0, 0, 1)
+spread = 4.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, -3, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_0h54t")
+alpha_curve = SubResource("CurveTexture_dauy2")
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux50n"]
+render_priority = 0
+shader = ExtResource("1_8sxna")
+shader_parameter/ColorParameter = Color(1, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qllti"]
+material = SubResource("ShaderMaterial_ux50n")
+orientation = 1
+
+[sub_resource type="Curve" id="Curve_3cixd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p5ll7"]
+curve = SubResource("Curve_3cixd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j8kbn"]
+angle_max = 180.0
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+alpha_curve = SubResource("CurveTexture_p5ll7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3bph"]
+render_priority = 0
+shader = ExtResource("2_s0hwh")
+shader_parameter/ColorParameter = Color(1, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fksop"]
+material = SubResource("ShaderMaterial_c3bph")
+orientation = 1
+
+[node name="blood_fountain" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8584, 0)
+amount = 20
+sub_emitter = NodePath("blood_splatter")
+explosiveness = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_w812f")
+draw_pass_1 = SubResource("QuadMesh_qllti")
+
+[node name="blood_splatter" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.72427, 0)
+cast_shadow = 0
+amount = 4000
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_j8kbn")
+draw_pass_1 = SubResource("QuadMesh_fksop")

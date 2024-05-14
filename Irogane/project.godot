@@ -35,6 +35,7 @@ GlobalAudio="*res://scripts/audio/global_audio.gd"
 QualityDb="*res://scripts/stats/quality_db.gd"
 SkillDB="*res://scripts/skills/skill_db.gd"
 InputContextManager="*res://scripts/input/input_context_manager.gd"
+StatusDb="*res://scripts/stats/status_db.gd"
 
 [dialogic]
 

@@ -13,7 +13,6 @@ func _ready():
 	depletable.value_changed.connect(update_value)
 	depletable.max_value_changed.connect(update_max_value)
 	
-	print(depletable.value_changed.get_connections())
 	value = depletable.get_value()
 	max_value = depletable.max_value
 

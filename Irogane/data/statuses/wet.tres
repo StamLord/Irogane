@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Status" load_steps=3 format=3 uid="uid://dg0uxj14ldn8a"]
+
+[ext_resource type="Texture2D" uid="uid://b8vxjjclkcktp" path="res://assets/textures/icons/wet_24x24.png" id="1_gp8ik"]
+[ext_resource type="Script" path="res://scripts/stats/status.gd" id="1_gw0gk"]
+
+[resource]
+script = ExtResource("1_gw0gk")
+_name = "Wet"
+description = "The target is drenched and suffers x2 Lightning damage, x2 Ice damage and 0.5 Fire damage.Ice attacks against the target are guaranteed to apply Frozen.Cures Burn and makes the target immune to it."
+icon = ExtResource("1_gp8ik")
+duration_in_sec = 60
+health_per_sec = 0
+stamina_per_sec = 0
+cures = Array[String](["burn"])
+prevents = Array[String](["burn"])
+effects = Array[Resource("res://scripts/stats/effect.gd")]([])

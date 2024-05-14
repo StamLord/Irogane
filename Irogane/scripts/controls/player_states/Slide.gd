@@ -35,9 +35,11 @@ func Enter(body):
 	
 	# Start vfx
 	slide_dust.active = true
+	
 
 func Update(delta):
 	pass
+	
 
 func PhysicsUpdate(body, delta):
 	# Flatten direction on floor
@@ -71,6 +73,7 @@ func PhysicsUpdate(body, delta):
 	if Input.is_action_just_pressed("jump") and body.is_on_floor():
 		Transitioned.emit(self, "jump")
 		return
+	
 
 func Exit(body):
 	body.last_direction = direction
@@ -86,6 +89,7 @@ func Exit(body):
 	
 	# Stop vfx
 	slide_dust.active = false
+	
 
 func flatten_vector(vector, normal):
 	var plane = Plane(normal)
@@ -98,3 +102,4 @@ func flatten_vector(vector, normal):
 	# Otherwise, use flat vector while keeping same length
 	else:
 		return flat_vector.normalized() * vector.length()
+	
