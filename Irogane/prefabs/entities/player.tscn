@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/ui/stance_label.gd" id="32_bgsca"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="33_vi4em"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
@@ -46,6 +46,8 @@
 [ext_resource type="Texture2D" uid="uid://cpi0juna4kbhd" path="res://assets/textures/vfx/slash_0.png" id="36_bgtl7"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
 [ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
+[ext_resource type="Texture2D" uid="uid://btf3hxn2ns85p" path="res://assets/textures/vfx/aoe_decal_1.png" id="36_yxiao"]
+[ext_resource type="Script" path="res://scripts/skills/skill_zone.gd" id="37_60ul2"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
 [ext_resource type="Texture2D" uid="uid://b2gre3j56duto" path="res://assets/textures/vfx/slash_1.png" id="37_okqcx"]
 [ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
@@ -664,7 +666,6 @@ script = ExtResource("27_wn7je")
 script = ExtResource("18_u5xda")
 
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
-visible = false
 script = ExtResource("20_14b7v")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/melee"]
@@ -749,7 +750,9 @@ bus = &"Sound"
 [node name="first_person_rig" parent="head/main_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
 
+
 [node name="sword" type="Node3D" parent="head/main_camera/weapon_manager" node_paths=PackedStringArray("stats", "state_machine", "camera_look")]
+visible = false
 script = ExtResource("26_fyhdv")
 stats = NodePath("../../../../stats")
 state_machine = NodePath("../../../..")
@@ -889,6 +892,20 @@ transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626,
 [node name="shuriken_ring_menu" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("31_ep6ff")]
 visible = false
 open_button = ""
+
+[node name="skill_zone" type="Decal" parent="head/main_camera/weapon_manager"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -3.5)
+visible = false
+size = Vector3(5, 5, 5)
+texture_albedo = ExtResource("36_yxiao")
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+script = ExtResource("37_60ul2")
+
+[node name="sub_decal" type="Decal" parent="head/main_camera/weapon_manager/skill_zone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
+visible = false
 
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
@@ -1249,3 +1266,5 @@ script = ExtResource("50_h51e5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hutboxes/body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_gw68j")
+
+[connection signal="visibility_changed" from="head/main_camera/weapon_manager/skill_zone" to="head/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]

@@ -1,5 +1,6 @@
 [gd_scene load_steps=154 format=3 uid="uid://cf5vsfpafvahd"]
 
+
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
 [ext_resource type="Shader" uid="uid://ca4aic7naic7e" path="res://assets/shaders/water.tres" id="2_towa0"]
@@ -26,10 +27,15 @@
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="26_wvciu"]
 [ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
+
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="28_asst7"]
 [ext_resource type="Script" path="res://scripts/weapons/test_blade_lock.gd" id="29_q0tns"]
 [ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="30_busl4"]
 [ext_resource type="Script" path="res://scripts/weapons/test_heavy_attack.gd" id="32_dqsdr"]
+
+[ext_resource type="Texture2D" uid="uid://btf3hxn2ns85p" path="res://assets/textures/vfx/aoe_decal_1.png" id="30_1qapd"]
+[ext_resource type="Script" path="res://scripts/skills/skill_zone.gd" id="31_yobyh"]
+
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="42_58ctm"]
@@ -687,7 +693,7 @@ size = Vector3(10, 1, 10)
 material = SubResource("StandardMaterial3D_avcn8")
 
 [node name="stealth_paltform" type="CSGBox3D" parent="stage/navmesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -4, 48)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9317, -4.03825, 47.9785)
 use_collision = true
 size = Vector3(40, 1, 40)
 material = SubResource("StandardMaterial3D_avcn8")
@@ -730,6 +736,96 @@ material = SubResource("StandardMaterial3D_avcn8")
 
 [node name="wall11" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2, -5)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall19" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2, -19.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall26" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, -19.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall32" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -19.3826)
+use_collision = true
+size = Vector3(6, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall25" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10.4983, 3.99135, -17.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall27" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -7.4983, 3.99135, -17.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall33" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.4983, 3.99135, -17.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall28" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -7.4983, 3.99135, -15.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall30" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4.51744, 3.9965, -15.4055)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall29" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10.4983, 3.99135, -15.3985)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall20" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 2, -13.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall31" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, -13.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall21" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37099e-08, -0.00813315, 0.999967, -3.55511e-10, 0.999967, 0.00813315, -1, 0, -4.37114e-08, -12.5, 2, -17.3826)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall22" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.5, 2, -14.405)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall23" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.08211, 2.01476, -15.4084)
+use_collision = true
+size = Vector3(3, 3, 1)
+material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="wall24" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.07492, 2.00065, -18.3958)
 use_collision = true
 size = Vector3(3, 3, 1)
 material = SubResource("StandardMaterial3D_avcn8")
@@ -999,7 +1095,7 @@ interaction_text = "Open"
 shape = SubResource("BoxShape3D_4j3o6")
 
 [node name="door2" type="CSGBox3D" parent="stage/navmesh/stealth_paltform"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.95, 1.5, 4)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.09677, 1.44797, 3.99423)
 size = Vector3(1, 2, 0.1)
 
 [node name="interactive" type="Area3D" parent="stage/navmesh/stealth_paltform/door2"]
@@ -1971,5 +2067,18 @@ interaction_text = "Talk"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("SphereShape3D_a1qq5")
 
+[node name="skill_zone" type="Decal" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.196126, 0.59223, -4.10204)
+visible = false
+texture_albedo = ExtResource("30_1qapd")
+upper_fade = 20.0
+lower_fade = 1.0
+script = ExtResource("31_yobyh")
+
+[node name="sub_decal" type="Decal" parent="skill_zone"]
+visible = false
+
 [connection signal="body_entered" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_exited"]
+[connection signal="visibility_changed" from="skill_zone" to="skill_zone" method="_on_visibility_changed"]
