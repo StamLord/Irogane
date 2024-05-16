@@ -25,21 +25,22 @@
 [sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
 font_size = 24
 
-[sub_resource type="Curve" id="Curve_3ssjj"]
-max_value = 4.0
-_data = [Vector2(0, 0), 0.0, 26.1538, 0, 0, Vector2(0.245763, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_twn88"]
+_data = [Vector2(0, 0), 0.0, 25.6264, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.49451, 0.0, 0, 0]
 point_count = 3
+metadata/_snap_enabled = true
 
-[sub_resource type="Curve" id="Curve_ugfdm"]
+[sub_resource type="Curve" id="Curve_525qr"]
 max_value = 0.1
-_data = [Vector2(0, 0), 0.0, 2.35385, 0, 0, Vector2(0.128571, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+metadata/_snap_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dha70"]
 shader = ExtResource("16_ikay5")
 shader_parameter/FloatParameter = 0.01
-shader_parameter/color = Color(0.380392, 1, 0, 1)
-shader_parameter/center = 0.0
+shader_parameter/color = Color(0.827451, 0, 0, 1)
+shader_parameter/center = 0.35
 shader_parameter/strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dkd7g"]
@@ -605,10 +606,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("15_l8i5o")
-medicine_curve = SubResource("Curve_3ssjj")
-hurt_curve = SubResource("Curve_ugfdm")
+vignette_curve = SubResource("Curve_twn88")
+distortion_curve = SubResource("Curve_525qr")
 
-[node name="medicine_vfx" type="Panel" parent="screen_vfx"]
+[node name="vignette_vfx" type="Panel" parent="screen_vfx"]
 material = SubResource("ShaderMaterial_dha70")
 layout_mode = 1
 anchors_preset = 15
@@ -618,7 +619,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="hurt_vfx" type="Panel" parent="screen_vfx"]
+[node name="distortion_vfx" type="Panel" parent="screen_vfx"]
 material = SubResource("ShaderMaterial_dkd7g")
 layout_mode = 1
 anchors_preset = 15

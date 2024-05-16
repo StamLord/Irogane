@@ -87,6 +87,8 @@ extends Node3D
 	},
 ]
 
+@onready var weapon_manager = %weapon_manager
+
 @export var combo_cancel_time = 1
 @export var display_moves = true
 @export var max_display_moves = 10
@@ -566,17 +568,18 @@ func animation_changed(new_name):
 		hitbox.set_heavy(is_heavy)
 		upward_hitbox.set_active(false)
 		set_trail_enabled(true)
-		
 		play_audio(swing_sfx.pick_random())
-		
+		if weapon_manager: 
+			weapon_manager.on_attack.emit()
 	elif new_name in ["heavy_2"]:
 		upward_hitbox.clear_collisions() # Needed in case of attack to attack transition
 		upward_hitbox.set_active(true)
 		upward_hitbox.set_heavy(is_heavy)
 		hitbox.set_active(false)
 		set_trail_enabled(true)
-		
 		play_audio(swing_sfx.pick_random())
+		if weapon_manager: 
+			weapon_manager.on_attack.emit()
 	
 
 func turn_on_charging_vfx(particles):

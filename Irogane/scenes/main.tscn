@@ -1,5 +1,4 @@
-[gd_scene load_steps=154 format=3 uid="uid://cf5vsfpafvahd"]
-
+[gd_scene load_steps=169 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -27,16 +26,17 @@
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="26_wvciu"]
 [ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="27_wryva"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="28_ag1fk"]
-
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="28_asst7"]
 [ext_resource type="Script" path="res://scripts/weapons/test_blade_lock.gd" id="29_q0tns"]
-[ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="30_busl4"]
-[ext_resource type="Script" path="res://scripts/weapons/test_heavy_attack.gd" id="32_dqsdr"]
-
 [ext_resource type="Texture2D" uid="uid://btf3hxn2ns85p" path="res://assets/textures/vfx/aoe_decal_1.png" id="30_1qapd"]
 [ext_resource type="Script" path="res://scripts/skills/skill_zone.gd" id="31_yobyh"]
-
+[ext_resource type="Script" path="res://scripts/weapons/test_heavy_attack.gd" id="32_dqsdr"]
+[ext_resource type="Script" path="res://scripts/ai/NpcStateMachine.gd" id="32_yye3s"]
+[ext_resource type="Script" path="res://scripts/ai/states/Fight.gd" id="33_fof1r"]
+[ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="34_j5mjg"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="35_0p3xw"]
+[ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="35_e1kvj"]
+[ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="36_bxinr"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="42_58ctm"]
 [ext_resource type="Script" path="res://scenes/teleporter.gd" id="43_qmx60"]
@@ -600,6 +600,34 @@ albedo_color = Color(0.921569, 0, 0.337255, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a1qq5"]
 radius = 0.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r67sv"]
+radius = 0.25
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u2a8l"]
+radius = 0.25
+
+[sub_resource type="BoxMesh" id="BoxMesh_oea8h"]
+size = Vector3(0.75, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66wce"]
+albedo_color = Color(0.921569, 0, 0.337255, 1)
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ymceo"]
+length = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t1jkw"]
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4pqtp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t23qw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi3h5"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.368627)
 
 [node name="world" type="Node3D"]
 
@@ -1617,7 +1645,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18383, 2, 2.71438)
 [node name="pickup5" parent="pickups" instance=ExtResource("7_knd3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.18383, 3, 2.71438)
 
-[node name="enemy" parent="." instance=ExtResource("4_b71lg")]
+[node name="enemy_search" parent="." instance=ExtResource("4_b71lg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.145396, 4)
 
 [node name="dummy" type="RigidBody3D" parent="."]
@@ -1823,7 +1851,7 @@ hitbox = NodePath("../heavy hitbox")
 stats = NodePath("../Stats")
 katana_hands = NodePath("../katana_pov_hands")
 
-[node name="katana_pov_hands" parent="dummy4" instance=ExtResource("30_busl4")]
+[node name="katana_pov_hands" parent="dummy4" instance=ExtResource("36_bxinr")]
 
 [node name="dummy5" type="RigidBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 2.49509, 17)
@@ -1869,7 +1897,7 @@ shape = SubResource("CapsuleShape3D_otx07")
 [node name="test_heavy_attack" type="Node3D" parent="dummy5"]
 script = ExtResource("32_dqsdr")
 
-[node name="katana_pov_hands" parent="dummy5" instance=ExtResource("30_busl4")]
+[node name="katana_pov_hands" parent="dummy5" instance=ExtResource("36_bxinr")]
 
 [node name="glide_elements" type="Node3D" parent="."]
 
@@ -2079,6 +2107,121 @@ script = ExtResource("31_yobyh")
 [node name="sub_decal" type="Decal" parent="skill_zone"]
 visible = false
 
+[node name="enemy_fight_only" type="Node3D" parent="." node_paths=PackedStringArray("default_state")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+script = ExtResource("32_yye3s")
+default_state = NodePath("states/Fight")
+
+[node name="states" type="Node3D" parent="enemy_fight_only"]
+
+[node name="Fight" type="Node3D" parent="enemy_fight_only/states"]
+script = ExtResource("33_fof1r")
+movement_speed = 5.0
+rotation_speed = 10.0
+
+[node name="stats" parent="enemy_fight_only" instance=ExtResource("34_j5mjg")]
+
+[node name="character_body" type="CharacterBody3D" parent="enemy_fight_only"]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("35_e1kvj")
+acceleration = 20
+rotation_speed = 2
+push_force = 120
+
+[node name="collider" type="CollisionShape3D" parent="enemy_fight_only/character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_r67sv")
+
+[node name="mesh" type="MeshInstance3D" parent="enemy_fight_only/character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_u2a8l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="enemy_fight_only/character_body/mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.75, -0.201)
+mesh = SubResource("BoxMesh_oea8h")
+surface_material_override/0 = SubResource("StandardMaterial3D_66wce")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="enemy_fight_only/character_body"]
+path_height_offset = 0.6
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="step_check" type="RayCast3D" parent="enemy_fight_only/character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+target_position = Vector3(0, -3, 0)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="door_check" type="RayCast3D" parent="enemy_fight_only/character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0.67451, 0, 1)
+
+[node name="step_separation" type="CollisionShape3D" parent="enemy_fight_only/character_body"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
+shape = SubResource("SeparationRayShape3D_ymceo")
+
+[node name="interactive" type="Area3D" parent="enemy_fight_only/character_body"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("26_wvciu")
+interaction_text = "Talk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy_fight_only/character_body/interactive"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_t1jkw")
+
+[node name="AwarenessAgent" type="Area3D" parent="enemy_fight_only/character_body"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 0)
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("35_0p3xw")
+sight_angle = Vector2(90, 45)
+detection_rate = 2.0
+undetection_rate = 1.0
+
+[node name="collider" type="CollisionShape3D" parent="enemy_fight_only/character_body/AwarenessAgent"]
+shape = SubResource("SphereShape3D_4pqtp")
+
+[node name="sight_cast" type="ShapeCast3D" parent="enemy_fight_only/character_body/AwarenessAgent"]
+shape = SubResource("SphereShape3D_t23qw")
+target_position = Vector3(0, 0, 0)
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="vision_cone" type="CSGCombiner3D" parent="enemy_fight_only/character_body/AwarenessAgent"]
+visible = false
+
+[node name="sphere_mesh" type="CSGSphere3D" parent="enemy_fight_only/character_body/AwarenessAgent/vision_cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0346708)
+radius = 5.0
+material = SubResource("StandardMaterial3D_oi3h5")
+
+[node name="cone_mesh" type="CSGCylinder3D" parent="enemy_fight_only/character_body/AwarenessAgent/vision_cone"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.5)
+operation = 1
+height = 5.0
+cone = true
+material = SubResource("StandardMaterial3D_oi3h5")
+
+[node name="npc_audio_manager" type="Node3D" parent="enemy_fight_only/character_body"]
+script = ExtResource("4_4ttr5")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="enemy_fight_only/character_body/npc_audio_manager"]
+bus = &"Sound"
+
+[node name="katana_pov_hands" parent="enemy_fight_only/character_body" instance=ExtResource("36_bxinr")]
+
 [connection signal="body_entered" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_exited"]
 [connection signal="visibility_changed" from="skill_zone" to="skill_zone" method="_on_visibility_changed"]
+[connection signal="velocity_computed" from="enemy_fight_only/character_body/NavigationAgent3D" to="enemy_fight_only/character_body" method="_on_navigation_agent_3d_velocity_computed"]

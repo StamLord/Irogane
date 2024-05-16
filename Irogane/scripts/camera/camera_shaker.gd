@@ -1,7 +1,11 @@
 extends Camera3D
 
+var origin = null
 
 func _ready():
+	
+	PlayerEntity.player_node_created.connect(subscribe_to_player)
+	
 	DebugCommandsManager.add_command(
 		"shake_camera",
 		shake_debug,
@@ -19,14 +23,33 @@ func _ready():
 		)
 	
 
+func subscribe_to_player(player_node):
+	var stats = player_node.get_node("stats")
+	if stats:
+		stats.on_hit.connect(hit_vfx)
+	
+
+func get_camera_origin():
+	if origin == null:
+		if CameraEntity.active_camera == null:
+			Utils.warning(self, "No active_camera in CameraEntity. This shouldn't happen!")
+			origin = Vector3.UP * 2
+		else:
+			origin = CameraEntity.active_camera.position
+	return origin
+	
+
+func hit_vfx(attack_info):
+	# TODO: Shake amount to be affected by damage
+	shake(0.5, 0.2)
+	
+
 func _process(_delta):
 	if Input.is_key_pressed(KEY_HOME):
 		shake(0.25, 0.2)
 	
 
 func shake(amount, duration):
-	var origin = CameraEntity.active_camera.position
-	
 	var start = Time.get_ticks_msec()
 	
 	while(Time.get_ticks_msec() - start <= duration * 1000.0):
@@ -39,11 +62,11 @@ func shake(amount, duration):
 		randomize()
 		offset.y = (randf() - 0.5) * 2 * _shake
 		
-		CameraEntity.active_camera.position = lerp(CameraEntity.active_camera.position, origin + offset, 0.1)
+		CameraEntity.active_camera.position = lerp(CameraEntity.active_camera.position, get_camera_origin() + offset, 0.1)
 		
 		await get_tree().process_frame
 	
-	CameraEntity.active_camera.position = origin
+	CameraEntity.active_camera.position = get_camera_origin()
 	
 
 func shake2(amount, duration):
