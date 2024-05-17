@@ -1,4 +1,4 @@
-extends Node3D
+extends WeaponBase
 
 @export var stats : Stats
 @export var state_machine : PlayerStateMachine
@@ -86,8 +86,6 @@ extends Node3D
 		"movement_duration" : 0.1,
 	},
 ]
-
-@onready var weapon_manager = %weapon_manager
 
 @export var combo_cancel_time = 1
 @export var display_moves = true
@@ -217,6 +215,7 @@ func _process(delta):
 			turn_on_charging_vfx(charging_vfx)
 	
 	if Input.is_action_just_pressed("jump"):
+		signal_defend()
 		last_jump = Time.get_ticks_msec()
 	
 	if Input.is_action_just_released("defend") and is_guarding:
@@ -569,8 +568,7 @@ func animation_changed(new_name):
 		upward_hitbox.set_active(false)
 		set_trail_enabled(true)
 		play_audio(swing_sfx.pick_random())
-		if weapon_manager: 
-			weapon_manager.on_attack.emit()
+		signal_attack()
 	elif new_name in ["heavy_2"]:
 		upward_hitbox.clear_collisions() # Needed in case of attack to attack transition
 		upward_hitbox.set_active(true)
@@ -578,8 +576,7 @@ func animation_changed(new_name):
 		hitbox.set_active(false)
 		set_trail_enabled(true)
 		play_audio(swing_sfx.pick_random())
-		if weapon_manager: 
-			weapon_manager.on_attack.emit()
+		signal_attack()
 	
 
 func turn_on_charging_vfx(particles):

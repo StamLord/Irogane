@@ -1,4 +1,4 @@
-extends Node3D
+extends WeaponBase
 class_name Throwable
 
 # Prefab
@@ -41,6 +41,8 @@ func fire_shuriken(position_offset, rotation_offset, type = null):
 	
 	if type == "bouncing_shuriken":
 		projectile.bounce_count = 3
+	
+	signal_attack()
 	
 
 func _process(delta):
