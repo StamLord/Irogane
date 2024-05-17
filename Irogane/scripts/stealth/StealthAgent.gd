@@ -27,6 +27,8 @@ func set_base_detection():
 	
 
 func update_watcher(watcher, detection):
+	if not watchers.has(watcher):
+		watcher.tree_exiting.connect(remove_watcher.bind(watcher))
 	watchers[watcher] = clamp(detection, 0.0, 1.0)
 	
 

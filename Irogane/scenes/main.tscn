@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=181 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -40,7 +40,9 @@
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="42_2sipg"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="42_58ctm"]
+[ext_resource type="Script" path="res://scripts/stats/hit_material_color.gd" id="43_h3ijw"]
 [ext_resource type="Script" path="res://scenes/teleporter.gd" id="43_qmx60"]
+[ext_resource type="Script" path="res://scripts/stats/death_despawn.gd" id="43_t5oou"]
 [ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://scenes/underwater_2.tres" id="44_r542y"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vd5j8"]
@@ -602,7 +604,13 @@ albedo_color = Color(0.921569, 0, 0.337255, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_a1qq5"]
 radius = 0.7
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o86t6"]
+radius = 0.25
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r67sv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndxus"]
+albedo_color = Color(0.764706, 0.764706, 0.764706, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u2a8l"]
 radius = 0.25
@@ -2165,7 +2173,8 @@ script = ExtResource("33_fof1r")
 movement_speed = 5.0
 rotation_speed = 10.0
 
-[node name="stats" parent="enemy_fight_only" instance=ExtResource("34_j5mjg")]
+[node name="stats" parent="enemy_fight_only" node_paths=PackedStringArray("hurtboxes") instance=ExtResource("34_j5mjg")]
+hurtboxes = [NodePath("../character_body/Hurtbox")]
 
 [node name="character_body" type="CharacterBody3D" parent="enemy_fight_only"]
 collision_layer = 65
@@ -2175,12 +2184,22 @@ acceleration = 20
 rotation_speed = 2
 push_force = 120
 
+[node name="Hurtbox" type="Area3D" parent="enemy_fight_only/character_body"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("25_urnjo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy_fight_only/character_body/Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_o86t6")
+
 [node name="collider" type="CollisionShape3D" parent="enemy_fight_only/character_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_r67sv")
 
 [node name="mesh" type="MeshInstance3D" parent="enemy_fight_only/character_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_ndxus")
 mesh = SubResource("CapsuleMesh_u2a8l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemy_fight_only/character_body/mesh"]
@@ -2278,6 +2297,17 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_q7yal")
 draw_pass_1 = SubResource("QuadMesh_74gse")
+
+[node name="hit_debug" type="Node3D" parent="enemy_fight_only" node_paths=PackedStringArray("stats", "model")]
+script = ExtResource("43_h3ijw")
+stats = NodePath("../stats")
+model = NodePath("../character_body/mesh")
+flash_color = Color(0.603922, 0.0431373, 0, 1)
+
+[node name="despawner" type="Node3D" parent="enemy_fight_only" node_paths=PackedStringArray("stats", "to_despawn")]
+script = ExtResource("43_t5oou")
+stats = NodePath("../stats")
+to_despawn = NodePath("..")
 
 [connection signal="body_entered" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_exited"]

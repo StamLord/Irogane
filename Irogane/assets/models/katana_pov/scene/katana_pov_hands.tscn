@@ -140,7 +140,7 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/tint2 = Color(0.784314, 0.854902, 1, 1)
 shader_parameter/flash_speed = 24.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_m8fop"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_w42u2"]
 
 [sub_resource type="Gradient" id="Gradient_gkv8e"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -14619,10 +14619,10 @@ size = Vector3(0.8, 1.5, 0.5)
 [node name="katana_pov_hands" instance=ExtResource("1_3485n")]
 
 [node name="Skeleton3D" parent="first_person_rig" index="0"]
-bones/1/rotation = Quaternion(0.790377, -0.179842, 0.426552, 0.401266)
+bones/1/rotation = Quaternion(0.790349, -0.179779, 0.426587, 0.401313)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(-3.83823e-07, -1.08054e-07, -0.783534, 0.621349)
-bones/3/rotation = Quaternion(-0.328958, 0.887152, -0.0195848, 0.323056)
+bones/2/rotation = Quaternion(-3.83284e-07, -1.10228e-07, -0.783575, 0.621297)
+bones/3/rotation = Quaternion(-0.329081, 0.886998, -0.0192625, 0.323372)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.477939, -0.317071, 0.406253, 0.711336)
 bones/4/scale = Vector3(1, 1, 1)
@@ -14643,10 +14643,10 @@ bones/15/rotation = Quaternion(-0.468639, 0.719724, 0.302324, 0.413492)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/rotation = Quaternion(-0.590271, -0.00398707, -0.00708659, 0.807164)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(0.91678, -0.112762, -0.205139, 0.323602)
-bones/19/rotation = Quaternion(-2.82187e-07, 1.36585e-07, 0.582603, 0.812757)
+bones/18/rotation = Quaternion(0.916765, -0.112806, -0.205136, 0.323629)
+bones/19/rotation = Quaternion(-2.82566e-07, 1.37292e-07, 0.582637, 0.812733)
 bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(0.434845, 0.779736, -0.126263, -0.432412)
+bones/20/rotation = Quaternion(0.434805, 0.779882, -0.126392, -0.43215)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(0.621156, 0.604252, -0.30506, 0.394947)
 bones/21/scale = Vector3(1, 1, 1)
@@ -14667,15 +14667,15 @@ bones/31/scale = Vector3(1, 1, 1)
 bones/32/rotation = Quaternion(0.46444, 0.722739, 0.295042, -0.418202)
 bones/32/scale = Vector3(1, 1, 1)
 bones/34/rotation = Quaternion(-0.381078, -0.0178313, -0.0219728, 0.92411)
-bones/35/position = Vector3(0.168328, 1.40366, -0.376571)
-bones/35/rotation = Quaternion(-0.700032, 0.0550428, 0.0460977, 0.710494)
+bones/35/position = Vector3(0.168304, 1.40374, -0.376571)
+bones/35/rotation = Quaternion(-0.700053, 0.0547727, 0.0463719, 0.710476)
 bones/36/rotation = Quaternion(0.5, 0.5, 0.5, 0.5)
-bones/37/position = Vector3(0.118018, 1.31523, -0.368157)
-bones/37/rotation = Quaternion(0.743936, 0.0301947, 0.0653638, -0.664361)
+bones/37/position = Vector3(0.118045, 1.31529, -0.368157)
+bones/37/rotation = Quaternion(0.743924, 0.0304818, 0.0651074, -0.664386)
 bones/38/rotation = Quaternion(0.5, -0.5, -0.5, 0.5)
 
 [node name="hand_r_attachment" type="BoneAttachment3D" parent="first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.989747, -0.14221, 0.0133382, -0.0113204, 0.0149904, 0.999824, -0.142385, -0.989723, 0.0132272, 0.168353, 1.40361, -0.376657)
+transform = Transform3D(0.989757, -0.142208, 0.0125286, -0.0105298, 0.014799, 0.999835, -0.14237, -0.989726, 0.0131503, 0.168326, 1.40369, -0.376654)
 bone_name = "hand_r"
 bone_idx = 3
 
@@ -14749,7 +14749,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117579, 0.0463189, 0.4981
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_u02mt")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_m8fop")
+mesh = SubResource("ImmediateMesh_w42u2")
 skeleton = NodePath("../../../../..")
 script = ExtResource("4_2oc77")
 motionDelta = 0.01

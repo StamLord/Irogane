@@ -38,6 +38,7 @@ var last_medicine = null
 signal on_medicine_used(medicine)
 signal on_hit(attack_info)
 signal on_health_depleted(amount)
+signal on_death()
 
 var is_guard_broken : bool = false
 signal heavy_hit_during_guard_break(force : Vector3)
@@ -86,8 +87,14 @@ func guard(attack_info : AttackInfo, hitbox):
 func deplete_health(amount : int):
 	if health:
 		on_health_depleted.emit(amount)
+		if health.get_value() < 1:
+			die()
 		return health.deplete(amount)
 	return false
+	
+
+func die():
+	on_death.emit()
 	
 
 func replenish_health(amount: int):
