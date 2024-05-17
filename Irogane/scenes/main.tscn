@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=177 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -38,6 +38,7 @@
 [ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="35_e1kvj"]
 [ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="36_bxinr"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="38_2i4ad"]
+[ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="42_2sipg"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="42_58ctm"]
 [ext_resource type="Script" path="res://scenes/teleporter.gd" id="43_qmx60"]
 [ext_resource type="Shader" uid="uid://4shq1yjglmqf" path="res://scenes/underwater_2.tres" id="44_r542y"]
@@ -602,7 +603,6 @@ albedo_color = Color(0.921569, 0, 0.337255, 1)
 radius = 0.7
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r67sv"]
-radius = 0.25
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u2a8l"]
 radius = 0.25
@@ -628,6 +628,52 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 0.368627)
+
+[sub_resource type="Curve" id="Curve_3wi8b"]
+_data = [Vector2(0.75, 1), 0.0, -4.0, 0, 1, Vector2(1, 0), -4.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ly1p"]
+curve = SubResource("Curve_3wi8b")
+
+[sub_resource type="Curve" id="Curve_47wfu"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l30r6"]
+curve = SubResource("Curve_47wfu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7yal"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_l30r6")
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color = Color(0.388235, 0.560784, 0.772549, 1)
+alpha_curve = SubResource("CurveTexture_7ly1p")
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu3pd"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("42_2sipg")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_74gse"]
+material = SubResource("StandardMaterial3D_bu3pd")
 
 [node name="world" type="Node3D"]
 
@@ -2220,6 +2266,18 @@ script = ExtResource("4_4ttr5")
 bus = &"Sound"
 
 [node name="katana_pov_hands" parent="enemy_fight_only/character_body" instance=ExtResource("36_bxinr")]
+
+[node name="vfx" type="Node3D" parent="enemy_fight_only/character_body"]
+
+[node name="guard_break" type="GPUParticles3D" parent="enemy_fight_only/character_body/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.758, -0.85)
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_q7yal")
+draw_pass_1 = SubResource("QuadMesh_74gse")
 
 [connection signal="body_entered" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_exited"]

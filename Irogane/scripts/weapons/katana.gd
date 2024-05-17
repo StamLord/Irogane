@@ -138,7 +138,6 @@ var is_secondary_pressed = false
 var secondary_press_start = -1
 
 var is_guarding = false
-var guard_start = null
 var perfect_guard_window = 0.5
 
 var guard_break_duration = 2.0
@@ -388,6 +387,7 @@ func hit_blocked(area : Guardbox, hitbox):
 	area.guard(attack_info.get_translated(global_basis), hitbox)
 	
 	play_guard_vfx(hitbox.global_position)
+	play_audio(hit_sfx.pick_random())
 	anim_state_machine.start("idle")
 	
 
@@ -656,7 +656,6 @@ func context_changed(old_context, new_context):
 
 func start_guard():
 	is_guarding = true
-	guard_start = Time.get_ticks_msec()
 	guard_hitbox.set_active(true)
 	guard_hitbox.set_perfect(perfect_guard_window)
 	

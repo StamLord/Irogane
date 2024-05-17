@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=146 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -355,7 +355,7 @@ material = SubResource("StandardMaterial3D_uvrxs")
 _data = [Vector2(0.75, 1), 0.0, -4.0, 0, 1, Vector2(1, 0), -4.0, 0.0, 1, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_7ly1p"]
+[sub_resource type="CurveTexture" id="CurveTexture_1fdjk"]
 curve = SubResource("Curve_mt1qp")
 
 [sub_resource type="Curve" id="Curve_v8quj"]
@@ -364,14 +364,14 @@ max_value = 360.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_l30r6"]
+[sub_resource type="CurveTexture" id="CurveTexture_xmrtt"]
 curve = SubResource("Curve_v8quj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrgww"]
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 angle_max = 360.0
-angle_curve = SubResource("CurveTexture_l30r6")
+angle_curve = SubResource("CurveTexture_xmrtt")
 direction = Vector3(0, 0, 1)
 initial_velocity_min = 1.0
 initial_velocity_max = 6.0
@@ -379,10 +379,10 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.2
 color = Color(0.388235, 0.560784, 0.772549, 1)
-alpha_curve = SubResource("CurveTexture_7ly1p")
+alpha_curve = SubResource("CurveTexture_1fdjk")
 anim_offset_max = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu3pd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b66qp"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -395,7 +395,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_tb2lv"]
-material = SubResource("StandardMaterial3D_bu3pd")
+material = SubResource("StandardMaterial3D_b66qp")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3d1aj"]
 
@@ -750,7 +750,6 @@ bus = &"Sound"
 
 [node name="first_person_rig" parent="head/main_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
-
 
 [node name="sword" type="Node3D" parent="head/main_camera/weapon_manager" node_paths=PackedStringArray("stats", "state_machine", "camera_look")]
 visible = false

@@ -140,7 +140,7 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/tint2 = Color(0.784314, 0.854902, 1, 1)
 shader_parameter/flash_speed = 24.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_2irnx"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_m8fop"]
 
 [sub_resource type="Gradient" id="Gradient_gkv8e"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -198,7 +198,7 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_4rkok"]
 material = SubResource("StandardMaterial3D_wo1tg")
 
-[sub_resource type="Animation" id="Animation_i3guf"]
+[sub_resource type="Animation" id="Animation_drrem"]
 resource_name = "katana_blade_lock_lose"
 length = 0.333333
 loop_mode = 1
@@ -553,7 +553,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_yta4k"]
+[sub_resource type="Animation" id="Animation_03ppq"]
 resource_name = "katana_blade_lock_mid"
 length = 0.333333
 loop_mode = 1
@@ -908,7 +908,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_8h6vx"]
+[sub_resource type="Animation" id="Animation_xfl2n"]
 resource_name = "katana_blade_lock_win"
 length = 0.333333
 loop_mode = 1
@@ -1263,7 +1263,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_vynit"]
+[sub_resource type="Animation" id="Animation_qfpep"]
 resource_name = "katana_counter"
 length = 0.4
 tracks/0/type = "position_3d"
@@ -1617,7 +1617,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_12bkc"]
+[sub_resource type="Animation" id="Animation_50an3"]
 resource_name = "katana_defend"
 length = 2.0
 loop_mode = 1
@@ -1972,7 +1972,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_mrw2v"]
+[sub_resource type="Animation" id="Animation_1le1k"]
 resource_name = "katana_defend_hit"
 length = 0.2
 tracks/0/type = "position_3d"
@@ -2326,7 +2326,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_ox5my"]
+[sub_resource type="Animation" id="Animation_gr6dg"]
 resource_name = "katana_defend_hit_d"
 length = 0.2
 tracks/0/type = "position_3d"
@@ -2680,7 +2680,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_4j27l"]
+[sub_resource type="Animation" id="Animation_iw8o3"]
 resource_name = "katana_defend_hit_l"
 length = 0.2
 tracks/0/type = "position_3d"
@@ -3034,7 +3034,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_6ykor"]
+[sub_resource type="Animation" id="Animation_cjsci"]
 resource_name = "katana_defend_perfect"
 length = 0.2
 tracks/0/type = "position_3d"
@@ -3388,7 +3388,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_w08o2"]
+[sub_resource type="Animation" id="Animation_ooogl"]
 resource_name = "katana_heavy_1"
 length = 0.4
 tracks/0/type = "position_3d"
@@ -3742,7 +3742,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_jl5qe"]
+[sub_resource type="Animation" id="Animation_a40v6"]
 resource_name = "katana_heavy_1_charging"
 length = 0.001
 tracks/0/type = "position_3d"
@@ -4096,7 +4096,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_5nyfw"]
+[sub_resource type="Animation" id="Animation_do8i5"]
 resource_name = "katana_heavy_2"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -4450,7 +4450,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_16r15"]
+[sub_resource type="Animation" id="Animation_26maj"]
 resource_name = "katana_heavy_2_charging"
 length = 0.001
 tracks/0/type = "position_3d"
@@ -4804,7 +4804,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_2onvx"]
+[sub_resource type="Animation" id="Animation_rltrt"]
 resource_name = "katana_heavy_3"
 length = 0.4
 tracks/0/type = "position_3d"
@@ -5158,7 +5158,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_0ua6l"]
+[sub_resource type="Animation" id="Animation_khasj"]
 resource_name = "katana_heavy_3_charging"
 length = 0.001
 tracks/0/type = "position_3d"
@@ -5512,7 +5512,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_a7qs0"]
+[sub_resource type="Animation" id="Animation_jgyt7"]
 resource_name = "katana_iaido_light_1"
 length = 0.266667
 tracks/0/type = "position_3d"
@@ -5866,7 +5866,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_yrln3"]
+[sub_resource type="Animation" id="Animation_f1sf4"]
 resource_name = "katana_iaido_light_2"
 length = 0.5
 tracks/0/type = "position_3d"
@@ -6220,7 +6220,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_xnvdu"]
+[sub_resource type="Animation" id="Animation_1eu6e"]
 resource_name = "katana_iaido_light_3"
 length = 0.416667
 tracks/0/type = "position_3d"
@@ -6574,7 +6574,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_ap0l7"]
+[sub_resource type="Animation" id="Animation_7im78"]
 resource_name = "katana_iaido_light_4"
 length = 0.416667
 tracks/0/type = "position_3d"
@@ -6928,7 +6928,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_6dhmx"]
+[sub_resource type="Animation" id="Animation_fnfow"]
 resource_name = "katana_idle"
 length = 2.0
 loop_mode = 1
@@ -7283,7 +7283,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_xo8d0"]
+[sub_resource type="Animation" id="Animation_wo1hh"]
 resource_name = "katana_light_1"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -7637,7 +7637,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_fvajc"]
+[sub_resource type="Animation" id="Animation_bl4l3"]
 resource_name = "katana_light_2"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -7991,7 +7991,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_r812t"]
+[sub_resource type="Animation" id="Animation_bjf4j"]
 resource_name = "katana_light_3"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -8345,7 +8345,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_4w8qm"]
+[sub_resource type="Animation" id="Animation_1q0ov"]
 resource_name = "unarmed_air"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -8699,7 +8699,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_g61ns"]
+[sub_resource type="Animation" id="Animation_qydfi"]
 resource_name = "unarmed_defend"
 length = 2.0
 tracks/0/type = "position_3d"
@@ -9053,7 +9053,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_rq72v"]
+[sub_resource type="Animation" id="Animation_k0dmh"]
 resource_name = "unarmed_glide"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -9407,7 +9407,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_shxpk"]
+[sub_resource type="Animation" id="Animation_juulb"]
 resource_name = "unarmed_idle"
 length = 8.0
 tracks/0/type = "position_3d"
@@ -9761,7 +9761,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_ayhm7"]
+[sub_resource type="Animation" id="Animation_jhoe8"]
 resource_name = "unarmed_idle_2"
 length = 1.33333
 tracks/0/type = "position_3d"
@@ -10115,7 +10115,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_kels0"]
+[sub_resource type="Animation" id="Animation_7uhl3"]
 resource_name = "unarmed_left"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -10469,7 +10469,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_g4s7l"]
+[sub_resource type="Animation" id="Animation_r5gul"]
 resource_name = "unarmed_left_elbow"
 length = 0.5
 tracks/0/type = "position_3d"
@@ -10823,7 +10823,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.381078, -0.0178313, -0.0219728, 0.92411)
 
-[sub_resource type="Animation" id="Animation_32rxv"]
+[sub_resource type="Animation" id="Animation_w1f0q"]
 resource_name = "unarmed_open_hands"
 length = 0.001
 tracks/0/type = "position_3d"
@@ -11177,7 +11177,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_ohrar"]
+[sub_resource type="Animation" id="Animation_njk20"]
 resource_name = "unarmed_right"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -11531,7 +11531,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_qrvnd"]
+[sub_resource type="Animation" id="Animation_eqkqe"]
 resource_name = "unarmed_right_elbow"
 length = 0.35
 tracks/0/type = "position_3d"
@@ -11885,7 +11885,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_dnqph"]
+[sub_resource type="Animation" id="Animation_wldhj"]
 resource_name = "unarmed_right_elbow_2"
 length = 0.4
 tracks/0/type = "position_3d"
@@ -12239,7 +12239,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_bl36k"]
+[sub_resource type="Animation" id="Animation_v4bmq"]
 resource_name = "unarmed_rope_idle"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -12593,7 +12593,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_bs4l7"]
+[sub_resource type="Animation" id="Animation_dw06o"]
 resource_name = "unarmed_rope_up"
 length = 0.5
 tracks/0/type = "position_3d"
@@ -12947,7 +12947,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_e2bsg"]
+[sub_resource type="Animation" id="Animation_evm3q"]
 resource_name = "unarmed_swim_back"
 tracks/0/type = "position_3d"
 tracks/0/imported = true
@@ -13300,7 +13300,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_mcs56"]
+[sub_resource type="Animation" id="Animation_hlghq"]
 resource_name = "unarmed_swim_forward"
 length = 0.833333
 tracks/0/type = "position_3d"
@@ -13654,7 +13654,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_6e4vo"]
+[sub_resource type="Animation" id="Animation_os6xh"]
 resource_name = "unarmed_swim_idle"
 length = 1.5
 tracks/0/type = "position_3d"
@@ -14008,7 +14008,7 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="Animation" id="Animation_v2l1u"]
+[sub_resource type="Animation" id="Animation_ly67c"]
 resource_name = "unarmed_swim_left"
 tracks/0/type = "position_3d"
 tracks/0/imported = true
@@ -14361,48 +14361,48 @@ tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = PackedFloat32Array(0, 1, -0.512855, 1.94647, -0.487335)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxfqh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mruuh"]
 _data = {
-"katana_blade_lock_lose": SubResource("Animation_i3guf"),
-"katana_blade_lock_mid": SubResource("Animation_yta4k"),
-"katana_blade_lock_win": SubResource("Animation_8h6vx"),
-"katana_counter": SubResource("Animation_vynit"),
-"katana_defend": SubResource("Animation_12bkc"),
-"katana_defend_hit": SubResource("Animation_mrw2v"),
-"katana_defend_hit_d": SubResource("Animation_ox5my"),
-"katana_defend_hit_l": SubResource("Animation_4j27l"),
-"katana_defend_perfect": SubResource("Animation_6ykor"),
-"katana_heavy_1": SubResource("Animation_w08o2"),
-"katana_heavy_1_charging": SubResource("Animation_jl5qe"),
-"katana_heavy_2": SubResource("Animation_5nyfw"),
-"katana_heavy_2_charging": SubResource("Animation_16r15"),
-"katana_heavy_3": SubResource("Animation_2onvx"),
-"katana_heavy_3_charging": SubResource("Animation_0ua6l"),
-"katana_iaido_light_1": SubResource("Animation_a7qs0"),
-"katana_iaido_light_2": SubResource("Animation_yrln3"),
-"katana_iaido_light_3": SubResource("Animation_xnvdu"),
-"katana_iaido_light_4": SubResource("Animation_ap0l7"),
-"katana_idle": SubResource("Animation_6dhmx"),
-"katana_light_1": SubResource("Animation_xo8d0"),
-"katana_light_2": SubResource("Animation_fvajc"),
-"katana_light_3": SubResource("Animation_r812t"),
-"unarmed_air": SubResource("Animation_4w8qm"),
-"unarmed_defend": SubResource("Animation_g61ns"),
-"unarmed_glide": SubResource("Animation_rq72v"),
-"unarmed_idle": SubResource("Animation_shxpk"),
-"unarmed_idle_2": SubResource("Animation_ayhm7"),
-"unarmed_left": SubResource("Animation_kels0"),
-"unarmed_left_elbow": SubResource("Animation_g4s7l"),
-"unarmed_open_hands": SubResource("Animation_32rxv"),
-"unarmed_right": SubResource("Animation_ohrar"),
-"unarmed_right_elbow": SubResource("Animation_qrvnd"),
-"unarmed_right_elbow_2": SubResource("Animation_dnqph"),
-"unarmed_rope_idle": SubResource("Animation_bl36k"),
-"unarmed_rope_up": SubResource("Animation_bs4l7"),
-"unarmed_swim_back": SubResource("Animation_e2bsg"),
-"unarmed_swim_forward": SubResource("Animation_mcs56"),
-"unarmed_swim_idle": SubResource("Animation_6e4vo"),
-"unarmed_swim_left": SubResource("Animation_v2l1u")
+"katana_blade_lock_lose": SubResource("Animation_drrem"),
+"katana_blade_lock_mid": SubResource("Animation_03ppq"),
+"katana_blade_lock_win": SubResource("Animation_xfl2n"),
+"katana_counter": SubResource("Animation_qfpep"),
+"katana_defend": SubResource("Animation_50an3"),
+"katana_defend_hit": SubResource("Animation_1le1k"),
+"katana_defend_hit_d": SubResource("Animation_gr6dg"),
+"katana_defend_hit_l": SubResource("Animation_iw8o3"),
+"katana_defend_perfect": SubResource("Animation_cjsci"),
+"katana_heavy_1": SubResource("Animation_ooogl"),
+"katana_heavy_1_charging": SubResource("Animation_a40v6"),
+"katana_heavy_2": SubResource("Animation_do8i5"),
+"katana_heavy_2_charging": SubResource("Animation_26maj"),
+"katana_heavy_3": SubResource("Animation_rltrt"),
+"katana_heavy_3_charging": SubResource("Animation_khasj"),
+"katana_iaido_light_1": SubResource("Animation_jgyt7"),
+"katana_iaido_light_2": SubResource("Animation_f1sf4"),
+"katana_iaido_light_3": SubResource("Animation_1eu6e"),
+"katana_iaido_light_4": SubResource("Animation_7im78"),
+"katana_idle": SubResource("Animation_fnfow"),
+"katana_light_1": SubResource("Animation_wo1hh"),
+"katana_light_2": SubResource("Animation_bl4l3"),
+"katana_light_3": SubResource("Animation_bjf4j"),
+"unarmed_air": SubResource("Animation_1q0ov"),
+"unarmed_defend": SubResource("Animation_qydfi"),
+"unarmed_glide": SubResource("Animation_k0dmh"),
+"unarmed_idle": SubResource("Animation_juulb"),
+"unarmed_idle_2": SubResource("Animation_jhoe8"),
+"unarmed_left": SubResource("Animation_7uhl3"),
+"unarmed_left_elbow": SubResource("Animation_r5gul"),
+"unarmed_open_hands": SubResource("Animation_w1f0q"),
+"unarmed_right": SubResource("Animation_njk20"),
+"unarmed_right_elbow": SubResource("Animation_eqkqe"),
+"unarmed_right_elbow_2": SubResource("Animation_wldhj"),
+"unarmed_rope_idle": SubResource("Animation_v4bmq"),
+"unarmed_rope_up": SubResource("Animation_dw06o"),
+"unarmed_swim_back": SubResource("Animation_evm3q"),
+"unarmed_swim_forward": SubResource("Animation_hlghq"),
+"unarmed_swim_idle": SubResource("Animation_os6xh"),
+"unarmed_swim_left": SubResource("Animation_ly67c")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6q8ss"]
@@ -14619,10 +14619,10 @@ size = Vector3(0.8, 1.5, 0.5)
 [node name="katana_pov_hands" instance=ExtResource("1_3485n")]
 
 [node name="Skeleton3D" parent="first_person_rig" index="0"]
-bones/1/rotation = Quaternion(0.792212, -0.183896, 0.424267, 0.39822)
+bones/1/rotation = Quaternion(0.790377, -0.179842, 0.426552, 0.401266)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(-3.83083e-07, -1.14231e-07, -0.781262, 0.624203)
-bones/3/rotation = Quaternion(-0.322744, 0.894444, -0.0351786, 0.307522)
+bones/2/rotation = Quaternion(-3.83823e-07, -1.08054e-07, -0.783534, 0.621349)
+bones/3/rotation = Quaternion(-0.328958, 0.887152, -0.0195848, 0.323056)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.477939, -0.317071, 0.406253, 0.711336)
 bones/4/scale = Vector3(1, 1, 1)
@@ -14643,10 +14643,10 @@ bones/15/rotation = Quaternion(-0.468639, 0.719724, 0.302324, 0.413492)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/rotation = Quaternion(-0.590271, -0.00398707, -0.00708659, 0.807164)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(0.917445, -0.110623, -0.205336, 0.322327)
-bones/19/rotation = Quaternion(-2.71354e-07, 1.24009e-07, 0.581314, 0.813679)
+bones/18/rotation = Quaternion(0.91678, -0.112762, -0.205139, 0.323602)
+bones/19/rotation = Quaternion(-2.82187e-07, 1.36585e-07, 0.582603, 0.812757)
 bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(0.436712, 0.772499, -0.120009, -0.445114)
+bones/20/rotation = Quaternion(0.434845, 0.779736, -0.126263, -0.432412)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(0.621156, 0.604252, -0.30506, 0.394947)
 bones/21/scale = Vector3(1, 1, 1)
@@ -14667,15 +14667,15 @@ bones/31/scale = Vector3(1, 1, 1)
 bones/32/rotation = Quaternion(0.46444, 0.722739, 0.295042, -0.418202)
 bones/32/scale = Vector3(1, 1, 1)
 bones/34/rotation = Quaternion(-0.381078, -0.0178313, -0.0219728, 0.92411)
-bones/35/position = Vector3(0.169894, 1.39821, -0.376571)
-bones/35/rotation = Quaternion(-0.69887, 0.0682256, 0.0326998, 0.711236)
+bones/35/position = Vector3(0.168328, 1.40366, -0.376571)
+bones/35/rotation = Quaternion(-0.700032, 0.0550428, 0.0460977, 0.710494)
 bones/36/rotation = Quaternion(0.5, 0.5, 0.5, 0.5)
-bones/37/position = Vector3(0.116503, 1.3119, -0.368157)
-bones/37/rotation = Quaternion(0.744373, 0.0161824, 0.0778607, -0.663012)
+bones/37/position = Vector3(0.118018, 1.31523, -0.368157)
+bones/37/rotation = Quaternion(0.743936, 0.0301947, 0.0653638, -0.664361)
 bones/38/rotation = Quaternion(0.5, -0.5, -0.5, 0.5)
 
 [node name="hand_r_attachment" type="BoneAttachment3D" parent="first_person_rig/Skeleton3D" index="7"]
-transform = Transform3D(0.988554, -0.141876, 0.0513014, -0.0488086, 0.0210004, 0.998588, -0.142754, -0.989662, 0.0138356, 0.169876, 1.39823, -0.376604)
+transform = Transform3D(0.989747, -0.14221, 0.0133382, -0.0113204, 0.0149904, 0.999824, -0.142385, -0.989723, 0.0132272, 0.168353, 1.40361, -0.376657)
 bone_name = "hand_r"
 bone_idx = 3
 
@@ -14688,6 +14688,8 @@ mesh = SubResource("BoxMesh_y3y11")
 transform = Transform3D(0.999999, 0, -2.32831e-10, -1.78814e-07, 1, 0, 0, 8.3819e-09, 1, -0.0181957, 0.0420972, 0.334307)
 collision_layer = 32
 collision_mask = 32
+monitoring = false
+monitorable = false
 script = ExtResource("2_gy3ob")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="first_person_rig/Skeleton3D/hand_r_attachment/hitbox" index="0"]
@@ -14747,7 +14749,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0117579, 0.0463189, 0.4981
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_u02mt")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_2irnx")
+mesh = SubResource("ImmediateMesh_m8fop")
 skeleton = NodePath("../../../../..")
 script = ExtResource("4_2oc77")
 motionDelta = 0.01
@@ -14787,7 +14789,7 @@ draw_pass_1 = SubResource("QuadMesh_4rkok")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_oxfqh")
+"": SubResource("AnimationLibrary_mruuh")
 }
 tree_root = SubResource("AnimationNodeStateMachine_2bs2k")
 anim_player = NodePath("../AnimationPlayer")

@@ -5,15 +5,25 @@ class_name Fight
 @onready var anim_state_machine : AnimationNodeStateMachinePlayback
 
 @onready var hitbox = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/hitbox"
+@onready var guard_hitbox = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_hitbox"
+@onready var trail_3d = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d"
+@onready var guard_break_vfx = $"../../character_body/vfx/guard_break"
 
-@export var light_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
+@export var light_attack_info = AttackInfo.new(5, 10, false, Vector3.FORWARD * 2)
+@export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, true, Vector3.FORWARD * 10)
+
 @export var attack_range = 1.0
 var attack_target : Node
 var target_weapon_manager: WeaponManager
 
+var defend_timer = Timer.new()
+
 var is_attacking = false
 var is_waiting = false
 var is_defending = false
+
+var perfect_guard_window = 0.5
+var guard_break_duration = 3.0
 
 var aggressive = 2 # Out of 4 [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
 var defensive = 2 # Out of 4
@@ -31,6 +41,13 @@ var lost_target_time = 0.0
 func _ready():
 	hitbox.on_collision.connect(hit)
 	hitbox.on_block.connect(hit_guarded)
+	
+	guard_hitbox.on_guard.connect(guarded)
+	guard_hitbox.on_perfect_guard.connect(perfect_guarded)
+	
+	add_child(defend_timer)
+	defend_timer.one_shot = true
+	defend_timer.timeout.connect(finished_defense)
 	
 
 func enter(state_machine):
@@ -126,12 +143,21 @@ func animation_change_check():
 	
 
 func animation_changed(new_name):
+	var is_heavy = new_name in ["heavy_1", "heavy_2", "heavy_3"]
 	if new_name == "idle":
 		hitbox.set_active(false)
+		set_trail_enabled(false)
 	elif new_name in ["light_1", "light_2", "light_3", "heavy_1", "heavy_2", "heavy_3", 
 	"iaido_light_1", "iaido_light_2", "iaido_light_3", "iaido_light_4",]:
 		hitbox.clear_collisions() # Needed in case of attack to attack transition
 		hitbox.set_active(true)
+		hitbox.set_heavy(is_heavy)
+		set_trail_enabled(true)
+	
+
+func set_trail_enabled(state):
+	if trail_3d:
+		trail_3d.trailEnabled = state
 	
 
 func execute_wait():
@@ -141,40 +167,71 @@ func execute_wait():
 	
 
 func try_defend():
-	if is_attacking:
+	if is_attacking or get_stats().is_guard_broken:
 		return
 	
 	execute_defense()
 	
 
 func execute_defense():
-	if anim_state_machine:
-		anim_state_machine.start("defend")
+	if not is_defending: # Avoid restarting if already defending
+		if anim_state_machine:
+			anim_state_machine.start("defend")
 		is_defending = true
-		await get_tree().create_timer(1.0).timeout
-		anim_state_machine.start("idle")
-		is_defending = false
+		guard_hitbox.set_active(true)
+		guard_hitbox.set_perfect(perfect_guard_window)
+	
+	defend_timer.start(1.0) # Will restart an already running timer
+
+
+func finished_defense():
+	anim_state_machine.start("idle")
+	guard_hitbox.set_active(false)
+	is_defending = false
+	
+
+func guarded(attack_info, hitbox):
+	anim_state_machine.start("guard_hit")
+	# TODO: Add audio & vfx
+	
+	if get_stats():
+		get_stats().deplete_stamina(attack_info.soft_damage)
+		if get_stats().stamina.get_value() <= 0:
+			guard_break()
+	
+
+func perfect_guarded(attack_info, hitbox):
+	var pos = hitbox.global_position + Vector3.UP * 0.1
+	anim_state_machine.start("guard_hit")
+	# TODO: Add audio & vfx
+	
+
+func guard_break():
+	defend_timer.stop()
+	finished_defense()
+	
+	# Play vfx
+	guard_break_vfx.restart()
+	
+	get_stats().is_guard_broken = true
+	await get_tree().create_timer(guard_break_duration).timeout
+	get_stats().is_guard_broken = false
 	
 
 func hit(area, hitbox):
-	print("HIT: ", area, " > ", area.owner, " > ", area.owner.owner)
 	if area is Hurtbox:
-		var attack_info = light_attack_info
-		
-		#if hitbox.heavy:
-			#attack_info = uppward_attack_info
-		
-		area.hit(attack_info)
+		area.hit(get_attack_info(hitbox))
 	
 
 func hit_guarded(area : Guardbox, hitbox):
-	var attack_info = light_attack_info
-	#if hitbox.heavy:
-		#attack_info = uppward_attack_info
-	area.guard(attack_info, hitbox)
-	
-	#play_guard_vfx(hitbox.global_position)
+	area.guard(get_attack_info(hitbox), hitbox)
 	anim_state_machine.start("idle")
+	#play_guard_vfx(hitbox.global_position)
+	
+
+func get_attack_info(hitbox : Hitbox):
+	var attack_info = heavy_attack_info if hitbox.is_heavy else light_attack_info
+	return attack_info.get_translated(state_machine.pathfinding.global_basis)
 	
 
 func exit(state_machine):
