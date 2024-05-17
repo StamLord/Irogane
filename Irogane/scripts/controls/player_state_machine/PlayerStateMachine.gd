@@ -20,6 +20,8 @@ var last_body_velocity
 signal on_state_enter(state_name)
 signal on_state_exit(state_name)
 
+var debug = false
+
 func _ready():
 	PlayerEntity.set_player_node(self)
 	for child in states_parent.get_children():
@@ -31,9 +33,39 @@ func _ready():
 		default_state.Enter(self)
 		current_state = default_state
 	
+	stats.heavy_hit_during_guard_break.connect(push_back)
+	
+	var args = [
+		{
+			"arg_name": "x",
+			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
+			"arg_description": "X component of the force vector",
+		},
+		{
+			"arg_name": "y",
+			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
+			"arg_description": "Y component of the force vector",
+		},
+		{
+			"arg_name": "z",
+			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
+			"arg_description": "Y component of the force vector",
+		},
+	]
+	
+	DebugCommandsManager.add_command("push", debug_push_back, args)
+	
+
 func _process(delta):
 	if current_state:
 		current_state.Update(delta)
+		
+		if debug:
+			var state_color_seed = current_state.name.to_utf8_buffer().hex_encode().hex_to_int()
+			var state_color = Utils.random_color(state_color_seed)
+			var state_debug_duration = 10.0
+			DebugCanvas.debug_point(global_position, state_color,12.0, state_debug_duration)
+	
 
 func _physics_process(delta):
 	# State Process
@@ -49,7 +81,14 @@ func on_child_transition(state, new_state_name):
 	if not new_state:
 		return
 		
-	#print("EXITING: " + current_state.name)
+	if debug:
+		#print("EXITING: " + current_state.name)
+		var new_state_color_seed = new_state_name.to_utf8_buffer().hex_encode().hex_to_int()
+		var new_state_color = Utils.random_color(new_state_color_seed)
+		var new_state_debug_duration = 10.0
+		DebugCanvas.debug_point(global_position, new_state_color, 24.0, new_state_debug_duration)
+		DebugCanvas.debug_text(new_state_name, global_position + Vector3.UP, new_state_color, new_state_debug_duration)
+	
 	if current_state: 
 		current_state.Exit(self)
 		on_state_exit.emit(current_state.name)
@@ -58,6 +97,20 @@ func on_child_transition(state, new_state_name):
 	new_state.Enter(self)
 	current_state = new_state
 	on_state_enter.emit(new_state.name)
+	
+
+func transition(new_state_name):
+	on_child_transition(current_state, new_state_name)
+	
+
+func push_back(force_vector : Vector3):
+	transition("pushed")
+	current_state.direction = force_vector.normalized()
+	current_state.speed = force_vector.length()
+	
+
+func debug_push_back(args : Array):
+	push_back(Vector3(args[0], args[1], args[2]))
 	
 
 func save_data():

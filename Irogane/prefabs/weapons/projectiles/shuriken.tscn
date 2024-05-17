@@ -122,7 +122,7 @@ material = SubResource("StandardMaterial3D_u6xcn")
 
 [node name="shuriken" type="Node3D"]
 script = ExtResource("1_g5mtn")
-collision_mask = 1
+collision_mask = 33
 
 [node name="model" parent="." instance=ExtResource("2_3frjp")]
 transform = Transform3D(1, 0, 0, 0, -0.798974, 0.608264, 0, -0.608264, -0.798974, 0, 0, 0)

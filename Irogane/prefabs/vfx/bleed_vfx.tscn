@@ -1,0 +1,127 @@
+[gd_scene load_steps=22 format=3 uid="uid://cfksysdcoqnfg"]
+
+[ext_resource type="Shader" uid="uid://b2qra28rvub4s" path="res://assets/shaders/blood_particle_2.tres" id="1_g3jte"]
+[ext_resource type="Shader" uid="uid://dpjjtnpgmrq1q" path="res://assets/shaders/blood_splatter.tres" id="2_i53oq"]
+
+[sub_resource type="Curve" id="Curve_fwefc"]
+_data = [Vector2(0, 0), 0.0, 13.8242, 0, 0, Vector2(0.12973, 0.747253), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.75048, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dauy2"]
+curve = SubResource("Curve_fwefc")
+
+[sub_resource type="Curve" id="Curve_0oeeq"]
+_data = [Vector2(0, 0.5), 0.0, -0.0360728, 0, 0, Vector2(1, 0), -1.58719, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vwenl"]
+max_value = 4.0
+_data = [Vector2(0, 0), 0.0, 4.59604, 0, 0, Vector2(1, 4), 0.0900129, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_s84ni"]
+curve_x = SubResource("Curve_0oeeq")
+curve_y = SubResource("Curve_vwenl")
+curve_z = SubResource("Curve_0oeeq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w812f"]
+direction = Vector3(0, 0, 0)
+spread = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.75
+scale_curve = SubResource("CurveXYZTexture_s84ni")
+alpha_curve = SubResource("CurveTexture_dauy2")
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux50n"]
+render_priority = 0
+shader = ExtResource("1_g3jte")
+shader_parameter/ColorParameter = Color(1, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qllti"]
+material = SubResource("ShaderMaterial_ux50n")
+center_offset = Vector3(0, -0.5, 0)
+
+[sub_resource type="Curve" id="Curve_3cixd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p5ll7"]
+curve = SubResource("Curve_3cixd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j8kbn"]
+angle_max = 180.0
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+alpha_curve = SubResource("CurveTexture_p5ll7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3bph"]
+render_priority = 0
+shader = ExtResource("2_i53oq")
+shader_parameter/ColorParameter = Color(1, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_fksop"]
+material = SubResource("ShaderMaterial_c3bph")
+orientation = 1
+
+[sub_resource type="Curve" id="Curve_qbbsx"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kea86"]
+curve = SubResource("Curve_qbbsx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pbbow"]
+emission_shape = 3
+emission_box_extents = Vector3(0.15, 0.05, 0.05)
+scale_min = 0.01
+scale_max = 0.02
+color = Color(0.384314, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_kea86")
+
+[sub_resource type="Curve" id="Curve_d4nc2"]
+_data = [Vector2(0, 0), 0.0, 18.1573, 0, 0, Vector2(0.137725, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avddb"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 2
+billboard_keep_scale = true
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_fuhf0"]
+material = SubResource("StandardMaterial3D_avddb")
+shape = 0
+curve = SubResource("Curve_d4nc2")
+
+[node name="bleed_vfx" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+sub_emitter = NodePath("blood_splatter")
+lifetime = 2.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_w812f")
+draw_pass_1 = SubResource("QuadMesh_qllti")
+
+[node name="blood_splatter" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.72427, 0)
+cast_shadow = 0
+amount = 4000
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_j8kbn")
+draw_pass_1 = SubResource("QuadMesh_fksop")
+
+[node name="bleed_particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.113179, 0)
+amount = 16
+local_coords = true
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_pbbow")
+draw_pass_1 = SubResource("RibbonTrailMesh_fuhf0")
