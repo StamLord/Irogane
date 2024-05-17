@@ -25,6 +25,7 @@ var start_pos
 var last_pos
 var start_speed
 var stopped = false
+var despawn_after_stopping = false
 var bounce_count = 0
 var not_persistent = false
 
@@ -98,6 +99,8 @@ func _process(delta):
 	
 	if stopped:
 		deactivate_hitbox()
+		if despawn_after_stopping:
+			despawn()
 		return
 	
 	# Calculate position
@@ -131,13 +134,16 @@ func collision_check(delta):
 		
 		emit_impact_vfx()
 		
-		if bounce_count > 0:
+		if bounce_count > 0 and result.collider != PlayerEntity.player_node:
 			reflect_trajectory(result.normal)
 			bounce_count -= 1
 			return
 		
 		stopped = true
 		on_stopped.emit(self)
+		
+		if result.collider == PlayerEntity.player_node:
+			despawn_after_stopping = true
 		
 		if spin_vfx:
 			spin_vfx.visible = false
@@ -190,4 +196,10 @@ func set_temp_gravity_multiplier(value : float):
 func emit_impact_vfx():
 	if impact_vfx:
 		impact_vfx.emit_particle(impact_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+	
+
+func despawn():
+	model.visible = false
+	await get_tree().create_timer(0.5).timeout
+	queue_free()
 	
