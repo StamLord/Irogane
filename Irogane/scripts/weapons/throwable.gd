@@ -17,6 +17,11 @@ const shoot_pos_offset = {
 	ShootPos.TOP_LEFT: Vector3(-0.15, 0.1, 0)
 }
 
+const shuriken_highlight_per_skill_map = {
+	"body_switch": Color.DODGER_BLUE,
+	"multiplying_shuriken": Color.CHOCOLATE
+}
+
 # Prefab
 @onready var shuriken_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
 @onready var smoke_vanish_vfx = $smoke_vanish_vfx
@@ -112,7 +117,11 @@ func fire_shuriken_straight():
 
 func fire_special_shuriken_straight(type):
 	var shuriken = fire_shuriken_straight()
+	if type in active_shurikens and active_shurikens[type]:
+		active_shurikens[type][-1].set_hightlight_color(shuriken_highlight_per_skill_map[type])
 	track_shuriken(type, shuriken)
+	shuriken.set_hightlight_color(Color.WHITE)
+	shuriken.toggle_highlight()
 	return shuriken
 	
 
@@ -229,6 +238,9 @@ func activate_special_shuriken(type: String):
 	if type in active_shurikens:
 		var shuriken = active_shurikens[type].pop_back()
 		if shuriken:
+			shuriken.toggle_highlight()
+			if active_shurikens[type]:
+				active_shurikens[type][-1].set_hightlight_color(Color.WHITE)
 			if type == "multiplying_shuriken":
 				multiply_shuriken(shuriken)
 			elif type == "body_switch":
@@ -318,7 +330,15 @@ func octo_throw():
 	
 
 func skill_selected(skill_name):
+	if current_skill and current_skill in active_shurikens:
+		for shuriken in active_shurikens[current_skill]:
+			shuriken.toggle_highlight()
+	
 	current_skill = skill_name
+	
+	if skill_name in active_shurikens:
+		for shuriken in active_shurikens[skill_name]:
+			shuriken.toggle_highlight()
 	
 
 func context_changed(old_context, new_context):
@@ -330,8 +350,10 @@ func context_changed(old_context, new_context):
 
 func vanish_shuriken(shuriken):
 	await get_tree().create_timer(1.0).timeout
-	if smoke_vanish_vfx:
+	if smoke_vanish_vfx and is_instance_valid(shuriken):
 		for i in range(32):
 			smoke_vanish_vfx.emit_particle(shuriken.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
-	shuriken.queue_free()
+	
+	if is_instance_valid(shuriken):
+		shuriken.queue_free()
 	

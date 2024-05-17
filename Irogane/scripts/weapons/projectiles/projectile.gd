@@ -12,7 +12,7 @@ extends Node3D
 const SHURIKEN_FLIGHT_SFX = preload("res://assets/audio/shuriken/shuriken_flight_1.ogg")
 const SHURIKEN_IMPACT_SFX = preload("res://assets/audio/shuriken/shuriken_impact_1.ogg")
 
-@export var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
+var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
 @export var speed = 60
 @export var gravity_multiplier = 1.0
@@ -203,3 +203,12 @@ func despawn():
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
 	
+
+func toggle_highlight():
+	model.get_node("shuriken2").get_surface_override_material(0).no_depth_test = not model.get_node("shuriken2").get_surface_override_material(0).no_depth_test
+	
+
+func set_hightlight_color(color: Color):
+	model.get_node("shuriken2").get_surface_override_material(0).albedo_color = color
+	
+
