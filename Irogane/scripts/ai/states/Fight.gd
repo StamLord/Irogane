@@ -28,9 +28,9 @@ var is_retreating = false
 var perfect_guard_window = 0.5
 var guard_break_duration = 3.0
 
-var aggressive = 2 # Out of 4 [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
-var defensive = 2 # Out of 4
-var reflexes = 2 # Out of 4
+var aggressive = 2 # Chance to attack when in range [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
+var defensive = 2 # Chance to defend when not attacking [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
+var reflexes = 2 # Chance to defend when attacked [4 = 50%, 3 = 37.5%, 2 = 25%, 1 = 12.5%, 0 = 0%]
 
 var attack_sequence = 0
 var max_attack_sequence_window = 2.0
@@ -258,6 +258,8 @@ func perfect_guarded(attack_info, hitbox):
 func guard_break():
 	defend_timer.stop()
 	finished_defense()
+	
+	retreat_value += 2
 	
 	# Play vfx
 	guard_break_vfx.restart()
