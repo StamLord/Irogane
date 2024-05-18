@@ -109,10 +109,11 @@ func _physics_process(delta):
 	# Get dot product between our facing direction and the direction
 	var facing_direction = basis * Vector3.FORWARD # Our facing direction
 	var dot_product = facing_direction.dot(direction)
-	#dot_product = max(0, dot_product) # Make sure it's not below 0 - This is disabled because we want to move backwards now
+	dot_product = max(0, dot_product) # Make sure it's not below 0
 	
 	# Multiply by dot to slow down movement when facing the wrong direction
-	nav.set_velocity(direction * get_movement_speed() * abs(dot_product)) # Use abs to allow backward movement
+	var speed_mult = lerp(0.5, 1.0, dot_product) # Moving forward at full speed, backwards and sideways at half
+	nav.set_velocity(direction * get_movement_speed() * speed_mult)
 	
 	# Apply gravity
 	velocity.y -= gravity * delta
