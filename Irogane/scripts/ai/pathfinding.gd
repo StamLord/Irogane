@@ -24,6 +24,7 @@ var prev_target_angle : float
 var next_position = Vector3.ZERO
 var direction = Vector3.ZERO
 
+var look_at_target_while_moving = false
 var target_rotation = null
 
 var is_traveling_link = false
@@ -70,6 +71,8 @@ func _process(delta):
 				rotate_to_target_rotation(delta)
 			else: # Face the path target position
 				rotate_to_target(delta)
+		elif look_at_target_while_moving and target_rotation:
+			rotate_to_target_rotation(delta)
 		else: # Face next position on path
 			rotate_to_next_position(delta) 
 	
@@ -106,10 +109,10 @@ func _physics_process(delta):
 	# Get dot product between our facing direction and the direction
 	var facing_direction = basis * Vector3.FORWARD # Our facing direction
 	var dot_product = facing_direction.dot(direction)
-	dot_product = max(0, dot_product) # Make sure it's not below 0
+	#dot_product = max(0, dot_product) # Make sure it's not below 0 - This is disabled because we want to move backwards now
 	
 	# Multiply by dot to slow down movement when facing the wrong direction
-	nav.set_velocity(direction * get_movement_speed() * dot_product)
+	nav.set_velocity(direction * get_movement_speed() * abs(dot_product)) # Use abs to allow backward movement
 	
 	# Apply gravity
 	velocity.y -= gravity * delta

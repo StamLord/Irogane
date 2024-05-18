@@ -13,6 +13,8 @@ class_name Fight
 @export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, true, Vector3.FORWARD * 10)
 
 @export var attack_range = 1.0
+@export var retreat_range = 4.0
+@export var circle_range = 4.0
 var attack_target : Node
 var target_weapon_manager: WeaponManager
 
@@ -21,16 +23,20 @@ var defend_timer = Timer.new()
 var is_attacking = false
 var is_waiting = false
 var is_defending = false
+var is_retreating = false
 
 var perfect_guard_window = 0.5
 var guard_break_duration = 3.0
 
 var aggressive = 2 # Out of 4 [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
 var defensive = 2 # Out of 4
+var reflexes = 2 # Out of 4
 
 var attack_sequence = 0
 var max_attack_sequence_window = 2.0
 var last_attack_time = 0.0
+
+var retreat_value = 0 # At 10 it's 100% to retreat
 
 var prev_animation = null
 
@@ -67,6 +73,7 @@ func enter(state_machine):
 	
 	state_machine.pathfinding.set_override_movement_speed(movement_speed)
 	state_machine.pathfinding.set_override_rotation_speed(rotation_speed)
+	state_machine.pathfinding.look_at_target_while_moving = true
 	
 
 func physics_update(state_machine, _delta):
@@ -87,33 +94,63 @@ func physics_update(state_machine, _delta):
 	# Face target
 	set_target_rotation(attack_target.global_position)
 	
-	if is_defending or is_waiting: # Exit after rotation
+	if is_defending: # Exit after rotation
 		return
 	
-	if is_in_range_to_attack():
-		# Decide on action
+	# Keep distance
+	if is_retreating:
+		if not is_in_range(retreat_range):
+			DebugCanvas.debug_text("Not in Retreat Range", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED)
+			move_to_range(retreat_range)
+		else:
+			circle_target(retreat_range)
+		return
+	
+	# Circle around target while waiting
+	#if is_waiting:
+		#circle_target(circle_range)
+		#return
+	
+	# Decide next action
+	if is_in_range(attack_range):
 		if randi_range(0, 100) <= aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 			execute_attack()
+			DebugCanvas.debug_text("ATTACK", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED, 1.0)
 		elif randi_range(0, 100) <= defensive * 25: # defensive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 			execute_defense()
 			DebugCanvas.debug_text("DEFEND", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.GREEN, 1.0)
+		elif randi_range(0, 10) <= retreat_value:
+			execute_retreat()
+			DebugCanvas.debug_text("RETREAT", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.CYAN, 1.0)
 		else:
 			execute_wait()
 			DebugCanvas.debug_text("WAIT", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.BLUE, 1.0)
 	else:
-		DebugCanvas.debug_text("Not in Range", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED)
-		var body = state_machine.pathfinding
-		var dir_to_self = (body.global_position - attack_target.global_position).normalized()
-		var target_pos = attack_target.global_position + dir_to_self * attack_range * 0.8
-		set_target_position(target_pos)
+		DebugCanvas.debug_text("Not in Attack Range", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED)
+		move_to_range(attack_range)
 	
 
-func is_in_range_to_attack():
+func is_in_range(range):
 	if attack_target and state_machine and state_machine.pathfinding:
 		var dist = attack_target.global_position - state_machine.pathfinding.global_position
-		return dist.length() - attack_range <= 0.1
+		return abs(dist.length() - range) <= 0.2
 	
 	return false
+	
+
+func move_to_range(range):
+	var body = state_machine.pathfinding
+	var dir_to_self = (body.global_position - attack_target.global_position).normalized()
+	var target_pos = attack_target.global_position + dir_to_self * range * 0.8
+	set_target_position(target_pos)
+	
+
+func circle_target(range):
+	var body = state_machine.pathfinding
+	var dir_to_self = (body.global_position - attack_target.global_position).normalized()
+	var rotated_dir = dir_to_self.rotated(Vector3.UP, deg_to_rad(10))
+	var target_pos = attack_target.global_position + rotated_dir * range * 0.8
+	set_target_position(target_pos)
 	
 
 func execute_attack():
@@ -124,11 +161,13 @@ func execute_attack():
 		if attack_sequence >= 2 or attack_sequence == 0 and randi_range(0, 2) == 0: 
 			anim_state_machine.start("heavy_3")
 			attack_sequence = 0
+			retreat_value += 2
 			await get_tree().create_timer(1.5).timeout
 		# Otherwise a light attack
 		else:
 			anim_state_machine.start("light_" + str(attack_sequence + 1)) # play light_1, light_2 or light_3
 			attack_sequence += 1
+			retreat_value += 1
 			last_attack_time = Time.get_ticks_msec()
 			await get_tree().create_timer(0.5).timeout
 	
@@ -170,11 +209,13 @@ func try_defend():
 	if is_attacking or get_stats().is_guard_broken:
 		return
 	
-	execute_defense()
+	if randi_range(0, 100) <= reflexes * 12.5: # aggresive 4 = 50%, 3 = 37.5%, 2 = 25%, 1 = 12.5%, 0 = 0%
+		execute_defense()
 	
 
 func execute_defense():
 	if not is_defending: # Avoid restarting if already defending
+		#await get_tree().create_timer((4 - reflexes) * 0.25).timeout
 		if anim_state_machine:
 			anim_state_machine.start("defend")
 		is_defending = true
@@ -188,6 +229,13 @@ func finished_defense():
 	anim_state_machine.start("idle")
 	guard_hitbox.set_active(false)
 	is_defending = false
+	
+
+func execute_retreat():
+	retreat_value = 0
+	is_retreating = true
+	await get_tree().create_timer(4.0).timeout
+	is_retreating = false
 	
 
 func guarded(attack_info, hitbox):
@@ -240,6 +288,7 @@ func exit(state_machine):
 	
 	state_machine.pathfinding.clear_override_movement_speed()
 	state_machine.pathfinding.clear_override_rotation_speed()
+	state_machine.pathfinding.look_at_target_while_moving = false
 	
 	if target_weapon_manager:
 		target_weapon_manager.on_attack.disconnect(try_defend)
