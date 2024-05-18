@@ -378,6 +378,7 @@ func hit(area, hitbox):
 func hit_blocked(area : Guardbox, hitbox):
 	if area.is_perfect:
 		CameraShaker.shake(0.5, 0.2)
+		stats.got_perfect_blocked()
 	else:
 		CameraShaker.shake(0.25, 0.2)
 	
@@ -429,10 +430,8 @@ func guard_break():
 	# Play vfx
 	CameraShaker.shake(0.25, 0.2)
 	guard_break_vfx.restart()
-
-	stats.is_guard_broken = true
-	await get_tree().create_timer(guard_break_duration).timeout
-	stats.is_guard_broken = false
+	
+	stats.start_guard_break(guard_break_duration)
 	
 
 func heavy_clash(area : Hitbox, hitbox):

@@ -312,10 +312,11 @@ func use_medicine(medicine):
 	return true
 	
 
-func set_guard_break(state):
-	is_guard_broken = state
-	if state:
-		start_stagger(1.0)
+func start_guard_break(duration):
+	is_guard_broken = true
+	start_stagger(duration)
+	await get_tree().create_timer(duration).timeout
+	is_guard_broken = false
 	
 
 func start_stagger(duration):
@@ -325,6 +326,10 @@ func start_stagger(duration):
 
 func end_stagger():
 	is_staggered = false
+	
+
+func got_perfect_blocked():
+	start_stagger(1.0)
 	
 
 func save_data():
