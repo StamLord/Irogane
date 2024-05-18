@@ -9,8 +9,8 @@ class_name Fight
 @onready var trail_3d = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d"
 @onready var guard_break_vfx = $"../../character_body/vfx/guard_break"
 
-@export var light_attack_info = AttackInfo.new(5, 10, false, Vector3.FORWARD * 2)
-@export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, true, Vector3.FORWARD * 10)
+@export var light_attack_info = AttackInfo.new(25, 10, false, Vector3.FORWARD * 2)
+@export var heavy_attack_info = AttackInfo.new(45, 10, DamageType.SLASH, true, Vector3.FORWARD * 10)
 
 @export var attack_range = 1.0
 @export var retreat_range = 4.0
@@ -30,7 +30,7 @@ var guard_break_duration = 3.0
 
 var aggressive = 2 # Chance to attack when in range [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
 var defensive = 2 # Chance to defend when not attacking [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
-var reflexes = 2 # Chance to defend when attacked [4 = 50%, 3 = 37.5%, 2 = 25%, 1 = 12.5%, 0 = 0%]
+var reflexes = 4 # Chance to defend when attacked [4 = 50%, 3 = 37.5%, 2 = 25%, 1 = 12.5%, 0 = 0%]
 
 var attack_sequence = 0
 var max_attack_sequence_window = 2.0
@@ -94,9 +94,6 @@ func physics_update(state_machine, _delta):
 	# Face target
 	set_target_rotation(attack_target.global_position)
 	
-	if is_defending: # Exit after rotation
-		return
-	
 	# Keep distance
 	if is_retreating:
 		if not is_in_range(retreat_range):
@@ -104,19 +101,17 @@ func physics_update(state_machine, _delta):
 			move_to_range(retreat_range)
 		else:
 			circle_target(retreat_range)
-		return
-	
-	# Circle around target while waiting
-	#if is_waiting:
-		#circle_target(circle_range)
-		#return
-	
-	# Decide next action
-	if not is_in_range(attack_range):
+	# Close distance
+	elif not is_in_range(attack_range):
 		DebugCanvas.debug_text("Not in Attack Range", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED)
 		move_to_range(attack_range)
+	else:
+		circle_target(attack_range)
+	
+	# Decide next action only when in range
+	if not is_in_range(attack_range):
 		return
-
+	
 	if randi_range(0, 100) <= aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 		execute_attack()
 		DebugCanvas.debug_text("ATTACK", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED, 1.0)
@@ -210,7 +205,7 @@ func try_defend():
 	if is_attacking or get_stats().is_guard_broken:
 		return
 	
-	if randi_range(0, 100) <= reflexes * 12.5: # aggresive 4 = 50%, 3 = 37.5%, 2 = 25%, 1 = 12.5%, 0 = 0%
+	if randi_range(0, 100) <= reflexes * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 		execute_defense()
 	
 

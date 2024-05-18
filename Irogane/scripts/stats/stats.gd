@@ -43,6 +43,9 @@ signal on_death()
 var is_guard_broken : bool = false
 signal heavy_hit_during_guard_break(force : Vector3)
 
+var is_staggered : bool = false
+var stagger_timer = Timer.new()
+
 func _ready():
 	if get_owner().name == "player":
 		add_debug_commands()
@@ -56,6 +59,10 @@ func _ready():
 	
 	for g in guardboxes:
 		g.on_guard.connect(guard)
+	
+	add_child(stagger_timer)
+	stagger_timer.one_shot = true
+	stagger_timer.timeout.connect(end_stagger)
 	
 
 func get_all_guardboxes(node : Node):
@@ -77,6 +84,8 @@ func hit(attack_info : AttackInfo):
 		heavy_hit_during_guard_break.emit(attack_info.force)
 	
 	on_hit.emit(attack_info)
+	
+	start_stagger(0.5)
 	
 
 func guard(attack_info : AttackInfo, hitbox):
@@ -305,6 +314,17 @@ func use_medicine(medicine):
 
 func set_guard_break(state):
 	is_guard_broken = state
+	if state:
+		start_stagger(1.0)
+	
+
+func start_stagger(duration):
+	is_staggered = true
+	stagger_timer.start(duration)
+	
+
+func end_stagger():
+	is_staggered = false
 	
 
 func save_data():
