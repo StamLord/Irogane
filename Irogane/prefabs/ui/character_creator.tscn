@@ -80,7 +80,7 @@
 [ext_resource type="Script" path="res://scripts/ui/custom_scrollbar.gd" id="66_4460i"]
 [ext_resource type="PackedScene" uid="uid://bi0yoe5q0365b" path="res://assets/models/env/trees/tree_01.glb" id="69_o4b8y"]
 [ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="70_ai3hn"]
-[ext_resource type="PackedScene" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
+[ext_resource type="PackedScene" uid="uid://dkcoap7i5mjnl" path="res://prefabs/env/bushes/bush_3.tscn" id="71_pwddk"]
 [ext_resource type="PackedScene" uid="uid://blmgqak0mhkqx" path="res://prefabs/env/trees/tree_01_early_fall.tscn" id="72_y3ju1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gpof"]
@@ -579,7 +579,6 @@ texture_focused = ExtResource("9_kkng3")
 stretch_mode = 0
 
 [node name="appearance_UI" type="Control" parent="."]
-texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

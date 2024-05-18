@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="31_kl1ps"]
 [ext_resource type="Script" path="res://scripts/ui/stance_label.gd" id="32_bgsca"]
 [ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="32_jglc7"]
-[ext_resource type="PackedScene" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
+[ext_resource type="PackedScene" uid="uid://b8udnda5f5r68" path="res://prefabs/entities/human_model.tscn" id="33_436od"]
 [ext_resource type="Script" path="res://scripts/stealth/StealthAgent.gd" id="33_qeuud"]
 [ext_resource type="Texture2D" uid="uid://copqhorgvxkn8" path="res://assets/textures/ui/theme/gradient_line.png" id="33_vi4em"]
 [ext_resource type="Script" path="res://scripts/stealth/footsteps.gd" id="34_8v6om"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://cpi0juna4kbhd" path="res://assets/textures/vfx/slash_0.png" id="36_bgtl7"]
 [ext_resource type="Script" path="res://scripts/stealth/SoundEmitter.gd" id="36_ldcyx"]
 [ext_resource type="Texture2D" uid="uid://c5ghgr8yh8b22" path="res://assets/textures/ui/stealth/light_stone.png" id="36_so2kt"]
+[ext_resource type="Texture2D" uid="uid://cu88b2yy08xq0" path="res://assets/textures/vfx/ghostly_particle.png" id="36_vj3iu"]
 [ext_resource type="Texture2D" uid="uid://btf3hxn2ns85p" path="res://assets/textures/vfx/aoe_decal_1.png" id="36_yxiao"]
 [ext_resource type="Script" path="res://scripts/skills/skill_zone.gd" id="37_60ul2"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
@@ -275,6 +276,69 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_ftt2y"]
 material = SubResource("StandardMaterial3D_0dxuj")
+
+[sub_resource type="Curve" id="Curve_wirnf"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_c7cml"]
+curve = SubResource("Curve_wirnf")
+
+[sub_resource type="Curve" id="Curve_nh2g1"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 0.5), 0.0, 0.0, 1, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_4dhf4"]
+curve = SubResource("Curve_nh2g1")
+
+[sub_resource type="Gradient" id="Gradient_pb2lg"]
+colors = PackedColorArray(0.12308, 0.0818894, 0.189712, 1, 0.367348, 0.570167, 0.973839, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1n41q"]
+gradient = SubResource("Gradient_pb2lg")
+
+[sub_resource type="Curve" id="Curve_c6ym1"]
+_data = [Vector2(0, 0), 5.46154, 4.42124, 0, 0, Vector2(0.394366, 0.736264), 0.572161, 0.572161, 0, 0, Vector2(1, 1), 0.616918, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aj0h8"]
+curve = SubResource("Curve_c6ym1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1xerm"]
+lifetime_randomness = 0.25
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_4dhf4")
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.25
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 2.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_aj0h8")
+color = Color(0.54902, 0.584314, 0.74902, 1)
+color_initial_ramp = SubResource("GradientTexture1D_1n41q")
+alpha_curve = SubResource("CurveTexture_c7cml")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_imqxh"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("36_vj3iu")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1s8w4"]
+material = SubResource("StandardMaterial3D_imqxh")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -883,15 +947,23 @@ process_material = SubResource("ParticleProcessMaterial_t0xiw")
 draw_pass_1 = SubResource("QuadMesh_ftt2y")
 
 [node name="shuriken" type="Node3D" parent="head/main_camera/weapon_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, -0.4)
 visible = false
 script = ExtResource("26_5mim7")
 
 [node name="shuriken_model" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("27_imo88")]
-transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626, 0.0405095, -0.00263428, -0.0424863, 0.0262293, 0.350353, -0.25896, -0.423049)
 
 [node name="shuriken_ring_menu" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("31_ep6ff")]
 visible = false
 open_button = ""
+
+[node name="smoke_vanish_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/shuriken"]
+emitting = false
+amount = 1000
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_1xerm")
+draw_pass_1 = SubResource("QuadMesh_1s8w4")
 
 [node name="skill_zone" type="Decal" parent="head/main_camera/weapon_manager"]
 unique_name_in_owner = true
