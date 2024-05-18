@@ -41,7 +41,7 @@ func get_camera_origin():
 
 func hit_vfx(attack_info):
 	# TODO: Shake amount to be affected by damage
-	shake(0.5, 0.2)
+	shake(lerp(0.5, 2.0, attack_info.soft_damage / 45), 0.2)
 	
 
 func _process(_delta):
