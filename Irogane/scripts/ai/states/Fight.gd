@@ -112,22 +112,23 @@ func physics_update(state_machine, _delta):
 		#return
 	
 	# Decide next action
-	if is_in_range(attack_range):
-		if randi_range(0, 100) <= aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
-			execute_attack()
-			DebugCanvas.debug_text("ATTACK", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED, 1.0)
-		elif randi_range(0, 100) <= defensive * 25: # defensive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
-			execute_defense()
-			DebugCanvas.debug_text("DEFEND", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.GREEN, 1.0)
-		elif randi_range(0, 10) <= retreat_value:
-			execute_retreat()
-			DebugCanvas.debug_text("RETREAT", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.CYAN, 1.0)
-		else:
-			execute_wait()
-			DebugCanvas.debug_text("WAIT", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.BLUE, 1.0)
-	else:
+	if not is_in_range(attack_range):
 		DebugCanvas.debug_text("Not in Attack Range", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED)
 		move_to_range(attack_range)
+		return
+
+	if randi_range(0, 100) <= aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
+		execute_attack()
+		DebugCanvas.debug_text("ATTACK", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED, 1.0)
+	elif randi_range(0, 100) <= defensive * 25: # defensive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
+		execute_defense()
+		DebugCanvas.debug_text("DEFEND", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.GREEN, 1.0)
+	elif randi_range(0, 10) <= retreat_value:
+		execute_retreat()
+		DebugCanvas.debug_text("RETREAT", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.CYAN, 1.0)
+	else:
+		execute_wait()
+		DebugCanvas.debug_text("WAIT", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.BLUE, 1.0)
 	
 
 func is_in_range(range):
