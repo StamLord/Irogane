@@ -1,4 +1,5 @@
 extends Node3D
+
 @export var stats : Stats
 @export var model : MeshInstance3D
 
