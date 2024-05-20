@@ -14,7 +14,6 @@
 [ext_resource type="Script" path="res://scripts/stats/death_despawn.gd" id="12_x16d4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o86t6"]
-radius = 0.25
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r67sv"]
 
@@ -92,8 +91,7 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_74gse"]
 material = SubResource("StandardMaterial3D_bu3pd")
 
-[node name="enemy_fight_only" type="Node3D" node_paths=PackedStringArray("default_state")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -9.5, 25)
+[node name="enemy_fight_oznly" type="Node3D" node_paths=PackedStringArray("default_state")]
 script = ExtResource("1_gn8ms")
 default_state = NodePath("states/Fight")
 
@@ -105,6 +103,7 @@ movement_speed = 5.0
 rotation_speed = 10.0
 
 [node name="stats" parent="." node_paths=PackedStringArray("hurtboxes") instance=ExtResource("3_5evkm")]
+unique_name_in_owner = true
 hurtboxes = [NodePath("../character_body/Hurtbox")]
 
 [node name="character_body" type="CharacterBody3D" parent="."]

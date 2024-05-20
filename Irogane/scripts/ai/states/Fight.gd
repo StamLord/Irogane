@@ -9,6 +9,11 @@ class_name Fight
 @onready var trail_3d = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d"
 @onready var guard_break_vfx = $"../../character_body/vfx/guard_break"
 
+@onready var audio = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/audio"
+const swing_sfx = [preload("res://assets/audio/katana/katana_swoosh_01.mp3"), preload("res://assets/audio/katana/katana_swoosh_02.mp3"), preload("res://assets/audio/katana/katana_swoosh_03.mp3"), preload("res://assets/audio/katana/katana_swoosh_04.mp3")]
+const clash_sfx = [preload("res://assets/audio/katana/katana_clash_01.mp3"), preload("res://assets/audio/katana/katana_clash_02.mp3"), preload("res://assets/audio/katana/katana_clash_03.mp3"), preload("res://assets/audio/katana/katana_clash_04.mp3")]
+const hit_sfx = [preload("res://assets/audio/katana/katana_hit_01.ogg")]
+
 @export var light_attack_info = AttackInfo.new(25, 10, false, Vector3.FORWARD * 2)
 @export var heavy_attack_info = AttackInfo.new(45, 10, DamageType.SLASH, true, Vector3.FORWARD * 10)
 
@@ -30,7 +35,7 @@ var guard_break_duration = 3.0
 
 var aggressive = 2 # Chance to attack when in range [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
 var defensive = 2 # Chance to defend when not attacking [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
-var reflexes = 4 # Chance to defend when attacked [4 = 50%, 3 = 37.5%, 2 = 25%, 1 = 12.5%, 0 = 0%]
+var reflexes = 2 # Chance to defend when attacked [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
 
 var attack_sequence = 0
 var max_attack_sequence_window = 2.0
@@ -47,6 +52,7 @@ var lost_target_time = 0.0
 func _ready():
 	hitbox.on_collision.connect(hit)
 	hitbox.on_block.connect(hit_guarded)
+	hitbox.add_ignore(owner)
 	
 	guard_hitbox.on_guard.connect(guarded)
 	guard_hitbox.on_perfect_guard.connect(perfect_guarded)
@@ -84,7 +90,7 @@ func physics_update(state_machine, _delta):
 	
 	animation_change_check()
 	
-	if is_attacking: # Exit before rotation
+	if is_attacking or get_stats().is_staggered: # Exit before rotation
 		return
 	
 	# Reset attack sequence
@@ -205,7 +211,7 @@ func try_defend():
 	if is_attacking or get_stats().is_guard_broken:
 		return
 	
-	if randi_range(0, 100) <= reflexes * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
+	if randi_range(0, 100) <= reflexes * 25: # 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 		execute_defense()
 	
 
@@ -267,11 +273,16 @@ func guard_break():
 func hit(area, hitbox):
 	if area is Hurtbox:
 		area.hit(get_attack_info(hitbox))
+		play_audio(hit_sfx.pick_random())
 	
 
 func hit_guarded(area : Guardbox, hitbox):
+	if area.is_perfect:
+		get_stats().got_perfect_blocked()
+	
 	area.guard(get_attack_info(hitbox), hitbox)
 	anim_state_machine.start("idle")
+	play_audio(clash_sfx.pick_random())
 	#play_guard_vfx(hitbox.global_position)
 	
 
@@ -303,6 +314,12 @@ func enemy_seen(enemy):
 	if enemy == attack_target and lost_target:
 		lost_target = false
 #		DebugCanvas.debug_text("Enemy Regained ", state_machine.pathfinding.global_position, Color.PURPLE, 3)
+	
+
+func play_audio(clip):
+	if audio:
+		audio.stream = clip
+		audio.play()
 	
 
 #func switch_to_search_state():

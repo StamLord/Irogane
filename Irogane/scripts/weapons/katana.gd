@@ -126,7 +126,8 @@ extends WeaponBase
 # Audio
 @onready var audio = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/audio
 const swing_sfx = [preload("res://assets/audio/katana/katana_swoosh_01.mp3"), preload("res://assets/audio/katana/katana_swoosh_02.mp3"), preload("res://assets/audio/katana/katana_swoosh_03.mp3"), preload("res://assets/audio/katana/katana_swoosh_04.mp3")]
-const hit_sfx = [preload("res://assets/audio/katana/katana_clash_01.mp3"), preload("res://assets/audio/katana/katana_clash_02.mp3"), preload("res://assets/audio/katana/katana_clash_03.mp3"), preload("res://assets/audio/katana/katana_clash_04.mp3")]
+const clash_sfx = [preload("res://assets/audio/katana/katana_clash_01.mp3"), preload("res://assets/audio/katana/katana_clash_02.mp3"), preload("res://assets/audio/katana/katana_clash_03.mp3"), preload("res://assets/audio/katana/katana_clash_04.mp3")]
+const hit_sfx = [preload("res://assets/audio/katana/katana_hit_01.ogg")]
 
 var combo = []
 var last_combo_addition = 0
@@ -361,10 +362,10 @@ func hit(area, hitbox):
 			attack_info = uppward_attack_info
 		
 		area.hit(attack_info.get_translated(global_basis))
+		play_audio(hit_sfx.pick_random())
 	
 	CameraShaker.shake(0.25, 0.2)
 	
-	play_audio(hit_sfx.pick_random())
 	
 	#if decal_raycast.is_colliding():
 		#create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
@@ -388,14 +389,14 @@ func hit_blocked(area : Guardbox, hitbox):
 	area.guard(attack_info.get_translated(global_basis), hitbox)
 	
 	play_guard_vfx(hitbox.global_position)
-	play_audio(hit_sfx.pick_random())
+	play_audio(clash_sfx.pick_random())
 	anim_state_machine.start("idle")
 	
 
 func guarded(attack_info, hitbox):
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
-	play_audio(hit_sfx.pick_random())
+	play_audio(clash_sfx.pick_random())
 	
 	if stats:
 		stats.deplete_stamina(attack_info.soft_damage)
@@ -408,7 +409,7 @@ func perfect_guarded(attack_info, hitbox):
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(pos)
 	play_perfect_guard_vfx(pos)
-	play_audio(hit_sfx.pick_random())
+	play_audio(clash_sfx.pick_random())
 	
 
 func play_guard_vfx(_position):
@@ -451,7 +452,7 @@ func heavy_clash(area : Hitbox, hitbox):
 	
 	is_in_blade_lock = true
 	
-	play_audio(hit_sfx.pick_random())
+	play_audio(clash_sfx.pick_random())
 	
 
 func join_blade_lock(blade_lock : BladeLock):

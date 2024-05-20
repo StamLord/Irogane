@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var step_check = $step_check
 @onready var door_check = $door_check
 @onready var step_separation = %step_separation
+@onready var stats = %stats
 
 @export var movement_speed = 2
 @export var acceleration = 10
@@ -11,7 +12,6 @@ extends CharacterBody3D
 @export var push_force = 15
 
 @onready var nav = $NavigationAgent3D
-@onready var player = PlayerEntity.player_node
 
 @export var max_step_height = .3
 @export var step_check_distance = 0.5
@@ -101,6 +101,9 @@ func reset_target_rotation():
 
 func _physics_process(delta):
 	if is_traveling_link:
+		return
+	
+	if stats and stats.is_staggered:
 		return
 	
 	next_position = nav.get_next_path_position()

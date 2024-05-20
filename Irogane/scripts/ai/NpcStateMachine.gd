@@ -4,7 +4,7 @@ class_name NpcStateMachine
 # References
 @onready var states_parent = $states # States Parent
 @onready var pathfinding = $character_body # Pathfinding agent
-@onready var stats = $stats
+@onready var stats = %stats
 @onready var awareness_agent = %AwarenessAgent
 @onready var schedule_agent = $ScheduleAgent
 

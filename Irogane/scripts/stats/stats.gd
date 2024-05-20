@@ -85,7 +85,10 @@ func hit(attack_info : AttackInfo):
 	
 	on_hit.emit(attack_info)
 	
-	start_stagger(0.5)
+	if attack_info.soft_damage >= 40:
+		start_stagger(0.2)
+	else:
+		start_stagger(0.4)
 	
 
 func guard(attack_info : AttackInfo, hitbox):

@@ -2137,6 +2137,7 @@ script = ExtResource("31_yobyh")
 visible = false
 
 [node name="enemy_fight_only" parent="." instance=ExtResource("38_udyj0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -9.5, 27)
 
 [node name="enemy_fight_only2" parent="." instance=ExtResource("38_udyj0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -9.5, 26)
