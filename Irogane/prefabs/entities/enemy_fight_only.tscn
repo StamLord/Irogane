@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dueun31swuwfw"]
+[gd_scene load_steps=43 format=3 uid="uid://dueun31swuwfw"]
 
 [ext_resource type="Script" path="res://scripts/ai/NpcStateMachine.gd" id="1_gn8ms"]
 [ext_resource type="Script" path="res://scripts/ai/states/Fight.gd" id="2_oa7qw"]
@@ -145,6 +145,9 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_b5h67"]
 material = SubResource("StandardMaterial3D_kc8dx")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r106g"]
+radius = 4.0
 
 [node name="enemy_fight_only" type="Node3D" node_paths=PackedStringArray("default_state")]
 script = ExtResource("1_gn8ms")
@@ -315,5 +318,9 @@ flash_color = Color(0.603922, 0.0431373, 0, 1)
 script = ExtResource("12_x16d4")
 stats = NodePath("../stats")
 to_despawn = NodePath("..")
+
+[node name="comrades_cast" type="ShapeCast3D" parent="."]
+enabled = false
+shape = SubResource("SphereShape3D_r106g")
 
 [connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]

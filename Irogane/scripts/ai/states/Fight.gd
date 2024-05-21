@@ -8,6 +8,7 @@ class_name Fight
 @onready var guard_hitbox = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/guard_hitbox"
 @onready var trail_3d = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/trail3d"
 @onready var guard_break_vfx = $"../../character_body/vfx/guard_break"
+@onready var comrades_cast = $"../../comrades_cast"
 
 @onready var audio = $"../../character_body/katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/audio"
 const swing_sfx = [preload("res://assets/audio/katana/katana_swoosh_01.mp3"), preload("res://assets/audio/katana/katana_swoosh_02.mp3"), preload("res://assets/audio/katana/katana_swoosh_03.mp3"), preload("res://assets/audio/katana/katana_swoosh_04.mp3")]
@@ -118,7 +119,7 @@ func physics_update(state_machine, _delta):
 	if not is_in_range(attack_range):
 		return
 	
-	if randi_range(0, 100) < aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
+	if not is_any_comrade_attacking() and randi_range(0, 100) < aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 		execute_attack()
 		DebugCanvas.debug_text("ATTACK", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED, 1.0)
 	elif randi_range(0, 100) < defensive * 25: # defensive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
@@ -320,6 +321,35 @@ func play_audio(clip):
 	if audio:
 		audio.stream = clip
 		audio.play()
+	
+
+func get_comrades_around_target():
+	comrades_cast.global_position = attack_target.global_position
+	comrades_cast.force_shapecast_update()
+	
+	var npcs = []
+	for i in range(comrades_cast.get_collision_count()):
+		if comrades_cast.get_collider(i).owner is NpcStateMachine:
+			npcs.append(comrades_cast.get_collider(i))
+	
+	return npcs
+	
+
+func get_attacking_comrades_around_target():
+	comrades_cast.global_position = attack_target.global_position
+	comrades_cast.force_shapecast_update()
+	
+	var npcs = []
+	for i in range(comrades_cast.get_collision_count()):
+		var c = comrades_cast.get_collider(i).owner
+		if c is NpcStateMachine and "is_attacking" in c.current_state and c.current_state.is_attacking:
+			npcs.append(comrades_cast.get_collider(i))
+	
+	return npcs
+	
+
+func is_any_comrade_attacking():
+	return get_attacking_comrades_around_target().size() > 0
 	
 
 #func switch_to_search_state():
