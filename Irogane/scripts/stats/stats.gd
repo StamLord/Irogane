@@ -46,6 +46,8 @@ var is_guard_broken : bool = false
 var is_staggered : bool = false
 var stagger_timer = Timer.new()
 
+var invincible_timer = Timer.new()
+
 func _ready():
 	if get_owner().name == "player":
 		add_debug_commands()
@@ -63,6 +65,10 @@ func _ready():
 	add_child(stagger_timer)
 	stagger_timer.one_shot = true
 	stagger_timer.timeout.connect(end_stagger)
+	
+	add_child(invincible_timer)
+	invincible_timer.one_shot = true
+	invincible_timer.timeout.connect(end_invincible)
 	
 
 func get_all_guardboxes(node : Node):
@@ -333,6 +339,21 @@ func end_stagger():
 
 func got_perfect_blocked():
 	start_stagger(1.0)
+	
+
+func start_invincible_duration(duration):
+	invincible_timer.start(duration)
+	start_invincible()
+	
+
+func start_invincible():
+	for h in hurtboxes:
+		h.set_active(false)
+	
+
+func end_invincible():
+	for h in hurtboxes:
+		h.set_active(true)
 	
 
 func save_data():
