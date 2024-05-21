@@ -33,7 +33,7 @@ func _ready():
 		default_state.Enter(self)
 		current_state = default_state
 	
-	stats.heavy_hit_during_guard_break.connect(push_back)
+	stats.on_heavy_hit.connect(push_back)
 	
 	var args = [
 		{

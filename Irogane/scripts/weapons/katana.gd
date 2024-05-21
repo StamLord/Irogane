@@ -4,8 +4,8 @@ extends WeaponBase
 @export var state_machine : PlayerStateMachine
 @export var camera_look : Node3D
 
-@export var light_attack_info = AttackInfo.new(25, 10, DamageType.SLASH, false, Vector3.FORWARD * 2)#, ["bleed"])
-@export var heavy_attack_info = AttackInfo.new(45, 10, DamageType.SLASH, true, Vector3.FORWARD * 2)#, ["bleed"])
+@export var light_attack_info = AttackInfo.new(15, 10, DamageType.SLASH, false, Vector3.FORWARD * 8)#, ["bleed"])
+@export var heavy_attack_info = AttackInfo.new(35, 10, DamageType.SLASH, true, Vector3.FORWARD * 8)#, ["bleed"])
 @export var uppward_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.UP * 6)
 
 @export var combo_list = [

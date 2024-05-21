@@ -304,40 +304,40 @@ max_value = 360.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ibynj"]
+[sub_resource type="CurveTexture" id="CurveTexture_lbnsw"]
 curve = SubResource("Curve_y01dl")
 
 [sub_resource type="Gradient" id="Gradient_jk3ou"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3bx3h"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tqjeu"]
 gradient = SubResource("Gradient_jk3ou")
 
 [sub_resource type="Curve" id="Curve_pvrf3"]
 _data = [Vector2(0, 0), 0.0, 2.24649, 0, 0, Vector2(0.664975, 0.852632), 0.717814, 0.717814, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_le6v8"]
+[sub_resource type="CurveTexture" id="CurveTexture_ix16f"]
 curve = SubResource("Curve_pvrf3")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30waa"]
 emission_shape = 1
 emission_sphere_radius = 0.2
 angle_max = 360.0
-angle_curve = SubResource("CurveTexture_ibynj")
+angle_curve = SubResource("CurveTexture_lbnsw")
 direction = Vector3(0, 1, 0)
 initial_velocity_min = 0.2
 initial_velocity_max = 0.4
 gravity = Vector3(0, 1, 0)
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_le6v8")
+scale_curve = SubResource("CurveTexture_ix16f")
 color = Color(0.537255, 0.580392, 0.780392, 0.376471)
-color_ramp = SubResource("GradientTexture1D_3bx3h")
+color_ramp = SubResource("GradientTexture1D_tqjeu")
 turbulence_enabled = true
 turbulence_noise_speed = Vector3(0, 1, 0)
 turbulence_influence_min = 0.05
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvrxs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_helxp"]
 transparency = 1
 blend_mode = 1
 vertex_color_use_as_albedo = true
@@ -349,7 +349,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_7s8xr"]
-material = SubResource("StandardMaterial3D_uvrxs")
+material = SubResource("StandardMaterial3D_helxp")
 
 [sub_resource type="Curve" id="Curve_mt1qp"]
 _data = [Vector2(0.75, 1), 0.0, -4.0, 0, 1, Vector2(1, 0), -4.0, 0.0, 1, 0]

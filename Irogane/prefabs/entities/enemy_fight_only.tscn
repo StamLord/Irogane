@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dueun31swuwfw"]
+[gd_scene load_steps=42 format=3 uid="uid://dueun31swuwfw"]
 
 [ext_resource type="Script" path="res://scripts/ai/NpcStateMachine.gd" id="1_gn8ms"]
 [ext_resource type="Script" path="res://scripts/ai/states/Fight.gd" id="2_oa7qw"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="8_6evpv"]
 [ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="9_jt5ce"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="10_7mnav"]
+[ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="10_xkw8e"]
+[ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="11_ji2s1"]
 [ext_resource type="Script" path="res://scripts/stats/hit_material_color.gd" id="11_ucpms"]
 [ext_resource type="Script" path="res://scripts/stats/death_despawn.gd" id="12_x16d4"]
 
@@ -91,7 +93,60 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_74gse"]
 material = SubResource("StandardMaterial3D_bu3pd")
 
-[node name="enemy_fight_oznly" type="Node3D" node_paths=PackedStringArray("default_state")]
+[sub_resource type="Curve" id="Curve_4vlws"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4dhhd"]
+curve = SubResource("Curve_4vlws")
+
+[sub_resource type="Gradient" id="Gradient_m07h2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pxer7"]
+gradient = SubResource("Gradient_m07h2")
+
+[sub_resource type="Curve" id="Curve_fxl0c"]
+_data = [Vector2(0, 0), 0.0, 2.24649, 0, 0, Vector2(0.664975, 0.852632), 0.717814, 0.717814, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dk5w4"]
+curve = SubResource("Curve_fxl0c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_unlqf"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_4dhhd")
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.4
+gravity = Vector3(0, 1, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_dk5w4")
+color = Color(0.537255, 0.580392, 0.780392, 0.376471)
+color_ramp = SubResource("GradientTexture1D_pxer7")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc8dx"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_xkw8e")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_b5h67"]
+material = SubResource("StandardMaterial3D_kc8dx")
+
+[node name="enemy_fight_only" type="Node3D" node_paths=PackedStringArray("default_state")]
 script = ExtResource("1_gn8ms")
 default_state = NodePath("states/Fight")
 
@@ -227,6 +282,28 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_q7yal")
 draw_pass_1 = SubResource("QuadMesh_74gse")
+
+[node name="push_back_dust_l" type="GPUParticles3D" parent="character_body/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_unlqf")
+draw_pass_1 = SubResource("QuadMesh_b5h67")
+script = ExtResource("11_ji2s1")
+emission_per_unit = 16
+
+[node name="push_back_dust_r" type="GPUParticles3D" parent="character_body/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_unlqf")
+draw_pass_1 = SubResource("QuadMesh_b5h67")
+script = ExtResource("11_ji2s1")
+emission_per_unit = 16
 
 [node name="hit_debug" type="Node3D" parent="." node_paths=PackedStringArray("stats", "model")]
 script = ExtResource("11_ucpms")

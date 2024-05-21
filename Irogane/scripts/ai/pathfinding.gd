@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var door_check = $door_check
 @onready var step_separation = %step_separation
 @onready var stats = %stats
+@onready var push_back_dust_l = $vfx/push_back_dust_l
+@onready var push_back_dust_r = $vfx/push_back_dust_r
 
 @export var movement_speed = 2
 @export var acceleration = 10
@@ -36,6 +38,14 @@ var snapped_to_stairs_last_frame = false
 var override_rotation_speed = null
 var override_movement_speed = null
 
+var is_pushed_back = false
+var push_back_force = Vector3.ZERO
+var push_back_speed = 0.0
+var push_back_accumulated_gravity = 0.0
+var push_back_deceleration = 10
+var push_back_exit_threshold = 0.2
+var push_back_gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 func _ready():
 	nav.link_reached.connect(link_reached)
 	
@@ -65,6 +75,10 @@ func move_in_link(link_details):
 	
 
 func _process(delta):
+	if is_pushed_back:
+		process_push_back(delta)
+		return
+	
 	if not is_traveling_link:
 		if nav.is_navigation_finished():
 			if target_rotation: # Face an overriding rotation target
@@ -229,4 +243,34 @@ func get_movement_speed():
 
 func get_rotation_speed():
 	return override_rotation_speed if override_rotation_speed != null else rotation_speed
+	
+
+func start_push_back(force : Vector3):
+	is_pushed_back = true
+	push_back_force = force
+	push_back_speed = force.length()
+	push_back_accumulated_gravity = 0.0
+	push_back_dust_l.active = true
+	push_back_dust_r.active = true
+	
+
+func process_push_back(delta):
+	var direction = push_back_force.normalized()
+	
+	# Decelerate when sliding on ground
+	if is_on_floor():
+		push_back_speed -= push_back_deceleration * delta
+	
+	# Apply gravity
+	push_back_accumulated_gravity -= push_back_gravity * delta
+	
+	velocity = direction * push_back_speed
+	velocity.y += push_back_accumulated_gravity
+	
+	move_and_slide()
+	
+	if push_back_speed < push_back_exit_threshold:
+		is_pushed_back = false
+		push_back_dust_l.active = false
+		push_back_dust_r.active = false
 	

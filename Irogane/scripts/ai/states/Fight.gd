@@ -34,7 +34,7 @@ var perfect_guard_window = 0.5
 var guard_break_duration = 3.0
 
 var aggressive = 2 # Chance to attack when in range [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
-var defensive = 2 # Chance to defend when not attacking [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
+var defensive = 3 # Chance to defend when not attacking [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
 var reflexes = 2 # Chance to defend when attacked [4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%]
 
 var attack_sequence = 0
@@ -51,7 +51,7 @@ var lost_target_time = 0.0
 
 func _ready():
 	hitbox.on_collision.connect(hit)
-	hitbox.on_block.connect(hit_guarded)
+	hitbox.on_block.connect(hit_blocked)
 	hitbox.add_ignore(owner)
 	
 	guard_hitbox.on_guard.connect(guarded)
@@ -118,13 +118,13 @@ func physics_update(state_machine, _delta):
 	if not is_in_range(attack_range):
 		return
 	
-	if randi_range(0, 100) <= aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
+	if randi_range(0, 100) < aggressive * 25: # aggresive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 		execute_attack()
 		DebugCanvas.debug_text("ATTACK", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.RED, 1.0)
-	elif randi_range(0, 100) <= defensive * 25: # defensive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
+	elif randi_range(0, 100) < defensive * 25: # defensive 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
 		execute_defense()
 		DebugCanvas.debug_text("DEFEND", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.GREEN, 1.0)
-	elif randi_range(0, 10) <= retreat_value:
+	elif randi_range(0, 10) < retreat_value:
 		execute_retreat()
 		DebugCanvas.debug_text("RETREAT", state_machine.pathfinding.global_position + Vector3.UP * 2, Color.CYAN, 1.0)
 	else:
@@ -208,7 +208,7 @@ func execute_wait():
 	
 
 func try_defend():
-	if is_attacking or get_stats().is_guard_broken:
+	if is_attacking or get_stats().is_staggered:
 		return
 	
 	if randi_range(0, 100) <= reflexes * 25: # 4 = 100%, 3 = 75%, 2 = 50%, 1 = 25%, 0 = 0%
@@ -276,7 +276,7 @@ func hit(area, hitbox):
 		play_audio(hit_sfx.pick_random())
 	
 
-func hit_guarded(area : Guardbox, hitbox):
+func hit_blocked(area : Guardbox, hitbox):
 	if area.is_perfect:
 		get_stats().got_perfect_blocked()
 	

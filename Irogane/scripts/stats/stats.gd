@@ -37,11 +37,11 @@ signal ended_battle()
 var last_medicine = null
 signal on_medicine_used(medicine)
 signal on_hit(attack_info)
+signal on_heavy_hit(force : Vector3)
 signal on_health_depleted(amount)
 signal on_death()
 
 var is_guard_broken : bool = false
-signal heavy_hit_during_guard_break(force : Vector3)
 
 var is_staggered : bool = false
 var stagger_timer = Timer.new()
@@ -81,7 +81,7 @@ func hit(attack_info : AttackInfo):
 	add_statuses(attack_info.statuses)
 	
 	if attack_info.is_heavy:
-		heavy_hit_during_guard_break.emit(attack_info.force)
+		on_heavy_hit.emit(attack_info.force)
 	
 	on_hit.emit(attack_info)
 	
@@ -93,7 +93,7 @@ func hit(attack_info : AttackInfo):
 
 func guard(attack_info : AttackInfo, hitbox):
 	if attack_info.is_heavy:
-		heavy_hit_during_guard_break.emit(attack_info.force)
+		on_heavy_hit.emit(attack_info.force)
 	
 
 func deplete_health(amount : int):
