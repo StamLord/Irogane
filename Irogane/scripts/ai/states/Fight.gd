@@ -143,8 +143,14 @@ func is_in_range(range):
 
 func move_to_range(range):
 	var body = state_machine.pathfinding
-	var dir_to_self = (body.global_position - attack_target.global_position).normalized()
-	var target_pos = attack_target.global_position + dir_to_self * range * 0.8
+	var dir = get_average_comrade_dir_from_target()
+	
+	if dir == null:
+		dir = (body.global_position - attack_target.global_position).normalized()
+	else:
+		dir = -dir
+	
+	var target_pos = attack_target.global_position + dir * range * 0.8
 	set_target_position(target_pos)
 	
 
@@ -329,10 +335,27 @@ func get_comrades_around_target():
 	
 	var npcs = []
 	for i in range(comrades_cast.get_collision_count()):
-		if comrades_cast.get_collider(i).owner is NpcStateMachine:
+		var c = comrades_cast.get_collider(i).owner
+		if c == owner:
+			continue
+		if c is NpcStateMachine:
 			npcs.append(comrades_cast.get_collider(i))
 	
 	return npcs
+	
+
+func get_average_comrade_dir_from_target():
+	var comrades = get_comrades_around_target()
+	var average_dir = null
+	
+	for c in comrades:
+		var dir = (c.global_position - attack_target.global_position).normalized()
+		if average_dir == null:
+			average_dir = dir
+		else:
+			average_dir.lerp(dir, 0.5)
+	
+	return average_dir
 	
 
 func get_attacking_comrades_around_target():
@@ -342,6 +365,8 @@ func get_attacking_comrades_around_target():
 	var npcs = []
 	for i in range(comrades_cast.get_collision_count()):
 		var c = comrades_cast.get_collider(i).owner
+		if c == owner:
+			continue
 		if c is NpcStateMachine and "is_attacking" in c.current_state and c.current_state.is_attacking:
 			npcs.append(comrades_cast.get_collider(i))
 	
