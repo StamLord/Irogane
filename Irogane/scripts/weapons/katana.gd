@@ -215,31 +215,32 @@ func _process(delta):
 			turn_on_charging_vfx(charging_vfx)
 	
 	if Input.is_action_just_pressed("jump"):
-		signal_defend()
 		last_jump = Time.get_ticks_msec()
 	
-	if Input.is_action_just_released("defend") and is_guarding:
+	# Defend
+	if Input.is_action_pressed("attack_primary") and Input.is_action_pressed("attack_secondary"):
+		if not is_guarding:
+			start_guard()
+			anim_state_machine.start("defend")
+	elif is_guarding:
 		stop_guard()
 		anim_state_machine.start("idle")
-	
-	if Input.is_action_just_pressed("defend"):
-		start_guard()
-		anim_state_machine.start("defend")
-	# Primary attack is on press
-	elif Input.is_action_just_pressed("attack_primary"):
-		add_to_combo("l")
-	# If no charging, secondary attack is on press.
-	# Otherwise, it's on release
-	if can_focus() or can_projectile():
-		if Input.is_action_just_pressed("attack_secondary"):
-			charge_secondary_attack()
-		# Check is_secondary_pressed to avoid attacking when key 
-		# is pressed in UI context and realeased in game context
-		elif Input.is_action_just_released("attack_secondary") and is_secondary_pressed:
-			execute_secondary_attack()
 	else:
-		if Input.is_action_just_pressed("attack_secondary"):
-			execute_secondary_attack()
+		# Primary attack is on press
+		if Input.is_action_just_pressed("attack_primary"):
+			add_to_combo("l")
+		# If no charging, secondary attack is on press.
+		# Otherwise, it's on release
+		if can_focus() or can_projectile():
+			if Input.is_action_just_pressed("attack_secondary"):
+				charge_secondary_attack()
+			# Check is_secondary_pressed to avoid attacking when key 
+			# is pressed in UI context and realeased in game context
+			elif Input.is_action_just_released("attack_secondary") and is_secondary_pressed:
+				execute_secondary_attack()
+		else:
+			if Input.is_action_just_pressed("attack_secondary"):
+				execute_secondary_attack()
 	
 	if not combo.is_empty() and not is_secondary_pressed and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
 		reset_combo()
@@ -284,7 +285,7 @@ func execute_secondary_attack():
 	else:
 		add_to_combo("r")
 	
-	turn_on_charging_vfx(null)
+	turn_off_charging_vfx()
 	
 
 func add_to_combo(move):
@@ -583,6 +584,9 @@ func turn_on_charging_vfx(particles):
 	for vfx in [charging_vfx, projectile_charging_vfx]:
 		vfx.emitting = vfx == particles
 	
+func turn_off_charging_vfx():
+	turn_on_charging_vfx(null)
+	
 
 func set_trail_enabled(state):
 	if trail_3d:
@@ -640,11 +644,11 @@ func fetch_skills():
 	
 
 func can_focus():
-	return  "Focused" in katana_skills
+	return "Focused" in katana_skills
 	
 
 func can_projectile():
-	return  "Projectile" in katana_skills
+	return "Projectile" in katana_skills
 	
 
 func context_changed(old_context, new_context):
@@ -658,6 +662,9 @@ func start_guard():
 	is_guarding = true
 	guard_hitbox.set_active(true)
 	guard_hitbox.set_perfect(perfect_guard_window)
+	is_secondary_pressed = false # Cancel charging if pressed R shortly before L
+	turn_off_charging_vfx()
+	signal_defend()
 	
 
 func stop_guard():

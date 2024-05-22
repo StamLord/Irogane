@@ -250,8 +250,7 @@ func start_push_back(force : Vector3):
 	push_back_force = force
 	push_back_speed = force.length()
 	push_back_accumulated_gravity = 0.0
-	push_back_dust_l.active = true
-	push_back_dust_r.active = true
+	set_vfx_active(true)
 	
 
 func process_push_back(delta):
@@ -269,8 +268,15 @@ func process_push_back(delta):
 	
 	move_and_slide()
 	
+	# Vfx
+	set_vfx_active(is_on_floor())
+	
 	if push_back_speed < push_back_exit_threshold:
 		is_pushed_back = false
-		push_back_dust_l.active = false
-		push_back_dust_r.active = false
+		set_vfx_active(false)
+	
+
+func set_vfx_active(state):
+	push_back_dust_l.active = state
+	push_back_dust_r.active = state
 	

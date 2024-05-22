@@ -101,6 +101,9 @@ func physics_update(state_machine, _delta):
 	# Face target
 	set_target_rotation(attack_target.global_position)
 	
+	if is_waiting:
+		return
+	
 	# Keep distance
 	if is_retreating:
 		if not is_in_range(retreat_range):
