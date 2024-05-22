@@ -31,6 +31,10 @@ func set_active(active):
 		mesh.material_override.albedo_color = active_color if monitoring else inactive_color
 	
 
+func is_active():
+	return monitoring
+	
+
 func _process(delta):
 	if mesh:
 		mesh.visible = debug
