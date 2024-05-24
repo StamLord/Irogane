@@ -37,6 +37,7 @@ func hit(area, hitbox):
 	
 	hit_vfx.global_position = hitbox.global_position + Vector3.FORWARD * 0.5 + Vector3.UP * 0.5
 	hit_vfx.emit_particle(hit_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+	
 
 func hit_blocked(area : Guardbox, hitbox):
 	if area.is_perfect:

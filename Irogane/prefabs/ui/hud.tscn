@@ -15,7 +15,7 @@ offset_bottom = 286.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_wia3m")
 
-[node name="health_bar" type="TextureProgressBar" parent="."]
+[node name="hard_health_bar" type="TextureProgressBar" parent="."]
 custom_minimum_size = Vector2(256, 24)
 layout_mode = 1
 anchors_preset = 15
@@ -31,11 +31,32 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 value = 100.0
 texture_progress = ExtResource("2_y4fov")
-tint_progress = Color(0.960784, 0.00784314, 0, 1)
+tint_progress = Color(0.372549, 0.00392157, 0, 1)
+script = ExtResource("3_8e4ki")
+bar_name = "hard_health"
+
+[node name="health_bar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(256, 24)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 230.0
+offset_top = 72.5
+offset_right = 230.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 50.0
+texture_progress = ExtResource("2_y4fov")
+tint_progress = Color(1, 0.00784314, 0, 1)
 script = ExtResource("3_8e4ki")
 bar_name = "health"
+change_max_value = false
 
-[node name="stamina_bar" type="TextureProgressBar" parent="."]
+[node name="hard_stamina_bar" type="TextureProgressBar" parent="."]
 custom_minimum_size = Vector2(256, 24)
 layout_mode = 1
 anchors_preset = 15
@@ -51,9 +72,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 value = 100.0
 texture_progress = ExtResource("4_q00q5")
+tint_progress = Color(0.156863, 0.380392, 0.262745, 1)
+script = ExtResource("3_8e4ki")
+bar_name = "hard_stamina"
+
+[node name="stamina_bar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(256, 24)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 162.5
+offset_top = 150.0
+offset_right = 162.5
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 50.0
+texture_progress = ExtResource("4_q00q5")
 tint_progress = Color(0.286275, 0.631373, 0.447059, 1)
 script = ExtResource("3_8e4ki")
 bar_name = "stamina"
+change_max_value = false
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0

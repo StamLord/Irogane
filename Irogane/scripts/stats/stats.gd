@@ -9,7 +9,9 @@ class_name Stats
 @export var max_level = 20
 
 @onready var health : Depletable = $health
+@onready var hard_health : Depletable = $hard_health
 @onready var stamina : Depletable = $stamina
+@onready var hard_stamina : Depletable = $hard_stamina
 
 @export var hurtboxes : Array[Hurtbox]
 @onready var guardboxes : Array[Guardbox] 
@@ -83,7 +85,7 @@ func _process(delta):
 	
 
 func hit(attack_info : AttackInfo):
-	deplete_health(attack_info.soft_damage)
+	deplete_health(attack_info.soft_damage, attack_info.hard_damage)
 	add_statuses(attack_info.statuses)
 	
 	if attack_info.is_heavy:
@@ -102,12 +104,15 @@ func guard(attack_info : AttackInfo, hitbox):
 		on_heavy_hit.emit(attack_info.force)
 	
 
-func deplete_health(amount : int):
+func deplete_health(soft_amount : int, hard_amount : int = 0):
+	if hard_health:
+		hard_health.deplete(hard_amount)
+	
 	if health:
-		on_health_depleted.emit(amount)
+		on_health_depleted.emit(soft_amount)
 		if health.get_value() < 1:
 			die()
-		return health.deplete(amount)
+		return health.deplete(soft_amount)
 	return false
 	
 
@@ -115,19 +120,28 @@ func die():
 	on_death.emit()
 	
 
-func replenish_health(amount: int):
+func replenish_health(soft_amount: int, hard_amount : int = 0):
+	if hard_health:
+		hard_health.replenish(hard_amount)
+	
 	if health:
-		return health.replenish(amount)
+		return health.replenish(soft_amount)
 	return false
 	
 
-func deplete_stamina(amount : int):
+func deplete_stamina(soft_amount : int, hard_amount : int = 0):
+	if hard_stamina:
+		return hard_stamina.deplete(hard_amount)
+	
 	if stamina:
-		return stamina.deplete(amount)
+		return stamina.deplete(soft_amount)
 	return false
 	
 
-func replenish_stamina(amount: int):
+func replenish_stamina(amount: int, hard_amount : int = 0):
+	if hard_stamina:
+		return hard_stamina.replenish(hard_amount)
+	
 	if stamina:
 		return stamina.replenish(amount)
 	return false
@@ -521,15 +535,19 @@ func set_attribute(args : Array):
 
 func set_health(args : Array):
 	health.set_value(args[0])
+	hard_health.set_value(args[0])
 	
 
 func set_stamina(args : Array):
 	stamina.set_value(args[0])
+	hard_stamina.set_value(args[0])
 	
 
 func set_godmode(args: Array):
 	health.set_godmode(args[0])
 	stamina.set_godmode(args[0])
+	hard_health.set_godmode(args[0])
+	hard_stamina.set_godmode(args[0])
 	
 
 func get_node_from_effect(effect : Effect):
