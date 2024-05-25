@@ -5,7 +5,7 @@ extends Node3D
 @export var sound_emitter : SoundEmitter
 @export var state_machine : PlayerStateMachine
 @export var steps_per_unit = 0.5
-@export var steps_sound_range = 4
+@export var steps_sound_range = 8
 @export var playing_in_states = ["walk", "run"]
 @export var play_once_from_state = ["air"]
 
@@ -15,7 +15,7 @@ var footstep_sounds = [
 	preload("res://assets/audio/footsteps/StepSamurai03.mp3"), 
 	preload("res://assets/audio/footsteps/StepSamurai04.mp3"), 
 	preload("res://assets/audio/footsteps/StepSamurai05.mp3")]
-	
+
 var last_position = Vector3.ZERO
 var distance_traveled = 0.0
 
@@ -28,6 +28,7 @@ func _ready():
 	if state_machine:
 		state_machine.on_state_enter.connect(on_state_enter)
 		state_machine.on_state_exit.connect(on_state_exit)
+	
 
 func _process(_delta):
 	if not is_playing:
@@ -42,6 +43,7 @@ func _process(_delta):
 		distance_traveled -= step_distance
 		
 	last_position = global_position
+	
 
 func emit_stealth_sound():
 	if sound_emitter:

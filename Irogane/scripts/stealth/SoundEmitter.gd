@@ -8,6 +8,7 @@ class_name SoundEmitter
 static var debug = false
 
 func _ready():
+	debug = true
 	DebugCommandsManager.add_command(
 		"display_sound_bubble",
 		set_debug,
@@ -30,7 +31,6 @@ func emit_sound(sound_position, sound_range):
 	
 	# Get AwarnessAgents from colliders
 	for i in range(sound_cast.get_collision_count()):
-		
 		if sound_cast.get_collider(i) is AwarenessAgent:
 			sound_cast.get_collider(i).hear_sound(sound_position)
 	

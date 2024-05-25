@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=61 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://scripts/ui/carry_progress_bar.gd" id="9_554op"]
 [ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="10_pnsv3"]
 [ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
-[ext_resource type="PackedScene" uid="uid://c8gfwufu2qdh8" path="res://prefabs/ui/system_menu.tscn" id="12_dwafj"]
 [ext_resource type="Script" path="res://prefabs/ui/quests_window.gd" id="14_amsqm"]
 [ext_resource type="Script" path="res://scripts/vfx/screen_vfx.gd" id="15_l8i5o"]
 [ext_resource type="Shader" uid="uid://bcfjtc6qqrdw4" path="res://prefabs/vfx/vignette_shader.tres" id="16_ikay5"]
@@ -21,9 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="19_pclt2"]
 [ext_resource type="Texture2D" uid="uid://c01iri26vnldi" path="res://assets/textures/vfx/line_0.png" id="19_tddid"]
 [ext_resource type="Texture2D" uid="uid://cxkwbrybp8tjo" path="res://assets/textures/vfx/glare_0.png" id="20_80lkk"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
-font_size = 24
 
 [sub_resource type="Curve" id="Curve_3ssjj"]
 max_value = 4.0
@@ -45,6 +41,9 @@ shader_parameter/strength = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dkd7g"]
 shader = ExtResource("17_lk0xl")
 shader_parameter/distortion_amount = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
+font_size = 24
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a3otr"]
 blend_mode = 1
@@ -312,6 +311,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="medicine_vfx2" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dha70")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="hurt_vfx2" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dkd7g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="cursor" type="TextureRect" parent="."]
 layout_mode = 1
@@ -621,35 +640,10 @@ bbcode_enabled = true
 [node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("15_l8i5o")
 medicine_curve = SubResource("Curve_3ssjj")
 hurt_curve = SubResource("Curve_ugfdm")
-
-[node name="medicine_vfx" type="Panel" parent="screen_vfx"]
-material = SubResource("ShaderMaterial_dha70")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="hurt_vfx" type="Panel" parent="screen_vfx"]
-material = SubResource("ShaderMaterial_dkd7g")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="blade_lock_break" type="Control" parent="."]
 anchors_preset = 0
