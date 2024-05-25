@@ -47,6 +47,18 @@ const ITEMS = {
 		"type" : "NONE",
 		"pickup" : preload(PICKUP_PATH + "pickup.tscn")
 	},
+	"painting" : {
+		"icon" : ICON_PATH + "godot_black.png",
+		"slot" : "NONE",
+		"type" : "NONE",
+		"pickup" : preload(PICKUP_PATH + "pickup.tscn")
+	},
+	"big painting" : {
+		"icon" : ICON_PATH + "godot_black.png",
+		"slot" : "NONE",
+		"type" : "NONE",
+		"pickup" : preload(PICKUP_PATH + "pickup.tscn")
+	},
 	"error" : {
 		"icon" : ICON_PATH + "godot_black.png",
 		"slot" : "NONE",

@@ -24,13 +24,14 @@ script = ExtResource("2_p1n0g")
 [node name="health" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
 script = ExtResource("3_cngxo")
 max_value_source = NodePath("values")
-value = 50
+value = 5
+max_value = 5
 auto_replenish_rate = 4
 
 [node name="values" type="Node" parent="health" node_paths=PackedStringArray("attribute")]
 script = ExtResource("4_xw1y4")
 attribute = NodePath("../../strength")
-values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
+values = Array[int]([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
 
 [node name="stamina" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
 script = ExtResource("5_bpmwy")
