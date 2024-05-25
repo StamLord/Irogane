@@ -243,6 +243,7 @@ skeleton = NodePath("")
 [node name="sound_emitter" type="Node3D" parent="." node_paths=PackedStringArray("rigidbody")]
 script = ExtResource("3_n2ott")
 rigidbody = NodePath("..")
+velocity_threshold = 1.0
 
 [node name="sound_cast" type="ShapeCast3D" parent="sound_emitter"]
 shape = SubResource("SphereShape3D_wip0p")
