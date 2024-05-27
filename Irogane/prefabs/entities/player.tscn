@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=163 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Rooted.gd" id="14_pnpox"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Climb.gd" id="16_su0ll"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
@@ -55,7 +56,9 @@
 [ext_resource type="Texture2D" uid="uid://d15my5xovi2rm" path="res://assets/textures/vfx/slash_2.png" id="38_e1qu1"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
+[ext_resource type="Script" path="res://scripts/weapons/pocket_mirror.gd" id="44_5spk0"]
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
+[ext_resource type="Script" path="res://scripts/controls/ledge_check.gd" id="47_nhvkg"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
@@ -339,6 +342,14 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_1s8w4"]
 material = SubResource("StandardMaterial3D_imqxh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we3fm"]
+metallic = 1.0
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_0rohj"]
+size = Vector2(0.3, 0.3)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -699,6 +710,10 @@ surface_offset = -1.5
 [node name="rooted" type="Node" parent="states"]
 script = ExtResource("14_pnpox")
 
+[node name="climb" type="Node" parent="states"]
+script = ExtResource("16_su0ll")
+ledge_mask = 1
+
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 script = ExtResource("9_nfdeu")
@@ -730,6 +745,7 @@ script = ExtResource("27_wn7je")
 script = ExtResource("18_u5xda")
 
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
+visible = false
 script = ExtResource("20_14b7v")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/melee"]
@@ -978,6 +994,29 @@ script = ExtResource("37_60ul2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
 visible = false
 
+[node name="pocket_mirror" type="Node3D" parent="head/main_camera/weapon_manager"]
+script = ExtResource("44_5spk0")
+
+[node name="left_pos" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -0.357, 0, -0.464)
+
+[node name="right_pos" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0.357, 0, -0.464)
+
+[node name="mirror_mesh" type="MeshInstance3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -0.356663, 0, -0.464274)
+material_override = SubResource("StandardMaterial3D_we3fm")
+mesh = SubResource("QuadMesh_0rohj")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh"]
+transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+update_mode = 1
+max_distance = 100.0
+size = Vector3(1, 1, 1)
+box_projection = true
+enable_shadows = true
+mesh_lod_threshold = 0.0
+
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
 collision_mask = 0
@@ -1005,15 +1044,43 @@ target_position = Vector3(0, 1.9, 0)
 unique_name_in_owner = true
 target_position = Vector3(0, 2.5, 0)
 
-[node name="ledge_check" type="RayCast3D" parent="."]
+[node name="ledge_check" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
-target_position = Vector3(0, -1.75, 0)
+script = ExtResource("47_nhvkg")
+
+[node name="ledge_check" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
+target_position = Vector3(0, -0.75, 0)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check5" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.9)
+target_position = Vector3(0, -0.75, 0)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check2" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.6)
+target_position = Vector3(0, -0.75, 0)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check3" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.45)
+target_position = Vector3(0, -0.75, 0)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check4" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.3)
+target_position = Vector3(0, -0.75, 0)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
 
 [node name="wall_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="step_check" type="RayCast3D" parent="."]

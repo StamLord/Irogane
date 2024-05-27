@@ -64,6 +64,5 @@ static func random_color(seed : int = 0) -> Color:
 	var rand = RandomNumberGenerator.new()
 	rand.seed = seed
 	var color = Color(rand.randf(), rand.randf(), rand.randf())
-	print(color)
 	return color
 	

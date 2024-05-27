@@ -82,7 +82,8 @@ func on_child_transition(state, new_state_name):
 		return
 		
 	if debug:
-		#print("EXITING: " + current_state.name)
+		print("EXITING: " + current_state.name)
+		print("ENTERING: " + new_state.name)
 		var new_state_color_seed = new_state_name.to_utf8_buffer().hex_encode().hex_to_int()
 		var new_state_color = Utils.random_color(new_state_color_seed)
 		var new_state_debug_duration = 10.0
@@ -93,7 +94,7 @@ func on_child_transition(state, new_state_name):
 		current_state.Exit(self)
 		on_state_exit.emit(current_state.name)
 	
-	#print("ENTERING: " + new_state.name)
+	
 	new_state.Enter(self)
 	current_state = new_state
 	on_state_enter.emit(new_state.name)

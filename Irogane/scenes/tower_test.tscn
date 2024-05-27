@@ -32,6 +32,8 @@ sky_material = ExtResource("1_tl3ee")
 [sub_resource type="Environment" id="Environment_ad207"]
 background_mode = 2
 sky = SubResource("Sky_i684r")
+ambient_light_sky_contribution = 0.2
+reflected_light_source = 1
 fog_enabled = true
 fog_light_color = Color(0.141176, 0.25098, 0.427451, 1)
 fog_sky_affect = 0.0
@@ -853,6 +855,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -5)
 size = Vector3(1, 9, 1)
 material = SubResource("StandardMaterial3D_wod8m")
 
+[node name="pillar5" type="CSGBox3D" parent="tower_0/NavigationRegion3D/floor_17/floor"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 7, 5)
+size = Vector3(0.5, 9, 0.5)
+material = SubResource("StandardMaterial3D_wod8m")
+
+[node name="pillar6" type="CSGBox3D" parent="tower_0/NavigationRegion3D/floor_17/floor"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 7, -5)
+size = Vector3(0.5, 9, 0.5)
+material = SubResource("StandardMaterial3D_wod8m")
+
+[node name="pillar7" type="CSGBox3D" parent="tower_0/NavigationRegion3D/floor_17/floor"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -5, 7, 0)
+size = Vector3(0.5, 9, 0.5)
+material = SubResource("StandardMaterial3D_wod8m")
+
+[node name="pillar8" type="CSGBox3D" parent="tower_0/NavigationRegion3D/floor_17/floor"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 5, 7, 0)
+size = Vector3(0.5, 9, 0.5)
+material = SubResource("StandardMaterial3D_wod8m")
+
+[node name="pillar9" type="CSGBox3D" parent="tower_0/NavigationRegion3D/floor_17/floor"]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 0, 7, 0)
+size = Vector3(0.5, 13, 0.5)
+material = SubResource("StandardMaterial3D_wod8m")
+
+[node name="pillar10" type="CSGBox3D" parent="tower_0/NavigationRegion3D/floor_17/floor"]
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 0, 7, 0)
+size = Vector3(0.5, 13, 0.5)
+material = SubResource("StandardMaterial3D_wod8m")
+
 [node name="CSGBox3D9" type="CSGBox3D" parent="tower_0/NavigationRegion3D/floor_17/floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -16.5)
 size = Vector3(8, 0.5, 3)
@@ -1171,6 +1203,7 @@ use_collision = true
 height = 3.0
 
 [node name="NpcStateMachine" type="Node3D" parent="tower_0/NavigationRegion3D/floor_17" node_paths=PackedStringArray("default_state")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16)
 script = ExtResource("2_r0fvu")
 default_state = NodePath("states/Idle")
@@ -6204,7 +6237,7 @@ operation = 2
 size = Vector3(2, 2, 2)
 
 [node name="player" parent="." instance=ExtResource("1_yf7s4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 84.5, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 89.5, 18)
 
 [node name="house_stairs_2x4" parent="." instance=ExtResource("2_5w5l6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
@@ -6304,25 +6337,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96489, 85.875, -1.56646)
 
 [node name="pickup4" parent="." instance=ExtResource("18_2jy7j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75483, 85.875, -0.427895)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7465, 91.7127, -0.206293)
-light_color = Color(1, 0.756863, 0, 1)
-omni_range = 10.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7465, 91.7127, 9.79371)
-light_color = Color(1, 0.756863, 0, 1)
-omni_range = 10.0
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.74648, 91.7127, 15.7937)
-light_color = Color(1, 0.756863, 0, 1)
-omni_range = 10.0
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7465, 91.7127, -10.2063)
-light_color = Color(1, 0.756863, 0, 1)
-omni_range = 10.0
 
 [connection signal="velocity_computed" from="tower_0/NavigationRegion3D/floor_17/NpcStateMachine/character_body/NavigationAgent3D" to="tower_0/NavigationRegion3D/floor_17/NpcStateMachine/character_body" method="_on_navigation_agent_3d_velocity_computed"]

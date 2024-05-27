@@ -8,7 +8,6 @@ class_name SoundEmitter
 static var debug = false
 
 func _ready():
-	debug = true
 	DebugCommandsManager.add_command(
 		"display_sound_bubble",
 		set_debug,
