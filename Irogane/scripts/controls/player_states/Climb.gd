@@ -19,6 +19,8 @@ var current_wall = null
 var wall_normal = Vector3.ZERO
 var wall_right = Vector3.ZERO
 
+var is_animating_position = false
+
 signal climb_rope_started()
 signal climb_rope_ended()
 
@@ -32,10 +34,22 @@ func Enter(body):
 	current_wall = wall_check.get_collider()
 	wall_normal = wall_check.get_collision_normal()
 	
-	var point = wall_check.get_collision_point()
+	adjust_to_wall(body, wall_check.get_collision_point(), wall_normal)
+	
+
+func adjust_to_wall(body, point, normal):
 	point.y = body.global_position.y # Treat as same height
 	var dir = (body.global_position - point).normalized()
 	body.global_position = point + dir * wall_distance
+	#body.look_at(point)
+	#body.look_at_from_position(point + dir * wall_distance, point)
+	
+
+func rotate_around_wall(body, point, normal):
+	point.y = body.global_position.y # Treat as same height
+	var target_position = point + normal * wall_distance * 0.4
+	start_animating_position(body, target_position, point)
+	#body.look_at_from_position(point + normal * wall_distance * 0.4, point)
 	
 
 func Update(delta):
@@ -43,17 +57,15 @@ func Update(delta):
 	
 
 func PhysicsUpdate(body, delta):
+	if is_animating_position:
+		return
+		
 	var front_wall_result = wall_front_query(body)
-	
 	if not front_wall_result:
 		Transitioned.emit(self, "air")
 		return
-	
-	current_wall = front_wall_result.collider
-	wall_normal = front_wall_result.normal
-	var wall_point = front_wall_result.position
-	var climb_up = Vector3.UP # World up
-	wall_right = climb_up.cross(wall_normal)
+		
+	update_wall_data(front_wall_result)
 	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	
@@ -80,14 +92,25 @@ func PhysicsUpdate(body, delta):
 		new_direction += wall_right * input_dir.x
 	# Up/Down
 	if top_wall_result and input_dir.y < 0 and not head_check.is_colliding() or bottom_wall_result and input_dir.y > 0:
-		new_direction += climb_up * -input_dir.y
+		new_direction += Vector3.UP * -input_dir.y
 	
 	direction = lerp(direction, new_direction.normalized(), delta * acceleration)
 		
-	DebugCanvas.debug_line(wall_point, wall_point + direction, Color.GREEN)
+	DebugCanvas.debug_line(front_wall_result.position, front_wall_result.position + direction, Color.GREEN)
 	
 	body.velocity = direction * speed
 	body.move_and_slide()
+	
+	var left_corner_result = wall_left_corner_query(body)
+	var right_corner_result = wall_right_corner_query(body)
+	
+	if left_corner_result and not left_wall_result and input_dir.x < 0:
+		update_wall_data(left_corner_result)
+		rotate_around_wall(body, left_corner_result.position, left_corner_result.normal)
+	elif right_corner_result and not right_wall_result and input_dir.x > 0:
+		update_wall_data(right_corner_result)
+		rotate_around_wall(body, right_corner_result.position, right_corner_result.normal)
+		
 	
 	# Collisions
 	PerformCollisions(body, speed, push_force, delta)
@@ -125,6 +148,12 @@ func Exit(body):
 	climb_rope_ended.emit()
 	
 
+func update_wall_data(query_result):
+	current_wall = query_result.collider
+	wall_normal = query_result.normal
+	wall_right = Vector3.UP.cross(wall_normal) # Use world up for now
+	
+
 func wall_query(body : Node3D, position : Vector3, direction : Vector3):
 	var query = PhysicsRayQueryParameters3D.create(position, direction)
 	var camera3d = CameraEntity.main_camera
@@ -138,12 +167,12 @@ func wall_front_query(body : Node3D):
 	
 
 func wall_left_query(body : Node3D):
-	var origin = body.global_position + body.global_basis * Vector3.UP * 1.5 - wall_right * 0.5
+	var origin = body.global_position + body.global_basis * Vector3.UP * 1.5 - wall_right * 0.15
 	return wall_query(body, origin, origin - wall_normal)
 	
 
 func wall_right_query(body : Node3D):
-	var origin =  body.global_position + body.global_basis * Vector3.UP * 1.5 + wall_right * 0.5
+	var origin =  body.global_position + body.global_basis * Vector3.UP * 1.5 + wall_right * 0.15
 	return wall_query(body, origin, origin - wall_normal)
 	
 
@@ -155,4 +184,38 @@ func wall_top_query(body : Node3D):
 func wall_bottom_query(body : Node3D):
 	var origin =  body.global_position + body.global_basis * Vector3.UP * 1.0
 	return wall_query(body, origin, origin - wall_normal)
+	
+
+func wall_left_corner_query(body : Node3D):
+	var origin = body.global_position + body.global_basis * Vector3.UP * 1.5 
+	origin -= wall_normal * 0.5 # Move forward into wall
+	origin -= wall_right * 0.5  # Move left
+	DebugCanvas.debug_line(origin, origin + wall_right * 0.5)
+	return wall_query(body, origin, origin + wall_right * 0.5)
+	
+
+func wall_right_corner_query(body : Node3D):
+	var origin = body.global_position + body.global_basis * Vector3.UP * 1.5 
+	origin -= wall_normal * 0.5 # Move forward into wall
+	origin += wall_right * 0.5  # Move right
+	DebugCanvas.debug_line(origin, origin - wall_right * 0.5)
+	return wall_query(body, origin, origin - wall_right * 0.5)
+	
+
+func start_animating_position(body : Node3D, target_position : Vector3, target_look : Vector3):
+	is_animating_position = true
+	var duration = 0.75 * 1000
+	var start_time = Time.get_ticks_msec()
+	var start_position = body.global_position
+	var start_target = body.global_position + body.global_basis * Vector3.FORWARD
+	
+	while Time.get_ticks_msec() - start_time <= duration:
+		var t = (Time.get_ticks_msec() - start_time) / duration
+		body.global_position = lerp(start_position, target_position, t)
+		var lerp_look_target = lerp(start_target, target_look, t)
+		body.look_at(lerp_look_target)
+		await get_tree().process_frame
+	
+	body.global_position = target_position
+	is_animating_position = false
 	

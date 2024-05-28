@@ -1038,14 +1038,17 @@ disabled = true
 
 [node name="head_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
+visible = false
 target_position = Vector3(0, 1.9, 0)
 
 [node name="head_check_2" type="RayCast3D" parent="."]
 unique_name_in_owner = true
+visible = false
 target_position = Vector3(0, 2.5, 0)
 
 [node name="ledge_check" type="Node3D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("47_nhvkg")
 
 [node name="ledge_check" type="RayCast3D" parent="ledge_check"]
@@ -1081,16 +1084,19 @@ target_position = Vector3(0, 0, -1)
 [node name="climb_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+visible = false
 target_position = Vector3(0, 0, -0.5)
 
 [node name="step_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
+visible = false
 target_position = Vector3(0, -3, 0)
 
 [node name="water_level_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
 target_position = Vector3(0, -2, 0)
 collision_mask = 8
 collide_with_areas = true
@@ -1099,6 +1105,7 @@ collide_with_bodies = false
 [node name="rope_check" type="ShapeCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+visible = false
 shape = SubResource("CapsuleShape3D_bnn1b")
 target_position = Vector3(0, 0, 0)
 collision_mask = 4
@@ -1106,6 +1113,7 @@ collision_mask = 4
 [node name="water_check" type="ShapeCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 shape = SubResource("SphereShape3D_8nx1q")
 target_position = Vector3(0, 0, 0)
 collision_mask = 8
@@ -1115,6 +1123,7 @@ collide_with_bodies = false
 [node name="wind_check" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+visible = false
 collision_layer = 16
 collision_mask = 16
 
