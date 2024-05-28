@@ -1049,32 +1049,27 @@ unique_name_in_owner = true
 script = ExtResource("47_nhvkg")
 
 [node name="ledge_check" type="RayCast3D" parent="ledge_check"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
-target_position = Vector3(0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.75)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 debug_shape_thickness = 4
 
 [node name="ledge_check5" type="RayCast3D" parent="ledge_check"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.9)
-target_position = Vector3(0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.9)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 debug_shape_thickness = 4
 
 [node name="ledge_check2" type="RayCast3D" parent="ledge_check"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.6)
-target_position = Vector3(0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.6)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 debug_shape_thickness = 4
 
 [node name="ledge_check3" type="RayCast3D" parent="ledge_check"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.45)
-target_position = Vector3(0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.45)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 debug_shape_thickness = 4
 
 [node name="ledge_check4" type="RayCast3D" parent="ledge_check"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.3)
-target_position = Vector3(0, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.3)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
 debug_shape_thickness = 4
 
@@ -1082,6 +1077,11 @@ debug_shape_thickness = 4
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 target_position = Vector3(0, 0, -1)
+
+[node name="climb_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, -0.5)
 
 [node name="step_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true

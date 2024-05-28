@@ -204,7 +204,7 @@ albedo_color = Color(1, 0, 0, 0.368627)
 environment = SubResource("Environment_ad207")
 
 [node name="sun" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 16, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 33.6888, 16, 0)
 shadow_enabled = true
 
 [node name="moon" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]

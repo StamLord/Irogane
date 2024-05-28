@@ -4,6 +4,7 @@ class_name Air
 # Refs
 @onready var ledge_check = $"%ledge_check"
 @onready var wall_check = $"%wall_check"
+@onready var climb_check = %climb_check
 @onready var rope_check = $"%rope_check"
 @onready var head_check = $"%head_check"
 @onready var head_check_2 = $"%head_check_2"
@@ -122,6 +123,11 @@ func PhysicsUpdate(body, delta):
 	# Water State
 	if water_check.is_colliding():
 		Transitioned.emit(self, "swim")
+		return
+	
+	# Climb State
+	if climb_check.is_colliding() and input_dir.y < 0:
+		Transitioned.emit(self, "climb")
 		return
 	
 

@@ -4,7 +4,7 @@ class_name Walk
 # References
 @onready var stand_collider = $"../../stand_collider"
 @onready var step_check = $"../../step_check"
-@onready var wall_check = %wall_check
+@onready var climb_check = %climb_check
 @onready var step_separation = %step_separation
 @onready var stamina = $"../../stats/stamina"
 
@@ -105,9 +105,10 @@ func PhysicsUpdate(body, delta):
 		return
 	
 	# Climb State
-	if wall_check.is_colliding() and input_dir.y < 0:
+	if climb_check.is_colliding() and input_dir.y < 0:
 		Transitioned.emit(self, "climb")
 		return
+	
 
 func Exit(body):
 	body.last_direction = direction

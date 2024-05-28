@@ -11,6 +11,7 @@ class_name Climb
 @export var speed = 1.0;
 @export var acceleration = 10
 @export var push_force = 2
+@export var wall_distance = 0.5
 @export_flags_3d_physics var ledge_mask
 
 var direction = Vector3.ZERO
@@ -30,6 +31,11 @@ func Enter(body):
 	
 	current_wall = wall_check.get_collider()
 	wall_normal = wall_check.get_collision_normal()
+	
+	var point = wall_check.get_collision_point()
+	point.y = body.global_position.y # Treat as same height
+	var dir = (body.global_position - point).normalized()
+	body.global_position = point + dir * wall_distance
 	
 
 func Update(delta):
