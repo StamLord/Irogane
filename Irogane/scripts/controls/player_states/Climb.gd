@@ -41,15 +41,12 @@ func adjust_to_wall(body, point, normal):
 	point.y = body.global_position.y # Treat as same height
 	var dir = (body.global_position - point).normalized()
 	body.global_position = point + dir * wall_distance
-	#body.look_at(point)
-	#body.look_at_from_position(point + dir * wall_distance, point)
 	
 
 func rotate_around_wall(body, point, normal):
 	point.y = body.global_position.y # Treat as same height
 	var target_position = point + normal * wall_distance * 0.4
 	start_animating_position(body, target_position, point)
-	#body.look_at_from_position(point + normal * wall_distance * 0.4, point)
 	
 
 func Update(delta):
