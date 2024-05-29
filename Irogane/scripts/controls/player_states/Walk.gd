@@ -7,6 +7,7 @@ class_name Walk
 @onready var climb_check = %climb_check
 @onready var step_separation = %step_separation
 @onready var stamina = $"../../stats/stamina"
+@onready var stats = %stats
 
 # Variables
 @export var speed = 5.0;
@@ -105,7 +106,7 @@ func PhysicsUpdate(body, delta):
 		return
 	
 	# Climb State
-	if climb_check.is_colliding() and input_dir.y < 0:
+	if stats.stamina.get_value() >= 5 and climb_check.is_colliding() and input_dir.y < 0:
 		Transitioned.emit(self, "climb")
 		return
 	

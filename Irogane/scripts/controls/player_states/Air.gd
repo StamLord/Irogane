@@ -10,6 +10,7 @@ class_name Air
 @onready var head_check_2 = $"%head_check_2"
 @onready var water_check = $"%water_check"
 @onready var vault_state = $"../vault"
+@onready var stats = %stats
 
 # Variables
 @export var air_acceleration = 0.1
@@ -126,7 +127,7 @@ func PhysicsUpdate(body, delta):
 		return
 	
 	# Climb State
-	if climb_check.is_colliding() and input_dir.y < 0:
+	if stats.stamina.get_value() >= 5 and climb_check.is_colliding() and input_dir.y < 0:
 		Transitioned.emit(self, "climb")
 		return
 	

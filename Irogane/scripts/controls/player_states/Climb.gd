@@ -6,6 +6,7 @@ class_name Climb
 @onready var head_check = %head_check
 @onready var head_check_2 = %head_check_2
 @onready var wall_check = %wall_check
+@onready var stats = %stats
 
 # Variables
 @export var speed = 1.0;
@@ -20,6 +21,8 @@ var wall_normal = Vector3.ZERO
 var wall_right = Vector3.ZERO
 
 var is_animating_position = false
+
+var last_deplete = 0
 
 signal climb_rope_started()
 signal climb_rope_ended()
@@ -98,6 +101,15 @@ func PhysicsUpdate(body, delta):
 	body.velocity = direction * speed
 	body.move_and_slide()
 	
+	# Stamina deplete
+	var enough_stamina = true
+	if Time.get_ticks_msec() - last_deplete >= 1000:
+		last_deplete = Time.get_ticks_msec()
+		if direction.length() > 0:
+			enough_stamina = stats.deplete_stamina(2)
+		else:
+			enough_stamina = stats.deplete_stamina(1)
+	
 	var left_corner_result = wall_left_corner_query(body)
 	var right_corner_result = wall_right_corner_query(body)
 	
@@ -118,7 +130,7 @@ func PhysicsUpdate(body, delta):
 		return
 	
 	# Fall off
-	if Input.is_action_just_pressed("crouch"):
+	if Input.is_action_just_pressed("crouch") or not enough_stamina:
 		Transitioned.emit(self, "air")
 		return
 	
