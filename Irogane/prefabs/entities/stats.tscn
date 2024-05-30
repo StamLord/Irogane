@@ -26,7 +26,6 @@ script = ExtResource("3_cngxo")
 max_value_source = NodePath("values")
 value = 5
 max_value = 5
-auto_replenish_rate = 4
 
 [node name="values" type="Node" parent="health" node_paths=PackedStringArray("attribute")]
 script = ExtResource("4_xw1y4")
@@ -37,12 +36,12 @@ values = Array[int]([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
 script = ExtResource("5_bpmwy")
 max_value_source = NodePath("values")
 value = 50
-auto_replenish_rate = 4
+auto_replenish_rate = 0.2
 
 [node name="values" type="Node" parent="stamina" node_paths=PackedStringArray("attribute")]
 script = ExtResource("4_xw1y4")
 attribute = NodePath("../../agility")
-values = Array[int]([60, 70, 80, 90, 105, 130, 150, 170, 190, 220])
+values = Array[int]([50, 70, 80, 90, 105, 130, 150, 170, 190, 220])
 
 [node name="fall_damage" type="Node" parent="." node_paths=PackedStringArray("attribute")]
 script = ExtResource("4_xw1y4")

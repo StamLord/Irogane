@@ -11,6 +11,7 @@ class_name Air
 @onready var water_check = $"%water_check"
 @onready var vault_state = $"../vault"
 @onready var stats = %stats
+@onready var rope = $"../../head/main_camera/weapon_manager/rope"
 
 # Variables
 @export var air_acceleration = 0.1
@@ -23,6 +24,8 @@ class_name Air
 var direction = Vector3.ZERO
 var speed = 0
 var current_air_jump = 0
+
+var rope_velocity = null
 
 signal air_started()
 signal air_ended()
@@ -57,6 +60,18 @@ func PhysicsUpdate(body, delta):
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * air_acceleration)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * air_acceleration)
+	
+	#if rope and rope.is_grappling:
+		#var rope_dir = (rope.end_target.global_position - rope.global_position).normalized()
+		#var target_rope_velocity = rope_dir * 25.0
+		#velocity += (target_rope_velocity)* delta
+	
+	if rope and rope.is_grappling:
+		var dir_to_rope = rope.end_target.global_position - rope.global_position
+		var distance_from_rope = dir_to_rope.length()
+		var force = 20.0 * max(0, distance_from_rope - rope.start_distance)	# Hooke's law + clamping to prevent rope pushing back when too close
+		velocity += dir_to_rope.normalized() * force * delta 
+		velocity *= (1.0 - 0.99 * delta)									# Dampening
 	
 	body.velocity = velocity
 	body.move_and_slide()

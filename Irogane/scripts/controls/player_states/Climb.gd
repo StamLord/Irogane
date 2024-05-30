@@ -24,6 +24,8 @@ var is_animating_position = false
 
 var last_deplete = 0
 
+var debug = false
+
 signal climb_rope_started()
 signal climb_rope_ended()
 
@@ -74,16 +76,17 @@ func PhysicsUpdate(body, delta):
 	var top_wall_result = wall_top_query(body)
 	var bottom_wall_result = wall_bottom_query(body)
 	
-	if left_wall_result:
-		DebugCanvas.debug_point(left_wall_result.position, Color.RED)
-	if front_wall_result:
-		DebugCanvas.debug_point(front_wall_result.position, Color.GREEN)
-	if right_wall_result:
-		DebugCanvas.debug_point(right_wall_result.position, Color.BLUE)
-	if top_wall_result:
-		DebugCanvas.debug_point(top_wall_result.position, Color.RED)
-	if bottom_wall_result:
-		DebugCanvas.debug_point(bottom_wall_result.position, Color.BLUE)
+	if debug:
+		if left_wall_result:
+			DebugCanvas.debug_point(left_wall_result.position, Color.RED)
+		if front_wall_result:
+			DebugCanvas.debug_point(front_wall_result.position, Color.GREEN)
+		if right_wall_result:
+			DebugCanvas.debug_point(right_wall_result.position, Color.BLUE)
+		if top_wall_result:
+			DebugCanvas.debug_point(top_wall_result.position, Color.RED)
+		if bottom_wall_result:
+			DebugCanvas.debug_point(bottom_wall_result.position, Color.BLUE)
 	
 	var new_direction = Vector3.ZERO
 	
@@ -96,7 +99,8 @@ func PhysicsUpdate(body, delta):
 	
 	direction = lerp(direction, new_direction.normalized(), delta * acceleration)
 		
-	DebugCanvas.debug_line(front_wall_result.position, front_wall_result.position + direction, Color.GREEN)
+	if debug:
+		DebugCanvas.debug_line(front_wall_result.position, front_wall_result.position + direction, Color.GREEN)
 	
 	body.velocity = direction * speed
 	body.move_and_slide()
@@ -199,7 +203,10 @@ func wall_left_corner_query(body : Node3D):
 	var origin = body.global_position + body.global_basis * Vector3.UP * 1.5 
 	origin -= wall_normal * 0.5 # Move forward into wall
 	origin -= wall_right * 0.5  # Move left
-	DebugCanvas.debug_line(origin, origin + wall_right * 0.5)
+	
+	if debug:
+		DebugCanvas.debug_line(origin, origin + wall_right * 0.5)
+	
 	return wall_query(body, origin, origin + wall_right * 0.5)
 	
 
@@ -207,7 +214,10 @@ func wall_right_corner_query(body : Node3D):
 	var origin = body.global_position + body.global_basis * Vector3.UP * 1.5 
 	origin -= wall_normal * 0.5 # Move forward into wall
 	origin += wall_right * 0.5  # Move right
-	DebugCanvas.debug_line(origin, origin - wall_right * 0.5)
+	
+	if debug:
+		DebugCanvas.debug_line(origin, origin - wall_right * 0.5)
+	
 	return wall_query(body, origin, origin - wall_right * 0.5)
 	
 

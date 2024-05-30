@@ -6,8 +6,11 @@ class_name Depletable
 @export var min_value = 0
 @export var max_value = 100
 
-@export var auto_replenish_rate = 1
+@export var auto_replenish_rate = 1.0
 var last_replenish = 0
+
+@export var recovery_after_deplete = 5.0
+var last_deplete = 0
 
 var godmode = false
 
@@ -19,9 +22,10 @@ func _process(_delta):
 		max_value = max_value_source.get_value()
 		max_value_changed.emit(max_value)
 	
-	if Time.get_ticks_msec() - last_replenish >= auto_replenish_rate * 1000:
-		replenish(1)
-		last_replenish = Time.get_ticks_msec()
+	if Time.get_ticks_msec() - last_deplete >= recovery_after_deplete * 1000 and (
+		Time.get_ticks_msec() - last_replenish >= auto_replenish_rate * 1000):
+			replenish(1)
+			last_replenish = Time.get_ticks_msec()
 	
 
 func set_value(_value):
@@ -42,6 +46,8 @@ func deplete(amount, is_greedy = true):
 		return false
 	
 	set_value(value - amount)
+	last_deplete = Time.get_ticks_msec()
+	
 	return is_enough
 	
 

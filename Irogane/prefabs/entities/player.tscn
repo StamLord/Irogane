@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=166 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -22,9 +22,11 @@
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
 [ext_resource type="PackedScene" uid="uid://bba44d8rksvrn" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
+[ext_resource type="Script" path="res://scripts/weapons/grapple.gd" id="22_yy2un"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
+[ext_resource type="Script" path="res://scripts/procedural/new_rope.gd" id="23_yw3sv"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 [ext_resource type="Script" path="res://scripts/weapons/throwable.gd" id="26_5mim7"]
 [ext_resource type="Script" path="res://scripts/weapons/katana.gd" id="26_fyhdv"]
@@ -60,6 +62,8 @@
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
 [ext_resource type="Script" path="res://scripts/controls/ledge_check.gd" id="47_nhvkg"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -744,6 +748,26 @@ script = ExtResource("27_wn7je")
 [node name="weapon_manager" type="Node3D" parent="head/main_camera"]
 script = ExtResource("18_u5xda")
 
+[node name="rope" type="Node3D" parent="head/main_camera/weapon_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+script = ExtResource("22_yy2un")
+
+[node name="Rope" type="MeshInstance3D" parent="head/main_camera/weapon_manager/rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+top_level = true
+visible = false
+mesh = SubResource("ImmediateMesh_o8r7q")
+script = ExtResource("23_yw3sv")
+resolution = 4
+rope_width = 0.03
+
+[node name="start_target" type="Marker3D" parent="head/main_camera/weapon_manager/rope/Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="end_target" type="Marker3D" parent="head/main_camera/weapon_manager/rope/Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -1)
+top_level = true
+
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
 visible = false
 script = ExtResource("20_14b7v")
@@ -995,6 +1019,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
 visible = false
 
 [node name="pocket_mirror" type="Node3D" parent="head/main_camera/weapon_manager"]
+visible = false
 script = ExtResource("44_5spk0")
 
 [node name="left_pos" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
@@ -1016,6 +1041,9 @@ size = Vector3(1, 1, 1)
 box_projection = true
 enable_shadows = true
 mesh_lod_threshold = 0.0
+
+[node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
+target_position = Vector3(0, 0, -40)
 
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
