@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=167 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -61,6 +61,7 @@
 [ext_resource type="Script" path="res://scripts/weapons/pocket_mirror.gd" id="44_5spk0"]
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
 [ext_resource type="Script" path="res://scripts/controls/ledge_check.gd" id="47_nhvkg"]
+[ext_resource type="Texture2D" uid="uid://dxpxsjbekb6j7" path="res://assets/textures/vfx/aoe_decal_0.png" id="48_fsnbk"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
@@ -1043,7 +1044,15 @@ enable_shadows = true
 mesh_lod_threshold = 0.0
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
-target_position = Vector3(0, 0, -40)
+target_position = Vector3(0, 0, -1)
+
+[node name="grappling_decal" type="Decal" parent="head/main_camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.889794, -0.0930605)
+top_level = true
+visible = false
+size = Vector3(0.5, 1, 0.5)
+texture_albedo = ExtResource("48_fsnbk")
+texture_emission = ExtResource("48_fsnbk")
 
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16

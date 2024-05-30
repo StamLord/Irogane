@@ -3,6 +3,7 @@ extends Node3D
 @onready var rope = $Rope
 @onready var ray_cast = $"../../grappling_ray_cast"
 @onready var end_target = $Rope/end_target
+@onready var grappling_decal = $"../../grappling_decal"
 
 const rope_script = preload("res://scripts/procedural/new_rope.gd")
 var rope_scripts = []
@@ -15,6 +16,13 @@ var pitons = []
 var stashed_pitons = []
 
 func _process(delta):
+	if ray_cast.is_colliding():
+		grappling_decal.global_position = ray_cast.get_collision_point()
+		Utils.rotate_y_to_target(grappling_decal, ray_cast.get_collision_point() - ray_cast.get_collision_normal())
+		grappling_decal.visible = true
+	else:
+		grappling_decal.visible = false
+		
 	if Input.is_action_just_pressed("attack_primary") and ray_cast.is_colliding():
 		spawn_piton(ray_cast.get_collision_point() + ray_cast.get_collision_normal() * 0.1)
 		end_target.global_position = ray_cast.get_collision_point()
