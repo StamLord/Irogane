@@ -16,7 +16,7 @@ func play_exclusive(sound, sound_position = null, pitch: float = 1):
 	play(sound, sound_position, pitch)
 	
 
-func play(sound, sound_position = null, pitch: float = 1):
+func play(sound, sound_position = null, pitch: float = 1.0, volume = 0.0 ):
 	if audio_players == null:
 		return
 	
@@ -30,6 +30,9 @@ func play(sound, sound_position = null, pitch: float = 1):
 			if pitch:
 				p.pitch_scale = pitch
 			
+			if volume:
+				p.volume_db = volume
+			print("play at volumne ", p.volume_db)
 			p.play()
 			
 			# Must avoid duplicate entries since we remove only the first occurance later

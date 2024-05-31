@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=158 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -46,6 +46,13 @@ agent_height = 2.0
 agent_radius = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avcn8"]
+albedo_texture = ExtResource("1_q3we3")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4iett"]
+albedo_color = Color(1, 0, 1, 1)
 albedo_texture = ExtResource("1_q3we3")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
@@ -631,6 +638,13 @@ transform = Transform3D(0.94506, 0.224144, 0.237953, -0.183013, 0.965926, -0.183
 use_collision = true
 size = Vector3(10, 1, 10)
 material = SubResource("StandardMaterial3D_avcn8")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="stage/navmesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.94577, -0.379578, 0.278217)
+use_collision = true
+collision_layer = 65
+size = Vector3(9.22412, 1, 3.6402)
+material = SubResource("StandardMaterial3D_4iett")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="stage/navmesh"]
 transform = Transform3D(0.94506, 0.224144, 0.237953, -0.293927, 0.901221, 0.318446, -0.14307, -0.370891, 0.91759, -16, 0.5, -18)
