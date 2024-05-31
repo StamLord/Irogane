@@ -4,6 +4,7 @@ extends Node3D
 @onready var ray_cast = $"../../grappling_ray_cast"
 @onready var end_target = $Rope/end_target
 @onready var grappling_decal = $"../../grappling_decal"
+@onready var state_machine = $"../../../.."
 
 const rope_script = preload("res://scripts/procedural/new_rope.gd")
 var rope_scripts = []
@@ -31,10 +32,12 @@ func _process(delta):
 		rope.visible = true
 		is_grappling = true
 		start_distance = (self.global_position - end_target.global_position).length()
-	elif is_grappling and Input.is_action_just_pressed("crouch"):
-		rope.visible = false
-		is_grappling = false
-		stash_pitons()
+		if state_machine:
+			state_machine.start_roped(self)
+	
+	# Adjust distance as long as we are not in these states
+	if is_grappling and state_machine.current_state.name.to_lower() not in ["air", "roped"]:
+		start_distance = (self.global_position - end_target.global_position).length()
 	
 
 func spawn_piton(piton_position : Vector3):
@@ -61,6 +64,12 @@ func update_rope_through_pitons():
 		
 		rope_scripts[i].set_start_target(pitons[i])
 		rope_scripts[i].set_end_target(pitons[i + 1])
+	
+
+func end_rope():
+	rope.visible = false
+	is_grappling = false
+	stash_pitons()
 	
 
 func stash_pitons():

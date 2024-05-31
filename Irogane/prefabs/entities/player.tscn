@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=168 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scripts/controls/player_states/Rooted.gd" id="14_pnpox"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Climb.gd" id="16_su0ll"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Roped.gd" id="17_uonvk"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
@@ -718,6 +719,9 @@ script = ExtResource("14_pnpox")
 [node name="climb" type="Node" parent="states"]
 script = ExtResource("16_su0ll")
 ledge_mask = 1
+
+[node name="roped" type="Node" parent="states"]
+script = ExtResource("17_uonvk")
 
 [node name="head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)

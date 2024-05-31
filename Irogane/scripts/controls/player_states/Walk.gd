@@ -102,6 +102,7 @@ func PhysicsUpdate(body, delta):
 	
 	# Crouch State
 	if Input.is_action_pressed("crouch"):
+		state_machine.end_roped()
 		Transitioned.emit(self, "crouch")
 		return
 	

@@ -17,10 +17,12 @@ var last_direction = Vector3.ZERO
 var last_speed = 0
 var last_body_velocity
 
+var rope_object = null
+
 signal on_state_enter(state_name)
 signal on_state_exit(state_name)
 
-var debug = false
+var debug = true
 
 func _ready():
 	PlayerEntity.set_player_node(self)
@@ -28,6 +30,7 @@ func _ready():
 		if child is PlayerState:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
+			child.state_machine = self
 	
 	if default_state:
 		default_state.Enter(self)
@@ -112,6 +115,16 @@ func push_back(force_vector : Vector3):
 
 func debug_push_back(args : Array):
 	push_back(Vector3(args[0], args[1], args[2]))
+	
+
+func start_roped(rope_node):
+	rope_object = rope_node
+	
+
+func end_roped():
+	if rope_object != null:
+		rope_object.end_rope()
+		rope_object = null
 	
 
 func save_data():
