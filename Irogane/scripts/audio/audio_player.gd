@@ -32,7 +32,7 @@ func play(sound, sound_position = null, pitch: float = 1.0, volume = 0.0 ):
 			
 			if volume:
 				p.volume_db = volume
-			print("play at volumne ", p.volume_db)
+			
 			p.play()
 			
 			# Must avoid duplicate entries since we remove only the first occurance later
