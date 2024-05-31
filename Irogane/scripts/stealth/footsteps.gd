@@ -4,44 +4,49 @@ extends Node3D
 
 @export var sound_emitter : SoundEmitter
 @export var state_machine : PlayerStateMachine
-@export var steps_per_unit = 0.5
+@export var steps_per_unit = 2.0
 @export var steps_sound_range = 4
 @export var playing_in_states = ["walk", "run"]
-@export var play_once_from_state = ["air"]
+
+@onready var floor_material_check = %floor_material_check
 
 var footstep_sounds = [
-	preload("res://assets/audio/footsteps/StepSamurai01.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai02.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai03.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai04.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai05.mp3")]
+	preload("res://assets/audio/footsteps/stone/footstep_stone_07.ogg"), 
+	preload("res://assets/audio/footsteps/stone/footstep_stone_08.ogg"),
+	preload("res://assets/audio/footsteps/stone/footstep_stone_12.ogg"),
+	preload("res://assets/audio/footsteps/stone/footstep_stone_13.ogg"),
+	]
 	
+
 var last_position = Vector3.ZERO
 var distance_traveled = 0.0
 
 var is_playing = false
-var play_once = false
 
 func _ready():
 	last_position = global_position
 	
 	if state_machine:
 		state_machine.on_state_enter.connect(on_state_enter)
-		state_machine.on_state_exit.connect(on_state_exit)
+	
+
+func make_a_step():
+	emit_stealth_sound()
+	play_footstep_sfx()
+	
 
 func _process(_delta):
 	if not is_playing:
 		return
 	
 	distance_traveled += global_position.distance_to(last_position)
-	var step_distance = 1.0 / steps_per_unit
 	
-	if distance_traveled >= step_distance:
-		emit_stealth_sound()
-		play_footstep_sfx()
-		distance_traveled -= step_distance
-		
+	if distance_traveled >= steps_per_unit:
+		make_a_step()
+		distance_traveled -= steps_per_unit
+	
 	last_position = global_position
+	
 
 func emit_stealth_sound():
 	if sound_emitter:
@@ -49,7 +54,8 @@ func emit_stealth_sound():
 	
 
 func play_footstep_sfx():
-	audio_player.play(footstep_sounds.pick_random())
+	var sound_pitch = randf_range(0.8, 1.2)
+	audio_player.play(footstep_sounds.pick_random(), null, sound_pitch)
 	
 
 func on_state_enter(state_name):
@@ -60,15 +66,5 @@ func on_state_enter(state_name):
 	if is_playing and not was_playing:
 		distance_traveled = 0.0
 		last_position = global_position
-	
-	# Play sound once if exited a valid state
-	if is_playing and play_once:
-		emit_stealth_sound()
-		play_footstep_sfx()
-	play_once = false
-	
-
-func on_state_exit(state_name):
-	# Check if should play once when entering next valid state
-	play_once = state_name in play_once_from_state
+		make_a_step()
 	

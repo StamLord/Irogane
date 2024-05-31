@@ -895,7 +895,6 @@ transform = Transform3D(0.0469924, -0.0109868, -0.0130769, 0.0168752, 0.0239626,
 
 [node name="shuriken_ring_menu" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("31_ep6ff")]
 visible = false
-open_button = ""
 
 [node name="skill_zone" type="Decal" parent="head/main_camera/weapon_manager"]
 unique_name_in_owner = true
@@ -1081,43 +1080,39 @@ state_machine = NodePath("..")
 script = ExtResource("29_c2b1q")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
+volume_db = -20.0
 bus = &"Sound"
 
 [node name="sound_emitter" type="Node3D" parent="footsteps"]
@@ -1136,6 +1131,11 @@ lifetime = 2.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_tljm3")
 draw_pass_1 = SubResource("SphereMesh_qy1qf")
+
+[node name="floor_material_check" type="RayCast3D" parent="footsteps"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -1.2, 0)
 
 [node name="model" type="Node3D" parent="."]
 
