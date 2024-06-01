@@ -25,7 +25,10 @@ var direction = Vector3.ZERO
 var speed = 0
 var current_air_jump = 0
 
-var rope_velocity = null
+@export var fall_damage_threshold = Vector2(-7.0, -14.0)
+@export var fall_damage_death = 5
+var prev_velocity = Vector3.ZERO
+var apply_fall_damage = false
 
 signal air_started()
 signal air_ended()
@@ -120,7 +123,9 @@ func PhysicsUpdate(body, delta):
 	# Ground State
 	if body.is_on_floor():
 		current_air_jump = 0
-		if not head_check.is_colliding(): 
+		apply_fall_damage = true
+		
+		if not head_check.is_colliding():
 			Transitioned.emit(self, "walk")
 			return
 		else:
@@ -137,8 +142,18 @@ func PhysicsUpdate(body, delta):
 		Transitioned.emit(self, "climb")
 		return
 	
+	prev_velocity = body.velocity
+	
 
 func Exit(body):
 	body.last_direction = direction
 	air_ended.emit()
+	
+	if apply_fall_damage:
+		var velocity_over_threshold = fall_damage_threshold.x - prev_velocity.y
+		var t = velocity_over_threshold  / abs(fall_damage_threshold.y - fall_damage_threshold.x)
+		var damage = floori(t * fall_damage_death)
+		state_machine.stats.deplete_health(damage)
+	
+	apply_fall_damage = false
 	
