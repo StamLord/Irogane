@@ -3,6 +3,7 @@ class_name Climb
 
 # References
 @onready var ledge_check = %ledge_check
+@onready var head = $"../../head"
 @onready var head_check = %head_check
 @onready var head_check_2 = %head_check_2
 @onready var wall_check = %wall_check
@@ -46,12 +47,16 @@ func adjust_to_wall(body, point, normal):
 	point.y = body.global_position.y # Treat as same height
 	var dir = (body.global_position - point).normalized()
 	body.global_position = point + dir * wall_distance
+	head.set_temp_horizontal_limits(Vector2(-50, 50))
 	
 
 func rotate_around_wall(body, point, normal):
 	point.y = body.global_position.y # Treat as same height
 	var target_position = point + normal * wall_distance * 0.4
-	start_animating_position(body, target_position, point)
+	head.disable_rotation()
+	await start_animating_position(body, target_position, point)
+	head.enable_rotation()
+	head.set_temp_horizontal_limits(Vector2(-50, 50))
 	
 
 func Update(delta):
@@ -158,6 +163,7 @@ func PhysicsUpdate(body, delta):
 func Exit(body):
 	body.last_direction = Vector3.ZERO
 	body.last_speed = speed
+	head.reset_temp_horizontal_limits()
 	climb_rope_ended.emit()
 	
 
