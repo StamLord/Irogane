@@ -57,8 +57,8 @@ func _ready():
 	for h in hurtboxes:
 		h.on_hit.connect(hit)
 	
-	var weapons_parent = get_node("../head/main_camera/weapon_manager")
-	if weapons_parent != null:
+	if has_node("../head/main_camera/weapon_manager"):
+		var weapons_parent = get_node("../head/main_camera/weapon_manager")
 		get_all_guardboxes(weapons_parent)
 	
 	for g in guardboxes:
@@ -80,7 +80,7 @@ func get_all_guardboxes(node : Node):
 		get_all_guardboxes(n)
 	
 
-func _process(delta):
+func _process(_delta):
 	update_statuses()
 	
 
@@ -99,7 +99,7 @@ func hit(attack_info : AttackInfo):
 		start_stagger(0.4)
 	
 
-func guard(attack_info : AttackInfo, hitbox):
+func guard(attack_info : AttackInfo, _hitbox):
 	if attack_info.is_heavy:
 		on_heavy_hit.emit(attack_info.force)
 	
