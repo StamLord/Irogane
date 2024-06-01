@@ -11,7 +11,7 @@ class_name Roped
 @export var roped_acceleration = 0.1
 @export var roped_move_acceleration = 40
 @export var roped_move_speed = 8
-@export var jump_force = 4.0
+@export var jump_force = 2.0
 @export var push_force = 4
 
 var direction = Vector3.ZERO
@@ -59,6 +59,9 @@ func PhysicsUpdate(body, delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and body.is_on_wall():
 		velocity += body.get_wall_normal() * jump_force
+		if rope:
+			rope.start_distance += 2.5
+			
 	
 	body.velocity = velocity
 	body.move_and_slide()

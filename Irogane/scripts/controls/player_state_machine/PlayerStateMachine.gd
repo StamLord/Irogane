@@ -22,7 +22,7 @@ var rope_object = null
 signal on_state_enter(state_name)
 signal on_state_exit(state_name)
 
-var debug = true
+var debug = false
 
 func _ready():
 	PlayerEntity.set_player_node(self)
