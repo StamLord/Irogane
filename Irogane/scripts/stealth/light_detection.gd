@@ -34,11 +34,21 @@ func raycast_light_detection():
 		if light is OmniLight3D and light.omni_range < distance:
 			continue
 			
+		# SpotLight too far
+		if light is SpotLight3D:
+			if light.spot_range < distance:
+				continue
+			
+			var light_forward = -light.global_basis.z
+			var angle = (global_position - light_origin).angle_to(light_forward)
+			angle = rad_to_deg(angle)
+			
+			if angle > light.spot_angle:
+				continue
+		
 		# Blocked by objects
 		var from = light_origin
 		var to = global_position
-		
-		#DebugCanvas.debug_point(from)
 		
 		var query = PhysicsRayQueryParameters3D.create(from, to)
 		query.hit_from_inside = false
