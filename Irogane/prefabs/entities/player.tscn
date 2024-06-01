@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=170 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -63,7 +63,11 @@
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
 [ext_resource type="Script" path="res://scripts/controls/ledge_check.gd" id="47_nhvkg"]
 [ext_resource type="Texture2D" uid="uid://dxpxsjbekb6j7" path="res://assets/textures/vfx/aoe_decal_0.png" id="48_fsnbk"]
+[ext_resource type="PackedScene" uid="uid://d1o3m8ht5u137" path="res://assets/models/compass/compass.glb" id="49_r5o56"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
+[ext_resource type="PackedScene" uid="uid://d1rcf2qi0eyo" path="res://assets/models/compass/mirror.glb" id="50_hpl7l"]
+[ext_resource type="PackedScene" uid="uid://dfv8ag71set7j" path="res://assets/models/compass/pin.glb" id="50_nr8pd"]
+[ext_resource type="Script" path="res://scripts/procedural/compass.gd" id="51_tjqxo"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
 
@@ -348,14 +352,6 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_1s8w4"]
 material = SubResource("StandardMaterial3D_imqxh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we3fm"]
-metallic = 1.0
-metallic_specular = 0.0
-roughness = 0.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_0rohj"]
-size = Vector2(0.3, 0.3)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -1024,7 +1020,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
 visible = false
 
 [node name="pocket_mirror" type="Node3D" parent="head/main_camera/weapon_manager"]
-visible = false
 script = ExtResource("44_5spk0")
 
 [node name="left_pos" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
@@ -1033,13 +1028,21 @@ transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 
 [node name="right_pos" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
 transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0.357, 0, -0.464)
 
-[node name="mirror_mesh" type="MeshInstance3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -0.356663, 0, -0.464274)
-material_override = SubResource("StandardMaterial3D_we3fm")
-mesh = SubResource("QuadMesh_0rohj")
+[node name="mirror_mesh" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
+transform = Transform3D(0.984808, 0.0301537, 0.17101, 0, 0.984808, -0.173648, -0.173648, 0.17101, 0.969846, -0.356663, 0, -0.464274)
+
+[node name="compass" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("49_r5o56")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 0.999999, -4.37114e-08, 0, 0, 0)
+
+[node name="pin" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh/compass" instance=ExtResource("50_nr8pd")]
+transform = Transform3D(1, 0, -1.86265e-09, -1.49012e-08, 1, -1.49012e-08, 0, 0, 1, 0, 0, 0.1)
+script = ExtResource("51_tjqxo")
+
+[node name="mirror" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("50_hpl7l")]
+transform = Transform3D(1, 7.45058e-08, -3.55271e-15, 0, -4.37114e-08, -1, -7.45058e-08, 1, -4.37114e-08, 0, 0, 0)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh"]
-transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 7.45058e-08, 0, 1, 0, -7.45058e-08, 0, 1, 0, 0, 0.1)
 update_mode = 1
 max_distance = 100.0
 size = Vector3(1, 1, 1)
