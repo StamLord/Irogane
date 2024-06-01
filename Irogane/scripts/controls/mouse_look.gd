@@ -54,7 +54,6 @@ func _input(event):
 			var max_angle = unsign_angle(temp_horizontal_offset + temp_horizontal_limits.y)
 			var clamped_angle = clamp_angle_shortest_path(curr_angle, min_angle, max_angle)
 			
-			print(clamped_angle)
 			body.rotation_degrees.y = clamped_angle
 		
 		# Vertical
