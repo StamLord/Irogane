@@ -150,7 +150,9 @@ var redo_stack = []
 # Customization logic
 func _ready():
 	load_default_character(true)
-	sex_button.grab_focus()
+	audio_player.set_can_play(false)
+	sex_button.call_deferred("grab_focus")
+	audio_player.call_deferred("set_can_play", true)
 	
 
 func load_default_character(init: bool = false):
