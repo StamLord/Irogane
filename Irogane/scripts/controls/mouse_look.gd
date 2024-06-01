@@ -61,9 +61,13 @@ func _input(event):
 		rotation.x = clamp(rotation.x, deg_to_rad(look_min), deg_to_rad(look_max))
 	
 
-func set_temp_horizontal_limits(limits : Vector2):
+func set_temp_horizontal_limits(limits : Vector2, offset: float):
 	temp_horizontal_limits = limits
-	temp_horizontal_offset = unsign_angle(body.rotation_degrees.y)
+	#temp_horizontal_offset = unsign_angle(body.rotation_degrees.y)
+	print(unsign_angle(rad_to_deg(-body.global_basis.z.signed_angle_to(-Vector3.FORWARD, Vector3.UP))))
+	print(unsign_angle(body.rotation_degrees.y))
+	print(unsign_angle(offset))
+	temp_horizontal_offset = unsign_angle(offset)
 	
 
 func reset_temp_horizontal_limits():
@@ -209,16 +213,17 @@ func wraparound_clamp(angle: float, min_angle: float, max_angle: float) -> float
 	
 
 func clamp_angle_shortest_path(angle: float, min_angle: float, max_angle: float) -> float:
-	# Example: clamp normally between 0 and 45
 	var delta = abs(max_angle - min_angle)
 	
+	# Normal clamp is the shortest path
 	if delta <= 180.0:
 		return clamp(angle, min_angle, max_angle)
 	else: 
+		# Wrap around angles with a full rotation
 		if angle < 180:
 			angle += 360.0
 		if max_angle < min_angle:
 			max_angle += 360.0
 		
-		return unsign_angle(clamp(angle, min_angle, max_angle)) # 360, 315, 405 return 360
+		return unsign_angle(clamp(angle, min_angle, max_angle))
 	

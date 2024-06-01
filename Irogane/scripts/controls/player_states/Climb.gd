@@ -47,7 +47,7 @@ func adjust_to_wall(body, point, normal):
 	point.y = body.global_position.y # Treat as same height
 	var dir = (body.global_position - point).normalized()
 	body.global_position = point + dir * wall_distance
-	head.set_temp_horizontal_limits(Vector2(-50, 50))
+	head.set_temp_horizontal_limits(Vector2(-50, 50), get_wall_normal_angle())
 	
 
 func rotate_around_wall(body, point, normal):
@@ -56,7 +56,11 @@ func rotate_around_wall(body, point, normal):
 	head.disable_rotation()
 	await start_animating_position(body, target_position, point)
 	head.enable_rotation()
-	head.set_temp_horizontal_limits(Vector2(-50, 50))
+	head.set_temp_horizontal_limits(Vector2(-50, 50), get_wall_normal_angle())
+	
+
+func get_wall_normal_angle():
+	return rad_to_deg(-wall_normal.signed_angle_to(-Vector3.FORWARD, Vector3.UP))
 	
 
 func Update(delta):
