@@ -63,10 +63,6 @@ func _input(event):
 
 func set_temp_horizontal_limits(limits : Vector2, offset: float):
 	temp_horizontal_limits = limits
-	#temp_horizontal_offset = unsign_angle(body.rotation_degrees.y)
-	print(unsign_angle(rad_to_deg(-body.global_basis.z.signed_angle_to(-Vector3.FORWARD, Vector3.UP))))
-	print(unsign_angle(body.rotation_degrees.y))
-	print(unsign_angle(offset))
 	temp_horizontal_offset = unsign_angle(offset)
 	
 
