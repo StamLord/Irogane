@@ -2,9 +2,11 @@ extends PlayerState
 class_name Roped
 
 # Refs
-@onready var ledge_check = $"%ledge_check"
+@onready var ledge_check = %ledge_check
 @onready var climb_check = %climb_check
-@onready var head_check = $"%head_check"
+@onready var head_check = %head_check
+@onready var wall_check = %wall_check
+
 @onready var stats = %stats
 
 # Variables
@@ -40,8 +42,8 @@ func PhysicsUpdate(body, delta):
 	# Apply gravity
 	velocity.y -= gravity * delta
 	
-	# If we are moving in air, we want snappy acceleration
-	if body.is_on_wall() and input_dir:
+	# If we are moving near wall, we want snappy acceleration
+	if wall_check.is_colliding() and input_dir:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * roped_move_acceleration)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * roped_move_acceleration)
 	else:
@@ -57,8 +59,8 @@ func PhysicsUpdate(body, delta):
 		velocity *= (1.0 - 0.99 * delta)									# Dampening
 	
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and body.is_on_wall():
-		velocity += body.get_wall_normal() * jump_force
+	if Input.is_action_just_pressed("jump") and wall_check.is_colliding():
+		velocity += wall_check.get_collision_normal() * jump_force
 		if rope:
 			rope.start_distance += 2.5
 			
