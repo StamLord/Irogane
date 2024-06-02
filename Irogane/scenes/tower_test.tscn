@@ -26,7 +26,7 @@ sky_material = ExtResource("1_tl3ee")
 [sub_resource type="Environment" id="Environment_ad207"]
 background_mode = 2
 sky = SubResource("Sky_i684r")
-ambient_light_sky_contribution = 0.2
+ambient_light_sky_contribution = 0.02
 reflected_light_source = 1
 fog_enabled = true
 fog_light_color = Color(0.141176, 0.25098, 0.427451, 1)
@@ -1322,13 +1322,13 @@ size = Vector3(1, 2, 2)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame4"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, -0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
 
 [node name="door_mesh2" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame4"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
@@ -1340,13 +1340,13 @@ size = Vector3(1, 2, 2)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame6"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, -0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
 
 [node name="door_mesh2" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame6"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
@@ -1358,13 +1358,13 @@ size = Vector3(1, 2, 2)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame7"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, -0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
 
 [node name="door_mesh2" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame7"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
@@ -1376,13 +1376,13 @@ size = Vector3(1, 2, 2)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame8"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, -0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
 
 [node name="door_mesh2" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame8"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
@@ -1394,13 +1394,13 @@ size = Vector3(1, 2, 2)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame9"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, -0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
 
 [node name="door_mesh2" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame9"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
@@ -1412,13 +1412,13 @@ size = Vector3(1, 2, 2)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame5"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, -0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
 
 [node name="door_mesh2" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame5"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0.5)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
@@ -1542,48 +1542,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2142, 2, 8.6106)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2142, 2, -2.3894)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78582, 3, -3.3894)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D9" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7858, 3, -3.3894)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D11" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54306, 3, -11.3894)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D10" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7858, 3, 5.6106)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D7" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78582, 3, 0.6106)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D8" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.78582, 3, 4.6106)
 light_color = Color(0.976471, 0.752941, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="tower_0/floor_15" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2142, 8, 15.6106)

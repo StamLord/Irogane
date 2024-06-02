@@ -1300,6 +1300,7 @@ fov = 55.0
 script = ExtResource("38_tsii1")
 
 [node name="light_detection" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("35_853ua")
 

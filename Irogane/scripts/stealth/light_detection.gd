@@ -7,8 +7,7 @@ extends Node3D
 
 @onready var light_beads_material = preload("res://assets/models/first_person_rig/light_beads_3d.tres")
 
-var detection_rate = .1
-var last_detection = 0
+var light_value = 0.0
 
 func _process(delta):
 	raycast_light_detection()
@@ -67,4 +66,5 @@ func raycast_light_detection():
 	var color_clamp = clamp(total_light, 0.05, 1)
 	light_stone.modulate = Color(color_clamp, color_clamp, color_clamp, 1)
 	light_beads_material.albedo_color = Color(total_light, total_light, total_light, 1)
+	light_value = total_light
 	
