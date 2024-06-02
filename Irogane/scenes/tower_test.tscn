@@ -1499,7 +1499,7 @@ size = Vector3(1, 2, 1)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame10"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
@@ -1511,7 +1511,7 @@ size = Vector3(1, 2, 1)
 material = SubResource("StandardMaterial3D_fwoeh")
 
 [node name="door_mesh" type="MeshInstance3D" parent="tower_0/floor_15/floor/door_frame11"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.075, 0)
 material_override = SubResource("StandardMaterial3D_dkl5q")
 mesh = SubResource("BoxMesh_alf4g")
 skeleton = NodePath("../Switch")
