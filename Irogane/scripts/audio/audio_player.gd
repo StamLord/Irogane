@@ -5,7 +5,6 @@ class_name AudioPlayer
 @export var default_volume: float = 0.0
 var audio_players_by_id = {}
 var can_play = true
-@onready var playush = %playush
 
 func set_can_play(value: bool):
 	can_play = value
