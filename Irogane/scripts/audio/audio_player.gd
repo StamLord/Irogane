@@ -72,7 +72,7 @@ func play_positional_sound(sound: AudioStream, sound_position = null, pitch = nu
 	activate_player(player, sound, pitch, volume)
 	
 
-func delete_player(audio_player: AudioStreamPlayer3D):
+func delete_player(audio_player):
 	audio_players_by_id.erase(audio_player.get_instance_id())
 	audio_player.queue_free()
 	
