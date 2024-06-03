@@ -7,3 +7,4 @@ func use(interactor):
 	if item_id:
 		if interactor.add_item(item_id):
 			get_parent().queue_free()
+	

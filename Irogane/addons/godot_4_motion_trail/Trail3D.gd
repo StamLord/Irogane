@@ -92,5 +92,9 @@ func removePoint(i):
 	widths.remove_at(i)
 	lifePoints.remove_at(i)
 
-
+func set_lifespan(value):
+	for point in lifePoints:
+		point = value - lifespan - point
+	
+	lifespan = value
 

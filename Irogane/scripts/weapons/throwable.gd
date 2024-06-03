@@ -1,18 +1,42 @@
 extends WeaponBase
 class_name Throwable
+	
+enum ShootPos {BOTTOM_RIGHT, BOTTOM_LEFT, TOP_RIGHT, TOP_LEFT}
+
+const model_screen_pos = {
+	ShootPos.BOTTOM_RIGHT: Vector3(0.4, -0.25, -0.4),
+	ShootPos.BOTTOM_LEFT: Vector3(-0.4, -0.25, -0.4),
+	ShootPos.TOP_RIGHT: Vector3(0.4, 0.25, -0.4),
+	ShootPos.TOP_LEFT: Vector3(-0.4, 0.25, -0.4),
+}
+
+const shoot_pos_offset = {
+	ShootPos.BOTTOM_RIGHT: Vector3(0.15, -0.1, 0),
+	ShootPos.BOTTOM_LEFT: Vector3(-0.15, -0.1, 0),
+	ShootPos.TOP_RIGHT: Vector3(0.15, 0.1, 0),
+	ShootPos.TOP_LEFT: Vector3(-0.15, 0.1, 0)
+}
+
+const shuriken_highlight_per_skill_map = {
+	"body_switch": Color.DODGER_BLUE,
+	"multiplying_shuriken": Color.CHOCOLATE
+}
 
 # Prefab
-@onready var projectile_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
+@onready var shuriken_prefab = load("res://prefabs/weapons/projectiles/shuriken.tscn")
+@onready var smoke_vanish_vfx = $smoke_vanish_vfx
 
 # Skill Menu
 @onready var ring_menu = $shuriken_ring_menu
 @onready var skill_zone = %skill_zone
 
 const ITEM_ID = "shuriken"
-const INITIAL_POS_OFFSET = Vector3(0, 0, -0.5)
 
 var current_skill = ""
 var active_shurikens = {}
+var shoot_pos = ShootPos.BOTTOM_RIGHT
+var straight_shuriken_z_rotation = 33.0
+var last_straight_shuriken_rotation = 20.0
 
 func _ready():
 	ring_menu.item_selected.connect(skill_selected)
@@ -26,21 +50,104 @@ func track_shuriken(type, shuriken):
 	active_shurikens[type].append(shuriken)
 	
 
-func fire_shuriken(position_offset, rotation_offset, type = null):
-	var projectile =  projectile_prefab.instantiate()
+func get_target_point_in_front():
+	var RAY_LENGTH = 100
+	var mouse_pos = get_viewport().get_mouse_position()
+	var camera3d = CameraEntity.main_camera
+	var from = camera3d.project_ray_origin(mouse_pos)
+	var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	var space_state = camera3d.get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(query)
 	
-	if type:
-		track_shuriken(type, projectile)
+	if result:
+		return result.position
+	else:
+		return to
 	
-	get_tree().get_root().add_child(projectile)
+
+func spawn_shuriken_at_pos(global_spawn_pos):
+	var shuriken =  shuriken_prefab.instantiate()
 	
-	projectile.global_position = (CameraEntity.main_camera.global_basis * position_offset) + global_position
-	projectile.global_rotation = CameraEntity.main_camera.global_rotation + rotation_offset
-	projectile.item_id = ITEM_ID
-	projectile.restart()
+	get_tree().get_root().add_child(shuriken)
 	
-	if type == "bouncing_shuriken":
-		projectile.bounce_count = 3
+	shuriken.item_id = ITEM_ID
+	shuriken.global_position = global_spawn_pos
+	return shuriken
+	
+
+func fire_shuriken_from_point_to_point(from_global_pos, to_global_pos):
+	var shuriken =  spawn_shuriken_at_pos(from_global_pos)
+	shuriken.look_at(to_global_pos)
+	shuriken.restart()
+	
+	return shuriken
+	
+
+func fire_vanishing_shuriken_from_point_to_point(from_global_pos, to_global_pos):
+	var shuriken = fire_shuriken_from_point_to_point(from_global_pos, to_global_pos)
+	shuriken.on_stopped.connect(vanish_shuriken)
+	
+	return shuriken
+	
+
+func fire_shuriken_from_point_in_direction(from_global_pos, from_global_rotation):
+	var shuriken = spawn_shuriken_at_pos(from_global_pos)
+	shuriken.global_rotation = from_global_rotation
+	shuriken.restart()
+	
+	return shuriken
+	
+
+func fire_shuriken_straight():
+	var starting_offset = shoot_pos_offset[shoot_pos]
+	var starting_pos = (CameraEntity.main_camera.global_basis * starting_offset) + CameraEntity.main_camera.global_position
+	var target_point = get_target_point_in_front()
+	var shuriken = fire_shuriken_from_point_to_point(starting_pos, target_point)
+	
+	# Rotate for variety
+	var max_rotation = straight_shuriken_z_rotation
+	if last_straight_shuriken_rotation >= 0.0:
+		max_rotation *= -1
+	shuriken.global_rotation_degrees.z = randf_range(0, max_rotation)
+	last_straight_shuriken_rotation = shuriken.global_rotation_degrees.z
+	
+	return shuriken
+	
+
+func fire_special_shuriken_straight(type):
+	var shuriken = fire_shuriken_straight()
+	if type in active_shurikens and active_shurikens[type]:
+		active_shurikens[type][-1].set_hightlight_color(shuriken_highlight_per_skill_map[type])
+	track_shuriken(type, shuriken)
+	shuriken.set_hightlight_color(Color.WHITE)
+	shuriken.toggle_highlight()
+	return shuriken
+	
+
+func fire_bouncing_shuriken():
+	var shuriken = fire_special_shuriken_straight("bouncing_shuriken")
+	shuriken.bounce_count = 3
+	
+
+func change_shoot_pos_if_needed():
+	for pos in ShootPos.values():
+		var point = shoot_pos_offset[pos]
+		var mouse_pos = get_viewport().get_mouse_position()
+		var camera3d = CameraEntity.main_camera
+		var from = (CameraEntity.main_camera.global_basis * point) + CameraEntity.main_camera.global_position
+		var to = from + camera3d.project_ray_normal(mouse_pos) * 1.5
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		var space_state = camera3d.get_world_3d().direct_space_state
+		var result = space_state.intersect_ray(query)
+			
+		if not result:
+			shoot_pos = pos 
+			position = model_screen_pos[shoot_pos]
+			return
+	
+	shoot_pos = ShootPos.BOTTOM_RIGHT
+	position = model_screen_pos[shoot_pos]
 	
 	signal_attack()
 	
@@ -59,6 +166,8 @@ func _process(delta):
 	if not InputContextManager.is_game_context():
 		return
 	
+	change_shoot_pos_if_needed()
+	
 	# Open ring menu
 	if Input.is_action_just_pressed("ring_menu") and not ring_menu.visible:
 		#var ring_items: Array = PlayerEntity.get_skills_in_tree("throw")
@@ -70,18 +179,18 @@ func _process(delta):
 		return
 	
 	if Input.is_action_just_pressed("attack_primary"):
-		fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO)
+		fire_shuriken_straight()
 	elif Input.is_action_just_pressed("attack_secondary"):
 		if current_skill == "triple_throw":
 			triple_throw()
 		elif current_skill == "octo_throw":
 			octo_throw()
 		elif current_skill == "multiplying_shuriken":
-			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "multiplying_shuriken")
+			fire_special_shuriken_straight("multiplying_shuriken")
 		elif current_skill == "body_switch":
-			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "body_switch")
+			fire_special_shuriken_straight("body_switch")
 		elif current_skill == "bouncing_shuriken":
-			fire_shuriken(INITIAL_POS_OFFSET, Vector3.ZERO, "bouncing_shuriken")
+			fire_bouncing_shuriken()
 		elif current_skill == "metal_shower":
 			show_metal_shower_zone()
 	elif Input.is_action_just_pressed("activate"):
@@ -100,7 +209,7 @@ func show_metal_shower_zone():
 func get_floating_throw_pos(pos: Vector3):
 	var default_height = Vector3(pos.x, pos.y + 10, pos.z)
 	var query = PhysicsRayQueryParameters3D.create(pos, default_height)
-	var camera3d = DebugCommandsManager.main_camera
+	var camera3d = CameraEntity.main_camera
 	var space_state = camera3d.get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(query)
 	
@@ -112,28 +221,28 @@ func get_floating_throw_pos(pos: Vector3):
 
 func activate_metal_shower():
 	var initial_pos = skill_zone.global_position
-	DebugCanvas.debug_point(initial_pos, Color.BLUE, 7, 10)
+	
 	for point in generate_points_inside_circle(20, 1.5):
 		var ground_pos = initial_pos + Vector3(point.x, 0, point.y)
-		var throw_pos = get_floating_throw_pos(ground_pos)
-		
-		DebugCanvas.debug_point(throw_pos, Color.GREEN, 7, 10)
-		DebugCanvas.debug_point(ground_pos, Color.RED, 7, 10)
-		
-		var projectile = projectile_prefab.instantiate()
-		get_tree().get_root().add_child(projectile)
-		projectile.global_position = throw_pos
-		projectile.look_at(ground_pos + Vector3(0.001, 0.0, 0.0))  # Small margin because look_at freaks out when ground_pos is almost identical to position
-		projectile.item_id = ITEM_ID
-		projectile.restart()
+		var throw_pos = get_floating_throw_pos(ground_pos) + Vector3(randf_range(-1.0, 1.0), 0.0, randf_range(-1.0, 1.0))
+		var target_pos = ground_pos + Vector3(0.001, 0.0, 0.0) # Small margin because look_at freaks out when ground_pos is almost identical to position
+		delayed_vanishing_shuriken_from_point_to_point(throw_pos, target_pos, randf() * 0.2)
 	
 	skill_zone.visible = false
+	
+
+func delayed_vanishing_shuriken_from_point_to_point(from_global_pos, to_global_pos, delay: float):
+	await get_tree().create_timer(delay).timeout
+	fire_vanishing_shuriken_from_point_to_point(from_global_pos, to_global_pos)
 	
 
 func activate_special_shuriken(type: String):
 	if type in active_shurikens:
 		var shuriken = active_shurikens[type].pop_back()
 		if shuriken:
+			shuriken.toggle_highlight()
+			if active_shurikens[type]:
+				active_shurikens[type][-1].set_hightlight_color(Color.WHITE)
 			if type == "multiplying_shuriken":
 				multiply_shuriken(shuriken)
 			elif type == "body_switch":
@@ -178,101 +287,60 @@ func multiply_shuriken(shuriken):
 	var initial_pos = shuriken.global_position
 	shuriken.queue_free()
 	
-	
 	for point in generate_points_on_sphere(20):
-		DebugCanvas.debug_point(initial_pos + point, Color.GREEN, 7, 10)
-		var projectile = projectile_prefab.instantiate()
-		get_tree().get_root().add_child(projectile)
-
-		projectile.global_position = initial_pos
-		projectile.look_at(initial_pos + point)
-
-		projectile.item_id = ITEM_ID
-		projectile.restart()
-	
-
-func throw_many_shuriken(pos_offset_array: Array, rotation_offset_array: Array):
-	if pos_offset_array.size() != rotation_offset_array.size():
-		print("Different position and rotation arrays size")
-		return
-	
-	for i in pos_offset_array.size():
-		fire_shuriken(pos_offset_array[i], rotation_offset_array[i])
-	
-
-func throw_many_static_shuriken(pos_offset_array: Array, rotation_offset_array: Array):
-	if pos_offset_array.size() != rotation_offset_array.size():
-		print("Different position and rotation arrays size")
-		return
-	
-	for i in pos_offset_array.size():
-		fire_static_shuriken(pos_offset_array[i], rotation_offset_array[i])
+		var proj = fire_vanishing_shuriken_from_point_to_point(initial_pos, initial_pos + point)
+		proj.set_temp_speed(proj.speed * 0.25)
+		proj.set_temp_gravity_multiplier(4.0)
 	
 
 func triple_throw():
 	const SPREAD_DISTANCE = 0.025
 	const SPREAD_ANGLE = 0.08
+	var starting_offset = shoot_pos_offset[shoot_pos]
 	
-	var position_offset2 = INITIAL_POS_OFFSET + Vector3(-SPREAD_DISTANCE, 0, 0)
-	var position_offset3 = INITIAL_POS_OFFSET + Vector3(SPREAD_DISTANCE, 0, 0)
+	var starting_pos = (CameraEntity.main_camera.global_basis * starting_offset) + CameraEntity.main_camera.global_position
+	var position_offset2 = starting_pos + Vector3(-SPREAD_DISTANCE, 0, 0)
+	var position_offset3 = starting_pos + Vector3(SPREAD_DISTANCE, 0, 0)
 	
-	var rotation_offset1 = Vector3(0, 0, deg_to_rad(90))
-	var rotation_offset2 = Vector3(0, SPREAD_ANGLE, deg_to_rad(90))
-	var rotation_offset3 = Vector3(0, -SPREAD_ANGLE, deg_to_rad(90))
+	var rotation1 = CameraEntity.main_camera.global_rotation + Vector3(0, 0, deg_to_rad(90))
+	var rotation2 = CameraEntity.main_camera.global_rotation + Vector3(0, SPREAD_ANGLE, deg_to_rad(90))
+	var rotation3 = CameraEntity.main_camera.global_rotation + Vector3(0, -SPREAD_ANGLE, deg_to_rad(90))
 	
-	var position_offsets = [INITIAL_POS_OFFSET, position_offset2, position_offset3]
-	var rotation_offsets = [rotation_offset1, rotation_offset2, rotation_offset3]
-	
-	throw_many_shuriken(position_offsets, rotation_offsets)
-	
-
-func fire_static_shuriken(position_offset, rotation_offset):
-	var projectile = projectile_prefab.instantiate()
-	get_tree().get_root().add_child(projectile)
-	
-	projectile.global_position = position_offset + global_position
-	projectile.global_rotation_degrees = rotation_offset
-	
-	projectile.item_id = ITEM_ID
-	projectile.restart()
-	
-
-func fire_static_shuriken_at_pos(position, rotation_offset):
-	var projectile = projectile_prefab.instantiate()
-	get_tree().get_root().add_child(projectile)
-	
-	projectile.global_position = position
-	projectile.global_rotation_degrees = rotation_offset
-	
-	projectile.item_id = ITEM_ID
-	projectile.restart()
-	
-
-func throw_many_static_shuriken_at_pos(position, rotation_offset_array: Array):
-	for i in rotation_offset_array.size():
-		fire_static_shuriken_at_pos(position, rotation_offset_array[i])
+	fire_shuriken_from_point_in_direction(starting_pos, rotation1).rotation.z = randf_range(-straight_shuriken_z_rotation, straight_shuriken_z_rotation)
+	fire_shuriken_from_point_in_direction(position_offset2, rotation2).rotation.z = randf_range(-straight_shuriken_z_rotation, straight_shuriken_z_rotation)
+	fire_shuriken_from_point_in_direction(position_offset3, rotation3).rotation.z = randf_range(-straight_shuriken_z_rotation, straight_shuriken_z_rotation)
 	
 
 func octo_throw():
-	var position_offsets = []
-	var rotation_offsets = []
+	var global_positions = []
+	var global_rotations = []
 	var count = 8
 	var part = 360 / count
 	var camera_y = CameraEntity.main_camera.global_rotation_degrees.y
 	
 	for i in range(count):
 		var degrees = part * i
-		var position_offset = INITIAL_POS_OFFSET.rotated(Vector3(0, 1, 0), deg_to_rad(degrees + camera_y))
-		var rotation_offset = Vector3(0, degrees + camera_y, 90)
+		var position_offset = Vector3(0, -0.3, 0).rotated(Vector3(0, 1, 0), deg_to_rad(degrees + camera_y))
+		var global_pos = (CameraEntity.main_camera.global_basis * position_offset) + CameraEntity.main_camera.global_position
+		var global_rot = Vector3(0, deg_to_rad(degrees + camera_y), deg_to_rad(90))
 		
-		position_offsets.append(position_offset)
-		rotation_offsets.append(rotation_offset)
+		global_positions.append(global_pos)
+		global_rotations.append(global_rot)
 	
-	throw_many_static_shuriken(position_offsets, rotation_offsets)
+	for i in global_positions.size():
+		fire_shuriken_from_point_in_direction(global_positions[i], global_rotations[i])
 	
 
 func skill_selected(skill_name):
+	if current_skill and current_skill in active_shurikens:
+		for shuriken in active_shurikens[current_skill]:
+			shuriken.toggle_highlight()
+	
 	current_skill = skill_name
+	
+	if skill_name in active_shurikens:
+		for shuriken in active_shurikens[skill_name]:
+			shuriken.toggle_highlight()
 	
 
 func context_changed(old_context, new_context):
@@ -280,4 +348,14 @@ func context_changed(old_context, new_context):
 	if InputContextManager.is_ring_menu_context() and new_context != old_context:
 		if ring_menu.visible == true:
 			ring_menu.close_no_signal()
+	
+
+func vanish_shuriken(shuriken):
+	await get_tree().create_timer(1.0).timeout
+	if smoke_vanish_vfx and is_instance_valid(shuriken):
+		for i in range(32):
+			smoke_vanish_vfx.emit_particle(shuriken.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+	
+	if is_instance_valid(shuriken):
+		shuriken.queue_free()
 	

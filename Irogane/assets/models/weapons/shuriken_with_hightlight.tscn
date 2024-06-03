@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt1bgyqhoa4fn"]
+
+[ext_resource type="PackedScene" uid="uid://bo51whwf4dxal" path="res://assets/models/weapons/shuriken.glb" id="1_oknu8"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8mcw8"]
+load_path = "res://.godot/imported/shuriken_shuriken_tex.png-5e7fe18eba63d6732f737317de74fcbf.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tabte"]
+render_priority = 1
+transparency = 4
+albedo_texture = SubResource("CompressedTexture2D_8mcw8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82674"]
+resource_local_to_scene = true
+next_pass = SubResource("StandardMaterial3D_tabte")
+
+[node name="shuriken" instance=ExtResource("1_oknu8")]
+
+[node name="shuriken2" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_82674")
