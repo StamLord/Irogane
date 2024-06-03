@@ -275,7 +275,7 @@ func hit(area, hitbox):
 		ripple_vfx.global_position = hitbox.global_position
 		ripple_vfx.emit_particle(ripple_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 		
-		audio.play(hit_sounds.pick_random(), hitbox.global_position)
+		audio.play_positional_sound(hit_sounds.pick_random(), hitbox.global_position)
 	
 
 func start_animate_air():

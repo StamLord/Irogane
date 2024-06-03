@@ -42,7 +42,6 @@ func activate_player(player, sound: AudioStream, pitch = 1.0, volume: float = 0.
 	audio_players_by_id[player.get_instance_id()] = player
 	add_child(player)
 	
-	
 	if pitch:
 		player.set_pitch_scale(pitch)
 	
