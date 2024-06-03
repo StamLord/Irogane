@@ -14,7 +14,7 @@ func _ready():
 	
 
 func _on_start_button_pressed():
-	GlobalAudio.play_audio(start_sound)
+	GlobalAudio.play_audio(start_sound, -10.0)
 	close()
 	SceneManager.goto_scene("res://prefabs/ui/character_creator.tscn")
 	

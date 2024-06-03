@@ -73,7 +73,7 @@ func play_footstep_sfx():
 		volume = stone_volume
 	
 	var sound_pitch = randf_range(0.8, 1.2)
-	audio_player.play(sound, null, sound_pitch, volume)
+	audio_player.play(sound, sound_pitch, volume)
 	
 
 func on_state_enter(state_name):
