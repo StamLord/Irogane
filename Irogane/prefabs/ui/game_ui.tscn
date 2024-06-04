@@ -293,8 +293,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("15_l8i5o")
-medicine_curve = SubResource("Curve_3ssjj")
-hurt_curve = SubResource("Curve_ugfdm")
 
 [node name="medicine_vfx" type="Panel" parent="screen_vfx"]
 material = SubResource("ShaderMaterial_dha70")
