@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckn77l0lmv0go"]
+
+[ext_resource type="PackedScene" uid="uid://b0g3eh1xe6b4r" path="res://assets/models/building_blocks/window_2x4.glb" id="1_15xxt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i23xg"]
+size = Vector3(2, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8dlp"]
+size = Vector3(0.25, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0ejv"]
+size = Vector3(2, 0.5, 0.5)
+
+[node name="window_2x4" type="StaticBody3D"]
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.25)
+shape = SubResource("BoxShape3D_i23xg")
+
+[node name="collider3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, 2, 0.25)
+shape = SubResource("BoxShape3D_r8dlp")
+
+[node name="collider4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.875, 2, 0.25)
+shape = SubResource("BoxShape3D_r8dlp")
+
+[node name="collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, 0.25)
+shape = SubResource("BoxShape3D_j0ejv")
+
+[node name="window_2x42" parent="." instance=ExtResource("1_15xxt")]

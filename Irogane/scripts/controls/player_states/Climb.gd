@@ -151,7 +151,7 @@ func PhysicsUpdate(body, delta):
 	if input_dir.y < 0 and ledge_check.is_colliding() and not top_wall_result and not head_check_2.is_colliding():
 		# Verify we have enough head room
 		var ledge_position = ledge_check.get_collision_point()
-		var query = PhysicsRayQueryParameters3D.create(ledge_position, ledge_position + Vector3.UP * 1.9, ledge_mask)
+		var query = PhysicsRayQueryParameters3D.create(ledge_position + Vector3.UP * 0.01, ledge_position + Vector3.UP * 1.9, ledge_mask)
 		var collision = body.get_world_3d().direct_space_state.intersect_ray(query)
 		
 		if not collision:

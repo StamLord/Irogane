@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://ytxnmdh0rhmm"]
+
+[ext_resource type="PackedScene" uid="uid://kc04vguetby8" path="res://assets/models/building_blocks/door_frame_2x4.glb" id="1_mksye"]
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_k1p62"]
+[ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="3_ej0di"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8dlp"]
+size = Vector3(0.5, 1.8, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0ejv"]
+size = Vector3(2, 2, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vnole"]
+size = Vector3(1, 1.7, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyinj"]
+albedo_texture = ExtResource("3_ej0di")
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_8hcye"]
+size = Vector3(1, 1.7, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jp0e1"]
+size = Vector3(1, 1.7, 0.1)
+
+[node name="door_frame_2x4" type="StaticBody3D"]
+
+[node name="door_frame_2x4" parent="." instance=ExtResource("1_mksye")]
+
+[node name="collider3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.9, 0.25)
+shape = SubResource("BoxShape3D_r8dlp")
+
+[node name="collider4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.9, 0.25)
+shape = SubResource("BoxShape3D_r8dlp")
+
+[node name="collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0.25)
+shape = SubResource("BoxShape3D_j0ejv")
+
+[node name="door" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0.95, 0.25)
+
+[node name="Switch" type="Area3D" parent="door"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_k1p62")
+on_text = "Open"
+on_rotation = Vector3(0, 90, 0)
+animation_time = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/Switch"]
+shape = SubResource("BoxShape3D_vnole")
+
+[node name="door_mesh" type="MeshInstance3D" parent="door"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+material_override = SubResource("StandardMaterial3D_qyinj")
+mesh = SubResource("BoxMesh_8hcye")
+skeleton = NodePath("../Switch")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="door"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/StaticBody3D"]
+shape = SubResource("BoxShape3D_jp0e1")
