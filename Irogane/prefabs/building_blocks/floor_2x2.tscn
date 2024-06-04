@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ky7f4a3hv1sk"]
+
+[ext_resource type="PackedScene" uid="uid://b45bxsaiix7hc" path="res://assets/models/building_blocks/floor_2x2.glb" id="1_ckny1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i23xg"]
+size = Vector3(2, 0.5, 2)
+
+[node name="floor_2x2" type="StaticBody3D"]
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("BoxShape3D_i23xg")
+
+[node name="floor_2x2" parent="." instance=ExtResource("1_ckny1")]
