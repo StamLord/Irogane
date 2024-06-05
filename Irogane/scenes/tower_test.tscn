@@ -2022,6 +2022,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8, 0,
 [node name="wall_1x13" parent="tower_0/floor_15/rooms" instance=ExtResource("11_h1uc7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 0, 1.5)
 
+[node name="npc" parent="tower_0/floor_15" instance=ExtResource("20_017gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 4.5, -1)
+
+[node name="npc2" parent="tower_0/floor_15" instance=ExtResource("20_017gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 22.5)
+
+[node name="npc3" parent="tower_0/floor_15" instance=ExtResource("20_017gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -1)
+
 [node name="floor_16" type="CSGCombiner3D" parent="tower_0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 78.5, 0)
 use_collision = true

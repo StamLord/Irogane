@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3d50iupb8rug"]
+[gd_scene load_steps=21 format=3 uid="uid://d3d50iupb8rug"]
 
 [ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="1_iro6g"]
 [ext_resource type="Script" path="res://scripts/ai/states/Idle.gd" id="2_ce8wj"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/ai/states/Search.gd" id="4_u5p12"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="6_vj0q5"]
 [ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="7_dmvk0"]
+[ext_resource type="AudioStream" uid="uid://shvwwq43i0ds" path="res://assets/audio/guard_detection/i_can_see_you.ogg" id="10_a8id8"]
+[ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="10_f7n81"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbheq"]
 radius = 0.4
@@ -150,10 +152,14 @@ height = 5.0
 cone = true
 material = SubResource("StandardMaterial3D_0npv8")
 
-[node name="npc_audio_manager" type="Node3D" parent="character_body"]
+[node name="npc_audio_manager" type="Node3D" parent="character_body" node_paths=PackedStringArray("awarness_agent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("7_dmvk0")
+awarness_agent = NodePath("../AwarenessAgent")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="character_body/npc_audio_manager"]
-bus = &"Sound"
+[node name="audio_player" type="AudioStreamPlayer3D" parent="character_body/npc_audio_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+stream = ExtResource("10_a8id8")
+script = ExtResource("10_f7n81")
 
 [connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]

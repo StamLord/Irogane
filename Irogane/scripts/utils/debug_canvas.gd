@@ -99,7 +99,7 @@ func debug_basis(_position, _basis, duration = 0.1):
 	DebugCanvas.debug_line(_position, _position + _basis.z, Color.BLUE, 3, duration)
 	
 
-func debug_text(string, _position, color = Color.RED, duration = 0.1):
+func debug_text(string : String, _position, color = Color.RED, duration = 0.1):
 	var text = {
 		"string" : string,
 		"position" : _position,

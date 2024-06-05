@@ -11,10 +11,10 @@ size = Vector3(0.5, 1.8, 0.5)
 size = Vector3(2, 2, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vnole"]
-size = Vector3(1, 1.7, 0.1)
+size = Vector3(1, 1.9, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8hcye"]
-size = Vector3(1, 1.7, 0.1)
+size = Vector3(1, 1.9, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvr2i"]
 albedo_texture = ExtResource("3_ej0di")
@@ -23,7 +23,7 @@ uv1_scale = Vector3(3, 2, 1)
 texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jp0e1"]
-size = Vector3(1, 1.7, 0.1)
+size = Vector3(1, 1.9, 0.1)
 
 [node name="door_frame_2x4" type="StaticBody3D"]
 
@@ -55,10 +55,11 @@ animation_time = 0.5
 mesh = NodePath("../door_mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door/Switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_vnole")
 
 [node name="door_mesh" type="MeshInstance3D" parent="door"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.5)
 mesh = SubResource("BoxMesh_8hcye")
 skeleton = NodePath("../Switch")
 surface_material_override/0 = SubResource("StandardMaterial3D_rvr2i")
@@ -67,4 +68,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rvr2i")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_jp0e1")

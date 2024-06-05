@@ -3,7 +3,7 @@ extends Node3D
 @export var awarness_agent : AwarenessAgent
 @export var same_signal_wait = 2.0
 
-@onready var audio_player = $AudioStreamPlayer3D
+@onready var audio_player = $audio_player
 
 @onready var hear_sound_clips = [
 	preload("res://assets/audio/guard_detection/hmm.ogg"), 
