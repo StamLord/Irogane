@@ -19,8 +19,13 @@ func play_clip(clip):
 	if audio_player == null:
 		return
 	
-	audio_player.stream = clip
-	audio_player.play()
+	if audio_player.stream is AudioStreamPolyphonic:
+		if not audio_player.playing:
+			audio_player.play()
+		audio_player.get_stream_playback().play_stream(clip)
+	else:
+		audio_player.stream = clip
+		audio_player.play()
 	
 
 func play_opened(state):

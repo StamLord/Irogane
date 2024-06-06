@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1nhtmtdidr60"]
+[gd_scene load_steps=17 format=3 uid="uid://c1nhtmtdidr60"]
 
 [ext_resource type="PackedScene" uid="uid://kc04vguetby8" path="res://assets/models/building_blocks/door_frame_2x4.glb" id="1_kp50d"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_vxcgw"]
@@ -21,10 +21,12 @@ tower_id = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_vnole"]
 size = Vector3(1, 1.9, 0.1)
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_vlmip"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_8hcye"]
 size = Vector3(1, 1.9, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltpb3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yikj"]
 albedo_texture = ExtResource("3_girr4")
 emission_energy_multiplier = 0.0
 uv1_scale = Vector3(3, 2, 1)
@@ -82,6 +84,8 @@ script = ExtResource("4_slc3j")
 switch = NodePath("..")
 
 [node name="audio_player" type="AudioStreamPlayer3D" parent="door/Switch/door_audio"]
+stream = SubResource("AudioStreamPolyphonic_vlmip")
+max_polyphony = 2
 bus = &"Sound"
 script = ExtResource("5_slt2g")
 
@@ -89,7 +93,7 @@ script = ExtResource("5_slt2g")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.5)
 mesh = SubResource("BoxMesh_8hcye")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("StandardMaterial3D_ltpb3")
+surface_material_override/0 = SubResource("StandardMaterial3D_2yikj")
 
 [node name="lock_mesh" type="MeshInstance3D" parent="door"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.98023e-08, 0.0578423, -0.159072)
