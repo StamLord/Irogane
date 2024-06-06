@@ -1,4 +1,4 @@
-[gd_scene load_steps=170 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=171 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -60,6 +60,7 @@
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
 [ext_resource type="Script" path="res://scripts/weapons/pocket_mirror.gd" id="44_5spk0"]
+[ext_resource type="Script" path="res://scripts/weapons/simple_weapon_manager.gd" id="46_wqxcu"]
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
 [ext_resource type="Script" path="res://scripts/controls/ledge_check.gd" id="47_nhvkg"]
 [ext_resource type="Texture2D" uid="uid://dxpxsjbekb6j7" path="res://assets/textures/vfx/aoe_decal_0.png" id="48_fsnbk"]
@@ -68,8 +69,6 @@
 [ext_resource type="PackedScene" uid="uid://d1rcf2qi0eyo" path="res://assets/models/compass/mirror.glb" id="50_hpl7l"]
 [ext_resource type="PackedScene" uid="uid://dfv8ag71set7j" path="res://assets/models/compass/pin.glb" id="50_nr8pd"]
 [ext_resource type="Script" path="res://scripts/procedural/compass.gd" id="51_tjqxo"]
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -352,6 +351,8 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_1s8w4"]
 material = SubResource("StandardMaterial3D_imqxh")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -747,27 +748,9 @@ spot_angle = 60.0
 script = ExtResource("27_wn7je")
 
 [node name="weapon_manager" type="Node3D" parent="head/main_camera"]
-script = ExtResource("18_u5xda")
-
-[node name="rope" type="Node3D" parent="head/main_camera/weapon_manager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-script = ExtResource("22_yy2un")
-
-[node name="Rope" type="MeshInstance3D" parent="head/main_camera/weapon_manager/rope"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-top_level = true
+process_mode = 4
 visible = false
-mesh = SubResource("ImmediateMesh_o8r7q")
-script = ExtResource("23_yw3sv")
-resolution = 4
-rope_width = 0.03
-
-[node name="start_target" type="Marker3D" parent="head/main_camera/weapon_manager/rope/Rope"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-
-[node name="end_target" type="Marker3D" parent="head/main_camera/weapon_manager/rope/Rope"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -1)
-top_level = true
+script = ExtResource("18_u5xda")
 
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
 visible = false
@@ -1019,29 +1002,32 @@ script = ExtResource("37_60ul2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
 visible = false
 
-[node name="pocket_mirror" type="Node3D" parent="head/main_camera/weapon_manager"]
+[node name="simple_weapon_manager" type="Node3D" parent="head/main_camera"]
+script = ExtResource("46_wqxcu")
+
+[node name="pocket_mirror" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
 script = ExtResource("44_5spk0")
 
-[node name="left_pos" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
+[node name="left_pos" type="Node3D" parent="head/main_camera/simple_weapon_manager/pocket_mirror"]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -0.357, 0, -0.464)
 
-[node name="right_pos" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
+[node name="right_pos" type="Node3D" parent="head/main_camera/simple_weapon_manager/pocket_mirror"]
 transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0.357, 0, -0.464)
 
-[node name="mirror_mesh" type="Node3D" parent="head/main_camera/weapon_manager/pocket_mirror"]
+[node name="mirror_mesh" type="Node3D" parent="head/main_camera/simple_weapon_manager/pocket_mirror"]
 transform = Transform3D(0.984808, 0.0301537, 0.17101, 0, 0.984808, -0.173648, -0.173648, 0.17101, 0.969846, -0.356663, 0, -0.464274)
 
-[node name="compass" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("49_r5o56")]
+[node name="compass" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("49_r5o56")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 0.999999, -4.37114e-08, 0, 0, 0)
 
-[node name="pin" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh/compass" instance=ExtResource("50_nr8pd")]
+[node name="pin" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh/compass" instance=ExtResource("50_nr8pd")]
 transform = Transform3D(1, 0, -1.86265e-09, -1.49012e-08, 1, -1.49012e-08, 0, 0, 1, 0, 0, 0.1)
 script = ExtResource("51_tjqxo")
 
-[node name="mirror" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("50_hpl7l")]
+[node name="mirror" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("50_hpl7l")]
 transform = Transform3D(1, 7.45058e-08, -3.55271e-15, 0, -4.37114e-08, -1, -7.45058e-08, 1, -4.37114e-08, 0, 0, 0)
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="head/main_camera/weapon_manager/pocket_mirror/mirror_mesh"]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh"]
 transform = Transform3D(1, 0, 7.45058e-08, 0, 1, 0, -7.45058e-08, 0, 1, 0, 0, 0.1)
 update_mode = 1
 max_distance = 100.0
@@ -1049,6 +1035,40 @@ size = Vector3(1, 1, 1)
 box_projection = true
 enable_shadows = true
 mesh_lod_threshold = 0.0
+
+[node name="rope" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
+script = ExtResource("22_yy2un")
+
+[node name="Rope" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+top_level = true
+visible = false
+mesh = SubResource("ImmediateMesh_o8r7q")
+script = ExtResource("23_yw3sv")
+resolution = 4
+rope_width = 0.03
+
+[node name="start_target" type="Marker3D" parent="head/main_camera/simple_weapon_manager/rope/Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="end_target" type="Marker3D" parent="head/main_camera/simple_weapon_manager/rope/Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -1)
+top_level = true
+
+[node name="skill_zone" type="Decal" parent="head/main_camera/simple_weapon_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -3.5)
+visible = false
+size = Vector3(5, 5, 5)
+texture_albedo = ExtResource("36_yxiao")
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+script = ExtResource("37_60ul2")
+
+[node name="sub_decal" type="Decal" parent="head/main_camera/simple_weapon_manager/skill_zone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
+visible = false
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
 target_position = Vector3(0, 0, -1)
@@ -1458,3 +1478,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_gw68j")
 
 [connection signal="visibility_changed" from="head/main_camera/weapon_manager/skill_zone" to="head/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="head/main_camera/simple_weapon_manager/skill_zone" to="head/main_camera/simple_weapon_manager/skill_zone" method="_on_visibility_changed"]

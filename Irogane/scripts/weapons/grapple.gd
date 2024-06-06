@@ -17,6 +17,9 @@ var pitons = []
 var stashed_pitons = []
 
 func _process(delta):
+	if not visible:
+		return
+	
 	if ray_cast.is_colliding():
 		grappling_decal.global_position = ray_cast.get_collision_point()
 		Utils.rotate_y_to_target(grappling_decal, ray_cast.get_collision_point() - ray_cast.get_collision_normal())

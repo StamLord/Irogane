@@ -7,6 +7,9 @@ extends Node3D
 var pos = -1 # left
 
 func _process(delta):
+	if not visible:
+		return
+	
 	if not Input.is_action_pressed("attack_primary") and not Input.is_action_pressed("attack_secondary"):
 		mirror_mesh.visible = false
 		return
