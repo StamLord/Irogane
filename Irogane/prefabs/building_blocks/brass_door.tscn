@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1nhtmtdidr60"]
+[gd_scene load_steps=16 format=3 uid="uid://c1nhtmtdidr60"]
 
 [ext_resource type="PackedScene" uid="uid://kc04vguetby8" path="res://assets/models/building_blocks/door_frame_2x4.glb" id="1_kp50d"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_vxcgw"]
 [ext_resource type="Script" path="res://scripts/interactive/Key.gd" id="3_aqc87"]
 [ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="3_girr4"]
+[ext_resource type="Script" path="res://scripts/interactive/door_audio_player.gd" id="4_slc3j"]
+[ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="5_slt2g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r8dlp"]
 size = Vector3(0.5, 1.8, 0.5)
@@ -22,7 +24,7 @@ size = Vector3(1, 1.9, 0.1)
 [sub_resource type="BoxMesh" id="BoxMesh_8hcye"]
 size = Vector3(1, 1.9, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81djc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltpb3"]
 albedo_texture = ExtResource("3_girr4")
 emission_energy_multiplier = 0.0
 uv1_scale = Vector3(3, 2, 1)
@@ -75,11 +77,19 @@ mesh = NodePath("../door_mesh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_vnole")
 
+[node name="door_audio" type="Node3D" parent="door/Switch" node_paths=PackedStringArray("switch")]
+script = ExtResource("4_slc3j")
+switch = NodePath("..")
+
+[node name="audio_player" type="AudioStreamPlayer3D" parent="door/Switch/door_audio"]
+bus = &"Sound"
+script = ExtResource("5_slt2g")
+
 [node name="door_mesh" type="MeshInstance3D" parent="door"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.5)
 mesh = SubResource("BoxMesh_8hcye")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("StandardMaterial3D_81djc")
+surface_material_override/0 = SubResource("StandardMaterial3D_ltpb3")
 
 [node name="lock_mesh" type="MeshInstance3D" parent="door"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.98023e-08, 0.0578423, -0.159072)

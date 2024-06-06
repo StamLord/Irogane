@@ -1078,7 +1078,6 @@ shape = SubResource("CapsuleShape3D_rdctd")
 [node name="crouch_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 shape = SubResource("CapsuleShape3D_764jx")
-disabled = true
 
 [node name="head_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true

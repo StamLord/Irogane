@@ -30,14 +30,20 @@ var is_animating_position : bool
 var is_animating_rotation : bool
 
 signal on_state_changed(state)
+signal on_animation_done(state)
+signal on_failed_unlocked()
+signal on_unlocked()
 
 func use(interactor):
 	if is_locked:
 		for key in required_keys:
 			var use_key = interactor.use_key(key.tower_id, key.color)
 			if use_key == false:
+				on_failed_unlocked.emit()
 				return
+			
 		is_locked = false # Once unlocked, keys are no longer needed
+		on_unlocked.emit()
 	
 	for switch in required_switches:
 		if switch.state == false:
@@ -65,6 +71,9 @@ func perform_animations():
 		animate_rotation(on_rotation, off_rotation)
 	
 	on_state_changed.emit(state)
+	
+	await get_tree().create_timer(animation_time).timeout
+	on_animation_done.emit(state)
 	
 
 func get_text():
