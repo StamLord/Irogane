@@ -35,7 +35,10 @@ var old_angular_damp
 var old_layer
 
 var released_last_frame = false
-	
+
+# tower_id : { key_color : uses_left } eg:  {Key.key_color.BRASS : 5}  
+var key_ring = {1 : {Key.key_color.BRASS : 5}}
+
 signal interactive_changed(new_interactive_text)
 signal press_time_update(time)
 signal too_heavy(weight)
@@ -195,4 +198,32 @@ func add_item(item_id):
 		return false
 	
 	return inventory.pickup_item(item_id)
+	
+
+func add_key(tower_id : int, key_color : Key.key_color, uses : int):
+	if uses < 1:
+		print(name, " :: Tried to add non positive number of uses to a key: ", uses)
+		return
+	
+	if key_ring.has(tower_id):
+		if key_ring[tower_id].has(key_color):
+			key_ring[tower_id][key_color] += uses
+		else:
+			key_ring[tower_id][key_color] = uses
+	else:
+		key_ring[tower_id] = {key_color : uses}
+	
+
+func remove_key(tower_id : int, key_color : Key.key_color):
+	if key_ring.has(tower_id):
+		key_ring[tower_id].erase(key_color)
+	
+
+func use_key(tower_id : int, key_color : Key.key_color) -> bool :
+	if key_ring.has(tower_id) and key_ring[tower_id].has(key_color):
+		key_ring[tower_id][key_color] -= 1
+		if key_ring[tower_id][key_color] <= 0:
+			remove_key(tower_id, key_color)
+		return true
+	return false
 	

@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ytxnmdh0rhmm"]
+[gd_scene load_steps=12 format=3 uid="uid://j5iw8vul4jgy"]
 
-[ext_resource type="PackedScene" uid="uid://kc04vguetby8" path="res://assets/models/building_blocks/door_frame_2x4.glb" id="1_mksye"]
-[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_k1p62"]
-[ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="3_ej0di"]
+[ext_resource type="PackedScene" uid="uid://kc04vguetby8" path="res://assets/models/building_blocks/door_frame_2x4.glb" id="1_mkx01"]
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_causk"]
+[ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="4_qibph"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r8dlp"]
 size = Vector3(0.5, 1.8, 0.5)
@@ -16,8 +16,8 @@ size = Vector3(1, 1.9, 0.1)
 [sub_resource type="BoxMesh" id="BoxMesh_8hcye"]
 size = Vector3(1, 1.9, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvd22"]
-albedo_texture = ExtResource("3_ej0di")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tn2nu"]
+albedo_texture = ExtResource("4_qibph")
 emission_energy_multiplier = 0.0
 uv1_scale = Vector3(3, 2, 1)
 texture_filter = 0
@@ -25,9 +25,15 @@ texture_filter = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_jp0e1"]
 size = Vector3(1, 1.9, 0.1)
 
-[node name="door_frame_2x4" type="StaticBody3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_cwij2"]
+size = Vector3(1.5, 0.2, 0.1)
 
-[node name="door_frame_2x4" parent="." instance=ExtResource("1_mksye")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4dlal"]
+size = Vector3(1.5, 0.2, 0.1)
+
+[node name="barred_door" type="StaticBody3D"]
+
+[node name="door_frame_2x4" parent="." instance=ExtResource("1_mkx01")]
 
 [node name="collider3" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.9, 0.25)
@@ -44,16 +50,17 @@ shape = SubResource("BoxShape3D_j0ejv")
 [node name="door" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0.95, 0.25)
 
-[node name="Switch" type="Area3D" parent="door" node_paths=PackedStringArray("mesh")]
+[node name="Switch" type="Area3D" parent="door" node_paths=PackedStringArray("required_switches", "mesh")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.5)
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("2_k1p62")
+script = ExtResource("2_causk")
 on_text = "Close"
 off_position = Vector3(0.5, 0.95, 0.25)
 on_position = Vector3(0.5, 0.95, 0.25)
 off_rotation = Vector3(0, 90, 0)
 animation_time = 0.5
+required_switches = [NodePath("../../bar/Switch")]
 interaction_text = "Open"
 mesh = NodePath("../door_mesh")
 
@@ -65,7 +72,7 @@ shape = SubResource("BoxShape3D_vnole")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.5)
 mesh = SubResource("BoxMesh_8hcye")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("StandardMaterial3D_qvd22")
+surface_material_override/0 = SubResource("StandardMaterial3D_tn2nu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="door"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.5)
@@ -73,3 +80,27 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_jp0e1")
+
+[node name="bar" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 1, 0)
+
+[node name="Switch" type="Area3D" parent="bar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_causk")
+on_text = "Close"
+off_position = Vector3(-0.65, 1, 0)
+on_position = Vector3(-0.65, 1, 0)
+off_rotation = null
+on_rotation = Vector3(0, 0, 90)
+animation_time = 0.25
+interaction_text = "Open"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bar/Switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.05)
+mesh = SubResource("BoxMesh_cwij2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bar/Switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.05)
+shape = SubResource("BoxShape3D_4dlal")

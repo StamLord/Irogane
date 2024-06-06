@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=78 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -21,12 +21,15 @@
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="11_htxv5"]
 [ext_resource type="PackedScene" uid="uid://dbqqqjx4lsj8r" path="res://prefabs/building_blocks/arch_2x1.tscn" id="12_ovi0p"]
 [ext_resource type="PackedScene" uid="uid://ky7f4a3hv1sk" path="res://prefabs/building_blocks/floor_2x2.tscn" id="13_rbpx3"]
+[ext_resource type="PackedScene" uid="uid://c1nhtmtdidr60" path="res://prefabs/building_blocks/brass_door.tscn" id="16_64n3p"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="16_myico"]
+[ext_resource type="PackedScene" uid="uid://c1y8bvjf4cq55" path="res://prefabs/pickups/brass_key.tscn" id="17_6sp6m"]
 [ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="17_evpfm"]
 [ext_resource type="PackedScene" uid="uid://ce0mtkwfsxeq1" path="res://prefabs/pickups/small_carriable.tscn" id="17_fq5yv"]
 [ext_resource type="PackedScene" uid="uid://b7ryyeh4y372a" path="res://prefabs/pickups/goblet.tscn" id="18_2jy7j"]
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="20_017gs"]
 [ext_resource type="PackedScene" uid="uid://dayu438uv0fhb" path="res://prefabs/building_blocks/wall_0.5x4.tscn" id="20_soxin"]
+[ext_resource type="PackedScene" uid="uid://j5iw8vul4jgy" path="res://prefabs/building_blocks/barred_door.tscn" id="22_45i5q"]
 [ext_resource type="PackedScene" uid="uid://ce2l2hjptog1i" path="res://assets/models/building_blocks/wall_0.5x4.glb" id="26_vbbgm"]
 [ext_resource type="PackedScene" uid="uid://djkvp8nrxp5l3" path="res://prefabs/building_blocks/stairs.tscn" id="30_qub2v"]
 [ext_resource type="PackedScene" uid="uid://bl7784ijj0ejx" path="res://prefabs/building_blocks/double_door_frame_2x4.tscn" id="32_rh00v"]
@@ -1944,8 +1947,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 
 [node name="wall_4x11" parent="tower_0/floor_15/rooms" instance=ExtResource("8_aly6r")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 0, -7.5)
 
-[node name="door_frame_2x6" parent="tower_0/floor_15/rooms" instance=ExtResource("33_soy8s")]
+[node name="door_frame_2x7" parent="tower_0/floor_15/rooms" instance=ExtResource("16_64n3p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 0, -12)
+
+[node name="pickup" parent="tower_0/floor_15/rooms" instance=ExtResource("17_6sp6m")]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.5, 2.5, 0)
 
 [node name="wall_1x4" parent="tower_0/floor_15/rooms" instance=ExtResource("11_h1uc7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 0, -10)
@@ -2286,8 +2292,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 0
 [node name="wall_1x14" parent="tower_0/floor_16/rooms" instance=ExtResource("11_h1uc7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 0, -6)
 
-[node name="door_frame_2x8" parent="tower_0/floor_16/rooms" instance=ExtResource("33_soy8s")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -17, 0, 1.5)
+[node name="barred_door" parent="tower_0/floor_16/rooms" instance=ExtResource("22_45i5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 1)
 
 [node name="wall_1x9" parent="tower_0/floor_16/rooms" instance=ExtResource("11_h1uc7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 0, 1)

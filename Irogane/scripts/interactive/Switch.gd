@@ -8,28 +8,41 @@ class_name Switch
 		
 		if Engine.is_editor_hint():
 			if state:
-				get_parent().position = origin_position + get_parent().basis * on_position
-				get_parent().rotation_degrees = origin_rotation + on_rotation
+				get_parent().position = on_position
+				get_parent().rotation_degrees = on_rotation
 			else:
-				get_parent().position = origin_position
-				get_parent().rotation_degrees = origin_rotation
+				get_parent().position = off_position
+				get_parent().rotation_degrees = off_rotation
 	
 
 @export var on_text : String
+@export var off_position : Vector3
 @export var on_position : Vector3
+@export var off_rotation : Vector3
 @export var on_rotation : Vector3
 @export var animation_time : float
 @export var sub_switches : Array[Switch]
+@export var required_switches : Array[Switch]
+@export var required_keys : Array[Key]
 
-@onready var origin_position =  get_parent().position
-@onready var origin_rotation = get_parent().rotation_degrees
-
+@onready var is_locked = required_keys.size() > 0
 var is_animating_position : bool
 var is_animating_rotation : bool
 
 signal on_state_changed(state)
 
 func use(interactor):
+	if is_locked:
+		for key in required_keys:
+			var use_key = interactor.use_key(key.tower_id, key.color)
+			if use_key == false:
+				return
+		is_locked = false # Once unlocked, keys are no longer needed
+	
+	for switch in required_switches:
+		if switch.state == false:
+			return
+	
 	state = !state
 	
 	perform_animations()
@@ -45,11 +58,11 @@ func chain_use():
 
 func perform_animations():
 	if state:
-		animate_position(origin_position, origin_position + get_parent().basis * on_position)
-		animate_rotation(origin_rotation, origin_rotation + on_rotation)
+		animate_position(off_position, on_position)
+		animate_rotation(off_rotation, on_rotation)
 	else:
-		animate_position(origin_position + get_parent().basis * on_position, origin_position)
-		animate_rotation(origin_rotation + on_rotation, origin_rotation)
+		animate_position(on_position, off_position)
+		animate_rotation(on_rotation, off_rotation)
 	
 	on_state_changed.emit(state)
 	
@@ -68,6 +81,7 @@ func animate_position(from, to):
 	get_parent().position = to
 	is_animating_position = false
 	
+
 func animate_rotation(from, to):
 	is_animating_rotation = true
 	var start_time = Time.get_ticks_msec()
@@ -78,3 +92,4 @@ func animate_rotation(from, to):
 	
 	get_parent().rotation_degrees = to
 	is_animating_rotation = false
+	
