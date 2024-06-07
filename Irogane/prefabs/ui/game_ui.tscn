@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=64 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cxkwbrybp8tjo" path="res://assets/textures/vfx/glare_0.png" id="20_80lkk"]
 [ext_resource type="Texture2D" uid="uid://b4cf7gn0diou5" path="res://assets/textures/icons/compass_icon.png" id="21_s5dft"]
 [ext_resource type="Script" path="res://scripts/ui/weapon_icon.gd" id="22_0u58e"]
+[ext_resource type="PackedScene" uid="uid://dg1slejmv6ml6" path="res://prefabs/ui/key_rings.tscn" id="23_n2lo5"]
 
 [sub_resource type="Curve" id="Curve_3ssjj"]
 max_value = 4.0
@@ -888,5 +889,8 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("21_s5dft")
 script = ExtResource("22_0u58e")
+
+[node name="KeyRings" parent="." instance=ExtResource("23_n2lo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -666, 0)
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]

@@ -37,7 +37,7 @@ var old_layer
 var released_last_frame = false
 
 # tower_id : { key_color : uses_left } eg:  {Key.key_color.BRASS : 5}  
-var key_ring = {1 : {Key.key_color.BRASS : 5}}
+var key_ring = {}#{1 : {Key.key_color.BRASS : 5}}
 
 signal interactive_changed(new_interactive_text)
 signal press_time_update(time)

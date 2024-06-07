@@ -1034,7 +1034,8 @@ max_distance = 100.0
 size = Vector3(1, 1, 1)
 box_projection = true
 enable_shadows = true
-mesh_lod_threshold = 0.0
+cull_mask = 1
+mesh_lod_threshold = 5.0
 
 [node name="rope" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

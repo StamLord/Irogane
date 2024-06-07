@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=80 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="17_evpfm"]
 [ext_resource type="PackedScene" uid="uid://ce0mtkwfsxeq1" path="res://prefabs/pickups/small_carriable.tscn" id="17_fq5yv"]
 [ext_resource type="PackedScene" uid="uid://b7ryyeh4y372a" path="res://prefabs/pickups/goblet.tscn" id="18_2jy7j"]
+[ext_resource type="PackedScene" uid="uid://bljrrl2mwa7pn" path="res://prefabs/pickups/gold_key.tscn" id="18_4tmea"]
+[ext_resource type="PackedScene" uid="uid://df14atga7qdvx" path="res://prefabs/pickups/silver_key.tscn" id="19_3dd6e"]
 [ext_resource type="PackedScene" uid="uid://d3d50iupb8rug" path="res://prefabs/entities/enemy.tscn" id="20_017gs"]
 [ext_resource type="PackedScene" uid="uid://dayu438uv0fhb" path="res://prefabs/building_blocks/wall_0.5x4.tscn" id="20_soxin"]
 [ext_resource type="PackedScene" uid="uid://j5iw8vul4jgy" path="res://prefabs/building_blocks/barred_door.tscn" id="22_45i5q"]
@@ -1952,6 +1954,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 
 
 [node name="pickup" parent="tower_0/floor_15/rooms" instance=ExtResource("17_6sp6m")]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.5, 2.5, 0)
+
+[node name="gold_key_pickup" parent="tower_0/floor_15/rooms" instance=ExtResource("18_4tmea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 5.28341, -2.5)
+
+[node name="silver_key_pickup" parent="tower_0/floor_15/rooms" instance=ExtResource("19_3dd6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28341, -1)
 
 [node name="wall_1x4" parent="tower_0/floor_15/rooms" instance=ExtResource("11_h1uc7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.5, 0, -10)

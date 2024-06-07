@@ -50,7 +50,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1ldoc")
 
-[node name="pickup" type="RigidBody3D"]
+[node name="brass_key_pickup" type="RigidBody3D"]
 
 [node name="interactive_area" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
 collision_layer = 4
@@ -58,7 +58,7 @@ collision_mask = 0
 script = ExtResource("1_mlm2v")
 key = SubResource("Resource_q36je")
 interaction_text = "Take"
-mesh = NodePath("../brass_key_02/brass_key_0")
+mesh = NodePath("../brass_key_0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.125)
@@ -68,9 +68,7 @@ shape = SubResource("BoxShape3D_76ii7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.125)
 shape = SubResource("BoxShape3D_76ii7")
 
-[node name="brass_key_02" type="Node3D" parent="."]
-
-[node name="brass_key_0" type="MeshInstance3D" parent="brass_key_02"]
+[node name="brass_key_0" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ues34")
 skeleton = NodePath("")
