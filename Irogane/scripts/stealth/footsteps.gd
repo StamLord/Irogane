@@ -4,12 +4,16 @@ extends Node3D
 
 @export var sound_emitter : SoundEmitter
 @export var state_machine : PlayerStateMachine
-@export var steps_per_unit = 2.0
-@export var steps_sound_range = 4
+@onready var carpet_check = %carpet_check
+
 @export var playing_in_states = ["walk", "run"]
+@export var steps_per_unit = 2.0
+
+@export var steps_sound_range = 4
 @export var stone_volume = -20
+
+@export var carpet_sound_range = 2
 @export var carpet_volume = -25
-@onready var floor_material_check = %floor_material_check
 
 var footstep_sounds = [
 	preload("res://assets/audio/footsteps/stone/footstep_stone_07.ogg"), 
@@ -40,7 +44,13 @@ func _ready():
 	
 
 func make_a_step():
-	emit_stealth_sound()
+	var range
+	if carpet_check.is_colliding():
+		range = carpet_sound_range
+	else:
+		range = steps_sound_range
+	
+	emit_stealth_sound(range)
 	play_footstep_sfx()
 	
 
@@ -57,15 +67,16 @@ func _process(_delta):
 	last_position = global_position
 	
 
-func emit_stealth_sound():
+func emit_stealth_sound(range):
 	if sound_emitter:
-		sound_emitter.emit_sound(global_position, steps_sound_range)
+		sound_emitter.emit_sound(global_position, range)
 	
 
 func play_footstep_sfx():
 	var sound
 	var volume
-	if floor_material_check.is_colliding():
+	
+	if carpet_check.is_colliding():
 		sound = carpet_footstep_sounds.pick_random()
 		volume = carpet_volume
 	else:
