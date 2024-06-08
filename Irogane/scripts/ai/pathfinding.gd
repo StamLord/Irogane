@@ -3,6 +3,9 @@ extends CharacterBody3D
 @onready var step_check = $step_check
 @onready var door_check = $door_check
 @onready var step_separation = %step_separation
+@onready var stats = %stats
+@onready var push_back_dust_l = $vfx/push_back_dust_l
+@onready var push_back_dust_r = $vfx/push_back_dust_r
 
 @export var movement_speed = 2
 @export var acceleration = 10
@@ -11,7 +14,6 @@ extends CharacterBody3D
 @export var push_force = 15
 
 @onready var nav = $NavigationAgent3D
-@onready var player = PlayerEntity.player_node
 
 @export var max_step_height = .3
 @export var step_check_distance = 0.5
@@ -24,6 +26,7 @@ var prev_target_angle : float
 var next_position = Vector3.ZERO
 var direction = Vector3.ZERO
 
+var look_at_target_while_moving = false
 var target_rotation = null
 
 var is_traveling_link = false
@@ -34,6 +37,14 @@ var snapped_to_stairs_last_frame = false
 
 var override_rotation_speed = null
 var override_movement_speed = null
+
+var is_pushed_back = false
+var push_back_force = Vector3.ZERO
+var push_back_speed = 0.0
+var push_back_accumulated_gravity = 0.0
+var push_back_deceleration = 10
+var push_back_exit_threshold = 0.2
+var push_back_gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	nav.link_reached.connect(link_reached)
@@ -64,12 +75,18 @@ func move_in_link(link_details):
 	
 
 func _process(delta):
+	if is_pushed_back:
+		process_push_back(delta)
+		return
+	
 	if not is_traveling_link:
 		if nav.is_navigation_finished():
 			if target_rotation: # Face an overriding rotation target
 				rotate_to_target_rotation(delta)
 			else: # Face the path target position
 				rotate_to_target(delta)
+		elif look_at_target_while_moving and target_rotation:
+			rotate_to_target_rotation(delta)
 		else: # Face next position on path
 			rotate_to_next_position(delta) 
 	
@@ -100,6 +117,9 @@ func _physics_process(delta):
 	if is_traveling_link:
 		return
 	
+	if stats and stats.is_staggered:
+		return
+	
 	next_position = nav.get_next_path_position()
 	direction = (next_position - global_position).normalized()
 	
@@ -109,7 +129,8 @@ func _physics_process(delta):
 	dot_product = max(0, dot_product) # Make sure it's not below 0
 	
 	# Multiply by dot to slow down movement when facing the wrong direction
-	nav.set_velocity(direction * get_movement_speed() * dot_product)
+	var speed_mult = lerp(0.5, 1.0, dot_product) # Moving forward at full speed, backwards and sideways at half
+	nav.set_velocity(direction * get_movement_speed() * speed_mult)
 	
 	# Apply gravity
 	velocity.y -= gravity * delta
@@ -222,4 +243,40 @@ func get_movement_speed():
 
 func get_rotation_speed():
 	return override_rotation_speed if override_rotation_speed != null else rotation_speed
+	
+
+func start_push_back(force : Vector3):
+	is_pushed_back = true
+	push_back_force = force
+	push_back_speed = force.length()
+	push_back_accumulated_gravity = 0.0
+	set_vfx_active(true)
+	
+
+func process_push_back(delta):
+	var direction = push_back_force.normalized()
+	
+	# Decelerate when sliding on ground
+	if is_on_floor():
+		push_back_speed -= push_back_deceleration * delta
+	
+	# Apply gravity
+	push_back_accumulated_gravity -= push_back_gravity * delta
+	
+	velocity = direction * push_back_speed
+	velocity.y += push_back_accumulated_gravity
+	
+	move_and_slide()
+	
+	# Vfx
+	set_vfx_active(is_on_floor())
+	
+	if push_back_speed < push_back_exit_threshold:
+		is_pushed_back = false
+		set_vfx_active(false)
+	
+
+func set_vfx_active(state):
+	push_back_dust_l.active = state
+	push_back_dust_r.active = state
 	

@@ -44,7 +44,7 @@ func _mouse_exited():
 		# We use play_exlusive to avoid playing unhover_sound while
 		# another scroll's hover_sound is playing. Must be deferred to allow
 		# the other scroll's hover_sound to be registered in the audio_player.
-		audio_player.call_deferred("play_exclusive", unhover_sound)
+		audio_player.call_deferred("play_only_if_no_one_playing", unhover_sound)
 	
 	animate_offset(initial_pos.x, duration)
 	

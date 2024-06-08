@@ -29,7 +29,7 @@ radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t23qw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_huaqf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi3h5"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
@@ -138,14 +138,14 @@ visible = false
 [node name="sphere_mesh" type="CSGSphere3D" parent="character_body/AwarenessAgent/vision_cone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0346708)
 radius = 5.0
-material = SubResource("StandardMaterial3D_huaqf")
+material = SubResource("StandardMaterial3D_oi3h5")
 
 [node name="cone_mesh" type="CSGCylinder3D" parent="character_body/AwarenessAgent/vision_cone"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.5)
 operation = 1
 height = 5.0
 cone = true
-material = SubResource("StandardMaterial3D_huaqf")
+material = SubResource("StandardMaterial3D_oi3h5")
 
 [node name="npc_audio_manager" type="Node3D" parent="character_body"]
 script = ExtResource("7_dmvk0")

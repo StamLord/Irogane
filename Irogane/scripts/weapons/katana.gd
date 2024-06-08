@@ -1,11 +1,11 @@
-extends Node3D
+extends WeaponBase
 
 @export var stats : Stats
 @export var state_machine : PlayerStateMachine
 @export var camera_look : Node3D
 
-@export var light_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, false, Vector3.FORWARD * 2, ["bleed"])
-@export var heavy_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, true, Vector3.FORWARD * 2, ["bleed"])
+@export var light_attack_info = AttackInfo.new(15, 10, DamageType.SLASH, false, Vector3.FORWARD * 8)#, ["bleed"])
+@export var heavy_attack_info = AttackInfo.new(35, 10, DamageType.SLASH, true, Vector3.FORWARD * 8)#, ["bleed"])
 @export var uppward_attack_info = AttackInfo.new(5, 10, DamageType.SLASH, Vector3.UP * 6)
 
 @export var combo_list = [
@@ -126,7 +126,8 @@ extends Node3D
 # Audio
 @onready var audio = $katana_pov_hands/first_person_rig/Skeleton3D/hand_r_attachment/blade_alignment/audio
 const swing_sfx = [preload("res://assets/audio/katana/katana_swoosh_01.mp3"), preload("res://assets/audio/katana/katana_swoosh_02.mp3"), preload("res://assets/audio/katana/katana_swoosh_03.mp3"), preload("res://assets/audio/katana/katana_swoosh_04.mp3")]
-const hit_sfx = [preload("res://assets/audio/katana/katana_clash_01.mp3"), preload("res://assets/audio/katana/katana_clash_02.mp3"), preload("res://assets/audio/katana/katana_clash_03.mp3"), preload("res://assets/audio/katana/katana_clash_04.mp3")]
+const clash_sfx = [preload("res://assets/audio/katana/katana_clash_01.mp3"), preload("res://assets/audio/katana/katana_clash_02.mp3"), preload("res://assets/audio/katana/katana_clash_03.mp3"), preload("res://assets/audio/katana/katana_clash_04.mp3")]
+const hit_sfx = [preload("res://assets/audio/katana/katana_hit_01.ogg")]
 
 var combo = []
 var last_combo_addition = 0
@@ -138,7 +139,6 @@ var is_secondary_pressed = false
 var secondary_press_start = -1
 
 var is_guarding = false
-var guard_start = null
 var perfect_guard_window = 0.5
 
 var guard_break_duration = 2.0
@@ -175,7 +175,7 @@ func _process(delta):
 	if not visible:
 		return
 	
-	if stats.is_guard_broken:
+	if stats.is_guard_broken or stats.is_staggered:
 		return
 	
 	if is_in_blade_lock:
@@ -217,28 +217,30 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump"):
 		last_jump = Time.get_ticks_msec()
 	
-	if Input.is_action_just_released("defend") and is_guarding:
+	# Defend
+	if Input.is_action_pressed("attack_primary") and Input.is_action_pressed("attack_secondary"):
+		if not is_guarding:
+			start_guard()
+			anim_state_machine.start("defend")
+	elif is_guarding:
 		stop_guard()
 		anim_state_machine.start("idle")
-	
-	if Input.is_action_just_pressed("defend"):
-		start_guard()
-		anim_state_machine.start("defend")
-	# Primary attack is on press
-	elif Input.is_action_just_pressed("attack_primary"):
-		add_to_combo("l")
-	# If no charging, secondary attack is on press.
-	# Otherwise, it's on release
-	if can_focus() or can_projectile():
-		if Input.is_action_just_pressed("attack_secondary"):
-			charge_secondary_attack()
-		# Check is_secondary_pressed to avoid attacking when key 
-		# is pressed in UI context and realeased in game context
-		elif Input.is_action_just_released("attack_secondary") and is_secondary_pressed:
-			execute_secondary_attack()
 	else:
-		if Input.is_action_just_pressed("attack_secondary"):
-			execute_secondary_attack()
+		# Primary attack is on press
+		if Input.is_action_just_pressed("attack_primary"):
+			add_to_combo("l")
+		# If no charging, secondary attack is on press.
+		# Otherwise, it's on release
+		if can_focus() or can_projectile():
+			if Input.is_action_just_pressed("attack_secondary"):
+				charge_secondary_attack()
+			# Check is_secondary_pressed to avoid attacking when key 
+			# is pressed in UI context and realeased in game context
+			elif Input.is_action_just_released("attack_secondary") and is_secondary_pressed:
+				execute_secondary_attack()
+		else:
+			if Input.is_action_just_pressed("attack_secondary"):
+				execute_secondary_attack()
 	
 	if not combo.is_empty() and not is_secondary_pressed and Time.get_ticks_msec() - last_combo_addition > combo_cancel_time * 1000:
 		reset_combo()
@@ -283,7 +285,7 @@ func execute_secondary_attack():
 	else:
 		add_to_combo("r")
 	
-	turn_on_charging_vfx(null)
+	turn_off_charging_vfx()
 	
 
 func add_to_combo(move):
@@ -361,10 +363,10 @@ func hit(area, hitbox):
 			attack_info = uppward_attack_info
 		
 		area.hit(attack_info.get_translated(global_basis))
+		play_audio(hit_sfx.pick_random())
 	
 	CameraShaker.shake(0.25, 0.2)
 	
-	play_audio(hit_sfx.pick_random())
 	
 	#if decal_raycast.is_colliding():
 		#create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
@@ -378,6 +380,7 @@ func hit(area, hitbox):
 func hit_blocked(area : Guardbox, hitbox):
 	if area.is_perfect:
 		CameraShaker.shake(0.5, 0.2)
+		stats.got_perfect_blocked()
 	else:
 		CameraShaker.shake(0.25, 0.2)
 	
@@ -387,13 +390,14 @@ func hit_blocked(area : Guardbox, hitbox):
 	area.guard(attack_info.get_translated(global_basis), hitbox)
 	
 	play_guard_vfx(hitbox.global_position)
+	play_audio(clash_sfx.pick_random())
 	anim_state_machine.start("idle")
 	
 
 func guarded(attack_info, hitbox):
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
-	play_audio(hit_sfx.pick_random())
+	play_audio(clash_sfx.pick_random())
 	
 	if stats:
 		stats.deplete_stamina(attack_info.soft_damage)
@@ -406,7 +410,7 @@ func perfect_guarded(attack_info, hitbox):
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(pos)
 	play_perfect_guard_vfx(pos)
-	play_audio(hit_sfx.pick_random())
+	play_audio(clash_sfx.pick_random())
 	
 
 func play_guard_vfx(_position):
@@ -428,10 +432,8 @@ func guard_break():
 	# Play vfx
 	CameraShaker.shake(0.25, 0.2)
 	guard_break_vfx.restart()
-
-	stats.is_guard_broken = true
-	await get_tree().create_timer(guard_break_duration).timeout
-	stats.is_guard_broken = false
+	
+	stats.start_guard_break(guard_break_duration)
 	
 
 func heavy_clash(area : Hitbox, hitbox):
@@ -451,7 +453,7 @@ func heavy_clash(area : Hitbox, hitbox):
 	
 	is_in_blade_lock = true
 	
-	play_audio(hit_sfx.pick_random())
+	play_audio(clash_sfx.pick_random())
 	
 
 func join_blade_lock(blade_lock : BladeLock):
@@ -566,22 +568,24 @@ func animation_changed(new_name):
 		hitbox.set_heavy(is_heavy)
 		upward_hitbox.set_active(false)
 		set_trail_enabled(true)
-		
 		play_audio(swing_sfx.pick_random())
-		
+		signal_attack()
 	elif new_name in ["heavy_2"]:
 		upward_hitbox.clear_collisions() # Needed in case of attack to attack transition
 		upward_hitbox.set_active(true)
 		upward_hitbox.set_heavy(is_heavy)
 		hitbox.set_active(false)
 		set_trail_enabled(true)
-		
 		play_audio(swing_sfx.pick_random())
+		signal_attack()
 	
 
 func turn_on_charging_vfx(particles):
 	for vfx in [charging_vfx, projectile_charging_vfx]:
 		vfx.emitting = vfx == particles
+	
+func turn_off_charging_vfx():
+	turn_on_charging_vfx(null)
 	
 
 func set_trail_enabled(state):
@@ -640,11 +644,11 @@ func fetch_skills():
 	
 
 func can_focus():
-	return  "Focused" in katana_skills
+	return "Focused" in katana_skills
 	
 
 func can_projectile():
-	return  "Projectile" in katana_skills
+	return "Projectile" in katana_skills
 	
 
 func context_changed(old_context, new_context):
@@ -656,9 +660,11 @@ func context_changed(old_context, new_context):
 
 func start_guard():
 	is_guarding = true
-	guard_start = Time.get_ticks_msec()
 	guard_hitbox.set_active(true)
 	guard_hitbox.set_perfect(perfect_guard_window)
+	is_secondary_pressed = false # Cancel charging if pressed R shortly before L
+	turn_off_charging_vfx()
+	signal_defend()
 	
 
 func stop_guard():

@@ -33,7 +33,7 @@ func _ready():
 		default_state.Enter(self)
 		current_state = default_state
 	
-	stats.heavy_hit_during_guard_break.connect(push_back)
+	stats.on_heavy_hit.connect(push_back)
 	
 	var args = [
 		{
@@ -70,7 +70,8 @@ func _process(delta):
 func _physics_process(delta):
 	# State Process
 	if current_state:
-		current_state.PhysicsUpdate(self, delta)
+		if not stats.is_staggered or current_state == states["pushed"]:
+			current_state.PhysicsUpdate(self, delta)
 	
 
 func on_child_transition(state, new_state_name):

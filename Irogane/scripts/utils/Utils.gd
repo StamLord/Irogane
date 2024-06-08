@@ -67,3 +67,7 @@ static func random_color(seed : int = 0) -> Color:
 	print(color)
 	return color
 	
+
+static func warning(node : Node, message : String):
+	print(node.name, ": ", message)
+	

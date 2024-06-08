@@ -4,7 +4,7 @@ class_name NpcStateMachine
 # References
 @onready var states_parent = $states # States Parent
 @onready var pathfinding = $character_body # Pathfinding agent
-@onready var stats = $stats
+@onready var stats = %stats
 @onready var awareness_agent = %AwarenessAgent
 @onready var schedule_agent = $ScheduleAgent
 
@@ -20,6 +20,9 @@ signal on_state_enter(state_name)
 signal on_state_exit(state_name)
 
 func _ready():
+	if stats != null:
+		stats.on_heavy_hit.connect(push_back)
+	
 	for child in states_parent.get_children():
 		if child is NpcState:
 			states[child.name.to_lower()] = child
@@ -93,6 +96,11 @@ func get_total_path_distance():
 			distance += path_points[i - 1].distance_to(path_points[i])
 	
 	return distance
+	
+
+func push_back(force : Vector3):
+	if pathfinding:
+		pathfinding.start_push_back(force)
 	
 
 func save_data():

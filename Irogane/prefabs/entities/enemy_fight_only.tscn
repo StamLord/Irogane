@@ -1,0 +1,326 @@
+[gd_scene load_steps=43 format=3 uid="uid://dueun31swuwfw"]
+
+[ext_resource type="Script" path="res://scripts/ai/NpcStateMachine.gd" id="1_gn8ms"]
+[ext_resource type="Script" path="res://scripts/ai/states/Fight.gd" id="2_oa7qw"]
+[ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="3_5evkm"]
+[ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="4_ngi55"]
+[ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="5_8ijku"]
+[ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="6_h3wum"]
+[ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="7_6djv1"]
+[ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="8_6evpv"]
+[ext_resource type="PackedScene" uid="uid://kc3pcjl0elxi" path="res://assets/models/katana_pov/scene/katana_pov_hands.tscn" id="9_jt5ce"]
+[ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="10_7mnav"]
+[ext_resource type="Texture2D" uid="uid://uq065hbophxm" path="res://assets/textures/vfx/cloud_128.png" id="10_xkw8e"]
+[ext_resource type="Script" path="res://scripts/vfx/distance_emission.gd" id="11_ji2s1"]
+[ext_resource type="Script" path="res://scripts/stats/hit_material_color.gd" id="11_ucpms"]
+[ext_resource type="Script" path="res://scripts/stats/death_despawn.gd" id="12_x16d4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o86t6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r67sv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs3uj"]
+albedo_color = Color(0.764706, 0.764706, 0.764706, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u2a8l"]
+radius = 0.25
+
+[sub_resource type="BoxMesh" id="BoxMesh_oea8h"]
+size = Vector3(0.75, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66wce"]
+albedo_color = Color(0.921569, 0, 0.337255, 1)
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ymceo"]
+length = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t1jkw"]
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4pqtp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t23qw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi3h5"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.368627)
+
+[sub_resource type="Curve" id="Curve_3wi8b"]
+_data = [Vector2(0.75, 1), 0.0, -4.0, 0, 1, Vector2(1, 0), -4.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ly1p"]
+curve = SubResource("Curve_3wi8b")
+
+[sub_resource type="Curve" id="Curve_47wfu"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l30r6"]
+curve = SubResource("Curve_47wfu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7yal"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_l30r6")
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color = Color(0.388235, 0.560784, 0.772549, 1)
+alpha_curve = SubResource("CurveTexture_7ly1p")
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu3pd"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_7mnav")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_74gse"]
+material = SubResource("StandardMaterial3D_bu3pd")
+
+[sub_resource type="Curve" id="Curve_4vlws"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4dhhd"]
+curve = SubResource("Curve_4vlws")
+
+[sub_resource type="Gradient" id="Gradient_m07h2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pxer7"]
+gradient = SubResource("Gradient_m07h2")
+
+[sub_resource type="Curve" id="Curve_fxl0c"]
+_data = [Vector2(0, 0), 0.0, 2.24649, 0, 0, Vector2(0.664975, 0.852632), 0.717814, 0.717814, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dk5w4"]
+curve = SubResource("Curve_fxl0c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_unlqf"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_4dhhd")
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.4
+gravity = Vector3(0, 1, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_dk5w4")
+color = Color(0.537255, 0.580392, 0.780392, 0.376471)
+color_ramp = SubResource("GradientTexture1D_pxer7")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kc8dx"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("10_xkw8e")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_b5h67"]
+material = SubResource("StandardMaterial3D_kc8dx")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r106g"]
+radius = 4.0
+
+[node name="enemy_fight_only" type="Node3D" node_paths=PackedStringArray("default_state")]
+script = ExtResource("1_gn8ms")
+default_state = NodePath("states/Fight")
+
+[node name="states" type="Node3D" parent="."]
+
+[node name="Fight" type="Node3D" parent="states"]
+script = ExtResource("2_oa7qw")
+movement_speed = 5.0
+rotation_speed = 10.0
+
+[node name="stats" parent="." node_paths=PackedStringArray("hurtboxes") instance=ExtResource("3_5evkm")]
+unique_name_in_owner = true
+hurtboxes = [NodePath("../character_body/Hurtbox")]
+
+[node name="character_body" type="CharacterBody3D" parent="."]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("4_ngi55")
+acceleration = 20
+rotation_speed = 2
+push_force = 120
+
+[node name="Hurtbox" type="Area3D" parent="character_body"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("5_8ijku")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character_body/Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_o86t6")
+
+[node name="collider" type="CollisionShape3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_r67sv")
+
+[node name="mesh" type="MeshInstance3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_fs3uj")
+mesh = SubResource("CapsuleMesh_u2a8l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="character_body/mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.75, -0.201)
+mesh = SubResource("BoxMesh_oea8h")
+surface_material_override/0 = SubResource("StandardMaterial3D_66wce")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="character_body"]
+path_height_offset = 0.6
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="step_check" type="RayCast3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+target_position = Vector3(0, -3, 0)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="door_check" type="RayCast3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0.67451, 0, 1)
+
+[node name="step_separation" type="CollisionShape3D" parent="character_body"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
+shape = SubResource("SeparationRayShape3D_ymceo")
+
+[node name="interactive" type="Area3D" parent="character_body"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_h3wum")
+interaction_text = "Talk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character_body/interactive"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_t1jkw")
+
+[node name="AwarenessAgent" type="Area3D" parent="character_body"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 0)
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("7_6djv1")
+sight_angle = Vector2(90, 45)
+detection_rate = 2.0
+undetection_rate = 1.0
+
+[node name="collider" type="CollisionShape3D" parent="character_body/AwarenessAgent"]
+shape = SubResource("SphereShape3D_4pqtp")
+
+[node name="sight_cast" type="ShapeCast3D" parent="character_body/AwarenessAgent"]
+shape = SubResource("SphereShape3D_t23qw")
+target_position = Vector3(0, 0, 0)
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="vision_cone" type="CSGCombiner3D" parent="character_body/AwarenessAgent"]
+visible = false
+
+[node name="sphere_mesh" type="CSGSphere3D" parent="character_body/AwarenessAgent/vision_cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0346708)
+radius = 5.0
+material = SubResource("StandardMaterial3D_oi3h5")
+
+[node name="cone_mesh" type="CSGCylinder3D" parent="character_body/AwarenessAgent/vision_cone"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.5)
+operation = 1
+height = 5.0
+cone = true
+material = SubResource("StandardMaterial3D_oi3h5")
+
+[node name="npc_audio_manager" type="Node3D" parent="character_body"]
+script = ExtResource("8_6evpv")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="character_body/npc_audio_manager"]
+bus = &"Sound"
+
+[node name="katana_pov_hands" parent="character_body" instance=ExtResource("9_jt5ce")]
+
+[node name="vfx" type="Node3D" parent="character_body"]
+
+[node name="guard_break" type="GPUParticles3D" parent="character_body/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.758, -0.85)
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_q7yal")
+draw_pass_1 = SubResource("QuadMesh_74gse")
+
+[node name="push_back_dust_l" type="GPUParticles3D" parent="character_body/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_unlqf")
+draw_pass_1 = SubResource("QuadMesh_b5h67")
+script = ExtResource("11_ji2s1")
+emission_per_unit = 16
+
+[node name="push_back_dust_r" type="GPUParticles3D" parent="character_body/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+emitting = false
+amount = 256
+lifetime = 2.0
+explosiveness = 0.25
+process_material = SubResource("ParticleProcessMaterial_unlqf")
+draw_pass_1 = SubResource("QuadMesh_b5h67")
+script = ExtResource("11_ji2s1")
+emission_per_unit = 16
+
+[node name="hit_debug" type="Node3D" parent="." node_paths=PackedStringArray("stats", "model")]
+script = ExtResource("11_ucpms")
+stats = NodePath("../stats")
+model = NodePath("../character_body/mesh")
+flash_color = Color(0.603922, 0.0431373, 0, 1)
+
+[node name="despawner" type="Node3D" parent="." node_paths=PackedStringArray("stats", "to_despawn")]
+script = ExtResource("12_x16d4")
+stats = NodePath("../stats")
+to_despawn = NodePath("..")
+
+[node name="comrades_cast" type="ShapeCast3D" parent="."]
+enabled = false
+shape = SubResource("SphereShape3D_r106g")
+
+[connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]

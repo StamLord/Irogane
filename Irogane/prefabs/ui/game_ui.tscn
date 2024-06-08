@@ -11,10 +11,10 @@
 [ext_resource type="Script" path="res://scripts/ui/carry_progress_bar.gd" id="9_554op"]
 [ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="10_pnsv3"]
 [ext_resource type="PackedScene" uid="uid://cxvwku347bsj8" path="res://prefabs/ui/glossary_ui.tscn" id="11_tb3gr"]
-[ext_resource type="PackedScene" uid="uid://c8gfwufu2qdh8" path="res://prefabs/ui/system_menu.tscn" id="12_dwafj"]
 [ext_resource type="Script" path="res://prefabs/ui/quests_window.gd" id="14_amsqm"]
 [ext_resource type="Script" path="res://scripts/vfx/screen_vfx.gd" id="15_l8i5o"]
 [ext_resource type="Shader" uid="uid://bcfjtc6qqrdw4" path="res://prefabs/vfx/vignette_shader.tres" id="16_ikay5"]
+[ext_resource type="PackedScene" uid="uid://c8gfwufu2qdh8" path="res://prefabs/ui/system_menu.tscn" id="16_lukct"]
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
 [ext_resource type="Shader" uid="uid://bx4wlincejp4h" path="res://prefabs/ui/hurt_vfx.tres" id="17_lk0xl"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="18_2kamu"]
@@ -22,29 +22,29 @@
 [ext_resource type="Texture2D" uid="uid://c01iri26vnldi" path="res://assets/textures/vfx/line_0.png" id="19_tddid"]
 [ext_resource type="Texture2D" uid="uid://cxkwbrybp8tjo" path="res://assets/textures/vfx/glare_0.png" id="20_80lkk"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
-font_size = 24
-
-[sub_resource type="Curve" id="Curve_3ssjj"]
+[sub_resource type="Curve" id="Curve_12jqb"]
 max_value = 4.0
-_data = [Vector2(0, 0), 0.0, 26.1538, 0, 0, Vector2(0.245763, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.00884955, 0.0311458), 0.0, 0.0, 0, 0, Vector2(0.253687, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Curve" id="Curve_ugfdm"]
+[sub_resource type="Curve" id="Curve_7ldeh"]
 max_value = 0.1
-_data = [Vector2(0, 0), 0.0, 2.35385, 0, 0, Vector2(0.128571, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.138643, 0.1), -0.291806, -0.00690082, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dha70"]
 shader = ExtResource("16_ikay5")
 shader_parameter/FloatParameter = 0.01
-shader_parameter/color = Color(0.380392, 1, 0, 1)
-shader_parameter/center = 0.0
+shader_parameter/color = Color(0.827451, 0, 0, 1)
+shader_parameter/center = 0.35
 shader_parameter/strength = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dkd7g"]
 shader = ExtResource("17_lk0xl")
 shader_parameter/distortion_amount = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mr78"]
+font_size = 24
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a3otr"]
 blend_mode = 1
@@ -292,8 +292,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("15_l8i5o")
-medicine_curve = SubResource("Curve_3ssjj")
-hurt_curve = SubResource("Curve_ugfdm")
+vignette_curve = SubResource("Curve_12jqb")
+distortion_curve = SubResource("Curve_7ldeh")
 
 [node name="medicine_vfx" type="Panel" parent="screen_vfx"]
 material = SubResource("ShaderMaterial_dha70")
@@ -312,6 +312,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="vignette_vfx" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dha70")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="distortion_vfx" type="Panel" parent="screen_vfx"]
+material = SubResource("ShaderMaterial_dkd7g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="cursor" type="TextureRect" parent="."]
 layout_mode = 1
@@ -618,37 +638,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 
-[node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
+[node name="system_menu" parent="." instance=ExtResource("16_lukct")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("15_l8i5o")
-medicine_curve = SubResource("Curve_3ssjj")
-hurt_curve = SubResource("Curve_ugfdm")
 
-[node name="medicine_vfx" type="Panel" parent="screen_vfx"]
-material = SubResource("ShaderMaterial_dha70")
+[node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
+visible = false
+visibility_layer = 32769
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="hurt_vfx" type="Panel" parent="screen_vfx"]
-material = SubResource("ShaderMaterial_dkd7g")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 
 [node name="blade_lock_break" type="Control" parent="."]

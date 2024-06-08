@@ -1,4 +1,4 @@
-extends Node3D
+extends WeaponBase
 
 @export var valid_states_for_input = ["idle", "chain"]
 @export var combo_cancel_time = 1
@@ -125,12 +125,14 @@ func _process(delta):
 		
 		if Input.is_action_just_pressed("defend"):
 			anim_state_machine.start("defend_start")
+			signal_defend()
 			add_to_combo("d")
 		elif anim_state_machine.get_current_node() == "defend" and not Input.is_action_pressed("defend"):
 			anim_state_machine.travel("idle")
 		elif Input.is_action_just_pressed("attack_primary"):
 			#if valid_state_for_input():
 			last_primary = Time.get_ticks_msec()
+			signal_attack()
 			if is_primary_and_secondary():
 				anim_state_machine.start("double_punch")
 				add_to_combo("l+r")
@@ -140,7 +142,7 @@ func _process(delta):
 		elif Input.is_action_just_pressed("attack_secondary"):
 			#if valid_state_for_input():
 			last_secondary = Time.get_ticks_msec()
-			
+			signal_attack()
 			if is_primary_and_secondary():
 				anim_state_machine.start("double_punch")
 				add_to_combo("l+r")
@@ -273,7 +275,7 @@ func hit(area, hitbox):
 		ripple_vfx.global_position = hitbox.global_position
 		ripple_vfx.emit_particle(ripple_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 		
-		audio.play(hit_sounds.pick_random(), hitbox.global_position)
+		audio.play_positional_sound(hit_sounds.pick_random(), hitbox.global_position)
 	
 
 func start_animate_air():

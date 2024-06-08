@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=161 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -55,6 +55,8 @@
 [ext_resource type="Texture2D" uid="uid://d15my5xovi2rm" path="res://assets/textures/vfx/slash_2.png" id="38_e1qu1"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
+[ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="43_38fde"]
+[ext_resource type="Script" path="res://scripts/weapons/kick.gd" id="43_xcpvm"]
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
 
@@ -340,6 +342,8 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_1s8w4"]
 material = SubResource("StandardMaterial3D_imqxh")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vikjk"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
 
@@ -368,40 +372,40 @@ max_value = 360.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ibynj"]
+[sub_resource type="CurveTexture" id="CurveTexture_lbnsw"]
 curve = SubResource("Curve_y01dl")
 
 [sub_resource type="Gradient" id="Gradient_jk3ou"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3bx3h"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tqjeu"]
 gradient = SubResource("Gradient_jk3ou")
 
 [sub_resource type="Curve" id="Curve_pvrf3"]
 _data = [Vector2(0, 0), 0.0, 2.24649, 0, 0, Vector2(0.664975, 0.852632), 0.717814, 0.717814, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_le6v8"]
+[sub_resource type="CurveTexture" id="CurveTexture_ix16f"]
 curve = SubResource("Curve_pvrf3")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30waa"]
 emission_shape = 1
 emission_sphere_radius = 0.2
 angle_max = 360.0
-angle_curve = SubResource("CurveTexture_ibynj")
+angle_curve = SubResource("CurveTexture_lbnsw")
 direction = Vector3(0, 1, 0)
 initial_velocity_min = 0.2
 initial_velocity_max = 0.4
 gravity = Vector3(0, 1, 0)
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_le6v8")
+scale_curve = SubResource("CurveTexture_ix16f")
 color = Color(0.537255, 0.580392, 0.780392, 0.376471)
-color_ramp = SubResource("GradientTexture1D_3bx3h")
+color_ramp = SubResource("GradientTexture1D_tqjeu")
 turbulence_enabled = true
 turbulence_noise_speed = Vector3(0, 1, 0)
 turbulence_influence_min = 0.05
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvrxs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_helxp"]
 transparency = 1
 blend_mode = 1
 vertex_color_use_as_albedo = true
@@ -413,13 +417,13 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_7s8xr"]
-material = SubResource("StandardMaterial3D_uvrxs")
+material = SubResource("StandardMaterial3D_helxp")
 
 [sub_resource type="Curve" id="Curve_mt1qp"]
 _data = [Vector2(0.75, 1), 0.0, -4.0, 0, 1, Vector2(1, 0), -4.0, 0.0, 1, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_7ly1p"]
+[sub_resource type="CurveTexture" id="CurveTexture_1fdjk"]
 curve = SubResource("Curve_mt1qp")
 
 [sub_resource type="Curve" id="Curve_v8quj"]
@@ -428,14 +432,14 @@ max_value = 360.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_l30r6"]
+[sub_resource type="CurveTexture" id="CurveTexture_xmrtt"]
 curve = SubResource("Curve_v8quj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xrgww"]
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 angle_max = 360.0
-angle_curve = SubResource("CurveTexture_l30r6")
+angle_curve = SubResource("CurveTexture_xmrtt")
 direction = Vector3(0, 0, 1)
 initial_velocity_min = 1.0
 initial_velocity_max = 6.0
@@ -443,10 +447,10 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 0.2
 color = Color(0.388235, 0.560784, 0.772549, 1)
-alpha_curve = SubResource("CurveTexture_7ly1p")
+alpha_curve = SubResource("CurveTexture_1fdjk")
 anim_offset_max = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu3pd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b66qp"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -459,7 +463,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_tb2lv"]
-material = SubResource("StandardMaterial3D_bu3pd")
+material = SubResource("StandardMaterial3D_b66qp")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3d1aj"]
 
@@ -727,6 +731,7 @@ spot_angle = 60.0
 script = ExtResource("27_wn7je")
 
 [node name="weapon_manager" type="Node3D" parent="head/main_camera"]
+unique_name_in_owner = true
 script = ExtResource("18_u5xda")
 
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
@@ -813,7 +818,6 @@ bus = &"Sound"
 
 [node name="first_person_rig" parent="head/main_camera/weapon_manager/melee" instance=ExtResource("20_1s0sd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
-
 
 [node name="sword" type="Node3D" parent="head/main_camera/weapon_manager" node_paths=PackedStringArray("stats", "state_machine", "camera_look")]
 visible = false
@@ -955,7 +959,6 @@ script = ExtResource("26_5mim7")
 
 [node name="shuriken_ring_menu" parent="head/main_camera/weapon_manager/shuriken" instance=ExtResource("31_ep6ff")]
 visible = false
-open_button = ""
 
 [node name="smoke_vanish_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/shuriken"]
 emitting = false
@@ -978,6 +981,41 @@ script = ExtResource("37_60ul2")
 [node name="sub_decal" type="Decal" parent="head/main_camera/weapon_manager/skill_zone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
 visible = false
+
+[node name="kick" type="Node3D" parent="head/main_camera/weapon_manager"]
+script = ExtResource("43_xcpvm")
+
+[node name="Hitbox" type="Area3D" parent="head/main_camera/weapon_manager/kick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, -0.5)
+collision_layer = 32
+collision_mask = 32
+monitoring = false
+script = ExtResource("43_38fde")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/main_camera/weapon_manager/kick/Hitbox"]
+shape = SubResource("BoxShape3D_vikjk")
+
+[node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/kick"]
+emitting = false
+amount = 24
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_285xo")
+draw_pass_1 = SubResource("QuadMesh_mrejr")
+
+[node name="audio" type="Node3D" parent="head/main_camera/weapon_manager/kick"]
+script = ExtResource("29_c2b1q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
 
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
@@ -1113,46 +1151,6 @@ state_machine = NodePath("..")
 [node name="audio" type="Node3D" parent="footsteps"]
 script = ExtResource("29_c2b1q")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D6" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D7" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D8" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D9" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D10" type="AudioStreamPlayer3D" parent="footsteps/audio"]
-volume_db = -18.0
-bus = &"Sound"
-
 [node name="sound_emitter" type="Node3D" parent="footsteps"]
 script = ExtResource("36_ldcyx")
 
@@ -1169,6 +1167,12 @@ lifetime = 2.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_tljm3")
 draw_pass_1 = SubResource("SphereMesh_qy1qf")
+
+[node name="carpet_check" type="RayCast3D" parent="footsteps"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -1.2, 0)
+collision_mask = 64
 
 [node name="model" type="Node3D" parent="."]
 

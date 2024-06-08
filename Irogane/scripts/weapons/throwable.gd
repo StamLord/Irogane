@@ -1,4 +1,4 @@
-extends Node3D
+extends WeaponBase
 class_name Throwable
 	
 enum ShootPos {BOTTOM_RIGHT, BOTTOM_LEFT, TOP_RIGHT, TOP_LEFT}
@@ -148,6 +148,8 @@ func change_shoot_pos_if_needed():
 	
 	shoot_pos = ShootPos.BOTTOM_RIGHT
 	position = model_screen_pos[shoot_pos]
+	
+	signal_attack()
 	
 
 func _process(delta):
