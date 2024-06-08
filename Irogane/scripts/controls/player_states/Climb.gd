@@ -139,6 +139,7 @@ func PhysicsUpdate(body, delta):
 	
 	# Jump State
 	if Input.is_action_just_pressed("jump"):
+		body.jump_direction = wall_normal
 		Transitioned.emit(self, "jump")
 		return
 	

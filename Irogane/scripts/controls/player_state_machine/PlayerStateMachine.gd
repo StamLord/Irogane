@@ -16,6 +16,7 @@ var states : Dictionary = {}
 var last_direction = Vector3.ZERO
 var last_speed = 0
 var last_body_velocity
+var jump_direction = Vector3.UP
 
 var rope_object = null
 

@@ -59,13 +59,13 @@ func PhysicsUpdate(body, delta):
 	# Apply gravity
 	velocity.y -= gravity * delta
 	
+	var target_velocity = direction * speed
 	# If we are moving in air, we want snappy acceleration
 	if input_dir:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * air_move_acceleration)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * air_move_acceleration)
-	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * air_acceleration)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * air_acceleration)
+		if should_accelerate(velocity.x, target_velocity.x):
+			velocity.x = lerp(velocity.x, target_velocity.x, delta * air_move_acceleration)
+		if should_accelerate(velocity.z, target_velocity.z):
+			velocity.z = lerp(velocity.z, target_velocity.z, delta * air_move_acceleration)
 	
 	body.velocity = velocity
 	body.move_and_slide()
@@ -156,4 +156,13 @@ func Exit(body):
 		state_machine.stats.deplete_health(damage)
 	
 	apply_fall_damage = false
+	
+
+func should_accelerate(current, target):
+	# If same direction, target must be larger to accelerate
+	if current <= 0 and target < 0 or current >= 0 and target > 0:
+		return abs(target) > abs(current)
+	
+	# If opposing directions, always accelerate to target
+	return true
 	
