@@ -6,6 +6,12 @@ enum ArgumentType {
 	STRING
 }
 
+const ArgumentTypeNameMapper = {
+	ArgumentType.INT: "INT",
+	ArgumentType.FLOAT: "FLOAT",
+	ArgumentType.STRING: "STRING",
+}
+
 @export var COMMAND_NAME_COLUMN_LENGTH = 65
 # command_ name: {
 #	"function": Callable (args) -> result_string	- function to run, prints 'result_string' to console

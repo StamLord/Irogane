@@ -10,6 +10,15 @@ extends UIWindow
 @export var COMMAND_NAME_COLUMN_LENGTH = 80
 @export var RAY_LENGTH = 1000.0
 
+enum Flags {
+	VERBOSE,
+}
+
+const flag_mapper = {
+	"-v": Flags.VERBOSE,
+	"-V": Flags.VERBOSE,
+}
+
 var message_buffer: PackedStringArray = []
 
 var command_history: PackedStringArray = []
@@ -20,10 +29,26 @@ var found_comment_index: int
 
 var commands = {}
 
+func parse_arguments(args: Array, flags: Array):
+	var clean_args = []
+	
+	for arg in args:
+		if arg in flag_mapper:
+			flags.push_back(flag_mapper[arg])
+		else:
+			clean_args.push_back(arg)
+	
+	return clean_args
+	
+
 func print_help(args):
-	if args.size() > 0:
-		# specific help for 'func_name'
-		var func_name = args[0]
+	var verbose = false
+	var flags = []
+	var clean_args = parse_arguments(args, flags)
+	
+	if clean_args.size() > 0:
+		var func_name = clean_args[0]
+		## TODO: handle verbosity for command specific help
 		return DebugCommandsManager.get_command_usage(func_name)
 		
 	var help_string = "[color=green][b]------------------------------HELP------------------------------[/b][/color]\n"
@@ -41,17 +66,19 @@ func print_help(args):
 		var args_detail = ""
 		for arg in command_meta.args:
 			command_name = str(command_name, " <", arg.arg_name, ">")
-			## prints info per arg
-			#var arg_name = str("    -[color=#3f6a8a]", arg.arg_name,"[/color]")
-			#
-			#var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - arg_name.length()
-			#var spaces_string
-			#var spaces = []
-			#spaces.resize(spaces_to_add)
-			#spaces.fill(" ")
-			#spaces_string = "".join(spaces)
-			#print("arg ", arg)
-			#args_detail = str(args_detail, arg_name, spaces_string, arg.arg_type, "  ", arg.arg_desc, "\n")
+			
+			if Flags.VERBOSE in flags:
+				var arg_name = str("    -[color=#3f6a8a]", arg.arg_name,"[/color]")
+				
+				var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - arg_name.length()
+				var spaces_string
+				var spaces = []
+				spaces.resize(spaces_to_add)
+				spaces.fill(" ")
+				spaces_string = "".join(spaces)
+				
+				var arg_type = "(" + DebugCommandsManager.ArgumentTypeNameMapper[arg.arg_type] + ")"
+				args_detail = str(args_detail, arg_name, spaces_string, arg_type, "  ", arg.arg_desc, "\n")
 		
 		var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - command_name.length()
 		var spaces_string = ""
@@ -71,7 +98,7 @@ func print_help(args):
 	
 
 func add_help_command():
-	DebugCommandsManager.add_command("help", print_help, [], "shows all commands, use optional <command_name> to show help for a specific command")
+	DebugCommandsManager.add_command("help", print_help, [], "shows all commands, use -v flag for verbosity, use optional <command_name> to show help for a specific command")
 	
 
 func add_clear_command():
