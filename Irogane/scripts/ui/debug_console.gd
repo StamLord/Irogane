@@ -86,7 +86,7 @@ func _ready():
 
 func grab_object_with_ray_cast():
 	var mouse_pos = get_viewport().get_mouse_position()
-	var camera3d = DebugCommandsManager.main_camera
+	var camera3d = CameraEntity.main_camera
 	var from = camera3d.project_ray_origin(mouse_pos)
 	var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
 	var query = PhysicsRayQueryParameters3D.create(from, to)

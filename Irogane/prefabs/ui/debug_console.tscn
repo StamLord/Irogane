@@ -73,7 +73,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 2
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
+text = "this is the test text 
+more lines
+more lines
+yeah baby
+abcdefghijklmno"
 scroll_following = true
 selection_enabled = true
 

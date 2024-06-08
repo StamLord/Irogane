@@ -7,7 +7,6 @@ enum ArgumentType {
 }
 
 @export var COMMAND_NAME_COLUMN_LENGTH = 65
-var main_camera
 # command_ name: {
 #	"function": Callable (args) -> result_string	- function to run, prints 'result_string' to console
 # 	"description: String							- description of command
@@ -99,8 +98,4 @@ func run_command(command_name: String, args: PackedStringArray):
 
 func get_all_commands():
 	return commands_db
-	
-
-func set_main_camera(camera):
-	main_camera = camera
 	
