@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=62 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://prefabs/ui/quests_window.gd" id="14_amsqm"]
 [ext_resource type="Script" path="res://scripts/vfx/screen_vfx.gd" id="15_l8i5o"]
 [ext_resource type="Shader" uid="uid://bcfjtc6qqrdw4" path="res://prefabs/vfx/vignette_shader.tres" id="16_ikay5"]
+[ext_resource type="PackedScene" uid="uid://c8gfwufu2qdh8" path="res://prefabs/ui/system_menu.tscn" id="16_lukct"]
 [ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="17_07pmg"]
 [ext_resource type="Shader" uid="uid://bx4wlincejp4h" path="res://prefabs/ui/hurt_vfx.tres" id="17_lk0xl"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="18_2kamu"]
@@ -636,6 +637,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
+
+[node name="system_menu" parent="." instance=ExtResource("16_lukct")]
+visible = false
+layout_mode = 1
 
 [node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
 visible = false
