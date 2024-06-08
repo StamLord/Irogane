@@ -45,13 +45,20 @@ func _ready():
 
 func make_a_step():
 	var range
+	var sound
+	var volume
+	
 	if carpet_check.is_colliding():
 		range = carpet_sound_range
+		sound = carpet_footstep_sounds.pick_random()
+		volume = carpet_volume
 	else:
 		range = steps_sound_range
+		sound = footstep_sounds.pick_random()
+		volume = stone_volume
 	
 	emit_stealth_sound(range)
-	play_footstep_sfx()
+	play_footstep_sfx(sound, volume)
 	
 
 func _process(_delta):
@@ -72,17 +79,7 @@ func emit_stealth_sound(range):
 		sound_emitter.emit_sound(global_position, range)
 	
 
-func play_footstep_sfx():
-	var sound
-	var volume
-	
-	if carpet_check.is_colliding():
-		sound = carpet_footstep_sounds.pick_random()
-		volume = carpet_volume
-	else:
-		sound = footstep_sounds.pick_random()
-		volume = stone_volume
-	
+func play_footstep_sfx(sound, volume):
 	var sound_pitch = randf_range(0.8, 1.2)
 	audio_player.play(sound, sound_pitch, volume)
 	
