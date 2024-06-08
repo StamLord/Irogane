@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=161 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -1168,7 +1168,7 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_tljm3")
 draw_pass_1 = SubResource("SphereMesh_qy1qf")
 
-[node name="floor_material_check" type="RayCast3D" parent="footsteps"]
+[node name="carpet_check" type="RayCast3D" parent="footsteps"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, -1.2, 0)
