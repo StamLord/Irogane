@@ -6,8 +6,13 @@ enum ArgumentType {
 	STRING
 }
 
+const ArgumentTypeNameMapper = {
+	ArgumentType.INT: "INT",
+	ArgumentType.FLOAT: "FLOAT",
+	ArgumentType.STRING: "STRING",
+}
+
 @export var COMMAND_NAME_COLUMN_LENGTH = 65
-var main_camera
 # command_ name: {
 #	"function": Callable (args) -> result_string	- function to run, prints 'result_string' to console
 # 	"description: String							- description of command
@@ -22,7 +27,7 @@ var commands_db = {}
 
 func get_command_usage(command_name: String):
 	if command_name not in commands_db:
-		return "[color=red]ERROR[/color]: Command not found: '%s', this should not happen" % command_name
+		return "[color=red]ERROR[/color]: Command not found: '%s', use 'help'" % command_name
 	
 	var args_string = ""
 	
@@ -99,8 +104,4 @@ func run_command(command_name: String, args: PackedStringArray):
 
 func get_all_commands():
 	return commands_db
-	
-
-func set_main_camera(camera):
-	main_camera = camera
 	

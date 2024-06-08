@@ -7,8 +7,17 @@ extends UIWindow
 @export var message_buffer_limit = 200
 @export var command_history_limit = 100
 @export var max_suggestions = 8
-@export var COMMAND_NAME_COLUMN_LENGTH = 60
+@export var COMMAND_NAME_COLUMN_LENGTH = 80
 @export var RAY_LENGTH = 1000.0
+
+enum Flags {
+	VERBOSE,
+}
+
+const flag_mapper = {
+	"-v": Flags.VERBOSE,
+	"-V": Flags.VERBOSE,
+}
 
 var message_buffer: PackedStringArray = []
 
@@ -20,19 +29,33 @@ var found_comment_index: int
 
 var commands = {}
 
-func print_help(args):
-	if args.size() > 0:
-		# specific help for 'func_name'
-		var func_name = args[0]
-		
-		if func_name not in commands:
-			push_message("[color=red]ERROR[/color]: Command not found: '%s', use 'help'" % func_name)
+func parse_arguments(args: Array, flags: Array):
+	var clean_args = []
 	
+	for arg in args:
+		if arg in flag_mapper:
+			flags.push_back(flag_mapper[arg])
+		else:
+			clean_args.push_back(arg)
+	
+	return clean_args
+	
+
+func print_help(args):
+	var verbose = false
+	var flags = []
+	var clean_args = parse_arguments(args, flags)
+	
+	if clean_args.size() > 0:
+		var func_name = clean_args[0]
+		## TODO: handle verbosity for command specific help
 		return DebugCommandsManager.get_command_usage(func_name)
 		
 	var help_string = "[color=green][b]------------------------------HELP------------------------------[/b][/color]\n"
 	
-	for command in commands: 
+	var command_keys = commands.keys()
+	command_keys.sort()
+	for command in command_keys: 
 		var command_meta = commands[command]
 	
 		var command_name = "[color=#d25a35]%s[/color]" % command
@@ -41,17 +64,21 @@ func print_help(args):
 			command_name = str(command_name, " <command_name>")
 			
 		var args_detail = ""
-		#for arg in command_meta.args:
-		#	command_name = str(command_name, " <", arg.arg_name, ">")
-		#	var arg_name = str("    -[color=#3f6a8a]", arg.arg_name,"[/color]")
-		#	
-		#	var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - arg_name.length()
-		#	var spaces_string
-		#	var spaces = []
-		#	spaces.resize(spaces_to_add)
-		#	spaces.fill(" ")
-		#	spaces_string = "".join(spaces)
-		#	args_detail = str(args_detail, arg_name, spaces_string, arg.arg_type, "  ", arg.arg_desc, "\n")
+		for arg in command_meta.args:
+			command_name = str(command_name, " <", arg.arg_name, ">")
+			
+			if Flags.VERBOSE in flags:
+				var arg_name = str("    -[color=#3f6a8a]", arg.arg_name,"[/color]")
+				
+				var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - arg_name.length()
+				var spaces_string
+				var spaces = []
+				spaces.resize(spaces_to_add)
+				spaces.fill(" ")
+				spaces_string = "".join(spaces)
+				
+				var arg_type = "(" + DebugCommandsManager.ArgumentTypeNameMapper[arg.arg_type] + ")"
+				args_detail = str(args_detail, arg_name, spaces_string, arg_type, "  ", arg.arg_desc, "\n")
 		
 		var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - command_name.length()
 		var spaces_string = ""
@@ -59,7 +86,7 @@ func print_help(args):
 		if spaces_to_add > 0:
 			var spaces = []
 			spaces.resize(spaces_to_add)
-			spaces.fill(" ")
+			spaces.fill(".")
 			spaces_string = "".join(spaces)
 		
 		help_string = str(help_string, command_name, spaces_string, command_meta.description, "\n")
@@ -71,11 +98,12 @@ func print_help(args):
 	
 
 func add_help_command():
-	DebugCommandsManager.add_command("help", print_help, [], "shows all commands, use optional <command_name> to show help for a specific command")
+	DebugCommandsManager.add_command("help", print_help, [], "shows all commands, use -v flag for verbosity, use optional <command_name> to show help for a specific command")
 	
 
 func add_clear_command():
 	DebugCommandsManager.add_command("clear", clear_output, [], "clears console")
+	
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -86,7 +114,7 @@ func _ready():
 
 func grab_object_with_ray_cast():
 	var mouse_pos = get_viewport().get_mouse_position()
-	var camera3d = DebugCommandsManager.main_camera
+	var camera3d = CameraEntity.main_camera
 	var from = camera3d.project_ray_origin(mouse_pos)
 	var to = from + camera3d.project_ray_normal(mouse_pos) * RAY_LENGTH
 	var query = PhysicsRayQueryParameters3D.create(from, to)
