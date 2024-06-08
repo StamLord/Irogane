@@ -119,12 +119,12 @@ func add_show_part_command():
 		{
 			"arg_name": "part_name",
 			"arg_type": DebugCommandsManager.ArgumentType.STRING,
-			"arg_description": "part name of the model, as configured in appearance script",
+			"arg_desc": "part name of the model, as configured in appearance script",
 		},
 		{
 			"arg_name": "index",
 			"arg_type": DebugCommandsManager.ArgumentType.INT,
-			"arg_description": "index of part variation]",
+			"arg_desc": "index of part variation]",
 		}
 	]
 	
@@ -140,7 +140,7 @@ func add_get_part_options_command():
 		{
 			"arg_name": "part_name",
 			"arg_type": DebugCommandsManager.ArgumentType.STRING,
-			"arg_description": "part name of the model, as configured in appearance script",
+			"arg_desc": "part name of the model, as configured in appearance script",
 		},
 	]
 	

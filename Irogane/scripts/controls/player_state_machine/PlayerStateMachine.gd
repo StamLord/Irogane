@@ -39,17 +39,17 @@ func _ready():
 		{
 			"arg_name": "x",
 			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
-			"arg_description": "X component of the force vector",
+			"arg_desc": "X component of the force vector",
 		},
 		{
 			"arg_name": "y",
 			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
-			"arg_description": "Y component of the force vector",
+			"arg_desc": "Y component of the force vector",
 		},
 		{
 			"arg_name": "z",
 			"arg_type": DebugCommandsManager.ArgumentType.FLOAT,
-			"arg_description": "Y component of the force vector",
+			"arg_desc": "Y component of the force vector",
 		},
 	]
 	
