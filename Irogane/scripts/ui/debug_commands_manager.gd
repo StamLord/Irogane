@@ -21,7 +21,7 @@ var commands_db = {}
 
 func get_command_usage(command_name: String):
 	if command_name not in commands_db:
-		return "[color=red]ERROR[/color]: Command not found: '%s', this should not happen" % command_name
+		return "[color=red]ERROR[/color]: Command not found: '%s', use 'help'" % command_name
 	
 	var args_string = ""
 	

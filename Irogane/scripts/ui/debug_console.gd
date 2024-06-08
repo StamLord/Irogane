@@ -7,7 +7,7 @@ extends UIWindow
 @export var message_buffer_limit = 200
 @export var command_history_limit = 100
 @export var max_suggestions = 8
-@export var COMMAND_NAME_COLUMN_LENGTH = 60
+@export var COMMAND_NAME_COLUMN_LENGTH = 80
 @export var RAY_LENGTH = 1000.0
 
 var message_buffer: PackedStringArray = []
@@ -24,15 +24,13 @@ func print_help(args):
 	if args.size() > 0:
 		# specific help for 'func_name'
 		var func_name = args[0]
-		
-		if func_name not in commands:
-			push_message("[color=red]ERROR[/color]: Command not found: '%s', use 'help'" % func_name)
-	
 		return DebugCommandsManager.get_command_usage(func_name)
 		
 	var help_string = "[color=green][b]------------------------------HELP------------------------------[/b][/color]\n"
 	
-	for command in commands: 
+	var command_keys = commands.keys()
+	command_keys.sort()
+	for command in command_keys: 
 		var command_meta = commands[command]
 	
 		var command_name = "[color=#d25a35]%s[/color]" % command
@@ -41,17 +39,19 @@ func print_help(args):
 			command_name = str(command_name, " <command_name>")
 			
 		var args_detail = ""
-		#for arg in command_meta.args:
-		#	command_name = str(command_name, " <", arg.arg_name, ">")
-		#	var arg_name = str("    -[color=#3f6a8a]", arg.arg_name,"[/color]")
-		#	
-		#	var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - arg_name.length()
-		#	var spaces_string
-		#	var spaces = []
-		#	spaces.resize(spaces_to_add)
-		#	spaces.fill(" ")
-		#	spaces_string = "".join(spaces)
-		#	args_detail = str(args_detail, arg_name, spaces_string, arg.arg_type, "  ", arg.arg_desc, "\n")
+		for arg in command_meta.args:
+			command_name = str(command_name, " <", arg.arg_name, ">")
+			## prints info per arg
+			#var arg_name = str("    -[color=#3f6a8a]", arg.arg_name,"[/color]")
+			#
+			#var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - arg_name.length()
+			#var spaces_string
+			#var spaces = []
+			#spaces.resize(spaces_to_add)
+			#spaces.fill(" ")
+			#spaces_string = "".join(spaces)
+			#print("arg ", arg)
+			#args_detail = str(args_detail, arg_name, spaces_string, arg.arg_type, "  ", arg.arg_desc, "\n")
 		
 		var spaces_to_add = COMMAND_NAME_COLUMN_LENGTH - command_name.length()
 		var spaces_string = ""
@@ -59,7 +59,7 @@ func print_help(args):
 		if spaces_to_add > 0:
 			var spaces = []
 			spaces.resize(spaces_to_add)
-			spaces.fill(" ")
+			spaces.fill(".")
 			spaces_string = "".join(spaces)
 		
 		help_string = str(help_string, command_name, spaces_string, command_meta.description, "\n")
@@ -76,6 +76,7 @@ func add_help_command():
 
 func add_clear_command():
 	DebugCommandsManager.add_command("clear", clear_output, [], "clears console")
+	
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
