@@ -32,7 +32,7 @@ func enter(state_machine):
 	
 	set_alert_mode(true)
 
-func physics_update(state_machine, _delta):
+func physics_update(_state_machine, _delta):
 	if chase_target == null:
 		print("%s: Chase target is null. This shouldn't happen!", name)
 		Transitioned.emit(self, "idle")

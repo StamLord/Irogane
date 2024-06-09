@@ -14,7 +14,7 @@ func _ready():
 		ray.add_exception(owner)
 	
 
-func _process(delta):
+func _process(_delta):
 	colliding = false
 	collider = null
 	normal = null

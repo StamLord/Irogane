@@ -45,7 +45,7 @@ func clean_double_actions():
 	double_actions.clear()
 	
 
-static func get_hotkeys_input():
+func get_hotkeys_input():
 	if Input.is_action_just_pressed("alpha1"):
 		return 1
 	elif Input.is_action_just_pressed("alpha2"):

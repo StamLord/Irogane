@@ -7,7 +7,7 @@ func _ready():
 	animate_rotation(current_index)
 	
 
-func _process(delta):
+func _process(_delta):
 	if is_animating:
 		return
 	

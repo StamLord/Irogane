@@ -23,7 +23,7 @@ func subscribe_to_player(player_node):
 		stats.medicine_used.connect(medicine_vfx)
 	
 
-func medicine_vfx(medicine):
+func medicine_vfx(_medicine):
 	medicine_start = Time.get_ticks_msec()
 	var duration = medicine_duration * 1000
 	while Time.get_ticks_msec() - medicine_start <= duration:
@@ -34,7 +34,7 @@ func medicine_vfx(medicine):
 	medicine_texture.material.set_shader_parameter("strength", 0)
 	
 
-func hurt_vfx(hurt):
+func hurt_vfx(_hurt):
 	hurt_start = Time.get_ticks_msec()
 	var duration = hurt_duration * 1000
 	while Time.get_ticks_msec() - hurt_start <= duration:
@@ -50,10 +50,10 @@ func add_debug_commands():
 	DebugCommandsManager.add_command("hurt_vfx", debug_hurt_vfx, [], "Play hurt vfx on screen.")
 	
 
-func debug_medicine_vfx(empty):
+func debug_medicine_vfx(_empty):
 	medicine_vfx(null)
 	
 
-func debug_hurt_vfx(empty):
+func debug_hurt_vfx(_empty):
 	hurt_vfx(null)
 	

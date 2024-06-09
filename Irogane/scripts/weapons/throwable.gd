@@ -150,7 +150,7 @@ func change_shoot_pos_if_needed():
 	position = model_screen_pos[shoot_pos]
 	
 
-func _process(delta):
+func _process(_delta):
 	if not visible:
 		return
 	

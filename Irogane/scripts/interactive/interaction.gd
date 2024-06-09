@@ -162,7 +162,7 @@ func stop_carrying():
 		object.linear_velocity = Vector3.ZERO # For some reason unfreezes the object
 	
 
-func update_carry_object(delta):
+func update_carry_object(_delta):
 	if current_interactive == null:
 		return
 	

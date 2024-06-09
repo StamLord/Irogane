@@ -42,7 +42,7 @@ func Enter(body):
 	air_started.emit()
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 

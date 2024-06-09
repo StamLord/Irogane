@@ -9,7 +9,7 @@ extends Node3D
 
 var light_value = 0.0
 
-func _process(delta):
+func _process(_delta):
 	raycast_light_detection()
 	
 

@@ -11,7 +11,7 @@ func _ready():
 	offset = global_position - node_to_follow.global_position
 	
 
-func _process(delta):
+func _process(_delta):
 	if node_to_follow == null:
 		return
 	

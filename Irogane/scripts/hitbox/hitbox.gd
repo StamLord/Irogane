@@ -35,7 +35,7 @@ func is_active():
 	return monitoring
 	
 
-func _process(delta):
+func _process(_delta):
 	if mesh:
 		mesh.visible = debug
 	

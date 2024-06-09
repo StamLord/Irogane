@@ -16,7 +16,7 @@ var start_distance = 0.0
 var pitons = []
 var stashed_pitons = []
 
-func _process(delta):
+func _process(_delta):
 	if not visible:
 		return
 	

@@ -60,9 +60,9 @@ static func remap_value(value, start1, end1, start2, end2):
 	return start2 + (value - start1) * (end2 - start2) / (end1 - start1)
 	
 
-static func random_color(seed : int = 0) -> Color:
+static func random_color(random_seed : int = 0) -> Color:
 	var rand = RandomNumberGenerator.new()
-	rand.seed = seed
+	rand.seed = random_seed
 	var color = Color(rand.randf(), rand.randf(), rand.randf())
 	return color
 	

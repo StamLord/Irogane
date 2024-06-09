@@ -28,7 +28,7 @@ func _ready():
 		awarness_agent.on_enemy_seen.connect(play_enemy_seen)
 	
 
-func play_sound_heard(sound_position):
+func play_sound_heard(_sound_position):
 	if Time.get_ticks_msec() - last_hear <= same_signal_wait * 1000:
 		return
 	
@@ -37,7 +37,7 @@ func play_sound_heard(sound_position):
 	last_hear = Time.get_ticks_msec()
 	
 
-func play_enemy_seen(sound_position):
+func play_enemy_seen(_sound_position):
 	if Time.get_ticks_msec() - last_see <= same_signal_wait * 1000:
 		return
 	

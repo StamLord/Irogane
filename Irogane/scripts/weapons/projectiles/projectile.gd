@@ -46,10 +46,10 @@ func _ready():
 
 func hit(area, _hitbox):
 	if area is Hurtbox:
-		var attack_info = attack_info.clone()
-		attack_info.force = get_global_transform().basis * attack_info.force
+		var new_attack_info = attack_info.clone()
+		new_attack_info.force = get_global_transform().basis * new_attack_info.force
 		
-		area.hit(attack_info)
+		area.hit(new_attack_info)
 	
 
 func hit_guarded(area : Guardbox, _hitbox):
@@ -124,7 +124,7 @@ func rotate_model(delta):
 		model.rotate_x(rotation_x_speed * delta)
 	
 
-func collision_check(delta):
+func collision_check(_delta):
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(last_pos, global_position, collision_mask)
 	var result = space_state.intersect_ray(query)

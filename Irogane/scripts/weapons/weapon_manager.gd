@@ -15,7 +15,6 @@ class_name WeaponManager
 @onready var melee = $melee
 @onready var sword = $sword
 @onready var shuriken = $shuriken
-@onready var food = $food
 
 @export var staff : Node3D
 @export var kanabo : Node3D
@@ -29,14 +28,13 @@ var index = 0
 @onready var template_dict = {
 	"SWORD" : sword,
 	"THROWABLE" : shuriken,
-	"FOOD" : food,
 	}
 
 func _ready():
 	PlayerEntity.slot_changed.connect(on_slot_changed)
 	
 
-func _process(delta):
+func _process(_delta):
 	if not InputContextManager.is_current_context(InputContextType.GAME):
 		return
 	

@@ -35,7 +35,7 @@ func Enter(body):
 	speed = body.last_speed
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 

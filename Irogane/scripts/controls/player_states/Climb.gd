@@ -40,10 +40,10 @@ func Enter(body):
 	current_wall = wall_check.get_collider()
 	wall_normal = wall_check.get_collision_normal()
 	
-	adjust_to_wall(body, wall_check.get_collision_point(), wall_normal)
+	adjust_to_wall(body, wall_check.get_collision_point())
 	
 
-func adjust_to_wall(body, point, normal):
+func adjust_to_wall(body, point):
 	point.y = body.global_position.y # Treat as same height
 	var dir = (body.global_position - point).normalized()
 	body.global_position = point + dir * wall_distance
@@ -63,7 +63,7 @@ func get_wall_normal_angle():
 	return rad_to_deg(-wall_normal.signed_angle_to(-Vector3.FORWARD, Vector3.UP))
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 
@@ -178,8 +178,8 @@ func update_wall_data(query_result):
 	wall_right = Vector3.UP.cross(wall_normal) # Use world up for now
 	
 
-func wall_query(body : Node3D, position : Vector3, direction : Vector3):
-	var query = PhysicsRayQueryParameters3D.create(position, direction)
+func wall_query(body : Node3D, position : Vector3, ray_direction : Vector3):
+	var query = PhysicsRayQueryParameters3D.create(position, ray_direction)
 	var space_state = body.get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(query)
 	return result

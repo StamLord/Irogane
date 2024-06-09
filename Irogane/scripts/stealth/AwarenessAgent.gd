@@ -15,7 +15,7 @@ class_name AwarenessAgent
 @export var undetection_rate = 0.5
 
 @export var alert_mode = false
-@export var alert_detection_rate = 10
+@export var alert_detection_rate = 10.0
 
 static var debug = false
 

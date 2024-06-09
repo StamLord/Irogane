@@ -19,7 +19,7 @@ func _ready():
 	SceneManager.on_scene_start_load.connect(scene_loading)
 	
 
-func _process(delta):
+func _process(_delta):
 	if light_detection:
 		detection_multiplier = light_detection.light_value
 	

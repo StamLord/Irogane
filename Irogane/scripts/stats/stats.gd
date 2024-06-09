@@ -62,7 +62,7 @@ func get_all_guardboxes(node : Node):
 		get_all_guardboxes(n)
 	
 
-func _process(delta):
+func _process(_delta):
 	update_statuses()
 	
 
@@ -74,7 +74,7 @@ func hit(attack_info : AttackInfo):
 		heavy_hit_during_guard_break.emit(attack_info.force)
 	
 
-func guard(attack_info : AttackInfo, hitbox):
+func guard(attack_info : AttackInfo, _hitbox):
 	if attack_info.is_heavy:
 		heavy_hit_during_guard_break.emit(attack_info.force)
 	

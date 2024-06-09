@@ -28,10 +28,10 @@ func Enter(body):
 	# Reset vertical velocity
 	body.velocity.y = 0
 
-func Update(delta):
+func Update(_delta):
 	pass
 
-func PhysicsUpdate(body, delta):
+func PhysicsUpdate(body, _delta):
 	var velocity = body.velocity
 	
 	# Jump State

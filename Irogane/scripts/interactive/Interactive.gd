@@ -41,7 +41,7 @@ func get_text():
 	return interaction_text
 	
 
-func use(interactor):
+func use(_interactor):
 	pass
 	
 

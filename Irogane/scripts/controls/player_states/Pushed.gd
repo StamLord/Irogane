@@ -22,13 +22,13 @@ var direction = Vector3.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func Enter(body):
+func Enter(_body):
 	# Lower  head
 	head.change_height(dash_head_height, 0.2)
 	accumulated_gravity = 0.0
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 

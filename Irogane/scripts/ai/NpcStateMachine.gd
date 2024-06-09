@@ -23,7 +23,7 @@ func _ready():
 	for child in states_parent.get_children():
 		if child is NpcState:
 			states[child.name.to_lower()] = child
-			child.state_machine = self
+			child._state_machine = self
 			child.Transitioned.connect(on_child_transition)
 	
 	if default_state and states.has(default_state):

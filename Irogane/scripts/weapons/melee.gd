@@ -198,7 +198,6 @@ func valid_state_for_input():
 	
 
 func validate_combo(combo):
-	#print(combo)
 	var matching_combos = []
 	for c in combo_list:
 		var move_size = c.combo.length()

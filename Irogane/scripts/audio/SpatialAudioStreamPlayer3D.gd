@@ -18,7 +18,7 @@ var audio_buses = [
 	[["m1", "m1o"], ["m2", "m2o"]],
 	[["b1", "b1o"], ["b2", "b2o"]]]
 
-func _process(delta):
+func _process(_delta):
 	# Check room size & wetness only after moving
 	if last_position == null or global_position.distance_to(last_position) >= recalculate_threshold:
 		room_check()

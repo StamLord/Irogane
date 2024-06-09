@@ -68,7 +68,7 @@ func _process(delta):
 			var state_color_seed = current_state.name.to_utf8_buffer().hex_encode().hex_to_int()
 			var state_color = Utils.random_color(state_color_seed)
 			var state_debug_duration = 10.0
-			DebugCanvas.debug_point(global_position, state_color,12.0, state_debug_duration)
+			DebugCanvas.debug_point(global_position, state_color, 12, state_debug_duration)
 	
 
 func _physics_process(delta):
@@ -91,7 +91,7 @@ func on_child_transition(state, new_state_name):
 		var new_state_color_seed = new_state_name.to_utf8_buffer().hex_encode().hex_to_int()
 		var new_state_color = Utils.random_color(new_state_color_seed)
 		var new_state_debug_duration = 10.0
-		DebugCanvas.debug_point(global_position, new_state_color, 24.0, new_state_debug_duration)
+		DebugCanvas.debug_point(global_position, new_state_color, 24, new_state_debug_duration)
 		DebugCanvas.debug_text(new_state_name, global_position + Vector3.UP, new_state_color, new_state_debug_duration)
 	
 	if current_state: 
