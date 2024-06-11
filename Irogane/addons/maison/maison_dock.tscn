@@ -1,0 +1,203 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2yj4yk1pqo1c"]
+
+[ext_resource type="Script" path="res://addons/maison/maison_editor.gd" id="1_7upeq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbsoc"]
+
+[node name="MaisonDock" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7upeq")
+
+[node name="top_bar" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 16.0
+offset_right = 423.0
+offset_bottom = 92.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="top_bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+
+[node name="new_button" type="Button" parent="top_bar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "[new]"
+
+[node name="duplicate_button" type="Button" parent="top_bar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "[duplicate]"
+
+[node name="delete_button" type="Button" parent="top_bar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "[delete]"
+
+[node name="reload_button" type="Button" parent="top_bar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "[reload]"
+
+[node name="agents" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 35.0
+offset_top = 108.0
+offset_right = 423.0
+offset_bottom = 622.0
+size_flags_horizontal = 3
+
+[node name="agents_container" type="VBoxContainer" parent="agents"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="agent_window" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 456.0
+offset_top = 16.0
+offset_right = 824.0
+offset_bottom = 622.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lbsoc")
+
+[node name="Panel" type="Panel" parent="agent_window"]
+layout_mode = 0
+offset_right = 368.0
+offset_bottom = 76.0
+
+[node name="agent_name" type="Label" parent="agent_window/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "New AI Agent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="agent_window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="goal_panel" type="Panel" parent="agent_window/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="title" type="Label" parent="agent_window/HBoxContainer/goal_panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "Goals"
+horizontal_alignment = 1
+
+[node name="add_goal" type="Button" parent="agent_window/HBoxContainer/goal_panel/title"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "+"
+
+[node name="goal_container" type="VBoxContainer" parent="agent_window/HBoxContainer/goal_panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="action_panel" type="Panel" parent="agent_window/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="title" type="Label" parent="agent_window/HBoxContainer/action_panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "Actions"
+horizontal_alignment = 1
+
+[node name="add_action" type="Button" parent="agent_window/HBoxContainer/action_panel/title"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "+"
+
+[node name="action_container" type="VBoxContainer" parent="agent_window/HBoxContainer/action_panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="action_file_dialogue" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open File(s)"
+initial_position = 2
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 1
+root_subfolder = "res://data/ai_actions/"
+
+[node name="goal_file_dialogue" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open File(s)"
+initial_position = 2
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 1
+root_subfolder = "res://data/ai_goals/"
+
+[connection signal="pressed" from="top_bar/HBoxContainer/new_button" to="." method="_on_new_button_pressed"]
+[connection signal="pressed" from="top_bar/HBoxContainer/duplicate_button" to="." method="_on_duplicate_button_pressed"]
+[connection signal="pressed" from="top_bar/HBoxContainer/delete_button" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="top_bar/HBoxContainer/reload_button" to="." method="_on_reload_button_pressed"]
+[connection signal="pressed" from="agent_window/HBoxContainer/goal_panel/title/add_goal" to="." method="_on_add_goal_pressed"]
+[connection signal="pressed" from="agent_window/HBoxContainer/action_panel/title/add_action" to="." method="_on_add_action_pressed"]
+[connection signal="file_selected" from="action_file_dialogue" to="." method="_on_action_file_dialogue_file_selected"]
+[connection signal="files_selected" from="action_file_dialogue" to="." method="_on_action_file_dialogue_files_selected"]
+[connection signal="file_selected" from="goal_file_dialogue" to="." method="_on_goal_file_dialogue_file_selected"]
+[connection signal="files_selected" from="goal_file_dialogue" to="." method="_on_goal_file_dialogue_files_selected"]

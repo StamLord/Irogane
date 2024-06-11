@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AIagent" load_steps=2 format=3 uid="uid://dmv245jm83yd5"]
+
+[ext_resource type="Script" path="res://addons/maison/AIagent.gd" id="1_hp1oq"]
+
+[resource]
+script = ExtResource("1_hp1oq")
+sight = 20.0
+hearing = 20.0
+goals = []
+actions = []

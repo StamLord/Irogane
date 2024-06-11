@@ -37,6 +37,10 @@ SkillDB="*res://scripts/skills/skill_db.gd"
 InputContextManager="*res://scripts/input/input_context_manager.gd"
 StatusDb="*res://scripts/stats/status_db.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [dialogic]
 
 glossary/default_case_sensitive=true
@@ -81,7 +85,7 @@ mouse_cursor/custom_image="res://assets/textures/ui/cursor/mouse_cursor.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/building_blocks/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/quest_editor/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
+enabled=PackedStringArray("res://addons/building_blocks/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/maison/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/quest_editor/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
 
 [file_customization]
 
@@ -351,6 +355,10 @@ locale/translations_pot_files=PackedStringArray("res://data/dialogues/farmer.dia
 3d_physics/layer_4="water"
 3d_physics/layer_5="stealth"
 3d_physics/layer_6="hitbox"
+
+[physics]
+
+3d/solver/solver_iterations=24
 
 [rendering]
 
