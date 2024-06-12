@@ -29,7 +29,7 @@ static func get_all_files_in_folder(path):
 	
 	var file_name = dir.get_next()
 	while file_name != "":  
-		var file_path = path + "/" + file_name  
+		var file_path = path.path_join(file_name)
 		file_paths.append(file_path)  
 		file_name = dir.get_next()  
 	

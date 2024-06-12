@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2yj4yk1pqo1c"]
+[gd_scene load_steps=4 format=3 uid="uid://b2yj4yk1pqo1c"]
 
 [ext_resource type="Script" path="res://addons/maison/maison_editor.gd" id="1_7upeq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbsoc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcw6a"]
 
 [node name="MaisonDock" type="Control"]
 layout_mode = 3
@@ -93,6 +95,49 @@ grow_vertical = 2
 text = "New AI Agent"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="rename_button" type="Button" parent="agent_window/Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "🖉"
+
+[node name="rename_edit" type="LineEdit" parent="agent_window/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pcw6a")
+alignment = 1
+
+[node name="confirm_rename_button" type="Button" parent="agent_window/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "🗸"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="agent_window"]
 layout_mode = 1
@@ -195,6 +240,8 @@ root_subfolder = "res://data/ai_goals/"
 [connection signal="pressed" from="top_bar/HBoxContainer/duplicate_button" to="." method="_on_duplicate_button_pressed"]
 [connection signal="pressed" from="top_bar/HBoxContainer/delete_button" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="top_bar/HBoxContainer/reload_button" to="." method="_on_reload_button_pressed"]
+[connection signal="pressed" from="agent_window/Panel/rename_button" to="." method="_on_rename_button_pressed"]
+[connection signal="pressed" from="agent_window/Panel/confirm_rename_button" to="." method="_on_confirm_rename_button_pressed"]
 [connection signal="pressed" from="agent_window/HBoxContainer/goal_panel/title/add_goal" to="." method="_on_add_goal_pressed"]
 [connection signal="pressed" from="agent_window/HBoxContainer/action_panel/title/add_action" to="." method="_on_add_action_pressed"]
 [connection signal="file_selected" from="action_file_dialogue" to="." method="_on_action_file_dialogue_file_selected"]

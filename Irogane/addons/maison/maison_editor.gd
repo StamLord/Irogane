@@ -8,6 +8,9 @@ extends Control
 @onready var goal_container = %goal_container
 @onready var action_file_dialogue = %action_file_dialogue
 @onready var goal_file_dialogue = %goal_file_dialogue
+@onready var rename_button = $agent_window/Panel/rename_button
+@onready var confirm_rename_button = $agent_window/Panel/confirm_rename_button
+@onready var rename_edit = $agent_window/Panel/rename_edit
 
 const AGENT_ITEM = preload("res://addons/maison/agent_item.tscn")
 const AGENTS_PATH = "res://data/ai_agents/"
@@ -124,7 +127,7 @@ func add_action_to_agent(action_path):
 	var res = load_resource(action_path)
 	if res != null:
 		current_resource.actions.append(res)
-		save_resource(current_resource, current_resource.resource_path)
+		save_resource(current_resource, agent_file_paths[current_selected])
 		update_agent_window()
 	
 
@@ -133,7 +136,7 @@ func remove_action_from_agent(action):
 		return
 	
 	current_resource.actions.erase(action)
-	save_resource(current_resource, current_resource.resource_path)
+	save_resource(current_resource, agent_file_paths[current_selected])
 	update_agent_window()
 	
 
@@ -144,7 +147,7 @@ func add_goal_to_agent(goal_path):
 	var res = load_resource(goal_path)
 	if res != null:
 		current_resource.goals.append(res)
-		save_resource(current_resource, current_resource.resource_path)
+		save_resource(current_resource, agent_file_paths[current_selected])
 		update_agent_window()
 	
 
@@ -153,15 +156,16 @@ func remove_goal_from_agent(goal):
 		return
 	
 	current_resource.goals.erase(goal)
-	save_resource(current_resource, current_resource.resource_path)
+	save_resource(current_resource, agent_file_paths[current_selected])
 	update_agent_window()
 	
 
 func new_agent():
 	var new = AIagent.new()
 	var file_path = AGENTS_PATH.path_join("New AI Agent.res")
-	save_new_resource(new, file_path)
+	var new_path = save_new_resource(new, file_path)
 	load_agents()
+	select_agent(agent_file_paths.find(new_path))
 	
 
 func save_resource(resource, file_path):
@@ -169,11 +173,13 @@ func save_resource(resource, file_path):
 	
 
 func save_new_resource(resource, file_path):
-	save_resource(resource, get_new_file_name(file_path))
+	var new_path = get_new_file_name(file_path)
+	save_resource(resource, new_path)
+	return new_path
 	
 
 func load_resource(file_path):
-	var resource = ResourceLoader.load(file_path, "", ResourceLoader.CACHE_MODE_REPLACE)
+	var resource = ResourceLoader.load(file_path)
 	return resource
 	
 
@@ -195,8 +201,9 @@ func duplicate_agent():
 	if current_selected < 0 or current_selected >= agent_file_paths.size():
 		return
 	
-	save_new_resource(current_resource.duplicate(), agent_file_paths[current_selected])
+	var new_path = save_new_resource(current_resource.duplicate(), agent_file_paths[current_selected])
 	load_agents()
+	select_agent(agent_file_paths.find(new_path))
 	
 
 func delete_agent():
@@ -205,6 +212,9 @@ func delete_agent():
 	
 	var path = agent_file_paths[current_selected]
 	var error = DirAccess.remove_absolute(path)
+	
+	# Make sure resource is deleted from cach
+	current_resource.unreference()
 	
 	load_agents()
 	
@@ -249,4 +259,33 @@ func _on_goal_file_dialogue_file_selected(path):
 func _on_goal_file_dialogue_files_selected(paths):
 	for path in paths:
 		add_goal_to_agent(path)
+	
+
+func _on_rename_button_pressed():
+	rename_edit.text = agent_name.text
+	rename_edit.visible = true
+	confirm_rename_button.visible = true
+	agent_name.visible = false
+	rename_button.visible = false
+	rename_edit.grab_focus()
+	rename_edit.select_all()
+	
+
+
+func _on_confirm_rename_button_pressed():
+	rename_edit.visible = false
+	confirm_rename_button.visible = false
+	agent_name.visible = true
+	rename_button.visible = true
+	
+	if current_resource == null:
+		return
+	
+	var current_name = current_resource.resource_path.split("/")[-1].split(".")[0]
+	if current_name == rename_edit.text:
+		return
+	
+	var new_path = AGENTS_PATH.path_join(rename_edit.text) + ".res"
+	save_new_resource(current_resource, new_path)
+	delete_agent()
 	
