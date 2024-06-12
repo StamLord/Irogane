@@ -3,7 +3,7 @@ extends Node3D
 @export var awarness_agent : AwarenessAgent
 @export var same_signal_wait = 2.0
 
-@onready var audio_player = $AudioStreamPlayer3D
+@onready var audio_player = $audio_player
 
 @onready var hear_sound_clips = [
 	preload("res://assets/audio/guard_detection/hmm.ogg"), 
@@ -28,7 +28,7 @@ func _ready():
 		awarness_agent.on_enemy_seen.connect(play_enemy_seen)
 	
 
-func play_sound_heard():
+func play_sound_heard(_sound_position):
 	if Time.get_ticks_msec() - last_hear <= same_signal_wait * 1000:
 		return
 	
@@ -37,7 +37,7 @@ func play_sound_heard():
 	last_hear = Time.get_ticks_msec()
 	
 
-func play_enemy_seen():
+func play_enemy_seen(_sound_position):
 	if Time.get_ticks_msec() - last_see <= same_signal_wait * 1000:
 		return
 	

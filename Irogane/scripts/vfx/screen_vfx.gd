@@ -61,7 +61,7 @@ func add_debug_commands():
 	DebugCommandsManager.add_command("hurt_vfx", debug_hurt_vfx, [], "Play hurt vfx on screen.")
 	
 
-func debug_medicine_vfx(empty):
+func debug_medicine_vfx(_empty):
 	medicine_vfx(null)
 	
 

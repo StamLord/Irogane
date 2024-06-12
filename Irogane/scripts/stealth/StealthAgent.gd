@@ -4,6 +4,7 @@ class_name StealthAgent
 @export var base_detection_multiplier = 1
 @export var crouch_detection_multiplier = 0.5
 @export var state_machine : PlayerStateMachine
+@onready var light_detection = %light_detection
 
 var detection_multiplier = 1
 
@@ -16,6 +17,11 @@ func _ready():
 		state_machine.on_state_exit.connect(state_exit_check)
 	
 	SceneManager.on_scene_start_load.connect(scene_loading)
+	
+
+func _process(_delta):
+	if light_detection:
+		detection_multiplier = light_detection.light_value
 	
 
 func set_crouch_detection():

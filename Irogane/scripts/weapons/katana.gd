@@ -353,13 +353,13 @@ func is_jumping():
 	return (Time.get_ticks_msec() - last_jump) <= jump_input_window * 1000
 	
 
-func hit(area, hitbox):
+func hit(area, _hitbox):
 	if area is Hurtbox:
 		var attack_info = light_attack_info
 		
-		if hitbox.is_heavy:
+		if _hitbox.is_heavy:
 			attack_info = heavy_attack_info
-		if hitbox == upward_hitbox:
+		if _hitbox == upward_hitbox:
 			attack_info = uppward_attack_info
 		
 		area.hit(attack_info.get_translated(global_basis))
@@ -371,13 +371,12 @@ func hit(area, hitbox):
 	#if decal_raycast.is_colliding():
 		#create_decal(decal_raycast.get_collision_point(), blade_alignment.global_rotation, area)
 	
-	var camera_facing_transform = Transform3D(blade_alignment.global_transform)
 	slash_0_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 3)
 	slash_1_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 3)
 	slash_circle_vfx.emit_particle(blade_alignment.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 3)
 	
 
-func hit_blocked(area : Guardbox, hitbox):
+func hit_blocked(area : Guardbox, _hitbox):
 	if area.is_perfect:
 		CameraShaker.shake(0.5, 0.2)
 		stats.got_perfect_blocked()
@@ -385,19 +384,19 @@ func hit_blocked(area : Guardbox, hitbox):
 		CameraShaker.shake(0.25, 0.2)
 	
 	var attack_info = light_attack_info
-	if hitbox == upward_hitbox:
+	if _hitbox == upward_hitbox:
 		attack_info = uppward_attack_info
-	area.guard(attack_info.get_translated(global_basis), hitbox)
+	area.guard(attack_info.get_translated(global_basis), _hitbox)
 	
-	play_guard_vfx(hitbox.global_position)
-	play_audio(clash_sfx.pick_random())
+	play_guard_vfx(_hitbox.global_position)
 	anim_state_machine.start("idle")
 	
 
-func guarded(attack_info, hitbox):
+func guarded(attack_info, _hitbox):
 	anim_state_machine.start("guard_hit")
-	play_guard_vfx(hitbox.global_position + Vector3.UP * 0.1)
-	play_audio(clash_sfx.pick_random())
+
+	play_guard_vfx(_hitbox.global_position + Vector3.UP * 0.1)
+	play_audio(hit_sfx.pick_random())
 	
 	if stats:
 		stats.deplete_stamina(attack_info.soft_damage)
@@ -405,8 +404,8 @@ func guarded(attack_info, hitbox):
 			guard_break()
 	
 
-func perfect_guarded(attack_info, hitbox):
-	var pos = hitbox.global_position + Vector3.UP * 0.1
+func perfect_guarded(_attack_info, _hitbox):
+	var pos = _hitbox.global_position + Vector3.UP * 0.1
 	anim_state_machine.start("guard_hit")
 	play_guard_vfx(pos)
 	play_perfect_guard_vfx(pos)
@@ -436,7 +435,7 @@ func guard_break():
 	stats.start_guard_break(guard_break_duration)
 	
 
-func heavy_clash(area : Hitbox, hitbox):
+func heavy_clash(area : Hitbox, _hitbox):
 	prepare_blade_lock_state()
 	
 	# Create new blade lock
@@ -483,7 +482,7 @@ func prepare_blade_lock_state():
 		blade_lock_vfx.emitting = true
 	
 
-func process_blade_lock(delta):
+func process_blade_lock(_delta):
 	if current_blade_lock == null:
 		is_in_blade_lock = false
 		return
@@ -495,7 +494,7 @@ func process_blade_lock(delta):
 		current_blade_lock.side_increase(stats, stats.strength.get_value())
 	
 
-func end_blade_lock(winner_stats):
+func end_blade_lock(_winner_stats):
 	is_in_blade_lock = false
 	
 	if current_blade_lock:
@@ -528,7 +527,7 @@ func animate_movement(local_vector : Vector3, duration : float):
 		
 	var start_pos = owner.global_position
 	var target_pos = owner.global_position + global_vector
-	DebugCanvas.debug_line(start_pos, target_pos, Color.PURPLE, 1.0, 2.0)
+	DebugCanvas.debug_line(start_pos, target_pos, Color.PURPLE, 1, 2.0)
 	
 	# Test for physics collisions along path
 	var body_test_result = PhysicsTestMotionResult3D.new()
@@ -603,7 +602,7 @@ func create_decal(_position, _rotation, parent):
 	
 
 func free_decal(decal):
-	decal.queue_free
+	decal.queue_free()
 	
 
 func skill_selected(skill_name):
@@ -630,8 +629,8 @@ func exit_stance():
 
 func is_move_input_pressed():
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
-	var is_jumping = Input.is_action_just_pressed("jump")
-	return input_dir.length() != 0 or is_jumping
+	var _is_jumping = Input.is_action_just_pressed("jump")
+	return input_dir.length() != 0 or _is_jumping
 	
 
 func fetch_skills():

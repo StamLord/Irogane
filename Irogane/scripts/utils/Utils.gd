@@ -29,7 +29,7 @@ static func get_all_files_in_folder(path):
 	
 	var file_name = dir.get_next()
 	while file_name != "":  
-		var file_path = path + "/" + file_name  
+		var file_path = path.path_join(file_name)
 		file_paths.append(file_path)  
 		file_name = dir.get_next()  
 	
@@ -60,13 +60,17 @@ static func remap_value(value, start1, end1, start2, end2):
 	return start2 + (value - start1) * (end2 - start2) / (end1 - start1)
 	
 
-static func random_color(seed : int = 0) -> Color:
+static func random_color(random_seed : int = 0) -> Color:
 	var rand = RandomNumberGenerator.new()
-	rand.seed = seed
+	rand.seed = random_seed
 	var color = Color(rand.randf(), rand.randf(), rand.randf())
-	print(color)
 	return color
 	
+
+static func disconnect_all_from_signal(node : Object, signal_name : String):
+	for connection in node.get_signal_connection_list(signal_name):
+		node[signal_name].disconnect(connection["callable"])
+    
 
 static func warning(node : Node, message : String):
 	print(node.name, ": ", message)

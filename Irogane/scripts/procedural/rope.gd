@@ -95,22 +95,22 @@ func create_rope():
 		# Add to rope array
 		rope.push_back(rigid)
 
-func get_closest_segment_index(position):
+func get_closest_segment_index(_position):
 	var closest_segment = -1
 	var closest_distance = INF
 	for i in range(rope.size()):
-		var distance = rope[i].global_position.distance_to(position)
+		var distance = rope[i].global_position.distance_to(_position)
 		if  distance < closest_distance:
 			closest_distance = distance
 			closest_segment = i
 			
 	return closest_segment
 
-func get_direction_to_segment(position, index):
+func get_direction_to_segment(_position, index):
 	# Flatten position to rope axis
-	position.x = rope[index].global_position.x
-	position.z = rope[index].global_position.z
-	return (rope[index].global_position - position).normalized()
+	_position.x = rope[index].global_position.x
+	_position.z = rope[index].global_position.z
+	return (rope[index].global_position - _position).normalized()
 
 func is_valid_segment_index(index):
 	return index > 0 and index < rope.size()

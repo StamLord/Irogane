@@ -4,8 +4,10 @@ class_name Walk
 # References
 @onready var stand_collider = $"../../stand_collider"
 @onready var step_check = $"../../step_check"
+@onready var climb_check = %climb_check
 @onready var step_separation = %step_separation
 @onready var stamina = $"../../stats/stamina"
+@onready var stats = %stats
 
 # Variables
 @export var speed = 5.0;
@@ -100,7 +102,13 @@ func PhysicsUpdate(body, delta):
 	
 	# Crouch State
 	if Input.is_action_pressed("crouch"):
+		state_machine.end_roped()
 		Transitioned.emit(self, "crouch")
+		return
+	
+	# Climb State
+	if stats.stamina.get_value() >= 5 and climb_check.is_colliding() and input_dir.y < 0:
+		Transitioned.emit(self, "climb")
 		return
 	
 

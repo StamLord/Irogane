@@ -1,18 +1,18 @@
 extends PlayerState
 class_name Rooted
 
-func Enter(body):
+func Enter(_body):
 	pass
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 
-func PhysicsUpdate(body, delta):
+func PhysicsUpdate(_body, _delta):
 	pass
 	
 
-func Exit(body):
+func Exit(_body):
 	pass
 	

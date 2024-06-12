@@ -15,7 +15,7 @@ class_name AwarenessAgent
 @export var undetection_rate = 0.5
 
 @export var alert_mode = false
-@export var alert_detection_rate = 10
+@export var alert_detection_rate = 10.0
 
 static var debug = false
 
@@ -27,6 +27,7 @@ signal on_enemy_seen(enemy)
 signal on_enemy_lost(enemy)
 
 func _ready():
+	debug = false
 	DebugCommandsManager.add_command(
 		"display_vision_cone",
 		set_debug,

@@ -57,10 +57,10 @@ func Enter(body):
 		
 	vault_started.emit(target_position)
 
-func Update(delta):
+func Update(_delta):
 	pass
 
-func PhysicsUpdate(body, delta):
+func PhysicsUpdate(body, _delta):
 	var t = (Time.get_ticks_msec() - start_time) / duration
 	body.position = lerp(start_position, target_position, t)
 	

@@ -7,10 +7,9 @@ extends Node3D
 
 @onready var light_beads_material = preload("res://assets/models/first_person_rig/light_beads_3d.tres")
 
-var detection_rate = .1
-var last_detection = 0
+var light_value = 0.0
 
-func _process(delta):
+func _process(_delta):
 	raycast_light_detection()
 	
 
@@ -34,11 +33,21 @@ func raycast_light_detection():
 		if light is OmniLight3D and light.omni_range < distance:
 			continue
 			
+		# SpotLight too far
+		if light is SpotLight3D:
+			if light.spot_range < distance:
+				continue
+			
+			var light_forward = -light.global_basis.z
+			var angle = (global_position - light_origin).angle_to(light_forward)
+			angle = rad_to_deg(angle)
+			
+			if angle > light.spot_angle:
+				continue
+		
 		# Blocked by objects
 		var from = light_origin
 		var to = global_position
-		
-		#DebugCanvas.debug_point(from)
 		
 		var query = PhysicsRayQueryParameters3D.create(from, to)
 		query.hit_from_inside = false
@@ -57,4 +66,5 @@ func raycast_light_detection():
 	var color_clamp = clamp(total_light, 0.05, 1)
 	light_stone.modulate = Color(color_clamp, color_clamp, color_clamp, 1)
 	light_beads_material.albedo_color = Color(total_light, total_light, total_light, 1)
+	light_value = total_light
 	

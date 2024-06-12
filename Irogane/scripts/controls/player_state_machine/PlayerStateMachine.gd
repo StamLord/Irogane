@@ -16,6 +16,9 @@ var states : Dictionary = {}
 var last_direction = Vector3.ZERO
 var last_speed = 0
 var last_body_velocity
+var jump_direction = Vector3.UP
+
+var rope_object = null
 
 signal on_state_enter(state_name)
 signal on_state_exit(state_name)
@@ -28,6 +31,7 @@ func _ready():
 		if child is PlayerState:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
+			child.state_machine = self
 	
 	if default_state:
 		default_state.Enter(self)
@@ -64,7 +68,7 @@ func _process(delta):
 			var state_color_seed = current_state.name.to_utf8_buffer().hex_encode().hex_to_int()
 			var state_color = Utils.random_color(state_color_seed)
 			var state_debug_duration = 10.0
-			DebugCanvas.debug_point(global_position, state_color,12.0, state_debug_duration)
+			DebugCanvas.debug_point(global_position, state_color, 12, state_debug_duration)
 	
 
 func _physics_process(delta):
@@ -83,18 +87,19 @@ func on_child_transition(state, new_state_name):
 		return
 		
 	if debug:
-		#print("EXITING: " + current_state.name)
+		print("EXITING: " + current_state.name)
+		print("ENTERING: " + new_state.name)
 		var new_state_color_seed = new_state_name.to_utf8_buffer().hex_encode().hex_to_int()
 		var new_state_color = Utils.random_color(new_state_color_seed)
 		var new_state_debug_duration = 10.0
-		DebugCanvas.debug_point(global_position, new_state_color, 24.0, new_state_debug_duration)
+		DebugCanvas.debug_point(global_position, new_state_color, 24, new_state_debug_duration)
 		DebugCanvas.debug_text(new_state_name, global_position + Vector3.UP, new_state_color, new_state_debug_duration)
 	
 	if current_state: 
 		current_state.Exit(self)
 		on_state_exit.emit(current_state.name)
 	
-	#print("ENTERING: " + new_state.name)
+	
 	new_state.Enter(self)
 	current_state = new_state
 	on_state_enter.emit(new_state.name)
@@ -112,6 +117,16 @@ func push_back(force_vector : Vector3):
 
 func debug_push_back(args : Array):
 	push_back(Vector3(args[0], args[1], args[2]))
+	
+
+func start_roped(rope_node):
+	rope_object = rope_node
+	
+
+func end_roped():
+	if rope_object != null:
+		rope_object.end_rope()
+		rope_object = null
 	
 
 func save_data():
