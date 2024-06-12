@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2yj4yk1pqo1c"]
+[gd_scene load_steps=6 format=3 uid="uid://b2yj4yk1pqo1c"]
 
 [ext_resource type="Script" path="res://addons/maison/maison_editor.gd" id="1_7upeq"]
+[ext_resource type="Script" path="res://addons/maison/slider_value_label.gd" id="2_mvok7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbsoc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcw6a"]
+
+[sub_resource type="Theme" id="Theme_agw66"]
 
 [node name="MaisonDock" type="Control"]
 layout_mode = 3
@@ -33,25 +36,29 @@ grow_horizontal = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "[new]"
+theme_override_font_sizes/font_size = 36
+text = "🗎"
 
 [node name="duplicate_button" type="Button" parent="top_bar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "[duplicate]"
+theme_override_font_sizes/font_size = 36
+text = "🖻"
 
 [node name="delete_button" type="Button" parent="top_bar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "[delete]"
+theme_override_font_sizes/font_size = 36
+text = "🕱"
 
 [node name="reload_button" type="Button" parent="top_bar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "[reload]"
+theme_override_font_sizes/font_size = 36
+text = "⟲"
 
 [node name="agents" type="Panel" parent="."]
 layout_mode = 1
@@ -79,12 +86,12 @@ offset_right = 824.0
 offset_bottom = 622.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lbsoc")
 
-[node name="Panel" type="Panel" parent="agent_window"]
+[node name="title" type="Panel" parent="agent_window"]
 layout_mode = 0
 offset_right = 368.0
 offset_bottom = 76.0
 
-[node name="agent_name" type="Label" parent="agent_window/Panel"]
+[node name="agent_name" type="Label" parent="agent_window/title"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -92,11 +99,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "New AI Agent"
+text = "agent"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="rename_button" type="Button" parent="agent_window/Panel"]
+[node name="rename_button" type="Button" parent="agent_window/title"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -109,9 +117,11 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
 text = "🖉"
 
-[node name="rename_edit" type="LineEdit" parent="agent_window/Panel"]
+[node name="rename_edit" type="LineEdit" parent="agent_window/title"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -123,7 +133,8 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_pcw6a")
 alignment = 1
 
-[node name="confirm_rename_button" type="Button" parent="agent_window/Panel"]
+[node name="confirm_rename_button" type="Button" parent="agent_window/title"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 6
@@ -216,6 +227,68 @@ offset_top = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="awareness" type="Panel" parent="agent_window"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 92.0
+offset_right = 691.0
+offset_bottom = 227.0
+
+[node name="MarginContainer" type="MarginContainer" parent="agent_window/awareness"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="agent_window/awareness/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="agent_window/awareness/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sight"
+
+[node name="sight_slider" type="HSlider" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_agw66")
+
+[node name="sight_value" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("slider")]
+layout_mode = 2
+text = "10"
+script = ExtResource("2_mvok7")
+slider = NodePath("../sight_slider")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="agent_window/awareness/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hearing"
+
+[node name="hearing_slider" type="HSlider" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_agw66")
+
+[node name="hearing_value" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("slider")]
+layout_mode = 2
+text = "10"
+script = ExtResource("2_mvok7")
+slider = NodePath("../hearing_slider")
+
 [node name="action_file_dialogue" type="FileDialog" parent="."]
 unique_name_in_owner = true
 title = "Open File(s)"
@@ -240,10 +313,12 @@ root_subfolder = "res://data/ai_goals/"
 [connection signal="pressed" from="top_bar/HBoxContainer/duplicate_button" to="." method="_on_duplicate_button_pressed"]
 [connection signal="pressed" from="top_bar/HBoxContainer/delete_button" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="top_bar/HBoxContainer/reload_button" to="." method="_on_reload_button_pressed"]
-[connection signal="pressed" from="agent_window/Panel/rename_button" to="." method="_on_rename_button_pressed"]
-[connection signal="pressed" from="agent_window/Panel/confirm_rename_button" to="." method="_on_confirm_rename_button_pressed"]
+[connection signal="pressed" from="agent_window/title/rename_button" to="." method="_on_rename_button_pressed"]
+[connection signal="pressed" from="agent_window/title/confirm_rename_button" to="." method="_on_confirm_rename_button_pressed"]
 [connection signal="pressed" from="agent_window/HBoxContainer/goal_panel/title/add_goal" to="." method="_on_add_goal_pressed"]
 [connection signal="pressed" from="agent_window/HBoxContainer/action_panel/title/add_action" to="." method="_on_add_action_pressed"]
+[connection signal="drag_ended" from="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer/sight_slider" to="." method="_on_sight_slider_drag_ended"]
+[connection signal="drag_ended" from="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer2/hearing_slider" to="." method="_on_hearing_slider_drag_ended"]
 [connection signal="file_selected" from="action_file_dialogue" to="." method="_on_action_file_dialogue_file_selected"]
 [connection signal="files_selected" from="action_file_dialogue" to="." method="_on_action_file_dialogue_files_selected"]
 [connection signal="file_selected" from="goal_file_dialogue" to="." method="_on_goal_file_dialogue_file_selected"]

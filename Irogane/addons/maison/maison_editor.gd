@@ -8,9 +8,13 @@ extends Control
 @onready var goal_container = %goal_container
 @onready var action_file_dialogue = %action_file_dialogue
 @onready var goal_file_dialogue = %goal_file_dialogue
-@onready var rename_button = $agent_window/Panel/rename_button
-@onready var confirm_rename_button = $agent_window/Panel/confirm_rename_button
-@onready var rename_edit = $agent_window/Panel/rename_edit
+
+@onready var rename_button = %rename_button
+@onready var confirm_rename_button = %confirm_rename_button
+@onready var rename_edit = %rename_edit
+
+@onready var sight_slider = %sight_slider
+@onready var hearing_slider = %hearing_slider
 
 const AGENT_ITEM = preload("res://addons/maison/agent_item.tscn")
 const AGENTS_PATH = "res://data/ai_agents/"
@@ -95,6 +99,10 @@ func update_agent_window():
 	diff = current_resource.goals.size() - goal_container.get_child_count()
 	create_or_remove_items(diff, create_item.bind(goal_container), remove_item.bind(goal_container))
 	update_gui_items(goal_container, current_resource.goals, remove_goal_from_agent)
+	
+	# Set sliders
+	sight_slider.value = current_resource.sight
+	hearing_slider.value = current_resource.hearing
 	
 
 func update_gui_items(container, array, button_callback):
@@ -219,6 +227,17 @@ func delete_agent():
 	load_agents()
 	
 
+func set_agent_property(property : String, value):
+	if current_resource == null:
+		return
+	
+	if current_selected < 0 or current_selected >= agent_file_paths.size():
+		return
+	
+	current_resource[property] = value
+	save_resource(current_resource, agent_file_paths[current_selected])
+	
+
 func _on_new_button_pressed():
 	new_agent()
 	
@@ -288,4 +307,12 @@ func _on_confirm_rename_button_pressed():
 	var new_path = AGENTS_PATH.path_join(rename_edit.text) + ".res"
 	save_new_resource(current_resource, new_path)
 	delete_agent()
+	
+
+func _on_sight_slider_drag_ended(value_changed):
+	set_agent_property("sight", sight_slider.value)
+	
+
+func _on_hearing_slider_drag_ended(value_changed):
+	set_agent_property("hearing", hearing_slider.value)
 	
