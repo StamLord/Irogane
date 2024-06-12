@@ -30,6 +30,9 @@ var index = 0
 	"THROWABLE" : shuriken,
 	}
 
+signal on_attack()
+signal on_defend()
+
 func _ready():
 	PlayerEntity.slot_changed.connect(on_slot_changed)
 	

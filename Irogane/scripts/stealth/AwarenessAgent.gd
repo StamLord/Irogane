@@ -180,7 +180,7 @@ func update_cone_mesh():
 	
 
 func hear_sound(sound_position):
-	print("Heard sound at: " + str(sound_position))
+	#print("Heard sound at: " + str(sound_position))
 	on_sound_heard.emit(sound_position)
 	pass
 	

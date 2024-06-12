@@ -97,3 +97,7 @@ func get_body_position():
 func get_current_task():
 	return _state_machine.schedule_agent.get_current_task()
 	
+
+func get_stats():
+	return state_machine.stats
+	

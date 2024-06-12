@@ -27,6 +27,11 @@ func Enter(body):
 	
 	# Reset vertical velocity
 	body.velocity.y = 0
+	
+	# I-frames
+	if body.stats != null:
+		body.stats.start_invincible()
+	
 
 func Update(_delta):
 	pass
@@ -77,3 +82,7 @@ func Exit(body):
 	
 	# Return head to original height
 	head.reset_height(0.2)
+	
+	if body.stats != null:
+		body.stats.end_invincible()
+	

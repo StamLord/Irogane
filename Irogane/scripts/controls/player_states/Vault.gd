@@ -75,7 +75,7 @@ func Exit(body):
 	# Unfreeze rigidbody
 	if target_collider is RigidBody3D:
 		target_collider.freeze = false
-		
+	
 	body.move_and_slide() 	# Update body to acknowledge new state, 
 							# otherwise next state will think it's not on floor
 	

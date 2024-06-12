@@ -4,30 +4,61 @@ extends Node3D
 
 @export var sound_emitter : SoundEmitter
 @export var state_machine : PlayerStateMachine
-@export var steps_per_unit = 0.5
-@export var steps_sound_range = 8
+@onready var carpet_check = %carpet_check
+
 @export var playing_in_states = ["walk", "run"]
-@export var play_once_from_state = ["air"]
+@export var steps_per_unit = 2.0
+
+@export var steps_sound_range = 4
+@export var stone_volume = -20
+
+@export var carpet_sound_range = 2
+@export var carpet_volume = -25
 
 var footstep_sounds = [
-	preload("res://assets/audio/footsteps/StepSamurai01.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai02.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai03.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai04.mp3"), 
-	preload("res://assets/audio/footsteps/StepSamurai05.mp3")]
+	preload("res://assets/audio/footsteps/stone/footstep_stone_07.ogg"), 
+	preload("res://assets/audio/footsteps/stone/footstep_stone_08.ogg"),
+	preload("res://assets/audio/footsteps/stone/footstep_stone_12.ogg"),
+	preload("res://assets/audio/footsteps/stone/footstep_stone_13.ogg"),
+	]
+	
+
+var carpet_footstep_sounds = [
+	preload("res://assets/audio/footsteps/stone/footstep_carpet_03.ogg"), 
+	preload("res://assets/audio/footsteps/stone/footstep_carpet_04.ogg"),
+	preload("res://assets/audio/footsteps/stone/footstep_carpet_05.ogg"),
+	preload("res://assets/audio/footsteps/stone/footstep_carpet_06.ogg"),
+	]
+	
 
 var last_position = Vector3.ZERO
 var distance_traveled = 0.0
 
 var is_playing = false
-var play_once = false
 
 func _ready():
 	last_position = global_position
 	
 	if state_machine:
 		state_machine.on_state_enter.connect(on_state_enter)
-		state_machine.on_state_exit.connect(on_state_exit)
+	
+
+func make_a_step():
+	var range
+	var sound
+	var volume
+	
+	if carpet_check.is_colliding():
+		range = carpet_sound_range
+		sound = carpet_footstep_sounds.pick_random()
+		volume = carpet_volume
+	else:
+		range = steps_sound_range
+		sound = footstep_sounds.pick_random()
+		volume = stone_volume
+	
+	emit_stealth_sound(range)
+	play_footstep_sfx(sound, volume)
 	
 
 func _process(_delta):
@@ -35,23 +66,22 @@ func _process(_delta):
 		return
 	
 	distance_traveled += global_position.distance_to(last_position)
-	var step_distance = 1.0 / steps_per_unit
 	
-	if distance_traveled >= step_distance:
-		emit_stealth_sound()
-		play_footstep_sfx()
-		distance_traveled -= step_distance
-		
+	if distance_traveled >= steps_per_unit:
+		make_a_step()
+		distance_traveled -= steps_per_unit
+	
 	last_position = global_position
 	
 
-func emit_stealth_sound():
+func emit_stealth_sound(range):
 	if sound_emitter:
-		sound_emitter.emit_sound(global_position, steps_sound_range)
+		sound_emitter.emit_sound(global_position, range)
 	
 
-func play_footstep_sfx():
-	audio_player.play(footstep_sounds.pick_random())
+func play_footstep_sfx(sound, volume):
+	var sound_pitch = randf_range(0.8, 1.2)
+	audio_player.play(sound, sound_pitch, volume)
 	
 
 func on_state_enter(state_name):
@@ -62,15 +92,5 @@ func on_state_enter(state_name):
 	if is_playing and not was_playing:
 		distance_traveled = 0.0
 		last_position = global_position
-	
-	# Play sound once if exited a valid state
-	if is_playing and play_once:
-		emit_stealth_sound()
-		play_footstep_sfx()
-	play_once = false
-	
-
-func on_state_exit(state_name):
-	# Check if should play once when entering next valid state
-	play_once = state_name in play_once_from_state
+		make_a_step()
 	

@@ -73,6 +73,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 2
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 scroll_following = true
 selection_enabled = true
@@ -81,6 +82,7 @@ selection_enabled = true
 unique_name_in_owner = true
 layout_mode = 2
 focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 16
 placeholder_text = "Use 'help' for list of commands"
 caret_blink = true
 
@@ -98,6 +100,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_u8j0n")
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_2fmul")
 
 [connection signal="text_changed" from="VBoxContainer/console_inputbar" to="." method="_on_console_inputbar_text_changed"]

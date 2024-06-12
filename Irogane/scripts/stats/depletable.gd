@@ -1,4 +1,4 @@
-extends Node
+extends Value
 class_name Depletable
 
 @export var max_value_source : Value

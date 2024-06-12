@@ -23,22 +23,32 @@ script = ExtResource("2_p1n0g")
 
 [node name="health" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
 script = ExtResource("3_cngxo")
+max_value_source = NodePath("../hard_health")
+value = 50
+
+[node name="hard_health" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
+script = ExtResource("3_cngxo")
 max_value_source = NodePath("values")
 value = 5
 max_value = 5
 
-[node name="values" type="Node" parent="health" node_paths=PackedStringArray("attribute")]
+[node name="values" type="Node" parent="hard_health" node_paths=PackedStringArray("attribute")]
 script = ExtResource("4_xw1y4")
 attribute = NodePath("../../strength")
 values = Array[int]([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
 
 [node name="stamina" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
 script = ExtResource("5_bpmwy")
+max_value_source = NodePath("../hard_stamina")
+value = 50
+
+[node name="hard_stamina" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
+script = ExtResource("5_bpmwy")
 max_value_source = NodePath("values")
 value = 50
 auto_replenish_rate = 0.2
 
-[node name="values" type="Node" parent="stamina" node_paths=PackedStringArray("attribute")]
+[node name="values" type="Node" parent="hard_stamina" node_paths=PackedStringArray("attribute")]
 script = ExtResource("4_xw1y4")
 attribute = NodePath("../../agility")
 values = Array[int]([50, 70, 80, 90, 105, 130, 150, 170, 190, 220])

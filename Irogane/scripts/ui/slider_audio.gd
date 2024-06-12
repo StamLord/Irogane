@@ -23,10 +23,10 @@ func on_value_change(_value):
 				return
 		
 		var pitch_ratio = _value/255
-		var ratio_multiplier = 0.1
+		var ratio_multiplier = 0.2
 		var pitch_base = 0.95
 		var pitch = pitch_base + (ratio_multiplier * pitch_ratio)
 		
-		audio_player.play(slider_sound, null, pitch)
+		audio_player.play(slider_sound, pitch)
 		last_sound_timestamp = Time.get_unix_time_from_system()
 	

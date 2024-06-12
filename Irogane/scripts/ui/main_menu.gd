@@ -3,16 +3,18 @@ extends UIWindow
 @onready var load_window = $game_load_window
 @onready var settings_window = $settings_window
 @onready var start_button = %start_button
-
+@onready var audio_player = $audio_player
 @onready var start_sound = load("res://assets/audio/ui/taiko_hit_1.ogg")
 
 func _ready():
 	open()
-	start_button.grab_focus()
+	audio_player.set_can_play(false)
+	start_button.call_deferred("grab_focus")
+	audio_player.call_deferred("set_can_play", true)
 	
 
 func _on_start_button_pressed():
-	GlobalAudio.play_audio(start_sound)
+	GlobalAudio.play_audio(start_sound, -10.0)
 	close()
 	SceneManager.goto_scene("res://prefabs/ui/character_creator.tscn")
 	

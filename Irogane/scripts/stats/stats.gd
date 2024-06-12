@@ -9,7 +9,9 @@ class_name Stats
 @export var max_level = 20
 
 @onready var health : Depletable = $health
+@onready var hard_health : Depletable = $hard_health
 @onready var stamina : Depletable = $stamina
+@onready var hard_stamina : Depletable = $hard_stamina
 
 @export var hurtboxes : Array[Hurtbox]
 @onready var guardboxes : Array[Guardbox] 
@@ -35,10 +37,18 @@ signal started_battle()
 signal ended_battle()
 
 var last_medicine = null
-signal medicine_used(medicine)
+signal on_medicine_used(medicine)
+signal on_hit(attack_info)
+signal on_heavy_hit(force : Vector3)
+signal on_health_depleted(amount)
+signal on_death()
 
 var is_guard_broken : bool = false
-signal heavy_hit_during_guard_break(force : Vector3)
+
+var is_staggered : bool = false
+var stagger_timer = Timer.new()
+
+var invincible_timer = Timer.new()
 
 func _ready():
 	if get_owner().name == "player":
@@ -47,12 +57,20 @@ func _ready():
 	for h in hurtboxes:
 		h.on_hit.connect(hit)
 	
-	var weapons_parent = get_node("../head/main_camera/weapon_manager")
-	if weapons_parent != null:
+	if has_node("../head/main_camera/weapon_manager"):
+		var weapons_parent = get_node("../head/main_camera/weapon_manager")
 		get_all_guardboxes(weapons_parent)
 	
 	for g in guardboxes:
 		g.on_guard.connect(guard)
+	
+	add_child(stagger_timer)
+	stagger_timer.one_shot = true
+	stagger_timer.timeout.connect(end_stagger)
+	
+	add_child(invincible_timer)
+	invincible_timer.one_shot = true
+	invincible_timer.timeout.connect(end_invincible)
 	
 
 func get_all_guardboxes(node : Node):
@@ -67,37 +85,63 @@ func _process(_delta):
 	
 
 func hit(attack_info : AttackInfo):
-	deplete_health(attack_info.soft_damage)
+	deplete_health(attack_info.soft_damage, attack_info.hard_damage)
 	add_statuses(attack_info.statuses)
 	
 	if attack_info.is_heavy:
-		heavy_hit_during_guard_break.emit(attack_info.force)
+		on_heavy_hit.emit(attack_info.force)
+	
+	on_hit.emit(attack_info)
+	
+	if attack_info.soft_damage >= 40:
+		start_stagger(0.2)
+	else:
+		start_stagger(0.4)
 	
 
 func guard(attack_info : AttackInfo, _hitbox):
 	if attack_info.is_heavy:
-		heavy_hit_during_guard_break.emit(attack_info.force)
+		on_heavy_hit.emit(attack_info.force)
 	
 
-func deplete_health(amount : int):
+func deplete_health(soft_amount : int, hard_amount : int = 0):
+	if hard_health:
+		hard_health.deplete(hard_amount)
+	
 	if health:
-		return health.deplete(amount)
+		on_health_depleted.emit(soft_amount)
+		if health.get_value() < 1:
+			die()
+		return health.deplete(soft_amount)
 	return false
 	
 
-func replenish_health(amount: int):
+func die():
+	on_death.emit()
+	
+
+func replenish_health(soft_amount: int, hard_amount : int = 0):
+	if hard_health:
+		hard_health.replenish(hard_amount)
+	
 	if health:
-		return health.replenish(amount)
+		return health.replenish(soft_amount)
 	return false
 	
 
-func deplete_stamina(amount : int):
+func deplete_stamina(soft_amount : int, hard_amount : int = 0):
+	if hard_stamina:
+		return hard_stamina.deplete(hard_amount)
+	
 	if stamina:
-		return stamina.deplete(amount)
+		return stamina.deplete(soft_amount)
 	return false
 	
 
-func replenish_stamina(amount: int):
+func replenish_stamina(amount: int, hard_amount : int = 0):
+	if hard_stamina:
+		return hard_stamina.replenish(hard_amount)
+	
 	if stamina:
 		return stamina.replenish(amount)
 	return false
@@ -287,12 +331,43 @@ func use_medicine(medicine):
 		replenish_stamina(medicine.st_restore)
 	
 	last_medicine = Time.get_ticks_msec()
-	medicine_used.emit(medicine)
+	on_medicine_used.emit(medicine)
 	return true
 	
 
-func set_guard_break(state):
-	is_guard_broken = state
+func start_guard_break(duration):
+	is_guard_broken = true
+	start_stagger(duration)
+	await get_tree().create_timer(duration).timeout
+	is_guard_broken = false
+	
+
+func start_stagger(duration):
+	is_staggered = true
+	stagger_timer.start(duration)
+	
+
+func end_stagger():
+	is_staggered = false
+	
+
+func got_perfect_blocked():
+	start_stagger(1.0)
+	
+
+func start_invincible_duration(duration):
+	invincible_timer.start(duration)
+	start_invincible()
+	
+
+func start_invincible():
+	for h in hurtboxes:
+		h.set_active(false)
+	
+
+func end_invincible():
+	for h in hurtboxes:
+		h.set_active(true)
 	
 
 func save_data():
@@ -460,15 +535,19 @@ func set_attribute(args : Array):
 
 func set_health(args : Array):
 	health.set_value(args[0])
+	hard_health.set_value(args[0])
 	
 
 func set_stamina(args : Array):
 	stamina.set_value(args[0])
+	hard_stamina.set_value(args[0])
 	
 
 func set_godmode(args: Array):
 	health.set_godmode(args[0])
 	stamina.set_godmode(args[0])
+	hard_health.set_godmode(args[0])
+	hard_stamina.set_godmode(args[0])
 	
 
 func get_node_from_effect(effect : Effect):

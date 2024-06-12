@@ -1,14 +1,17 @@
 extends Control
 
-@onready var medicine_texture = $medicine_vfx
-@export var medicine_curve : Curve
-var medicine_duration = 1.0
-var medicine_start = null
+@onready var vignette_vfx = $vignette_vfx
+@onready var distortion_vfx = $distortion_vfx
 
-@onready var hurt_texture = $hurt_vfx
-@export var hurt_curve : Curve
-var hurt_duration = 1.0
-var hurt_start = null
+@export var vignette_curve : Curve
+@export var distortion_curve : Curve
+
+@export var medicine_color = Color("61ff00")
+@export var medicine_duration = 1.0
+
+@export var physical_damage_color = Color("c40000")
+@export var physical_damage_distortion_duration = 0.5
+@export var physical_damage_vignette_duration = 2.0
 
 func _ready():
 	subscribe_to_player(PlayerEntity.player_node)
@@ -20,29 +23,37 @@ func _ready():
 func subscribe_to_player(player_node):
 	var stats = player_node.get_node("stats")
 	if stats:
-		stats.medicine_used.connect(medicine_vfx)
+		stats.on_medicine_used.connect(medicine_vfx)
+		stats.on_health_depleted.connect(physical_damage_vfx)
 	
 
-func medicine_vfx(_medicine):
-	medicine_start = Time.get_ticks_msec()
-	var duration = medicine_duration * 1000
-	while Time.get_ticks_msec() - medicine_start <= duration:
-		var t =  (Time.get_ticks_msec() - medicine_start) / duration
-		medicine_texture.material.set_shader_parameter("strength", medicine_curve.sample(t))
+func animate_vfx(texture, parameter : String, color : Color, duration : float, curve : Curve):
+	var start_time = Time.get_ticks_msec()
+	texture.material.set_shader_parameter("color", color)
+	while Time.get_ticks_msec() - start_time <= duration:
+		var t =  (Time.get_ticks_msec() - start_time) / duration
+
+		texture.material.set_shader_parameter(parameter, curve.sample(t))
 		await get_tree().process_frame
 	
-	medicine_texture.material.set_shader_parameter("strength", 0)
+	texture.material.set_shader_parameter(parameter, 0)
 	
 
-func hurt_vfx(_hurt):
-	hurt_start = Time.get_ticks_msec()
-	var duration = hurt_duration * 1000
-	while Time.get_ticks_msec() - hurt_start <= duration:
-		var t =  (Time.get_ticks_msec() - hurt_start) / duration
-		hurt_texture.material.set_shader_parameter("distortion_amount", hurt_curve.sample(t))
-		await get_tree().process_frame
+func animate_vignette(duration, color):
+	animate_vfx(vignette_vfx, "strength", color, duration, vignette_curve)
 	
-	hurt_texture.material.set_shader_parameter("distortion_amount", 0)
+
+func animate_distortion(duration):
+	animate_vfx(distortion_vfx, "distortion_amount", Color.WHITE, duration, distortion_curve)
+	
+
+func medicine_vfx(medicine):
+	animate_vignette(medicine_duration * 1000, medicine_color)
+	
+
+func physical_damage_vfx(hurt):
+	animate_vignette(physical_damage_vignette_duration * 1000, physical_damage_color)
+	#animate_distortion(physical_damage_distortion_duration * 1000)
 	
 
 func add_debug_commands():
@@ -54,6 +65,6 @@ func debug_medicine_vfx(_empty):
 	medicine_vfx(null)
 	
 
-func debug_hurt_vfx(_empty):
-	hurt_vfx(null)
+func debug_hurt_vfx(empty):
+	physical_damage_vfx(null)
 	

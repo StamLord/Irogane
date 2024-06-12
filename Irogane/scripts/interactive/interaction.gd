@@ -66,7 +66,7 @@ func _process(delta):
 		else:
 			set_interactive(null)
 		
-		if current_interactive:
+		if current_interactive != null:
 			if Input.is_action_just_pressed("use"):
 				last_button_press = Time.get_ticks_msec()
 				start_press_interactive = current_interactive
@@ -98,8 +98,8 @@ func _process(delta):
 	
 
 func set_interactive(interactive):
-	# No change
-	if current_interactive == interactive:
+	# If new value is null, always continue to handle cases where node was freed
+	if current_interactive == interactive and interactive == null:
 		return
 	
 	# Reset button press if we switched interactive
