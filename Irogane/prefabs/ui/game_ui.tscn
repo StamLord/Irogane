@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=65 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://b4cf7gn0diou5" path="res://assets/textures/icons/compass_icon.png" id="21_s5dft"]
 [ext_resource type="Script" path="res://scripts/ui/weapon_icon.gd" id="22_0u58e"]
 [ext_resource type="PackedScene" uid="uid://dg1slejmv6ml6" path="res://prefabs/ui/key_rings.tscn" id="23_n2lo5"]
+
 [sub_resource type="Curve" id="Curve_12jqb"]
 max_value = 4.0
 _data = [Vector2(0.00884955, 0.0311458), 0.0, 0.0, 0, 0, Vector2(0.253687, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -645,9 +646,13 @@ visible = false
 layout_mode = 1
 mouse_filter = 2
 script = ExtResource("15_l8i5o")
-medicine_curve = SubResource("Curve_12jqb")
-hurt_curve = SubResource("Curve_7ldeh")
-
+vignette_curve = null
+distortion_curve = null
+medicine_color = Color(0.380392, 1, 0, 1)
+medicine_duration = 1.0
+physical_damage_color = Color(0.768627, 0, 0, 1)
+physical_damage_distortion_duration = 0.5
+physical_damage_vignette_duration = 2.0
 
 [node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
 visible = false
