@@ -150,10 +150,12 @@ func Exit(body):
 	air_ended.emit()
 	
 	if apply_fall_damage:
-		var velocity_over_threshold = fall_damage_threshold.x - prev_velocity.y
+		var velocity_over_threshold = max(0.0, fall_damage_threshold.x - prev_velocity.y)
 		var t = velocity_over_threshold  / abs(fall_damage_threshold.y - fall_damage_threshold.x)
 		var damage = floori(t * fall_damage_death)
-		state_machine.stats.deplete_health(damage)
+		
+		if damage > 0:
+			state_machine.stats.deplete_health(damage)
 	
 	apply_fall_damage = false
 	

@@ -54,7 +54,6 @@ texture_progress = ExtResource("2_y4fov")
 tint_progress = Color(1, 0.00784314, 0, 1)
 script = ExtResource("3_8e4ki")
 bar_name = "health"
-change_max_value = false
 
 [node name="hard_stamina_bar" type="TextureProgressBar" parent="."]
 custom_minimum_size = Vector2(256, 24)
@@ -95,7 +94,6 @@ texture_progress = ExtResource("4_q00q5")
 tint_progress = Color(0.286275, 0.631373, 0.447059, 1)
 script = ExtResource("3_8e4ki")
 bar_name = "stamina"
-change_max_value = false
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
