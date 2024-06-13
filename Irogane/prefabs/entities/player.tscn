@@ -1,4 +1,4 @@
-[gd_scene load_steps=171 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=174 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -59,10 +59,10 @@
 [ext_resource type="Texture2D" uid="uid://d15my5xovi2rm" path="res://assets/textures/vfx/slash_2.png" id="38_e1qu1"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
-[ext_resource type="Script" path="res://scripts/weapons/pocket_mirror.gd" id="44_5spk0"]
-[ext_resource type="Script" path="res://scripts/weapons/simple_weapon_manager.gd" id="46_wqxcu"]
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="43_38fde"]
 [ext_resource type="Script" path="res://scripts/weapons/kick.gd" id="43_xcpvm"]
+[ext_resource type="Script" path="res://scripts/weapons/pocket_mirror.gd" id="44_5spk0"]
+[ext_resource type="Script" path="res://scripts/weapons/simple_weapon_manager.gd" id="46_wqxcu"]
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
 [ext_resource type="Script" path="res://scripts/controls/ledge_check.gd" id="47_nhvkg"]
 [ext_resource type="Texture2D" uid="uid://dxpxsjbekb6j7" path="res://assets/textures/vfx/aoe_decal_0.png" id="48_fsnbk"]
@@ -354,8 +354,9 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_1s8w4"]
 material = SubResource("StandardMaterial3D_imqxh")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
 [sub_resource type="BoxShape3D" id="BoxShape3D_vikjk"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -751,9 +752,9 @@ spot_angle = 60.0
 script = ExtResource("27_wn7je")
 
 [node name="weapon_manager" type="Node3D" parent="head/main_camera"]
+unique_name_in_owner = true
 process_mode = 4
 visible = false
-unique_name_in_owner = true
 script = ExtResource("18_u5xda")
 
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
@@ -1005,6 +1006,41 @@ script = ExtResource("37_60ul2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
 visible = false
 
+[node name="kick" type="Node3D" parent="head/main_camera/weapon_manager"]
+script = ExtResource("43_xcpvm")
+
+[node name="Hitbox" type="Area3D" parent="head/main_camera/weapon_manager/kick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, -0.5)
+collision_layer = 32
+collision_mask = 32
+monitoring = false
+script = ExtResource("43_38fde")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/main_camera/weapon_manager/kick/Hitbox"]
+shape = SubResource("BoxShape3D_vikjk")
+
+[node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/kick"]
+emitting = false
+amount = 24
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_285xo")
+draw_pass_1 = SubResource("QuadMesh_mrejr")
+
+[node name="audio" type="Node3D" parent="head/main_camera/weapon_manager/kick"]
+script = ExtResource("29_c2b1q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
+bus = &"Sound"
+
 [node name="simple_weapon_manager" type="Node3D" parent="head/main_camera"]
 script = ExtResource("46_wqxcu")
 
@@ -1084,41 +1120,6 @@ visible = false
 size = Vector3(0.5, 1, 0.5)
 texture_albedo = ExtResource("48_fsnbk")
 texture_emission = ExtResource("48_fsnbk")
-
-[node name="kick" type="Node3D" parent="head/main_camera/weapon_manager"]
-script = ExtResource("43_xcpvm")
-
-[node name="Hitbox" type="Area3D" parent="head/main_camera/weapon_manager/kick"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, -0.5)
-collision_layer = 32
-collision_mask = 32
-monitoring = false
-script = ExtResource("43_38fde")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="head/main_camera/weapon_manager/kick/Hitbox"]
-shape = SubResource("BoxShape3D_vikjk")
-
-[node name="hit_vfx" type="GPUParticles3D" parent="head/main_camera/weapon_manager/kick"]
-emitting = false
-amount = 24
-lifetime = 0.4
-process_material = SubResource("ParticleProcessMaterial_285xo")
-draw_pass_1 = SubResource("QuadMesh_mrejr")
-
-[node name="audio" type="Node3D" parent="head/main_camera/weapon_manager/kick"]
-script = ExtResource("29_c2b1q")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
-bus = &"Sound"
-
-[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
-bus = &"Sound"
 
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
