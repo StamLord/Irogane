@@ -645,8 +645,8 @@ visible = false
 layout_mode = 1
 mouse_filter = 2
 script = ExtResource("15_l8i5o")
-medicine_curve = SubResource("Curve_3ssjj")
-hurt_curve = SubResource("Curve_ugfdm")
+medicine_curve = SubResource("Curve_12jqb")
+hurt_curve = SubResource("Curve_7ldeh")
 
 
 [node name="debug_console" parent="." instance=ExtResource("17_07pmg")]

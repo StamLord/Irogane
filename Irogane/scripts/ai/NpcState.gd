@@ -99,5 +99,5 @@ func get_current_task():
 	
 
 func get_stats():
-	return state_machine.stats
+	return _state_machine.stats
 	

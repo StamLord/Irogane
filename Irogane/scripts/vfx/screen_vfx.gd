@@ -28,6 +28,9 @@ func subscribe_to_player(player_node):
 	
 
 func animate_vfx(texture, parameter : String, color : Color, duration : float, curve : Curve):
+	if texture == null:
+		return
+		
 	var start_time = Time.get_ticks_msec()
 	texture.material.set_shader_parameter("color", color)
 	while Time.get_ticks_msec() - start_time <= duration:
