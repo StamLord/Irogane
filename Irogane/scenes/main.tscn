@@ -455,12 +455,12 @@ subdivide_depth = 10
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wwbv1"]
 panorama = ExtResource("2_dl0g5")
 
-[sub_resource type="Sky" id="Sky_7a7j5"]
+[sub_resource type="Sky" id="Sky_pvevj"]
 sky_material = SubResource("PanoramaSkyMaterial_wwbv1")
 
 [sub_resource type="Environment" id="Environment_imxk7"]
 background_mode = 2
-sky = SubResource("Sky_7a7j5")
+sky = SubResource("Sky_pvevj")
 tonemap_mode = 2
 glow_enabled = true
 fog_density = 0.2

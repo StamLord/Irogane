@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bu4kjhwhvheym"]
+
+[ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="1_66hyo"]
+[ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_c72l7"]
+[ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="3_3d6s4"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_twibi"]
+panorama = ExtResource("2_c72l7")
+
+[sub_resource type="Sky" id="Sky_7a7j5"]
+sky_material = SubResource("PanoramaSkyMaterial_twibi")
+
+[sub_resource type="Environment" id="Environment_dc3xh"]
+background_mode = 2
+sky = SubResource("Sky_7a7j5")
+tonemap_mode = 2
+glow_enabled = true
+fog_density = 0.2
+volumetric_fog_density = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tn2ew"]
+albedo_texture = ExtResource("3_3d6s4")
+
+[node name="GoapTest" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_66hyo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48337, 0)
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="env"]
+environment = SubResource("Environment_dc3xh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="world" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3332, -0.226741, 110.11)
+material_override = SubResource("StandardMaterial3D_tn2ew")
+use_collision = true
+size = Vector3(77.8739, 0.574463, 245.274)
