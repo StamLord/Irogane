@@ -15,5 +15,8 @@ func subscribe_to_player(player_node):
 	
 
 func index_changed(index):
+	if index >= textures.size():
+		return
+	
 	texture = textures[index]
 	

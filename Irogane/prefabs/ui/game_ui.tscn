@@ -1,7 +1,9 @@
-[gd_scene load_steps=65 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=69 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
+[ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
 [ext_resource type="Script" path="res://scripts/ui/interaction_text.gd" id="2_pu65n"]
+[ext_resource type="Shader" uid="uid://2ab15ddeuwkp" path="res://prefabs/vfx/telescope_shader.tres" id="2_tb88a"]
 [ext_resource type="PackedScene" uid="uid://bi8n5t3pidiyf" path="res://prefabs/ui/hud.tscn" id="3_qbjqm"]
 [ext_resource type="Script" path="res://scripts/stealth/stealth_ui.gd" id="4_0kmua"]
 [ext_resource type="Texture2D" uid="uid://cq6cr15aonyd" path="res://assets/textures/ui/stealth/detect_radar.png" id="5_skdea"]
@@ -34,6 +36,15 @@ point_count = 3
 max_value = 0.1
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.138643, 0.1), -0.291806, -0.00690082, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ryaf"]
+shader = ExtResource("2_tb88a")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/center = 500.0
+shader_parameter/strength = 0.001
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqktc"]
+shader = ExtResource("2_38aop")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dha70"]
 shader = ExtResource("16_ikay5")
@@ -297,6 +308,28 @@ mouse_filter = 2
 script = ExtResource("15_l8i5o")
 vignette_curve = SubResource("Curve_12jqb")
 distortion_curve = SubResource("Curve_7ldeh")
+
+[node name="telescope_vfx" type="Panel" parent="screen_vfx"]
+visible = false
+material = SubResource("ShaderMaterial_4ryaf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="chromatic_abberation_vfx" type="Panel" parent="screen_vfx"]
+visible = false
+material = SubResource("ShaderMaterial_sqktc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="medicine_vfx" type="Panel" parent="screen_vfx"]
 material = SubResource("ShaderMaterial_dha70")

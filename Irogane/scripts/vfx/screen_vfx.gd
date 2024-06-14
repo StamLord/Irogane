@@ -2,6 +2,9 @@ extends Control
 
 @onready var vignette_vfx = $vignette_vfx
 @onready var distortion_vfx = $distortion_vfx
+@onready var telescope_vfx = $telescope_vfx
+@onready var chromatic_abberation_vfx = $chromatic_abberation_vfx
+
 
 @export var vignette_curve : Curve
 @export var distortion_curve : Curve
@@ -25,6 +28,10 @@ func subscribe_to_player(player_node):
 	if stats:
 		stats.on_medicine_used.connect(medicine_vfx)
 		stats.on_health_depleted.connect(physical_damage_vfx)
+	
+	var telescope = player_node.get_node("head/main_camera/simple_weapon_manager/telescope")
+	if telescope:
+		telescope.telescope_on.connect(set_telescope_vfx)
 	
 
 func animate_vfx(texture, parameter : String, color : Color, duration : float, curve : Curve):
@@ -57,6 +64,13 @@ func medicine_vfx(medicine):
 func physical_damage_vfx(hurt):
 	animate_vignette(physical_damage_vignette_duration * 1000, physical_damage_color)
 	#animate_distortion(physical_damage_distortion_duration * 1000)
+	
+
+func set_telescope_vfx(state):
+	if chromatic_abberation_vfx:
+		chromatic_abberation_vfx.visible = state
+	if telescope_vfx:
+		telescope_vfx.visible = state
 	
 
 func add_debug_commands():

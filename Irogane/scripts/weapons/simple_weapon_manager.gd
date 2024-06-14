@@ -3,7 +3,7 @@ class_name SimpleWeaponManager
 
 @onready var stats = %stats
 
-@onready var tools = [$pocket_mirror, $rope]
+@onready var tools = [$pocket_mirror, $rope, $telescope]
 var index = 0
 
 @onready var current_template = null
@@ -12,6 +12,9 @@ signal on_index_changed(index)
 
 func _process(_delta):
 	if not InputContextManager.is_current_context(InputContextType.GAME):
+		return
+	
+	if Input.is_action_pressed("attack_secondary"):
 		return
 	
 	if Input.is_action_just_pressed("scroll_up"):

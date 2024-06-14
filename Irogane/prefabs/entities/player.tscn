@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=175 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -71,6 +71,7 @@
 [ext_resource type="PackedScene" uid="uid://d1rcf2qi0eyo" path="res://assets/models/compass/mirror.glb" id="50_hpl7l"]
 [ext_resource type="PackedScene" uid="uid://dfv8ag71set7j" path="res://assets/models/compass/pin.glb" id="50_nr8pd"]
 [ext_resource type="Script" path="res://scripts/procedural/compass.gd" id="51_tjqxo"]
+[ext_resource type="Script" path="res://scripts/weapons/telescope.gd" id="56_it81t"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -1109,6 +1110,12 @@ script = ExtResource("37_60ul2")
 [node name="sub_decal" type="Decal" parent="head/main_camera/simple_weapon_manager/skill_zone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
 visible = false
+
+[node name="telescope" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
+script = ExtResource("56_it81t")
+
+[node name="telecam" type="Camera3D" parent="head/main_camera/simple_weapon_manager/telescope"]
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
 target_position = Vector3(0, 0, -1)
