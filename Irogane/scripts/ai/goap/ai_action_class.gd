@@ -2,22 +2,23 @@ extends Resource
 class_name AIActionAbstract
 
 
-func get_preconditions() -> Dictionary:
+func get_requirements() -> Dictionary:
 	return {}
 	
 
-func get_cost() -> float:
+func get_cost(world_state: Dictionary) -> float:
 	return 0.0;
 	
 
-func get_results() -> Dictionary:
+func get_effects() -> Dictionary:
 	return {}
 	
 
-func is_valid():
+func is_valid(world_state: Dictionary):
 	return true;
 	
 
+# TODO: Figure out
 func activate_action(data):
 	pass;
 	
