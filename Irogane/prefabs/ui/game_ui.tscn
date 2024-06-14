@@ -678,14 +678,6 @@ bbcode_enabled = true
 visible = false
 layout_mode = 1
 mouse_filter = 2
-script = ExtResource("15_l8i5o")
-vignette_curve = null
-distortion_curve = null
-medicine_color = Color(0.380392, 1, 0, 1)
-medicine_duration = 1.0
-physical_damage_color = Color(0.768627, 0, 0, 1)
-physical_damage_distortion_duration = 0.5
-physical_damage_vignette_duration = 2.0
 
 [node name="debug_console" parent="." instance=ExtResource("17_07pmg")]
 visible = false
