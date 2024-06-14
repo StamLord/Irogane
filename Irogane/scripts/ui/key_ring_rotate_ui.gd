@@ -11,9 +11,9 @@ func _process(_delta):
 	if is_animating:
 		return
 	
-	if Input.is_action_just_pressed("left"):
+	if Input.is_action_just_pressed("scroll_down"):
 		set_index(current_index - 1)
-	elif Input.is_action_just_pressed("right"):
+	elif Input.is_action_just_pressed("scroll_up"):
 		set_index(current_index + 1)
 	
 
