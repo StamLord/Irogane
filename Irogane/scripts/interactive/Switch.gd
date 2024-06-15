@@ -16,8 +16,10 @@ class_name Switch
 	
 
 @export var on_text : String
+@export var _animate_position : bool = true
 @export var off_position : Vector3
 @export var on_position : Vector3
+@export var _animate_rotation : bool = true
 @export var off_rotation : Vector3
 @export var on_rotation : Vector3
 @export var animation_time : float
@@ -63,17 +65,21 @@ func chain_use():
 	
 
 func perform_animations():
-	if state:
-		animate_position(off_position, on_position)
-		animate_rotation(off_rotation, on_rotation)
-	else:
-		animate_position(on_position, off_position)
-		animate_rotation(on_rotation, off_rotation)
+	if _animate_position:
+		var from_pos = off_position if state else on_position
+		var to_pos = on_position if state else off_position
+		animate_position(from_pos, to_pos)
+	
+	if _animate_rotation:
+		var from_rot = off_rotation if state else on_rotation
+		var to_rot = on_rotation if state else off_rotation
+		animate_rotation(from_rot, to_rot)
 	
 	on_state_changed.emit(state)
 	
-	await get_tree().create_timer(animation_time).timeout
-	on_animation_done.emit(state)
+	if _animate_position or _animate_rotation:
+		await get_tree().create_timer(animation_time).timeout
+		on_animation_done.emit(state)
 	
 
 func get_text():
@@ -85,7 +91,7 @@ func animate_position(from, to):
 	while Time.get_ticks_msec() - start_time <= animation_time * 1000:
 		var t = (Time.get_ticks_msec() - start_time) / (animation_time * 1000)
 		get_parent().position = lerp(from, to, t)
-		await get_tree().create_timer(0).timeout
+		await get_tree().process_frame
 	
 	get_parent().position = to
 	is_animating_position = false
@@ -97,7 +103,7 @@ func animate_rotation(from, to):
 	while Time.get_ticks_msec() - start_time <= animation_time * 1000:
 		var t = (Time.get_ticks_msec() - start_time) / (animation_time * 1000)
 		get_parent().rotation_degrees = lerp(from, to, t)
-		await get_tree().create_timer(0).timeout
+		await get_tree().process_frame
 	
 	get_parent().rotation_degrees = to
 	is_animating_rotation = false
