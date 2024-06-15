@@ -115,7 +115,7 @@ func _process(delta):
 	global_position = new_pos;
 	
 	rotate_model(delta)
-	collision_check(delta)
+	collision_check()
 	last_pos = new_pos;
 	
 
@@ -124,7 +124,7 @@ func rotate_model(delta):
 		model.rotate_x(rotation_x_speed * delta)
 	
 
-func collision_check(_delta):
+func collision_check():
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(last_pos, global_position, collision_mask)
 	var result = space_state.intersect_ray(query)

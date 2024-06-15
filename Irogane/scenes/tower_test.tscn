@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=90 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -38,6 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://djkvp8nrxp5l3" path="res://prefabs/building_blocks/stairs.tscn" id="30_qub2v"]
 [ext_resource type="PackedScene" uid="uid://bl7784ijj0ejx" path="res://prefabs/building_blocks/double_door_frame_2x4.tscn" id="32_rh00v"]
 [ext_resource type="PackedScene" uid="uid://ytxnmdh0rhmm" path="res://prefabs/building_blocks/door_frame_2x4.tscn" id="33_soy8s"]
+[ext_resource type="Script" path="res://scripts/interactive/elevator.gd" id="39_ewdaq"]
 
 [sub_resource type="Sky" id="Sky_i684r"]
 sky_material = ExtResource("1_tl3ee")
@@ -247,6 +248,12 @@ metadata/_snap_enabled = true
 curve_x = SubResource("Curve_h50w6")
 curve_y = SubResource("Curve_q0prf")
 curve_z = SubResource("Curve_31cym")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_va0n5"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d4y0y"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [node name="TowerTest" type="Node3D"]
 
@@ -669,6 +676,30 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20.37
 operation = 2
 size = Vector3(1, 2.5, 1)
 
+[node name="npc" parent="tower_0/floor_6/floor_6/floor" instance=ExtResource("20_017gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0.5, 17)
+
+[node name="ScheduleAgent" type="Node3D" parent="tower_0/floor_6/floor_6/floor/npc"]
+script = ExtResource("11_htxv5")
+schedule = {
+"22:00": {
+"location": ["6_guard_c", "6_guard_d"],
+"task_type": 3
+}
+}
+
+[node name="npc2" parent="tower_0/floor_6/floor_6/floor" instance=ExtResource("20_017gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 17)
+
+[node name="ScheduleAgent" type="Node3D" parent="tower_0/floor_6/floor_6/floor/npc2"]
+script = ExtResource("11_htxv5")
+schedule = {
+"22:00": {
+"location": ["6_guard_a", "6_guard_b"],
+"task_type": 3
+}
+}
+
 [node name="OmniLight3D" type="OmniLight3D" parent="tower_0/floor_6" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21418, 8, 15.6106)
 light_color = Color(0.976471, 0.752941, 0, 1)
@@ -969,6 +1000,18 @@ size = Vector3(1, 2.5, 1)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.5, 2.5, 16.765)
 operation = 2
 size = Vector3(1, 2.5, 1)
+
+[node name="npc3" parent="tower_0/NavigationRegion3D" instance=ExtResource("20_017gs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0.5, 17)
+
+[node name="ScheduleAgent" type="Node3D" parent="tower_0/NavigationRegion3D/npc3"]
+script = ExtResource("11_htxv5")
+schedule = {
+"22:00": {
+"location": ["9_guard_a", "9_guard_b"],
+"task_type": 3
+}
+}
 
 [node name="floor_10" type="CSGCombiner3D" parent="tower_0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 49, 0)
@@ -2949,6 +2992,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 22.5)
 [node name="npc3" parent="tower_0/floor_15" instance=ExtResource("20_017gs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -1)
 
+[node name="stairs_2x4" parent="tower_0/floor_15" instance=ExtResource("30_qub2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0.5, -7)
+
 [node name="floor_16" type="CSGCombiner3D" parent="tower_0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 78.5, 0)
 use_collision = true
@@ -3808,6 +3854,24 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tower_0/floor_17/floor_32/door2/StaticBody3D"]
 shape = SubResource("BoxShape3D_q6buy")
+
+[node name="carriable" parent="tower_0/floor_17" instance=ExtResource("17_fq5yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.76344, 86.1308, 0.884779)
+
+[node name="carriable2" parent="tower_0/floor_17" instance=ExtResource("17_fq5yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31974, 86.1308, 1.23568)
+
+[node name="pickup" parent="tower_0/floor_17" instance=ExtResource("18_2jy7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10039, 85.875, -7.89605)
+
+[node name="pickup2" parent="tower_0/floor_17" instance=ExtResource("18_2jy7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47314, 85.875, -8.30041)
+
+[node name="pickup3" parent="tower_0/floor_17" instance=ExtResource("18_2jy7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96489, 85.875, -1.56646)
+
+[node name="pickup4" parent="tower_0/floor_17" instance=ExtResource("18_2jy7j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75483, 85.875, -0.427895)
 
 [node name="floor_18" type="CSGCombiner3D" parent="tower_0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 89, 0)
@@ -8698,7 +8762,7 @@ node_b = NodePath("../RigidBody3D")
 params/bias = 0.99
 
 [node name="player" parent="." instance=ExtResource("1_yf7s4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 61.5, -12)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17, 0, -12)
 
 [node name="game_ui" parent="." instance=ExtResource("3_0m8c0")]
 
@@ -8799,24 +8863,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 84, -3)
 [node name="guard_e" type="Marker3D" parent="markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 84, 0)
 
-[node name="carriable" parent="." instance=ExtResource("17_fq5yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.76344, 86.1308, 0.884779)
-
-[node name="carriable2" parent="." instance=ExtResource("17_fq5yv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.31974, 86.1308, 1.23568)
-
-[node name="pickup" parent="." instance=ExtResource("18_2jy7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10039, 85.875, -7.89605)
-
-[node name="pickup2" parent="." instance=ExtResource("18_2jy7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47314, 85.875, -8.30041)
-
-[node name="pickup3" parent="." instance=ExtResource("18_2jy7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96489, 85.875, -1.56646)
-
-[node name="pickup4" parent="." instance=ExtResource("18_2jy7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75483, 85.875, -0.427895)
-
 [node name="SpotLight3D" type="SpotLight3D" parent="." groups=["light_source"]]
 transform = Transform3D(-2.56454e-08, -0.809806, -0.586697, -3.53978e-08, 0.586697, -0.809806, 1, 1.77636e-15, -4.37114e-08, -26.1687, 105.906, 0)
 light_energy = 20.0
@@ -8859,41 +8905,75 @@ shadow_enabled = true
 spot_range = 200.0
 spot_angle = 5.0
 
-[node name="npc" parent="." instance=ExtResource("20_017gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 30, 17)
+[node name="CSGBox3D2" type="CSGBox3D" parent="." node_paths=PackedStringArray("switches")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+use_collision = true
+size = Vector3(2, 0.2, 2)
+script = ExtResource("39_ewdaq")
+switches = [NodePath("Switch1"), NodePath("Switch2"), NodePath("Switch3")]
+levels = Array[float]([0.0, 34.0, 67.0])
 
-[node name="ScheduleAgent" type="Node3D" parent="npc"]
-script = ExtResource("11_htxv5")
-schedule = {
-"22:00": {
-"location": ["6_guard_c", "6_guard_d"],
-"task_type": 3
-}
-}
+[node name="Switch1" type="Area3D" parent="CSGBox3D2" node_paths=PackedStringArray("mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_myico")
+_animate_position = false
+_animate_rotation = false
+mesh = NodePath("MeshInstance3D")
 
-[node name="npc3" parent="." instance=ExtResource("20_017gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 45, 17)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D2/Switch1"]
+shape = SubResource("BoxShape3D_va0n5")
 
-[node name="ScheduleAgent" type="Node3D" parent="npc3"]
-script = ExtResource("11_htxv5")
-schedule = {
-"22:00": {
-"location": ["9_guard_a", "9_guard_b"],
-"task_type": 3
-}
-}
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGBox3D2/Switch1"]
+mesh = SubResource("BoxMesh_d4y0y")
 
-[node name="npc2" parent="." instance=ExtResource("20_017gs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 30, 17)
+[node name="Switch2" type="Area3D" parent="CSGBox3D2" node_paths=PackedStringArray("mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.29837, -0.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_myico")
+_animate_position = false
+_animate_rotation = false
+mesh = NodePath("../Switch1/MeshInstance3D")
 
-[node name="ScheduleAgent" type="Node3D" parent="npc2"]
-script = ExtResource("11_htxv5")
-schedule = {
-"22:00": {
-"location": ["6_guard_a", "6_guard_b"],
-"task_type": 3
-}
-}
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D2/Switch2"]
+shape = SubResource("BoxShape3D_va0n5")
 
-[node name="stairs_2x4" parent="." instance=ExtResource("30_qub2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 74.5, -7)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGBox3D2/Switch2"]
+mesh = SubResource("BoxMesh_d4y0y")
+
+[node name="Switch3" type="Area3D" parent="CSGBox3D2" node_paths=PackedStringArray("mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5944, -0.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_myico")
+_animate_position = false
+_animate_rotation = false
+mesh = NodePath("../Switch1/MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D2/Switch3"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CSGBox3D2/Switch3"]
+mesh = SubResource("BoxMesh_d4y0y")
+
+[node name="cog_82" parent="CSGBox3D2" instance=ExtResource("14_uvyd3")]
+transform = Transform3D(4.77671e-16, -1.09278e-08, -0.25, -0.25, -1.09278e-08, 0, -1.09278e-08, 0.25, -1.09278e-08, -0.65, 0, 1.1)
+script = ExtResource("14_0pub2")
+axis = Vector3(1, 0, 0)
+
+[node name="cog_83" parent="CSGBox3D2" instance=ExtResource("14_uvyd3")]
+transform = Transform3D(4.77671e-16, -1.09278e-08, 0.25, -0.25, -1.09278e-08, 0, 1.09278e-08, -0.25, -1.09278e-08, -0.65, 4.37114e-08, -1.1)
+script = ExtResource("14_0pub2")
+axis = Vector3(-1, 0, 0)
+
+[node name="cog_84" parent="CSGBox3D2" instance=ExtResource("14_uvyd3")]
+transform = Transform3D(4.77671e-16, -1.09278e-08, -0.25, -0.25, -1.09278e-08, 0, -1.09278e-08, 0.25, -1.09278e-08, 0.65, 0, 1.1)
+script = ExtResource("14_0pub2")
+axis = Vector3(-1, 0, 0)
+
+[node name="cog_85" parent="CSGBox3D2" instance=ExtResource("14_uvyd3")]
+transform = Transform3D(4.77671e-16, -1.09278e-08, 0.25, -0.25, -1.09278e-08, 0, 1.09278e-08, -0.25, -1.09278e-08, 0.65, 4.37114e-08, -1.1)
+script = ExtResource("14_0pub2")
+axis = Vector3(1, 0, 0)

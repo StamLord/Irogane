@@ -12,5 +12,4 @@ func _ready():
 func collision(body):
 	if rigidbody.linear_velocity.length() > velocity_threshold:
 		emit_sound(global_position, sound_range)
-		print("COL: " + str(body))
 	
