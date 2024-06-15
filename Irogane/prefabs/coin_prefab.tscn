@@ -1,0 +1,223 @@
+[gd_scene load_steps=26 format=3 uid="uid://bf21axsiwcqbo"]
+
+[ext_resource type="Script" path="res://scripts/stealth/physics_sound_emitter.gd" id="1_xnggp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mcwpa"]
+bounce = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ddwt0"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a5vgq"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.02
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_12a53"]
+height = 0.04
+radius = 0.06
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kycgm"]
+
+[sub_resource type="Gradient" id="Gradient_ubu8n"]
+colors = PackedColorArray(1, 1, 1, 1, 0.717573, 0.868575, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o6g2f"]
+gradient = SubResource("Gradient_ubu8n")
+
+[sub_resource type="Curve" id="Curve_ukw7h"]
+_data = [Vector2(0, 0), 0.0, 5.11278, 0, 0, Vector2(0.5, 1), 0.0791426, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_4helw"]
+curve = SubResource("Curve_ukw7h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rd7d0"]
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_4helw")
+color = Color(1, 1, 1, 0.498039)
+color_ramp = SubResource("GradientTexture1D_o6g2f")
+
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_gbpdn"]
+default_input_values = [0, 0.1]
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_mgkk0"]
+function = 31
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_p2lpl"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rp2ad"]
+source = 1
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_gcwu4"]
+default_input_values = [2, false, 3, 4.0]
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_y3y3t"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ixeud"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_jlfq3"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_kyaxe"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_1rxr2"]
+parameter_name = "proximity"
+default_value_enabled = true
+default_value = 0.5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_xe5j8"]
+parameter_name = "fresnel"
+default_value_enabled = true
+default_value = 4.0
+
+[sub_resource type="VisualShader" id="VisualShader_hprc0"]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform sampler2D screen_tex_frg_21 : hint_screen_texture;
+uniform float proximity = 0.5;
+uniform sampler2D depth_tex_frg_18 : hint_depth_texture;
+uniform float fresnel = 4;
+
+
+
+void fragment() {
+	vec4 n_out21p0;
+// Texture2D:21
+	n_out21p0 = texture(screen_tex_frg_21, SCREEN_UV);
+
+
+// FloatParameter:38
+	float n_out38p0 = proximity;
+
+
+	float n_out18p0;
+// ProximityFade:18
+	{
+		float __depth_tex = texture(depth_tex_frg_18, SCREEN_UV).r;
+		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
+		__depth_world_pos.xyz /= __depth_world_pos.w;
+		n_out18p0 = clamp(1.0 - smoothstep(__depth_world_pos.z + n_out38p0, __depth_world_pos.z, VERTEX.z), 0.0, 1.0);
+	}
+
+
+// FloatFunc:19
+	float n_out19p0 = 1.0 - n_out18p0;
+
+
+// FloatParameter:39
+	float n_out39p0 = fresnel;
+
+
+// Fresnel:22
+	float n_out22p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out39p0);
+
+
+// ColorOp:23
+	vec3 n_out23p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out19p0)) * (vec3(1.0) - vec3(n_out22p0));
+
+
+// ColorOp:20
+	vec3 n_out20p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out21p0.xyz)) * (vec3(1.0) - n_out23p0);
+
+
+// Input:34
+	vec4 n_out34p0 = COLOR;
+
+
+// VectorOp:35
+	vec4 n_out35p0 = vec4(n_out20p0, 0.0) * n_out34p0;
+
+
+// VectorDecompose:36
+	float n_out36p0 = n_out34p0.x;
+	float n_out36p1 = n_out34p0.y;
+	float n_out36p2 = n_out34p0.z;
+	float n_out36p3 = n_out34p0.w;
+
+
+// Output:0
+	ALBEDO = vec3(n_out35p0.xyz);
+	ALPHA = n_out36p3;
+
+
+}
+"
+graph_offset = Vector2(-1017.11, -35.5419)
+modes/blend = 1
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/18/node = SubResource("VisualShaderNodeProximityFade_gbpdn")
+nodes/fragment/18/position = Vector2(-860, 260)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatFunc_mgkk0")
+nodes/fragment/19/position = Vector2(-640, 260)
+nodes/fragment/20/node = SubResource("VisualShaderNodeColorOp_p2lpl")
+nodes/fragment/20/position = Vector2(-200, 200)
+nodes/fragment/21/node = SubResource("VisualShaderNodeTexture_rp2ad")
+nodes/fragment/21/position = Vector2(-480, 40)
+nodes/fragment/22/node = SubResource("VisualShaderNodeFresnel_gcwu4")
+nodes/fragment/22/position = Vector2(-700, 360)
+nodes/fragment/23/node = SubResource("VisualShaderNodeColorOp_y3y3t")
+nodes/fragment/23/position = Vector2(-360, 320)
+nodes/fragment/34/node = SubResource("VisualShaderNodeInput_ixeud")
+nodes/fragment/34/position = Vector2(-400, 540)
+nodes/fragment/35/node = SubResource("VisualShaderNodeVectorOp_jlfq3")
+nodes/fragment/35/position = Vector2(20, 120)
+nodes/fragment/36/node = SubResource("VisualShaderNodeVectorDecompose_kyaxe")
+nodes/fragment/36/position = Vector2(-40, 500)
+nodes/fragment/38/node = SubResource("VisualShaderNodeFloatParameter_1rxr2")
+nodes/fragment/38/position = Vector2(-1140, 260)
+nodes/fragment/39/node = SubResource("VisualShaderNodeFloatParameter_xe5j8")
+nodes/fragment/39/position = Vector2(-1080, 520)
+nodes/fragment/connections = PackedInt32Array(18, 0, 19, 0, 21, 0, 20, 0, 22, 0, 23, 1, 19, 0, 23, 0, 23, 0, 20, 1, 35, 0, 0, 0, 34, 0, 35, 1, 20, 0, 35, 0, 34, 0, 36, 0, 38, 0, 18, 0, 39, 0, 22, 3, 36, 3, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ks6vs"]
+render_priority = 0
+shader = SubResource("VisualShader_hprc0")
+shader_parameter/proximity = 0.1
+shader_parameter/fresnel = 6.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_sim81"]
+material = SubResource("ShaderMaterial_ks6vs")
+
+[node name="CoinPrefab" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_mcwpa")
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_ddwt0")
+mesh = SubResource("CylinderMesh_a5vgq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_12a53")
+
+[node name="sound_emitter" type="Node3D" parent="." node_paths=PackedStringArray("rigidbody")]
+script = ExtResource("1_xnggp")
+rigidbody = NodePath("..")
+velocity_threshold = 0.2
+sound_range = 7
+
+[node name="sound_cast" type="ShapeCast3D" parent="sound_emitter"]
+shape = SubResource("SphereShape3D_kycgm")
+target_position = Vector3(0, 0, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="sound_ripple_vfx" type="GPUParticles3D" parent="sound_emitter"]
+emitting = false
+amount = 24
+lifetime = 2.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rd7d0")
+draw_pass_1 = SubResource("SphereMesh_sim81")

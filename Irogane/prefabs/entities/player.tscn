@@ -1,4 +1,4 @@
-[gd_scene load_steps=175 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=176 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -72,6 +72,7 @@
 [ext_resource type="PackedScene" uid="uid://dfv8ag71set7j" path="res://assets/models/compass/pin.glb" id="50_nr8pd"]
 [ext_resource type="Script" path="res://scripts/procedural/compass.gd" id="51_tjqxo"]
 [ext_resource type="Script" path="res://scripts/weapons/telescope.gd" id="56_it81t"]
+[ext_resource type="Script" path="res://scripts/weapons/coin.gd" id="57_ehulk"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -1116,6 +1117,9 @@ visible = false
 script = ExtResource("56_it81t")
 
 [node name="telecam" type="Camera3D" parent="head/main_camera/simple_weapon_manager/telescope"]
+
+[node name="coin" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+script = ExtResource("57_ehulk")
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
 target_position = Vector3(0, 0, -1)
