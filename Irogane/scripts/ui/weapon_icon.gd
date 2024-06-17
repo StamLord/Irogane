@@ -1,6 +1,7 @@
-extends TextureRect
+extends Node3D
 
 const textures = [preload("res://assets/textures/icons/compass_icon.png"), preload("res://assets/textures/icons/piton_icon.png")]
+var visible_tool = null
 
 func _ready():
 	subscribe_to_player(PlayerEntity.player_node)
@@ -15,8 +16,14 @@ func subscribe_to_player(player_node):
 	
 
 func index_changed(index):
-	if index >= textures.size():
+	var count = get_child_count()
+	if index >= count:
 		return
 	
-	texture = textures[index]
+	if visible_tool != null:
+		visible_tool.visible = false
+	
+	visible_tool = get_child(index)
+	if visible_tool != null:
+		visible_tool.visible = true
 	
