@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://bf21axsiwcqbo"]
+[gd_scene load_steps=27 format=3 uid="uid://bf21axsiwcqbo"]
 
+[ext_resource type="PackedScene" uid="uid://b7y0ro4p7ut5u" path="res://assets/models/loot/coin.fbx" id="1_fgwjg"]
 [ext_resource type="Script" path="res://scripts/stealth/physics_sound_emitter.gd" id="1_xnggp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mcwpa"]
@@ -196,11 +197,15 @@ max_contacts_reported = 1
 contact_monitor = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 material_override = SubResource("StandardMaterial3D_ddwt0")
 mesh = SubResource("CylinderMesh_a5vgq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_12a53")
+
+[node name="Root Scene" parent="." instance=ExtResource("1_fgwjg")]
+transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="sound_emitter" type="Node3D" parent="." node_paths=PackedStringArray("rigidbody")]
 script = ExtResource("1_xnggp")

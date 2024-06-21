@@ -1119,6 +1119,7 @@ script = ExtResource("56_it81t")
 [node name="telecam" type="Camera3D" parent="head/main_camera/simple_weapon_manager/telescope"]
 
 [node name="coin" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
 script = ExtResource("57_ehulk")
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
