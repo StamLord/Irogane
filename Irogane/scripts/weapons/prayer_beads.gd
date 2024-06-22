@@ -52,7 +52,7 @@ func _process(delta):
 	var rmb_pressed= Input.is_action_pressed("attack_secondary")
 	
 	# Must not be moving
-	if not lmb_pressed and not rmb_pressed:
+	if not lmb_pressed and not rmb_pressed or is_player_moving():
 		interrupt_prayer()
 		return
 	
