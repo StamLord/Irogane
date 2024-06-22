@@ -20,7 +20,7 @@ func close():
 	visible = false
 	UIManager.remove_window(self)
 	get_tree().paused = false
-
+	
 
 func _on_continue_pressed():
 	save_window.close()

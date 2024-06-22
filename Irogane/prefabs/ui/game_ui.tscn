@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=100 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
@@ -29,6 +29,8 @@
 [ext_resource type="Material" uid="uid://hy7is1hc3gw3" path="res://assets/models/compass/brass_compass.tres" id="27_pgask"]
 [ext_resource type="Material" uid="uid://c6vqwn8pups4t" path="res://assets/models/compass/mirror.tres" id="28_1dkty"]
 [ext_resource type="Texture2D" uid="uid://1xkt8ny3senm" path="res://assets/models/loot/coin-bca63a80a5aa1b985be01003c8f1cb97_florin.png" id="29_wcp8v"]
+[ext_resource type="Script" path="res://scripts/ui/prayer_beads_save_window.gd" id="30_8kyfl"]
+[ext_resource type="PackedScene" uid="uid://ccdnbbmarggif" path="res://prefabs/ui/game_save_load_window.tscn" id="31_e2xi2"]
 
 [sub_resource type="Curve" id="Curve_12jqb"]
 max_value = 4.0
@@ -474,7 +476,6 @@ height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip7aa"]
 resource_name = "gold"
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("29_wcp8v")
 metallic = 0.4
 roughness = 0.229416
@@ -512,6 +513,20 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qvwu7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjvvb"]
+albedo_color = Color(0.584314, 0.584314, 0.584314, 1)
+metallic = 1.0
+roughness = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_ijqiv"]
+size = Vector3(0.05, 0.4, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_takaa"]
+size = Vector3(0.04, 0.3, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i6jt4"]
+size = Vector3(0.03, 0.2, 0.02)
 
 [node name="game_ui" type="Control"]
 texture_filter = 1
@@ -1247,8 +1262,75 @@ layers = 512
 mesh = SubResource("ArrayMesh_xn5su")
 skeleton = NodePath("")
 
+[node name="prayer_beads" type="Node3D" parent="tool_3d/tool_parent"]
+visible = false
+script = ExtResource("26_uw7fk")
+rotation_curve = SubResource("CurveXYZTexture_ax1fm")
+duration = 2.0
+
+[node name="cross" type="Node3D" parent="tool_3d/tool_parent/prayer_beads"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tool_3d/tool_parent/prayer_beads/cross"]
+layers = 512
+material_override = SubResource("StandardMaterial3D_wjvvb")
+mesh = SubResource("BoxMesh_ijqiv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="tool_3d/tool_parent/prayer_beads/cross"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.1, 0)
+layers = 512
+material_override = SubResource("StandardMaterial3D_wjvvb")
+mesh = SubResource("BoxMesh_takaa")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="tool_3d/tool_parent/prayer_beads/cross"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3.29838e-09, 0.0245419, 0)
+layers = 512
+material_override = SubResource("StandardMaterial3D_wjvvb")
+mesh = SubResource("BoxMesh_i6jt4")
+skeleton = NodePath("../..")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="tool_3d"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.25)
 layers = 512
+
+[node name="prayer_beads_save_window" type="Control" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 0
+offset_left = 767.0
+offset_top = 324.0
+offset_right = 807.0
+offset_bottom = 364.0
+script = ExtResource("30_8kyfl")
+
+[node name="game_save_window" parent="prayer_beads_save_window" instance=ExtResource("31_e2xi2")]
+layout_mode = 1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 580.0
+offset_bottom = 443.0
+
+[node name="prayer_progress_bar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+fill_mode = 4
+texture_progress = ExtResource("8_o0b22")
+script = ExtResource("9_554op")
+path_on_player = "head/main_camera/simple_weapon_manager/prayer_beads"
+signal_name = "on_prayer_update"
+max_time_var_name = "prayer_total_time"
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]

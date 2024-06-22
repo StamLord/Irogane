@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=181 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -73,6 +73,7 @@
 [ext_resource type="Script" path="res://scripts/procedural/compass.gd" id="51_tjqxo"]
 [ext_resource type="Script" path="res://scripts/weapons/telescope.gd" id="56_it81t"]
 [ext_resource type="Script" path="res://scripts/weapons/coin.gd" id="57_ehulk"]
+[ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -359,6 +360,20 @@ material = SubResource("StandardMaterial3D_imqxh")
 [sub_resource type="BoxShape3D" id="BoxShape3D_vikjk"]
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33ose"]
+albedo_color = Color(0.584314, 0.584314, 0.584314, 1)
+metallic = 1.0
+roughness = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ykr7"]
+size = Vector3(0.05, 0.4, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3rl4p"]
+size = Vector3(0.04, 0.3, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_33nmg"]
+size = Vector3(0.03, 0.2, 0.02)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -1121,6 +1136,30 @@ script = ExtResource("56_it81t")
 [node name="coin" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
 visible = false
 script = ExtResource("57_ehulk")
+
+[node name="prayer_beads" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
+script = ExtResource("58_ej268")
+
+[node name="cross" type="Node3D" parent="head/main_camera/simple_weapon_manager/prayer_beads"]
+transform = Transform3D(0.531121, 0.235889, -0.813798, 0.433013, 0.75, 0.5, 0.728293, -0.617945, 0.296198, 0.4, -0.2, -0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/prayer_beads/cross"]
+material_override = SubResource("StandardMaterial3D_33ose")
+mesh = SubResource("BoxMesh_2ykr7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/prayer_beads/cross"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_33ose")
+mesh = SubResource("BoxMesh_3rl4p")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/prayer_beads/cross"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3.29838e-09, 0.0245419, 0)
+material_override = SubResource("StandardMaterial3D_33ose")
+mesh = SubResource("BoxMesh_33nmg")
+skeleton = NodePath("../..")
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
 target_position = Vector3(0, 0, -1)

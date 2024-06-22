@@ -1,14 +1,30 @@
 extends TextureProgressBar
 
-@onready var interaction = PlayerEntity.player_node.get_node("head/main_camera/interaction")
-@onready var max_time = interaction.carry_start_time * 1000
+@export var path_on_player = "head/main_camera/interaction"
+@export var signal_name = "press_time_update"
+@export var max_time_var_name = "carry_start_time"
+
+var context = null
+var max_time = null
 
 var visible_threshold_ms = 200
 
 func _ready():
-	interaction.press_time_update.connect(update_bar)
+	if PlayerEntity.player_node != null:
+		subscribe_to_player(PlayerEntity.player_node)
+	
+	PlayerEntity.player_node_created.connect(subscribe_to_player)
+	
+
+func subscribe_to_player(player_node):
+	context = PlayerEntity.player_node.get_node(path_on_player)
+	if context != null:
+		max_time = context[max_time_var_name] * 1000
+		context[signal_name].connect(update_bar)
+	
 
 func update_bar(time):
 	# time is in ms
 	var v = (time - visible_threshold_ms) / (max_time - visible_threshold_ms)
 	value = v * 100
+	
