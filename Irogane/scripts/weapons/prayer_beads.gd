@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var cross = $cross
 @onready var player = owner
+@onready var stats = %stats
 
 var cross_start_pos = null
 var cross_start_rot = null
@@ -21,6 +22,9 @@ func _ready():
 	if cross != null:
 		cross_start_pos = cross.position
 		cross_start_rot = cross.rotation_degrees
+	
+	if stats != null:
+		stats.on_hit.connect(hit)
 	
 
 func _process(delta):
@@ -48,7 +52,7 @@ func _process(delta):
 	var rmb_pressed= Input.is_action_pressed("attack_secondary")
 	
 	# Must not be moving
-	if not lmb_pressed and not rmb_pressed or is_player_moving():
+	if not lmb_pressed and not rmb_pressed:
 		interrupt_prayer()
 		return
 	
@@ -87,4 +91,9 @@ func interrupt_prayer():
 
 func is_player_moving():
 	return player.velocity.length() >= 1.0
+	
+
+func hit(attack_info):
+	if is_praying:
+		interrupt_prayer()
 	
