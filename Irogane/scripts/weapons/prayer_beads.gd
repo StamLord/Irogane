@@ -1,6 +1,8 @@
 extends Node3D
 
 @onready var cross = $cross
+@onready var player = owner
+@onready var stats = %stats
 
 var cross_start_pos = null
 var cross_start_rot = null
@@ -21,38 +23,45 @@ func _ready():
 		cross_start_pos = cross.position
 		cross_start_rot = cross.rotation_degrees
 	
+	if stats != null:
+		stats.on_hit.connect(hit)
+	
 
 func _process(delta):
 	if not visible:
 		return
 	
+	# Animate cross to idle position
+	var target_pos = cross_start_pos if not is_praying else cross_prayer_pos
+	var target_rot = cross_start_rot if not is_praying else cross_prayer_rot
+	
+	cross.position = lerp(cross.position, target_pos, delta * 10)
+	cross.rotation_degrees = lerp(cross.rotation_degrees, target_rot, delta * 10)
+	
+	# Start praying
 	var lmb_start = Input.is_action_just_pressed("attack_primary")
 	var rmb_start = Input.is_action_just_pressed("attack_secondary")
 	
-	if lmb_start or rmb_start:
-		if not is_praying:
-			start_prayer()
+	if (lmb_start or rmb_start) and not is_player_moving() and not is_praying:
+		start_prayer()
 	
 	if not is_praying:
-		cross.position = lerp(cross.position, cross_start_pos, delta * 10)
-		cross.rotation_degrees = lerp(cross.rotation_degrees, cross_start_rot, delta * 10)
 		return
 	
 	var lmb_pressed = Input.is_action_pressed("attack_primary")
 	var rmb_pressed= Input.is_action_pressed("attack_secondary")
 	
-	if not lmb_pressed and not rmb_pressed:
+	# Must not be moving
+	if not lmb_pressed and not rmb_pressed or is_player_moving():
 		interrupt_prayer()
 		return
 	
+	# Send updates
 	var t = get_prayer_percentage()
 	on_prayer_update.emit(get_prayer_time())
 	
 	if t >= 1:
 		finish_prayer()
-	
-	cross.position = lerp(cross.position, cross_prayer_pos, delta * 10)
-	cross.rotation_degrees = lerp(cross.rotation_degrees, cross_prayer_rot, delta * 10)
 	
 
 func start_prayer():
@@ -78,4 +87,13 @@ func interrupt_prayer():
 	is_praying = false
 	on_prayer_update.emit(0)
 	on_prayer_interrupted.emit()
+	
+
+func is_player_moving():
+	return player.velocity.length() >= 1.0
+	
+
+func hit(attack_info):
+	if is_praying:
+		interrupt_prayer()
 	

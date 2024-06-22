@@ -155,7 +155,7 @@ func Exit(body):
 		var damage = floori(t * fall_damage_death)
 		
 		if damage > 0:
-			state_machine.stats.deplete_health(damage)
+			state_machine.stats.hit(AttackInfo.new(damage, 0))
 	
 	apply_fall_damage = false
 	
