@@ -5,17 +5,18 @@ class_name AIGraphNode
 var requirements: Dictionary
 var Parent: AIGraphNode
 
+
 func get_requirements() -> Dictionary:
 	return requirements
 	
 
-# This represents the priority of the node, not the cost of action!
+# This represents the estimated cost of the node, not the cost of action!
 # f(node) in A*
-func get_priority(world_state: Dictionary) -> float:
-	return 0.0;
+func get_estimated_cost() -> float:
+	return get_path_cost() + heuristic();
 	
 
-# This represents the cost of the best path to this node 
+# This represents the actual cost of the best path to this node 
 # g(node) in A*
 func get_path_cost() -> float:
 	return 0.0
