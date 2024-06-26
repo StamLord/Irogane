@@ -25,6 +25,8 @@ func _ready():
 	
 	if stats != null:
 		stats.on_hit.connect(hit)
+		
+	visibility_changed.connect(on_visibility_changed)
 	
 
 func _process(delta):
@@ -95,5 +97,10 @@ func is_player_moving():
 
 func hit(attack_info):
 	if is_praying:
+		interrupt_prayer()
+	
+
+func on_visibility_changed():
+	if not visible:
 		interrupt_prayer()
 	
