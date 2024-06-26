@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AISatisfyHungerGoal" load_steps=2 format=3 uid="uid://c4b5y8rjwv3it"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/goals/ai_satisfy_hunger_goal.gd" id="1_26akk"]
+
+[resource]
+script = ExtResource("1_26akk")

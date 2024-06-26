@@ -1,21 +1,21 @@
 extends AIActionAbstract
 class_name AIDeathAction
 
-func get_preconditions() -> Dictionary:
+func get_requirements() -> Dictionary:
 	return {}
 	
 
-func get_cost() -> float:
+func get_cost(world_state) -> float:
 	return 0.0;
 	
 
-func get_results() -> Dictionary:
+func get_effects() -> Dictionary:
 	return {
 		"is_dead": true
 	}
 	
 
-func is_valid():
+func is_valid(world_state) -> bool:
 	return true;
 	
 

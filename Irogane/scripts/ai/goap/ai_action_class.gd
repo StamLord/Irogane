@@ -14,8 +14,13 @@ func get_effects() -> Dictionary:
 	return {}
 	
 
-func is_valid(world_state: Dictionary):
-	return true;
+func is_valid(world_state: Dictionary) -> bool:
+	var requirements = get_requirements()
+	for req in requirements:
+		if req not in world_state or requirements[req] != world_state[req]:
+			return false
+	
+	return true
 	
 
 # TODO: Figure out

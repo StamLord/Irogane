@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIEatPizza" load_steps=2 format=3 uid="uid://j5cdluh6nk7e"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/ai_eat_pizza.gd" id="1_14pgo"]
+
+[resource]
+script = ExtResource("1_14pgo")
