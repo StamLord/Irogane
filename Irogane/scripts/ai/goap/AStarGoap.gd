@@ -1,29 +1,7 @@
 extends Node
 class_name AStarGoap
 
-@onready var all_actions = [
-	preload("res://scripts/ai/goap/actions/AIBakePizza.tres"),  # no reqs                , cost 3
-	preload("res://scripts/ai/goap/actions/AIEatPizza.tres"),   # req pizza              , cost 1
-	preload("res://scripts/ai/goap/actions/AIGotoStore.tres"),  # no reqs                , cost 1
-	preload("res://scripts/ai/goap/actions/AIBuyHummus.tres"),  # needs to be at store   , cost 1
-	preload("res://scripts/ai/goap/actions/AIEatHummus.tres"),  # needs hummus           , cost 1
-	preload("res://scripts/ai/goap/actions/AIEatPie.tres"),     # req pie (no way to get), cost 1
-	]
-
-@onready var all_goals = [
-	preload("res://scripts/ai/goap/goals/AISatisfyHungerGoal.tres"),
-	]
-
 var debug = false
-
-func _ready():
-	var world_state = { "is_hungry" : true }
-	var action_plan = plan(world_state, all_goals[0].get_requirements(), all_actions)
-	
-	print("***** RESULT *****")
-	for node in action_plan:
-		print(node._to_string())
-	
 
 func plan(initital_world_state, goal_state, actions):
 	var open_list = []
