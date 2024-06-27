@@ -1,5 +1,5 @@
 extends Node
-class_name AStarGoap
+class_name GoapActionPlanner
 
 var debug = false
 

@@ -1,7 +1,7 @@
 extends Node
 class_name GoapUnitTest
 
-@onready var a_star = $"../AStarGoap"
+@onready var action_planner = $"../GoapActionPlanner"
 @onready var goal_planner = $"../GoapGoalPlanner"
 
 @onready var all_goals = [
@@ -29,7 +29,7 @@ func _ready():
 	assert(current_goal == load("res://scripts/ai/goap/goals/AISatisfyHungerGoal.tres"), 
 	"GoapGoalPlanner test failed")
 	
-	var action_plan = a_star.plan(world_state, current_goal.get_requirements(), all_actions)
+	var action_plan = action_planner.plan(world_state, current_goal.get_requirements(), all_actions)
 	
 	assert(action_plan.size() == 4)
 	assert(action_plan[1].action == load("res://scripts/ai/goap/actions/AIGotoStore.tres"))
