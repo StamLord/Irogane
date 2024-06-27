@@ -30,15 +30,15 @@ func is_equal_to(node : AStarNode):
 	return action == node.action
 	
 
-func _to_string():
-	var action_name = "null" if action == null else Utils.get_resource_file_name(action)
+func get_action_name():
+	return "null" if action == null else Utils.get_resource_file_name(action)
 	
-	return {
-		"id" : self,
-		"action" : action_name,
-		"g_cost" : g_cost, 
-		"h_cost" : h_cost, 
-		"state" : state,
-		"requirements" : requirements,
-		"parent" : parent }
+
+func _to_string():
+	var string = "------------\nid : {id} \naction: {action} \ng_cost: {g_cost} h_cost: {h_cost} \nstate: {state} \nrequirements: {reqs} \nparent: {parent}\n------------\n"
+	var parent_name = "null" if parent == null else parent.get_action_name()
+	return string.format({
+		"id" : get_instance_id(), "action" : get_action_name(), 
+		"g_cost" : g_cost, "h_cost" : h_cost, "state" : state, 
+		"reqs" : requirements, "parent" : parent_name})
 	

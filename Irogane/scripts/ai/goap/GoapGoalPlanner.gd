@@ -28,4 +28,3 @@ func DEBUG(message):
 		return
 	print(message)
 	
-

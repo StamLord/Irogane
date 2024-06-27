@@ -11,25 +11,26 @@ func plan(initital_world_state, goal_state, actions):
 	var initial_node = AStarNode.new(null, initital_world_state)
 	var goal_node = AStarNode.new(null, goal_state)
 	
-	DEBUG("* INITIAL: ")
+	DEBUG("* INITIAL:")
 	DEBUG(initial_node._to_string())
-	DEBUG("\n* GOAL: ")
+	DEBUG("* GOAL:")
 	DEBUG(goal_node._to_string())
 	
 	# Create initial node
 	open_list.append(initial_node)
 	
 	while open_list.size() > 0:
-		DEBUG("\n* BEFORE SORT:" + str(open_list))
+		DEBUG("* BEFORE SORT:\n" + str(open_list))
 			
 		open_list.sort_custom(compare_states) # Sort by lowest g_cost + h_cost
 		
-		DEBUG("* AFTER SORT:" + str(open_list))
+		DEBUG("* AFTER SORT:\n" + str(open_list))
 		
 		var current = open_list.pop_front()
 		closed_list.append(current)
 		
-		DEBUG("\n----- NEW ITERATION, CURRENT: -----")
+		DEBUG("\n****** NEW ITERATION,******\n")
+		DEBUG("* CURRENT:")
 		DEBUG(current._to_string())
 		
 		# Reached goal
@@ -38,11 +39,11 @@ func plan(initital_world_state, goal_state, actions):
 		
 		var neighbors = get_neighbors(current, actions)
 		for neighbor in neighbors:
-			DEBUG("\n----- GOT NEIGHBOR -----")
+			DEBUG("* GOT NEIGHBOR:")
 			DEBUG(neighbor._to_string())
 			
 			if contains_node(closed_list, neighbor): # Skip already visited
-				DEBUG("* IN CLOSED - SKIPPING *\n")
+				DEBUG("* IN CLOSED - SKIPPING *")
 				continue
 		
 			var tentative_g_cost = current.g_cost + neighbor.g_cost
@@ -58,7 +59,7 @@ func plan(initital_world_state, goal_state, actions):
 			neighbor.h_cost = heuristic(neighbor, goal_node)
 			neighbor.parent = current
 			
-			DEBUG("* UPDATING VALUES * ")
+			DEBUG("* UPDATING VALUES:")
 			DEBUG(neighbor._to_string())
 			
 	return []
