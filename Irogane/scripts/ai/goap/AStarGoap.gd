@@ -11,30 +11,26 @@ func plan(initital_world_state, goal_state, actions):
 	var initial_node = AStarNode.new(null, initital_world_state)
 	var goal_node = AStarNode.new(null, goal_state)
 	
-	if debug:
-		print("* INITIAL: *")
-		print(initial_node._to_string())
-		print("\n* GOAL *")
-		print(goal_node._to_string())
+	DEBUG("* INITIAL: ")
+	DEBUG(initial_node._to_string())
+	DEBUG("\n* GOAL: ")
+	DEBUG(goal_node._to_string())
 	
 	# Create initial node
 	open_list.append(initial_node)
 	
 	while open_list.size() > 0:
-		if debug:
-			print("\n* BEFORE SORT:", open_list)
+		DEBUG("\n* BEFORE SORT:" + str(open_list))
 			
 		open_list.sort_custom(compare_states) # Sort by lowest g_cost + h_cost
 		
-		if debug:
-			print("* AFTER SORT:", open_list)
+		DEBUG("* AFTER SORT:" + str(open_list))
 		
 		var current = open_list.pop_front()
 		closed_list.append(current)
 		
-		if debug:
-			print("\n----- NEW ITERATION, CURRENT: -----")
-			print(current._to_string(), '\n')
+		DEBUG("\n----- NEW ITERATION, CURRENT: -----")
+		DEBUG(current._to_string())
 		
 		# Reached goal
 		if all_conditions_met(current.state, goal_node.state):
@@ -42,33 +38,28 @@ func plan(initital_world_state, goal_state, actions):
 		
 		var neighbors = get_neighbors(current, actions)
 		for neighbor in neighbors:
-			if debug:
-				print("\n----- GOT NEIGHBOR -----")
-				print(neighbor._to_string())
+			DEBUG("\n----- GOT NEIGHBOR -----")
+			DEBUG(neighbor._to_string())
 			
 			if contains_node(closed_list, neighbor): # Skip already visited
-				if debug: 
-					print("* IN CLOSED - SKIPPING *\n")
+				DEBUG("* IN CLOSED - SKIPPING *\n")
 				continue
 		
 			var tentative_g_cost = current.g_cost + neighbor.g_cost
 			
 			if not contains_node(open_list, neighbor):
 				open_list.append(neighbor)
-				if debug: 
-					print("* ADDED TO OPEN *")
+				DEBUG("* ADDED TO OPEN *")
 			elif tentative_g_cost >= neighbor.g_cost: # Already in open and with a cheaper cost
-				if debug: 
-					print("* ALREADY LOWER COST - SKIPPING * ")
+				DEBUG("* ALREADY LOWER COST - SKIPPING * ")
 				continue
 			
 			neighbor.g_cost = tentative_g_cost
 			neighbor.h_cost = heuristic(neighbor, goal_node)
 			neighbor.parent = current
 			
-			if debug:
-				print("* UPDATING VALUES * ")
-				print(neighbor._to_string())
+			DEBUG("* UPDATING VALUES * ")
+			DEBUG(neighbor._to_string())
 			
 	return []
 	
@@ -122,4 +113,10 @@ func contains_node(array, node : AStarNode):
 		if n.is_equal_to(node):
 			return true
 	return false
+	
+
+func DEBUG(message):
+	if not debug:
+		return
+	print(message)
 	

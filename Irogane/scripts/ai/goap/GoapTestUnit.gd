@@ -30,10 +30,6 @@ func _ready():
 	"GoapGoalPlanner test failed")
 	
 	var action_plan = a_star.plan(world_state, current_goal.get_requirements(), all_actions)
-	#print("GOAL: ", current_goal)
-	#print("ACTION PLAN:")
-	#for node in action_plan:
-	#	print(node._to_string())
 	
 	assert(action_plan.size() == 4)
 	assert(action_plan[1].action == load("res://scripts/ai/goap/actions/AIGotoStore.tres"))
