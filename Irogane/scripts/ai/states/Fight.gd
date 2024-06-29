@@ -137,15 +137,15 @@ func physics_update(state_machine, _delta):
 	
 
 func is_in_range(range):
-	if attack_target and state_machine and state_machine.pathfinding:
-		var dist = attack_target.global_position - state_machine.pathfinding.global_position
+	if attack_target and _state_machine and _state_machine.pathfinding:
+		var dist = attack_target.global_position - _state_machine.pathfinding.global_position
 		return abs(dist.length() - range) <= 0.2
 	
 	return false
 	
 
 func move_to_range(range):
-	var body = state_machine.pathfinding
+	var body = _state_machine.pathfinding
 	var dir = get_average_comrade_dir_from_target()
 	
 	if dir == null:
@@ -158,7 +158,7 @@ func move_to_range(range):
 	
 
 func circle_target(range):
-	var body = state_machine.pathfinding
+	var body = _state_machine.pathfinding
 	var dir_to_self = (body.global_position - attack_target.global_position).normalized()
 	var rotated_dir = dir_to_self.rotated(Vector3.UP, deg_to_rad(10))
 	var target_pos = attack_target.global_position + rotated_dir * range * 0.8
@@ -298,7 +298,7 @@ func hit_blocked(area : Guardbox, hitbox):
 
 func get_attack_info(hitbox : Hitbox):
 	var attack_info = heavy_attack_info if hitbox.is_heavy else light_attack_info
-	return attack_info.get_translated(state_machine.pathfinding.global_basis)
+	return attack_info.get_translated(_state_machine.pathfinding.global_basis)
 	
 
 func exit(state_machine):
