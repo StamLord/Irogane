@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://6w2qvvdo2jh4"]
+[gd_scene load_steps=22 format=3 uid="uid://6w2qvvdo2jh4"]
 
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="1_1nlbh"]
 [ext_resource type="Script" path="res://scripts/ai/states/Idle.gd" id="2_7kuhl"]
+[ext_resource type="Resource" uid="uid://bemmj32kb8mvn" path="res://data/ai_agents/Guard.res" id="2_7ydk2"]
 [ext_resource type="Script" path="res://scripts/ai/states/Chase.gd" id="3_mo5vf"]
 [ext_resource type="Script" path="res://scripts/ai/states/Search.gd" id="4_e7sk2"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="5_c5hbd"]
@@ -43,8 +44,10 @@ albedo_color = Color(1, 0, 0, 0.368627)
 
 [node name="npc" type="Node3D"]
 script = ExtResource("1_1nlbh")
+agent_data = ExtResource("2_7ydk2")
 
 [node name="states" type="Node3D" parent="."]
+script = ExtResource("1_1nlbh")
 
 [node name="Idle" type="Node3D" parent="states"]
 script = ExtResource("2_7kuhl")

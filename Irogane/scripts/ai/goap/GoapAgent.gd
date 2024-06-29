@@ -1,19 +1,7 @@
 extends Node
 class_name GoapAgent
 
-@onready var all_goals = [
-	preload("res://data/ai_goals/AISatisfyHungerGoal.tres"),
-	preload("res://data/ai_goals/AISelfPreserveGoal.tres"),
-	]
-
-@onready var all_actions = [
-	preload("res://data/ai_actions/AIBakePizza.tres"),  # no reqs                , cost 3
-	preload("res://data/ai_actions/AIEatPizza.tres"),   # req pizza              , cost 1
-	preload("res://data/ai_actions/AIGotoStore.tres"),  # no reqs                , cost 1
-	preload("res://data/ai_actions/AIBuyHummus.tres"),  # needs to be at store   , cost 1
-	preload("res://data/ai_actions/AIEatHummus.tres"),  # needs hummus           , cost 1
-	preload("res://data/ai_actions/AIEatPie.tres"),     # req pie (no way to get), cost 1
-	]
+@export var agent_data : AIagent
 
 @onready var time_slicer = $"../TimeSlicer"
 @onready var awareness_agent = %AwarenessAgent
@@ -78,14 +66,14 @@ func _process(delta):
 
 func calculate_goal():
 	if use_time_slicing:
-		time_slicer.add_call(self, GoapGoalPlanner.get_goal, [world_state, all_goals], set_goal)
+		time_slicer.add_call(self, GoapGoalPlanner.get_goal, [world_state, agent_data.goals], set_goal)
 	else:
-		set_goal(GoapGoalPlanner.get_goal(world_state, all_goals))
+		set_goal(GoapGoalPlanner.get_goal(world_state, agent_data.goals))
 	last_goal_time = Time.get_ticks_msec()
 	
 
 func calculate_plan():
-	var actions = all_actions.duplicate()
+	var actions = agent_data.actions.duplicate()
 	actions.append_array(get_dynamic_actions())
 	
 	if use_time_slicing:
