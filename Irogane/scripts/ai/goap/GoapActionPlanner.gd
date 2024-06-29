@@ -6,7 +6,6 @@ var debug = false
 func plan(initital_world_state, goal_state, actions):
 	var open_list = []
 	var closed_list = []
-	var came_from = {}
 	
 	var initial_node = AStarNode.new(null, initital_world_state)
 	var goal_node = AStarNode.new(null, goal_state)

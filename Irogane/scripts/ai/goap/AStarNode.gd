@@ -5,7 +5,6 @@ var action : AIActionAbstract # Used for node comparison
 var g_cost = 0
 var h_cost = 0
 var state = {}
-var requirements = {}
 var parent = null
 
 func _init(_action : AIActionAbstract = null, world_state: Dictionary = {}, _parent : AStarNode = null):
@@ -14,7 +13,6 @@ func _init(_action : AIActionAbstract = null, world_state: Dictionary = {}, _par
 	if _action != null:
 		action = _action
 		g_cost = _action.get_cost(world_state)
-		requirements = _action.get_requirements()
 		state = _action.get_effects()
 	
 	# We merge the current world state into our effects to create 
@@ -27,7 +25,7 @@ func f_cost():
 	
 
 func is_equal_to(node : AStarNode):
-	return action == node.action
+	return action == node.action and state.hash() == node.state.hash()
 	
 
 func get_action_name():
@@ -40,5 +38,5 @@ func _to_string():
 	return string.format({
 		"id" : get_instance_id(), "action" : get_action_name(), 
 		"g_cost" : g_cost, "h_cost" : h_cost, "state" : state, 
-		"reqs" : requirements, "parent" : parent_name})
+		"parent" : parent_name})
 	

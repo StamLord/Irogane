@@ -7,7 +7,7 @@ func get_desired_state() -> Dictionary:
 	}
 	
 
-func get_priority() -> int:
+func get_priority(world_state) -> int:
 	return 100;
 	
 
