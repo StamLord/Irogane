@@ -27,7 +27,6 @@ signal on_enemy_seen(enemy)
 signal on_enemy_lost(enemy)
 
 func _ready():
-	debug = false
 	DebugCommandsManager.add_command(
 		"display_vision_cone",
 		set_debug,
