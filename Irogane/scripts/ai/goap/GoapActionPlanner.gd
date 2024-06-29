@@ -1,14 +1,15 @@
 extends Node
 class_name GoapActionPlanner
 
+var reverse = false
 var debug = false
 
 func plan(initital_world_state, goal_state, actions):
 	var open_list = []
 	var closed_list = []
 	
-	var initial_node = AStarNode.new(null, initital_world_state)
-	var goal_node = AStarNode.new(null, goal_state)
+	var initial_node = AStarNode.new(null, initital_world_state) if not reverse else AStarNode.new(null, goal_state)
+	var goal_node = AStarNode.new(null, goal_state) if not reverse else AStarNode.new(null, initital_world_state)
 	
 	DEBUG("* INITIAL:")
 	DEBUG(initial_node._to_string())
@@ -36,7 +37,7 @@ func plan(initital_world_state, goal_state, actions):
 		if all_conditions_met(current.state, goal_node.state):
 			return reconstruct_path(current)
 		
-		var neighbors = get_neighbors(current, actions)
+		var neighbors = get_neighbors(current, actions) if not reverse else get_neighbors_reverse(current, actions)
 		for neighbor in neighbors:
 			DEBUG("* GOT NEIGHBOR:")
 			DEBUG(neighbor._to_string())
@@ -68,11 +69,24 @@ func compare_states(node_1 : AStarNode, node_2 : AStarNode):
 	return node_1.f_cost() < node_2.f_cost()
 	
 
+# Gets neighbors according to possible actions from out current state
 func get_neighbors(node : AStarNode, all_actions):
 	var neighbors = []
 	for action in all_actions:
 		if action.is_valid(node.state):
 			neighbors.append(AStarNode.new(action, node.state))
+		
+	return neighbors
+	
+
+# Gets neighbors according to actions that lead to our current state
+func get_neighbors_reverse(node : AStarNode, all_actions):
+	var neighbors = []
+	for action in all_actions:
+		for effect in action.get_effects():
+			if effect in node.state:
+				neighbors.append(AStarNode.new(action, node.state))
+				break
 		
 	return neighbors
 	
