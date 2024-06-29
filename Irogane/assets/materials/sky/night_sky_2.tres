@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://assets/materials/sky/sky_shader.gdshader" id="1_1yhdr"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_jeylx"]
-[ext_resource type="Texture2D" uid="uid://0cl7o8whyusl" path="res://assets/textures/vfx/stars_texture.png" id="3_hccyc"]
+[ext_resource type="Texture2D" uid="uid://dwkhpdmi5ul88" path="res://assets/textures/medieval/sky_panorama.png" id="3_htc0g"]
 
 [resource]
 shader = ExtResource("1_1yhdr")
@@ -19,24 +19,24 @@ shader_parameter/sun_sunset_color = Color(0.988281, 0.269531, 0.230469, 1)
 shader_parameter/sun_size = 0.2
 shader_parameter/sun_blur = 0.1
 shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
-shader_parameter/moon_size = 0.2
+shader_parameter/moon_size = 0.3
 shader_parameter/moon_blur = 0.01
-shader_parameter/moon_texture_angle_x = 2.0
+shader_parameter/moon_texture_angle_x = 2.337
 shader_parameter/moon_texture_angle_y = 0.0
 shader_parameter/moon_texture_angle_z = 3.5
 shader_parameter/moon_texture = ExtResource("2_jeylx")
-shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
-shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
-shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
-shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
-shader_parameter/clouds_speed = 3.0
+shader_parameter/clouds_edge_color = Color(0.494118, 0.105882, 0.952941, 1)
+shader_parameter/clouds_top_color = Color(0.0313726, 0, 0.454902, 1)
+shader_parameter/clouds_middle_color = Color(0.717647, 0.196078, 0.666667, 1)
+shader_parameter/clouds_bottom_color = Color(0.988235, 0.760784, 0.894118, 1)
+shader_parameter/clouds_speed = 4.0
 shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_cutoff = 0.39
+shader_parameter/clouds_cutoff = 0.3
 shader_parameter/clouds_fuzziness = 0.5
 shader_parameter/clouds_weight = 0.0
-shader_parameter/clouds_blur = 0.25
+shader_parameter/clouds_blur = 0.0
 shader_parameter/stars_speed = 0.1
-shader_parameter/stars_brightness = 0.2
-shader_parameter/stars_texture = ExtResource("3_hccyc")
+shader_parameter/stars_brightness = 1.0
+shader_parameter/stars_texture = ExtResource("3_htc0g")
 shader_parameter/overwritten_time = 0.0

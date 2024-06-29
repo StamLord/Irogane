@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlqfmrl65o6eh"]
+
+[ext_resource type="Script" path="res://scripts/procedural/new_rope.gd" id="1_e3n36"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_uh6cd"]
+
+[node name="rope_test" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0750621, 0)
+mesh = SubResource("ImmediateMesh_uh6cd")
+script = ExtResource("1_e3n36")
+resolution = 4
+rope_width = 0.07

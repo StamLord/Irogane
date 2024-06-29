@@ -37,7 +37,7 @@ func Enter(body):
 	slide_dust.active = true
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 

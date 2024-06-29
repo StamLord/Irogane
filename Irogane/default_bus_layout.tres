@@ -1,4 +1,52 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dn3bicv63dk1v"]
+[gd_resource type="AudioBusLayout" load_steps=13 format=3 uid="uid://dn3bicv63dk1v"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_st5s4"]
+resource_name = "Reverb"
+room_size = 0.3
+wet = 0.2
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_7xq7d"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_8cgv4"]
+resource_name = "Reverb"
+room_size = 0.7
+wet = 0.1
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_ahpci"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_4rlfu"]
+resource_name = "Reverb"
+room_size = 0.7
+wet = 0.2
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j2sok"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_335sm"]
+resource_name = "Reverb"
+room_size = 0.1
+wet = 0.1
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_s6wtg"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_smc67"]
+resource_name = "Reverb"
+room_size = 0.1
+wet = 0.2
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_vno7m"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_5hw68"]
+resource_name = "Reverb"
+room_size = 0.3
+wet = 0.1
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_8emrm"]
+resource_name = "LowPassFilter"
 
 [resource]
 bus/1/name = &"Music"
@@ -13,3 +61,111 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/3/name = &"smallwetoccluded1"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Sound"
+bus/3/effect/0/effect = SubResource("AudioEffectReverb_335sm")
+bus/3/effect/0/enabled = true
+bus/4/name = &"smallwet"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Sound"
+bus/4/effect/0/effect = SubResource("AudioEffectReverb_335sm")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectLowPassFilter_s6wtg")
+bus/4/effect/1/enabled = true
+bus/5/name = &""
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"Sound"
+bus/5/effect/0/effect = SubResource("AudioEffectReverb_smc67")
+bus/5/effect/0/enabled = true
+bus/6/name = &"s2o"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = 0.0
+bus/6/send = &"Sound"
+bus/6/effect/0/effect = SubResource("AudioEffectReverb_smc67")
+bus/6/effect/0/enabled = true
+bus/6/effect/1/effect = SubResource("AudioEffectLowPassFilter_vno7m")
+bus/6/effect/1/enabled = true
+bus/7/name = &"m1"
+bus/7/solo = false
+bus/7/mute = false
+bus/7/bypass_fx = false
+bus/7/volume_db = 0.0
+bus/7/send = &"Sound"
+bus/7/effect/0/effect = SubResource("AudioEffectReverb_5hw68")
+bus/7/effect/0/enabled = true
+bus/8/name = &"m1o"
+bus/8/solo = false
+bus/8/mute = false
+bus/8/bypass_fx = false
+bus/8/volume_db = 0.0
+bus/8/send = &"Sound"
+bus/8/effect/0/effect = SubResource("AudioEffectReverb_5hw68")
+bus/8/effect/0/enabled = true
+bus/8/effect/1/effect = SubResource("AudioEffectLowPassFilter_8emrm")
+bus/8/effect/1/enabled = true
+bus/9/name = &"m2"
+bus/9/solo = false
+bus/9/mute = false
+bus/9/bypass_fx = false
+bus/9/volume_db = 0.0
+bus/9/send = &"Sound"
+bus/9/effect/0/effect = SubResource("AudioEffectReverb_st5s4")
+bus/9/effect/0/enabled = true
+bus/10/name = &"m2o"
+bus/10/solo = false
+bus/10/mute = false
+bus/10/bypass_fx = false
+bus/10/volume_db = 0.0
+bus/10/send = &"Sound"
+bus/10/effect/0/effect = SubResource("AudioEffectReverb_st5s4")
+bus/10/effect/0/enabled = true
+bus/10/effect/1/effect = SubResource("AudioEffectLowPassFilter_7xq7d")
+bus/10/effect/1/enabled = true
+bus/11/name = &"b1"
+bus/11/solo = false
+bus/11/mute = false
+bus/11/bypass_fx = false
+bus/11/volume_db = 0.0
+bus/11/send = &"Sound"
+bus/11/effect/0/effect = SubResource("AudioEffectReverb_8cgv4")
+bus/11/effect/0/enabled = true
+bus/12/name = &"b1o"
+bus/12/solo = false
+bus/12/mute = false
+bus/12/bypass_fx = false
+bus/12/volume_db = 0.0
+bus/12/send = &"Sound"
+bus/12/effect/0/effect = SubResource("AudioEffectReverb_8cgv4")
+bus/12/effect/0/enabled = true
+bus/12/effect/1/effect = SubResource("AudioEffectLowPassFilter_ahpci")
+bus/12/effect/1/enabled = true
+bus/13/name = &"b2"
+bus/13/solo = false
+bus/13/mute = false
+bus/13/bypass_fx = false
+bus/13/volume_db = 0.0
+bus/13/send = &"Sound"
+bus/13/effect/0/effect = SubResource("AudioEffectReverb_4rlfu")
+bus/13/effect/0/enabled = true
+bus/14/name = &"b2o"
+bus/14/solo = false
+bus/14/mute = false
+bus/14/bypass_fx = false
+bus/14/volume_db = 0.0
+bus/14/send = &"Sound"
+bus/14/effect/0/effect = SubResource("AudioEffectReverb_4rlfu")
+bus/14/effect/0/enabled = true
+bus/14/effect/1/effect = SubResource("AudioEffectLowPassFilter_j2sok")
+bus/14/effect/1/enabled = true

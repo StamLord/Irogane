@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d3d50iupb8rug"]
+[gd_scene load_steps=21 format=3 uid="uid://d3d50iupb8rug"]
 
 [ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="1_iro6g"]
 [ext_resource type="Script" path="res://scripts/ai/states/Idle.gd" id="2_ce8wj"]
@@ -9,35 +9,40 @@
 [ext_resource type="Script" path="res://scripts/ai/states/Search.gd" id="4_u5p12"]
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="6_vj0q5"]
 [ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="7_dmvk0"]
+[ext_resource type="AudioStream" uid="uid://shvwwq43i0ds" path="res://assets/audio/guard_detection/i_can_see_you.ogg" id="10_a8id8"]
+[ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="10_f7n81"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r67sv"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbheq"]
+radius = 0.4
+height = 1.8
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_u2a8l"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_isd4v"]
+radius = 0.4
+height = 1.8
 
-[sub_resource type="BoxMesh" id="BoxMesh_oea8h"]
+[sub_resource type="BoxMesh" id="BoxMesh_wr03i"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66wce"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b25ha"]
 albedo_color = Color(0.921569, 0, 0.337255, 1)
 
-[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ymceo"]
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_xeuho"]
 length = 0.5
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_t1jkw"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_nwcln"]
 radius = 0.7
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_4pqtp"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ps1xe"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_t23qw"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ulmko"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi3h5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0npv8"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 0.368627)
 
-[node name="NpcStateMachine" type="Node3D" node_paths=PackedStringArray("default_state")]
+[node name="npc" type="Node3D"]
 script = ExtResource("3_rsg64")
-default_state = NodePath("states/Idle")
 
 [node name="states" type="Node3D" parent="."]
 
@@ -46,7 +51,7 @@ script = ExtResource("2_ce8wj")
 
 [node name="Chase" type="Node3D" parent="states"]
 script = ExtResource("3_f7qx7")
-movement_speed = 5.0
+movement_speed = 4.0
 rotation_speed = 10.0
 
 [node name="Search" type="Node3D" parent="states"]
@@ -65,16 +70,16 @@ push_force = 120
 
 [node name="collider" type="CollisionShape3D" parent="character_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_r67sv")
+shape = SubResource("CapsuleShape3D_hbheq")
 
 [node name="mesh" type="MeshInstance3D" parent="character_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_u2a8l")
+mesh = SubResource("CapsuleMesh_isd4v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="character_body/mesh"]
-transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.45)
-mesh = SubResource("BoxMesh_oea8h")
-surface_material_override/0 = SubResource("StandardMaterial3D_66wce")
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.349902)
+mesh = SubResource("BoxMesh_wr03i")
+surface_material_override/0 = SubResource("StandardMaterial3D_b25ha")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="character_body"]
 path_height_offset = 0.6
@@ -97,7 +102,7 @@ debug_shape_custom_color = Color(1, 0.67451, 0, 1)
 [node name="step_separation" type="CollisionShape3D" parent="character_body"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
-shape = SubResource("SeparationRayShape3D_ymceo")
+shape = SubResource("SeparationRayShape3D_xeuho")
 
 [node name="interactive" type="Area3D" parent="character_body"]
 collision_layer = 4
@@ -107,7 +112,7 @@ interaction_text = "Talk"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="character_body/interactive"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-shape = SubResource("SphereShape3D_t1jkw")
+shape = SubResource("SphereShape3D_nwcln")
 
 [node name="AwarenessAgent" type="Area3D" parent="character_body"]
 unique_name_in_owner = true
@@ -122,10 +127,10 @@ detection_rate = 2.0
 undetection_rate = 1.0
 
 [node name="collider" type="CollisionShape3D" parent="character_body/AwarenessAgent"]
-shape = SubResource("SphereShape3D_4pqtp")
+shape = SubResource("SphereShape3D_ps1xe")
 
 [node name="sight_cast" type="ShapeCast3D" parent="character_body/AwarenessAgent"]
-shape = SubResource("SphereShape3D_t23qw")
+shape = SubResource("SphereShape3D_ulmko")
 target_position = Vector3(0, 0, 0)
 collision_mask = 16
 collide_with_areas = true
@@ -138,19 +143,23 @@ visible = false
 [node name="sphere_mesh" type="CSGSphere3D" parent="character_body/AwarenessAgent/vision_cone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0346708)
 radius = 5.0
-material = SubResource("StandardMaterial3D_oi3h5")
+material = SubResource("StandardMaterial3D_0npv8")
 
 [node name="cone_mesh" type="CSGCylinder3D" parent="character_body/AwarenessAgent/vision_cone"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.5)
 operation = 1
 height = 5.0
 cone = true
-material = SubResource("StandardMaterial3D_oi3h5")
+material = SubResource("StandardMaterial3D_0npv8")
 
-[node name="npc_audio_manager" type="Node3D" parent="character_body"]
+[node name="npc_audio_manager" type="Node3D" parent="character_body" node_paths=PackedStringArray("awarness_agent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("7_dmvk0")
+awarness_agent = NodePath("../AwarenessAgent")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="character_body/npc_audio_manager"]
-bus = &"Sound"
+[node name="audio_player" type="AudioStreamPlayer3D" parent="character_body/npc_audio_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+stream = ExtResource("10_a8id8")
+script = ExtResource("10_f7n81")
 
 [connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]

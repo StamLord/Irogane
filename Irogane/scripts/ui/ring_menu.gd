@@ -77,7 +77,7 @@ func initialize_items(selection_items: Array):
 	initialize()
 	
 
-func _process(delta):
+func _process(_delta):
 	if open_button:
 		if Input.is_action_just_pressed(open_button) and not visible:
 			open()

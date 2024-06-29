@@ -36,7 +36,7 @@ func _ready():
 #	add_task("13:45", task_type.PATROL, "origin") 
 	
 
-func _process(delta):
+func _process(_delta):
 	#print(get_current_task())
 	pass
 

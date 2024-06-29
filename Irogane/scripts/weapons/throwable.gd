@@ -152,7 +152,7 @@ func change_shoot_pos_if_needed():
 	signal_attack()
 	
 
-func _process(delta):
+func _process(_delta):
 	if not visible:
 		return
 	

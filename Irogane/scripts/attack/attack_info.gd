@@ -8,13 +8,13 @@ var is_heavy = false
 var force = Vector3.ZERO
 var statuses = []
 
-func _init(soft_damage, hard_damage, damage_type = DamageType.BLUNT, is_heavy = false, force : Vector3 = Vector3.ZERO, statuses : Array = []):
-	self.soft_damage = soft_damage
-	self.hard_damage = hard_damage
-	self.damage_type = damage_type
-	self.is_heavy = is_heavy
-	self.force = force
-	self.statuses = statuses
+func _init(_soft_damage, _hard_damage, _damage_type = DamageType.BLUNT, _is_heavy = false, _force : Vector3 = Vector3.ZERO, _statuses : Array = []):
+	self.soft_damage = _soft_damage
+	self.hard_damage = _hard_damage
+	self.damage_type = _damage_type
+	self.is_heavy = _is_heavy
+	self.force = _force
+	self.statuses = _statuses
 	
 
 func _to_string():

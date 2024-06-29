@@ -14,7 +14,7 @@ func _enter_tree():
 	modulate.a = 1
 	
 
-func _process(delta):
+func _process(_delta):
 	if fade_done:
 		return
 	

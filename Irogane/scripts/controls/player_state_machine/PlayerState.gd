@@ -1,6 +1,8 @@
 extends Node
 class_name PlayerState
 
+var state_machine : PlayerStateMachine
+
 signal Transitioned(state, new_state_name)
 
 func Enter(_body):

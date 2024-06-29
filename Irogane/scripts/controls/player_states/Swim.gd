@@ -25,7 +25,7 @@ func Enter(body):
 	direction = body.last_direction
 	swim_started.emit()
 
-func Update(delta):
+func Update(_delta):
 	pass
 	
 func PhysicsUpdate(body, delta):

@@ -72,7 +72,8 @@ func PhysicsUpdate(body, delta):
 		return
 	
 	# Crouch State
-	if not Input.is_action_pressed("crouch") and not head_check.is_colliding(): 
+	if Input.is_action_just_pressed("crouch") and not head_check.is_colliding():
+		Input.action_release("crouch")
 		Transitioned.emit(self, "walk")
 		return
 	

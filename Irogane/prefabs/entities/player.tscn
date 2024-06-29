@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=181 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -16,14 +16,18 @@
 [ext_resource type="Script" path="res://scripts/controls/player_states/Dash.gd" id="12_0ox4n"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Rooted.gd" id="14_pnpox"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Swim.gd" id="16_0qk7s"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Climb.gd" id="16_su0ll"]
+[ext_resource type="Script" path="res://scripts/controls/player_states/Roped.gd" id="17_uonvk"]
 [ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="18_bhey3"]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_manager.gd" id="18_u5xda"]
 [ext_resource type="Script" path="res://scripts/interactive/interaction.gd" id="19_s7wsu"]
 [ext_resource type="PackedScene" uid="uid://bba44d8rksvrn" path="res://prefabs/rigs/first_person_rig.tscn" id="20_1s0sd"]
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="20_14b7v"]
+[ext_resource type="Script" path="res://scripts/weapons/grapple.gd" id="22_yy2un"]
 [ext_resource type="Texture2D" uid="uid://bxr0atcgy3wj1" path="res://assets/textures/vfx/burst_3.png" id="23_hmrdc"]
 [ext_resource type="Texture2D" uid="uid://btl27pu5mfpds" path="res://assets/textures/vfx/anime_burst_1.png" id="23_lpx6h"]
 [ext_resource type="Shader" uid="uid://nkxqhiv783rp" path="res://assets/shaders/hit_shader.tres" id="23_xjj03"]
+[ext_resource type="Script" path="res://scripts/procedural/new_rope.gd" id="23_yw3sv"]
 [ext_resource type="Texture2D" uid="uid://c45ix7cudrmyq" path="res://assets/textures/vfx/shockwave_64.png" id="24_4mlx4"]
 [ext_resource type="Script" path="res://scripts/weapons/throwable.gd" id="26_5mim7"]
 [ext_resource type="Script" path="res://scripts/weapons/katana.gd" id="26_fyhdv"]
@@ -57,8 +61,19 @@
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
 [ext_resource type="Script" path="res://scripts/hitbox/hitbox.gd" id="43_38fde"]
 [ext_resource type="Script" path="res://scripts/weapons/kick.gd" id="43_xcpvm"]
+[ext_resource type="Script" path="res://scripts/weapons/pocket_mirror.gd" id="44_5spk0"]
+[ext_resource type="Script" path="res://scripts/weapons/simple_weapon_manager.gd" id="46_wqxcu"]
 [ext_resource type="Script" path="res://scripts/vfx/status_vfx.gd" id="47_7x4l6"]
+[ext_resource type="Script" path="res://scripts/controls/ledge_check.gd" id="47_nhvkg"]
+[ext_resource type="Texture2D" uid="uid://dxpxsjbekb6j7" path="res://assets/textures/vfx/aoe_decal_0.png" id="48_fsnbk"]
+[ext_resource type="PackedScene" uid="uid://d1o3m8ht5u137" path="res://assets/models/compass/compass.glb" id="49_r5o56"]
 [ext_resource type="Script" path="res://scripts/hitbox/hurtbox.gd" id="50_h51e5"]
+[ext_resource type="PackedScene" uid="uid://d1rcf2qi0eyo" path="res://assets/models/compass/mirror.glb" id="50_hpl7l"]
+[ext_resource type="PackedScene" uid="uid://dfv8ag71set7j" path="res://assets/models/compass/pin.glb" id="50_nr8pd"]
+[ext_resource type="Script" path="res://scripts/procedural/compass.gd" id="51_tjqxo"]
+[ext_resource type="Script" path="res://scripts/weapons/telescope.gd" id="56_it81t"]
+[ext_resource type="Script" path="res://scripts/weapons/coin.gd" id="57_ehulk"]
+[ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -344,12 +359,28 @@ material = SubResource("StandardMaterial3D_imqxh")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vikjk"]
 
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_o8r7q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33ose"]
+albedo_color = Color(0.584314, 0.584314, 0.584314, 1)
+metallic = 1.0
+roughness = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ykr7"]
+size = Vector3(0.05, 0.4, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3rl4p"]
+size = Vector3(0.04, 0.3, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_33nmg"]
+size = Vector3(0.03, 0.2, 0.02)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdctd"]
 radius = 0.3
-height = 1.9
+height = 1.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_764jx"]
 radius = 0.3
@@ -703,8 +734,15 @@ surface_offset = -1.5
 [node name="rooted" type="Node" parent="states"]
 script = ExtResource("14_pnpox")
 
+[node name="climb" type="Node" parent="states"]
+script = ExtResource("16_su0ll")
+ledge_mask = 1
+
+[node name="roped" type="Node" parent="states"]
+script = ExtResource("17_uonvk")
+
 [node name="head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 script = ExtResource("9_nfdeu")
 
 [node name="main_camera" type="Camera3D" parent="head"]
@@ -732,9 +770,12 @@ script = ExtResource("27_wn7je")
 
 [node name="weapon_manager" type="Node3D" parent="head/main_camera"]
 unique_name_in_owner = true
+process_mode = 4
+visible = false
 script = ExtResource("18_u5xda")
 
 [node name="melee" type="Node3D" parent="head/main_camera/weapon_manager"]
+visible = false
 script = ExtResource("20_14b7v")
 
 [node name="moves_display" type="Control" parent="head/main_camera/weapon_manager/melee"]
@@ -1017,6 +1058,120 @@ bus = &"Sound"
 [node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="head/main_camera/weapon_manager/kick/audio"]
 bus = &"Sound"
 
+[node name="simple_weapon_manager" type="Node3D" parent="head/main_camera"]
+script = ExtResource("46_wqxcu")
+
+[node name="pocket_mirror" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+script = ExtResource("44_5spk0")
+
+[node name="left_pos" type="Node3D" parent="head/main_camera/simple_weapon_manager/pocket_mirror"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -0.357, 0, -0.464)
+
+[node name="right_pos" type="Node3D" parent="head/main_camera/simple_weapon_manager/pocket_mirror"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0.357, 0, -0.464)
+
+[node name="mirror_mesh" type="Node3D" parent="head/main_camera/simple_weapon_manager/pocket_mirror"]
+transform = Transform3D(0.984808, 0.0301537, 0.17101, 0, 0.984808, -0.173648, -0.173648, 0.17101, 0.969846, -0.356663, 0, -0.464274)
+
+[node name="compass" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("49_r5o56")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 0.999999, -4.37114e-08, 0, 0, 0)
+
+[node name="pin" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh/compass" instance=ExtResource("50_nr8pd")]
+transform = Transform3D(1, 0, -1.86265e-09, -1.49012e-08, 1, -1.49012e-08, 0, 0, 1, 0, 0, 0.1)
+script = ExtResource("51_tjqxo")
+
+[node name="mirror" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh" instance=ExtResource("50_hpl7l")]
+transform = Transform3D(1, 7.45058e-08, -3.55271e-15, 0, -4.37114e-08, -1, -7.45058e-08, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="head/main_camera/simple_weapon_manager/pocket_mirror/mirror_mesh"]
+transform = Transform3D(1, 0, 7.45058e-08, 0, 1, 0, -7.45058e-08, 0, 1, 0, 0, 0.1)
+update_mode = 1
+max_distance = 100.0
+size = Vector3(1, 1, 1)
+box_projection = true
+enable_shadows = true
+cull_mask = 1
+mesh_lod_threshold = 5.0
+
+[node name="rope" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
+script = ExtResource("22_yy2un")
+
+[node name="Rope" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+top_level = true
+visible = false
+mesh = SubResource("ImmediateMesh_o8r7q")
+script = ExtResource("23_yw3sv")
+resolution = 4
+rope_width = 0.03
+
+[node name="start_target" type="Marker3D" parent="head/main_camera/simple_weapon_manager/rope/Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="end_target" type="Marker3D" parent="head/main_camera/simple_weapon_manager/rope/Rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -1)
+top_level = true
+
+[node name="skill_zone" type="Decal" parent="head/main_camera/simple_weapon_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -3.5)
+visible = false
+size = Vector3(5, 5, 5)
+texture_albedo = ExtResource("36_yxiao")
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+script = ExtResource("37_60ul2")
+
+[node name="sub_decal" type="Decal" parent="head/main_camera/simple_weapon_manager/skill_zone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518792, 0)
+visible = false
+
+[node name="telescope" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
+script = ExtResource("56_it81t")
+
+[node name="telecam" type="Camera3D" parent="head/main_camera/simple_weapon_manager/telescope"]
+
+[node name="coin" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
+script = ExtResource("57_ehulk")
+
+[node name="prayer_beads" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
+script = ExtResource("58_ej268")
+
+[node name="cross" type="Node3D" parent="head/main_camera/simple_weapon_manager/prayer_beads"]
+transform = Transform3D(0.531121, 0.235889, -0.813798, 0.433013, 0.75, 0.5, 0.728293, -0.617945, 0.296198, 0.4, -0.2, -0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/prayer_beads/cross"]
+material_override = SubResource("StandardMaterial3D_33ose")
+mesh = SubResource("BoxMesh_2ykr7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/prayer_beads/cross"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = SubResource("StandardMaterial3D_33ose")
+mesh = SubResource("BoxMesh_3rl4p")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/prayer_beads/cross"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3.29838e-09, 0.0245419, 0)
+material_override = SubResource("StandardMaterial3D_33ose")
+mesh = SubResource("BoxMesh_33nmg")
+skeleton = NodePath("../..")
+
+[node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
+target_position = Vector3(0, 0, -1)
+
+[node name="grappling_decal" type="Decal" parent="head/main_camera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.889794, -0.0930605)
+top_level = true
+visible = false
+size = Vector3(0.5, 1, 0.5)
+texture_albedo = ExtResource("48_fsnbk")
+texture_emission = ExtResource("48_fsnbk")
+
 [node name="StealthAgent" type="Area3D" parent="head" node_paths=PackedStringArray("state_machine")]
 collision_layer = 16
 collision_mask = 0
@@ -1028,41 +1183,73 @@ state_machine = NodePath("../..")
 shape = SubResource("SphereShape3D_xo22a")
 
 [node name="stand_collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_rdctd")
 
 [node name="crouch_collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 shape = SubResource("CapsuleShape3D_764jx")
-disabled = true
 
 [node name="head_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
+visible = false
 target_position = Vector3(0, 1.9, 0)
 
 [node name="head_check_2" type="RayCast3D" parent="."]
 unique_name_in_owner = true
+visible = false
 target_position = Vector3(0, 2.5, 0)
 
-[node name="ledge_check" type="RayCast3D" parent="."]
+[node name="ledge_check" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
-target_position = Vector3(0, -1.75, 0)
+script = ExtResource("47_nhvkg")
+
+[node name="ledge_check" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.75)
 debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check5" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.9)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check2" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.6)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check3" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.45)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
+
+[node name="ledge_check4" type="RayCast3D" parent="ledge_check"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -0.3)
+debug_shape_custom_color = Color(0.933333, 0.643137, 0, 1)
+debug_shape_thickness = 4
 
 [node name="wall_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
 target_position = Vector3(0, 0, -1)
+
+[node name="climb_check" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+visible = false
+target_position = Vector3(0, 0, -0.5)
 
 [node name="step_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.75)
+visible = false
 target_position = Vector3(0, -3, 0)
 
 [node name="water_level_check" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
 target_position = Vector3(0, -2, 0)
 collision_mask = 8
 collide_with_areas = true
@@ -1071,6 +1258,7 @@ collide_with_bodies = false
 [node name="rope_check" type="ShapeCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+visible = false
 shape = SubResource("CapsuleShape3D_bnn1b")
 target_position = Vector3(0, 0, 0)
 collision_mask = 4
@@ -1078,6 +1266,7 @@ collision_mask = 4
 [node name="water_check" type="ShapeCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 shape = SubResource("SphereShape3D_8nx1q")
 target_position = Vector3(0, 0, 0)
 collision_mask = 8
@@ -1087,6 +1276,7 @@ collide_with_bodies = false
 [node name="wind_check" type="Area3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+visible = false
 collision_layer = 16
 collision_mask = 16
 
@@ -1185,6 +1375,7 @@ fov = 55.0
 script = ExtResource("38_tsii1")
 
 [node name="light_detection" type="Node3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("35_853ua")
 
@@ -1344,3 +1535,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_gw68j")
 
 [connection signal="visibility_changed" from="head/main_camera/weapon_manager/skill_zone" to="head/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="head/main_camera/simple_weapon_manager/skill_zone" to="head/main_camera/simple_weapon_manager/skill_zone" method="_on_visibility_changed"]

@@ -36,7 +36,7 @@ func Enter(body):
 	body.velocity = Vector3.ZERO
 	climb_rope_started.emit()
 
-func Update(delta):
+func Update(_delta):
 	pass
 
 func PhysicsUpdate(body, delta):
@@ -146,7 +146,7 @@ func FindClosestRopeSegment(position):
 			
 	return closest_segment
 			
-func parent_to_segment(body, segment):
+func parent_to_segment(_body, segment):
 	rope_segment = segment
 	print(rope_segment)
 

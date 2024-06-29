@@ -2,6 +2,9 @@ extends Control
 
 @onready var vignette_vfx = $vignette_vfx
 @onready var distortion_vfx = $distortion_vfx
+@onready var telescope_vfx = $telescope_vfx
+@onready var chromatic_abberation_vfx = $chromatic_abberation_vfx
+
 
 @export var vignette_curve : Curve
 @export var distortion_curve : Curve
@@ -26,8 +29,15 @@ func subscribe_to_player(player_node):
 		stats.on_medicine_used.connect(medicine_vfx)
 		stats.on_health_depleted.connect(physical_damage_vfx)
 	
+	var telescope = player_node.get_node("head/main_camera/simple_weapon_manager/telescope")
+	if telescope:
+		telescope.telescope_on.connect(set_telescope_vfx)
+	
 
 func animate_vfx(texture, parameter : String, color : Color, duration : float, curve : Curve):
+	if texture == null:
+		return
+		
 	var start_time = Time.get_ticks_msec()
 	texture.material.set_shader_parameter("color", color)
 	while Time.get_ticks_msec() - start_time <= duration:
@@ -56,12 +66,19 @@ func physical_damage_vfx(hurt):
 	#animate_distortion(physical_damage_distortion_duration * 1000)
 	
 
+func set_telescope_vfx(state):
+	if chromatic_abberation_vfx:
+		chromatic_abberation_vfx.visible = state
+	if telescope_vfx:
+		telescope_vfx.visible = state
+	
+
 func add_debug_commands():
 	DebugCommandsManager.add_command("medicine_vfx", debug_medicine_vfx, [], "Play medicine vfx on screen.")
 	DebugCommandsManager.add_command("hurt_vfx", debug_hurt_vfx, [], "Play hurt vfx on screen.")
 	
 
-func debug_medicine_vfx(empty):
+func debug_medicine_vfx(_empty):
 	medicine_vfx(null)
 	
 

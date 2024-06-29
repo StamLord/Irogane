@@ -9,7 +9,7 @@ class_name NpcStateMachine
 @onready var schedule_agent = $ScheduleAgent
 
 # Variables
-@export var default_state : NpcState
+@export var default_state = "idle"
 
 var current_state : NpcState
 var states : Dictionary = {}
@@ -26,12 +26,12 @@ func _ready():
 	for child in states_parent.get_children():
 		if child is NpcState:
 			states[child.name.to_lower()] = child
-			child.state_machine = self
+			child._state_machine = self
 			child.Transitioned.connect(on_child_transition)
 	
-	if default_state:
-		default_state.enter(self)
-		current_state = default_state
+	if default_state and states.has(default_state):
+		states[default_state].enter(self)
+		current_state = states[default_state]
 	
 
 func _process(delta):

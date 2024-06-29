@@ -22,9 +22,9 @@ var patrol_target_reached_time = 0
 var current_task = null
 
 var task_handler = {
-	ScheduleAgent.task_type.WAIT : wait_task,
-	ScheduleAgent.task_type.GUARD : guard_task,
-	ScheduleAgent.task_type.PATROL : patrol_task
+	ScheduleAgent.task_type.WAIT : wait_task, # 0
+	ScheduleAgent.task_type.GUARD : guard_task, # 2
+	ScheduleAgent.task_type.PATROL : patrol_task # 3
 }
 
 func enter(state_machine):

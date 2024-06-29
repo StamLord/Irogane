@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ct8hwgkh4ymds"]
+
+[ext_resource type="Texture2D" uid="uid://djg2wpjd0xmhj" path="res://assets/models/loot/goblet-262c9c570ea7eeac84d643b2162c91fb_goblet_tex.png" id="1_wi63c"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("1_wi63c")
+metallic = 1.0
+roughness = 0.229416
+texture_filter = 0

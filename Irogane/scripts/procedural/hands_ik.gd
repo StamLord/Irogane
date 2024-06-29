@@ -10,7 +10,7 @@ var target_right : Vector3
 #func _ready():
 	#start_ik()
 
-func _process(delta):
+func _process(_delta):
 	#if target_left:
 	left_hand.get_node(left_hand.target_node).global_position = target_left
 	#if target_right:

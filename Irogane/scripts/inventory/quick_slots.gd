@@ -1,5 +1,5 @@
 extends Control
-class_name quick_slots
+class_name QuickSlots
 
 @onready var slots_container = $HBoxContainer
 @onready var slots = slots_container.get_children()

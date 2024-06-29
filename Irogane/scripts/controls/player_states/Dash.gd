@@ -33,10 +33,10 @@ func Enter(body):
 		body.stats.start_invincible()
 	
 
-func Update(delta):
+func Update(_delta):
 	pass
 
-func PhysicsUpdate(body, delta):
+func PhysicsUpdate(body, _delta):
 	var velocity = body.velocity
 	
 	# Jump State
