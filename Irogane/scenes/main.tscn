@@ -1628,7 +1628,7 @@ shape = SubResource("BoxShape3D_quplk")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
 environment = SubResource("Environment_imxk7")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" groups=["light_source"]]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
@@ -2152,12 +2152,15 @@ visible = false
 
 [node name="enemy_fight_only" parent="." instance=ExtResource("38_udyj0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, -9.5, 27)
+default_state = "idle"
 
 [node name="enemy_fight_only2" parent="." instance=ExtResource("38_udyj0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -9.5, 26)
+default_state = "idle"
 
 [node name="enemy_fight_only3" parent="." instance=ExtResource("38_udyj0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1922, -9.5, 37.8652)
+default_state = "idle"
 
 [connection signal="body_entered" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="stage/water/water_area" to="stage/water/water_area" method="_on_body_exited"]
