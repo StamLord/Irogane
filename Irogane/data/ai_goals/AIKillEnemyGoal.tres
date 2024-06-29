@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIKillEnemyGoal" load_steps=2 format=3 uid="uid://dl04wv5vs1x5q"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/goals/AIKillEnemyGoal.gd" id="1_1gx6j"]
+
+[resource]
+script = ExtResource("1_1gx6j")
