@@ -10,12 +10,12 @@ static func plan(initital_world_state, goal_state, actions):
 	
 	var initial_node = AStarNode.new(null, initital_world_state) if not reverse else AStarNode.new(null, goal_state)
 	var goal_node = AStarNode.new(null, goal_state) if not reverse else AStarNode.new(null, initital_world_state)
-	
 	DEBUG("* INITIAL:")
 	DEBUG(initial_node._to_string())
 	DEBUG("* GOAL:")
 	DEBUG(goal_node._to_string())
-	
+	DEBUG("* ACTIONS :")
+	DEBUG(actions)
 	# Create initial node
 	open_list.append(initial_node)
 	

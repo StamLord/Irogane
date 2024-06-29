@@ -36,14 +36,13 @@ func _ready():
 
 func _process(delta):
 	# Simulate world_state changing every frame
-	world_state_changed = true
-	prev_goal = null
-	
+	#world_state_changed = true
+	#prev_goal = null
 	if world_state_changed and Time.get_ticks_msec() - last_goal_time >= goal_calculation_rate * 1000:
 		calculate_goal()
 		world_state_changed = false
 	
-	if current_goal != null and current_goal != prev_goal and Time.get_ticks_msec() - last_action_time >= action_calculation_rate * 1000:
+	if current_goal != null and Time.get_ticks_msec() - last_action_time >= action_calculation_rate * 1000:
 		calculate_plan()
 	
 	prev_goal = current_goal
@@ -55,7 +54,7 @@ func _process(delta):
 		var dist = body.global_position.distance_to(goto_target.global_position)
 		# Continously update pathfiding
 		if dist > 0.1:
-			body.set_target_position(goto_target)
+			body.set_target_position(goto_target.global_position)
 		else:
 			complete_action()
 		
@@ -135,12 +134,12 @@ func get_dynamic_actions():
 	
 	if awareness_agent != null:
 		for agent in awareness_agent.visible_agents:
-			var goto = GotoAction.new(agent.global_position, {"near_enemy" : true})
+			var goto = GotoAction.new(agent, {"near_enemy": true})
 			dynamic_actions.append(goto)
 	
 	return dynamic_actions
 	
 
 func enemy_seen(enemy):
-	update_world_state("enemy_visible", true)
+	update_world_state("has_target", true)
 	
