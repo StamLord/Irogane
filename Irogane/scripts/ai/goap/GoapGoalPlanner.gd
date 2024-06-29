@@ -1,9 +1,9 @@
 extends Node
 class_name GoapGoalPlanner
 
-var debug = false
+const debug = false
 
-func get_goal(world_state, all_goals):
+static func get_goal(world_state, all_goals):
 	var highest_priority_goal = null
 	var highest_priority_value = -INF
 	
@@ -23,7 +23,7 @@ func get_goal(world_state, all_goals):
 	return highest_priority_goal
 	
  
-func DEBUG(message):
+static func DEBUG(message):
 	if not debug:
 		return
 	print(message)

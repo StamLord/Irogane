@@ -24,11 +24,12 @@ func is_valid(world_state: Dictionary) -> bool:
 	
 
 # TODO: Figure out
-func activate_action(data):
-	pass;
+func activate_action(agent):
+	# agent.goto(pos) or agent.animate(clip)
+	pass
 	
 
 func cancel_action(data):
-	pass;
+	pass
 	
 

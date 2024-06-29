@@ -29,14 +29,30 @@ func is_equal_to(node : AStarNode):
 	
 
 func get_action_name():
-	return "null" if action == null else Utils.get_resource_file_name(action)
+	if action == null:
+		return "null"  
+	if action is GotoAction:
+		return "Goto"
+	
+	return Utils.get_resource_file_name(action)
 	
 
 func _to_string():
-	var string = "------------\nid : {id} \naction: {action} \ng_cost: {g_cost} h_cost: {h_cost} \nstate: {state} \nrequirements: {reqs} \nparent: {parent}\n------------\n"
+	var string = "------------\nid : {id} \naction: {action} \ng_cost: {g_cost} h_cost: {h_cost} \nstate: {state} \nparent: {parent}"
 	var parent_name = "null" if parent == null else parent.get_action_name()
-	return string.format({
+	string = string.format({
 		"id" : get_instance_id(), "action" : get_action_name(), 
 		"g_cost" : g_cost, "h_cost" : h_cost, "state" : state, 
 		"parent" : parent_name})
+	
+	if action is GotoAction:
+		var node_name = action.target_node.name
+		if node_name == "":
+			node_name = "[Nameless Node]"
+		
+		string += "\ndynamic: " + node_name
+	
+	string += "\n------------\n"
+	
+	return string
 	

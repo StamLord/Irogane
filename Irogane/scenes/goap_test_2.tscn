@@ -1,18 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bptkwague6ka5"]
+[gd_scene load_steps=4 format=3 uid="uid://bptkwague6ka5"]
 
-[ext_resource type="Script" path="res://scripts/ai/goap/GoapActionPlanner.gd" id="1_c2bog"]
-[ext_resource type="Script" path="res://scripts/ai/goap/GoapGoalPlanner.gd" id="2_5j188"]
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapTestUnit.gd" id="3_4aho4"]
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="4_rynn1"]
 [ext_resource type="Script" path="res://scripts/ai/goap/TimeSlicer.gd" id="5_d4yob"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="GoapActionPlanner" type="Node" parent="."]
-script = ExtResource("1_c2bog")
-
-[node name="GoapGoalPlanner" type="Node" parent="."]
-script = ExtResource("2_5j188")
 
 [node name="GoapUnitTest" type="Node" parent="."]
 script = ExtResource("3_4aho4")

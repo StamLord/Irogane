@@ -1,10 +1,10 @@
 extends Node
 class_name GoapActionPlanner
 
-var reverse = false
-var debug = false
+const reverse = false
+const debug = false
 
-func plan(initital_world_state, goal_state, actions):
+static func plan(initital_world_state, goal_state, actions):
 	var open_list = []
 	var closed_list = []
 	
@@ -21,8 +21,8 @@ func plan(initital_world_state, goal_state, actions):
 	
 	while open_list.size() > 0:
 		DEBUG("* BEFORE SORT:\n" + str(open_list))
-			
-		open_list.sort_custom(compare_states) # Sort by lowest g_cost + h_cost
+		
+		open_list.sort_custom(GoapActionPlanner.compare_states) # Sort by lowest g_cost + h_cost
 		
 		DEBUG("* AFTER SORT:\n" + str(open_list))
 		
@@ -65,12 +65,12 @@ func plan(initital_world_state, goal_state, actions):
 	return []
 	
 
-func compare_states(node_1 : AStarNode, node_2 : AStarNode):
+static func compare_states(node_1: AStarNode, node_2: AStarNode):
 	return node_1.f_cost() < node_2.f_cost()
 	
 
 # Gets neighbors according to possible actions from out current state
-func get_neighbors(node : AStarNode, all_actions):
+static func get_neighbors(node: AStarNode, all_actions):
 	var neighbors = []
 	for action in all_actions:
 		if action.is_valid(node.state):
@@ -80,7 +80,7 @@ func get_neighbors(node : AStarNode, all_actions):
 	
 
 # Gets neighbors according to actions that lead to our current state
-func get_neighbors_reverse(node : AStarNode, all_actions):
+static func get_neighbors_reverse(node: AStarNode, all_actions):
 	var neighbors = []
 	for action in all_actions:
 		for effect in action.get_effects():
@@ -92,7 +92,7 @@ func get_neighbors_reverse(node : AStarNode, all_actions):
 	
 
 # Count differences between states
-func heuristic(node : AStarNode, goal_node : AStarNode):
+static func heuristic(node: AStarNode, goal_node: AStarNode):
 	var diff = 0
 	for key in goal_node.state:
 		if not node.state.has(key) or node.state[key] != goal_node.state[key]:
@@ -101,7 +101,7 @@ func heuristic(node : AStarNode, goal_node : AStarNode):
 	return diff
 	
 
-func all_conditions_met(state, conditions):
+static func all_conditions_met(state, conditions):
 	for key in conditions:
 		if not state.has(key) or state[key] != conditions[key]:
 			return false
@@ -109,7 +109,7 @@ func all_conditions_met(state, conditions):
 	return true
 	
 
-func reconstruct_path(node : AStarNode):
+static func reconstruct_path(node: AStarNode):
 	var path = []
 	var current = node
 	
@@ -118,18 +118,20 @@ func reconstruct_path(node : AStarNode):
 		current = current.parent
 	
 	path.reverse()
+	path.pop_front() # Get rid of initial state node
+	
 	return path
 	
 
 # TODO: Increase performance by switching to dict
-func contains_node(array, node : AStarNode):
+static func contains_node(array, node: AStarNode):
 	for n in array:
 		if n.is_equal_to(node):
 			return true
 	return false
 	
 
-func DEBUG(message):
+static func DEBUG(message):
 	if not debug:
 		return
 	print(message)
