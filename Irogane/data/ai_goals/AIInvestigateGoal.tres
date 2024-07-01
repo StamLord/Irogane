@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIInvestigateGoal" load_steps=2 format=3 uid="uid://cal74ja15su0m"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/goals/AIInvestigateGoal.gd" id="1_raucg"]
+
+[resource]
+script = ExtResource("1_raucg")

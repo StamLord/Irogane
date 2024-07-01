@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AILookAroundAction" load_steps=2 format=3 uid="uid://cy0xn2r0135di"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/AILookAroundAction.gd" id="1_yyqj8"]
+
+[resource]
+script = ExtResource("1_yyqj8")

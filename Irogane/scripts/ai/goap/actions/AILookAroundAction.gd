@@ -1,8 +1,8 @@
 extends AIActionAbstract
-class_name AIMeleeAttackAction
+class_name AILookAroundAction
 
 func get_requirements() -> Dictionary:
-	return {"near_enemy": true}
+	return {"near_sound": true}
 	
 
 func get_cost(world_state: Dictionary) -> float:
@@ -10,14 +10,11 @@ func get_cost(world_state: Dictionary) -> float:
 	
 
 func get_effects() -> Dictionary:
-	return {"target_dead": true}
+	return {"investigated_sound": true}
 	
 
 # TODO: Figure out
 func activate_action(agent):
-	agent.animate("Melee")
-	
-
-func cancel_action(data):
-	pass
+	agent.animate("Look Around")
+	agent.erase_world_state("sound_heard_at")
 	

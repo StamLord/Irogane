@@ -1,18 +1,14 @@
 extends AIGoalAbstract
-class_name AIKillEnemyGoal
+class_name AIInvestigateGoal
 
 func get_requirements() -> Dictionary:
-	return {"target_dead": true}
+	return {"investigated_sound": true}
 	
 
 func get_priority(world_state: Dictionary) -> int:
-	return 100;
+	return 100
 	
 
 func is_valid(world_state: Dictionary) -> bool:
-	return world_state.has("enemy");
-	
-
-func _to_string():
-	return Utils.get_resource_file_name(self)
+	return world_state.has("sound_heard_at")
 	
