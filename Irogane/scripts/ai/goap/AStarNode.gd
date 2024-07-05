@@ -33,6 +33,8 @@ func get_action_name():
 		return "null"  
 	if action is GotoAction:
 		return "Goto"
+	elif action is GotoPositionAction:
+		return "GotoPosition"
 	
 	return Utils.get_resource_file_name(action)
 	

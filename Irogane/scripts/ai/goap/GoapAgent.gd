@@ -32,7 +32,8 @@ var world_state_changed = true
 var current_goal = null
 var current_action_plan = []
 
-var prev_goal = null
+var current_action = null
+
 var animating_clip = null
 var start_animation_debug = 0
 var goto_target = null
@@ -44,24 +45,26 @@ var use_time_slicing = false
 
 func _ready():
 	if awareness_agent != null:
+		awareness_agent.on_enemy_seen.connect(enemy_seen)
+		awareness_agent.on_enemy_lost.connect(enemy_lost)
 		awareness_agent.on_sound_heard.connect(sound_heard)
-		
-func _process(delta):
-	update_sensors()
-	#print(world_state)
 	
+
+func _process(delta):
 	# Simulate world_state changing every frame
 	#world_state_changed = true
-	#prev_goal = null
 	
+	# Calculate goal when world state changed
 	if world_state_changed and Time.get_ticks_msec() - last_goal_time >= goal_calculation_rate * 1000:
 		calculate_goal()
+		print("GOAL: ", current_goal)
+		calculate_plan() # If we calculate goal, also calcualte plan
 		world_state_changed = false
-	
-	if current_action_plan.size() == 0 and current_goal != null and Time.get_ticks_msec() - last_action_time >= action_calculation_rate * 1000:
+	# Even when world state stays the same, 
+	# update action plan periodically to assess 
+	# dynamic actions like goto correctly
+	elif current_goal != null and Time.get_ticks_msec() - last_action_time >= action_calculation_rate * 1000:
 		calculate_plan()
-	
-	prev_goal = current_goal
 	
 	if state == STATE.GOTO:
 		var target = null
@@ -82,7 +85,7 @@ func _process(delta):
 	elif state == STATE.ANIMATE:
 		# Check if animation is done
 		# TODO: Replace with waiting for real animation
-		if Time.get_ticks_msec() - start_animation_debug >= 1.0:
+		if Time.get_ticks_msec() - start_animation_debug >= 4000:
 			complete_action()
 	
 
@@ -110,6 +113,7 @@ func start_action():
 	if current_action_plan.size() < 1:
 		return
 	
+	current_action = current_action_plan[0].action
 	current_action_plan[0].action.activate_action(self)
 	
 
@@ -121,6 +125,9 @@ func cancel_action():
 	
 
 func complete_action():
+	if current_action_plan.size() == 0:
+		return
+	
 	current_action_plan.pop_front()
 	state = STATE.NONE
 	goto_target = null
@@ -155,13 +162,12 @@ func update_world_state(key, value):
 	
 
 func erase_world_state(key):
-	world_state.erase(key)
-	world_state_changed = true
+	if world_state.erase(key):
+		world_state_changed = true
 	
 
 func set_action_plan(action_plan):
 	current_action_plan = action_plan
-	print(action_plan)
 	start_action()
 	
 
@@ -204,10 +210,30 @@ func get_closest_enemy():
 	for agent in awareness_agent.visible_agents:
 		var distance = body.global_position.distance_to(agent.global_position)
 		if closest_agent == null or distance < closest_dist:
-			closest_agent = agent_data
+			closest_agent = agent
 			closest_dist = distance
 		
 	return closest_agent
+	
+
+func enemy_seen(enemy):
+	update_closest_enemy()
+	
+
+func enemy_lost(enemy):
+	if enemy != world_state["enemy"]:
+		return
+	
+	update_world_state("enemy_lost_at", enemy.global_position)
+	update_closest_enemy()
+	
+
+func update_closest_enemy():
+	var closest_enemy = get_closest_enemy()
+	if closest_enemy == null:
+		erase_world_state("enemy")
+	else:
+		update_world_state("enemy", closest_enemy)
 	
 
 func update_sensors():
