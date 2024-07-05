@@ -24,8 +24,12 @@ func is_valid(world_state: Dictionary) -> bool:
 	
 
 # TODO: Figure out
-func activate_action(agent):
+func start_action(agent):
 	# agent.goto(pos) or agent.animate(clip)
+	pass
+	
+
+func finish_action(agent):
 	pass
 	
 
@@ -33,3 +37,9 @@ func cancel_action(data):
 	pass
 	
 
+func equals(action):
+	var req = get_requirements().hash() == action.get_requirements().hash()
+	var effects = get_effects().hash() == action.get_effects().hash()
+	
+	return action is AIActionAbstract and req and effects
+	

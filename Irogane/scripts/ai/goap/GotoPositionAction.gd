@@ -20,6 +20,11 @@ func get_effects() -> Dictionary:
 	return effects
 	
 
-func activate_action(agent):
+func start_action(agent):
 	agent.goto_position(target_position)
 	
+
+func equals(action):
+	return super.equals(action) and action is GotoPositionAction and action.target_position == target_position
+	
+

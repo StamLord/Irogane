@@ -57,14 +57,7 @@ func _process(delta):
 	# Calculate goal when world state changed
 	if world_state_changed and Time.get_ticks_msec() - last_goal_time >= goal_calculation_rate * 1000:
 		calculate_goal()
-		print("GOAL: ", current_goal)
-		calculate_plan() # If we calculate goal, also calcualte plan
 		world_state_changed = false
-	# Even when world state stays the same, 
-	# update action plan periodically to assess 
-	# dynamic actions like goto correctly
-	elif current_goal != null and Time.get_ticks_msec() - last_action_time >= action_calculation_rate * 1000:
-		calculate_plan()
 	
 	if state == STATE.GOTO:
 		var target = null
@@ -96,6 +89,8 @@ func calculate_goal():
 		set_goal(GoapGoalPlanner.get_goal(world_state, agent_data.goals))
 	last_goal_time = Time.get_ticks_msec()
 	
+	calculate_plan()
+	
 
 func calculate_plan():
 	var actions = agent_data.actions.duplicate()
@@ -113,8 +108,11 @@ func start_action():
 	if current_action_plan.size() < 1:
 		return
 	
+	if current_action != null and current_action.equals(current_action_plan[0].action):
+		return
+	
 	current_action = current_action_plan[0].action
-	current_action_plan[0].action.activate_action(self)
+	current_action_plan[0].action.start_action(self)
 	
 
 func cancel_action():
@@ -125,15 +123,17 @@ func cancel_action():
 	
 
 func complete_action():
-	if current_action_plan.size() == 0:
-		return
-	
+	current_action.finish_action(self)
 	current_action_plan.pop_front()
+	
 	state = STATE.NONE
 	goto_target = null
 	animating_clip = null
 	
-	start_action()
+	if current_action_plan.size() == 0:
+		calculate_plan()
+	else:
+		start_action()
 	
 
 func animate(animation_clip):

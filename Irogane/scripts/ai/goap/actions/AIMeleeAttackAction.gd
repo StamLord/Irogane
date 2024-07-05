@@ -14,7 +14,7 @@ func get_effects() -> Dictionary:
 	
 
 # TODO: Figure out
-func activate_action(agent):
+func start_action(agent):
 	agent.animate("Melee")
 	
 

@@ -14,7 +14,10 @@ func get_effects() -> Dictionary:
 	
 
 # TODO: Figure out
-func activate_action(agent):
+func start_action(agent):
 	agent.animate("Look Around")
+	
+
+func finish_action(agent):
 	agent.erase_world_state("sound_heard_at")
 	

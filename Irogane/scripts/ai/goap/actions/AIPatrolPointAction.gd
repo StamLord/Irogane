@@ -14,11 +14,13 @@ func get_effects() -> Dictionary:
 	
 
 # TODO: Figure out
-func activate_action(agent):
-	agent.erase_world_state("near_patrol_point")
-	agent.set_next_patrol_point()
-	
+func start_action(agent):
 	# This action is a blank; We don't goto or animate.
 	# We make agent complete this action immediately:
 	agent.complete_action() 
+	
+
+func finish_action(agent):
+	agent.erase_world_state("near_patrol_point")
+	agent.set_next_patrol_point()
 	
