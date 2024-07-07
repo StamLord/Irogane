@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AICallGuardAction" load_steps=2 format=3 uid="uid://dpxodrmcol1mv"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/AICallGuardAction.gd" id="1_tnaxj"]
+
+[resource]
+script = ExtResource("1_tnaxj")

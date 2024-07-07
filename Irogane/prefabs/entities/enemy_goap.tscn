@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6w2qvvdo2jh4"]
+[gd_scene load_steps=20 format=3 uid="uid://6w2qvvdo2jh4"]
 
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="1_1nlbh"]
 [ext_resource type="Resource" uid="uid://bemmj32kb8mvn" path="res://data/ai_agents/Guard.res" id="2_7ydk2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="8_c81xr"]
 [ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="9_oniex"]
 [ext_resource type="AudioStream" uid="uid://shvwwq43i0ds" path="res://assets/audio/guard_detection/i_can_see_you.ogg" id="10_ceugx"]
+[ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="10_qlqfu"]
 [ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="11_yxcr4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbheq"]
@@ -146,5 +147,9 @@ awarness_agent = NodePath("../AwarenessAgent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 stream = ExtResource("10_ceugx")
 script = ExtResource("11_yxcr4")
+
+[node name="light_detection" type="Node3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("10_qlqfu")
 
 [connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]

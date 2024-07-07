@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu4kjhwhvheym"]
+[gd_scene load_steps=16 format=3 uid="uid://bu4kjhwhvheym"]
 
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="1_66hyo"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_c72l7"]
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="3_3d6s4"]
 [ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="3_7nk2a"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="4_kxrqv"]
+[ext_resource type="Resource" uid="uid://ubsldkvqa64y" path="res://data/ai_agents/Civilian.res" id="5_pyu6k"]
+[ext_resource type="Script" path="res://scripts/interactive/LightSwitch.gd" id="7_wd2ec"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_twibi"]
 panorama = ExtResource("2_c72l7")
@@ -15,6 +17,7 @@ sky_material = SubResource("PanoramaSkyMaterial_twibi")
 [sub_resource type="Environment" id="Environment_dc3xh"]
 background_mode = 2
 sky = SubResource("Sky_7a7j5")
+ambient_light_sky_contribution = 0.5
 tonemap_mode = 2
 glow_enabled = true
 fog_density = 0.2
@@ -35,6 +38,14 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_s7ost"]
+size = Vector3(0.2, 0.4, 0.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_olraa"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.4
+
 [node name="GoapTest" type="Node3D"]
 
 [node name="player" parent="." instance=ExtResource("1_66hyo")]
@@ -47,6 +58,7 @@ environment = SubResource("Environment_dc3xh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" groups=["light_source"]]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.1
 shadow_enabled = true
 
 [node name="npc" parent="." instance=ExtResource("3_7nk2a")]
@@ -58,6 +70,19 @@ schedule = {
 "22:00": {
 "location": ["guard_a", "guard_b"],
 "task_type": 3
+}
+}
+
+[node name="npc2" parent="." instance=ExtResource("3_7nk2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.0631526, 27.8815)
+agent_data = ExtResource("5_pyu6k")
+
+[node name="ScheduleAgent" type="Node3D" parent="npc2"]
+script = ExtResource("4_kxrqv")
+schedule = {
+"22:00": {
+"location": ["civilian_a", "civilian_b"],
+"task_type": 0
 }
 }
 
@@ -92,3 +117,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24.5)
 
 [node name="guard_b" type="Marker3D" parent="markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 24.5)
+
+[node name="civilian_a" type="Marker3D" parent="markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 24.5)
+
+[node name="civilian_b" type="Marker3D" parent="markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 8)
+
+[node name="LightSwitch" type="Area3D" parent="." node_paths=PackedStringArray("light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 9)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("7_wd2ec")
+light = NodePath("OmniLight3D")
+_animate_position = false
+_animate_rotation = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LightSwitch" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323846, 0)
+visible = false
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightSwitch"]
+shape = SubResource("BoxShape3D_s7ost")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightSwitch"]
+mesh = SubResource("CylinderMesh_olraa")
+
+[node name="LightSwitch2" type="Area3D" parent="." node_paths=PackedStringArray("light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 12)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("7_wd2ec")
+light = NodePath("OmniLight3D")
+_animate_position = false
+_animate_rotation = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LightSwitch2" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323846, 0)
+visible = false
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightSwitch2"]
+shape = SubResource("BoxShape3D_s7ost")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightSwitch2"]
+mesh = SubResource("CylinderMesh_olraa")

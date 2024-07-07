@@ -6,5 +6,5 @@ func get_requirements() -> Dictionary:
 	
 
 func get_priority(world_state: Dictionary) -> int:
-	return 100
+	return 50
 	

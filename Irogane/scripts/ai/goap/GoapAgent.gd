@@ -6,6 +6,7 @@ class_name GoapAgent
 @onready var time_slicer = $"../TimeSlicer"
 @onready var awareness_agent = %AwarenessAgent
 @onready var schedule_agent = $ScheduleAgent
+@onready var light_detection = $character_body/light_detection
 
 var markers :
 	get:
@@ -53,6 +54,7 @@ func _ready():
 func _process(delta):
 	# Simulate world_state changing every frame
 	#world_state_changed = true
+	update_sensors()
 	
 	# Calculate goal when world state changed
 	if world_state_changed and Time.get_ticks_msec() - last_goal_time >= goal_calculation_rate * 1000:
@@ -88,8 +90,6 @@ func calculate_goal():
 	else:
 		set_goal(GoapGoalPlanner.get_goal(world_state, agent_data.goals))
 	last_goal_time = Time.get_ticks_msec()
-	
-	calculate_plan()
 	
 
 func calculate_plan():
@@ -157,6 +157,9 @@ func goto_position(target_position : Vector3):
 	
 
 func update_world_state(key, value):
+	if world_state.has(key) and world_state[key] == value:
+		return
+	
 	world_state[key] = value
 	world_state_changed = true
 	
@@ -173,6 +176,7 @@ func set_action_plan(action_plan):
 
 func set_goal(goal):
 	current_goal = goal
+	calculate_plan()
 	
 
 func get_dynamic_actions():
@@ -188,14 +192,31 @@ func get_dynamic_actions():
 		var goto_pos = GotoPositionAction.new(world_state["sound_heard_at"], {"near_sound": true})
 		dynamic_actions.append(goto_pos)
 	
-	# Goto patrol point
+	# Goto search
+	if current_goal is AISearchEnemyGoal:
+		var goto_pos = GotoPositionAction.new(world_state["enemy_last_seen_at"], {"near_enemy_last_seen" : true})
+		dynamic_actions.append(goto_pos)
 	
-	if current_goal.to_string() == "AIPatrolGoal":
+	# Goto patrol point
+	if current_goal is AIPatrolGoal:
 		var patrol_point = get_patrol_point()
 		if patrol_point != null:
 			var goto = GotoAction.new(patrol_point, {"near_patrol_point" : true})
 			dynamic_actions.append(goto)
-		
+	
+	# Goto guard
+	if current_goal is AICallGuardGoal:
+		var guard = get_nearest_guard()
+		var goto = GotoAction.new(guard, {"near_guard" : true})
+		dynamic_actions.append(goto)
+	
+	# Goto nearest light switch that is off
+	if current_goal is AILightAreaGoal:
+		var light_switch = get_neareast_light_switch_off()
+		if light_switch != null:
+			var goto = GotoAction.new(light_switch, {"near_light" : true})
+			dynamic_actions.append(goto)
+	
 	return dynamic_actions
 	
 
@@ -224,7 +245,7 @@ func enemy_lost(enemy):
 	if enemy != world_state["enemy"]:
 		return
 	
-	update_world_state("enemy_lost_at", enemy.global_position)
+	update_world_state("enemy_last_seen_at", enemy.global_position)
 	update_closest_enemy()
 	
 
@@ -237,12 +258,16 @@ func update_closest_enemy():
 	
 
 func update_sensors():
-	var closest_enemy = get_closest_enemy()
+	if light_detection:
+		update_world_state("in_dark", light_detection.light_value < 0.5)
 	
-	if closest_enemy == null:
-		erase_world_state("enemy")
+	var light_off_in_range = get_light_switches_off().filter(
+		func(light): return light.global_position.distance_to(body.global_position) <= 10)
+	
+	if light_off_in_range.size() > 0:
+		update_world_state("light_off_nearby", true)
 	else:
-		update_world_state("enemy", closest_enemy)
+		erase_world_state("light_off_nearby")
 	
 
 func get_valid_task():
@@ -298,4 +323,92 @@ func set_next_patrol_point():
 	
 	current_patrol_point += 1
 	current_patrol_point %= task["location"].size()
+	
+
+func get_goap_agents():
+	# TODO: Get agents more realistically
+	var goap_agents = []
+	for child in get_parent().get_children():
+		if child is GoapAgent:
+			goap_agents.append(child)
+	
+	return goap_agents
+	
+
+func get_guard_agents():
+	# TODO: Get guards more realistically
+	# TODO: Identify guards more cleverly
+	var guards = []
+	for child in get_parent().get_children():
+		if child is GoapAgent and Utils.get_resource_file_name(child.agent_data) == "Guard":
+			guards.append(child)
+	
+	return guards
+	
+
+func get_nearest_guard():
+	var guards = get_guard_agents()
+	return get_nearest(guards)
+	
+
+# Updates the world_state of GoapAgents
+# in range with key and value
+func inform_agents(range, key, value):
+	var agents = get_goap_agents()
+	agents = agents.filter(func(agent): return agent != self and body.global_position.distance_to(agent.body.global_position) <= range)
+	for agent in agents:
+		agent.update_world_state(key, value)
+	
+
+func get_light_switches():
+	var light_switches = []
+	for child in get_parent().get_children():
+		if child is LightSwitch:
+			light_switches.append(child)
+	
+	return light_switches
+	
+
+func get_light_switches_off():
+	return get_light_switches().filter(
+		func(switch): return not switch.state)
+	
+
+func get_light_switches_on():
+	return get_light_switches().filter(
+		func(switch): return switch.state)
+	
+
+func get_nearest_light_switch():
+	var light_switches = get_light_switches()
+	return get_nearest(light_switches)
+	
+
+func get_neareast_light_switch_on():
+	var light_switches = get_light_switches_on()
+	return get_nearest(light_switches)
+	
+
+func get_neareast_light_switch_off():
+	var light_switches = get_light_switches_off()
+	return get_nearest(light_switches)
+	
+
+func get_nearest(array):
+	if array.size() == 0:
+		return null
+	
+	array.sort_custom(sort_nearest)
+	return array[0]
+	
+
+func sort_nearest(a, b) -> bool:
+	var origin = body.global_position
+	return origin.distance_to(a.global_position) < origin.distance_to(b.global_position)
+	
+
+func interact_nearest_light():
+	var light_switch = get_nearest_light_switch()
+	if light_switch != null:
+		light_switch.use(null)
 	
