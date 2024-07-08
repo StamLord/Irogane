@@ -6,11 +6,15 @@ func get_requirements() -> Dictionary:
 	
 
 func get_priority(world_state: Dictionary) -> int:
-	return 200;
+	return 400;
 	
 
 func is_valid(world_state: Dictionary) -> bool:
 	return world_state.has("enemy");
+	
+
+func get_states_to_erase():
+	return ["sound_heard_at"]
 	
 
 func _to_string():

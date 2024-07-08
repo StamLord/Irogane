@@ -70,7 +70,7 @@ static func random_color(random_seed : int = 0) -> Color:
 static func disconnect_all_from_signal(node : Object, signal_name : String):
 	for connection in node.get_signal_connection_list(signal_name):
 		node[signal_name].disconnect(connection["callable"])
-    
+	
 
 static func warning(node : Node, message : String):
 	print(node.name, ": ", message)

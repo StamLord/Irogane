@@ -53,6 +53,8 @@ func _to_string():
 			node_name = "[Nameless Node]"
 		
 		string += "\ndynamic: " + node_name
+	elif action is GotoPositionAction:
+		string += "\ndynamic: " + str(action.target_position)
 	
 	string += "\n------------\n"
 	

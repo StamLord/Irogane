@@ -176,6 +176,14 @@ func set_action_plan(action_plan):
 
 func set_goal(goal):
 	current_goal = goal
+	
+	var color_seed = current_goal.to_string().hash()
+	var random_color = Utils.random_color(color_seed)
+	DebugCanvas.debug_text(current_goal.to_string(), body.global_position + Vector3.UP * 2, random_color, 10)
+
+	for state in current_goal.get_states_to_erase():
+		erase_world_state(state)
+	
 	calculate_plan()
 	
 
@@ -222,6 +230,7 @@ func get_dynamic_actions():
 
 func sound_heard(sound_position):
 	update_world_state("sound_heard_at", sound_position)
+	DebugCanvas.debug_point(sound_position, Color.PURPLE, 5.0, 5.0)
 	
 
 func get_closest_enemy():
@@ -260,6 +269,13 @@ func update_closest_enemy():
 func update_sensors():
 	if light_detection:
 		update_world_state("in_dark", light_detection.light_value < 0.5)
+	
+	var nearest_light_off = get_neareast_light_switch_off()
+	if nearest_light_off != null:
+		var distance = body.global_position.distance_to(nearest_light_off.global_position)
+		update_world_state("distance_light_off", distance)
+	else:
+		erase_world_state("distance_light_off")
 	
 	var light_off_in_range = get_light_switches_off().filter(
 		func(light): return light.global_position.distance_to(body.global_position) <= 10)

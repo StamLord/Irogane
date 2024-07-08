@@ -58,7 +58,7 @@ environment = SubResource("Environment_dc3xh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" groups=["light_source"]]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-light_energy = 0.1
+light_energy = 0.25
 shadow_enabled = true
 
 [node name="npc" parent="." instance=ExtResource("3_7nk2a")]
@@ -74,6 +74,7 @@ schedule = {
 }
 
 [node name="npc2" parent="." instance=ExtResource("3_7nk2a")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.0631526, 27.8815)
 agent_data = ExtResource("5_pyu6k")
 
@@ -164,4 +165,25 @@ light_energy = 10.0
 shape = SubResource("BoxShape3D_s7ost")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LightSwitch2"]
+mesh = SubResource("CylinderMesh_olraa")
+
+[node name="LightSwitch3" type="Area3D" parent="." node_paths=PackedStringArray("light")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, 7.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("7_wd2ec")
+light = NodePath("OmniLight3D")
+_animate_position = false
+_animate_rotation = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LightSwitch3" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.323846, 0)
+visible = false
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightSwitch3"]
+shape = SubResource("BoxShape3D_s7ost")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightSwitch3"]
 mesh = SubResource("CylinderMesh_olraa")

@@ -7,9 +7,13 @@ func get_requirements() -> Dictionary:
 
 func get_priority(world_state: Dictionary) -> int:
 	var in_dark = world_state.has("in_dark") and world_state["in_dark"]
-	if in_dark:
-		return 150
-	return 100;
+	var priority = 150 if in_dark else 100
+	
+	if world_state.has("distance_light_off"):
+		var distance = world_state["distance_light_off"]
+		priority += ( 10 - distance ) * 10
+	
+	return priority
 	
 
 func is_valid(world_state: Dictionary) -> bool:
