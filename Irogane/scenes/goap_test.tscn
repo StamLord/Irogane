@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bu4kjhwhvheym"]
+[gd_scene load_steps=54 format=3 uid="uid://bu4kjhwhvheym"]
 
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="1_66hyo"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_c72l7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://ubsldkvqa64y" path="res://data/ai_agents/Civilian.res" id="5_pyu6k"]
 [ext_resource type="Script" path="res://scripts/interactive/LightSwitch.gd" id="7_wd2ec"]
 [ext_resource type="Script" path="res://scripts/jump_difficulty_test.gd" id="8_pxip0"]
+[ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="9_4c6uj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_twibi"]
 panorama = ExtResource("2_c72l7")
@@ -183,6 +184,7 @@ schedule = {
 }
 
 [node name="npc2" parent="." instance=ExtResource("3_7nk2a")]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.0631526, 27.8815)
 agent_data = ExtResource("5_pyu6k")
 
@@ -977,3 +979,5 @@ shape = SubResource("BoxShape3D_dgmce")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
 modulate = Color(0, 1, 0, 1)
 font_size = 128
+
+[node name="game_ui" parent="." instance=ExtResource("9_4c6uj")]

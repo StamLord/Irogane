@@ -20,3 +20,5 @@ func start_action(agent):
 func finish_action(agent):
 	agent.interact_nearest_light()
 	
+
+func get_action_name(): return "AITurnLightOnAction"

@@ -37,9 +37,12 @@ func cancel_action(data):
 	pass
 	
 
+func get_action_name(): return "AIActionAbstract"
+
 func equals(action):
+	var name = get_action_name() == action.get_action_name()
 	var req = get_requirements().hash() == action.get_requirements().hash()
 	var effects = get_effects().hash() == action.get_effects().hash()
 	
-	return action is AIActionAbstract and req and effects
+	return name and req and effects
 	

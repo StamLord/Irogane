@@ -26,3 +26,5 @@ func finish_action(agent):
 	elif agent.world_state.has("enemy"):
 		agent.inform_agents(10, "enemy_last_seen_at", agent.world_state["enemy"].global_position)
 	
+
+func get_action_name(): return "AICallGuardAction"

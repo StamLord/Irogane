@@ -24,3 +24,5 @@ func finish_action(agent):
 	agent.erase_world_state("near_patrol_point")
 	agent.set_next_patrol_point()
 	
+
+func get_action_name(): return "AIPatrolPointAction"

@@ -32,7 +32,7 @@ var world_state_changed = true
 
 var current_goal = null
 var current_action_plan = []
-
+var current_action_index = 0
 var current_action = null
 
 var animating_clip = null
@@ -80,7 +80,7 @@ func _process(delta):
 	elif state == STATE.ANIMATE:
 		# Check if animation is done
 		# TODO: Replace with waiting for real animation
-		if Time.get_ticks_msec() - start_animation_debug >= 4000:
+		if Time.get_ticks_msec() - start_animation_debug >= 2000:
 			complete_action()
 	
 
@@ -105,14 +105,11 @@ func calculate_plan():
 	
 
 func start_action():
-	if current_action_plan.size() < 1:
+	if current_action_index >= current_action_plan.size():
 		return
 	
-	if current_action != null and current_action.equals(current_action_plan[0].action):
-		return
-	
-	current_action = current_action_plan[0].action
-	current_action_plan[0].action.start_action(self)
+	current_action = current_action_plan[current_action_index].action
+	current_action.start_action(self)
 	
 
 func cancel_action():
@@ -124,13 +121,13 @@ func cancel_action():
 
 func complete_action():
 	current_action.finish_action(self)
-	current_action_plan.pop_front()
+	current_action_index += 1
 	
 	state = STATE.NONE
 	goto_target = null
 	animating_clip = null
 	
-	if current_action_plan.size() == 0:
+	if current_action_index >= current_action_plan.size():
 		calculate_plan()
 	else:
 		start_action()
@@ -139,6 +136,8 @@ func complete_action():
 func animate(animation_clip):
 	animating_clip = animation_clip
 	state = STATE.ANIMATE
+	cancel_goto()
+	
 	#TODO: Remove this. Only for debug:
 	start_animation_debug = Time.get_ticks_msec()
 	DebugCanvas.debug_text(animation_clip, body.global_position + Vector3.UP * 2.0, Color.RED, 1.0)
@@ -156,10 +155,13 @@ func goto_position(target_position : Vector3):
 	state = STATE.GOTO
 	
 
+func cancel_goto():
+	body.reset_target_position()
+	
+
 func update_world_state(key, value):
 	if world_state.has(key) and world_state[key] == value:
 		return
-	
 	world_state[key] = value
 	world_state_changed = true
 	
@@ -170,7 +172,12 @@ func erase_world_state(key):
 	
 
 func set_action_plan(action_plan):
+	# No need to restart action plan if it's the same as current
+	if current_action_plan != null and is_same_action_plan(current_action_plan, action_plan):
+		return
+	
 	current_action_plan = action_plan
+	current_action_index = 0
 	start_action()
 	
 
@@ -179,8 +186,6 @@ func set_goal(goal):
 	
 	var color_seed = current_goal.to_string().hash()
 	var random_color = Utils.random_color(color_seed)
-	DebugCanvas.debug_text(current_goal.to_string(), body.global_position + Vector3.UP * 2, random_color, 10)
-
 	for state in current_goal.get_states_to_erase():
 		erase_world_state(state)
 	
@@ -438,4 +443,15 @@ func look_at(target):
 
 func stop_look_at():
 	body.reset_target_rotation()
+	
+
+func is_same_action_plan(plan_a, plan_b):
+	if plan_a.size() != plan_b.size():
+		return false
+	
+	for i in range(plan_a.size()):
+		if not plan_a[i].action.equals(plan_b[i].action):
+			return false
+	
+	return true
 	

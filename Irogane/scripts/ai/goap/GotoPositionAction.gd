@@ -30,6 +30,12 @@ func start_action(agent):
 	agent.goto_position(target_position)
 	
 
+func cancel_action(agent):
+	agent.cancel_goto()
+	
+
+func get_action_name(): return "GotoPositionAction"
+
 func equals(action):
 	return super.equals(action) and action is GotoPositionAction and action.target_position == target_position
 	

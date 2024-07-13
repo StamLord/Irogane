@@ -21,3 +21,5 @@ func start_action(agent):
 func cancel_action(data):
 	pass
 	
+
+func get_action_name(): return "AIMeleeAttackAction"

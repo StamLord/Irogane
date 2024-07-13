@@ -13,7 +13,7 @@ func _init(_action : AIActionAbstract = null, world_state: Dictionary = {}, _par
 	if _action != null:
 		action = _action
 		g_cost = _action.get_cost(world_state)
-		state = _action.get_effects()
+		state = _action.get_effects().duplicate()
 	
 	# We merge the current world state into our effects to create 
 	# the new world state that will result from this action

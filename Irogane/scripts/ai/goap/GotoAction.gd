@@ -24,6 +24,8 @@ func start_action(agent):
 	agent.goto(target_node)
 	
 
+func get_action_name(): return "GotoAction"
+
 func equals(action):
 	return super.equals(action) and action is GotoAction and action.target_node == target_node
 	

@@ -16,16 +16,15 @@ func get_effects() -> Dictionary:
 	
 
 func is_valid(world_state) -> bool:
-	return true;
+	return true
 	
 
 func activate_action(data):
-	pass;
-	# die
+	pass
 	
 
 func cancel_action(data):
-	pass;
+	pass
 	
 
-
+func get_action_name(): return "AIDeathAction"

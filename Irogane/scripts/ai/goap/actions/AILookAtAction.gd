@@ -22,6 +22,8 @@ func finish_action(agent):
 	agent.stop_look_at()
 	
 
+func get_action_name(): return "AILookAtAction"
+
 func equals(action):
 	return super.equals(action) and action is AILookAtAction and action.target_position == target_position
 	
