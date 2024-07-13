@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bu4kjhwhvheym"]
+[gd_scene load_steps=53 format=3 uid="uid://bu4kjhwhvheym"]
 
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="1_66hyo"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_c72l7"]
@@ -118,6 +118,42 @@ size = Vector3(2, 4, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_13is4"]
 size = Vector3(4, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ypvv2"]
+size = Vector3(2, 4, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d4nvt"]
+size = Vector3(2, 4, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ts2hp"]
+size = Vector3(2, 4, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b6kcv"]
+size = Vector3(4, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bqvk"]
+size = Vector3(2, 4, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1seld"]
+size = Vector3(4, 1, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nkimh"]
+size = Vector3(2, 4, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1r48"]
+size = Vector3(1, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nfgvk"]
+size = Vector3(4, 1, 13.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2tx3l"]
+size = Vector3(4, 1, 13.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_opsju"]
+size = Vector3(4, 1, 13.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dgmce"]
+size = Vector3(4, 1, 13.5)
 
 [node name="GoapTest" type="Node3D"]
 
@@ -664,6 +700,32 @@ modulate = Color(0, 1, 0, 1)
 text = "-2"
 font_size = 128
 
+[node name="test" type="Node3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16"]
+script = ExtResource("8_pxip0")
+
+[node name="jump_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16/test/jump_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -11.0354)
+shape = SubResource("BoxShape3D_ypvv2")
+
+[node name="land_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16/test/land_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.0353889)
+shape = SubResource("BoxShape3D_d4nvt")
+
+[node name="fail_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16/test/fail_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -4.03539)
+shape = SubResource("BoxShape3D_7f0ph")
+
+[node name="Label3D" type="Label3D" parent="jumping_difficulty/elevation_-1/CSGBox3D16/test"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
+modulate = Color(0, 1, 0, 1)
+font_size = 128
+
 [node name="CSGBox3D17" type="CSGBox3D" parent="jumping_difficulty/elevation_-1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 1.5, 48.5)
 use_collision = true
@@ -679,6 +741,32 @@ font_size = 128
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 1, 0)
 modulate = Color(1, 1, 0, 1)
 text = "-2"
+font_size = 128
+
+[node name="test" type="Node3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17"]
+script = ExtResource("8_pxip0")
+
+[node name="jump_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17/test/jump_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -12.0354)
+shape = SubResource("BoxShape3D_ts2hp")
+
+[node name="land_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17/test/land_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.0353889)
+shape = SubResource("BoxShape3D_d4nvt")
+
+[node name="fail_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17/test/fail_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -5.03539)
+shape = SubResource("BoxShape3D_b6kcv")
+
+[node name="Label3D" type="Label3D" parent="jumping_difficulty/elevation_-1/CSGBox3D17/test"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
+modulate = Color(0, 1, 0, 1)
 font_size = 128
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="jumping_difficulty/elevation_-1"]
@@ -698,20 +786,46 @@ modulate = Color(1, 1, 0, 1)
 text = "-2"
 font_size = 128
 
+[node name="test" type="Node3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18"]
+script = ExtResource("8_pxip0")
+
+[node name="jump_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18/test/jump_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -13.0354)
+shape = SubResource("BoxShape3D_1bqvk")
+
+[node name="land_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18/test/land_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.0353889)
+shape = SubResource("BoxShape3D_d4nvt")
+
+[node name="fail_area" type="Area3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18/test/fail_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -6.03539)
+shape = SubResource("BoxShape3D_1seld")
+
+[node name="Label3D" type="Label3D" parent="jumping_difficulty/elevation_-1/CSGBox3D18/test"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
+modulate = Color(0, 1, 0, 1)
+font_size = 128
+
 [node name="percision_1" type="Node3D" parent="jumping_difficulty"]
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 1.5, 58.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.5, 58.5)
 use_collision = true
 size = Vector3(2, 1, 5)
 
 [node name="CSGBox3D21" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 1.5, 58.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1.5, 58.5)
 use_collision = true
 size = Vector3(2, 1, 5)
 
 [node name="1x1_4m" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 1.5, 65.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1.5, 65.5)
 use_collision = true
 
 [node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_4m"]
@@ -720,8 +834,34 @@ modulate = Color(0, 1, 0, 1)
 text = "4m"
 font_size = 128
 
+[node name="test" type="Node3D" parent="jumping_difficulty/percision_1/1x1_4m"]
+script = ExtResource("8_pxip0")
+
+[node name="jump_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_4m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_4m/test/jump_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -7.03539)
+shape = SubResource("BoxShape3D_nkimh")
+
+[node name="land_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_4m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_4m/test/land_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.0353851)
+shape = SubResource("BoxShape3D_e1r48")
+
+[node name="fail_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_4m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_4m/test/fail_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 1.21461)
+shape = SubResource("BoxShape3D_nfgvk")
+
+[node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_4m/test"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
+modulate = Color(0, 1, 0, 1)
+font_size = 128
+
 [node name="1x1_6m" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 1.5, 67.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1.5, 67.5)
 use_collision = true
 
 [node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_6m"]
@@ -730,18 +870,44 @@ modulate = Color(1, 1, 0, 1)
 text = "6m"
 font_size = 128
 
+[node name="test" type="Node3D" parent="jumping_difficulty/percision_1/1x1_6m"]
+script = ExtResource("8_pxip0")
+
+[node name="jump_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_6m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_6m/test/jump_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -9.03539)
+shape = SubResource("BoxShape3D_nkimh")
+
+[node name="land_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_6m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_6m/test/land_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.0353851)
+shape = SubResource("BoxShape3D_e1r48")
+
+[node name="fail_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_6m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_6m/test/fail_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.785385)
+shape = SubResource("BoxShape3D_2tx3l")
+
+[node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_6m/test"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
+modulate = Color(0, 1, 0, 1)
+font_size = 128
+
 [node name="CSGBox3D22" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 1.5, 58.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1.5, 58.5)
 use_collision = true
 size = Vector3(2, 1, 5)
 
 [node name="CSGBox3D23" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 1.5, 58.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.5, 58.5)
 use_collision = true
 size = Vector3(2, 1, 5)
 
 [node name="1x1_7m" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 1.5, 68.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1.5, 68.5)
 use_collision = true
 
 [node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_7m"]
@@ -750,12 +916,64 @@ modulate = Color(1, 0, 0, 1)
 text = "7m"
 font_size = 128
 
+[node name="test" type="Node3D" parent="jumping_difficulty/percision_1/1x1_7m"]
+script = ExtResource("8_pxip0")
+
+[node name="jump_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_7m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_7m/test/jump_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -10.0354)
+shape = SubResource("BoxShape3D_nkimh")
+
+[node name="land_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_7m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_7m/test/land_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.0353851)
+shape = SubResource("BoxShape3D_e1r48")
+
+[node name="fail_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_7m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_7m/test/fail_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.78539)
+shape = SubResource("BoxShape3D_opsju")
+
+[node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_7m/test"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
+modulate = Color(0, 1, 0, 1)
+font_size = 128
+
 [node name="1x1_8m" type="CSGBox3D" parent="jumping_difficulty/percision_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 1.5, 69.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 1.5, 69.5)
 use_collision = true
 
 [node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_8m"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 0)
 modulate = Color(1, 1, 0, 1)
 text = "8m"
+font_size = 128
+
+[node name="test" type="Node3D" parent="jumping_difficulty/percision_1/1x1_8m"]
+script = ExtResource("8_pxip0")
+
+[node name="jump_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_8m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_8m/test/jump_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -11.0354)
+shape = SubResource("BoxShape3D_nkimh")
+
+[node name="land_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_8m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_8m/test/land_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.0353851)
+shape = SubResource("BoxShape3D_e1r48")
+
+[node name="fail_area" type="Area3D" parent="jumping_difficulty/percision_1/1x1_8m/test"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jumping_difficulty/percision_1/1x1_8m/test/fail_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2.78539)
+shape = SubResource("BoxShape3D_dgmce")
+
+[node name="Label3D" type="Label3D" parent="jumping_difficulty/percision_1/1x1_8m/test"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 0)
+modulate = Color(0, 1, 0, 1)
 font_size = 128
