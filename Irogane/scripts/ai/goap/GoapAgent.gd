@@ -195,9 +195,12 @@ func get_dynamic_actions():
 			var goto = GotoAction.new(agent, {"near_enemy": true})
 			dynamic_actions.append(goto)
 	
-	# Goto sound to investigate
+	# Look at and Goto sound to investigate
 	if world_state.has("sound_heard_at"):
-		var goto_pos = GotoPositionAction.new(world_state["sound_heard_at"], {"near_sound": true})
+		var sound_position = world_state["sound_heard_at"]
+		var look_at = AILookAtAction.new(sound_position,  {"looked_at_sound": true})
+		var goto_pos = GotoPositionAction.new(sound_position, {"near_sound": true}, {"looked_at_sound": true})
+		dynamic_actions.append(look_at)
 		dynamic_actions.append(goto_pos)
 	
 	# Goto search
@@ -427,4 +430,12 @@ func interact_nearest_light():
 	var light_switch = get_nearest_light_switch()
 	if light_switch != null:
 		light_switch.use(null)
+	
+
+func look_at(target):
+	body.set_target_rotation(target)
+	
+
+func stop_look_at():
+	body.reset_target_rotation()
 	

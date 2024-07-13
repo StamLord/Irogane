@@ -3,10 +3,16 @@ class_name GotoPositionAction
 
 var target_position = null
 var effects = {}
+var requirements = {}
 
-func _init(_target_position: Vector3, _effects: Dictionary):
+func _init(_target_position: Vector3, _effects: Dictionary, _requirements : Dictionary = {}):
 	target_position = _target_position
 	effects = _effects
+	requirements = _requirements
+	
+
+func get_requirements() -> Dictionary:
+	return requirements
 	
 
 func get_cost(world_state: Dictionary) -> float:
