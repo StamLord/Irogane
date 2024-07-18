@@ -1365,6 +1365,8 @@ target_position = Vector3(0, -1.2, 0)
 collision_mask = 64
 
 [node name="model" type="Node3D" parent="."]
+process_mode = 4
+visible = false
 
 [node name="human_model" parent="model" instance=ExtResource("33_436od")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0.2)

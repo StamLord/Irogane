@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIPickupCoinAction" load_steps=2 format=3 uid="uid://b4m8n3ekltwxn"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/AIPickupCoinAction.gd" id="1_fd34h"]
+
+[resource]
+script = ExtResource("1_fd34h")

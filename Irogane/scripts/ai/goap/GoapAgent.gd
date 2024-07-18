@@ -50,6 +50,8 @@ func _ready():
 		awareness_agent.on_enemy_lost.connect(enemy_lost)
 		awareness_agent.on_sound_heard.connect(sound_heard)
 	
+	update_world_state("self", body)
+	
 
 func _process(delta):
 	# Simulate world_state changing every frame
@@ -233,6 +235,11 @@ func get_dynamic_actions():
 			var goto = GotoAction.new(light_switch, {"near_light" : true})
 			dynamic_actions.append(goto)
 	
+	# Goto coin
+	if current_goal is AIPickupCoinGoal and world_state.has("nearest_coin"):
+		var goto = GotoAction.new(world_state["nearest_coin"], {"near_coin" : true})
+		dynamic_actions.append(goto)
+	
 	return dynamic_actions
 	
 
@@ -275,6 +282,7 @@ func update_closest_enemy():
 	
 
 func update_sensors():
+	# Light
 	if light_detection:
 		update_world_state("in_dark", light_detection.light_value < 0.5)
 	
@@ -292,6 +300,14 @@ func update_sensors():
 		update_world_state("light_off_nearby", true)
 	else:
 		erase_world_state("light_off_nearby")
+	
+	# Coins
+	var nearest_coin = get_nearest_coin()
+	if nearest_coin != null:
+		update_world_state("nearest_coin", nearest_coin)
+		DebugCanvas.debug_point(nearest_coin.global_position, Color.AQUA)
+	else:
+		erase_world_state("nearest_coin")
 	
 
 func get_valid_task():
@@ -443,6 +459,29 @@ func look_at(target):
 
 func stop_look_at():
 	body.reset_target_rotation()
+	
+
+func get_nearby_coins():
+	# TODO: Get guards more realistically
+	# TODO: Identify guards more cleverly
+	var coins = []
+	for child in get_tree().root.get_children():
+		if "CoinPrefab" in child.name:
+			coins.append(child)
+	
+	return coins
+	
+
+func get_nearest_coin():
+	return get_nearest(get_nearby_coins())
+	
+
+func pickup_nearest_coin():
+	if not world_state.has("nearest_coin"):
+		return
+	
+	world_state["nearest_coin"].queue_free()
+	erase_world_state("nearest_coin")
 	
 
 func is_same_action_plan(plan_a, plan_b):
