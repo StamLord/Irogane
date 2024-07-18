@@ -225,8 +225,10 @@ func get_dynamic_actions():
 	# Goto guard
 	if current_goal is AICallGuardGoal:
 		var guard = get_nearest_guard()
-		var goto = GotoAction.new(guard, {"near_guard" : true})
-		dynamic_actions.append(goto)
+		var guard_body = guard.get_node("character_body")
+		if guard_body != null:
+			var goto = GotoAction.new(guard_body, {"near_guard" : true})
+			dynamic_actions.append(goto)
 	
 	# Goto nearest light switch that is off
 	if current_goal is AILightAreaGoal:
