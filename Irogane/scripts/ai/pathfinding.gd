@@ -187,7 +187,7 @@ func rotate_to_position(target_position, delta):
 	if target_position == null:
 		return
 	
-	var forward = basis * Vector3.FORWARD
+	var forward = global_basis * Vector3.FORWARD
 	var flat_dir = Vector3(target_position.x - global_position.x, 0, target_position.z - global_position.z).normalized()
 	var new_forward = lerp(forward, flat_dir, delta * get_rotation_speed())
 	

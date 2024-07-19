@@ -41,6 +41,8 @@ values = Array[int]([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
 script = ExtResource("5_bpmwy")
 max_value_source = NodePath("../hard_stamina")
 value = 50
+auto_replenish_rate = 0.05
+recovery_after_deplete = 3.0
 
 [node name="hard_stamina" type="Node" parent="." node_paths=PackedStringArray("max_value_source")]
 script = ExtResource("5_bpmwy")

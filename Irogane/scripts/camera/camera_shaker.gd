@@ -48,7 +48,7 @@ func _process(_delta):
 		shake(0.25, 0.2)
 	
 
-func shake(amount, duration):
+func shake(amount: float, duration: float):
 	var start = Time.get_ticks_msec()
 	
 	while(Time.get_ticks_msec() - start <= duration * 1000.0):

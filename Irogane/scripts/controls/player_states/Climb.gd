@@ -10,7 +10,7 @@ class_name Climb
 @onready var stats = %stats
 
 # Variables
-@export var speed = 2.0;
+@export var speed = 1.5;
 @export var acceleration = 10
 @export var push_force = 2
 @export var wall_distance = 0.5
@@ -54,7 +54,7 @@ func rotate_around_wall(body, point, normal):
 	point.y = body.global_position.y # Treat as same height
 	var target_position = point + normal * wall_distance * 0.4
 	head.disable_rotation()
-	await start_animating_position(body, target_position, point)
+	await start_animating_position(body, target_position, point - normal)
 	head.enable_rotation()
 	head.set_temp_horizontal_limits(Vector2(-50, 50), get_wall_normal_angle())
 	
@@ -116,12 +116,10 @@ func PhysicsUpdate(body, delta):
 	
 	# Stamina deplete
 	var enough_stamina = true
-	if Time.get_ticks_msec() - last_deplete >= 1000:
+	var deplete_interval = 250 if input_dir.length() > 0 else 750
+	if Time.get_ticks_msec() - last_deplete >= deplete_interval:
 		last_deplete = Time.get_ticks_msec()
-		if direction.length() > 0:
-			enough_stamina = stats.deplete_stamina(4)
-		else:
-			enough_stamina = stats.deplete_stamina(2)
+		enough_stamina = stats.deplete_stamina(1)
 	
 	var left_corner_result = wall_left_corner_query(body)
 	var right_corner_result = wall_right_corner_query(body)
@@ -145,6 +143,9 @@ func PhysicsUpdate(body, delta):
 	
 	# Fall off
 	if Input.is_action_just_pressed("crouch") or not enough_stamina:
+		if not enough_stamina:
+			CameraShaker.shake(1.0, 0.25)
+		
 		Transitioned.emit(self, "air")
 		return
 	
@@ -233,7 +234,7 @@ func wall_right_corner_query(body : Node3D):
 
 func start_animating_position(body : Node3D, target_position : Vector3, target_look : Vector3):
 	is_animating_position = true
-	var duration = 0.75 * 1000
+	var duration = 0.5 * 1000
 	var start_time = Time.get_ticks_msec()
 	var start_position = body.global_position
 	var start_target = body.global_position + body.global_basis * Vector3.FORWARD

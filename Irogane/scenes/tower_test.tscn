@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=93 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://bl7784ijj0ejx" path="res://prefabs/building_blocks/double_door_frame_2x4.tscn" id="32_rh00v"]
 [ext_resource type="PackedScene" uid="uid://ytxnmdh0rhmm" path="res://prefabs/building_blocks/door_frame_2x4.tscn" id="33_soy8s"]
 [ext_resource type="PackedScene" uid="uid://krdk14nq1hys" path="res://prefabs/building_blocks/pillar_1x4.tscn" id="35_jcbqf"]
+[ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="36_qw3tu"]
 [ext_resource type="Script" path="res://scripts/interactive/elevator.gd" id="39_ewdaq"]
 
 [sub_resource type="Sky" id="Sky_i684r"]
@@ -6132,10 +6133,10 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.371
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -22, -4, 6.25)
 
 [node name="pillar_1x53" parent="tower_2/floor/floor2" instance=ExtResource("35_jcbqf")]
-transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -6.25, -4, 2.25)
+transform = Transform3D(4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, -2.25, -4, 6.25)
 
 [node name="pillar_1x54" parent="tower_2/floor/floor2" instance=ExtResource("35_jcbqf")]
-transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -6.25, -4, 6.25)
+transform = Transform3D(4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, -6.25, -4, 6.25)
 
 [node name="pillar_1x30" parent="tower_2/floor/floor2" instance=ExtResource("35_jcbqf")]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -22, -4, 18.25)
@@ -6459,6 +6460,17 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.03
 
 [node name="CSGBox3D" type="CSGBox3D" parent="tower_2/floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 7.25)
+
+[node name="npc" type="Node3D" parent="tower_2/floor"]
+
+[node name="npc" parent="tower_2/floor/npc" instance=ExtResource("36_qw3tu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5782, 0.5, 15.995)
+
+[node name="npc2" parent="tower_2/floor/npc" instance=ExtResource("36_qw3tu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.2807, 0.5, 11.2703)
+
+[node name="npc3" parent="tower_2/floor/npc" instance=ExtResource("36_qw3tu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -21.4421, 0.5, 10.0882)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="tower_2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9799, 1.75, 15.2282)

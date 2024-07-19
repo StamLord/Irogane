@@ -89,6 +89,9 @@ func _process(delta):
 	
 
 func calculate_goal():
+	if agent_data == null:
+		return
+	
 	if use_time_slicing:
 		time_slicer.add_call(self, GoapGoalPlanner.get_goal, [world_state, agent_data.goals], set_goal)
 	else:
