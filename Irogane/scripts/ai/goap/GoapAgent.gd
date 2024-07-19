@@ -7,6 +7,9 @@ class_name GoapAgent
 @onready var awareness_agent = %AwarenessAgent
 @onready var schedule_agent = $ScheduleAgent
 @onready var light_detection = $character_body/light_detection
+@onready var body = $character_body
+
+const search_range = 10.0
 
 var markers :
 	get:
@@ -15,8 +18,6 @@ var markers :
 		
 		return markers
 	
-
-@onready var body = $character_body
 
 enum STATE {NONE, GOTO, ANIMATE}
 var state = STATE.NONE
@@ -44,6 +45,8 @@ var current_patrol_point = 0
 
 var use_time_slicing = false
 
+var debug = false
+
 func _ready():
 	if awareness_agent != null:
 		awareness_agent.on_enemy_seen.connect(enemy_seen)
@@ -54,8 +57,6 @@ func _ready():
 	
 
 func _process(delta):
-	# Simulate world_state changing every frame
-	#world_state_changed = true
 	update_sensors()
 	
 	# Calculate goal when world state changed
@@ -71,7 +72,8 @@ func _process(delta):
 		elif goto_target_position != null:
 			target = goto_target_position
 		
-		var dist = body.global_position.distance_to(target)
+		var flat_target = Vector3(target.x, body.global_position.y, target.z)
+		var dist = body.global_position.distance_to(flat_target)
 		
 		# Continously update pathfiding
 		if dist > 2.0:
@@ -130,7 +132,7 @@ func complete_action():
 	animating_clip = null
 	
 	if current_action_index >= current_action_plan.size():
-		calculate_plan()
+		calculate_goal()
 	else:
 		start_action()
 	
@@ -176,6 +178,7 @@ func erase_world_state(key):
 func set_action_plan(action_plan):
 	# No need to restart action plan if it's the same as current
 	if current_action_plan != null and is_same_action_plan(current_action_plan, action_plan):
+		DEBUG("Got the same action plan, will ignore it.")
 		return
 	
 	current_action_plan = action_plan
@@ -185,6 +188,7 @@ func set_action_plan(action_plan):
 
 func set_goal(goal):
 	current_goal = goal
+	DEBUG("New goal: " + str(goal))
 	
 	var color_seed = current_goal.to_string().hash()
 	var random_color = Utils.random_color(color_seed)
@@ -212,14 +216,14 @@ func get_dynamic_actions():
 	
 	# Goto search
 	if current_goal is AISearchEnemyGoal:
-		var goto_pos = GotoPositionAction.new(world_state["enemy_last_seen_at"], {"near_enemy_last_seen" : true})
+		var goto_pos = GotoPositionAction.new(world_state["search_point"], {"near_search_point": true})
 		dynamic_actions.append(goto_pos)
 	
 	# Goto patrol point
 	if current_goal is AIPatrolGoal:
 		var patrol_point = get_patrol_point()
 		if patrol_point != null:
-			var goto = GotoAction.new(patrol_point, {"near_patrol_point" : true})
+			var goto = GotoAction.new(patrol_point, {"near_patrol_point": true})
 			dynamic_actions.append(goto)
 	
 	# Goto guard
@@ -227,19 +231,19 @@ func get_dynamic_actions():
 		var guard = get_nearest_guard()
 		var guard_body = guard.get_node("character_body")
 		if guard_body != null:
-			var goto = GotoAction.new(guard_body, {"near_guard" : true})
+			var goto = GotoAction.new(guard_body, {"near_guard": true})
 			dynamic_actions.append(goto)
 	
 	# Goto nearest light switch that is off
 	if current_goal is AILightAreaGoal:
 		var light_switch = get_neareast_light_switch_off()
 		if light_switch != null:
-			var goto = GotoAction.new(light_switch, {"near_light" : true})
+			var goto = GotoAction.new(light_switch, {"near_light": true})
 			dynamic_actions.append(goto)
 	
 	# Goto coin
 	if current_goal is AIPickupCoinGoal and world_state.has("nearest_coin"):
-		var goto = GotoAction.new(world_state["nearest_coin"], {"near_coin" : true})
+		var goto = GotoAction.new(world_state["nearest_coin"], {"near_coin": true})
 		dynamic_actions.append(goto)
 	
 	return dynamic_actions
@@ -271,7 +275,16 @@ func enemy_lost(enemy):
 	if enemy != world_state["enemy"]:
 		return
 	
+	# Fake being smarter by cheating and 
+	# losing the enemy after some time
+	enemy_lost_cheat_delay(enemy)
+	
+
+func enemy_lost_cheat_delay(enemy):
+	await get_tree().create_timer(2.0)
+	
 	update_world_state("enemy_last_seen_at", enemy.global_position)
+	update_world_state("search_point", enemy.global_position)
 	update_closest_enemy()
 	
 
@@ -365,6 +378,15 @@ func set_next_patrol_point():
 	
 	current_patrol_point += 1
 	current_patrol_point %= task["location"].size()
+	
+
+func generate_new_search_point():
+	if not world_state.has("enemy_last_seen_at"):
+		return
+	
+	var origin = world_state["enemy_last_seen_at"]
+	var random_circle = Utils.random_on_circle() * search_range
+	world_state["search_point"] = origin + Vector3(random_circle.x, origin.y, random_circle.y)
 	
 
 func get_goap_agents():
@@ -495,4 +517,10 @@ func is_same_action_plan(plan_a, plan_b):
 			return false
 	
 	return true
+	
+
+func DEBUG(message):
+	if not debug:
+		return
+	print(message)
 	
