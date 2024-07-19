@@ -10,7 +10,7 @@ class_name Climb
 @onready var stats = %stats
 
 # Variables
-@export var speed = 1.0;
+@export var speed = 2.0;
 @export var acceleration = 10
 @export var push_force = 2
 @export var wall_distance = 0.5
@@ -119,9 +119,9 @@ func PhysicsUpdate(body, delta):
 	if Time.get_ticks_msec() - last_deplete >= 1000:
 		last_deplete = Time.get_ticks_msec()
 		if direction.length() > 0:
-			enough_stamina = stats.deplete_stamina(2)
+			enough_stamina = stats.deplete_stamina(4)
 		else:
-			enough_stamina = stats.deplete_stamina(1)
+			enough_stamina = stats.deplete_stamina(2)
 	
 	var left_corner_result = wall_left_corner_query(body)
 	var right_corner_result = wall_right_corner_query(body)

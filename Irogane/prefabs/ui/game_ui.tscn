@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=101 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cq6cr15aonyd" path="res://assets/textures/ui/stealth/detect_radar.png" id="5_skdea"]
 [ext_resource type="PackedScene" uid="uid://tmdi72a130so" path="res://prefabs/ui/stats_ui.tscn" id="6_qe11c"]
 [ext_resource type="PackedScene" uid="uid://bhr6cskoy2tmy" path="res://prefabs/ui/inventory_ui.tscn" id="7_86uhb"]
+[ext_resource type="Script" path="res://scripts/ui/depletable_bar.gd" id="7_kcu1i"]
 [ext_resource type="Texture2D" uid="uid://cc70hxhf5av80" path="res://assets/textures/ui/cursor/hollow_circle_shadow.png" id="8_o0b22"]
 [ext_resource type="Script" path="res://scripts/ui/carry_progress_bar.gd" id="9_554op"]
 [ext_resource type="Script" path="res://scripts/ui/carry_notification.gd" id="10_pnsv3"]
@@ -608,6 +609,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="stamina_center_bar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("8_o0b22")
+tint_progress = Color(0, 0.694118, 0.392157, 1)
+script = ExtResource("7_kcu1i")
+bar_name = "stamina"
 
 [node name="cursor" type="TextureRect" parent="."]
 layout_mode = 1

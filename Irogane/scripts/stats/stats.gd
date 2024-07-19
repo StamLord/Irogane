@@ -131,7 +131,7 @@ func replenish_health(soft_amount: int, hard_amount : int = 0):
 
 func deplete_stamina(soft_amount : int, hard_amount : int = 0):
 	if hard_stamina:
-		return hard_stamina.deplete(hard_amount)
+		hard_stamina.deplete(hard_amount)
 	
 	if stamina:
 		return stamina.deplete(soft_amount)
@@ -140,7 +140,7 @@ func deplete_stamina(soft_amount : int, hard_amount : int = 0):
 
 func replenish_stamina(amount: int, hard_amount : int = 0):
 	if hard_stamina:
-		return hard_stamina.replenish(hard_amount)
+		hard_stamina.replenish(hard_amount)
 	
 	if stamina:
 		return stamina.replenish(amount)
