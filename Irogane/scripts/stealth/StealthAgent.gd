@@ -39,7 +39,8 @@ func update_watcher(watcher, detection):
 	
 
 func remove_watcher(watcher):
-	watchers.erase(watcher)
+	if watchers.erase(watcher):
+		watcher.tree_exiting.disconnect(remove_watcher)
 	
 
 func state_enter_check(state_name):

@@ -49,6 +49,15 @@ var push_back_gravity = ProjectSettings.get_setting("physics/3d/default_gravity"
 func _ready():
 	nav.link_reached.connect(link_reached)
 	
+	# Block physics process until NavigationServer synchronizes once
+	set_physics_process(false)
+	NavigationServer3D.map_changed.connect(start_physics)
+	
+
+func start_physics(map):
+	set_physics_process(true)
+	NavigationServer3D.map_changed.disconnect(start_physics)
+	
 
 func link_reached(details):
 	move_in_link(details)
