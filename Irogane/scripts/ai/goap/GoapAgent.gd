@@ -153,12 +153,14 @@ func animate(animation_clip):
 func goto(target_node):
 	goto_target = target_node
 	goto_target_position = null
+	body.set_target_position(target_node.global_position) # Needs to happen once for rotation
 	state = STATE.GOTO
 	
 
 func goto_position(target_position : Vector3):
 	goto_target = null
 	goto_target_position = target_position
+	body.set_target_position(target_position) # Needs to happen once for rotation
 	state = STATE.GOTO
 	
 
