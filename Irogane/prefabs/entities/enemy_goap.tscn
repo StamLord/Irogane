@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6w2qvvdo2jh4"]
+[gd_scene load_steps=22 format=3 uid="uid://6w2qvvdo2jh4"]
 
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="1_1nlbh"]
 [ext_resource type="Resource" uid="uid://bemmj32kb8mvn" path="res://data/ai_agents/Guard.res" id="2_7ydk2"]
@@ -39,6 +39,18 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 0.368627)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2davd"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.0901961)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igdb1"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.0901961)
 
 [node name="npc" type="Node3D"]
 script = ExtResource("1_1nlbh")
@@ -108,11 +120,10 @@ collision_mask = 0
 monitoring = false
 monitorable = false
 script = ExtResource("8_c81xr")
-sight_angle = Vector2(90, 45)
-detection_rate = 2.0
 undetection_rate = 1.0
 
 [node name="collider" type="CollisionShape3D" parent="character_body/AwarenessAgent"]
+visible = false
 shape = SubResource("SphereShape3D_ps1xe")
 
 [node name="sight_cast" type="ShapeCast3D" parent="character_body/AwarenessAgent"]
@@ -137,6 +148,21 @@ operation = 1
 height = 5.0
 cone = true
 material = SubResource("StandardMaterial3D_0npv8")
+
+[node name="peripheral_vision_cone" type="CSGCombiner3D" parent="character_body/AwarenessAgent"]
+visible = false
+
+[node name="sphere_mesh" type="CSGSphere3D" parent="character_body/AwarenessAgent/peripheral_vision_cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0346708)
+radius = 5.0
+material = SubResource("StandardMaterial3D_2davd")
+
+[node name="cone_mesh" type="CSGCylinder3D" parent="character_body/AwarenessAgent/peripheral_vision_cone"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.5)
+operation = 1
+height = 5.0
+cone = true
+material = SubResource("StandardMaterial3D_igdb1")
 
 [node name="npc_audio_manager" type="Node3D" parent="character_body" node_paths=PackedStringArray("awarness_agent")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
