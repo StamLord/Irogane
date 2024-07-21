@@ -9,7 +9,7 @@ extends CharacterBody3D
 
 @export var movement_speed = 2
 @export var acceleration = 10
-@export var rotation_speed = 30
+@export var rotation_speed = 5
 @export var gravity = 9
 @export var push_force = 15
 
