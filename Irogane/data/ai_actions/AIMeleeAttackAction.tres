@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIMeleeAttackAction" load_steps=2 format=3 uid="uid://dlea67mgedhue"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/AIMeleeAttackAction.gd" id="1_yfybv"]
+
+[resource]
+script = ExtResource("1_yfybv")

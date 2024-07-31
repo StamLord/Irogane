@@ -23,6 +23,8 @@ func _physics_process(delta):
 func throw_coin():
 	var coin : RigidBody3D = coin_prefab.instantiate()
 	get_tree().root.add_child(coin)
+	coin.name = "CoinPrefab"	# If we don't set the name, 
+								# after the first one the rest will be named @Rigidbody#
 	coin.global_position = global_position - main_camera.global_basis.z * 1.2
 	
 	coin.linear_velocity = owner_velocity

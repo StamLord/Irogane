@@ -1,0 +1,180 @@
+[gd_scene load_steps=22 format=3 uid="uid://6w2qvvdo2jh4"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="1_1nlbh"]
+[ext_resource type="Resource" uid="uid://bemmj32kb8mvn" path="res://data/ai_agents/Guard.res" id="2_7ydk2"]
+[ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="5_c5hbd"]
+[ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="6_lxylw"]
+[ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="7_j7jfl"]
+[ext_resource type="Script" path="res://scripts/stealth/AwarenessAgent.gd" id="8_c81xr"]
+[ext_resource type="Script" path="res://scripts/audio/npc_audio_manager.gd" id="9_oniex"]
+[ext_resource type="AudioStream" uid="uid://shvwwq43i0ds" path="res://assets/audio/guard_detection/i_can_see_you.ogg" id="10_ceugx"]
+[ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="10_qlqfu"]
+[ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="11_yxcr4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbheq"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_isd4v"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_wr03i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b25ha"]
+albedo_color = Color(0.921569, 0, 0.337255, 1)
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_xeuho"]
+length = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nwcln"]
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ps1xe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ulmko"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0npv8"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.368627)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2davd"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.0901961)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igdb1"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.0901961)
+
+[node name="npc" type="Node3D"]
+script = ExtResource("1_1nlbh")
+agent_data = ExtResource("2_7ydk2")
+
+[node name="stats" parent="." instance=ExtResource("5_c5hbd")]
+
+[node name="character_body" type="CharacterBody3D" parent="."]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("6_lxylw")
+acceleration = 20
+push_force = 120
+
+[node name="collider" type="CollisionShape3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_hbheq")
+
+[node name="mesh" type="MeshInstance3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_isd4v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="character_body/mesh"]
+transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.349902)
+mesh = SubResource("BoxMesh_wr03i")
+surface_material_override/0 = SubResource("StandardMaterial3D_b25ha")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="character_body"]
+path_height_offset = 0.6
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="step_check" type="RayCast3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+target_position = Vector3(0, -3, 0)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="door_check" type="RayCast3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0.67451, 0, 1)
+
+[node name="step_separation" type="CollisionShape3D" parent="character_body"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
+shape = SubResource("SeparationRayShape3D_xeuho")
+
+[node name="interactive" type="Area3D" parent="character_body"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("7_j7jfl")
+interaction_text = "Talk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character_body/interactive"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_nwcln")
+
+[node name="AwarenessAgent" type="Area3D" parent="character_body"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 0)
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("8_c81xr")
+undetection_rate = 1.0
+
+[node name="collider" type="CollisionShape3D" parent="character_body/AwarenessAgent"]
+visible = false
+shape = SubResource("SphereShape3D_ps1xe")
+
+[node name="sight_cast" type="ShapeCast3D" parent="character_body/AwarenessAgent"]
+shape = SubResource("SphereShape3D_ulmko")
+target_position = Vector3(0, 0, 0)
+collision_mask = 16
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="vision_cone" type="CSGCombiner3D" parent="character_body/AwarenessAgent"]
+visible = false
+
+[node name="sphere_mesh" type="CSGSphere3D" parent="character_body/AwarenessAgent/vision_cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0346708)
+radius = 5.0
+material = SubResource("StandardMaterial3D_0npv8")
+
+[node name="cone_mesh" type="CSGCylinder3D" parent="character_body/AwarenessAgent/vision_cone"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.5)
+operation = 1
+height = 5.0
+cone = true
+material = SubResource("StandardMaterial3D_0npv8")
+
+[node name="peripheral_vision_cone" type="CSGCombiner3D" parent="character_body/AwarenessAgent"]
+visible = false
+
+[node name="sphere_mesh" type="CSGSphere3D" parent="character_body/AwarenessAgent/peripheral_vision_cone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0346708)
+radius = 5.0
+material = SubResource("StandardMaterial3D_2davd")
+
+[node name="cone_mesh" type="CSGCylinder3D" parent="character_body/AwarenessAgent/peripheral_vision_cone"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 2.5)
+operation = 1
+height = 5.0
+cone = true
+material = SubResource("StandardMaterial3D_igdb1")
+
+[node name="npc_audio_manager" type="Node3D" parent="character_body" node_paths=PackedStringArray("awarness_agent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("9_oniex")
+awarness_agent = NodePath("../AwarenessAgent")
+
+[node name="audio_player" type="AudioStreamPlayer3D" parent="character_body/npc_audio_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+stream = ExtResource("10_ceugx")
+script = ExtResource("11_yxcr4")
+
+[node name="light_detection" type="Node3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("10_qlqfu")
+
+[connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]

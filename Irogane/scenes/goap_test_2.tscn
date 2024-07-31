@@ -1,0 +1,1609 @@
+[gd_scene load_steps=4 format=3 uid="uid://bptkwague6ka5"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/GoapTestUnit.gd" id="3_4aho4"]
+[ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="4_rynn1"]
+[ext_resource type="Script" path="res://scripts/ai/goap/TimeSlicer.gd" id="5_d4yob"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GoapUnitTest" type="Node" parent="."]
+script = ExtResource("3_4aho4")
+
+[node name="GoapAgent" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent2" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent3" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent4" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent5" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent6" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent7" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent8" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent9" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent10" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent11" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent12" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent13" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent14" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent15" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent16" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent17" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent18" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent19" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent20" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent21" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent22" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent23" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent24" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent25" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent26" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent27" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent28" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent29" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent30" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent31" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent32" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent33" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent34" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent35" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent36" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent37" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent38" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent39" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent40" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent41" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent42" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent43" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent44" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent45" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent46" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent47" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent48" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent49" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent50" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent51" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent52" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent53" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent54" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent55" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent56" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent57" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent58" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent59" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent60" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent61" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent62" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent63" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent64" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent65" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent66" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent67" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent68" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent69" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent70" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent71" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent72" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent73" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent74" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent75" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent76" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent77" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent78" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent79" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent80" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent81" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent82" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent83" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent84" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent85" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent86" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent87" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent88" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent89" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent90" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent91" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent92" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent93" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent94" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent95" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent96" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent97" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent98" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent99" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent100" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent101" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent102" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent103" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent104" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent105" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent106" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent107" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent108" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent109" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent110" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent111" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent112" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent113" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent114" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent115" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent116" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent117" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent118" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent119" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent120" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent121" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent122" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent123" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent124" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent125" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent126" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent127" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent128" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent129" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent130" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent131" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent132" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent133" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent134" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent135" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent136" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent137" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent138" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent139" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent140" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent141" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent142" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent143" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent144" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent145" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent146" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent147" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent148" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent149" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent150" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent151" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent152" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent153" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent154" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent155" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent156" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent157" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent158" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent159" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent160" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent161" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent162" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent163" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent164" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent165" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent166" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent167" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent168" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent169" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent170" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent171" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent172" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent173" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent174" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent175" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent176" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent177" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent178" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent179" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent180" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent181" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent182" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent183" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent184" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent185" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent186" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent187" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent188" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent189" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent190" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent191" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent192" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent193" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent194" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent195" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent196" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent197" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent198" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent199" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent200" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent201" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent202" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent203" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent204" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent205" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent206" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent207" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent208" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent209" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent210" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent211" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent212" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent213" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent214" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent215" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent216" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent217" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent218" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent219" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent220" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent221" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent222" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent223" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent224" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent225" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent226" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent227" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent228" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent229" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent230" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent231" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent232" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent233" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent234" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent235" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent236" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent237" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent238" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent239" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent240" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent241" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent242" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent243" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent244" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent245" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent246" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent247" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent248" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent249" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent250" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent251" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent252" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent253" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent254" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent255" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent256" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent257" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent258" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent259" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent260" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent261" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent262" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent263" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent264" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent265" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent266" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent267" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent268" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent269" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent270" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent271" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent272" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent273" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent274" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent275" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent276" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent277" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent278" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent279" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent280" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent281" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent282" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent283" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent284" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent285" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent286" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent287" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent288" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent289" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent290" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent291" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent292" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent293" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent294" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent295" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent296" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent297" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent298" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent299" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent300" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent301" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent302" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent303" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent304" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent305" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent306" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent307" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent308" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent309" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent310" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent311" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent312" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent313" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent314" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent315" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent316" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent317" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent318" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent319" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent320" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent321" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent322" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent323" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent324" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent325" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent326" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent327" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent328" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent329" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent330" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent331" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent332" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent333" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent334" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent335" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent336" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent337" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent338" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent339" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent340" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent341" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent342" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent343" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent344" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent345" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent346" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent347" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent348" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent349" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent350" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent351" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent352" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent353" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent354" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent355" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent356" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent357" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent358" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent359" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent360" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent361" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent362" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent363" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent364" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent365" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent366" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent367" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent368" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent369" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent370" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent371" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent372" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent373" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent374" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent375" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent376" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent377" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent378" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent379" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent380" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent381" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent382" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent383" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent384" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent385" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent386" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent387" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent388" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent389" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent390" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent391" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent392" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent393" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent394" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent395" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent396" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent397" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent398" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="GoapAgent399" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("4_rynn1")
+
+[node name="TimeSlicer" type="Node" parent="."]
+script = ExtResource("5_d4yob")

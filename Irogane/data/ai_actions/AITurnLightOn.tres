@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AITurnLightOnAction" load_steps=2 format=3 uid="uid://c73edh4tuncnm"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/AITurnLightOnAction.gd" id="1_pkdj4"]
+
+[resource]
+script = ExtResource("1_pkdj4")

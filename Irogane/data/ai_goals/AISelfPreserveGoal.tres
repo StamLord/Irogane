@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AISelfPreserveGoal" load_steps=2 format=3 uid="uid://ohaowj6x0ph6"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/goals/ai_self_preserve_goal.gd" id="1_86j0v"]
+
+[resource]
+script = ExtResource("1_86j0v")

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIPatrolPointAction" load_steps=2 format=3 uid="uid://cumjq1y8virxr"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/AIPatrolPointAction.gd" id="1_kd0lb"]
+
+[resource]
+script = ExtResource("1_kd0lb")

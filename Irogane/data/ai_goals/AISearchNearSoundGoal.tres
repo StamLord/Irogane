@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AISearchNearSoundGoal" load_steps=2 format=3 uid="uid://dmag82t5pfnu"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/goals/AISearchNearSoundGoal.gd" id="1_5l1qw"]
+
+[resource]
+script = ExtResource("1_5l1qw")

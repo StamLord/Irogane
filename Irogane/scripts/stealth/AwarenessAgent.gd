@@ -3,15 +3,24 @@ class_name AwarenessAgent
 
 @onready var sight_cast = $sight_cast
 
-@onready var vision_cone = $vision_cone
-@onready var cone_mesh = $vision_cone/cone_mesh
-@onready var sphere_mesh = $vision_cone/sphere_mesh
+@onready var direct_vision_cone = $vision_cone
+@onready var direct_cone_mesh = $vision_cone/cone_mesh
+@onready var direct_sphere_mesh = $vision_cone/sphere_mesh
 
-@export var sight_angle = Vector2(90, 90)
-@export var sight_range = 10.0
+@onready var peripheral_vision_cone = $peripheral_vision_cone
+@onready var peripheral_cone_mesh = $peripheral_vision_cone/cone_mesh
+@onready var peripheral_sphere_mesh = $peripheral_vision_cone/sphere_mesh
+
+@export var direct_sight_range = 20.0
+@export var direct_sight_angle = Vector2(30, 20)
+
+@export var peripheral_range = 5.0
+@export var peripheral_sight_angle = Vector2(160, 20)
+
 @export_flags_3d_physics var sight_obstacle_mask = 17 # Bit mask for layers, 17 is 1 - Default, 5 - Stealth
 
-@export var detection_rate = 1.0
+@export var direct_detection_rate = 10.0
+@export var perepherial_detection_rate = 1.0
 @export var undetection_rate = 0.5
 
 @export var alert_mode = false
@@ -27,7 +36,6 @@ signal on_enemy_seen(enemy)
 signal on_enemy_lost(enemy)
 
 func _ready():
-	debug = false
 	DebugCommandsManager.add_command(
 		"display_vision_cone",
 		set_debug,
@@ -44,49 +52,46 @@ func set_alert_mode(new_state):
 	alert_mode = new_state
 	
 
-func get_detection_rate():
+func get_detection_rate(is_direct):
+	var detection_rate = direct_detection_rate if is_direct else perepherial_detection_rate
 	return alert_detection_rate if alert_mode else detection_rate
 	
 
 func get_visible(delta):
-	# Get all in range
-	sight_cast.shape.radius = sight_range
+	# Get agents in direct sight range
+	var peripheral_stealth_agents = []
+	sight_cast.shape.radius = peripheral_range
 	sight_cast.force_shapecast_update()
-	
-	var stealth_agents = []
 	for i in range(sight_cast.get_collision_count()):
 		var col = sight_cast.get_collider(i)
 		if col is StealthAgent:
-			stealth_agents.append(col)
-		
-	# Filter according to angle and line of sight
-	var agents_in_sight = []
+			peripheral_stealth_agents.append(col)
 	
-	for agent in stealth_agents:
-		# Position in our local space
-		var agent_local_pos = to_local(agent.global_position) 
+	# Get agents in peripheral sight range
+	var direct_stealth_agents = []
+	sight_cast.shape.radius = direct_sight_range
+	sight_cast.force_shapecast_update()
+	for i in range(sight_cast.get_collision_count()):
+		var col = sight_cast.get_collider(i)
+		if col is StealthAgent:
+			direct_stealth_agents.append(col)
 		
-		# Horizontal range
-		var h_agent_pos = Vector2(agent_local_pos.z, agent_local_pos.x) # Z axis first to get angle from it
-		var h_angle = get_angle(Vector2.ZERO, h_agent_pos) # Calculate against our origin
-		
-		# Skip agent if outside of horizontal range
-		if h_angle > sight_angle.x * 0.5 or h_angle < -sight_angle.x * 0.5:
+	# Filter according to angles and line of sight
+	var agents_in_sight = {}
+	
+	for agent in peripheral_stealth_agents:
+		if not is_within_angle(agent, peripheral_sight_angle.x, peripheral_sight_angle.y):
 			continue
-		
-		# Vertical range
-		var v_agent_pos = Vector2(agent_local_pos.z, agent_local_pos.y) # Z axis first to get angle from it
-		var v_angle = get_angle(Vector2.ZERO, v_agent_pos) # Calculate against our origin
-		
-		# Skip agent if outside of vertical range
-		if v_angle > sight_angle.y * 0.5 or v_angle < -sight_angle.y * 0.5:
-			continue
-		
-		# Check if in line of sight
 		if not is_line_of_sight(agent):
 			continue
-		
-		agents_in_sight.append(agent)
+		agents_in_sight[agent] = false
+	
+	for agent in direct_stealth_agents:
+		if not is_within_angle(agent, direct_sight_angle.x, direct_sight_angle.y):
+			continue
+		if not is_line_of_sight(agent):
+			continue
+		agents_in_sight[agent] = true
 	
 	# Remove from visible agents that are not in sight
 	for agent in visible_agents:
@@ -98,7 +103,8 @@ func get_visible(delta):
 	# Increment vision to almost visible
 	for agent in almost_visible_agents.keys():
 		if agents_in_sight.has(agent):
-			almost_visible_agents[agent] += get_detection_rate() * agent.detection_multiplier * delta
+			var detection_rate = get_detection_rate(agents_in_sight[agent])
+			almost_visible_agents[agent] += detection_rate * agent.detection_multiplier * delta
 			agents_in_sight.erase(agent)
 		else:
 			almost_visible_agents[agent] -= undetection_rate * delta
@@ -121,17 +127,50 @@ func get_visible(delta):
 	# All agents left need to be added
 	for agent in agents_in_sight:
 		if not visible_agents.has(agent):
-			almost_visible_agents[agent] = get_detection_rate() * agent.detection_multiplier * delta
+			var detection_rate = get_detection_rate(agents_in_sight[agent])
+			almost_visible_agents[agent] = detection_rate * agent.detection_multiplier * delta
+	
+
+func is_within_angle(agent, horizontal_angle, vertical_angle):
+	# Position in our local space
+	var agent_local_pos = to_local(agent.global_position) 
+	
+	# Horizontal range
+	var h_agent_pos = Vector2(agent_local_pos.z, agent_local_pos.x) # Z axis first to get angle from it
+	var h_angle = get_angle(Vector2.ZERO, h_agent_pos) # Calculate against our origin
+	
+	# Skip agent if outside of horizontal range
+	if h_angle > horizontal_angle * 0.5 or h_angle < -horizontal_angle * 0.5:
+		return false
+	
+	# Vertical range
+	var v_agent_pos = Vector2(agent_local_pos.z, agent_local_pos.y) # Z axis first to get angle from it
+	var v_angle = get_angle(Vector2.ZERO, v_agent_pos) # Calculate against our origin
+	
+	# Skip agent if outside of vertical range
+	if v_angle > vertical_angle * 0.5 or v_angle < -vertical_angle * 0.5:
+		return false
+	
+	return true
 	
 
 func _process(delta):
 	get_visible(delta)
 	
 	if debug:
-		vision_cone.visible = true
-		update_cone_mesh()
+		if direct_vision_cone != null:
+			direct_vision_cone.visible = true
+			update_cone_mesh(direct_sight_range, direct_sight_angle, direct_cone_mesh, direct_sphere_mesh)
+		
+		if peripheral_vision_cone != null:
+			peripheral_vision_cone.visible = true
+			update_cone_mesh(peripheral_range, peripheral_sight_angle, peripheral_cone_mesh, peripheral_sphere_mesh)
 	else:
-		vision_cone.visible =  false
+		if direct_vision_cone != null:
+			direct_vision_cone.visible =  false
+		
+		if peripheral_vision_cone != null:
+			peripheral_vision_cone.visible = false
 	
 
 func get_angle(point1 : Vector2, point2 : Vector2):
@@ -158,7 +197,7 @@ func is_line_of_sight(agent):
 		return false
 	
 
-func update_cone_mesh():
+func update_cone_mesh(sight_range, sight_angle, cone_mesh, sphere_mesh):
 	# Calculate the cone base
 	# ___a_________ 
 	# \     |     /   # a - Half the cone base

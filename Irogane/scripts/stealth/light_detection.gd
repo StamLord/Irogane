@@ -23,6 +23,9 @@ func raycast_light_detection():
 	for light in light_sources:
 		var light_origin = light.global_position
 		
+		if not light.visible:
+			continue
+		
 		# In case of direciton light, light origin is different
 		if light is DirectionalLight3D:
 			light_origin = global_position - light.global_transform.basis * Vector3.FORWARD * 1000
@@ -64,7 +67,11 @@ func raycast_light_detection():
 			total_light += light.light_energy
 	
 	var color_clamp = clamp(total_light, 0.05, 1)
-	light_stone.modulate = Color(color_clamp, color_clamp, color_clamp, 1)
-	light_beads_material.albedo_color = Color(total_light, total_light, total_light, 1)
+	
+	if light_stone != null:
+		light_stone.modulate = Color(color_clamp, color_clamp, color_clamp, 1)
+	if light_beads_material != null:
+		light_beads_material.albedo_color = Color(total_light, total_light, total_light, 1)
+	
 	light_value = total_light
 	

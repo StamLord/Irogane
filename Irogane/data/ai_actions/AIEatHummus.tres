@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIEatHummus" load_steps=2 format=3 uid="uid://df6fsgay18yw7"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/ai_eat_hummus.gd" id="1_ady4p"]
+
+[resource]
+script = ExtResource("1_ady4p")
