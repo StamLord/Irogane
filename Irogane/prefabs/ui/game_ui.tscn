@@ -627,9 +627,10 @@ pivot_offset = Vector2(20, 20)
 value = 100.0
 fill_mode = 4
 texture_progress = ExtResource("8_o0b22")
-tint_progress = Color(0, 0.694118, 0.392157, 1)
+tint_progress = Color(0, 0.694118, 0.392157, 0)
 script = ExtResource("7_kcu1i")
 bar_name = "stamina"
+hide = true
 
 [node name="cursor" type="TextureRect" parent="."]
 layout_mode = 1
