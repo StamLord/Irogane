@@ -9,8 +9,11 @@ extends Node3D
 @onready var model = $model
 
 @onready var audio = $audio
-const SHURIKEN_FLIGHT_SFX = preload("res://assets/audio/shuriken/shuriken_flight_1.ogg")
-const SHURIKEN_IMPACT_SFX = preload("res://assets/audio/shuriken/shuriken_impact_1.ogg")
+@export var flight_sfx_path = "res://assets/audio/shuriken/shuriken_flight_1.ogg"
+@export var impact_sfx_path = "res://assets/audio/shuriken/shuriken_impact_1.ogg"
+
+@onready var flight_sfx = load(flight_sfx_path)
+@onready var impact_sfx = load(impact_sfx_path)
 
 var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
@@ -78,7 +81,7 @@ func restart():
 		spin_vfx.visible = true
 	
 	if audio:
-		audio.stream = SHURIKEN_FLIGHT_SFX
+		audio.stream = flight_sfx
 		audio.pitch_scale = 1.0 - randf_range(-0.05, 0.05)
 		audio.playing = true
 	
@@ -149,7 +152,7 @@ func collision_check():
 			spin_vfx.visible = false
 		
 		if audio:
-			audio.stream = SHURIKEN_IMPACT_SFX
+			audio.stream = impact_sfx
 			audio.pitch_scale = 1.0 - randf_range(-0.05, 0.05)
 			audio.play()
 		
