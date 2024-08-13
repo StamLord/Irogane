@@ -1,8 +1,10 @@
 extends Node3D
+class_name Elevator
 
 @export var switches : Array[Switch]
 @export var levels : Array[float]
 @export var speed = 4.0
+@export var local_space : bool = false
 
 var target_floor = null
 
@@ -18,8 +20,13 @@ func _process(delta):
 		return
 	
 	var target_height = levels[target_floor]
-	var vertical_movement = clamp(target_height - global_position.y, -speed, speed)
-	global_position.y += vertical_movement * delta
+	var position_y = position.y if local_space else global_position.y
+	var vertical_movement = clamp(target_height - position_y, -speed, speed)
+	
+	if local_space:
+		position.y += vertical_movement * delta
+	else:
+		global_position.y += vertical_movement * delta
 	
 	if abs(vertical_movement) < 0.1:
 		reached_floor.emit(target_floor)
