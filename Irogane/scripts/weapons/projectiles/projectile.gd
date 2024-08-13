@@ -1,5 +1,6 @@
 @tool
 extends Node3D
+class_name Projectile
 
 @export_flags_3d_physics var collision_mask
 @onready var hitbox = %hitbox
@@ -12,14 +13,15 @@ extends Node3D
 @export var flight_sfx_path = "res://assets/audio/shuriken/shuriken_flight_1.ogg"
 @export var impact_sfx_path = "res://assets/audio/shuriken/shuriken_impact_1.ogg"
 
-@onready var flight_sfx = load(flight_sfx_path)
-@onready var impact_sfx = load(impact_sfx_path)
+@onready var flight_sfx = null
+@onready var impact_sfx = null
 
 var attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 
 @export var speed = 60
 @export var gravity_multiplier = 1.0
 @export var rotation_x_speed = 20.0
+@export var impact_paricles_amount = 1
 var item_id = null
 
 # Internal vars
@@ -45,6 +47,12 @@ func _ready():
 	hitbox.set_active(true)
 	hitbox.on_collision.connect(hit)
 	hitbox.on_block.connect(hit_guarded)
+	
+	if flight_sfx_path != null:
+		flight_sfx = load(flight_sfx_path)
+	
+	if impact_sfx_path != null:
+		impact_sfx = load(impact_sfx_path)
 	
 
 func hit(area, _hitbox):
@@ -198,7 +206,8 @@ func set_temp_gravity_multiplier(value : float):
 
 func emit_impact_vfx():
 	if impact_vfx:
-		impact_vfx.emit_particle(impact_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
+		for i in range(impact_paricles_amount):
+			impact_vfx.emit_particle(impact_vfx.global_transform, Vector3.ZERO, Color.WHITE, Color.WHITE, 1)
 	
 
 func despawn():
