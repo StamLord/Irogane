@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=124 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -44,6 +44,28 @@
 [ext_resource type="PackedScene" uid="uid://cvurey2v8psx0" path="res://assets/models/building_blocks/floor_1x1.glb" id="37_wfhwj"]
 [ext_resource type="Script" path="res://scripts/interactive/elevator.gd" id="39_ewdaq"]
 [ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="42_02aj7"]
+[ext_resource type="PackedScene" uid="uid://b751bcoktfxtv" path="res://prefabs/building_blocks/bars_2x2.tscn" id="45_e5h55"]
+[ext_resource type="PackedScene" uid="uid://bdtt0q3kj18o1" path="res://prefabs/building_blocks/bars_pillar_1x_4.tscn" id="46_sb1ya"]
+[ext_resource type="PackedScene" uid="uid://cwm14638ggcje" path="res://prefabs/building_blocks/window_small_2x4.tscn" id="47_cylw1"]
+[ext_resource type="PackedScene" uid="uid://ckvwij4ojniue" path="res://prefabs/building_blocks/dome_ceiling_6x4.tscn" id="47_lmrj2"]
+[ext_resource type="PackedScene" uid="uid://bd3ywkak34d4v" path="res://prefabs/building_blocks/silver_door.tscn" id="48_iygu3"]
+[ext_resource type="PackedScene" uid="uid://mdr1tuqo2e7v" path="res://prefabs/building_blocks/bed.tscn" id="50_8d74v"]
+[ext_resource type="PackedScene" uid="uid://licy7btd1aeg" path="res://prefabs/building_blocks/balcony_1x1.tscn" id="51_00xuc"]
+[ext_resource type="Script" path="res://scripts/interactive/ElevatorSwitch.gd" id="51_tk2ct"]
+[ext_resource type="PackedScene" uid="uid://ctcleq6er2vpe" path="res://prefabs/building_blocks/balcony_corner_r.tscn" id="52_vdboo"]
+[ext_resource type="PackedScene" uid="uid://dtx0rpdptgd34" path="res://prefabs/building_blocks/balcony_corner_l.tscn" id="53_0oub7"]
+[ext_resource type="PackedScene" uid="uid://cm0wx1yo4848r" path="res://prefabs/building_blocks/cooking_pot.tscn" id="53_a1lrl"]
+[ext_resource type="PackedScene" uid="uid://b32ruid75v0ck" path="res://assets/models/building_blocks/pillar.glb" id="53_avqk1"]
+[ext_resource type="PackedScene" uid="uid://sm2ka8r0padg" path="res://prefabs/building_blocks/spiral_stairs.tscn" id="53_jw3wx"]
+[ext_resource type="PackedScene" uid="uid://dsbr7nt007an4" path="res://assets/models/building_blocks/spiral_middle.glb" id="54_dhbky"]
+[ext_resource type="PackedScene" uid="uid://dgobpauppmaah" path="res://prefabs/building_blocks/rail_1.tscn" id="54_kq336"]
+[ext_resource type="PackedScene" uid="uid://bhtpnjkb3ka48" path="res://assets/models/building_blocks/pillar_arch_3_5.glb" id="54_rcpnu"]
+[ext_resource type="PackedScene" uid="uid://b0frthv01piuo" path="res://prefabs/building_blocks/spiral_wall.tscn" id="54_uqv46"]
+[ext_resource type="PackedScene" uid="uid://7xagp5uia375" path="res://assets/models/building_blocks/pillar_arch_ceiling.glb" id="55_12uk5"]
+[ext_resource type="PackedScene" uid="uid://decg6bdyrvats" path="res://prefabs/building_blocks/spiral_wall_open.tscn" id="55_auld2"]
+[ext_resource type="PackedScene" uid="uid://bcc1t8ptaskua" path="res://prefabs/building_blocks/spiral_wall_windows.tscn" id="56_wrgx7"]
+[ext_resource type="PackedScene" uid="uid://ccn61qv3w61no" path="res://prefabs/building_blocks/table_3x_1_75.tscn" id="57_rq8sk"]
+[ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch.tscn" id="58_bf0i5"]
 
 [sub_resource type="Sky" id="Sky_i684r"]
 sky_material = ExtResource("1_tl3ee")
@@ -302,6 +324,9 @@ shadow_mesh = SubResource("ArrayMesh_xdqsi")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_87ood"]
 data = PackedVector3Array(0.1951, -0.3, -0.9808, 0.5555, 0.3, -0.8315, 0.1951, 0.3, -0.9808, 0.1951, -0.3, -0.9808, 0.5555, -0.3, -0.8315, 0.5555, 0.3, -0.8315, 0.5555, -0.3, -0.8315, 0.8537, 0.3, -1.1296, 0.5555, 0.3, -0.8315, 0.5555, -0.3, -0.8315, 0.8537, -0.3, -1.1296, 0.8537, 0.3, -1.1296, 0.8315, -0.3, -0.5556, 0.9808, 0.3, -0.1951, 0.8315, 0.3, -0.5556, 0.8315, -0.3, -0.5556, 0.9808, -0.3, -0.1951, 0.9808, 0.3, -0.1951, 0.5555, -0.3, 0.8315, 1.1296, -0.3, 0.8537, 0.8315, -0.3, 0.5555, 0.5555, -0.3, 0.8315, 0.8537, -0.3, 1.1296, 1.1296, -0.3, 0.8537, 0.9808, -0.3, 0.1951, 0.8315, 0.3, 0.5555, 0.9808, 0.3, 0.1951, 0.9808, -0.3, 0.1951, 0.8315, -0.3, 0.5555, 0.8315, 0.3, 0.5555, -0.5556, 0.3, 0.8315, -1.1296, 0.3, 0.8537, -0.8315, 0.3, 0.5555, -0.5556, 0.3, 0.8315, -0.8537, 0.3, 1.1296, -1.1296, 0.3, 0.8537, 0.5555, -0.3, 0.8315, 0.1951, 0.3, 0.9808, 0.5555, 0.3, 0.8315, 0.5555, -0.3, 0.8315, 0.1951, -0.3, 0.9808, 0.1951, 0.3, 0.9808, 0.1951, 0.3, -0.9808, 0.1951, -0.3, -1.4024, 0.1951, -0.3, -0.9808, 0.1951, 0.3, -0.9808, 0.1951, 0.3, -1.4024, 0.1951, -0.3, -1.4024, -0.1951, -0.3, 0.9808, -0.5556, 0.3, 0.8315, -0.1951, 0.3, 0.9808, -0.1951, -0.3, 0.9808, -0.5556, -0.3, 0.8315, -0.5556, 0.3, 0.8315, -0.5556, 0.3, -0.8315, -0.8537, -0.3, -1.1296, -0.5556, -0.3, -0.8315, -0.5556, 0.3, -0.8315, -0.8537, 0.3, -1.1296, -0.8537, -0.3, -1.1296, -0.8315, -0.3, 0.5555, -0.9808, 0.3, 0.1951, -0.8315, 0.3, 0.5555, -0.8315, -0.3, 0.5555, -0.9808, -0.3, 0.1951, -0.9808, 0.3, 0.1951, 0.8315, -0.3, 0.5555, 1.1296, 0.3, 0.8537, 0.8315, 0.3, 0.5555, 0.8315, -0.3, 0.5555, 1.1296, -0.3, 0.8537, 1.1296, 0.3, 0.8537, -0.9808, -0.3, -0.1951, -0.8315, 0.3, -0.5556, -0.9808, 0.3, -0.1951, -0.9808, -0.3, -0.1951, -0.8315, -0.3, -0.5556, -0.8315, 0.3, -0.5556, -0.8315, -0.3, 0.5555, -0.8537, -0.3, 1.1296, -0.5556, -0.3, 0.8315, -0.8315, -0.3, 0.5555, -1.1296, -0.3, 0.8537, -0.8537, -0.3, 1.1296, 0.8315, 0.3, -0.5556, 0.1951, 0.3, -0.9808, 0.5555, 0.3, -0.8315, 0.1951, 0.3, -0.9808, -0.5556, 0.3, -0.8315, -0.1951, 0.3, -0.9808, -0.5556, 0.3, -0.8315, -0.9808, 0.3, -0.1951, -0.8315, 0.3, -0.5556, -0.9808, 0.3, -0.1951, -0.8315, 0.3, 0.5555, -0.9808, 0.3, 0.1951, -0.8315, 0.3, 0.5555, -0.1951, 0.3, 0.9808, -0.5556, 0.3, 0.8315, -0.1951, 0.3, 0.9808, 0.5555, 0.3, 0.8315, 0.1951, 0.3, 0.9808, 0.5555, 0.3, 0.8315, 0.9808, 0.3, 0.1951, 0.8315, 0.3, 0.5555, 0.9808, 0.3, 0.1951, 0.8315, 0.3, -0.5556, 0.9808, 0.3, -0.1951, 0.8315, 0.3, -0.5556, -0.5556, 0.3, -0.8315, 0.1951, 0.3, -0.9808, -0.5556, 0.3, -0.8315, -0.8315, 0.3, 0.5555, -0.9808, 0.3, -0.1951, -0.8315, 0.3, 0.5555, 0.5555, 0.3, 0.8315, -0.1951, 0.3, 0.9808, 0.5555, 0.3, 0.8315, 0.8315, 0.3, -0.5556, 0.9808, 0.3, 0.1951, 0.8315, 0.3, -0.5556, -0.8315, 0.3, 0.5555, -0.5556, 0.3, -0.8315, -0.8315, 0.3, 0.5555, 0.8315, 0.3, -0.5556, 0.5555, 0.3, 0.8315, -0.5556, -0.3, -0.8315, -0.1951, 0.3, -0.9808, -0.5556, 0.3, -0.8315, -0.5556, -0.3, -0.8315, -0.1951, -0.3, -0.9808, -0.1951, 0.3, -0.9808, -0.8315, 0.3, -0.5556, -0.8537, 0.3, -1.1296, -0.5556, 0.3, -0.8315, -0.8315, 0.3, -0.5556, -1.1296, 0.3, -0.8537, -0.8537, 0.3, -1.1296, -0.1951, -0.3, -0.9808, 0.5555, -0.3, -0.8315, 0.1951, -0.3, -0.9808, 0.5555, -0.3, -0.8315, 0.9808, -0.3, -0.1951, 0.8315, -0.3, -0.5556, 0.9808, -0.3, -0.1951, 0.8315, -0.3, 0.5555, 0.9808, -0.3, 0.1951, 0.8315, -0.3, 0.5555, 0.1951, -0.3, 0.9808, 0.5555, -0.3, 0.8315, 0.1951, -0.3, 0.9808, -0.5556, -0.3, 0.8315, -0.1951, -0.3, 0.9808, -0.5556, -0.3, 0.8315, -0.9808, -0.3, 0.1951, -0.8315, -0.3, 0.5555, -0.9808, -0.3, 0.1951, -0.8315, -0.3, -0.5556, -0.9808, -0.3, -0.1951, -0.8315, -0.3, -0.5556, -0.1951, -0.3, -0.9808, -0.5556, -0.3, -0.8315, -0.1951, -0.3, -0.9808, 0.9808, -0.3, -0.1951, 0.5555, -0.3, -0.8315, 0.9808, -0.3, -0.1951, 0.1951, -0.3, 0.9808, 0.8315, -0.3, 0.5555, 0.1951, -0.3, 0.9808, -0.9808, -0.3, 0.1951, -0.5556, -0.3, 0.8315, -0.9808, -0.3, 0.1951, -0.1951, -0.3, -0.9808, -0.8315, -0.3, -0.5556, -0.1951, -0.3, -0.9808, 0.1951, -0.3, 0.9808, 0.9808, -0.3, -0.1951, 0.1951, -0.3, 0.9808, -0.1951, -0.3, -0.9808, -0.9808, -0.3, 0.1951, 0.8537, -0.3, -1.1296, 1.1296, 0.3, -0.8537, 0.8537, 0.3, -1.1296, 0.8537, -0.3, -1.1296, 1.1296, -0.3, -0.8537, 1.1296, 0.3, -0.8537, 1.4024, -0.3, -0.1951, 1.4024, 0.3, 0.1951, 1.4024, 0.3, -0.1951, 1.4024, -0.3, -0.1951, 1.4024, -0.3, 0.1951, 1.4024, 0.3, 0.1951, 1.1296, -0.3, 0.8537, 0.8537, 0.3, 1.1296, 1.1296, 0.3, 0.8537, 1.1296, -0.3, 0.8537, 0.8537, -0.3, 1.1296, 0.8537, 0.3, 1.1296, 0.1951, -0.3, 1.4024, -0.1951, 0.3, 1.4024, 0.1951, 0.3, 1.4024, 0.1951, -0.3, 1.4024, -0.1951, -0.3, 1.4024, -0.1951, 0.3, 1.4024, -0.8537, -0.3, 1.1296, -1.1296, 0.3, 0.8537, -0.8537, 0.3, 1.1296, -0.8537, -0.3, 1.1296, -1.1296, -0.3, 0.8537, -1.1296, 0.3, 0.8537, -1.4024, -0.3, 0.1951, -1.4024, 0.3, -0.1951, -1.4024, 0.3, 0.1951, -1.4024, -0.3, 0.1951, -1.4024, -0.3, -0.1951, -1.4024, 0.3, -0.1951, -1.1296, -0.3, -0.8537, -0.8537, 0.3, -1.1296, -1.1296, 0.3, -0.8537, -1.1296, -0.3, -0.8537, -0.8537, -0.3, -1.1296, -0.8537, 0.3, -1.1296, -0.1951, -0.3, -1.4024, 0.1951, 0.3, -1.4024, -0.1951, 0.3, -1.4024, -0.1951, -0.3, -1.4024, 0.1951, -0.3, -1.4024, 0.1951, 0.3, -1.4024, -0.8315, 0.3, 0.5555, -1.1296, -0.3, 0.8537, -0.8315, -0.3, 0.5555, -0.8315, 0.3, 0.5555, -1.1296, 0.3, 0.8537, -1.1296, -0.3, 0.8537, 0.8315, 0.3, 0.5555, 0.8537, 0.3, 1.1296, 0.5555, 0.3, 0.8315, 0.8315, 0.3, 0.5555, 1.1296, 0.3, 0.8537, 0.8537, 0.3, 1.1296, 0.8315, -0.3, -0.5556, 0.8537, -0.3, -1.1296, 0.5555, -0.3, -0.8315, 0.8315, -0.3, -0.5556, 1.1296, -0.3, -0.8537, 0.8537, -0.3, -1.1296, 0.5555, 0.3, 0.8315, 0.8537, -0.3, 1.1296, 0.5555, -0.3, 0.8315, 0.5555, 0.3, 0.8315, 0.8537, 0.3, 1.1296, 0.8537, -0.3, 1.1296, -0.1951, -0.3, -0.9808, -0.1951, 0.3, -1.4024, -0.1951, 0.3, -0.9808, -0.1951, -0.3, -0.9808, -0.1951, -0.3, -1.4024, -0.1951, 0.3, -1.4024, 0.5555, 0.3, -0.8315, 1.1296, 0.3, -0.8537, 0.8315, 0.3, -0.5556, 0.5555, 0.3, -0.8315, 0.8537, 0.3, -1.1296, 1.1296, 0.3, -0.8537, 0.1951, -0.3, -0.9808, -0.1951, -0.3, -1.4024, -0.1951, -0.3, -0.9808, 0.1951, -0.3, -0.9808, 0.1951, -0.3, -1.4024, -0.1951, -0.3, -1.4024, 0.8315, 0.3, -0.5556, 1.1296, -0.3, -0.8537, 0.8315, -0.3, -0.5556, 0.8315, 0.3, -0.5556, 1.1296, 0.3, -0.8537, 1.1296, -0.3, -0.8537, -0.9808, -0.3, 0.1951, -1.4024, 0.3, 0.1951, -0.9808, 0.3, 0.1951, -0.9808, -0.3, 0.1951, -1.4024, -0.3, 0.1951, -1.4024, 0.3, 0.1951, -0.1951, 0.3, -0.9808, 0.1951, 0.3, -1.4024, 0.1951, 0.3, -0.9808, -0.1951, 0.3, -0.9808, -0.1951, 0.3, -1.4024, 0.1951, 0.3, -1.4024, -0.9808, -0.3, -0.1951, -1.4024, -0.3, 0.1951, -0.9808, -0.3, 0.1951, -0.9808, -0.3, -0.1951, -1.4024, -0.3, -0.1951, -1.4024, -0.3, 0.1951, 0.1951, -0.3, 0.9808, 0.1951, 0.3, 1.4024, 0.1951, 0.3, 0.9808, 0.1951, -0.3, 0.9808, 0.1951, -0.3, 1.4024, 0.1951, 0.3, 1.4024, -0.9808, 0.3, 0.1951, -1.4024, 0.3, -0.1951, -0.9808, 0.3, -0.1951, -0.9808, 0.3, 0.1951, -1.4024, 0.3, 0.1951, -1.4024, 0.3, -0.1951, -0.1951, -0.3, 0.9808, 0.1951, -0.3, 1.4024, 0.1951, -0.3, 0.9808, -0.1951, -0.3, 0.9808, -0.1951, -0.3, 1.4024, 0.1951, -0.3, 1.4024, 0.9808, -0.3, -0.1951, 1.4024, 0.3, -0.1951, 0.9808, 0.3, -0.1951, 0.9808, -0.3, -0.1951, 1.4024, -0.3, -0.1951, 1.4024, 0.3, -0.1951, -0.9808, 0.3, -0.1951, -1.4024, -0.3, -0.1951, -0.9808, -0.3, -0.1951, -0.9808, 0.3, -0.1951, -1.4024, 0.3, -0.1951, -1.4024, -0.3, -0.1951, 0.1951, 0.3, 0.9808, -0.1951, 0.3, 1.4024, -0.1951, 0.3, 0.9808, 0.1951, 0.3, 0.9808, 0.1951, 0.3, 1.4024, -0.1951, 0.3, 1.4024, 0.9808, -0.3, 0.1951, 1.4024, -0.3, -0.1951, 0.9808, -0.3, -0.1951, 0.9808, -0.3, 0.1951, 1.4024, -0.3, 0.1951, 1.4024, -0.3, -0.1951, -0.1951, 0.3, 0.9808, -0.1951, -0.3, 1.4024, -0.1951, -0.3, 0.9808, -0.1951, 0.3, 0.9808, -0.1951, 0.3, 1.4024, -0.1951, -0.3, 1.4024, 0.9808, 0.3, -0.1951, 1.4024, 0.3, 0.1951, 0.9808, 0.3, 0.1951, 0.9808, 0.3, -0.1951, 1.4024, 0.3, -0.1951, 1.4024, 0.3, 0.1951, 0.9808, 0.3, 0.1951, 1.4024, -0.3, 0.1951, 0.9808, -0.3, 0.1951, 0.9808, 0.3, 0.1951, 1.4024, 0.3, 0.1951, 1.4024, -0.3, 0.1951, -0.8315, -0.3, -0.5556, -1.1296, 0.3, -0.8537, -0.8315, 0.3, -0.5556, -0.8315, -0.3, -0.5556, -1.1296, -0.3, -0.8537, -1.1296, 0.3, -0.8537, -0.5556, -0.3, -0.8315, -1.1296, -0.3, -0.8537, -0.8315, -0.3, -0.5556, -0.5556, -0.3, -0.8315, -0.8537, -0.3, -1.1296, -1.1296, -0.3, -0.8537, -0.5556, -0.3, 0.8315, -0.8537, 0.3, 1.1296, -0.5556, 0.3, 0.8315, -0.5556, -0.3, 0.8315, -0.8537, -0.3, 1.1296, -0.8537, 0.3, 1.1296)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlnn2"]
+albedo_color = Color(1, 0, 0, 1)
 
 [node name="TowerTest" type="Node3D"]
 
@@ -9919,7 +9944,7 @@ node_b = NodePath("../RigidBody3D")
 params/bias = 0.99
 
 [node name="player" parent="." instance=ExtResource("1_yf7s4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -128.25, 13, -29.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -93, 13.5, -4.25)
 
 [node name="game_ui" parent="." instance=ExtResource("3_0m8c0")]
 
@@ -10178,3 +10203,1695 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
 transform = Transform3D(1, -3.55271e-15, -2.11758e-22, 3.55271e-15, 1, -3.55271e-15, -2.11758e-22, 3.55271e-15, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_87ood")
+
+[node name="jail_tower" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 0, 0)
+
+[node name="floor_4" type="Node3D" parent="jail_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="floor" type="Node3D" parent="jail_tower/floor_4"]
+
+[node name="floor_2x2" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_2x34" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, 4)
+
+[node name="floor_2x33" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4)
+
+[node name="floor_2x3" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_2x4" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="floor_2x5" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_2x6" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+
+[node name="floor_2x7" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="floor_2x8" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
+
+[node name="floor_2x9" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
+
+[node name="floor_2x10" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="floor_2x11" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="floor_2x12" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="floor_2x13" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+
+[node name="floor_2x14" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="floor_2x15" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
+
+[node name="floor_2x16" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
+
+[node name="floor_2x17" parent="jail_tower/floor_4/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -12)
+
+[node name="floor_2x20" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 3)
+
+[node name="floor_2x23" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 5)
+
+[node name="floor_2x24" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.5, -4, 3)
+
+[node name="floor_2x25" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.5, -4, 5)
+
+[node name="floor_2x27" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.5, -4, 3)
+
+[node name="floor_2x28" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.5, -4, 5)
+
+[node name="floor_2x29" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.5, -4, -1)
+
+[node name="floor_2x30" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.5, -4, 1)
+
+[node name="floor_2x31" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.5, -4, -5)
+
+[node name="floor_2x32" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.5, -4, -3)
+
+[node name="floor_2x35" parent="jail_tower/floor_4/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15.5, -4, -5)
+
+[node name="stairs_2x4" parent="jail_tower/floor_4/floor" instance=ExtResource("30_qub2v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, -4, 3)
+
+[node name="stairs_2x5" parent="jail_tower/floor_4/floor" instance=ExtResource("30_qub2v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, -4, 5)
+
+[node name="stairs_2x7" parent="jail_tower/floor_4/floor" instance=ExtResource("30_qub2v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15.5, -8.5, 0.5)
+
+[node name="stairs_2x9" parent="jail_tower/floor_4/floor" instance=ExtResource("30_qub2v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15.5, -12.5, -3.5)
+
+[node name="walls" type="Node3D" parent="jail_tower/floor_4"]
+
+[node name="wall_4x6" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="wall_4x8" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+
+[node name="wall_4x26" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 2)
+
+[node name="wall_4x27" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, 2)
+
+[node name="wall_4x7" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2)
+
+[node name="wall_4x9" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -14.5)
+
+[node name="wall_4x28" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -14.5)
+
+[node name="wall_4x29" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, -14.5)
+
+[node name="wall_4x11" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -14.5)
+
+[node name="wall_4x12" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -12)
+
+[node name="wall_4x13" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -8)
+
+[node name="wall_4x20" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.25, 0, -5.75)
+
+[node name="wall_4x22" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.25, 0, -1.75)
+
+[node name="wall_4x23" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.25, 0, -9.75)
+
+[node name="wall_4x21" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 0, -5.75)
+
+[node name="wall_4x24" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 0, -1.75)
+
+[node name="wall_4x25" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 0, -9.75)
+
+[node name="wall_4x14" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -4)
+
+[node name="wall_4x15" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, 0)
+
+[node name="wall_4x16" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -12)
+
+[node name="wall_4x17" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -8)
+
+[node name="wall_4x18" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
+
+[node name="wall_4x19" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="wall_4x30" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 4)
+
+[node name="wall_4x10" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 6)
+
+[node name="wall_4x31" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -4, 4)
+
+[node name="wall_4x39" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -4, -5)
+
+[node name="wall_4x40" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -4, -12)
+
+[node name="wall_4x32" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -8, 6)
+
+[node name="wall_4x33" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -8, 4)
+
+[node name="wall_4x34" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -12, 6)
+
+[node name="wall_4x35" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -12, 4)
+
+[node name="wall_4x36" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, -4, 4)
+
+[node name="wall_4x37" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, -8, 4)
+
+[node name="wall_4x38" parent="jail_tower/floor_4/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, -12, 4)
+
+[node name="bars_2x32" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, 1)
+
+[node name="bars_2x33" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, -1)
+
+[node name="bars_2x34" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, -3)
+
+[node name="bars_2x35" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, -5)
+
+[node name="bars_2x36" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, -7)
+
+[node name="bars_2x37" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, -9)
+
+[node name="bars_2x38" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, -11)
+
+[node name="bars_2x39" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.25, 0, -13)
+
+[node name="bars_2x40" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, 1)
+
+[node name="bars_2x41" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, -1)
+
+[node name="bars_2x42" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, -3)
+
+[node name="bars_2x43" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, -5)
+
+[node name="bars_2x44" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, -7)
+
+[node name="bars_2x45" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, -9)
+
+[node name="bars_2x46" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, -11)
+
+[node name="bars_2x47" parent="jail_tower/floor_4/walls" instance=ExtResource("45_e5h55")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.75, 0, -13)
+
+[node name="bars_pillar_1x43" parent="jail_tower/floor_4/walls" instance=ExtResource("46_sb1ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, -2)
+
+[node name="bars_pillar_1x44" parent="jail_tower/floor_4/walls" instance=ExtResource("46_sb1ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, -6)
+
+[node name="bars_pillar_1x45" parent="jail_tower/floor_4/walls" instance=ExtResource("46_sb1ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, -10)
+
+[node name="bars_pillar_1x46" parent="jail_tower/floor_4/walls" instance=ExtResource("46_sb1ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, -2)
+
+[node name="bars_pillar_1x47" parent="jail_tower/floor_4/walls" instance=ExtResource("46_sb1ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, -6)
+
+[node name="bars_pillar_1x48" parent="jail_tower/floor_4/walls" instance=ExtResource("46_sb1ya")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.75, 0, -10)
+
+[node name="window_small_2x42" parent="jail_tower/floor_4/walls" instance=ExtResource("47_cylw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -14.5)
+
+[node name="wall_2x4" parent="jail_tower/floor_4/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -14.5)
+
+[node name="wall_2x7" parent="jail_tower/floor_4/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 6)
+
+[node name="wall_2x5" parent="jail_tower/floor_4/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -14.5)
+
+[node name="wall_2x6" parent="jail_tower/floor_4/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="wall_2x8" parent="jail_tower/floor_4/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+
+[node name="brass_door" parent="jail_tower/floor_4/walls" instance=ExtResource("48_iygu3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 4.25)
+
+[node name="wall_1x4" parent="jail_tower/floor_4/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 5.75)
+
+[node name="wall_1x5" parent="jail_tower/floor_4/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 2.75)
+
+[node name="brass_door2" parent="jail_tower/floor_4/walls" instance=ExtResource("48_iygu3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.5, 0, 4.5)
+
+[node name="wall_1x6" parent="jail_tower/floor_4/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.5, 0, 6)
+
+[node name="wall_1x7" parent="jail_tower/floor_4/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10.5, 0, 3)
+
+[node name="lights" type="Node3D" parent="jail_tower/floor_4"]
+
+[node name="torch" parent="jail_tower/floor_4/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25, 2.25, -6)
+
+[node name="torch2" parent="jail_tower/floor_4/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.75, 2.25, -6)
+
+[node name="torch3" parent="jail_tower/floor_4/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.25, 2.25, 3)
+
+[node name="ceiling" type="Node3D" parent="jail_tower/floor_4"]
+
+[node name="dome_ceiling_6x42" parent="jail_tower/floor_4/ceiling" instance=ExtResource("47_lmrj2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 2, 0)
+
+[node name="dome_ceiling_6x43" parent="jail_tower/floor_4/ceiling" instance=ExtResource("47_lmrj2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 2, -4)
+
+[node name="dome_ceiling_6x44" parent="jail_tower/floor_4/ceiling" instance=ExtResource("47_lmrj2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 2, -8)
+
+[node name="dome_ceiling_6x45" parent="jail_tower/floor_4/ceiling" instance=ExtResource("47_lmrj2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 2, -12)
+
+[node name="floor_2x2" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 0)
+
+[node name="floor_2x10" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 8, 0)
+
+[node name="floor_2x11" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, 0)
+
+[node name="floor_2x12" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 8, -4)
+
+[node name="floor_2x13" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -4)
+
+[node name="floor_2x14" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 8, -8)
+
+[node name="floor_2x15" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -8)
+
+[node name="floor_2x16" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 8, -12)
+
+[node name="floor_2x17" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, -12)
+
+[node name="floor_2x4" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, -4)
+
+[node name="floor_2x6" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, -8)
+
+[node name="floor_2x8" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, -12)
+
+[node name="floor_2x3" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.5, 0)
+
+[node name="floor_2x5" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.5, -4)
+
+[node name="floor_2x7" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.5, -8)
+
+[node name="floor_2x9" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.5, -12)
+
+[node name="floor_2x35" parent="jail_tower/floor_4/ceiling" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, 4)
+
+[node name="floor_2x21" parent="jail_tower/floor_4/ceiling" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, 3)
+
+[node name="floor_2x32" parent="jail_tower/floor_4/ceiling" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, 5)
+
+[node name="floor_3" type="Node3D" parent="jail_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+
+[node name="floor" type="Node3D" parent="jail_tower/floor_3"]
+
+[node name="floor_2x2" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_2x3" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_2x4" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="floor_2x5" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_2x6" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+
+[node name="balcony_1x2" parent="jail_tower/floor_3/floor" instance=ExtResource("51_00xuc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 0)
+
+[node name="balcony_1x3" parent="jail_tower/floor_3/floor" instance=ExtResource("51_00xuc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, -1)
+
+[node name="balcony_1x4" parent="jail_tower/floor_3/floor" instance=ExtResource("51_00xuc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, -2)
+
+[node name="balcony_corner_r" parent="jail_tower/floor_3/floor" instance=ExtResource("52_vdboo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 1)
+
+[node name="balcony_corner_l" parent="jail_tower/floor_3/floor" instance=ExtResource("53_0oub7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, -3)
+
+[node name="balcony_1x6" parent="jail_tower/floor_3/floor" instance=ExtResource("51_00xuc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 0)
+
+[node name="balcony_1x7" parent="jail_tower/floor_3/floor" instance=ExtResource("51_00xuc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, -1)
+
+[node name="balcony_1x8" parent="jail_tower/floor_3/floor" instance=ExtResource("51_00xuc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, -2)
+
+[node name="balcony_corner_r2" parent="jail_tower/floor_3/floor" instance=ExtResource("52_vdboo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 1)
+
+[node name="balcony_corner_l2" parent="jail_tower/floor_3/floor" instance=ExtResource("53_0oub7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, -3)
+
+[node name="rail_1" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.4, 0, 1)
+
+[node name="rail_3" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.4, 0, 0)
+
+[node name="rail_4" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.4, 0, -1)
+
+[node name="rail_5" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.4, 0, -2)
+
+[node name="rail_6" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.4, 0, -3)
+
+[node name="rail_7" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.8, 0, -3.4)
+
+[node name="rail_10" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.800003, 0, -3.4)
+
+[node name="rail_8" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.8, 0, 1.4)
+
+[node name="rail_9" parent="jail_tower/floor_3/floor" instance=ExtResource("54_kq336")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.800003, 0, 1.4)
+
+[node name="floor_2x7" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="floor_2x20" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
+
+[node name="floor_2x8" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
+
+[node name="floor_2x9" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.5296, 16, -12)
+
+[node name="floor_2x10" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="floor_2x11" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="floor_2x13" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+
+[node name="floor_2x14" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="floor_2x15" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
+
+[node name="floor_2x16" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
+
+[node name="floor_2x17" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -12)
+
+[node name="floor_2x18" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -8)
+
+[node name="floor_2x19" parent="jail_tower/floor_3/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -12)
+
+[node name="floor_2x12" parent="jail_tower/floor_3/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3)
+
+[node name="floor_2x22" parent="jail_tower/floor_3/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
+
+[node name="floor_2x21" parent="jail_tower/floor_3/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -5)
+
+[node name="bed10" parent="jail_tower/floor_3/floor" instance=ExtResource("50_8d74v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.5, 0, 1)
+
+[node name="bed11" parent="jail_tower/floor_3/floor" instance=ExtResource("50_8d74v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -9.25, 0, 1)
+
+[node name="bed14" parent="jail_tower/floor_3/floor" instance=ExtResource("50_8d74v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.25, 0, 1)
+
+[node name="bed12" parent="jail_tower/floor_3/floor" instance=ExtResource("50_8d74v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -7.25, 0, 1)
+
+[node name="bed9" parent="jail_tower/floor_3/floor" instance=ExtResource("50_8d74v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 0, -3)
+
+[node name="bed7" parent="jail_tower/floor_3/floor" instance=ExtResource("50_8d74v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0, -3)
+
+[node name="bed8" parent="jail_tower/floor_3/floor" instance=ExtResource("50_8d74v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.25, 0, -3)
+
+[node name="floor_2x31" parent="jail_tower/floor_3/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -91.0296, 16, -15.5)
+
+[node name="floor_2x32" parent="jail_tower/floor_3/floor" instance=ExtResource("13_rbpx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -91.0296, 16, -15.5)
+
+[node name="Switch1" type="Area3D" parent="jail_tower/floor_3/floor" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25, -2.625, -4.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("../food_elevator")
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/floor_3/floor/Switch1"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/floor_3/floor/Switch1"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="Switch2" type="Area3D" parent="jail_tower/floor_3/floor" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.25, -2.32663, -4.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("../food_elevator")
+floor_index = 1
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/floor_3/floor/Switch2"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/floor_3/floor/Switch2"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="Switch3" type="Area3D" parent="jail_tower/floor_3/floor" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.625, -5.75)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("../food_elevator")
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/floor_3/floor/Switch3"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/floor_3/floor/Switch3"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="Switch4" type="Area3D" parent="jail_tower/floor_3/floor" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.92337, -5.75)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("../food_elevator")
+floor_index = 1
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/floor_3/floor/Switch4"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/floor_3/floor/Switch4"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="food_elevator" type="CSGBox3D" parent="jail_tower/floor_3/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -3.125, -5)
+use_collision = true
+size = Vector3(1, 0.25, 1)
+script = ExtResource("39_ewdaq")
+levels = Array[float]([-3.125, 0.875])
+speed = 1.0
+local_space = true
+
+[node name="walls" type="Node3D" parent="jail_tower/floor_3"]
+
+[node name="wall_4x5" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2)
+
+[node name="wall_4x9" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4.5)
+
+[node name="wall_4x6" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
+
+[node name="wall_4x10" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, -12)
+
+[node name="wall_2x5" parent="jail_tower/floor_3/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -9)
+
+[node name="wall_2x6" parent="jail_tower/floor_3/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -3)
+
+[node name="wall_2x8" parent="jail_tower/floor_3/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13, 0, -4)
+
+[node name="wall_2x10" parent="jail_tower/floor_3/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9, 0, -4)
+
+[node name="wall_4x12" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, 0)
+
+[node name="wall_4x18" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -7, 0, -14.5)
+
+[node name="wall_4x21" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -11, 0, -14.5)
+
+[node name="wall_4x19" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -3, 0, -14.5)
+
+[node name="wall_4x22" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 0, -6.5)
+
+[node name="wall_4x23" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 0, -12)
+
+[node name="table_3x1-75" parent="jail_tower/floor_3/walls" instance=ExtResource("57_rq8sk")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -11.25, 0, -10.75)
+
+[node name="wall_4x20" parent="jail_tower/floor_3/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 0, 0)
+
+[node name="wall_2x4" parent="jail_tower/floor_3/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+
+[node name="wall_2x7" parent="jail_tower/floor_3/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.5, 0, -3)
+
+[node name="brass_door2" parent="jail_tower/floor_3/walls" instance=ExtResource("48_iygu3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -6)
+
+[node name="brass_door3" parent="jail_tower/floor_3/walls" instance=ExtResource("48_iygu3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3, 0, -4)
+
+[node name="brass_door4" parent="jail_tower/floor_3/walls" instance=ExtResource("48_iygu3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 2.5)
+
+[node name="wall_1x6" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -4.5)
+
+[node name="wall_1x8" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, -3, -5)
+
+[node name="wall_1x9" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 0, -5.5)
+
+[node name="wall_1x7" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.5, 0, -7.5)
+
+[node name="wall_1x14" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -13.5, 0, -14.5)
+
+[node name="wall_1x15" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -0.5, 0, -14.5)
+
+[node name="wall_1x4" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2)
+
+[node name="wall_1x10" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -4.5)
+
+[node name="wall_1x11" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -4.5)
+
+[node name="wall_1x21" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, -16, 1)
+
+[node name="wall_1x18" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, 1.5)
+
+[node name="wall_1x5" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 2)
+
+[node name="wall_2x9" parent="jail_tower/floor_3/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -14.5)
+
+[node name="wall_1x22" parent="jail_tower/floor_3/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -7.5)
+
+[node name="window_2x10" parent="jail_tower/floor_3/walls" instance=ExtResource("11_e1dba")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -9)
+
+[node name="desk" type="CSGBox3D" parent="jail_tower/floor_3/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -12.25)
+use_collision = true
+size = Vector3(2, 1, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="jail_tower/floor_3/walls/desk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0499992, -0.125)
+operation = 2
+size = Vector3(1.75, 0.95, 0.75)
+
+[node name="desk3" type="CSGBox3D" parent="jail_tower/floor_3/walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.75, 0.5, -7.25)
+use_collision = true
+size = Vector3(2, 1, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="jail_tower/floor_3/walls/desk3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, -0.125)
+operation = 2
+size = Vector3(1.75, 0.95, 0.75)
+
+[node name="desk2" type="CSGBox3D" parent="jail_tower/floor_3/walls"]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -4.25, 0.5, -1.5)
+use_collision = true
+size = Vector3(2, 1, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="jail_tower/floor_3/walls/desk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0499992, -0.125)
+operation = 2
+size = Vector3(1.75, 0.95, 0.75)
+
+[node name="lights" type="Node3D" parent="jail_tower/floor_3"]
+
+[node name="torch" parent="jail_tower/floor_3/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.75, 1.75, -7.5)
+
+[node name="torch2" parent="jail_tower/floor_3/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -5.81679, 1.75, -12.5)
+
+[node name="pillar2" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -15)
+
+[node name="pillar3" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999996, -17.75, -15)
+
+[node name="pillar4" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -19.5)
+
+[node name="pillar5" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999997, -17.75, -19.5)
+
+[node name="pillar_arch_3_52" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -15)
+
+[node name="pillar_arch_3_55" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_53" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, -3.50001, -18.25, -15)
+
+[node name="pillar_arch_3_54" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 0.999992, -18.25, -15)
+
+[node name="pillar6" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -15)
+
+[node name="pillar7" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_56" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999996, -18.25, -15)
+
+[node name="pillar_arch_3_57" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999997, -18.25, -19.5)
+
+[node name="pillar_arch_3_58" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 5.49999, -18.25, -15)
+
+[node name="pillar8" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -15)
+
+[node name="pillar9" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -19.5)
+
+[node name="pillar_arch_3_59" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -15)
+
+[node name="pillar_arch_3_60" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_61" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 9.99999, -18.25, -15)
+
+[node name="pillar10" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -15)
+
+[node name="pillar11" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_62" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -15)
+
+[node name="pillar_arch_3_63" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -19.5)
+
+[node name="pillar_arch_3_64" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 14.5, -18.25, -15)
+
+[node name="pillar_arch_ceiling2" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -1.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling3" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 3.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling4" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 7.75, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling5" parent="jail_tower/floor_3/lights/torch2" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 12.25, -18.25, -17.25)
+
+[node name="torch6" parent="jail_tower/floor_3/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -5.81679, 1.75, -6.5)
+
+[node name="pillar2" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -15)
+
+[node name="pillar3" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999996, -17.75, -15)
+
+[node name="pillar4" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -19.5)
+
+[node name="pillar5" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999997, -17.75, -19.5)
+
+[node name="pillar_arch_3_52" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -15)
+
+[node name="pillar_arch_3_55" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_53" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, -3.50001, -18.25, -15)
+
+[node name="pillar_arch_3_54" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 0.999992, -18.25, -15)
+
+[node name="pillar6" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -15)
+
+[node name="pillar7" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_56" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999996, -18.25, -15)
+
+[node name="pillar_arch_3_57" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999997, -18.25, -19.5)
+
+[node name="pillar_arch_3_58" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 5.49999, -18.25, -15)
+
+[node name="pillar8" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -15)
+
+[node name="pillar9" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -19.5)
+
+[node name="pillar_arch_3_59" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -15)
+
+[node name="pillar_arch_3_60" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_61" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 9.99999, -18.25, -15)
+
+[node name="pillar10" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -15)
+
+[node name="pillar11" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_62" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -15)
+
+[node name="pillar_arch_3_63" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -19.5)
+
+[node name="pillar_arch_3_64" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 14.5, -18.25, -15)
+
+[node name="pillar_arch_ceiling2" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -1.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling3" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 3.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling4" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 7.75, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling5" parent="jail_tower/floor_3/lights/torch6" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 12.25, -18.25, -17.25)
+
+[node name="torch3" parent="jail_tower/floor_3/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-1, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -1, -4.81679, 1.75, -3.75)
+
+[node name="pillar2" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -15)
+
+[node name="pillar3" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999996, -17.75, -15)
+
+[node name="pillar4" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -19.5)
+
+[node name="pillar5" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999997, -17.75, -19.5)
+
+[node name="pillar_arch_3_52" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -15)
+
+[node name="pillar_arch_3_55" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_53" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, -3.50001, -18.25, -15)
+
+[node name="pillar_arch_3_54" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 0.999992, -18.25, -15)
+
+[node name="pillar6" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -15)
+
+[node name="pillar7" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_56" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999996, -18.25, -15)
+
+[node name="pillar_arch_3_57" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999997, -18.25, -19.5)
+
+[node name="pillar_arch_3_58" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 5.49999, -18.25, -15)
+
+[node name="pillar8" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -15)
+
+[node name="pillar9" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -19.5)
+
+[node name="pillar_arch_3_59" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -15)
+
+[node name="pillar_arch_3_60" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_61" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 9.99999, -18.25, -15)
+
+[node name="pillar10" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -15)
+
+[node name="pillar11" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_62" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -15)
+
+[node name="pillar_arch_3_63" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -19.5)
+
+[node name="pillar_arch_3_64" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 14.5, -18.25, -15)
+
+[node name="pillar_arch_ceiling2" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -1.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling3" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 3.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling4" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 7.75, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling5" parent="jail_tower/floor_3/lights/torch3" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 12.25, -18.25, -17.25)
+
+[node name="torch5" parent="jail_tower/floor_3/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-1, 0, -8.74226e-08, 0, 1, 0, 8.74226e-08, 0, -1, -1.06679, 1.75, -3.75)
+
+[node name="pillar2" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -15)
+
+[node name="pillar3" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999996, -17.75, -15)
+
+[node name="pillar4" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -19.5)
+
+[node name="pillar5" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999997, -17.75, -19.5)
+
+[node name="pillar_arch_3_52" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -15)
+
+[node name="pillar_arch_3_55" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_53" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, -3.50001, -18.25, -15)
+
+[node name="pillar_arch_3_54" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 0.999992, -18.25, -15)
+
+[node name="pillar6" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -15)
+
+[node name="pillar7" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_56" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999996, -18.25, -15)
+
+[node name="pillar_arch_3_57" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999997, -18.25, -19.5)
+
+[node name="pillar_arch_3_58" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 5.49999, -18.25, -15)
+
+[node name="pillar8" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -15)
+
+[node name="pillar9" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -19.5)
+
+[node name="pillar_arch_3_59" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -15)
+
+[node name="pillar_arch_3_60" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_61" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 9.99999, -18.25, -15)
+
+[node name="pillar10" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -15)
+
+[node name="pillar11" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_62" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -15)
+
+[node name="pillar_arch_3_63" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -19.5)
+
+[node name="pillar_arch_3_64" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 14.5, -18.25, -15)
+
+[node name="pillar_arch_ceiling2" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -1.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling3" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 3.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling4" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 7.75, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling5" parent="jail_tower/floor_3/lights/torch5" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 12.25, -18.25, -17.25)
+
+[node name="torch4" parent="jail_tower/floor_3/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.5, -16, 0)
+
+[node name="pillar2" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -15)
+
+[node name="pillar3" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999996, -17.75, -15)
+
+[node name="pillar4" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -17.75, -19.5)
+
+[node name="pillar5" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999997, -17.75, -19.5)
+
+[node name="pillar_arch_3_52" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -15)
+
+[node name="pillar_arch_3_55" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -3.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_53" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, -3.50001, -18.25, -15)
+
+[node name="pillar_arch_3_54" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 0.999992, -18.25, -15)
+
+[node name="pillar6" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -15)
+
+[node name="pillar7" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_56" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999996, -18.25, -15)
+
+[node name="pillar_arch_3_57" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 0.999997, -18.25, -19.5)
+
+[node name="pillar_arch_3_58" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 5.49999, -18.25, -15)
+
+[node name="pillar8" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -15)
+
+[node name="pillar9" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -17.75, -19.5)
+
+[node name="pillar_arch_3_59" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -15)
+
+[node name="pillar_arch_3_60" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 5.5, -18.25, -19.5)
+
+[node name="pillar_arch_3_61" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 9.99999, -18.25, -15)
+
+[node name="pillar10" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -15)
+
+[node name="pillar11" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("53_avqk1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, -17.75, -19.5)
+
+[node name="pillar_arch_3_62" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -15)
+
+[node name="pillar_arch_3_63" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 10, -18.25, -19.5)
+
+[node name="pillar_arch_3_64" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("54_rcpnu")]
+transform = Transform3D(8.74228e-08, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -1, 8.74228e-08, -1.31134e-07, 14.5, -18.25, -15)
+
+[node name="pillar_arch_ceiling2" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, -1.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling3" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 3.25, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling4" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 7.75, -18.25, -17.25)
+
+[node name="pillar_arch_ceiling5" parent="jail_tower/floor_3/lights/torch4" instance=ExtResource("55_12uk5")]
+transform = Transform3D(1, -1.31134e-07, 1.31134e-07, 1.31134e-07, -4.37114e-08, -1, 1.31134e-07, 1, -4.37114e-08, 12.25, -18.25, -17.25)
+
+[node name="floor_2" type="Node3D" parent="jail_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+
+[node name="floor" type="Node3D" parent="jail_tower/floor_2"]
+
+[node name="floor_2x2" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_2x3" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_2x4" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="floor_2x5" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_2x6" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+
+[node name="floor_2x7" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="floor_2x8" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
+
+[node name="floor_2x18" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -12)
+
+[node name="floor_2x9" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
+
+[node name="floor_2x10" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="floor_2x11" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="floor_2x12" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="floor_2x13" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+
+[node name="floor_2x14" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="floor_2x15" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
+
+[node name="floor_2x16" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
+
+[node name="floor_2x17" parent="jail_tower/floor_2/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -12)
+
+[node name="stairs_2x9" parent="jail_tower/floor_2/floor" instance=ExtResource("30_qub2v")]
+transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 1.5, -4, -8)
+
+[node name="stairs_2x10" parent="jail_tower/floor_2/floor" instance=ExtResource("30_qub2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, -12, 0)
+
+[node name="ledge" type="CSGBox3D" parent="jail_tower/floor_2/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.650002, -0.15, -1.5)
+use_collision = true
+size = Vector3(0.3, 0.3, 15)
+
+[node name="walls" type="Node3D" parent="jail_tower/floor_2"]
+
+[node name="wall_4x4" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="wall_4x5" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2)
+
+[node name="wall_4x6" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
+
+[node name="wall_4x7" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, 0)
+
+[node name="wall_4x10" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, -12)
+
+[node name="wall_4x13" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, -8)
+
+[node name="wall_4x16" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, -4)
+
+[node name="wall_4x18" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -4)
+
+[node name="wall_4x19" parent="jail_tower/floor_2/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -8)
+
+[node name="wall_2x4" parent="jail_tower/floor_2/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+
+[node name="wall_2x6" parent="jail_tower/floor_2/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
+
+[node name="wall_2x8" parent="jail_tower/floor_2/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -6)
+
+[node name="wall_2x7" parent="jail_tower/floor_2/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0, -6)
+
+[node name="wall_2x9" parent="jail_tower/floor_2/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -6)
+
+[node name="wall_2x10" parent="jail_tower/floor_2/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 0, -7)
+
+[node name="wall_2x11" parent="jail_tower/floor_2/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 0, -13)
+
+[node name="wall_1x8" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8, 0, -5)
+
+[node name="wall_1x10" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.5, 0, -5)
+
+[node name="wall_1x9" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 0, -5.5)
+
+[node name="wall_1x13" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.505981, 0.0118036, -13.4981)
+
+[node name="wall_1x14" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.5, 0, -10.5)
+
+[node name="wall_1x11" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, 3, -4)
+
+[node name="wall_1x12" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7, -3, -4)
+
+[node name="cooking_pot2" parent="jail_tower/floor_2/walls" instance=ExtResource("53_a1lrl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.75, 0, -0.5)
+
+[node name="cooking_pot3" parent="jail_tower/floor_2/walls" instance=ExtResource("53_a1lrl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0, 0.75)
+
+[node name="cooking_pot4" parent="jail_tower/floor_2/walls" instance=ExtResource("53_a1lrl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 0, 0.75)
+
+[node name="brass_door" parent="jail_tower/floor_2/walls" instance=ExtResource("16_64n3p")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -12)
+
+[node name="spiral_stairs" parent="jail_tower/floor_2/walls" instance=ExtResource("53_jw3wx")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -12.75, 3.5, -20.25)
+
+[node name="spiral_stairs2" parent="jail_tower/floor_2/walls" instance=ExtResource("53_jw3wx")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -12.75, -0.5, -20.25)
+
+[node name="spiral_stairs3" parent="jail_tower/floor_2/walls" instance=ExtResource("53_jw3wx")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -12.75, -4.5, -20.25)
+
+[node name="spiral_stairs4" parent="jail_tower/floor_2/walls" instance=ExtResource("53_jw3wx")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -12.75, -8.5, -20.25)
+
+[node name="spiral_stairs5" parent="jail_tower/floor_2/walls" instance=ExtResource("53_jw3wx")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -12.75, -12.5, -20.25)
+
+[node name="spiral_middle2" parent="jail_tower/floor_2/walls" instance=ExtResource("54_dhbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, 0, -20.25)
+
+[node name="spiral_middle3" parent="jail_tower/floor_2/walls" instance=ExtResource("54_dhbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, 4, -20.25)
+
+[node name="spiral_middle7" parent="jail_tower/floor_2/walls" instance=ExtResource("54_dhbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, 8, -20.25)
+
+[node name="spiral_middle4" parent="jail_tower/floor_2/walls" instance=ExtResource("54_dhbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, -4, -20.25)
+
+[node name="spiral_middle5" parent="jail_tower/floor_2/walls" instance=ExtResource("54_dhbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, -8, -20.25)
+
+[node name="spiral_middle6" parent="jail_tower/floor_2/walls" instance=ExtResource("54_dhbky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, -12, -20.25)
+
+[node name="spiral_wall3" parent="jail_tower/floor_2/walls" instance=ExtResource("54_uqv46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, 8, -20.25)
+
+[node name="spiral_wall5" parent="jail_tower/floor_2/walls" instance=ExtResource("54_uqv46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, -8, -20.25)
+
+[node name="spiral_wall_open" parent="jail_tower/floor_2/walls" instance=ExtResource("55_auld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, 0, -20.25)
+
+[node name="spiral_wall_open2" parent="jail_tower/floor_2/walls" instance=ExtResource("55_auld2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.75, -12, -20.25)
+
+[node name="spiral_wall_windows" parent="jail_tower/floor_2/walls" instance=ExtResource("56_wrgx7")]
+transform = Transform3D(-1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, -12.75, -4, -20.25)
+
+[node name="spiral_wall_windows2" parent="jail_tower/floor_2/walls" instance=ExtResource("56_wrgx7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.75, 4, -20.25)
+
+[node name="window_2x8" parent="jail_tower/floor_2/walls" instance=ExtResource("11_e1dba")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -3, 0, -14.5)
+
+[node name="wall_1x4" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1.5)
+
+[node name="wall_1x5" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -1.5)
+
+[node name="wall_1x6" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 0, -14)
+
+[node name="wall_1x7" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 0, -14)
+
+[node name="wall_1x15" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.5, 0, -14)
+
+[node name="wall_1x16" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5, 0, -14)
+
+[node name="wall_1x17" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, 0, -14)
+
+[node name="wall_1x18" parent="jail_tower/floor_2/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.5, 0, -14)
+
+[node name="window_2x9" parent="jail_tower/floor_2/walls" instance=ExtResource("11_e1dba")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, 0)
+
+[node name="lights" type="Node3D" parent="jail_tower/floor_2"]
+
+[node name="LightSwitch3" parent="jail_tower/floor_2/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -1, 1.75, -6.2)
+
+[node name="LightSwitch4" parent="jail_tower/floor_2/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -5.5, 1.75, -6.2)
+
+[node name="LightSwitch5" parent="jail_tower/floor_2/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-1, 2.26267e-08, -8.44439e-08, 0, 0.965926, 0.258819, 8.74228e-08, 0.258819, -0.965926, -5.5, 1.75, -5.30789)
+
+[node name="LightSwitch6" parent="jail_tower/floor_2/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-1, 2.26267e-08, -8.44439e-08, 0, 0.965926, 0.258819, 8.74228e-08, 0.258819, -0.965926, -13, 1.75, -5.30789)
+
+[node name="LightSwitch8" parent="jail_tower/floor_2/lights" instance=ExtResource("58_bf0i5")]
+transform = Transform3D(1.31134e-07, 0.258819, -0.965926, -1.77636e-15, 0.965926, 0.258819, 1, -3.394e-08, 1.26666e-07, -13.8085, 1.5, -10.0579)
+
+[node name="brass_key_pickup" parent="jail_tower/floor_2" instance=ExtResource("17_6sp6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -2.5)
+
+[node name="gold_key_pickup" parent="jail_tower/floor_2" instance=ExtResource("18_4tmea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.25, 0)
+
+[node name="silver_key_pickup" parent="jail_tower/floor_2" instance=ExtResource("19_3dd6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 1, -1.5)
+
+[node name="floor_1" type="Node3D" parent="jail_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+
+[node name="floor" type="Node3D" parent="jail_tower/floor_1"]
+
+[node name="floor_2x2" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="floor_2x3" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_2x4" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="floor_2x5" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_2x6" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+
+[node name="floor_2x7" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="floor_2x8" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
+
+[node name="floor_2x9" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
+
+[node name="floor_2x10" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="floor_2x11" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="floor_2x12" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="floor_2x13" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+
+[node name="floor_2x14" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="floor_2x15" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
+
+[node name="floor_2x16" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
+
+[node name="floor_2x17" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -12)
+
+[node name="floor_2x18" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, 0)
+
+[node name="floor_2x22" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, 4)
+
+[node name="floor_2x23" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 4)
+
+[node name="floor_2x24" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 4)
+
+[node name="floor_2x19" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -4)
+
+[node name="floor_2x20" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -8)
+
+[node name="floor_2x21" parent="jail_tower/floor_1/floor" instance=ExtResource("9_4xxlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -12)
+
+[node name="walls" type="Node3D" parent="jail_tower/floor_1"]
+
+[node name="wall_4x5" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2)
+
+[node name="wall_4x6" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
+
+[node name="wall_4x7" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, 0)
+
+[node name="wall_4x10" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, -12)
+
+[node name="wall_4x13" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, -8)
+
+[node name="wall_4x16" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 0, -4)
+
+[node name="wall_4x15" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, 0)
+
+[node name="wall_4x17" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -12)
+
+[node name="wall_4x18" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -4)
+
+[node name="wall_4x19" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -8)
+
+[node name="wall_4x11" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12, 0, -14)
+
+[node name="wall_4x12" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 0, -14)
+
+[node name="wall_4x14" parent="jail_tower/floor_1/walls" instance=ExtResource("8_aly6r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8, 0, -14)
+
+[node name="wall_2x4" parent="jail_tower/floor_1/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+
+[node name="wall_2x5" parent="jail_tower/floor_1/walls" instance=ExtResource("10_rwgky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -14.5)
+
+[node name="brass_door4" parent="jail_tower/floor_1/walls" instance=ExtResource("48_iygu3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 2.5)
+
+[node name="wall_1x4" parent="jail_tower/floor_1/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2)
+
+[node name="wall_1x5" parent="jail_tower/floor_1/walls" instance=ExtResource("11_h1uc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 2)
+
+[node name="elevators" type="Node3D" parent="jail_tower"]
+
+[node name="elevator_1" type="CSGBox3D" parent="jail_tower/elevators"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 7.75, 4.25)
+use_collision = true
+size = Vector3(3.5, 0.5, 3.5)
+script = ExtResource("39_ewdaq")
+levels = Array[float]([7.75, 15.75, 19.75])
+
+[node name="elevator_1_switch_1" type="Area3D" parent="jail_tower/elevators/elevator_1" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.25, -1)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("..")
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/elevators/elevator_1/elevator_1_switch_1"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/elevators/elevator_1/elevator_1_switch_1"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="elevator_1_switch_2" type="Area3D" parent="jail_tower/elevators/elevator_1" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.5, -1)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("..")
+floor_index = 1
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/elevators/elevator_1/elevator_1_switch_2"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/elevators/elevator_1/elevator_1_switch_2"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="elevator_1_switch_3" type="Area3D" parent="jail_tower/elevators/elevator_1" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.75, -1)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("..")
+floor_index = 2
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/elevators/elevator_1/elevator_1_switch_3"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/elevators/elevator_1/elevator_1_switch_3"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="elevator_1_switch_1" type="Area3D" parent="jail_tower/elevators" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 8.875, 2)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("../elevator_1")
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/elevators/elevator_1_switch_1"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/elevators/elevator_1_switch_1"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="elevator_1_switch_2" type="Area3D" parent="jail_tower/elevators" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 16.875, 2)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("../elevator_1")
+floor_index = 1
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/elevators/elevator_1_switch_2"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/elevators/elevator_1_switch_2"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="elevator_1_switch_3" type="Area3D" parent="jail_tower/elevators" node_paths=PackedStringArray("elevator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 21.125, 5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("51_tk2ct")
+elevator = NodePath("../elevator_1")
+floor_index = 2
+_animate_position = false
+_animate_rotation = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jail_tower/elevators/elevator_1_switch_3"]
+shape = SubResource("BoxShape3D_va0n5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jail_tower/elevators/elevator_1_switch_3"]
+mesh = SubResource("BoxMesh_d4y0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
+
+[node name="torch" parent="." instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -76.8966, 2, -2.5)
+
+[node name="torch2" parent="." instance=ExtResource("58_bf0i5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80.2503, 2, -11.5)

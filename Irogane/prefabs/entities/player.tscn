@@ -1,4 +1,4 @@
-[gd_scene load_steps=181 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=185 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -74,6 +74,7 @@
 [ext_resource type="Script" path="res://scripts/weapons/telescope.gd" id="56_it81t"]
 [ext_resource type="Script" path="res://scripts/weapons/coin.gd" id="57_ehulk"]
 [ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
+[ext_resource type="Script" path="res://scripts/weapons/slingshot.gd" id="59_garyl"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -374,6 +375,15 @@ size = Vector3(0.04, 0.3, 0.02)
 
 [sub_resource type="BoxMesh" id="BoxMesh_33nmg"]
 size = Vector3(0.03, 0.2, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8hj3"]
+size = Vector3(0.05, 0.2, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uiu3t"]
+size = Vector3(0.05, 0.2, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lecuj"]
+size = Vector3(0.1, 0.05, 0.01)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -1062,6 +1072,7 @@ bus = &"Sound"
 script = ExtResource("46_wqxcu")
 
 [node name="pocket_mirror" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
 script = ExtResource("44_5spk0")
 
 [node name="left_pos" type="Node3D" parent="head/main_camera/simple_weapon_manager/pocket_mirror"]
@@ -1160,6 +1171,76 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3.2983
 material_override = SubResource("StandardMaterial3D_33ose")
 mesh = SubResource("BoxMesh_33nmg")
 skeleton = NodePath("../..")
+
+[node name="slingshot" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+script = ExtResource("59_garyl")
+
+[node name="visual" type="Node3D" parent="head/main_camera/simple_weapon_manager/slingshot"]
+transform = Transform3D(-4.37114e-08, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, 1.49502e-08, -4.10753e-08, 0.25, -0.35, -0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual"]
+mesh = SubResource("BoxMesh_q8hj3")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.1, 0.054)
+mesh = SubResource("BoxMesh_uiu3t")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.1, -0.049)
+mesh = SubResource("BoxMesh_uiu3t")
+skeleton = NodePath("../..")
+
+[node name="visual_sling_min" type="Node3D" parent="head/main_camera/simple_weapon_manager/slingshot"]
+transform = Transform3D(-4.37114e-08, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, 1.49502e-08, -4.10753e-08, 0.25, -0.35, -0.5)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual_sling_min"]
+mesh = SubResource("BoxMesh_q8hj3")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual_sling_min"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.1, 0.054)
+mesh = SubResource("BoxMesh_uiu3t")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual_sling_min"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.1, -0.049)
+mesh = SubResource("BoxMesh_uiu3t")
+skeleton = NodePath("../..")
+
+[node name="visual_sling_max" type="Node3D" parent="head/main_camera/simple_weapon_manager/slingshot"]
+transform = Transform3D(-4.37114e-08, 0.573576, -0.819152, 0, 0.819152, 0.573576, 1, 2.50718e-08, -3.58063e-08, -0.1, -0.125, -0.725)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual_sling_max"]
+mesh = SubResource("BoxMesh_q8hj3")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual_sling_max"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.1, 0.054)
+mesh = SubResource("BoxMesh_uiu3t")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot/visual_sling_max"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.1, -0.049)
+mesh = SubResource("BoxMesh_uiu3t")
+skeleton = NodePath("../..")
+
+[node name="visual_pull" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot"]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0.275, -0.25, -0.45)
+mesh = SubResource("BoxMesh_lecuj")
+
+[node name="visual_pull_min" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot"]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0.275, -0.25, -0.45)
+visible = false
+mesh = SubResource("BoxMesh_lecuj")
+
+[node name="visual_pull_max" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/slingshot"]
+transform = Transform3D(0.97437, -0.224951, 0, 0.224951, 0.97437, 0, 0, 0, 1, 0.05, -0.075, -0.1)
+visible = false
+mesh = SubResource("BoxMesh_lecuj")
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
 target_position = Vector3(0, 0, -1)
