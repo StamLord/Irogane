@@ -5,6 +5,8 @@ class_name Elevator
 @export var levels : Array[float]
 @export var speed = 4.0
 @export var local_space : bool = false
+@export var activate_switches : Array[Switch]
+var last_active_switch = null
 
 var target_floor = null
 
@@ -30,6 +32,14 @@ func _process(delta):
 	
 	if abs(vertical_movement) < 0.1:
 		reached_floor.emit(target_floor)
+		
+		if last_active_switch != null:
+			last_active_switch.use(null)
+		
+		if activate_switches.size() > target_floor:
+			activate_switches[target_floor].use(null)
+			last_active_switch = activate_switches[target_floor]
+		
 		target_floor = null
 	
 

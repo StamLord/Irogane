@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://dm2amhpa727rt"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_mving"]
+[ext_resource type="Script" path="res://scripts/interactive/door_audio_player.gd" id="4_tb67n"]
+[ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="5_qrlf8"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_vlmip"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jp0e1"]
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a2vcp"]
+size = Vector3(0.1, 1, 0.1)
+
+[node name="elevator_door" type="Area3D" node_paths=PackedStringArray("mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0.25)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_mving")
+on_text = "Close"
+off_position = Vector3(0.5, 0.95, 0.25)
+on_position = Vector3(0.5, 0.95, 0.25)
+off_rotation = Vector3(0, 90, 0)
+animation_time = 0.5
+interaction_text = "Open"
+mesh = NodePath("")
+
+[node name="door_audio" type="Node3D" parent="." node_paths=PackedStringArray("switch")]
+script = ExtResource("4_tb67n")
+switch = NodePath("..")
+
+[node name="audio_player" type="AudioStreamPlayer3D" parent="door_audio"]
+stream = SubResource("AudioStreamPolyphonic_vlmip")
+max_polyphony = 2
+bus = &"Sound"
+script = ExtResource("5_qrlf8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.05, 0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("BoxShape3D_jp0e1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.35, 0.6, 0.25)
+mesh = SubResource("BoxMesh_a2vcp")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, 0, 1.1, 0.25)
+mesh = SubResource("BoxMesh_a2vcp")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, 0, 0.1, 0.25)
+mesh = SubResource("BoxMesh_a2vcp")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.1, 0.6, 0.25)
+mesh = SubResource("BoxMesh_a2vcp")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.15, 0.6, 0.25)
+mesh = SubResource("BoxMesh_a2vcp")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.4, 0.6, 0.25)
+mesh = SubResource("BoxMesh_a2vcp")
+skeleton = NodePath("")

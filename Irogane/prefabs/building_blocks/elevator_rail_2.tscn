@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://oxj7pww1k81m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ph3c"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y555j"]
+_surfaces = [{
+"aabb": AABB(-0.825, 0.99, 0.825, 1.65, 0.11001, 0.15),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray(5, 0, 2, 0, 6, 0, 5, 0, 0, 0, 2, 0, 6, 0, 3, 0, 7, 0, 6, 0, 2, 0, 3, 0, 7, 0, 1, 0, 4, 0, 7, 0, 3, 0, 1, 0, 4, 0, 0, 0, 5, 0, 4, 0, 1, 0, 0, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 249, 255, 0, 0, 0, 0, 0, 0, 249, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 248, 255, 255, 255, 0, 0, 255, 255, 248, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cdfvy"]
+resource_name = "elevator_rail_2_Cube_064"
+_surfaces = [{
+"aabb": AABB(-0.825, 0.99, 0.825, 1.65, 0.11001, 0.15),
+"attribute_data": PackedByteArray(153, 121, 255, 127, 153, 121, 255, 127, 153, 121, 255, 63, 153, 121, 255, 63, 9, 119, 255, 127, 9, 119, 255, 127, 9, 119, 255, 63, 9, 119, 255, 63, 101, 118, 0, 0, 101, 118, 255, 255, 101, 118, 255, 191, 101, 118, 255, 191, 40, 116, 255, 191, 40, 116, 255, 191, 40, 116, 255, 255, 40, 116, 0, 0),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray(10, 0, 5, 0, 13, 0, 10, 0, 0, 0, 5, 0, 12, 0, 6, 0, 14, 0, 12, 0, 4, 0, 6, 0, 15, 0, 2, 0, 8, 0, 15, 0, 7, 0, 2, 0, 9, 0, 1, 0, 11, 0, 9, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_4ph3c"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(0, 0, 249, 255, 0, 0, 0, 0, 0, 0, 249, 255, 0, 0, 86, 248, 0, 0, 249, 255, 255, 255, 255, 63, 0, 0, 249, 255, 255, 255, 86, 248, 0, 0, 0, 0, 0, 0, 156, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 156, 2, 0, 0, 0, 0, 255, 255, 255, 63, 255, 255, 248, 255, 255, 255, 255, 63, 255, 255, 248, 255, 255, 255, 86, 248, 255, 255, 248, 255, 0, 0, 0, 0, 255, 255, 248, 255, 0, 0, 156, 2, 255, 255, 0, 0, 0, 0, 156, 2, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 86, 248, 255, 255, 0, 0, 255, 255, 255, 63, 255, 191, 255, 191, 3, 196, 8, 8, 255, 255, 255, 255, 3, 196, 8, 8, 40, 125, 107, 65, 255, 191, 255, 191, 40, 125, 107, 65, 255, 255, 255, 255, 255, 255, 255, 255, 3, 196, 8, 8, 255, 191, 255, 191, 214, 130, 147, 190, 40, 125, 107, 65, 255, 191, 255, 191, 251, 59, 246, 247, 255, 255, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_y555j")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_onqdm"]
+size = Vector3(1.65, 0.11, 0.15)
+
+[node name="elevator_rail_2" type="StaticBody3D"]
+
+[node name="elevator_rail_2" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_cdfvy")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.045, 0.9)
+shape = SubResource("BoxShape3D_onqdm")
