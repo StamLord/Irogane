@@ -84,7 +84,8 @@ ambient_light_sky_contribution = 0.08
 reflected_light_source = 1
 fog_enabled = true
 fog_light_color = Color(0.141176, 0.25098, 0.427451, 1)
-fog_sky_affect = 0.0
+fog_density = 0.02
+fog_sky_affect = 0.25
 volumetric_fog_density = 0.0245
 volumetric_fog_sky_affect = 0.0
 
@@ -9957,7 +9958,7 @@ node_b = NodePath("../RigidBody3D")
 params/bias = 0.99
 
 [node name="player" parent="." instance=ExtResource("1_yf7s4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -93, 13.5, -4.25)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -65.5, 61, -59)
 
 [node name="game_ui" parent="." instance=ExtResource("3_0m8c0")]
 

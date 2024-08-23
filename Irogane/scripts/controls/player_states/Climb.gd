@@ -8,6 +8,7 @@ class_name Climb
 @onready var head_check_2 = %head_check_2
 @onready var wall_check = %wall_check
 @onready var stats = %stats
+@onready var climb_check = %climb_check
 
 # Variables
 @export var speed = 1.5;
@@ -180,7 +181,7 @@ func update_wall_data(query_result):
 	
 
 func wall_query(body : Node3D, position : Vector3, ray_direction : Vector3):
-	var query = PhysicsRayQueryParameters3D.create(position, ray_direction)
+	var query = PhysicsRayQueryParameters3D.create(position, ray_direction, climb_check.collision_mask)
 	var space_state = body.get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(query)
 	return result

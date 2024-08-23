@@ -1118,11 +1118,11 @@ script = ExtResource("23_yw3sv")
 resolution = 4
 rope_width = 0.03
 
-[node name="start_target" type="Marker3D" parent="head/main_camera/simple_weapon_manager/rope/Rope"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+[node name="start_target" type="Node3D" parent="head/main_camera/simple_weapon_manager/rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 
-[node name="end_target" type="Marker3D" parent="head/main_camera/simple_weapon_manager/rope/Rope"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -1)
+[node name="end_target" type="Node3D" parent="head/main_camera/simple_weapon_manager/rope"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 top_level = true
 
 [node name="skill_zone" type="Decal" parent="head/main_camera/simple_weapon_manager"]
@@ -1243,7 +1243,8 @@ visible = false
 mesh = SubResource("BoxMesh_lecuj")
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -8)
+collision_mask = 256
 
 [node name="grappling_decal" type="Decal" parent="head/main_camera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.889794, -0.0930605)

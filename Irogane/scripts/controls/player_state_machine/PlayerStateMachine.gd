@@ -18,7 +18,7 @@ var last_speed = 0
 var last_body_velocity
 var jump_direction = Vector3.UP
 
-var rope_object = null
+var grapple_object = null
 
 signal on_state_enter(state_name)
 signal on_state_exit(state_name)
@@ -120,13 +120,13 @@ func debug_push_back(args : Array):
 	
 
 func start_roped(rope_node):
-	rope_object = rope_node
+	grapple_object = rope_node
 	
 
 func end_roped():
-	if rope_object != null:
-		rope_object.end_rope()
-		rope_object = null
+	if grapple_object != null:
+		grapple_object.end_rope()
+		grapple_object = null
 	
 
 func save_data():

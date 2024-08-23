@@ -1,7 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwdvunqnwvklv"]
+[gd_scene load_steps=17 format=3 uid="uid://dwdvunqnwvklv"]
 
 [ext_resource type="PackedScene" uid="uid://djkvp8nrxp5l3" path="res://prefabs/building_blocks/stairs.tscn" id="1_f8dfe"]
+[ext_resource type="PackedScene" uid="uid://b5gh2vxvkae04" path="res://prefabs/building_blocks/vines_4x2.tscn" id="1_hislo"]
+[ext_resource type="PackedScene" uid="uid://dcgyhjepq4vs7" path="res://prefabs/building_blocks/grapple_point.tscn" id="1_kb7gn"]
+[ext_resource type="PackedScene" uid="uid://bgd321b8wekbt" path="res://prefabs/building_blocks/vines_4x4.tscn" id="1_twyj3"]
 [ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch.tscn" id="2_4i88c"]
+[ext_resource type="PackedScene" uid="uid://vh6xcj0em6v7" path="res://prefabs/building_blocks/pipe_1_end.tscn" id="5_nrpwu"]
+[ext_resource type="PackedScene" uid="uid://dgjt41mvb4tff" path="res://prefabs/building_blocks/pipe_1.tscn" id="6_u0axl"]
+[ext_resource type="PackedScene" uid="uid://8d45gc3ax0gg" path="res://prefabs/building_blocks/pipe_1_corner.tscn" id="7_c8f37"]
+[ext_resource type="PackedScene" uid="uid://bgnmfnnw8efym" path="res://prefabs/building_blocks/pipe_1_bypass.tscn" id="8_hcjgr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4g7fi"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1yxk"]
+albedo_color = Color(0.92549, 0.764706, 0, 1)
+metallic = 1.0
+emission = Color(0.870588, 0.847059, 0, 1)
+emission_energy_multiplier = 0.1
+
+[sub_resource type="TorusMesh" id="TorusMesh_oquqr"]
+inner_radius = 0.25
+outer_radius = 0.5
+rings = 8
+ring_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nf0gh"]
+albedo_color = Color(0.92549, 0.764706, 0, 1)
+metallic = 1.0
+emission = Color(0.870588, 0.847059, 0, 1)
+emission_energy_multiplier = 0.1
+
+[sub_resource type="TorusMesh" id="TorusMesh_1v3pu"]
+inner_radius = 0.25
+outer_radius = 0.5
+rings = 8
+ring_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2ae5"]
+albedo_color = Color(0.92549, 0.764706, 0, 1)
+metallic = 1.0
+emission = Color(0.870588, 0.847059, 0, 1)
+emission_energy_multiplier = 0.1
+
+[sub_resource type="TorusMesh" id="TorusMesh_lud6l"]
+inner_radius = 0.25
+outer_radius = 0.5
+rings = 8
+ring_segments = 6
 
 [node name="JailTower" type="Node3D"]
 
@@ -80,19 +126,57 @@ use_collision = true
 size = Vector3(12, 1, 4)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 29.375, 32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 29.375, 32)
 use_collision = true
-size = Vector3(6, 10.75, 16)
+size = Vector3(16, 10.75, 16)
 
-[node name="CSGBox3D34" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 29.375, 33.75)
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+operation = 2
 use_collision = true
-size = Vector3(4, 10.75, 12.5)
+size = Vector3(15, 6.75, 11)
 
-[node name="CSGBox3D33" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 29.375, 32)
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -5.5)
+operation = 2
 use_collision = true
-size = Vector3(6, 10.75, 16)
+size = Vector3(5, 6.75, 4)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -5.5)
+operation = 2
+use_collision = true
+size = Vector3(5, 6.75, 4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGBox3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.75)
+operation = 2
+use_collision = true
+size = Vector3(4, 10.75, 4.5)
+
+[node name="grapple_point" parent="." instance=ExtResource("1_kb7gn")]
+
+[node name="grapple_point2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -21.75, 59, 32)
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grapple_point2"]
+shape = SubResource("BoxShape3D_4g7fi")
+
+[node name="mesh" type="MeshInstance3D" parent="grapple_point2"]
+material_override = SubResource("StandardMaterial3D_c1yxk")
+mesh = SubResource("TorusMesh_oquqr")
+
+[node name="grapple_point3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -21.75, 59, 37.25)
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grapple_point3"]
+shape = SubResource("BoxShape3D_4g7fi")
+
+[node name="mesh" type="MeshInstance3D" parent="grapple_point3"]
+material_override = SubResource("StandardMaterial3D_nf0gh")
+mesh = SubResource("TorusMesh_1v3pu")
 
 [node name="big_tower" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 61.75, 32)
@@ -177,8 +261,26 @@ size = Vector3(5, 0.5, 0.75)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -9.25, 8.375)
 size = Vector3(5, 0.5, 0.75)
 
+[node name="door" type="CSGBox3D" parent="big_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25, -21.75, -5)
+operation = 2
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="floor" type="CSGBox3D" parent="big_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -21, 0)
+operation = 2
+use_collision = true
+size = Vector3(15.25, 3.5, 15)
+
+[node name="floor2" type="CSGBox3D" parent="big_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, -4.125, 0)
+operation = 2
+use_collision = true
+size = Vector3(15.25, 29.25, 15)
+
 [node name="CSGBox3D14" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 55.75, 32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 59.75, 32)
 use_collision = true
 size = Vector3(4, 1, 13)
 
@@ -193,6 +295,12 @@ operation = 2
 use_collision = true
 size = Vector3(2.75, 8, 2)
 
+[node name="CSGBox3D78" type="CSGBox3D" parent="CSGBox3D78"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.75, 0)
+operation = 2
+use_collision = true
+size = Vector3(23, 7.5, 23)
+
 [node name="CSGBox3D7" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 10, 33.875)
 use_collision = true
@@ -203,6 +311,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 7, -5.75)
 operation = 2
 use_collision = true
 size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="CSGBox3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.625, 0)
+operation = 2
+use_collision = true
+size = Vector3(23, 7.25, 11)
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="CSGBox3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.375, 3.75, -5.5)
+operation = 2
+use_collision = true
+size = Vector3(11.25, 3.5, 1)
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.75, 14, 26)
@@ -215,20 +335,11 @@ operation = 2
 use_collision = true
 size = Vector3(1, 2, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.75, 28.875, -12)
+[node name="CSGBox3D20" type="CSGBox3D" parent="CSGBox3D19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.5)
+operation = 2
 use_collision = true
-size = Vector3(12.5, 9.75, 16)
-
-[node name="CSGBox3D30" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.75, 28.875, -12)
-use_collision = true
-size = Vector3(1.5, 9.75, 16)
-
-[node name="CSGBox3D31" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 28.875, -14.875)
-use_collision = true
-size = Vector3(2, 9.75, 10.25)
+size = Vector3(12, 3.5, 4)
 
 [node name="small_tower" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 48.875, -12)
@@ -279,6 +390,30 @@ size = Vector3(1, 8, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, -11.25, -3.75)
 size = Vector3(1, 8, 1)
 
+[node name="CSGBox3D3" type="CSGBox3D" parent="small_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -20, 0)
+use_collision = true
+size = Vector3(12.5, 9.75, 16)
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="small_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, -20, 0)
+use_collision = true
+size = Vector3(1.5, 9.75, 16)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="small_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -20, -2.875)
+use_collision = true
+size = Vector3(2, 9.75, 10.25)
+
+[node name="vines_4x6" parent="small_tower" instance=ExtResource("1_hislo")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, -16.9, -7.75)
+
+[node name="vines_4x4" parent="small_tower" instance=ExtResource("1_twyj3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, -24.9, -7.75)
+
+[node name="vines_4x5" parent="small_tower" instance=ExtResource("1_twyj3")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 6, -20.9, -7.75)
+
 [node name="CSGBox3D35" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 23.5, -22)
 use_collision = true
@@ -309,6 +444,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 24.5, -10)
 use_collision = true
 size = Vector3(0.5, 1, 20)
 
+[node name="CSGBox3D94" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.75, 24.5, -16.125)
+use_collision = true
+size = Vector3(0.5, 1, 14.75)
+
 [node name="CSGBox3D54" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 24.5, 39.5)
 use_collision = true
@@ -330,9 +470,9 @@ use_collision = true
 size = Vector3(0.5, 1, 22.25)
 
 [node name="CSGBox3D80" type="CSGBox3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 24.5, 28.125)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 24.5, 25.875)
 use_collision = true
-size = Vector3(0.5, 1, 16.25)
+size = Vector3(0.5, 1, 11.75)
 
 [node name="CSGBox3D97" type="CSGBox3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 24.5, 41.375)
@@ -345,9 +485,9 @@ use_collision = true
 size = Vector3(0.5, 1, 14.75)
 
 [node name="CSGBox3D58" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.25, 24.5, 36)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 24.5, 36)
 use_collision = true
-size = Vector3(0.5, 1, 20.5)
+size = Vector3(0.5, 1, 21)
 
 [node name="CSGBox3D37" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 22, 37.75)
@@ -360,6 +500,12 @@ operation = 2
 use_collision = true
 size = Vector3(1, 2, 1)
 
+[node name="CSGBox3D37" type="CSGBox3D" parent="CSGBox3D37"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+operation = 2
+use_collision = true
+size = Vector3(3, 3.5, 23)
+
 [node name="CSGBox3D68" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22, 22, 31.875)
 use_collision = true
@@ -371,6 +517,12 @@ operation = 2
 use_collision = true
 size = Vector3(1, 2, 1)
 
+[node name="CSGBox3D68" type="CSGBox3D" parent="CSGBox3D68"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.624998, 0, 0)
+operation = 2
+use_collision = true
+size = Vector3(8, 4, 3)
+
 [node name="CSGBox3D36" type="CSGBox3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 22, 23.5, 7.875)
 use_collision = true
@@ -380,7 +532,7 @@ size = Vector3(4, 1, 55.75)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 20, 34.75)
 
 [node name="stairs_2x12" parent="." instance=ExtResource("1_f8dfe")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18.25, 20, 34.75)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, 20, 34.75)
 
 [node name="stairs_2x5" parent="." instance=ExtResource("1_f8dfe")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 20, 32.75)
@@ -623,25 +775,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 6, -23.5)
 use_collision = true
 size = Vector3(1, 12, 1)
 
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D38"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D38/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
+
 [node name="CSGBox3D40" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -23.5)
 use_collision = true
 size = Vector3(1, 12, 1)
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D40"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D40/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
 
 [node name="CSGBox3D41" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.75, 6, -23.5)
 use_collision = true
 size = Vector3(1, 12, 1)
 
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D41"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D41/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
+
 [node name="CSGBox3D43" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.875, 6, -23.5)
 use_collision = true
 size = Vector3(1, 12, 1)
 
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D43"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D43/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
+
 [node name="CSGBox3D46" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.625, 6, -23.5)
 use_collision = true
 size = Vector3(1, 12, 1)
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D46"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D46/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
 
 [node name="CSGBox3D47" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 19.5, -23.5)
@@ -714,47 +901,109 @@ size = Vector3(1, 7, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.875, 6, -23.5)
 size = Vector3(1, 12, 1)
 
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D44"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D44/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
+
 [node name="CSGBox3D45" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.625, 6, -23.5)
 size = Vector3(1, 12, 1)
+
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D45"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D45/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
 
 [node name="CSGBox3D42" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.75, 6, -23.5)
 size = Vector3(1, 12, 1)
 
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D42"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D42/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
+
 [node name="CSGBox3D39" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 6, -23.5)
 size = Vector3(1, 12, 1)
 
+[node name="CSGBox3D95" type="CSGBox3D" parent="CSGBox3D39"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.375, 0)
+size = Vector3(2, 0.5, 2)
+
+[node name="grapple_point" parent="CSGBox3D39/CSGBox3D95" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.674736, 0.75)
+
 [node name="torch" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.80528, 25.75, -5.75)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.80528, 25.75, -5.75)
+
+[node name="torch10" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -9.5, 25.75, -3.801)
+
+[node name="torch12" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.5, 25.75, -3.801)
+
+[node name="torch13" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -17.5, 25.75, -3.801)
+
+[node name="torch14" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, 18, 0.199)
+
+[node name="torch15" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -16.5, 18, 0.199)
 
 [node name="torch2" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55528, 25.75, 22.811)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55528, 25.75, 23.811)
 
 [node name="torch9" parent="." instance=ExtResource("2_4i88c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1947, 13.75, 23.811)
 
 [node name="torch4" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.30528, 25.75, 22.811)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.30528, 25.75, 23.811)
 
 [node name="torch6" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8053, 25.75, 22.811)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8053, 25.75, 23.811)
 
 [node name="torch8" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5553, 25.75, 22.811)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5553, 25.75, 23.811)
 
 [node name="torch3" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.80528, 25.75, -10.25)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.80528, 25.75, -10.25)
 
 [node name="torch5" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.80528, 25.75, -14.75)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.80528, 25.75, -14.75)
 
 [node name="torch7" parent="." instance=ExtResource("2_4i88c")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.80528, 25.75, -19)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.80528, 25.75, -19)
+
+[node name="torch11" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -3, 2, -16.189)
+
+[node name="torch19" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -9, 2, -16.189)
+
+[node name="torch20" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -15, 2, -16.189)
+
+[node name="torch16" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 3, 2, -16.189)
+
+[node name="torch17" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 9, 2, -16.189)
+
+[node name="torch18" parent="." instance=ExtResource("2_4i88c")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 15, 2, -16.189)
 
 [node name="bridge" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -12, 42.25, 10)
+use_collision = true
 size = Vector3(15, 4, 28)
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="bridge"]
@@ -779,17 +1028,8 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 9, 1.7
 use_collision = true
 size = Vector3(0.5, 1, 28)
 
-[node name="CSGBox3D94" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 26.5, 10)
-size = Vector3(1, 1, 28)
-
-[node name="CSGBox3D96" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 25.5, 22)
-size = Vector3(1, 3, 4)
-
-[node name="CSGBox3D95" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 23.5, 10)
-size = Vector3(1, 1, 20)
+[node name="grapple_point" parent="bridge" instance=ExtResource("1_kb7gn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 3, -13.75)
 
 [node name="pipe" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 79.25, 40.25)
@@ -819,18 +1059,11 @@ collision_layer = 129
 radius = 0.25
 
 [node name="pipe5" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.209, 62.25, 38.776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.209, 64.25, 38.776)
 use_collision = true
 collision_layer = 129
 radius = 0.25
-height = 14.0
-
-[node name="pipe7" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.209, 39.5, 35.776)
-use_collision = true
-collision_layer = 129
-radius = 0.25
-height = 31.5
+height = 10.0
 
 [node name="pipe6" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.959, 55.75, 40.276)
@@ -838,3 +1071,226 @@ use_collision = true
 collision_layer = 129
 radius = 0.25
 height = 6.0
+
+[node name="vines_4x6" parent="." instance=ExtResource("1_hislo")]
+transform = Transform3D(-0.389719, 0, 0.920934, 0, 1, 0, -0.920934, 0, -0.389719, -30.1473, 19.85, 14.3758)
+
+[node name="vines_4x4" parent="." instance=ExtResource("1_twyj3")]
+transform = Transform3D(-0.389719, 0, 0.920934, 0, 1, 0, -0.920934, 0, -0.389719, -31.219, 15.85, 11.8432)
+
+[node name="vines_4x7" parent="." instance=ExtResource("1_twyj3")]
+transform = Transform3D(-0.389719, 0, 0.920934, 0, 1, 0, -0.920934, 0, -0.389719, -30.1473, 15.85, 14.3758)
+
+[node name="vines_4x5" parent="." instance=ExtResource("1_twyj3")]
+transform = Transform3D(-0.389719, 0, 0.920934, 0, 1, 0, -0.920934, 0, -0.389719, -31.219, 19.85, 11.8432)
+
+[node name="grapple_point4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.25, 23.5, 21)
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grapple_point4"]
+shape = SubResource("BoxShape3D_4g7fi")
+
+[node name="mesh" type="MeshInstance3D" parent="grapple_point4"]
+material_override = SubResource("StandardMaterial3D_e2ae5")
+mesh = SubResource("TorusMesh_lud6l")
+
+[node name="grapple_point6" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -13.75, 80.5, 26.5)
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grapple_point6"]
+shape = SubResource("BoxShape3D_4g7fi")
+
+[node name="mesh" type="MeshInstance3D" parent="grapple_point6"]
+material_override = SubResource("StandardMaterial3D_e2ae5")
+mesh = SubResource("TorusMesh_lud6l")
+
+[node name="grapple_point5" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -12, 40.5, -23.25)
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grapple_point5"]
+shape = SubResource("BoxShape3D_4g7fi")
+
+[node name="mesh" type="MeshInstance3D" parent="grapple_point5"]
+material_override = SubResource("StandardMaterial3D_e2ae5")
+mesh = SubResource("TorusMesh_lud6l")
+
+[node name="pipe_2" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.25, 34.75, -16.5)
+
+[node name="pipe_35" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.25, 33.75, -18.5)
+
+[node name="pipe_18" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, -8.74228e-08, -1, -3.82137e-15, 1, -8.74228e-08, 4.37114e-08, -20.25, 31.75, -16.5)
+
+[node name="pipe_19" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, -8.74228e-08, -1, -3.82137e-15, 1, -8.74228e-08, 4.37114e-08, -20.25, 32.75, -12.5)
+
+[node name="pipe_1" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 33.75, -16.5)
+
+[node name="pipe_3" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.25, 36.75, -12.5)
+
+[node name="pipe_4" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 35.75, -12.5)
+
+[node name="pipe_5" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 34.75, -12.5)
+
+[node name="pipe_6" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 33.75, -12.5)
+
+[node name="pipe_12" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 32.75, -16.5)
+
+[node name="pipe_13" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 32.75, -12.5)
+
+[node name="pipe_15" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 31.75, -16.5)
+
+[node name="pipe_36" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, -8.74228e-08, -1, -3.82137e-15, 1, -8.74228e-08, 4.37114e-08, -20.25, 29.75, -18.5)
+
+[node name="pipe_37" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 32.75, -18.5)
+
+[node name="pipe_41" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 31.75, -18.5)
+
+[node name="pipe_42" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 30.75, -18.5)
+
+[node name="pipe_38" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 29.75, -18.5)
+
+[node name="pipe_21" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, -8.74228e-08, -1, -3.82137e-15, 1, -8.74228e-08, 4.37114e-08, -20.25, 29.75, -14.5)
+
+[node name="pipe_22" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.25, 35.75, -14.5)
+
+[node name="pipe_24" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 34.75, -14.5)
+
+[node name="pipe_25" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 33.75, -14.5)
+
+[node name="pipe_39" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 32.75, -14.5)
+
+[node name="pipe_26" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 31.75, -14.5)
+
+[node name="pipe_40" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 30.75, -14.5)
+
+[node name="pipe_27" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 29.75, -14.5)
+
+[node name="pipe_28" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -20.25, 33.625, -19.5)
+
+[node name="pipe_60" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 4.37114e-08, 1, -17, 33.625, -20.4)
+
+[node name="pipe_29" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 33.625, -17)
+
+[node name="pipe_1_bypass" parent="." instance=ExtResource("8_hcjgr")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 3.55271e-15, -4.37114e-08, -1, -4.37114e-08, -20.25, 33.625, -18)
+
+[node name="pipe_1_bypass2" parent="." instance=ExtResource("8_hcjgr")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 3.55271e-15, -4.37114e-08, -1, -4.37114e-08, -20.25, 33.625, -16)
+
+[node name="pipe_1_bypass3" parent="." instance=ExtResource("8_hcjgr")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 3.55271e-15, -4.37114e-08, -1, -4.37114e-08, -20.25, 32.625, -14)
+
+[node name="pipe_1_bypass4" parent="." instance=ExtResource("8_hcjgr")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 3.55271e-15, -4.37114e-08, -1, -4.37114e-08, -20.25, 32.625, -12)
+
+[node name="pipe_48" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -19, 33.625, -20.4)
+
+[node name="pipe_58" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -18, 33.625, -20.4)
+
+[node name="pipe_59" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -17, 33.625, -20.4)
+
+[node name="pipe_47" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 33.625, -19)
+
+[node name="pipe_33" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 1, 1.31134e-07, 4.37114e-08, -1.31134e-07, 1, -5.73206e-15, -20.25, 30.875, -4.5)
+
+[node name="pipe_44" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 32.625, -13)
+
+[node name="pipe_45" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 32.625, -11)
+
+[node name="pipe_46" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 32.625, -10)
+
+[node name="pipe_49" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 30.875, -5.5)
+
+[node name="pipe_53" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 30.875, -6.5)
+
+[node name="pipe_54" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 30.875, -7.5)
+
+[node name="pipe_55" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -20.25, 32.375, -9.5)
+
+[node name="pipe_56" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 30.875, -8)
+
+[node name="pipe_1_corner3" parent="." instance=ExtResource("7_c8f37")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 30.875, -9)
+
+[node name="pipe_1_corner4" parent="." instance=ExtResource("7_c8f37")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -20.25, 32.625, -10)
+
+[node name="pipe_1_corner5" parent="." instance=ExtResource("7_c8f37")]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, -20.25, 32.625, -15)
+
+[node name="pipe_1_corner6" parent="." instance=ExtResource("7_c8f37")]
+transform = Transform3D(1, 0, 0, 0, -2.18557e-07, -1, 0, 1, -2.18557e-07, -20.25, 33.625, -16)
+
+[node name="pipe_50" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.25, 30.875, -4.5)
+
+[node name="pipe_34" parent="." instance=ExtResource("5_nrpwu")]
+transform = Transform3D(-1.31134e-07, 1, -4.37114e-08, 1, 1.31134e-07, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -16.9628, 30.875, -3.60023)
+
+[node name="pipe_51" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -17.9628, 30.875, -3.60023)
+
+[node name="pipe_57" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -18.9628, 30.875, -3.60023)
+
+[node name="pipe_52" parent="." instance=ExtResource("6_u0axl")]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -16.9628, 30.875, -3.60023)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-3.09086e-08, 0.707107, 0.707107, 3.09086e-08, 0.707107, -0.707107, -1, 5.32907e-15, -4.37114e-08, 19, 12.75, 10)
+light_color = Color(1, 0.811765, 0.588235, 1)
+shadow_enabled = true
+spot_range = 100.0
+spot_attenuation = 0.241484
+spot_angle = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.140925, 0.613307, 0.777171, 0.0177536, 0.786444, -0.617406, -0.989861, -0.0732105, -0.121718, 20.25, 25.5, -18)
+light_color = Color(1, 0.811765, 0.588235, 1)
+shadow_enabled = true
+spot_range = 100.0
+spot_attenuation = 0.241484
+spot_angle = 20.0
