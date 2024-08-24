@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c3sxasotblt07" path="res://assets/models/building_blocks/pipe_1.glb" id="1_60bca"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icr13"]
-size = Vector3(0.2, 1, 0.2)
+size = Vector3(0.25, 1, 0.25)
 
 [node name="pipe_1" type="StaticBody3D"]
 

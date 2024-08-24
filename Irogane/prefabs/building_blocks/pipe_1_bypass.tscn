@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cgrxhwkigygps" path="res://assets/models/building_blocks/pipe_1_bypass.glb" id="1_v1d6n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icr13"]
-size = Vector3(0.2, 0.8, 0.2)
+size = Vector3(0.25, 0.8, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hqqw7"]
-size = Vector3(0.2, 0.3, 0.2)
+size = Vector3(0.25, 0.3, 0.25)
 
 [node name="pipe_1_bypass" type="StaticBody3D"]
 
@@ -23,11 +23,11 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.8
 shape = SubResource("BoxShape3D_hqqw7")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.2, 0.1)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.185, 0.025)
 shape = SubResource("BoxShape3D_hqqw7")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.8, 0.1)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.774825, 0.025)
 shape = SubResource("BoxShape3D_hqqw7")
 
 [node name="pipe_1_bypass2" parent="." instance=ExtResource("1_v1d6n")]
