@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dcgyhjepq4vs7" path="res://prefabs/building_blocks/grapple_point.tscn" id="1_kb7gn"]
 [ext_resource type="PackedScene" uid="uid://bgd321b8wekbt" path="res://prefabs/building_blocks/vines_4x4.tscn" id="1_twyj3"]
 [ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch.tscn" id="2_4i88c"]
-[ext_resource type="PackedScene" uid="uid://bv3qg2xapmj3o" path="res://assets/models/building_blocks/round_path_40.glb" id="5_3bs54"]
+[ext_resource type="PackedScene" uid="uid://c2hh74kx7ej58" path="res://prefabs/building_blocks/round_path_40.tscn" id="5_lvsxs"]
 [ext_resource type="PackedScene" uid="uid://vh6xcj0em6v7" path="res://prefabs/building_blocks/pipe_1_end.tscn" id="5_nrpwu"]
 [ext_resource type="PackedScene" uid="uid://dgjt41mvb4tff" path="res://prefabs/building_blocks/pipe_1.tscn" id="6_u0axl"]
 [ext_resource type="PackedScene" uid="uid://8d45gc3ax0gg" path="res://prefabs/building_blocks/pipe_1_corner.tscn" id="7_c8f37"]
@@ -608,15 +608,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 17)
 size = Vector3(1, 3, 6)
 
 [node name="grapple_point" parent="CSGCylinder3D" instance=ExtResource("1_kb7gn")]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -17.25, -2.25, 0)
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -17.75, -1.75, 0)
 
 [node name="grapple_point3" parent="CSGCylinder3D" instance=ExtResource("1_kb7gn")]
-transform = Transform3D(-4.2222e-08, 0.866025, 0.5, -1, -4.2222e-08, -1.13133e-08, 1.13133e-08, -0.5, 0.866025, -7.54833, -2.25, -15.5002)
+transform = Transform3D(-4.2222e-08, 0.866025, 0.5, -1, -4.2222e-08, -1.13133e-08, 1.13133e-08, -0.5, 0.866025, -7.54833, -1.75, -15.5002)
 
 [node name="grapple_point4" parent="CSGCylinder3D" instance=ExtResource("1_kb7gn")]
-transform = Transform3D(-3.78552e-08, 0.866025, -0.5, -1, -4.37114e-08, 0, -2.18557e-08, 0.5, 0.866025, -7.673, -2.25, 15.7171)
+transform = Transform3D(-3.78552e-08, 0.866025, -0.5, -1, -4.37114e-08, 0, -2.18557e-08, 0.5, 0.866025, -7.673, -1.75, 15.7171)
 
-[node name="round_path_402" parent="." instance=ExtResource("5_3bs54")]
+[node name="round_path_403" parent="." instance=ExtResource("5_lvsxs")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 0, 10)
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
@@ -644,13 +644,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 operation = 2
 size = Vector3(20, 10, 40)
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, -34.882, 32.65, -1.25)
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, -35.072, 32.65, 19.5227)
 use_collision = true
 mesh = SubResource("CylinderMesh_bixyx")
 
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, -34.75, 32.65, 21.083)
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, -35.072, 32.65, 0.390934)
 use_collision = true
 mesh = SubResource("CylinderMesh_bixyx")
 
