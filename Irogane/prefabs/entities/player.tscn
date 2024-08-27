@@ -701,9 +701,11 @@ hurtboxes = [NodePath("../hutboxes/body")]
 
 [node name="walk" type="Node" parent="states"]
 script = ExtResource("2_6iu14")
+speed = 4.0
 
 [node name="run" type="Node" parent="states"]
 script = ExtResource("3_nkdgy")
+speed = 6
 
 [node name="jump" type="Node" parent="states"]
 script = ExtResource("4_y8at0")
@@ -722,6 +724,7 @@ script = ExtResource("9_crd0n")
 
 [node name="crouch" type="Node" parent="states"]
 script = ExtResource("7_826s0")
+speed = 2.0
 
 [node name="vault" type="Node" parent="states"]
 script = ExtResource("8_nprs7")
