@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://tvfp2cd3jwll" path="res://assets/models/building_blocks/wall_1x4.glb" id="1_8m1g3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i23xg"]
-size = Vector3(1, 4, 0.5)
+size = Vector3(1, 4.5, 0.5)
 
 [node name="wall_1x4" type="StaticBody3D"]
 
-[node name="wall_1x42" parent="." instance=ExtResource("1_8m1g3")]
-
 [node name="collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0.25)
 shape = SubResource("BoxShape3D_i23xg")
+
+[node name="wall_1x43" parent="." instance=ExtResource("1_8m1g3")]
