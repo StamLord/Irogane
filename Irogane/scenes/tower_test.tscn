@@ -9958,7 +9958,7 @@ node_b = NodePath("../RigidBody3D")
 params/bias = 0.99
 
 [node name="player" parent="." instance=ExtResource("1_yf7s4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -62.25, 61, -59)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28.75, 14, -86.75)
 
 [node name="game_ui" parent="." instance=ExtResource("3_0m8c0")]
 
