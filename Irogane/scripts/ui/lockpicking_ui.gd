@@ -4,6 +4,15 @@ extends TextureProgressBar
 @onready var rotation_label = %rotation_label
 @onready var mouse_rotation_label = %mouse_rotation_label
 @onready var target = %target
+@onready var audio = %audio
+@onready var audio_2 = %audio2
+@onready var audio_loop = %audio_loop
+@onready var circle_draw = $"../circle_draw"
+
+const PIN_HIT_CLIP = preload("res://assets/audio/lock_pick_minigame/pin_hit.wav")
+const PIN_UNLOCKED_CLIP = preload("res://assets/audio/lock_pick_minigame/pin_unlocked.wav")
+const ROTATING_CYLINDER_CLIP = preload("res://assets/audio/lock_pick_minigame/rotating_cylinder.wav")
+const RESET_PINS_CLIP = preload("res://assets/audio/lock_pick_minigame/reset_pins.wav")
 
 var pin_locations = [
 	Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1),
@@ -12,12 +21,13 @@ var pin_locations = [
 
 var pin_radius = 100.0
 var open_pin_radius = 140
-var failed_pin_radius = 160
+var failed_pin_radius = 200
 
 var enabled = false
 var prev_mouse_angle = null
 var rotation_speed = 250
 var pin_buttons = ['W', 'A', 'S', 'D']
+var pin_push_multipliers = [1, 1.5, 2]
 
 var active_pins = [] 	# Array of dicts:
 						#{  pin: Control,
@@ -36,6 +46,7 @@ func _ready():
 	prev_mouse_angle = rad_to_deg(get_global_mouse_position().angle())
 	
 	initialize_pins(3)
+	circle_draw.add_circle(failed_pin_radius, 16, 4.0)
 	
 
 func _process(_delta):
@@ -54,11 +65,15 @@ func _process(_delta):
 	if angle_delta > 0:
 		rotation_degrees += rotation_speed * _delta
 		rotation_degrees = fmod(rotation_degrees, 360.0)
+		play_sound_loop(ROTATING_CYLINDER_CLIP)
 	elif angle_delta < 0:
 		rotation_degrees -= rotation_speed * _delta
 		if rotation_degrees < 0:
 			rotation_degrees += 360.0
 		rotation_degrees = fmod(rotation_degrees, 360.0)
+		play_sound_loop(ROTATING_CYLINDER_CLIP)
+	else:
+		stop_sound_loop()
 	
 	# Debug purposes
 	rotation_label.text = String("%.2f" % rotation_degrees)
@@ -74,12 +89,17 @@ func _process(_delta):
 		var btn = current_pin["button"] 
 		if btn == "W" and w or btn == "A" and a or btn == "S" and s or btn == "D" and d:
 			#current_pin["velocity"] = current_pin["base_position"] * 100.0 * _delta
-			current_pin["height"] += 20
+			current_pin["height"] += 20 * current_pin["push_mult"]
+			if is_pin_open(current_pin):
+				play_sound(PIN_UNLOCKED_CLIP)
+			else:
+				play_sound(PIN_HIT_CLIP)
 	
 	update_pins(_delta)
 	
 	if is_unlocked():
 		target.tint_progress.a = 1.0
+		
 	else:
 		target.tint_progress.a = 0.5
 	
@@ -112,6 +132,7 @@ func spawn_pin():
 		{	"pin": pin,
 			"button": pin_button,
 			"direction": pin_position,
+			"push_mult": pin_push_multipliers.pick_random(),
 			"height": pin_radius,
 			"velocity": Vector2.ZERO})
 	
@@ -124,8 +145,8 @@ func initialize_pins(amount: int):
 	unused_pin_locations = pin_locations.duplicate()
 	for i in range(amount):
 		spawn_pin()
-		
-	target.rotation_degrees = randf() * 360
+	
+	target.rotation_degrees = randi_range(1, 8) * 360 / 8 + 22.5
 	
 
 func get_current_pin():
@@ -181,8 +202,8 @@ func update_pins(delta):
 		pin["height"] += force 
 		pin["pin"].position = finalized_pin_position(pin["pin"], pin["direction"], height)
 		
-		if pin["height"] > failed_pin_radius:
-			reset_pins()
+		if pin["height"] > failed_pin_radius - pin["pin"].size.x / 2:
+			failed_attempt()
 		
 		i += 1
 	
@@ -224,7 +245,38 @@ func is_unlocked():
 	return target_rot < rot + 15 and target_rot > rot - 15 
 	
 
+func failed_attempt():
+	process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(1.0).timeout
+	process_mode = Node.PROCESS_MODE_INHERIT
+	reset_pins()
+	
+
 func reset_pins():
 	for pin in active_pins:
 		pin["height"] = pin_radius
+	
+	play_fail_sound()
+	
+
+func play_sound(clip):
+	audio.stream = clip
+	audio.play()
+	
+
+func play_sound_loop(clip):
+	if audio_loop.playing:
+		return
+	
+	audio_loop.stream = clip
+	audio_loop.play()
+	
+
+func stop_sound_loop():
+	audio_loop.stop()
+	
+
+func play_fail_sound():
+	audio_2.stream = RESET_PINS_CLIP
+	audio_2.play()
 	

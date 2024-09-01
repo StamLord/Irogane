@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbr1jgg4xl0ou"]
+[gd_scene load_steps=6 format=3 uid="uid://cbr1jgg4xl0ou"]
 
 [ext_resource type="Texture2D" uid="uid://cc70hxhf5av80" path="res://assets/textures/ui/cursor/hollow_circle_shadow.png" id="1_e61ek"]
 [ext_resource type="Script" path="res://scripts/ui/lockpicking_ui.gd" id="2_cijcc"]
 [ext_resource type="Texture2D" uid="uid://nuvr300vrvud" path="res://assets/textures/ui/inventory/inv_grid_cell_round.png" id="3_2xuj2"]
 [ext_resource type="Texture2D" uid="uid://5e20h1y62yra" path="res://assets/textures/ui/inventory/inv_grid_cell_square.png" id="4_47hn6"]
+[ext_resource type="Script" path="res://scripts/ui/lockpick_circles.gd" id="5_o3tib"]
 
 [node name="LockpickingMinigame" type="Control"]
 layout_mode = 3
@@ -12,6 +13,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="target" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+pivot_offset = Vector2(32, 32)
+value = 5.0
+fill_mode = 4
+texture_progress = ExtResource("4_47hn6")
+tint_progress = Color(1, 1, 1, 0.607843)
+radial_initial_angle = 80.0
 
 [node name="circle" type="TextureProgressBar" parent="."]
 layout_mode = 1
@@ -35,28 +58,6 @@ texture_progress = ExtResource("1_e61ek")
 tint_progress = Color(0, 0, 0, 1)
 radial_initial_angle = 120.0
 script = ExtResource("2_cijcc")
-
-[node name="red_circle" type="TextureProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(8, 8)
-pivot_offset = Vector2(32, 32)
-max_value = 360.0
-value = 360.0
-fill_mode = 4
-texture_progress = ExtResource("1_e61ek")
-tint_progress = Color(1, 0, 0, 0.392157)
-radial_initial_angle = 120.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -127,24 +128,22 @@ offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="target" type="TextureProgressBar" parent="."]
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
+
+[node name="audio2" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+
+[node name="audio_loop" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+
+[node name="circle_draw" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(10, 10)
-pivot_offset = Vector2(32, 32)
-value = 5.0
-fill_mode = 4
-texture_progress = ExtResource("4_47hn6")
-tint_progress = Color(1, 1, 1, 0.607843)
-radial_initial_angle = 80.0
+script = ExtResource("5_o3tib")
