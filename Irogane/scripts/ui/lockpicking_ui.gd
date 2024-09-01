@@ -46,7 +46,9 @@ func _ready():
 	prev_mouse_angle = rad_to_deg(get_global_mouse_position().angle())
 	
 	initialize_pins(3)
-	circle_draw.add_circle(failed_pin_radius, 16, 4.0)
+	
+	# Draw failed circle
+	circle_draw.add_circle(failed_pin_radius, 64, 4.0, Color.DARK_RED, Color.WHITE)
 	
 
 func _process(_delta):

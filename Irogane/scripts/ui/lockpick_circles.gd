@@ -2,17 +2,24 @@ extends Control
 
 var circles = []
 
-func add_circle(radius: float, sides: int, width: float):
-	circles.append({"radius": radius, "sides": sides, "width": width})
+func add_circle(radius: float, sides: int, width: float, color: Color, outline: Color = Color.TRANSPARENT):
+	circles.append({
+		"radius": radius, 
+		"sides": sides, 
+		"width": width,
+		"color": color,
+		"outline": outline })
 	
 
 func _draw():
 	for circle in circles:
-		draw_outline_circle(circle["radius"], circle["sides"], circle["width"])
+		draw_outline_circle(circle["radius"], circle["sides"], circle["width"], circle["color"])
+		if circle["color"] != Color.TRANSPARENT:
+			draw_outline_circle(circle["radius"] + circle["width"], circle["sides"], 1.0, circle["outline"])
+			draw_outline_circle(circle["radius"] - circle["width"], circle["sides"], 1.0, circle["outline"])
 	
 
-func draw_outline_circle(radius: float, sides: int, width: float):
-	var color = Color.DARK_RED
+func draw_outline_circle(radius: float, sides: int, width: float, color: Color):
 	var _radius = Vector2.UP * radius
 	var line_origin = _radius
 	
