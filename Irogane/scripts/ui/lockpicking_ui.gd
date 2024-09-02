@@ -37,12 +37,21 @@ var active_pins = [] 	# Array of dicts:
 						#   velocity: Vector2}
 
 var unused_pin_locations = []
-
 var current_pin = null
 
-func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+var debug = false
+
+signal failed()
+signal success()
+
+#func _ready():
+	#start_minigame()
+	#
+
+func start_minigame():
+	InputContextManager.switch_context(InputContextType.MINIGAME)
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	prev_mouse_angle = rad_to_deg(get_global_mouse_position().angle())
 	
 	initialize_pins(3)
@@ -50,15 +59,26 @@ func _ready():
 	# Draw failed circle
 	circle_draw.add_circle(failed_pin_radius, 64, 4.0, Color.DARK_RED, Color.WHITE)
 	
+	owner.visible = true
+	
+
+func end_minigame():
+	InputContextManager.switch_context(InputContextType.GAME)
+	stop_sound_loop()
+	owner.visible = false
+	
 
 func _process(_delta):
+	if not is_visible_in_tree():
+		return
+	
 	var mouse_angle = get_mouse_angle()
 	
-	# Debug purposes
-	mouse_rotation_label.global_position = get_global_mouse_position() + Vector2(10, -10)
-	mouse_rotation_label.text = String("%.2f" % mouse_angle)
-	if Input.is_action_just_pressed("defend"):
-		initialize_pins(3)
+	if debug:
+		mouse_rotation_label.global_position = get_global_mouse_position() + Vector2(10, -10)
+		mouse_rotation_label.text = String("%.2f" % mouse_angle)
+		if Input.is_action_just_pressed("defend"):
+			initialize_pins(3)
 	
 	# Rotation
 	var angle_delta = mouse_angle - prev_mouse_angle
@@ -77,8 +97,8 @@ func _process(_delta):
 	else:
 		stop_sound_loop()
 	
-	# Debug purposes
-	rotation_label.text = String("%.2f" % rotation_degrees)
+	if debug:
+		rotation_label.text = String("%.2f" % rotation_degrees)
 	
 	# Input
 	var w = Input.is_action_just_pressed("forward")
@@ -101,7 +121,7 @@ func _process(_delta):
 	
 	if is_unlocked():
 		target.tint_progress.a = 1.0
-		
+		success.emit()
 	else:
 		target.tint_progress.a = 0.5
 	
@@ -248,17 +268,20 @@ func is_unlocked():
 	
 
 func failed_attempt():
+	failed.emit()
+	CameraShaker.shake(0.25, 0.2)
+	play_fail_sound()
+	
 	process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().create_timer(1.0).timeout
 	process_mode = Node.PROCESS_MODE_INHERIT
+	
 	reset_pins()
 	
 
 func reset_pins():
 	for pin in active_pins:
 		pin["height"] = pin_radius
-	
-	play_fail_sound()
 	
 
 func play_sound(clip):

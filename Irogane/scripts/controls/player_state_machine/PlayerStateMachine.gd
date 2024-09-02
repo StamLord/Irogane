@@ -61,6 +61,9 @@ func _ready():
 	
 
 func _process(delta):
+	if InputContextManager.is_current_context(InputContextType.CUTSCENE) or InputContextManager.is_current_context(InputContextType.MINIGAME):
+		return
+	
 	if current_state:
 		current_state.Update(delta)
 		
@@ -72,6 +75,9 @@ func _process(delta):
 	
 
 func _physics_process(delta):
+	if InputContextManager.is_current_context(InputContextType.CUTSCENE) or InputContextManager.is_current_context(InputContextType.MINIGAME):
+		return
+	
 	# State Process
 	if current_state:
 		if not stats.is_staggered or current_state == states["pushed"]:
