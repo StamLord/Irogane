@@ -24,7 +24,9 @@ func _process(delta):
 			quit_minigame()
 	else:
 		if raycast.is_colliding() and Input.is_action_just_pressed("attack_primary"):
-			start_minigame(raycast.get_collider())
+			var collider = raycast.get_collider()
+			if collider is Lock and not collider.is_unlocked:
+				start_minigame(raycast.get_collider())
 	
 
 func start_minigame(lock_object):
