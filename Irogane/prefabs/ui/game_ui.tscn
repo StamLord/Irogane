@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://1xkt8ny3senm" path="res://assets/models/loot/coin-bca63a80a5aa1b985be01003c8f1cb97_florin.png" id="29_wcp8v"]
 [ext_resource type="Script" path="res://scripts/ui/prayer_beads_save_window.gd" id="30_8kyfl"]
 [ext_resource type="PackedScene" uid="uid://ccdnbbmarggif" path="res://prefabs/ui/game_save_load_window.tscn" id="31_e2xi2"]
+[ext_resource type="PackedScene" uid="uid://cbr1jgg4xl0ou" path="res://scenes/minigames/lockpicking_minigame.tscn" id="33_mo2sm"]
 
 [sub_resource type="Curve" id="Curve_12jqb"]
 max_value = 4.0
@@ -1310,6 +1311,17 @@ layers = 512
 material_override = SubResource("StandardMaterial3D_dtjba")
 mesh = SubResource("CylinderMesh_vprdm")
 
+[node name="lockpick" type="Node3D" parent="tool_3d/tool_parent"]
+visible = false
+script = ExtResource("26_uw7fk")
+rotation_curve = SubResource("CurveXYZTexture_ax1fm")
+duration = 2.0
+
+[node name="pin" type="CSGBox3D" parent="tool_3d/tool_parent/lockpick"]
+transform = Transform3D(8.9407e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 4.76837e-07, -1.78814e-07, 0, 0, 0)
+layers = 512
+size = Vector3(0.01, 0.01, 0.2)
+
 [node name="coin" type="Node3D" parent="tool_3d/tool_parent"]
 visible = false
 script = ExtResource("26_uw7fk")
@@ -1395,5 +1407,9 @@ script = ExtResource("9_554op")
 path_on_player = "head/main_camera/simple_weapon_manager/prayer_beads"
 signal_name = "on_prayer_update"
 max_time_var_name = "prayer_total_time"
+
+[node name="LockpickingMinigame" parent="." instance=ExtResource("33_mo2sm")]
+visible = false
+layout_mode = 1
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]

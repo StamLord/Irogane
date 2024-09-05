@@ -3,7 +3,7 @@ class_name SimpleWeaponManager
 
 @onready var stats = %stats
 
-@onready var tools = [$pocket_mirror, $slingshot, $grapple, $telescope, $coin, $prayer_beads]
+@onready var tools = [$pocket_mirror, $slingshot, $grapple, $lockpick, $telescope, $coin, $prayer_beads]
 var index = 0
 
 @onready var current_template = null
