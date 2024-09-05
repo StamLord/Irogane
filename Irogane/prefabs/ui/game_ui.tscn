@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=104 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
@@ -435,6 +435,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vvaiw")
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5vdk"]
+size = Vector3(0.05, 0.2, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o46d0"]
+size = Vector3(0.05, 0.2, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k03p0"]
+size = Vector3(0.1, 0.05, 0.01)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hv3pk"]
 albedo_color = Color(0.27451, 0.27451, 0.27451, 1)
@@ -1229,19 +1238,50 @@ layers = 512
 mesh = SubResource("ArrayMesh_86i4d")
 skeleton = NodePath("")
 
-[node name="piton" type="Node3D" parent="tool_3d/tool_parent"]
+[node name="slingshot" type="Node3D" parent="tool_3d/tool_parent"]
 visible = false
 script = ExtResource("26_uw7fk")
 rotation_curve = SubResource("CurveXYZTexture_ax1fm")
 duration = 2.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="tool_3d/tool_parent/piton"]
+[node name="visual" type="Node3D" parent="tool_3d/tool_parent/slingshot"]
+transform = Transform3D(-4.37114e-08, 0.34202, -0.939693, 0, 0.939693, 0.34202, 1, 1.49502e-08, -4.10753e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tool_3d/tool_parent/slingshot/visual"]
+layers = 512
+mesh = SubResource("BoxMesh_j5vdk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="tool_3d/tool_parent/slingshot/visual"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.1, 0.054)
+layers = 512
+mesh = SubResource("BoxMesh_o46d0")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="tool_3d/tool_parent/slingshot/visual"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.1, -0.049)
+layers = 512
+mesh = SubResource("BoxMesh_o46d0")
+skeleton = NodePath("../..")
+
+[node name="visual_pull" type="MeshInstance3D" parent="tool_3d/tool_parent/slingshot"]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
+layers = 512
+mesh = SubResource("BoxMesh_k03p0")
+
+[node name="grapple" type="Node3D" parent="tool_3d/tool_parent"]
+visible = false
+script = ExtResource("26_uw7fk")
+rotation_curve = SubResource("CurveXYZTexture_ax1fm")
+duration = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tool_3d/tool_parent/grapple"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 layers = 512
 material_override = SubResource("StandardMaterial3D_hv3pk")
 mesh = SubResource("CylinderMesh_1kre8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="tool_3d/tool_parent/piton/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tool_3d/tool_parent/grapple/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.19387, 8.47433e-09)
 layers = 512
 material_override = SubResource("StandardMaterial3D_hv3pk")

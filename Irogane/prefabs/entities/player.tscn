@@ -701,9 +701,11 @@ hurtboxes = [NodePath("../hutboxes/body")]
 
 [node name="walk" type="Node" parent="states"]
 script = ExtResource("2_6iu14")
+speed = 4.0
 
 [node name="run" type="Node" parent="states"]
 script = ExtResource("3_nkdgy")
+speed = 6
 
 [node name="jump" type="Node" parent="states"]
 script = ExtResource("4_y8at0")
@@ -722,6 +724,7 @@ script = ExtResource("9_crd0n")
 
 [node name="crouch" type="Node" parent="states"]
 script = ExtResource("7_826s0")
+speed = 2.0
 
 [node name="vault" type="Node" parent="states"]
 script = ExtResource("8_nprs7")
@@ -1104,12 +1107,12 @@ enable_shadows = true
 cull_mask = 1
 mesh_lod_threshold = 5.0
 
-[node name="rope" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+[node name="grapple" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 visible = false
 script = ExtResource("22_yy2un")
 
-[node name="Rope" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/rope"]
+[node name="Rope" type="MeshInstance3D" parent="head/main_camera/simple_weapon_manager/grapple"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 top_level = true
 visible = false
@@ -1118,10 +1121,10 @@ script = ExtResource("23_yw3sv")
 resolution = 4
 rope_width = 0.03
 
-[node name="start_target" type="Node3D" parent="head/main_camera/simple_weapon_manager/rope"]
+[node name="start_target" type="Node3D" parent="head/main_camera/simple_weapon_manager/grapple"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 
-[node name="end_target" type="Node3D" parent="head/main_camera/simple_weapon_manager/rope"]
+[node name="end_target" type="Node3D" parent="head/main_camera/simple_weapon_manager/grapple"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 top_level = true
 
@@ -1173,6 +1176,7 @@ mesh = SubResource("BoxMesh_33nmg")
 skeleton = NodePath("../..")
 
 [node name="slingshot" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
 script = ExtResource("59_garyl")
 
 [node name="visual" type="Node3D" parent="head/main_camera/simple_weapon_manager/slingshot"]
