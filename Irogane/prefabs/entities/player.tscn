@@ -1,4 +1,4 @@
-[gd_scene load_steps=185 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=186 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -75,6 +75,7 @@
 [ext_resource type="Script" path="res://scripts/weapons/coin.gd" id="57_ehulk"]
 [ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
 [ext_resource type="Script" path="res://scripts/weapons/slingshot.gd" id="59_garyl"]
+[ext_resource type="Script" path="res://scripts/weapons/lockpick.gd" id="60_pohs2"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -1245,6 +1246,22 @@ mesh = SubResource("BoxMesh_lecuj")
 transform = Transform3D(0.97437, -0.224951, 0, 0.224951, 0.97437, 0, 0, 0, 1, 0.05, -0.075, -0.1)
 visible = false
 mesh = SubResource("BoxMesh_lecuj")
+
+[node name="lockpick" type="Node3D" parent="head/main_camera/simple_weapon_manager"]
+visible = false
+script = ExtResource("60_pohs2")
+
+[node name="raycast" type="RayCast3D" parent="head/main_camera/simple_weapon_manager/lockpick"]
+target_position = Vector3(0, 0, -1)
+collision_mask = 512
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="visual" type="Node3D" parent="head/main_camera/simple_weapon_manager/lockpick"]
+
+[node name="pin" type="CSGBox3D" parent="head/main_camera/simple_weapon_manager/lockpick/visual"]
+transform = Transform3D(0.965926, -0.12941, 0.224144, 0, 0.866025, 0.5, -0.258819, -0.482963, 0.836516, 0.36, -0.15, -0.4)
+size = Vector3(0.01, 0.01, 0.2)
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/main_camera"]
 target_position = Vector3(0, 0, -8)
