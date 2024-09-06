@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=105 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
@@ -1287,6 +1287,17 @@ layers = 512
 material_override = SubResource("StandardMaterial3D_hv3pk")
 mesh = SubResource("TorusMesh_052fm")
 
+[node name="lockpick" type="Node3D" parent="tool_3d/tool_parent"]
+visible = false
+script = ExtResource("26_uw7fk")
+rotation_curve = SubResource("CurveXYZTexture_ax1fm")
+duration = 2.0
+
+[node name="pin" type="CSGBox3D" parent="tool_3d/tool_parent/lockpick"]
+transform = Transform3D(8.9407e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 4.76837e-07, -1.78814e-07, 0, 0, 0)
+layers = 512
+size = Vector3(0.01, 0.01, 0.2)
+
 [node name="telescope" type="Node3D" parent="tool_3d/tool_parent"]
 visible = false
 script = ExtResource("26_uw7fk")
@@ -1310,17 +1321,6 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 
 layers = 512
 material_override = SubResource("StandardMaterial3D_dtjba")
 mesh = SubResource("CylinderMesh_vprdm")
-
-[node name="lockpick" type="Node3D" parent="tool_3d/tool_parent"]
-visible = false
-script = ExtResource("26_uw7fk")
-rotation_curve = SubResource("CurveXYZTexture_ax1fm")
-duration = 2.0
-
-[node name="pin" type="CSGBox3D" parent="tool_3d/tool_parent/lockpick"]
-transform = Transform3D(8.9407e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 4.76837e-07, -1.78814e-07, 0, 0, 0)
-layers = 512
-size = Vector3(0.01, 0.01, 0.2)
 
 [node name="coin" type="Node3D" parent="tool_3d/tool_parent"]
 visible = false
