@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbr1jgg4xl0ou"]
+[gd_scene load_steps=11 format=3 uid="uid://cbr1jgg4xl0ou"]
 
-[ext_resource type="Texture2D" uid="uid://cc70hxhf5av80" path="res://assets/textures/ui/cursor/hollow_circle_shadow.png" id="1_e61ek"]
 [ext_resource type="Script" path="res://scripts/ui/lockpicking_ui.gd" id="2_cijcc"]
+[ext_resource type="Texture2D" uid="uid://chwyk5pfde2ky" path="res://assets/images/lock_picking_minigame/inner gear.png" id="2_l4dc1"]
 [ext_resource type="Texture2D" uid="uid://nuvr300vrvud" path="res://assets/textures/ui/inventory/inv_grid_cell_round.png" id="3_2xuj2"]
 [ext_resource type="Texture2D" uid="uid://5e20h1y62yra" path="res://assets/textures/ui/inventory/inv_grid_cell_square.png" id="4_47hn6"]
+[ext_resource type="Texture2D" uid="uid://b5npcver81tlf" path="res://assets/images/lock_picking_minigame/gear.png" id="4_s0e45"]
 [ext_resource type="Script" path="res://scripts/ui/lockpick_circles.gd" id="5_o3tib"]
+[ext_resource type="Texture2D" uid="uid://dy2r8lxj46qoa" path="res://assets/images/lock_picking_minigame/outer.png" id="5_styf7"]
+[ext_resource type="Texture2D" uid="uid://cmnuc82gqlylc" path="res://assets/images/lock_picking_minigame/frame.png" id="6_ly2wq"]
+[ext_resource type="Texture2D" uid="uid://cabxyig31rxt6" path="res://assets/images/lock_picking_minigame/pin.png" id="7_enlac"]
+[ext_resource type="Texture2D" uid="uid://dwfn67fdxufct" path="res://assets/images/lock_picking_minigame/spring.png" id="9_43rc0"]
 
 [node name="LockpickingMinigame" type="Control"]
 layout_mode = 3
@@ -13,6 +18,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("3_2xuj2")
 
 [node name="target" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
@@ -36,28 +58,118 @@ texture_progress = ExtResource("4_47hn6")
 tint_progress = Color(1, 1, 1, 0.607843)
 radial_initial_angle = 80.0
 
-[node name="circle" type="TextureProgressBar" parent="."]
+[node name="outer_gear" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -88.0
+offset_top = -88.0
+offset_right = 88.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
-pivot_offset = Vector2(32, 32)
-max_value = 360.0
-value = 300.0
-fill_mode = 4
-texture_progress = ExtResource("1_e61ek")
-tint_progress = Color(0, 0, 0, 1)
-radial_initial_angle = 120.0
+pivot_offset = Vector2(88, 88)
+texture = ExtResource("2_l4dc1")
 script = ExtResource("2_cijcc")
+
+[node name="frame" type="TextureRect" parent="outer_gear"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -151.0
+offset_right = 151.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.57079
+pivot_offset = Vector2(158, 151)
+texture = ExtResource("6_ly2wq")
+
+[node name="planetary_gear_parent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+
+[node name="inner_gear" type="TextureRect" parent="planetary_gear_parent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = 17.0
+offset_right = 28.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("4_s0e45")
+
+[node name="inner_gear2" type="TextureRect" parent="planetary_gear_parent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -45.0
+offset_right = -14.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("4_s0e45")
+
+[node name="inner_gear3" type="TextureRect" parent="planetary_gear_parent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -45.0
+offset_right = 70.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("4_s0e45")
+
+[node name="outer_edge" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = -216.0
+offset_right = 218.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(218, 216)
+texture = ExtResource("5_styf7")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -84,7 +196,7 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_2xuj2")
+texture = ExtResource("7_enlac")
 
 [node name="label" type="Label" parent="Control/pin_prefab"]
 layout_mode = 1
@@ -97,6 +209,37 @@ theme_override_font_sizes/font_size = 48
 text = "W"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="spring_rotation" type="Control" parent="Control/pin_prefab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+
+[node name="spring" type="TextureRect" parent="Control/pin_prefab/spring_rotation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -170.0
+offset_right = 20.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 142)
+texture = ExtResource("9_43rc0")
 
 [node name="rotation_label" type="Label" parent="."]
 unique_name_in_owner = true

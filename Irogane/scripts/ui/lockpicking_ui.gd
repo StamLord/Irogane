@@ -1,6 +1,11 @@
-extends TextureProgressBar
+extends TextureRect
 
 @onready var pin_prefab = %pin_prefab
+@onready var planetary_gear_parent = $"../planetary_gear_parent"
+@onready var inner_gear = $"../planetary_gear_parent/inner_gear"
+@onready var inner_gear_2 = $"../planetary_gear_parent/inner_gear2"
+@onready var inner_gear_3 = $"../planetary_gear_parent/inner_gear3"
+
 @onready var rotation_label = %rotation_label
 @onready var mouse_rotation_label = %mouse_rotation_label
 @onready var target = %target
@@ -19,9 +24,11 @@ var pin_locations = [
 	Vector2(1, 1).normalized(), Vector2(-1, -1).normalized(),
 	Vector2(-1, 1).normalized(), Vector2(1, -1).normalized()]
 
-var pin_radius = 100.0
-var open_pin_radius = 140
-var failed_pin_radius = 200
+var pin_radius = 120.0
+var open_pin_radius = 190
+var failed_pin_radius = 300
+var pin_fall_speed = 200
+var pin_push_force = 40
 
 var enabled = false
 var prev_mouse_angle = null
@@ -44,9 +51,11 @@ var debug = false
 signal failed()
 signal success()
 
-#func _ready():
-	#start_minigame()
-	#
+func _ready():
+	# If running scene from editor
+	if owner.owner == null:
+		start_minigame()
+	
 
 func start_minigame():
 	InputContextManager.switch_context(InputContextType.MINIGAME)
@@ -57,7 +66,7 @@ func start_minigame():
 	initialize_pins(3)
 	
 	# Draw failed circle
-	circle_draw.add_circle(failed_pin_radius, 64, 4.0, Color.DARK_RED, Color.WHITE)
+	circle_draw.add_circle(failed_pin_radius - pin_prefab.size.x * 0.5, 64, 4.0, Color.DARK_RED, Color.WHITE)
 	
 	owner.visible = true
 	
@@ -85,14 +94,16 @@ func _process(_delta):
 	prev_mouse_angle = mouse_angle
 	
 	if angle_delta > 0:
-		rotation_degrees += rotation_speed * _delta
-		rotation_degrees = fmod(rotation_degrees, 360.0)
+		rotate_object(get_node("."), rotation_speed * _delta)
+		rotate_object(inner_gear, rotation_speed * _delta * 3)
+		rotate_object(inner_gear_2, rotation_speed * _delta * 3)
+		rotate_object(inner_gear_3, rotation_speed * _delta * 3)
 		play_sound_loop(ROTATING_CYLINDER_CLIP)
 	elif angle_delta < 0:
-		rotation_degrees -= rotation_speed * _delta
-		if rotation_degrees < 0:
-			rotation_degrees += 360.0
-		rotation_degrees = fmod(rotation_degrees, 360.0)
+		rotate_object(get_node("."), -rotation_speed * _delta)
+		rotate_object(inner_gear, -rotation_speed * _delta * 3)
+		rotate_object(inner_gear_2, -rotation_speed * _delta * 3)
+		rotate_object(inner_gear_3, -rotation_speed * _delta * 3)
 		play_sound_loop(ROTATING_CYLINDER_CLIP)
 	else:
 		stop_sound_loop()
@@ -111,7 +122,7 @@ func _process(_delta):
 		var btn = current_pin["button"] 
 		if btn == "W" and w or btn == "A" and a or btn == "S" and s or btn == "D" and d:
 			#current_pin["velocity"] = current_pin["base_position"] * 100.0 * _delta
-			current_pin["height"] += 20 * current_pin["push_mult"]
+			current_pin["height"] += pin_push_force * current_pin["push_mult"]
 			if is_pin_open(current_pin):
 				play_sound(PIN_UNLOCKED_CLIP)
 			else:
@@ -133,6 +144,13 @@ func get_mouse_angle():
 	return rad_to_deg(mouse_pos.angle())
 	
 
+func rotate_object(object: TextureRect, amount: float):
+	object.rotation_degrees += amount
+	if object.rotation_degrees < 0:
+		object.rotation_degrees += 360.0
+	object.rotation_degrees = fmod(object.rotation_degrees, 360.0)
+	
+
 func spawn_pin():
 	if pin_prefab == null:
 		return
@@ -149,6 +167,11 @@ func spawn_pin():
 	var label = pin.get_node("label")
 	if label != null:
 		label.text = pin_button
+	
+	var spring_rot = pin.get_node("spring_rotation")
+	if spring_rot != null:
+		var angle = rad_to_deg(pin_position.angle())
+		spring_rot.rotation_degrees = angle + 90
 	
 	active_pins.append(
 		{	"pin": pin,
@@ -220,20 +243,26 @@ func update_pins(delta):
 		
 		var height = pin["height"]
 		var height_delta = target_height - height
-		var force = clamp(height_delta, -1, 1) * 80 * delta
+		var force = clamp(height_delta, -1, 1) * pin_fall_speed * delta
 		pin["height"] += force 
 		pin["pin"].position = finalized_pin_position(pin["pin"], pin["direction"], height)
 		
 		if pin["height"] > failed_pin_radius - pin["pin"].size.x / 2:
 			failed_attempt()
 		
+		var spring = pin["pin"].get_node("spring_rotation/spring")
+		if spring != null:
+			var spring_length = spring.size.y
+			var distance = failed_pin_radius + pin["pin"].size.x - height - pin_radius
+			spring.scale.y = distance / spring_length
+		
 		i += 1
 	
 
 func is_pin_open(pin: Dictionary):
-	var size = pin["pin"].size.x
+	var size_x = pin["pin"].size.x
 	var height = pin["height"]
-	return height > pin_radius + size / 2
+	return height > pin_radius + size_x / 2
 	
 
 func finalized_pin_position(pin: Control, base_position: Vector2, radius: float):
