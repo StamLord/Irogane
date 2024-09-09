@@ -61,11 +61,13 @@ func shake(amount: float, duration: float):
 		randomize()
 		offset.y = (randf() - 0.5) * 2 * _shake
 		
-		CameraEntity.active_camera.position = lerp(CameraEntity.active_camera.position, get_camera_origin() + offset, 0.1)
+		if CameraEntity.active_camera != null:
+			CameraEntity.active_camera.position = lerp(CameraEntity.active_camera.position, get_camera_origin() + offset, 0.1)
 		
 		await get_tree().process_frame
 	
-	CameraEntity.active_camera.position = get_camera_origin()
+	if CameraEntity.active_camera != null:
+		CameraEntity.active_camera.position = get_camera_origin()
 	
 
 func shake2(amount, duration):

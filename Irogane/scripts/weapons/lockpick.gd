@@ -12,7 +12,7 @@ func _ready():
 		game_ui = owner.get_node("../game_ui")
 	
 	if game_ui != null:
-		minigame = game_ui.get_node("LockpickingMinigame/circle")
+		minigame = game_ui.get_node("LockpickingMinigame/outer_gear")
 	
 
 func _process(delta):
