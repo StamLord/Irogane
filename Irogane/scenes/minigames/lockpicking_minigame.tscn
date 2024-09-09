@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbr1jgg4xl0ou"]
+[gd_scene load_steps=13 format=3 uid="uid://cbr1jgg4xl0ou"]
 
 [ext_resource type="Script" path="res://scripts/ui/lockpicking_ui.gd" id="2_cijcc"]
 [ext_resource type="Texture2D" uid="uid://chwyk5pfde2ky" path="res://assets/images/lock_picking_minigame/inner gear.png" id="2_l4dc1"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cmnuc82gqlylc" path="res://assets/images/lock_picking_minigame/frame.png" id="6_ly2wq"]
 [ext_resource type="Texture2D" uid="uid://cabxyig31rxt6" path="res://assets/images/lock_picking_minigame/pin.png" id="7_enlac"]
 [ext_resource type="Texture2D" uid="uid://dwfn67fdxufct" path="res://assets/images/lock_picking_minigame/spring.png" id="9_43rc0"]
+[ext_resource type="Texture2D" uid="uid://dfqfsaw87b3du" path="res://assets/images/lock_picking_minigame/unlocked.png" id="10_ujs5b"]
+[ext_resource type="Texture2D" uid="uid://db0wyo2cqulq2" path="res://assets/images/lock_picking_minigame/locked.png" id="11_eofog"]
 
 [node name="LockpickingMinigame" type="Control"]
 layout_mode = 3
@@ -183,7 +185,6 @@ grow_vertical = 2
 
 [node name="pin_prefab" type="TextureRect" parent="Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -240,6 +241,55 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 142)
 texture = ExtResource("9_43rc0")
+
+[node name="indicator_prefab" type="Control" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+
+[node name="unlocked" type="TextureRect" parent="Control/indicator_prefab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -295.0
+offset_right = 38.0
+offset_bottom = -269.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 13)
+texture = ExtResource("10_ujs5b")
+
+[node name="locked" type="TextureRect" parent="Control/indicator_prefab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -295.0
+offset_right = 38.0
+offset_bottom = -269.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(38, 13)
+texture = ExtResource("11_eofog")
 
 [node name="rotation_label" type="Label" parent="."]
 unique_name_in_owner = true

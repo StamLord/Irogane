@@ -1,6 +1,8 @@
 extends TextureRect
 
 @onready var pin_prefab = %pin_prefab
+@onready var indicator_prefab = %indicator_prefab
+
 @onready var planetary_gear_parent = $"../planetary_gear_parent"
 @onready var inner_gear = $"../planetary_gear_parent/inner_gear"
 @onready var inner_gear_2 = $"../planetary_gear_parent/inner_gear2"
@@ -41,7 +43,10 @@ var active_pins = [] 	# Array of dicts:
 						#   button: String,
 						#   direction: Vector2,
 						#   height: float,
-						#   velocity: Vector2}
+						#   velocity: Vector2,
+						#   indicator: Control}
+
+var active_indicators = []
 
 var unused_pin_locations = []
 var current_pin = null
@@ -144,6 +149,11 @@ func get_mouse_angle():
 	return rad_to_deg(mouse_pos.angle())
 	
 
+func get_screen_center():
+	var screen_size = get_viewport().get_visible_rect().size
+	return screen_size * 0.5
+	
+
 func rotate_object(object: TextureRect, amount: float):
 	object.rotation_degrees += amount
 	if object.rotation_degrees < 0:
@@ -173,20 +183,31 @@ func spawn_pin():
 		var angle = rad_to_deg(pin_position.angle())
 		spring_rot.rotation_degrees = angle + 90
 	
+	var indicator = indicator_prefab.duplicate()
+	indicator_prefab.get_parent().add_child(indicator)
+	indicator.visible = true
+	indicator.rotation_degrees = rad_to_deg(pin_position.angle()) + 90
+	active_indicators.append(indicator)
+	
 	active_pins.append(
 		{	"pin": pin,
 			"button": pin_button,
 			"direction": pin_position,
 			"push_mult": pin_push_multipliers.pick_random(),
 			"height": pin_radius,
-			"velocity": Vector2.ZERO})
+			"velocity": Vector2.ZERO,
+			"indicator": indicator})
 	
 
 func initialize_pins(amount: int):
 	for pin in active_pins:
 		pin["pin"].queue_free()
-	
 	active_pins.clear()
+	
+	for indicator in active_indicators:
+		indicator.queue_free()
+	active_indicators.clear()
+	
 	unused_pin_locations = pin_locations.duplicate()
 	for i in range(amount):
 		spawn_pin()
@@ -265,13 +286,18 @@ func update_pins(delta):
 			distance = max(0, distance) # No spring when negative distance
 			spring.scale.y = distance / spring_length
 		
+		if pin["indicator"] != null:
+			var locked_indicator = pin["indicator"].get_node("locked")
+			if locked_indicator != null:
+				locked_indicator.visible = not is_pin_open(pin)
+		
 		i += 1
 	
 
 func is_pin_open(pin: Dictionary):
 	var size_x = pin["pin"].size.x
 	var height = pin["height"]
-	return height > pin_radius + size_x / 2
+	return height >= open_pin_radius
 	
 
 func finalized_pin_position(pin: Control, base_position: Vector2, radius: float):
