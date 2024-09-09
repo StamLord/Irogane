@@ -243,7 +243,15 @@ func update_pins(delta):
 		
 		var height = pin["height"]
 		var height_delta = target_height - height
-		var force = clamp(height_delta, -1, 1) * pin_fall_speed * delta
+		
+		# Remove jittering
+		if abs(height_delta) < 2:
+			height_delta = 0
+		
+		# Speed should be consistent regardless of delta
+		height_delta = clamp(height_delta, -1, 1)
+		
+		var force = height_delta * pin_fall_speed * delta
 		pin["height"] += force 
 		pin["pin"].position = finalized_pin_position(pin["pin"], pin["direction"], height)
 		
@@ -254,6 +262,7 @@ func update_pins(delta):
 		if spring != null:
 			var spring_length = spring.size.y
 			var distance = failed_pin_radius + pin["pin"].size.x - height - pin_radius
+			distance = max(0, distance) # No spring when negative distance
 			spring.scale.y = distance / spring_length
 		
 		i += 1
