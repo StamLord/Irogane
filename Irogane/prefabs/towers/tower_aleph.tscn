@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dwdvunqnwvklv"]
+[gd_scene load_steps=50 format=3 uid="uid://dwdvunqnwvklv"]
 
 [ext_resource type="PackedScene" uid="uid://djkvp8nrxp5l3" path="res://prefabs/building_blocks/stairs.tscn" id="1_f8dfe"]
 [ext_resource type="PackedScene" uid="uid://bnxulkgstrmki" path="res://prefabs/building_blocks/arch_4x7.tscn" id="1_folir"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://dqky840mvplng" path="res://prefabs/building_blocks/sewer_i.tscn" id="17_upbqq"]
 [ext_resource type="PackedScene" uid="uid://bum5lccx0kywc" path="res://prefabs/building_blocks/floor_4x4.tscn" id="18_470fk"]
 [ext_resource type="PackedScene" uid="uid://sbh5k685urwu" path="res://prefabs/building_blocks/sewer_t.tscn" id="18_t404g"]
+[ext_resource type="PackedScene" uid="uid://b4kilefuhgq00" path="res://prefabs/building_blocks/sewer_i_door.tscn" id="19_okv0m"]
 [ext_resource type="PackedScene" uid="uid://dphyplgx3cuum" path="res://prefabs/building_blocks/sewer_r.tscn" id="19_wrtgm"]
 [ext_resource type="PackedScene" uid="uid://boc0th4q05p16" path="res://prefabs/building_blocks/sewer_end.tscn" id="20_7h207"]
 [ext_resource type="PackedScene" uid="uid://b0cfdorrajr2" path="res://prefabs/building_blocks/sewer_i_well.tscn" id="21_qfoox"]
@@ -36,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://cg80e7j2didb" path="res://prefabs/building_blocks/sewer_4_to_2.tscn" id="24_uyq3l"]
 [ext_resource type="PackedScene" uid="uid://dah80vje54i0a" path="res://prefabs/building_blocks/sewer_i_2.tscn" id="25_awxpr"]
 [ext_resource type="PackedScene" uid="uid://cn85824eh7cl5" path="res://prefabs/building_blocks/stairs_4x3.tscn" id="27_1aho6"]
+[ext_resource type="PackedScene" uid="uid://825akyer5xqt" path="res://prefabs/building_blocks/sewer_hub.tscn" id="27_v24ht"]
 [ext_resource type="PackedScene" uid="uid://dgobpauppmaah" path="res://prefabs/building_blocks/rail_1.tscn" id="28_myv8i"]
 [ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="29_x0mel"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="30_c0lfo"]
@@ -2248,6 +2250,9 @@ transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 32, -12.
 [node name="sewer_i8" parent="nav/servants_quarter/well" instance=ExtResource("19_wrtgm")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -9.53674e-07, -12.5, -80)
 
+[node name="sewers_i_door" parent="nav/servants_quarter/well" instance=ExtResource("19_okv0m")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -12.5, -96)
+
 [node name="sewer_i5" parent="nav/servants_quarter/well" instance=ExtResource("17_upbqq")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -24, -12.5, -48)
 
@@ -2273,8 +2278,8 @@ transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -9.53674
 transform = Transform3D(1, 0, 1.7683e-07, 0, 1, 0, -1.7683e-07, 0, 1, -24, -12.5, -52)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="nav/servants_quarter/well"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, -2)
-size = Vector3(200, 1, 200)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, -2)
+size = Vector3(300, 1, 300)
 
 [node name="sewers_i_well" parent="nav/servants_quarter/well" instance=ExtResource("21_qfoox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.5, 0)
@@ -2299,6 +2304,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -12.5, -56)
 
 [node name="sewer_i_4" parent="nav/servants_quarter/well" instance=ExtResource("25_awxpr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -12.5, -64)
+
+[node name="sewer_hub" parent="nav/servants_quarter/well" instance=ExtResource("27_v24ht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -11.5, -96)
 
 [node name="servant_rooms" type="Node3D" parent="nav/servants_quarter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2, -2.25)
