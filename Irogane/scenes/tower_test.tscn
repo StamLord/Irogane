@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=182 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -73,6 +73,15 @@
 [ext_resource type="PackedScene" uid="uid://oxj7pww1k81m" path="res://prefabs/building_blocks/elevator_rail_2.tscn" id="68_enopx"]
 [ext_resource type="PackedScene" uid="uid://bic0gnf4qtspb" path="res://assets/models/building_blocks/elevator_panel.glb" id="69_m86xi"]
 [ext_resource type="PackedScene" uid="uid://dwdvunqnwvklv" path="res://prefabs/towers/tower_aleph.tscn" id="73_8s1ym"]
+[ext_resource type="Script" path="res://scenes/water_area.gd" id="74_ngbg4"]
+[ext_resource type="Script" path="res://scripts/procedural/water_collision_shape.gd" id="75_c4nq3"]
+[ext_resource type="Texture2D" uid="uid://c8qnp2wdcvajy" path="res://assets/textures/vfx/burst_4.png" id="76_dc3jb"]
+[ext_resource type="Material" uid="uid://4a34kvy5tvfs" path="res://assets/shaders/underwater_material.tres" id="76_ghoxj"]
+[ext_resource type="Material" uid="uid://crfxa6bkikyfi" path="res://assets/models/env/river_bed/water.tres" id="76_mw4oc"]
+[ext_resource type="Texture2D" uid="uid://3rw6u0s6bk87" path="res://assets/textures/vfx/spray_0.png" id="77_2cwwy"]
+[ext_resource type="PackedScene" uid="uid://2hl18teni8ef" path="res://assets/models/building_blocks/canal_to_sewer_2.glb" id="79_3skrk"]
+[ext_resource type="PackedScene" uid="uid://dah80vje54i0a" path="res://prefabs/building_blocks/sewer_i_2.tscn" id="80_w0rtu"]
+[ext_resource type="PackedScene" uid="uid://cg80e7j2didb" path="res://prefabs/building_blocks/sewer_4_to_2.tscn" id="81_vn8vo"]
 
 [sub_resource type="Sky" id="Sky_i684r"]
 sky_material = ExtResource("1_tl3ee")
@@ -342,6 +351,214 @@ size = Vector3(2, 2, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlnn2"]
 albedo_color = Color(1, 0, 0, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_28j45"]
+size = Vector3(95.75, 5, 8)
+
+[sub_resource type="QuadMesh" id="QuadMesh_l4nhb"]
+material = ExtResource("76_mw4oc")
+size = Vector2(95.75, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vg3ir"]
+material = ExtResource("76_ghoxj")
+size = Vector3(95.7404, 4.9995, 7.9992)
+
+[sub_resource type="Gradient" id="Gradient_15tpb"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_msn4c"]
+gradient = SubResource("Gradient_15tpb")
+
+[sub_resource type="Curve" id="Curve_uq4ti"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yhx7u"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ru4bd"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_08obh"]
+curve_x = SubResource("Curve_uq4ti")
+curve_y = SubResource("Curve_yhx7u")
+curve_z = SubResource("Curve_ru4bd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qsggr"]
+particle_flag_rotate_y = true
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveXYZTexture_08obh")
+color_ramp = SubResource("GradientTexture1D_msn4c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bx1p"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.363281, 0.660156, 0.871094, 1)
+albedo_texture = ExtResource("76_dc3jb")
+texture_filter = 0
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_wot2p"]
+material = SubResource("StandardMaterial3D_2bx1p")
+center_offset = Vector3(0, 0.4, 0)
+
+[sub_resource type="Gradient" id="Gradient_hx6r6"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f8koo"]
+gradient = SubResource("Gradient_hx6r6")
+
+[sub_resource type="Curve" id="Curve_uwnfx"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_evn1s"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_mfqly"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_whtbi"]
+curve_x = SubResource("Curve_uwnfx")
+curve_y = SubResource("Curve_evn1s")
+curve_z = SubResource("Curve_mfqly")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5plb1"]
+particle_flag_rotate_y = true
+angle_min = 90.0
+angle_max = 90.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveXYZTexture_whtbi")
+color_ramp = SubResource("GradientTexture1D_f8koo")
+
+[sub_resource type="Gradient" id="Gradient_wr3o8"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kserc"]
+gradient = SubResource("Gradient_wr3o8")
+
+[sub_resource type="Curve" id="Curve_ftwfa"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bgisv"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_6v07a"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_13qd1"]
+curve_x = SubResource("Curve_ftwfa")
+curve_y = SubResource("Curve_bgisv")
+curve_z = SubResource("Curve_6v07a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_peynu"]
+particle_flag_rotate_y = true
+angle_min = 45.0
+angle_max = 45.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveXYZTexture_13qd1")
+color_ramp = SubResource("GradientTexture1D_kserc")
+
+[sub_resource type="Gradient" id="Gradient_oy5fc"]
+colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.501961, 0.807843, 0.913725, 0.992157, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ud2a"]
+gradient = SubResource("Gradient_oy5fc")
+
+[sub_resource type="Curve" id="Curve_scxop"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_dl6kl"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 10.0, 0, 0, Vector2(0.418719, 0.863158), -4.72355, -4.72355, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_p8gyx"]
+max_value = 1.5
+_data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6looo"]
+curve_x = SubResource("Curve_scxop")
+curve_y = SubResource("Curve_dl6kl")
+curve_z = SubResource("Curve_p8gyx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_esgiu"]
+particle_flag_rotate_y = true
+angle_min = -45.0
+angle_max = -45.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveXYZTexture_6looo")
+color_ramp = SubResource("GradientTexture1D_6ud2a")
+
+[sub_resource type="Gradient" id="Gradient_kpfjs"]
+offsets = PackedFloat32Array(0.482558, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_82daa"]
+gradient = SubResource("Gradient_kpfjs")
+
+[sub_resource type="Curve" id="Curve_nfna2"]
+_data = [Vector2(0, 0), 0.0, 2.39271, 0, 0, Vector2(1, 1), 0.109141, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_11nu5"]
+curve = SubResource("Curve_nfna2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_74pvj"]
+emission_shape = 1
+emission_sphere_radius = 0.25
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 12.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, -2, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_11nu5")
+color_ramp = SubResource("GradientTexture1D_82daa")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnhlj"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("77_2cwwy")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_phe8a"]
+material = SubResource("StandardMaterial3D_vnhlj")
+
 [node name="TowerTest" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -350,21 +567,18 @@ environment = SubResource("Environment_ad207")
 [node name="sun" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 33.6888, 16, 0)
 shadow_enabled = true
+shadow_reverse_cull_face = true
 
 [node name="moon" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866025, 0, 16, 0)
 light_energy = 0.2
 shadow_enabled = true
+shadow_reverse_cull_face = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 106.25)
 use_collision = true
-size = Vector3(500, 1, 500)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.75, 0.625, -58.75)
-operation = 2
-size = Vector3(2, 2.25, 2)
+size = Vector3(500, 1, 287.5)
 
 [node name="tower_0" type="Node3D" parent="."]
 
@@ -9963,7 +10177,7 @@ node_b = NodePath("../RigidBody3D")
 params/bias = 0.99
 
 [node name="player" parent="." instance=ExtResource("1_yf7s4")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28.75, 14, -86.75)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -71.25, 1, -86.75)
 
 [node name="game_ui" parent="." instance=ExtResource("3_0m8c0")]
 
@@ -12783,3 +12997,143 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wlnn2")
 
 [node name="tower_aleph" parent="." instance=ExtResource("73_8s1ym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 0, -96)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="tower_aleph"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5, 6.75, 10.5)
+light_color = Color(1, 1, 0.878431, 1)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="tower_aleph"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.25, 6.75, 20.25)
+light_color = Color(1, 1, 0.878431, 1)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="tower_aleph"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 6.75, 2)
+light_color = Color(1, 1, 0.878431, 1)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="tower_aleph"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.25, 6.75, 10.25)
+light_color = Color(1, 1, 0.878431, 1)
+
+[node name="street" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.25, -4, -79)
+use_collision = true
+size = Vector3(89.5, 8, 83)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.125, 0, 20.375)
+operation = 2
+size = Vector3(2.25, 10, 2.25)
+
+[node name="street2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.25, -4, -140.5)
+use_collision = true
+size = Vector3(89.5, 8, 24)
+
+[node name="bridge" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.25, -4, -124.5)
+use_collision = true
+size = Vector3(4, 8, 8)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="bridge"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.75, 0)
+operation = 2
+radius = 4.0
+height = 4.0
+
+[node name="canal" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.25, -7.5, -124.5)
+use_collision = true
+size = Vector3(89.5, 1, 8)
+
+[node name="water_area" type="Area3D" parent="canal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+collision_layer = 8
+script = ExtResource("74_ngbg4")
+spray_amount = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="canal/water_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.125, 0, 0)
+shape = SubResource("BoxShape3D_28j45")
+script = ExtResource("75_c4nq3")
+
+[node name="surface" type="MeshInstance3D" parent="canal/water_area"]
+transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 3.125, 2.5, 0)
+mesh = SubResource("QuadMesh_l4nhb")
+skeleton = NodePath("../..")
+
+[node name="under_water" type="MeshInstance3D" parent="canal/water_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.125, 0, 0)
+mesh = SubResource("BoxMesh_vg3ir")
+
+[node name="vfx" type="Node3D" parent="canal/water_area"]
+
+[node name="water_splash" type="GPUParticles3D" parent="canal/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qsggr")
+draw_pass_1 = SubResource("QuadMesh_wot2p")
+
+[node name="water_splash2" type="GPUParticles3D" parent="canal/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_5plb1")
+draw_pass_1 = SubResource("QuadMesh_wot2p")
+
+[node name="water_splash3" type="GPUParticles3D" parent="canal/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_peynu")
+draw_pass_1 = SubResource("QuadMesh_wot2p")
+
+[node name="water_splash4" type="GPUParticles3D" parent="canal/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0564704, 5)
+emitting = false
+amount = 12
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_esgiu")
+draw_pass_1 = SubResource("QuadMesh_wot2p")
+
+[node name="water_spray" type="GPUParticles3D" parent="canal/water_area/vfx"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.079459, 5)
+emitting = false
+amount = 24
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_74pvj")
+draw_pass_1 = SubResource("QuadMesh_phe8a")
+
+[node name="canal_to_sewer_22" parent="." instance=ExtResource("79_3skrk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.5, -4.5, -124.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="canal_to_sewer_22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0.5)
+size = Vector3(2, 4, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="canal_to_sewer_22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0.5)
+size = Vector3(2, 4, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="canal_to_sewer_22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, -4.5)
+size = Vector3(8, 1.5, 11)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="canal_to_sewer_22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0.5)
+size = Vector3(8, 1.5, 1)
+
+[node name="sewer_i_2" parent="canal_to_sewer_22" instance=ExtResource("80_w0rtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="sewer_i_3" parent="canal_to_sewer_22" instance=ExtResource("80_w0rtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="sewers_4_to_2" parent="canal_to_sewer_22" instance=ExtResource("81_vn8vo")]
+transform = Transform3D(-1, 8.74228e-08, 8.74228e-08, -8.74228e-08, -1, 3.82137e-15, 8.74228e-08, -3.82137e-15, 1, 0, 2, -16)
+
+[connection signal="body_entered" from="canal/water_area" to="canal/water_area" method="_on_body_entered"]
+[connection signal="body_exited" from="canal/water_area" to="canal/water_area" method="_on_body_exited"]

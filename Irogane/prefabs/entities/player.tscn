@@ -703,6 +703,7 @@ hurtboxes = [NodePath("../hutboxes/body")]
 [node name="walk" type="Node" parent="states"]
 script = ExtResource("2_6iu14")
 speed = 4.0
+push_force = 8
 
 [node name="run" type="Node" parent="states"]
 script = ExtResource("3_nkdgy")
