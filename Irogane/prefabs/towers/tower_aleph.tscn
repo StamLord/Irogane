@@ -1,5 +1,6 @@
-[gd_scene load_steps=86 format=3 uid="uid://dwdvunqnwvklv"]
+[gd_scene load_steps=87 format=3 uid="uid://dwdvunqnwvklv"]
 
+[ext_resource type="Script" path="res://addons/custom_gizmos/PatrolPoint.gd" id="1_a566q"]
 [ext_resource type="PackedScene" uid="uid://djkvp8nrxp5l3" path="res://prefabs/building_blocks/stairs.tscn" id="1_f8dfe"]
 [ext_resource type="PackedScene" uid="uid://bnxulkgstrmki" path="res://prefabs/building_blocks/arch_4x7.tscn" id="1_folir"]
 [ext_resource type="PackedScene" uid="uid://b5gh2vxvkae04" path="res://prefabs/building_blocks/vines_4x2.tscn" id="1_hislo"]
@@ -270,22 +271,28 @@ shadow_mesh = SubResource("ArrayMesh_xmqii")
 [node name="markers" type="Node3D" parent="."]
 
 [node name="bridge_a" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 24, -21.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 24.5, -21.75)
+script = ExtResource("1_a566q")
 
 [node name="bridge_b" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 24, 23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 24.5, 23)
+script = ExtResource("1_a566q")
 
 [node name="around_tower_a" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 24, 49.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 24.5, 49.75)
+script = ExtResource("1_a566q")
 
 [node name="around_tower_b" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.25, 24, 49.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.25, 24.5, 49.75)
+script = ExtResource("1_a566q")
 
 [node name="around_tower_c" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.25, 24, 22.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.25, 24.5, 22.25)
+script = ExtResource("1_a566q")
 
 [node name="around_tower_d" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 24, 22.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 24.5, 22.25)
+script = ExtResource("1_a566q")
 
 [node name="nav" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_eyv2o")
