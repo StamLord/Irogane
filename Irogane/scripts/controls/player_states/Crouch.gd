@@ -10,7 +10,7 @@ class_name Crouch
 @onready var step_separation = %step_separation
 
 # Variables
-@export var speed = 3.0;
+@export var speed = 2.0;
 @export var acceleration = 10
 @export var crouch_head_height = 0.8
 

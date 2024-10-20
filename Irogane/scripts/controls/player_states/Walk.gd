@@ -10,7 +10,7 @@ class_name Walk
 @onready var stats = %stats
 
 # Variables
-@export var speed = 5.0;
+@export var speed = 4.0;
 @export var acceleration = 10
 @export var push_force = 2
 

@@ -8,7 +8,7 @@ class_name Glide
 @onready var rope_check = $"%rope_check"
 @onready var water_check = $"%water_check"
 @onready var head = $"../../head/"
-@onready var main_camera = $"../../head/main_camera"
+@onready var main_camera = $"%main_camera"
 @onready var wind_check = $"%wind_check"
 
 # Variables

@@ -2,7 +2,7 @@ extends Node3D
 
 # Ref
 @onready var body = $".."
-@onready var camera = $main_camera
+@onready var camera = %main_camera
 
 # Mouse
 @export var mouse_sensitivity = 0.4;

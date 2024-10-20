@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var telecam = $telecam
-@onready var mouse_look = $"../../.."
+@onready var mouse_look = %head
 @export var min_fov = 70.0
 @export var max_fov = 1.0
 @export var min_sensitivity = 0.04

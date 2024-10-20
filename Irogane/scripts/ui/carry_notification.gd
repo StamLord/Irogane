@@ -1,7 +1,7 @@
 extends Label
 
 @export var message_duration = 2.0
-@onready var interaction = PlayerEntity.player_node.get_node("head/main_camera/interaction")
+@onready var interaction = PlayerEntity.player_node.get_node("%interaction")
 
 var base_color
 var is_showing = false

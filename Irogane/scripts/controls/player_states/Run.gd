@@ -8,7 +8,7 @@ class_name Run
 @onready var stamina = $"../../stats/stamina"
 
 # Variables
-@export var speed = 8;
+@export var speed = 7.0;
 @export var acceleration = 10
 @export var push_force = 2
 
