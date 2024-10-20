@@ -22,7 +22,7 @@ func bush_exited(body):
 
 func bush_movement_behaviour(body):
 	# StaticBodies don't move so we shouldn't interact with them
-	if body is StaticBody3D:
+	if body is StaticBody3D or body is CSGBox3D:
 		return
 	
 	if wiggle_bone:
