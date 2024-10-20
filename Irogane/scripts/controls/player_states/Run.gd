@@ -8,7 +8,7 @@ class_name Run
 @onready var stamina = $"../../stats/stamina"
 
 # Variables
-@export var speed = 7.0;
+@export var speed = 5.0;
 @export var acceleration = 10
 @export var push_force = 2
 
@@ -22,6 +22,10 @@ var last_deplete = 0
 
 var was_on_floor_last_frame = false
 var snapped_to_stairs_last_frame = false
+
+func _ready():
+	add_debug_commands()
+	
 
 func Enter(body):
 	stand_collider.disabled = false
@@ -112,4 +116,21 @@ func Exit(body):
 	body.last_direction = direction
 	body.last_speed = speed
 	step_separation.disabled = true
+	
+
+func set_run_speed(args: Array):
+	speed = args[0]
+	
+
+func add_debug_commands():
+	DebugCommandsManager.add_command(
+		"set_run_speed",
+		set_run_speed,
+		 [{
+				"arg_name" : "value",
+				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
+				"arg_desc" : "New speed value"
+			}],
+		"Sets the player run speed to the new value"
+		)
 	
