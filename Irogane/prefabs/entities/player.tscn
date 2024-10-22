@@ -1,4 +1,4 @@
-[gd_scene load_steps=187 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=191 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -77,6 +77,7 @@
 [ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
 [ext_resource type="Script" path="res://scripts/weapons/slingshot.gd" id="59_garyl"]
 [ext_resource type="Script" path="res://scripts/weapons/lockpick.gd" id="60_pohs2"]
+[ext_resource type="Script" path="res://scripts/camera/death_cam.gd" id="78_y1sx6"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -686,6 +687,14 @@ radius = 5.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gw68j"]
 radius = 0.25
 height = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dof5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_v2s8y"]
+bounce = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r7snk"]
+size = Vector3(0.4, 0.4, 0.4)
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
 collision_layer = 129
@@ -1645,6 +1654,36 @@ script = ExtResource("50_h51e5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hutboxes/body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_gw68j")
+
+[node name="death_cam" type="Node3D" parent="."]
+
+[node name="body" type="StaticBody3D" parent="death_cam"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="death_cam/body"]
+shape = SubResource("BoxShape3D_6dof5")
+
+[node name="head" type="RigidBody3D" parent="death_cam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+collision_layer = 0
+mass = 99.0
+physics_material_override = SubResource("PhysicsMaterial_v2s8y")
+freeze = true
+continuous_cd = true
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="death_cam/head"]
+shape = SubResource("BoxShape3D_r7snk")
+
+[node name="death_cam" type="Camera3D" parent="death_cam/head"]
+fov = 120.0
+script = ExtResource("78_y1sx6")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="death_cam"]
+node_a = NodePath("../body")
+node_b = NodePath("../head")
 
 [connection signal="visibility_changed" from="head/camera_bob/main_camera/weapon_manager/skill_zone" to="head/camera_bob/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="head/camera_bob/main_camera/simple_weapon_manager/skill_zone" to="head/camera_bob/main_camera/simple_weapon_manager/skill_zone" method="_on_visibility_changed"]
