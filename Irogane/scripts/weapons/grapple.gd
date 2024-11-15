@@ -4,7 +4,7 @@ extends Node3D
 @onready var ray_cast = $"../../grappling_ray_cast"
 @onready var start_target = $start_target
 @onready var end_target = $end_target
-@onready var state_machine = $"../../../.."
+@onready var state_machine = owner
 
 var is_grappling = false
 var prev_raycast_collider = null
