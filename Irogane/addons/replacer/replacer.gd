@@ -54,18 +54,13 @@ func _on_replace_pressed():
 	
 	for node in selected_nodes:
 		var new_node = resource.instantiate()
-		print("Instantiated: ", new_node)
-		
 		var old_transform = node.get_transform()
-		var old_name = node.name
-		
 		node.get_parent().add_child(new_node)
-		
 		new_node.transform = old_transform
 		new_node.owner = node.owner
+		new_node.name = node.name
 		
 		node.queue_free()
-		new_node.name = "TEST_NAME"
 	
 	save_scene()
 	
