@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=201 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -91,6 +91,7 @@
 [ext_resource type="PackedScene" uid="uid://dah80vje54i0a" path="res://prefabs/building_blocks/sewer_i_2.tscn" id="80_w0rtu"]
 [ext_resource type="Texture2D" uid="uid://cbiyms2j82goe" path="res://assets/textures/medieval/gray-seamless-sett-texture.jpg" id="81_sv7kp"]
 [ext_resource type="PackedScene" uid="uid://cg80e7j2didb" path="res://prefabs/building_blocks/sewer_4_to_2.tscn" id="81_vn8vo"]
+[ext_resource type="PackedScene" uid="uid://c7q70knnl4t4d" path="res://prefabs/market_stand_1.tscn" id="83_yia3m"]
 
 [sub_resource type="Sky" id="Sky_i684r"]
 sky_material = ExtResource("1_tl3ee")
@@ -416,11 +417,11 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_28j45"]
 size = Vector3(95.75, 5, 8)
 
-[sub_resource type="QuadMesh" id="QuadMesh_fhjsc"]
+[sub_resource type="QuadMesh" id="QuadMesh_d1uxb"]
 material = ExtResource("76_mw4oc")
 size = Vector2(95.75, 8)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ml6fh"]
+[sub_resource type="BoxMesh" id="BoxMesh_uy1ee"]
 material = ExtResource("76_ghoxj")
 size = Vector3(95.7404, 4.9995, 7.9992)
 
@@ -13213,7 +13214,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.325, 0.25)
 mesh = SubResource("BoxMesh_f5rna")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="houses/street_lantern"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 light_color = Color(0.956863, 0.843137, 0.662745, 1)
 omni_range = 10.0
 
@@ -13244,7 +13244,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.325, 0.25)
 mesh = SubResource("BoxMesh_f5rna")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="houses/street_lantern2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 light_color = Color(0.956863, 0.843137, 0.662745, 1)
 omni_range = 10.0
 
@@ -14083,1868 +14082,210 @@ light_color = Color(1, 1, 0.839216, 1)
 shadow_enabled = true
 omni_range = 16.0
 
-[node name="market_stand_1" type="CSGBox3D" parent="houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.625, 8, -125.875)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_1"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_2" type="CSGBox3D" parent="houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.625, 8, -125.875)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_4" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.0343588, 0, 0.99941, 0, 1, 0, -0.99941, 0, -0.0343588, 17.3335, 8, -134.532)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_4/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_4"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_49" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.0343588, 0, 0.99941, 0, 1, 0, -0.99941, 0, -0.0343588, 16.8838, 8, -141.304)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_49"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_49"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_49"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_49"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_49"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_49"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_49"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_49"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_5" type="CSGBox3D" parent="houses"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 11.5051, 8, -133.464)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_5"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_6" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-1, 0, 5.76205e-08, 0, 1, 0, -5.76205e-08, 0, -1, 26.875, 8, -139.125)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_6"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_7" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.0205587, 0, -0.999789, 0, 1, 0, 0.999789, 0, 0.0205587, 26.125, 8, -132.625)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_7"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_8" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.999789, 0, -0.0205586, 0, 1, 0, 0.0205586, 0, -0.999789, 34.875, 8, -139.125)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_8"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="OmniLight3D7" type="OmniLight3D" parent="houses/market_stand_8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_9" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.749198, 0, 0.662346, 0, 1, 0, -0.662346, 0, 0.749198, 35.0119, 8, -127.576)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_9"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_13" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.140711, 0, 0.990051, 0, 1, 0, -0.990051, 0, 0.140711, 40.4387, 8, -134.583)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_13"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_10" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.999789, 0, -0.0205586, 0, 1, 0, 0.0205586, 0, -0.999789, 22.4352, 8, -114.938)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_10"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_11" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.238906, 0, 0.971043, 0, 1, 0, -0.971043, 0, 0.238906, 30.3536, 8, -109.626)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_11"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_25" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.967272, 0, 0.253741, 0, 1, 0, -0.253741, 0, -0.967272, 30.131, 8, -115.782)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_25"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_25"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_12" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.48209, 0, -0.876122, 0, 1, 0, 0.876122, 0, -0.48209, 18.5485, 8, -108.943)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_12"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_14" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.775782, 0, 0.631001, 0, 1, 0, -0.631001, 0, -0.775782, 13.7588, 8, -122.063)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_14"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_37" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.396411, 0, 0.918073, 0, 1, 0, -0.918073, 0, 0.396411, 12.4063, 8, -115.009)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_37"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_37"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_37"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_37"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_37"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_37"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_37"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_37"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_15" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.999511, 0, 0.0312886, 0, 1, 0, -0.0312886, 0, -0.999511, 6.25743, 8, -124.188)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_15"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_16" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.957355, 0, -0.288915, 0, 1, 0, 0.288915, 0, 0.957355, 7.25743, 8, -109.438)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_16"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_21" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.957355, 0, -0.288915, 0, 1, 0, 0.288915, 0, 0.957355, 22.0074, 8, -102.688)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_21"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_21"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_22" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.288915, 0, 0.957355, 0, 1, 0, -0.957355, 0, 0.288915, 28.0074, 8, -102.188)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_22"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_22"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_22"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_22"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_22"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_22"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_22"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_23" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.957355, 0, -0.288915, 0, 1, 0, 0.288915, 0, 0.957355, 36.2574, 8, -99.1875)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_23"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_23"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_26" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.941946, 0, 0.335764, 0, 1, 0, -0.335764, 0, 0.941946, 43.2018, 8, -98.6339)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_26"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_26"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_33" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.045607, 0, 0.998959, 0, 1, 0, -0.998959, 0, 0.045607, 45.4778, 8, -104.651)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_33"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_34" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.0663435, 0, 0.997797, 0, 1, 0, -0.997797, 0, 0.0663435, 46.1067, 8, -112.229)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_34"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_34"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_36" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.059045, 0, -0.998255, 0, 1, 0, 0.998255, 0, -0.059045, 39.2287, 8, -112.984)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_36"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_36"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_36"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_36"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_36"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_36"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_36"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_36"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_39" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.986144, 0, -0.165891, 0, 1, 0, 0.165891, 0, -0.986144, 51.2292, 8, -144.991)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_39"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_39"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_39"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_39"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_39"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_39"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_39"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_39"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_40" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.0674929, 0, -0.99772, 0, 1, 0, 0.99772, 0, 0.0674929, 48.5297, 8, -136.879)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_40"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_40"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_41" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.0336261, 0, -0.999434, 0, 1, 0, 0.999434, 0, -0.0336261, 48.6448, 8, -129.073)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_41"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_41"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_42" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.927674, 0, -0.373393, 0, 1, 0, 0.373393, 0, 0.927674, 54.8979, 8, -125.588)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_42"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_42"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_43" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.971126, 0, 0.238567, 0, 1, 0, -0.238567, 0, 0.971126, 62.5925, 8, -124.856)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_43"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_43"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_43"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_43"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_43"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_43"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_43"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_43"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_44" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.0209075, 0, 0.999781, 0, 1, 0, -0.999781, 0, 0.0209075, 63.6014, 8, -131.87)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_44"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_44"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_44"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_44"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_44"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_44"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_44"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_44"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_45" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.119929, 0, 0.992782, 0, 1, 0, -0.992782, 0, -0.119929, 62.8409, 8, -139.231)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_45"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_46" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.998647, 0, 0.0520047, 0, 1, 0, -0.0520047, 0, -0.998647, 59.5703, 8, -145.323)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_46"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_46"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_46"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_46"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_46"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_46"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_46"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_46"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_38" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.998255, 0, 0.059045, 0, 1, 0, -0.059045, 0, -0.998255, 43.2346, 8, -118.67)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_38"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_38"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_38"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_38"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_38"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_38"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_38"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_38"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_27" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.99734, 0, -0.07289, 0, 1, 0, 0.07289, 0, 0.99734, 54.3953, 8, -94.626)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_27"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_27"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_28" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.999654, 0, 0.0262991, 0, 1, 0, -0.0262991, 0, 0.999654, 62.2458, 8, -94.1358)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_28"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_28"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_29" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.0429393, 0, 0.999078, 0, 1, 0, -0.999078, 0, 0.0429393, 65.9794, 8, -107.968)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_29"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_29"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_51" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.0271191, 0, 0.999632, 0, 1, 0, -0.999632, 0, -0.0271191, 65.8954, 8, -100.123)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_51"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_51"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_51"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_51"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_51"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_51"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_51"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_51"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_30" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.999078, 0, 0.0429393, 0, 1, 0, -0.0429393, 0, -0.999078, 54.6528, 8, -114.088)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_30"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_30"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_50" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.994531, 0, 0.104442, 0, 1, 0, -0.104442, 0, -0.994531, 62.0311, 8, -113.775)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_50"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_50"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_50"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_50"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_50"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_50"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_50"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_50"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_31" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.0429393, 0, -0.999078, 0, 1, 0, 0.999078, 0, -0.0429393, 52.8067, 8, -107.661)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_31"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_31"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_31"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_31"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_31"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_31"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_31"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_31"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_32" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.0429393, 0, -0.999078, 0, 1, 0, 0.999078, 0, -0.0429393, 52.4701, 8, -100.585)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_32"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_32"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_32"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_32"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_32"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_32"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_32"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_24" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.288915, 0, -0.957355, 0, 1, 0, 0.957355, 0, -0.288915, 37.3896, 8, -105.404)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_24"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_24"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_24"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_24"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_24"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_24"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_24"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="market_stand_17" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.22847, 0, -0.973551, 0, 1, 0, 0.973551, 0, 0.22847, 2.57321, 8, -115.772)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_17"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_17"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_18" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.257588, 0, -0.966255, 0, 1, 0, 0.966255, 0, 0.257588, 1.01436, 8, -122.805)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_18"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_19" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.257588, 0, -0.966255, 0, 1, 0, 0.966255, 0, 0.257588, -1.48813, 8, -132.926)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_19"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_19"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_48" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.0406723, 0, -0.999173, 0, 1, 0, 0.999173, 0, 0.0406723, -2.53082, 8, -140.81)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_48"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_48"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_48"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_48"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_48"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_48"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_48"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_48"]
-transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, -3.72529e-09, 0, 1, 1.75, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_20" type="CSGBox3D" parent="houses"]
-transform = Transform3D(0.986228, 0, 0.165392, 0, 1, 0, -0.165392, 0, 0.986228, 4.73399, 8, -132.832)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_20"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_20"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_35" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-1, 0, -1.17225e-07, 0, 1, 0, 1.17225e-07, 0, -1, 3.48399, 8, -141.963)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_35"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_35"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_35"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_35"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_35"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_35"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_35"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_35"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
-[node name="market_stand_47" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-0.999796, 0, 0.020192, 0, 1, 0, -0.020192, 0, -0.999796, 10.2551, 8, -142.277)
-size = Vector3(6, 0.1, 4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/market_stand_47"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/market_stand_47"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/market_stand_47"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, 2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/market_stand_47"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -2)
-size = Vector3(0.1, 4, 0.1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/market_stand_47"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/market_stand_47"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, -3.5, 0)
-size = Vector3(1, 1, 3.25)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/market_stand_47"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.375, -3.5, 1.12)
-size = Vector3(1, 1, 3.5)
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="houses/market_stand_47"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75002, -2.5, 0.999985)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.5
-shadow_enabled = true
-
 [node name="market" type="CSGBox3D" parent="houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.625, 3.6, -125.875)
 material_override = SubResource("StandardMaterial3D_0w2qv")
 size = Vector3(82.75, 1, 79.25)
+
+[node name="TEST_NAME" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.941946, 0, 0.335764, 0, 1, 0, -0.335764, 0, 0.941946, 43.2018, 8, -98.6339)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME2" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.99734, 0, -0.07289, 0, 1, 0, 0.07289, 0, 0.99734, 54.3953, 8, -94.626)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME3" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.999654, 0, 0.0262991, 0, 1, 0, -0.0262991, 0, 0.999654, 62.2458, 8, -94.1358)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME4" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.0429393, 0, -0.999078, 0, 1, 0, 0.999078, 0, -0.0429393, 52.4701, 8, -100.585)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME5" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.0429393, 0, -0.999078, 0, 1, 0, 0.999078, 0, -0.0429393, 52.8067, 8, -107.661)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME6" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.0271191, 0, 0.999632, 0, 1, 0, -0.999632, 0, -0.0271191, 65.8954, 8, -100.123)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME7" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.0429393, 0, 0.999078, 0, 1, 0, -0.999078, 0, 0.0429393, 65.9794, 8, -107.968)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME8" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.994531, 0, 0.104442, 0, 1, 0, -0.104442, 0, -0.994531, 62.0311, 8, -113.775)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME9" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.999078, 0, 0.0429393, 0, 1, 0, -0.0429393, 0, -0.999078, 54.6528, 8, -114.088)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME10" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.625, 8, -125.875)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME11" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.625, 8, -125.875)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME12" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.0343588, 0, 0.99941, 0, 1, 0, -0.99941, 0, -0.0343588, 17.3335, 8, -134.532)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME13" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.0343588, 0, 0.99941, 0, 1, 0, -0.99941, 0, -0.0343588, 16.8838, 8, -141.304)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME14" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 11.5051, 8, -133.464)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME15" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-1, 0, 5.76205e-08, 0, 1, 0, -5.76205e-08, 0, -1, 26.875, 8, -139.125)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME16" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.0205587, 0, -0.999789, 0, 1, 0, 0.999789, 0, 0.0205587, 26.125, 8, -132.625)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME17" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.999789, 0, -0.0205586, 0, 1, 0, 0.0205586, 0, -0.999789, 34.875, 8, -139.125)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME18" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.749198, 0, 0.662346, 0, 1, 0, -0.662346, 0, 0.749198, 35.0119, 8, -127.576)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME19" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.140711, 0, 0.990051, 0, 1, 0, -0.990051, 0, 0.140711, 40.4387, 8, -134.583)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME20" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.999789, 0, -0.0205586, 0, 1, 0, 0.0205586, 0, -0.999789, 22.4352, 8, -114.938)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME21" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.238906, 0, 0.971043, 0, 1, 0, -0.971043, 0, 0.238906, 30.3536, 8, -109.626)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME22" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.967272, 0, 0.253741, 0, 1, 0, -0.253741, 0, -0.967272, 30.131, 8, -115.782)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME23" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.48209, 0, -0.876122, 0, 1, 0, 0.876122, 0, -0.48209, 18.5485, 8, -108.943)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME24" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.775782, 0, 0.631001, 0, 1, 0, -0.631001, 0, -0.775782, 13.7588, 8, -122.063)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME25" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.396411, 0, 0.918073, 0, 1, 0, -0.918073, 0, 0.396411, 12.4063, 8, -115.009)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME26" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.999511, 0, 0.0312886, 0, 1, 0, -0.0312886, 0, -0.999511, 6.25743, 8, -124.188)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME27" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.957355, 0, -0.288915, 0, 1, 0, 0.288915, 0, 0.957355, 7.25743, 8, -109.438)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME28" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.957355, 0, -0.288915, 0, 1, 0, 0.288915, 0, 0.957355, 22.0074, 8, -102.688)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME29" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.288915, 0, 0.957355, 0, 1, 0, -0.957355, 0, 0.288915, 28.0074, 8, -102.188)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME30" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.957355, 0, -0.288915, 0, 1, 0, 0.288915, 0, 0.957355, 36.2574, 8, -99.1875)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME31" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.045607, 0, 0.998959, 0, 1, 0, -0.998959, 0, 0.045607, 45.4778, 8, -104.651)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME32" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.0663435, 0, 0.997797, 0, 1, 0, -0.997797, 0, 0.0663435, 46.1067, 8, -112.229)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME33" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.059045, 0, -0.998255, 0, 1, 0, 0.998255, 0, -0.059045, 39.2287, 8, -112.984)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME34" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.986144, 0, -0.165891, 0, 1, 0, 0.165891, 0, -0.986144, 51.2292, 8, -144.991)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME35" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.0674929, 0, -0.99772, 0, 1, 0, 0.99772, 0, 0.0674929, 48.5297, 8, -136.879)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME36" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.0336261, 0, -0.999434, 0, 1, 0, 0.999434, 0, -0.0336261, 48.6448, 8, -129.073)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME37" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.927674, 0, -0.373393, 0, 1, 0, 0.373393, 0, 0.927674, 54.8979, 8, -125.588)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME38" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.971126, 0, 0.238567, 0, 1, 0, -0.238567, 0, 0.971126, 62.5925, 8, -124.856)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME39" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.0209075, 0, 0.999781, 0, 1, 0, -0.999781, 0, 0.0209075, 63.6014, 8, -131.87)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME40" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.119929, 0, 0.992782, 0, 1, 0, -0.992782, 0, -0.119929, 62.8409, 8, -139.231)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME41" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.998647, 0, 0.0520047, 0, 1, 0, -0.0520047, 0, -0.998647, 59.5703, 8, -145.323)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME42" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.998255, 0, 0.059045, 0, 1, 0, -0.059045, 0, -0.998255, 43.2346, 8, -118.67)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME43" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.288915, 0, -0.957355, 0, 1, 0, 0.957355, 0, -0.288915, 37.3896, 8, -105.404)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME44" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.22847, 0, -0.973551, 0, 1, 0, 0.973551, 0, 0.22847, 2.57321, 8, -115.772)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME45" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.257588, 0, -0.966255, 0, 1, 0, 0.966255, 0, 0.257588, 1.01436, 8, -122.805)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME46" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.257588, 0, -0.966255, 0, 1, 0, 0.966255, 0, 0.257588, -1.48813, 8, -132.926)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME47" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.0406723, 0, -0.999173, 0, 1, 0, 0.999173, 0, 0.0406723, -2.53082, 8, -140.81)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME48" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(0.986228, 0, 0.165392, 0, 1, 0, -0.165392, 0, 0.986228, 4.73399, 8, -132.832)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME49" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-1, 0, -1.17225e-07, 0, 1, 0, 1.17225e-07, 0, -1, 3.48399, 8, -141.963)
+size = Vector3(6, 0.1, 4)
+
+[node name="TEST_NAME50" type="CSGBox3D" parent="houses" instance=ExtResource("83_yia3m")]
+transform = Transform3D(-0.999796, 0, 0.020192, 0, 1, 0, -0.020192, 0, -0.999796, 10.2551, 8, -142.277)
+size = Vector3(6, 0.1, 4)
 
 [node name="bridge" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.25, -4, -124.5)
@@ -15975,12 +14316,12 @@ script = ExtResource("75_c4nq3")
 
 [node name="surface" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 3.125, 2.5, 0)
-mesh = SubResource("QuadMesh_fhjsc")
+mesh = SubResource("QuadMesh_d1uxb")
 skeleton = NodePath("../..")
 
 [node name="under_water" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.125, 0, 0)
-mesh = SubResource("BoxMesh_ml6fh")
+mesh = SubResource("BoxMesh_uy1ee")
 
 [node name="vfx" type="Node3D" parent="canal/water_area"]
 
