@@ -1,0 +1,351 @@
+[gd_scene load_steps=4 format=3 uid="uid://chy13wy5d5pr4"]
+
+[ext_resource type="Script" path="res://scripts/procedural/rotating.gd" id="1_wyhcg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51par"]
+albedo_color = Color(0.32549, 0.247059, 0.168627, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xgt71"]
+albedo_color = Color(0.87451, 0.729412, 0.52549, 1)
+
+[node name="WindMill1" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.707107, -1.11268e-28, 0.707107, 0.707107, -6.18173e-08, -0.707107, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_51par")
+height = 3.0
+script = ExtResource("1_wyhcg")
+rotation_range = Vector2(360, 0)
+speed = 20.0
+
+[node name="Node3D" type="Node3D" parent="CSGCylinder3D"]
+transform = Transform3D(1.91069e-15, 1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1, -3.59989e-21, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_xgt71")
+size = Vector3(3.75, 0.1, 16.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -10.375, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 20.75)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 2, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(1, 0.2, 17)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -4, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -5.5, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -7, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -8.5, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -10, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -11.5, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -12.75, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -14.25, 1.06581e-14, -0.999999)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -15.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -17.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -18.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -20.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCylinder3D/Node3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, -1.75, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 17)
+
+[node name="Node3D2" type="Node3D" parent="CSGCylinder3D"]
+transform = Transform3D(-1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_xgt71")
+size = Vector3(3.75, 0.1, 16.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -10.375, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 20.75)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(3.55271e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 2, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(1, 0.2, 17)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -4, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -5.5, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -7, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -8.5, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -10, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -11.5, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -12.75, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -14.25, 1.06581e-14, -0.999999)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -15.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -17.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -18.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -20.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCylinder3D/Node3D2"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, -1.75, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 17)
+
+[node name="Node3D3" type="Node3D" parent="CSGCylinder3D"]
+transform = Transform3D(8.74228e-08, -1, 4.37114e-08, -4.37114e-08, 4.37114e-08, 1, -1, -8.74228e-08, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_xgt71")
+size = Vector3(3.75, 0.1, 16.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -10.375, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 20.75)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(0, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 2, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(1, 0.2, 17)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -4, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -5.5, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -7, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -8.5, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -10, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -11.5, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -12.75, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -14.25, 1.06581e-14, -0.999999)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -15.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -17.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -18.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -20.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCylinder3D/Node3D3"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, -1.75, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 17)
+
+[node name="Node3D4" type="Node3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 1.31134e-07, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 1.31134e-07, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_xgt71")
+size = Vector3(3.75, 0.1, 16.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -10.375, 4.37114e-08, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 20.75)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(0, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, 2, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(1, 0.2, 17)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -4, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -5.5, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -7, 0, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -8.5, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -10, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -11.5, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -12.75, 1.42109e-14, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -14.25, 1.06581e-14, -0.999999)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -15.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -17.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -18.75, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1, -4.37114e-08, -4.37114e-08, -4.37113e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -20.25, 7.10543e-15, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCylinder3D/Node3D4"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -12, -1.75, -1)
+material_override = SubResource("StandardMaterial3D_51par")
+size = Vector3(0.5, 0.2, 17)
