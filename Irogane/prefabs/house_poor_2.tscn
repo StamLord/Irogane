@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdc5arlacmtff"]
+[gd_scene load_steps=5 format=3 uid="uid://bdc5arlacmtff"]
+
+[ext_resource type="Texture2D" uid="uid://dfpgmvtkm7761" path="res://assets/textures/medieval/stone wall (12).png" id="1_1bgm6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfgc0"]
-albedo_color = Color(0.894118, 0.792157, 0.670588, 1)
+albedo_color = Color(0.862745, 0.737255, 0.670588, 1)
+albedo_texture = ExtResource("1_1bgm6")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppaxc"]
 albedo_color = Color(0.823529, 0.313726, 0.231373, 1)
@@ -13,11 +19,13 @@ size = Vector3(8, 2, 14)
 
 [node name="main" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+use_collision = true
 size = Vector3(8, 8, 14)
 material = SubResource("StandardMaterial3D_bfgc0")
 
 [node name="roof" type="CSGBox3D" parent="."]
 transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, -2.21651, 9.125, 0)
+use_collision = true
 size = Vector3(5.5, 0.5, 15)
 material = SubResource("StandardMaterial3D_ppaxc")
 
