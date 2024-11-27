@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7y4mi6sbauku"]
+[gd_scene load_steps=13 format=3 uid="uid://b7y4mi6sbauku"]
 
 [ext_resource type="Texture2D" uid="uid://dfpgmvtkm7761" path="res://assets/textures/medieval/stone wall (12).png" id="1_4kkpi"]
-[ext_resource type="Material" uid="uid://cmuuxjgx0ubrs" path="res://assets/materials/window_light.tres" id="1_get12"]
 [ext_resource type="Material" uid="uid://4sfrxcw25g5s" path="res://assets/materials/window_light_flicker.tres" id="2_rdpc2"]
 [ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="3_kmabq"]
 
@@ -60,7 +59,7 @@ skeleton = NodePath("../..")
 
 [node name="window15" type="MeshInstance3D" parent="main"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.25, 0, -4)
-material_override = ExtResource("1_get12")
+material_override = ExtResource("2_rdpc2")
 mesh = SubResource("QuadMesh_nrr4a")
 skeleton = NodePath("../..")
 
@@ -348,7 +347,7 @@ skeleton = NodePath("../..")
 
 [node name="window80" type="MeshInstance3D" parent="main3"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 0.222206, 3.75, 20.25)
-material_override = ExtResource("1_get12")
+material_override = ExtResource("2_rdpc2")
 mesh = SubResource("QuadMesh_iy8ci")
 skeleton = NodePath("../..")
 

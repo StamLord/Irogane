@@ -87,7 +87,6 @@
 [ext_resource type="PackedScene" uid="uid://cfgnpjcmahykf" path="res://prefabs/tower_20.tscn" id="78_qevyp"]
 [ext_resource type="PackedScene" uid="uid://2hl18teni8ef" path="res://assets/models/building_blocks/canal_to_sewer_2.glb" id="79_3skrk"]
 [ext_resource type="PackedScene" uid="uid://b26clicbqq73w" path="res://prefabs/wind_mill_1.tscn" id="79_e3rnn"]
-[ext_resource type="Material" uid="uid://cmuuxjgx0ubrs" path="res://assets/materials/window_light.tres" id="80_prqpw"]
 [ext_resource type="PackedScene" uid="uid://dah80vje54i0a" path="res://prefabs/building_blocks/sewer_i_2.tscn" id="80_w0rtu"]
 [ext_resource type="Texture2D" uid="uid://cbiyms2j82goe" path="res://assets/textures/medieval/gray-seamless-sett-texture.jpg" id="81_sv7kp"]
 [ext_resource type="PackedScene" uid="uid://cg80e7j2didb" path="res://prefabs/building_blocks/sewer_4_to_2.tscn" id="81_vn8vo"]
@@ -357,6 +356,12 @@ uv1_scale = Vector3(0.125, 0.25, 0.25)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7s62"]
+disable_fog = true
+emission_enabled = true
+emission = Color(1, 0.729412, 0.443137, 1)
+emission_energy_multiplier = 3.0
+
 [sub_resource type="BoxMesh" id="BoxMesh_ly5ce"]
 size = Vector3(0.3, 0.45, 0.3)
 
@@ -410,11 +415,11 @@ point_count = 8
 [sub_resource type="BoxShape3D" id="BoxShape3D_28j45"]
 size = Vector3(95.75, 5, 8)
 
-[sub_resource type="QuadMesh" id="QuadMesh_fy6gm"]
+[sub_resource type="QuadMesh" id="QuadMesh_g7nsx"]
 material = ExtResource("76_mw4oc")
 size = Vector2(95.75, 8)
 
-[sub_resource type="BoxMesh" id="BoxMesh_1ddtq"]
+[sub_resource type="BoxMesh" id="BoxMesh_rpedg"]
 material = ExtResource("76_ghoxj")
 size = Vector3(95.7404, 4.9995, 7.9992)
 
@@ -13199,7 +13204,7 @@ transform = Transform3D(0.00783645, 0, 0.999969, 0, 1, 0, -0.999969, 0, 0.007836
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -10.5967, 7.75, -26.034)
 
 [node name="lantern" type="MeshInstance3D" parent="houses/street_lantern"]
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 mesh = SubResource("BoxMesh_ly5ce")
 skeleton = NodePath("../../HousePoor54")
 
@@ -13229,7 +13234,7 @@ omni_range = 10.0
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -10.8084, 7.75, -10.9007)
 
 [node name="lantern" type="MeshInstance3D" parent="houses/street_lantern3"]
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 mesh = SubResource("BoxMesh_ly5ce")
 skeleton = NodePath("../../HousePoor54")
 
@@ -13259,7 +13264,7 @@ omni_range = 10.0
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -26.5158, 6.75, -28.9773)
 
 [node name="lantern" type="MeshInstance3D" parent="houses/street_lantern2"]
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 mesh = SubResource("BoxMesh_ly5ce")
 skeleton = NodePath("../../HousePoor54")
 
@@ -13482,27 +13487,27 @@ size = Vector3(28, 3, 28)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/clock_tower/main"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 38.25, 0)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 operation = 2
 radius = 8.0
 height = 21.0
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="houses/clock_tower/main"]
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 38.25, 0)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 operation = 2
 radius = 8.0
 height = 21.0
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/clock_tower"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 38.25, 0)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 8.0
 height = 18.0
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="houses/clock_tower"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 38.25, 0)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 8.0
 height = 18.0
 
@@ -13740,147 +13745,147 @@ size = Vector3(49, 1, 80)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-4.37114e-08, 1, -1.64203e-15, 4.37114e-08, -1.64203e-15, -1, -1, -4.37114e-08, -4.37114e-08, -11.25, 1, -16.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 4.0
 height = 18.0
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-4.37114e-08, 1, -1.64203e-15, 4.37114e-08, -1.64203e-15, -1, -1, -4.37114e-08, -4.37114e-08, -11.25, 1, 16.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 4.0
 height = 18.0
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-4.37114e-08, 1, -1.64203e-15, 4.37114e-08, -1.64203e-15, -1, -1, -4.37114e-08, -4.37114e-08, -11.25, 19.25, 0)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 4.0
 height = 18.0
 
 [node name="window" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-1, -8.74228e-08, -4.37114e-08, 4.37114e-08, -1.64203e-15, -1, 8.74228e-08, -1, 3.55272e-15, -15, -9.25, 25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window2" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-1, -8.74228e-08, -4.37114e-08, 4.37114e-08, -1.64203e-15, -1, 8.74228e-08, -1, 3.55272e-15, 0, -9.25, 25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window2"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window4" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-1, -8.74228e-08, -4.37114e-08, 4.37114e-08, -1.64203e-15, -1, 8.74228e-08, -1, 3.55272e-15, -7.75, -9.25, 25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window4"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window5" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-1, -8.74228e-08, -4.37114e-08, 4.37114e-08, -1.64203e-15, -1, 8.74228e-08, -1, 3.55272e-15, 7.25, -9.25, 25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window5"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window3" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-1, -8.74228e-08, -4.37114e-08, 4.37114e-08, -1.64203e-15, -1, 8.74228e-08, -1, 3.55272e-15, 15, -9.25, 25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window3"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window6" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(1, 1.74846e-07, 4.37114e-08, 4.37114e-08, -1.64203e-15, -1, -1.74846e-07, 1, -7.37409e-15, 14.8, -9.25, -25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window6"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window7" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(1, 1.74846e-07, 4.37114e-08, 4.37114e-08, -1.64203e-15, -1, -1.74846e-07, 1, -7.37409e-15, -0.200012, -9.25, -25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window7"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window8" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(1, 1.74846e-07, 4.37114e-08, 4.37114e-08, -1.64203e-15, -1, -1.74846e-07, 1, -7.37409e-15, 7.54999, -9.25, -25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window8"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window9" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(1, 1.74846e-07, 4.37114e-08, 4.37114e-08, -1.64203e-15, -1, -1.74846e-07, 1, -7.37409e-15, -7.45001, -9.25, -25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window9"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="window10" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(1, 1.74846e-07, 4.37114e-08, 4.37114e-08, -1.64203e-15, -1, -1.74846e-07, 1, -7.37409e-15, -15.2, -9.25, -25.25)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 radius = 2.0
 height = 18.0
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="houses/church/window10"]
 transform = Transform3D(-1, 4.37114e-08, 8.74228e-08, -8.74228e-08, 2.68656e-16, -1, -4.37114e-08, -1, 5.4634e-15, 0, -8, 5.625)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(4, 11.25, 2)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="houses/church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.75, 11.75, 0)
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(1, 15.5, 8)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="houses/church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.75, 12.25, -3)
 visible = false
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(1, 21.5, 2)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="houses/church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.75, 12.25, 3)
 visible = false
-material_override = ExtResource("80_prqpw")
+material_override = SubResource("StandardMaterial3D_x7s62")
 size = Vector3(1, 21.5, 2)
 
 [node name="big_build_2" type="CSGBox3D" parent="houses"]
@@ -14474,12 +14479,12 @@ script = ExtResource("75_c4nq3")
 
 [node name="surface" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 3.125, 2.5, 0)
-mesh = SubResource("QuadMesh_fy6gm")
+mesh = SubResource("QuadMesh_g7nsx")
 skeleton = NodePath("../..")
 
 [node name="under_water" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.125, 0, 0)
-mesh = SubResource("BoxMesh_1ddtq")
+mesh = SubResource("BoxMesh_rpedg")
 
 [node name="vfx" type="Node3D" parent="canal/water_area"]
 
