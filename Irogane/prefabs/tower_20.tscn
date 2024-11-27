@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfgnpjcmahykf"]
+[gd_scene load_steps=8 format=3 uid="uid://cfgnpjcmahykf"]
 
 [ext_resource type="Texture2D" uid="uid://dfpgmvtkm7761" path="res://assets/textures/medieval/stone wall (12).png" id="1_0jv44"]
-[ext_resource type="Material" uid="uid://cmuuxjgx0ubrs" path="res://assets/materials/window_light.tres" id="1_hslub"]
+[ext_resource type="Material" uid="uid://4sfrxcw25g5s" path="res://assets/materials/window_light_flicker.tres" id="2_0c8ys"]
+[ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="3_am0r7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfgc0"]
 albedo_color = Color(0.862745, 0.737255, 0.670588, 1)
@@ -53,14 +54,11 @@ skeleton = NodePath("../..")
 
 [node name="window45" type="MeshInstance3D" parent="main"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, 6, 4.03946)
-material_override = ExtResource("1_hslub")
+material_override = ExtResource("2_0c8ys")
 mesh = SubResource("QuadMesh_hs2ow")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="main/window45"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.25
+[node name="WindowLight" parent="main/window45" instance=ExtResource("3_am0r7")]
 
 [node name="window47" type="MeshInstance3D" parent="main"]
 transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, 14, 4.03946)
@@ -160,14 +158,11 @@ skeleton = NodePath("../..")
 
 [node name="window54" type="MeshInstance3D" parent="main"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.16864e-14, 6, -4.21054)
-material_override = ExtResource("1_hslub")
+material_override = ExtResource("2_0c8ys")
 mesh = SubResource("QuadMesh_hs2ow")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="main/window54"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.25
+[node name="WindowLight" parent="main/window54" instance=ExtResource("3_am0r7")]
 
 [node name="window56" type="MeshInstance3D" parent="main"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.16864e-14, 14, -4.21054)
@@ -213,14 +208,11 @@ skeleton = NodePath("../..")
 
 [node name="window68" type="MeshInstance3D" parent="main"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.125, 26, -0.0855373)
-material_override = ExtResource("1_hslub")
+material_override = ExtResource("2_0c8ys")
 mesh = SubResource("QuadMesh_hs2ow")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="main/window68"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.25
+[node name="WindowLight" parent="main/window68" instance=ExtResource("3_am0r7")]
 
 [node name="window71" type="MeshInstance3D" parent="main"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4.125, 2, -0.085537)
@@ -242,14 +234,11 @@ skeleton = NodePath("../..")
 
 [node name="window77" type="MeshInstance3D" parent="main"]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4.125, 26, -0.085537)
-material_override = ExtResource("1_hslub")
+material_override = ExtResource("2_0c8ys")
 mesh = SubResource("QuadMesh_hs2ow")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D6" type="OmniLight3D" parent="main/window77"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
-light_color = Color(1, 1, 0.839216, 1)
-light_energy = 0.25
+[node name="WindowLight" parent="main/window77" instance=ExtResource("3_am0r7")]
 
 [node name="window69" type="MeshInstance3D" parent="main"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.125, 34, -0.0855373)

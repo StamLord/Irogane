@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://f1mcdym5kiu2"]
+
+[ext_resource type="Material" uid="uid://c6wa5t56dccgj" path="res://assets/materials/sky/night_sky_2.tres" id="1_b7v4q"]
+
+[sub_resource type="Sky" id="Sky_i684r"]
+sky_material = ExtResource("1_b7v4q")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_i684r")
+ambient_light_source = 3
+ambient_light_color = Color(0.0392157, 0.129412, 0.278431, 1)
+ambient_light_sky_contribution = 0.08
+ambient_light_energy = 0.33
+reflected_light_source = 1
+sdfgi_y_scale = 2
+glow_normalized = true
+glow_strength = 0.75
+glow_blend_mode = 1
+fog_enabled = true
+fog_light_color = Color(0.0901961, 0.152941, 0.192157, 1)
+fog_light_energy = 0.5
+fog_sky_affect = 0.25
+volumetric_fog_sky_affect = 0.0
