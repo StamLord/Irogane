@@ -47,7 +47,7 @@ func Update(_delta):
 	
 
 func PhysicsUpdate(body, delta):
-	if state_machine.rope_object != null:
+	if state_machine.grapple_object != null:
 		Transitioned.emit(self, "roped")
 		return
 	

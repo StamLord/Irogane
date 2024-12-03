@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://6w2qvvdo2jh4"]
+[gd_scene load_steps=23 format=3 uid="uid://6w2qvvdo2jh4"]
 
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="1_1nlbh"]
 [ext_resource type="Resource" uid="uid://bemmj32kb8mvn" path="res://data/ai_agents/Guard.res" id="2_7ydk2"]
+[ext_resource type="PackedScene" uid="uid://d1n6u22gwj6kt" path="res://assets/models/guard/guard.glb" id="5_blbsn"]
 [ext_resource type="PackedScene" uid="uid://bjlldu2i885d" path="res://prefabs/entities/stats.tscn" id="5_c5hbd"]
 [ext_resource type="Script" path="res://scripts/ai/pathfinding.gd" id="6_lxylw"]
 [ext_resource type="Script" path="res://scripts/interactive/Talkative.gd" id="7_j7jfl"]
@@ -69,14 +70,21 @@ push_force = 120
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_hbheq")
 
-[node name="mesh" type="MeshInstance3D" parent="character_body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_isd4v")
+[node name="visual" type="Node3D" parent="character_body"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="character_body/mesh"]
+[node name="mesh" type="MeshInstance3D" parent="character_body/visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_isd4v")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="character_body/visual/mesh"]
 transform = Transform3D(0.5, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.5, -0.349902)
 mesh = SubResource("BoxMesh_wr03i")
 surface_material_override/0 = SubResource("StandardMaterial3D_b25ha")
+
+[node name="guard2" parent="character_body/visual" instance=ExtResource("5_blbsn")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="character_body"]
 path_height_offset = 0.6

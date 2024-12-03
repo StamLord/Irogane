@@ -10,7 +10,7 @@ class_name Crouch
 @onready var step_separation = %step_separation
 
 # Variables
-@export var speed = 3.0;
+@export var speed = 1.0;
 @export var acceleration = 10
 @export var crouch_head_height = 0.8
 
@@ -21,6 +21,10 @@ var direction = Vector3.ZERO
 
 var was_on_floor_last_frame = false
 var snapped_to_stairs_last_frame = false
+
+func _ready():
+	add_debug_commands()
+	
 
 func Enter(body):
 	direction = body.last_direction
@@ -88,4 +92,21 @@ func Exit(body):
 	
 	# Return head to original height
 	head.reset_height(0.2)
+	
+
+func set_crouch_speed(args: Array):
+	speed = args[0]
+	
+
+func add_debug_commands():
+	DebugCommandsManager.add_command(
+		"set_crouch_speed",
+		set_crouch_speed,
+		 [{
+				"arg_name" : "value",
+				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
+				"arg_desc" : "New speed value"
+			}],
+		"Sets the player crouch speed to the new value"
+		)
 	

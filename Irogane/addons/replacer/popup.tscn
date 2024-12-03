@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://d0ghu85kmb0gy"]
+
+[node name="Window" type="Window"]
+title = "Replace Nodes"
+initial_position = 2
+size = Vector2i(400, 200)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Replace with"
+
+[node name="resource_path" type="TextEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Resouce Path"
+
+[node name="space" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="keep_children" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Keep Children"
+
+[node name="space2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="replace_button" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Replace"
+
+[node name="test_button" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Test"

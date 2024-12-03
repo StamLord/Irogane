@@ -2,10 +2,10 @@ extends Node3D
 
 # Ref
 @onready var body = $".."
-@onready var camera = $main_camera
+@onready var camera = %main_camera
 
 # Mouse
-@export var mouse_sensitivity = 0.4;
+@export var mouse_sensitivity = 0.3;
 @export var look_min = -90;
 @export var look_max = 90;
 
@@ -172,10 +172,25 @@ func add_debug_commands():
 		"Sets the player camera fov to the new value"
 		)
 	
+	DebugCommandsManager.add_command(
+		"set_mouse_sensitivity",
+		set_sensitivity,
+		 [{
+				"arg_name" : "value",
+				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
+				"arg_desc" : "New sensitivity value"
+			}],
+		"Sets the player camera mouse sensitivity to the new value"
+		)
+	
 
 func set_original_fov(args: Array):
 	original_fov = args[0]
 	camera.fov = args[0]
+	
+
+func set_sensitivity(args: Array):
+	mouse_sensitivity = args[0]
 	
 
 func look_at_lerp(target : Vector3):

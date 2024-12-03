@@ -9,7 +9,7 @@ func _ready():
 	
 
 func subscribe_to_player(player_node):
-	var manager = player_node.get_node("head/main_camera/simple_weapon_manager")
+	var manager = player_node.get_node("%main_camera/simple_weapon_manager")
 	
 	if manager:
 		manager.on_index_changed.connect(index_changed)

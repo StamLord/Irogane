@@ -10,7 +10,7 @@ class_name Walk
 @onready var stats = %stats
 
 # Variables
-@export var speed = 5.0;
+@export var speed = 3.0;
 @export var acceleration = 10
 @export var push_force = 2
 
@@ -22,6 +22,10 @@ var last_step = 0
 
 var was_on_floor_last_frame = false
 var snapped_to_stairs_last_frame = false
+
+func _ready():
+	add_debug_commands()
+	
 
 func Enter(body):
 	stand_collider.disabled = false
@@ -116,4 +120,21 @@ func Exit(body):
 	body.last_direction = direction
 	body.last_speed = speed
 	step_separation.disabled = true
+	
+
+func set_walk_speed(args: Array):
+	speed = args[0]
+	
+
+func add_debug_commands():
+	DebugCommandsManager.add_command(
+		"set_walk_speed",
+		set_walk_speed,
+		 [{
+				"arg_name" : "value",
+				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
+				"arg_desc" : "New speed value"
+			}],
+		"Sets the player walk speed to the new value"
+		)
 	

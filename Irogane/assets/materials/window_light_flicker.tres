@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://4sfrxcw25g5s"]
+
+[ext_resource type="Shader" uid="uid://dlru2nalcwqvh" path="res://assets/shaders/window_shader.tres" id="1_ge5ne"]
+[ext_resource type="Texture2D" uid="uid://di68wgxsfeqrg" path="res://assets/textures/medieval/window/window_frame_2.png" id="2_o87yo"]
+[ext_resource type="Texture2D" uid="uid://2j88uhcyv5bh" path="res://assets/textures/medieval/window/window_glass.png" id="3_6cctb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cer5e"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e4rwe"]
+seamless = true
+noise = SubResource("FastNoiseLite_cer5e")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ge5ne")
+shader_parameter/flicker_speed = 0.1
+shader_parameter/light_color = Color(0.878431, 0.631373, 0.341176, 1)
+shader_parameter/emission_energy_multiplier = 4.0
+shader_parameter/window_frame = ExtResource("2_o87yo")
+shader_parameter/Noise = SubResource("NoiseTexture2D_e4rwe")
+shader_parameter/window_glass = ExtResource("3_6cctb")

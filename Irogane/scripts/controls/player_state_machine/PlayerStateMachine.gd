@@ -18,7 +18,7 @@ var last_speed = 0
 var last_body_velocity
 var jump_direction = Vector3.UP
 
-var rope_object = null
+var grapple_object = null
 
 signal on_state_enter(state_name)
 signal on_state_exit(state_name)
@@ -61,6 +61,9 @@ func _ready():
 	
 
 func _process(delta):
+	if InputContextManager.is_current_context(InputContextType.CUTSCENE) or InputContextManager.is_current_context(InputContextType.MINIGAME):
+		return
+	
 	if current_state:
 		current_state.Update(delta)
 		
@@ -72,6 +75,9 @@ func _process(delta):
 	
 
 func _physics_process(delta):
+	if InputContextManager.is_current_context(InputContextType.CUTSCENE) or InputContextManager.is_current_context(InputContextType.MINIGAME):
+		return
+	
 	# State Process
 	if current_state:
 		if not stats.is_staggered or current_state == states["pushed"]:
@@ -120,13 +126,13 @@ func debug_push_back(args : Array):
 	
 
 func start_roped(rope_node):
-	rope_object = rope_node
+	grapple_object = rope_node
 	
 
 func end_roped():
-	if rope_object != null:
-		rope_object.end_rope()
-		rope_object = null
+	if grapple_object != null:
+		grapple_object.end_rope()
+		grapple_object = null
 	
 
 func save_data():

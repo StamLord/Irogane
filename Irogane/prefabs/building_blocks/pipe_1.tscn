@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgjt41mvb4tff"]
+
+[ext_resource type="PackedScene" uid="uid://c3sxasotblt07" path="res://assets/models/building_blocks/pipe_1.glb" id="1_60bca"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icr13"]
+size = Vector3(0.25, 1, 0.25)
+
+[node name="pipe_1" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_icr13")
+
+[node name="pipe_1" parent="." instance=ExtResource("1_60bca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

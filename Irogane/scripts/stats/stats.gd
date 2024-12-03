@@ -42,6 +42,7 @@ signal on_hit(attack_info)
 signal on_heavy_hit(force : Vector3)
 signal on_health_depleted(amount)
 signal on_death()
+signal on_resurrect()
 
 var is_guard_broken : bool = false
 
@@ -110,9 +111,10 @@ func deplete_health(soft_amount : int, hard_amount : int = 0):
 	
 	if health:
 		on_health_depleted.emit(soft_amount)
+		var result = health.deplete(soft_amount)
 		if health.get_value() < 1:
 			die()
-		return health.deplete(soft_amount)
+		return result
 	return false
 	
 
@@ -524,6 +526,28 @@ func add_debug_commands():
 		"Removes a status"
 		)
 	
+	DebugCommandsManager.add_command(
+		"die",
+		kill_me,
+		 [{
+				"arg_name" : "None",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "None"
+			}],
+		"Kills the player"
+		)
+	
+	DebugCommandsManager.add_command(
+		"res",
+		resurrect_me,
+		 [{
+				"arg_name" : "None",
+				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
+				"arg_desc" : "None"
+			}],
+		"Resurrects the player"
+		)
+	
 
 # args = [attribute name : String, value : Int]
 func set_attribute(args : Array):
@@ -548,6 +572,15 @@ func set_godmode(args: Array):
 	stamina.set_godmode(args[0])
 	hard_health.set_godmode(args[0])
 	hard_stamina.set_godmode(args[0])
+	
+
+func kill_me(args: Array):
+	deplete_health(999999)
+	
+
+func resurrect_me(args: Array):
+	replenish_health(999999, 999999)
+	on_resurrect.emit()
 	
 
 func get_node_from_effect(effect : Effect):

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnldi4ixhvef"]
+
+[ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="1_dytw4"]
+[ext_resource type="Material" uid="uid://bpg2o1smtm2us" path="res://assets/materials/house_roof.tres" id="2_ygap3"]
+[ext_resource type="Material" uid="uid://4sfrxcw25g5s" path="res://assets/materials/window_light_flicker.tres" id="3_fd7cc"]
+[ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="4_6m1dn"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kycwv"]
+size = Vector2(1.5, 2)
+
+[node name="UnderPass" type="CSGBox3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+size = Vector3(5, 7.25, 4)
+material = ExtResource("1_dytw4")
+
+[node name="roof" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.65, 2)
+polygon = PackedVector2Array(-2.5, 0, 0, 1.25, 2.5, 0)
+depth = 4.0
+material = ExtResource("2_ygap3")
+
+[node name="window91" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -2.56262, 1.5, 0)
+material_override = ExtResource("3_fd7cc")
+mesh = SubResource("QuadMesh_kycwv")
+skeleton = NodePath("../../..")
+
+[node name="OmniLight3D2" parent="window91" instance=ExtResource("4_6m1dn")]
+
+[node name="window92" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.44465e-08, 0, 1, 0, 1, 0, -1, 0, -8.44465e-08, 2.51273, 1.5, 0)
+material_override = ExtResource("3_fd7cc")
+mesh = SubResource("QuadMesh_kycwv")
+skeleton = NodePath("../../..")
+
+[node name="OmniLight3D2" parent="window92" instance=ExtResource("4_6m1dn")]
+
+[node name="pass" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -3.625, 0)
+operation = 2
+radius = 2.0
+height = 5.5
+material = ExtResource("1_dytw4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1nhtmtdidr60"]
+[gd_scene load_steps=20 format=3 uid="uid://c1nhtmtdidr60"]
 
 [ext_resource type="PackedScene" uid="uid://kc04vguetby8" path="res://assets/models/building_blocks/door_frame_2x4.glb" id="1_kp50d"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_vxcgw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="3_girr4"]
 [ext_resource type="Script" path="res://scripts/interactive/door_audio_player.gd" id="4_slc3j"]
 [ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="5_slt2g"]
+[ext_resource type="Script" path="res://scripts/interactive/Lock.gd" id="7_4kd3o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r8dlp"]
 size = Vector3(0.5, 1.8, 0.5)
@@ -26,7 +27,7 @@ size = Vector3(1, 1.9, 0.1)
 [sub_resource type="BoxMesh" id="BoxMesh_8hcye"]
 size = Vector3(1, 1.9, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2yikj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwx15"]
 albedo_texture = ExtResource("3_girr4")
 emission_energy_multiplier = 0.0
 uv1_scale = Vector3(3, 2, 1)
@@ -38,6 +39,11 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsupm"]
 albedo_color = Color(0.611765, 0.4, 0.215686, 1)
 metallic = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwids"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8couy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jp0e1"]
 size = Vector3(1, 1.9, 0.1)
@@ -93,12 +99,25 @@ script = ExtResource("5_slt2g")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.1, -0.5)
 mesh = SubResource("BoxMesh_8hcye")
 skeleton = NodePath("../Switch")
-surface_material_override/0 = SubResource("StandardMaterial3D_2yikj")
+surface_material_override/0 = SubResource("StandardMaterial3D_cwx15")
 
 [node name="lock_mesh" type="MeshInstance3D" parent="door"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.98023e-08, 0.0578423, -0.159072)
 mesh = SubResource("BoxMesh_g8ese")
 surface_material_override/0 = SubResource("StandardMaterial3D_bsupm")
+
+[node name="lock_collider" type="Area3D" parent="door" node_paths=PackedStringArray("door")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.98023e-08, 0.0578423, -0.159072)
+collision_layer = 512
+script = ExtResource("7_4kd3o")
+door = NodePath("../Switch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/lock_collider"]
+shape = SubResource("BoxShape3D_kwids")
+
+[node name="Sprite3D" type="Sprite3D" parent="door/lock_collider"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.3, 0.075)
+texture = SubResource("ViewportTexture_8couy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="door"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.5)

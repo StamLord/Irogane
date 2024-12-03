@@ -34,11 +34,11 @@ extends WeaponBase
 @export var light_attack_info = AttackInfo.new(5, 10, Vector3.FORWARD * 2)
 @export var uppercut_attack_info = AttackInfo.new(10, 15, Vector3.UP * 6)
 
-@onready var vault = $"../../../../states/vault"
-@onready var air = $"../../../../states/air"
-@onready var swim = $"../../../../states/swim"
-@onready var climb_rope = $"../../../../states/climb_rope"
-@onready var glide = $"../../../../states/glide"
+@onready var vault = $"%states/vault"
+@onready var air = $"%states/air"
+@onready var swim = $"%states/swim"
+@onready var climb_rope = $"%states/climb_rope"
+@onready var glide = $"%states/glide"
 
 const anim_idle_path = "parameters/StateMachine/idle"
 @onready var anim_tree : AnimationTree = $first_person_rig/AnimationTree

@@ -43,6 +43,10 @@ signal interactive_changed(new_interactive_text)
 signal press_time_update(time)
 signal too_heavy(weight)
 
+func _ready():
+	add_debug_commands()
+	
+
 func _input(event):
 	if is_carrying and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		throw_carry_object()
@@ -226,4 +230,21 @@ func use_key(tower_id : int, key_color : Key.key_color) -> bool :
 			remove_key(tower_id, key_color)
 		return true
 	return false
+	
+
+func add_debug_commands():
+	DebugCommandsManager.add_command(
+		"skeletonkey",
+		add_all_keys,
+		 [],
+		"Adds all keys directly to your inventory"
+		)
+	
+
+func add_all_keys(args):
+	var max_int = 9223372036854775807
+	for i in range(10):
+		add_key(i, Key.key_color.BRASS, max_int)
+		add_key(i, Key.key_color.SILVER, max_int)
+		add_key(i, Key.key_color.GOLD, max_int)
 	

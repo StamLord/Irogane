@@ -1,6 +1,9 @@
 @tool
 extends MeshInstance3D
 
+@onready var default_start_target = $"../start_target"
+@onready var default_end_target = $"../end_target"
+
 var start_target = null
 var end_target = null
 
@@ -33,8 +36,8 @@ func _ready():
 	if mesh == null:
 		mesh = ImmediateMesh.new()
 	
-	set_start_target($start_target)
-	set_end_target($end_target)
+	set_start_target(default_start_target)
+	set_end_target(default_end_target)
 	
 
 func set_start_target(start : Node3D):

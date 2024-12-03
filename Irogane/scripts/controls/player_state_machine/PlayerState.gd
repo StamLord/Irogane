@@ -35,9 +35,9 @@ func PerformCollisions(body, speed, push_force, delta):
 			
 			# Ignore collisions for objects we stand on 
 			# We test for less than .01 difference in height
-			if body.position.y - collision.get_position().y < 0.01:
-				print("Skip Collision")
-				continue
+			#if body.position.y - collision.get_position().y < 0.01:
+				#print("Skip Collision")
+				#continue
 			
 			collider.apply_central_impulse(-collision.get_normal() * speed * push_force * delta)
 			recent_collisions[collider] = Time.get_ticks_msec()

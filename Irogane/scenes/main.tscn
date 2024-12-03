@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://cf5vsfpafvahd"]
+[gd_scene load_steps=159 format=3 uid="uid://cf5vsfpafvahd"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_q3we3"]
 [ext_resource type="Texture2D" uid="uid://tox4b5jwaog1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_dl0g5"]
@@ -176,7 +176,7 @@ size = Vector2(7, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ymkx0"]
 size = Vector3(7, 1, 0.05)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wlfvs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eioam"]
 render_priority = 0
 shader = ExtResource("2_towa0")
 shader_parameter/wave_height = 1.0
@@ -187,7 +187,7 @@ shader_parameter/highlights = 1.25
 shader_parameter/edge_power = 20.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ifwhq"]
-material = SubResource("ShaderMaterial_wlfvs")
+material = SubResource("ShaderMaterial_eioam")
 size = Vector2(10, 10)
 subdivide_width = 20
 subdivide_depth = 20
@@ -204,7 +204,7 @@ size = Vector3(10, 7, 10)
 [sub_resource type="Gradient" id="Gradient_r54cj"]
 colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_msn4c"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eyai8"]
 gradient = SubResource("Gradient_r54cj")
 
 [sub_resource type="Curve" id="Curve_fnrqy"]
@@ -222,7 +222,7 @@ max_value = 1.5
 _data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_08obh"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_du8p8"]
 curve_x = SubResource("Curve_fnrqy")
 curve_y = SubResource("Curve_r3rim")
 curve_z = SubResource("Curve_5kt5b")
@@ -232,10 +232,10 @@ particle_flag_rotate_y = true
 gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 4.0
-scale_curve = SubResource("CurveXYZTexture_08obh")
-color_ramp = SubResource("GradientTexture1D_msn4c")
+scale_curve = SubResource("CurveXYZTexture_du8p8")
+color_ramp = SubResource("GradientTexture1D_eyai8")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bx1p"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vc5yg"]
 transparency = 1
 blend_mode = 1
 cull_mode = 2
@@ -246,13 +246,13 @@ texture_filter = 0
 billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_7ost3"]
-material = SubResource("StandardMaterial3D_2bx1p")
+material = SubResource("StandardMaterial3D_vc5yg")
 center_offset = Vector3(0, 0.4, 0)
 
 [sub_resource type="Gradient" id="Gradient_qtbj1"]
 colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_f8koo"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p0sig"]
 gradient = SubResource("Gradient_qtbj1")
 
 [sub_resource type="Curve" id="Curve_ak2ph"]
@@ -270,7 +270,7 @@ max_value = 1.5
 _data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_whtbi"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_kpw33"]
 curve_x = SubResource("Curve_ak2ph")
 curve_y = SubResource("Curve_e82nw")
 curve_z = SubResource("Curve_imq2h")
@@ -282,13 +282,13 @@ angle_max = 90.0
 gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 4.0
-scale_curve = SubResource("CurveXYZTexture_whtbi")
-color_ramp = SubResource("GradientTexture1D_f8koo")
+scale_curve = SubResource("CurveXYZTexture_kpw33")
+color_ramp = SubResource("GradientTexture1D_p0sig")
 
 [sub_resource type="Gradient" id="Gradient_c38c7"]
 colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.576471, 0.807843, 0.913725, 0.992157, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_kserc"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h3elc"]
 gradient = SubResource("Gradient_c38c7")
 
 [sub_resource type="Curve" id="Curve_rfpjd"]
@@ -306,7 +306,7 @@ max_value = 1.5
 _data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_13qd1"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_kwuvo"]
 curve_x = SubResource("Curve_rfpjd")
 curve_y = SubResource("Curve_imrmx")
 curve_z = SubResource("Curve_expe6")
@@ -318,13 +318,13 @@ angle_max = 45.0
 gravity = Vector3(0, 0, 0)
 scale_min = 4.0
 scale_max = 4.0
-scale_curve = SubResource("CurveXYZTexture_13qd1")
-color_ramp = SubResource("GradientTexture1D_kserc")
+scale_curve = SubResource("CurveXYZTexture_kwuvo")
+color_ramp = SubResource("GradientTexture1D_h3elc")
 
 [sub_resource type="Gradient" id="Gradient_hpca1"]
 colors = PackedColorArray(0.807843, 0.913725, 0.992157, 0.501961, 0.807843, 0.913725, 0.992157, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ud2a"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mc6es"]
 gradient = SubResource("Gradient_hpca1")
 
 [sub_resource type="Curve" id="Curve_ab7oc"]
@@ -342,7 +342,7 @@ max_value = 1.5
 _data = [Vector2(0, 0), 0.0, 2.25235, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6looo"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_aa2cu"]
 curve_x = SubResource("Curve_ab7oc")
 curve_y = SubResource("Curve_ult31")
 curve_z = SubResource("Curve_3gvl4")
@@ -354,21 +354,21 @@ angle_max = -45.0
 gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 5.0
-scale_curve = SubResource("CurveXYZTexture_6looo")
-color_ramp = SubResource("GradientTexture1D_6ud2a")
+scale_curve = SubResource("CurveXYZTexture_aa2cu")
+color_ramp = SubResource("GradientTexture1D_mc6es")
 
 [sub_resource type="Gradient" id="Gradient_v8f3g"]
 offsets = PackedFloat32Array(0.482558, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_82daa"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jir5d"]
 gradient = SubResource("Gradient_v8f3g")
 
 [sub_resource type="Curve" id="Curve_rt8cv"]
 _data = [Vector2(0, 0), 0.0, 2.39271, 0, 0, Vector2(1, 1), 0.109141, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_11nu5"]
+[sub_resource type="CurveTexture" id="CurveTexture_gewdx"]
 curve = SubResource("Curve_rt8cv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f536d"]
@@ -381,10 +381,10 @@ initial_velocity_min = 2.0
 initial_velocity_max = 3.0
 gravity = Vector3(0, -2, 0)
 scale_max = 2.0
-scale_curve = SubResource("CurveTexture_11nu5")
-color_ramp = SubResource("GradientTexture1D_82daa")
+scale_curve = SubResource("CurveTexture_gewdx")
+color_ramp = SubResource("GradientTexture1D_jir5d")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnhlj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dy54r"]
 transparency = 1
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("28_ag1fk")
@@ -396,7 +396,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_csur3"]
-material = SubResource("StandardMaterial3D_vnhlj")
+material = SubResource("StandardMaterial3D_dy54r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bj4xs"]
 render_priority = -1
@@ -412,7 +412,7 @@ shader_parameter/Tint = Color(0.780392, 1, 0.988235, 1)
 material = SubResource("ShaderMaterial_bj4xs")
 size = Vector3(20, 10, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxoss"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ak4o3"]
 render_priority = -1
 shader = ExtResource("44_r542y")
 shader_parameter/wave_freq = 20.0
@@ -421,8 +421,16 @@ shader_parameter/wave_width = 0.25
 shader_parameter/tint = Color(0.780392, 1, 0.988235, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qc48q"]
-material = SubResource("ShaderMaterial_rxoss")
+material = SubResource("ShaderMaterial_ak4o3")
 size = Vector3(8.99, 9.99, 19.99)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxoss"]
+render_priority = -1
+shader = ExtResource("44_r542y")
+shader_parameter/wave_freq = 20.0
+shader_parameter/wave_speed = 4.0
+shader_parameter/wave_width = 0.25
+shader_parameter/tint = Color(0.780392, 1, 0.988235, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pcjdx"]
 material = SubResource("ShaderMaterial_rxoss")
@@ -980,7 +988,6 @@ collision_mask = 0
 monitoring = false
 monitorable = false
 script = ExtResource("35_0p3xw")
-sight_angle = Vector2(90, 45)
 
 [node name="collider" type="CollisionShape3D" parent="stage/navmesh/stealth_paltform/stealth_rotating/stealth_test"]
 shape = SubResource("SphereShape3D_tnupw")
@@ -1040,7 +1047,6 @@ collision_mask = 0
 monitoring = false
 monitorable = false
 script = ExtResource("35_0p3xw")
-sight_angle = Vector2(90, 45)
 
 [node name="collider" type="CollisionShape3D" parent="stage/navmesh/stealth_paltform/stealth_rotating2/stealth_test"]
 shape = SubResource("SphereShape3D_tnupw")
@@ -1101,7 +1107,6 @@ collision_mask = 0
 monitoring = false
 monitorable = false
 script = ExtResource("35_0p3xw")
-sight_angle = Vector2(90, 45)
 
 [node name="collider" type="CollisionShape3D" parent="stage/navmesh/stealth_paltform/stealth_rotating3/stealth_test"]
 shape = SubResource("SphereShape3D_tnupw")
