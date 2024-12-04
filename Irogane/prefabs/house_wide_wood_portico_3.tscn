@@ -27,182 +27,183 @@ script = ExtResource("1_ujf71")
 
 [node name="3" type="Node3D" parent="variations"]
 
+[node name="windows" type="Node3D" parent="variations/3"]
+
+[node name="window80" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 6.75, 7.036)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window81" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 6.75, 7.0361)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window82" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 10.75, 7.0361)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window83" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 10.75, 7.0361)
+material_override = ExtResource("3_5ellb")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" parent="variations/3/windows/window83" instance=ExtResource("4_ty1qj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999999)
+
+[node name="window100" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 6, 6.75, 7.0361)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window101" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 6, 10.75, 7.0361)
+material_override = ExtResource("3_5ellb")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" parent="variations/3/windows/window101" instance=ExtResource("4_ty1qj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999999)
+
+[node name="window96" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 6.75, -7.03846)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window97" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 6.75, -7.03846)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window98" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 10.75, -7.03846)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window103" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 6, 10.75, -7.03846)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window99" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 10.75, -7.03846)
+material_override = ExtResource("3_5ellb")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" parent="variations/3/windows/window99" instance=ExtResource("4_ty1qj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="window102" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 6, 6.75, -7.03846)
+material_override = ExtResource("3_5ellb")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" parent="variations/3/windows/window102" instance=ExtResource("4_ty1qj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="window84" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 10.75, 3.7861)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window85" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 10.75, -0.213902)
+material_override = ExtResource("3_5ellb")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" parent="variations/3/windows/window85" instance=ExtResource("4_ty1qj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="window86" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 10.75, -4.2139)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window87" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 6.75, 3.7861)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window88" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 6.75, -0.213902)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window89" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 6.75, -4.2139)
+material_override = ExtResource("3_5ellb")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" parent="variations/3/windows/window89" instance=ExtResource("4_ty1qj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="window90" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10.75, -4.2139)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window91" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10.75, -0.213902)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window92" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10.75, 3.7861)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window93" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6.75, -4.2139)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="window94" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6.75, -0.213902)
+material_override = ExtResource("3_5ellb")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" parent="variations/3/windows/window94" instance=ExtResource("4_ty1qj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="window95" type="MeshInstance3D" parent="variations/3/windows"]
+transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6.75, 3.7861)
+material_override = SubResource("StandardMaterial3D_axxkl")
+mesh = SubResource("QuadMesh_k1s1h")
+skeleton = NodePath("../../../..")
+
 [node name="main" type="CSGBox3D" parent="variations/3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
 use_collision = true
-size = Vector3(8, 14, 14)
+size = Vector3(8, 13, 14)
 material = ExtResource("2_3ojsg")
 
-[node name="window80" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 1, 7.0361)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window104" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 1, 7.0361)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window81" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 1, 7.0361)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window82" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 5, 7.0361)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window83" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 5, 7.0361)
-material_override = ExtResource("3_5ellb")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="OmniLight3D2" parent="variations/3/main/window83" instance=ExtResource("4_ty1qj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999999)
-
-[node name="window100" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 6, 1, 7.0361)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window101" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 6, 5, 7.0361)
-material_override = ExtResource("3_5ellb")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="OmniLight3D2" parent="variations/3/main/window101" instance=ExtResource("4_ty1qj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0999999)
-
-[node name="window96" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 1, -7.03846)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window97" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 1, -7.03846)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window98" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 5, -7.03846)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window103" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 6, 5, -7.03846)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window99" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 5, -7.03846)
-material_override = ExtResource("3_5ellb")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="OmniLight3D2" parent="variations/3/main/window99" instance=ExtResource("4_ty1qj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
-
-[node name="window102" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 6, 1, -7.03846)
-material_override = ExtResource("3_5ellb")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="OmniLight3D2" parent="variations/3/main/window102" instance=ExtResource("4_ty1qj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
-
-[node name="window84" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 5, 3.7861)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window85" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 5, -0.213902)
-material_override = ExtResource("3_5ellb")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="OmniLight3D2" parent="variations/3/main/window85" instance=ExtResource("4_ty1qj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
-
-[node name="window86" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 5, -4.2139)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window87" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 1, 3.7861)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window88" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 1, -0.213902)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window89" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 1, -4.2139)
-material_override = ExtResource("3_5ellb")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="OmniLight3D2" parent="variations/3/main/window89" instance=ExtResource("4_ty1qj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
-
-[node name="window90" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 5, -4.2139)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window91" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 5, -0.213902)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window92" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 5, 3.7861)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window93" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 1, -4.2139)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="window94" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 1, -0.213902)
-material_override = ExtResource("3_5ellb")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
-
-[node name="OmniLight3D2" parent="variations/3/main/window94" instance=ExtResource("4_ty1qj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
-
-[node name="window95" type="MeshInstance3D" parent="variations/3/main"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 1, 3.7861)
-material_override = SubResource("StandardMaterial3D_axxkl")
-mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../../..")
+[node name="overhang" type="CSGBox3D" parent="variations/3/main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.375, 0)
+size = Vector3(4, 8.25, 14)
+material = ExtResource("2_3ojsg")
 
 [node name="doorway" type="CSGBox3D" parent="variations/3/main"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375, -5.5, -2.333)
@@ -228,13 +229,8 @@ radius = 1.0
 height = 1.75
 material = SubResource("StandardMaterial3D_810nn")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.875, 0)
-size = Vector3(4, 8.25, 14)
-material = ExtResource("2_3ojsg")
-
 [node name="roof" type="CSGMesh3D" parent="variations/3"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 2, 15, 0)
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 2, 14, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_elkml")
 material = ExtResource("2_3ojsg")
@@ -250,6 +246,7 @@ size = Vector3(8, 0.5, 15)
 material = ExtResource("5_2t3fm")
 
 [node name="pillars" type="Node3D" parent="variations/3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="main_beam" type="CSGBox3D" parent="variations/3/pillars"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, -1, 0, 1, -5.96046e-08, 7.5, 4.825, 0)
@@ -347,65 +344,65 @@ use_collision = true
 size = Vector3(0.4, 4.25, 0.25)
 material = ExtResource("6_8i1pn")
 
-[node name="pillar" type="CSGBox3D" parent="variations/3/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 0)
-use_collision = true
-size = Vector3(0.5, 5, 0.5)
-material = ExtResource("6_8i1pn")
-
-[node name="pillar3" type="CSGBox3D" parent="variations/3/pillars/pillar"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.19078, -0.6875)
-size = Vector3(0.35, 2.75, 0.35)
-material = ExtResource("6_8i1pn")
-
-[node name="pillar4" type="CSGBox3D" parent="variations/3/pillars/pillar"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 1.191, 0.687)
-size = Vector3(0.35, 2.75, 0.35)
-material = ExtResource("6_8i1pn")
-
-[node name="foundation" type="CSGBox3D" parent="variations/3/pillars/pillar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 0)
-size = Vector3(0.75, 0.5, 1.25)
-material = ExtResource("2_3ojsg")
-
-[node name="pillar1" type="CSGBox3D" parent="variations/3/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 4.667)
-use_collision = true
-size = Vector3(0.5, 5, 0.5)
-material = ExtResource("6_8i1pn")
-
-[node name="pillar3" type="CSGBox3D" parent="variations/3/pillars/pillar1"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.19078, -0.6875)
-size = Vector3(0.35, 2.75, 0.35)
-material = ExtResource("6_8i1pn")
-
-[node name="pillar4" type="CSGBox3D" parent="variations/3/pillars/pillar1"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 1.191, 0.687)
-size = Vector3(0.35, 2.75, 0.35)
-material = ExtResource("6_8i1pn")
-
-[node name="foundation" type="CSGBox3D" parent="variations/3/pillars/pillar1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 0)
-size = Vector3(0.75, 0.5, 1.25)
-material = ExtResource("2_3ojsg")
-
 [node name="pillar2" type="CSGBox3D" parent="variations/3/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, -4.667)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 3, -4.667)
 use_collision = true
-size = Vector3(0.5, 5, 0.5)
-material = ExtResource("6_8i1pn")
-
-[node name="pillar3" type="CSGBox3D" parent="variations/3/pillars/pillar2"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.19078, -0.6875)
-size = Vector3(0.35, 2.75, 0.35)
-material = ExtResource("6_8i1pn")
-
-[node name="pillar4" type="CSGBox3D" parent="variations/3/pillars/pillar2"]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 1.191, 0.687)
-size = Vector3(0.35, 2.75, 0.35)
+size = Vector3(0.5, 4, 0.5)
 material = ExtResource("6_8i1pn")
 
 [node name="foundation" type="CSGBox3D" parent="variations/3/pillars/pillar2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0)
 size = Vector3(0.75, 0.5, 1.25)
 material = ExtResource("2_3ojsg")
+
+[node name="pillar3" type="CSGBox3D" parent="variations/3/pillars/pillar2"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.974274, -0.5625)
+size = Vector3(0.35, 2.25, 0.35)
+material = ExtResource("6_8i1pn")
+
+[node name="pillar4" type="CSGBox3D" parent="variations/3/pillars/pillar2"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.974494, 0.562)
+size = Vector3(0.35, 2.25, 0.35)
+material = ExtResource("6_8i1pn")
+
+[node name="pillar3" type="CSGBox3D" parent="variations/3/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 3, 0)
+use_collision = true
+size = Vector3(0.5, 4, 0.5)
+material = ExtResource("6_8i1pn")
+
+[node name="foundation" type="CSGBox3D" parent="variations/3/pillars/pillar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0)
+size = Vector3(0.75, 0.5, 1.25)
+material = ExtResource("2_3ojsg")
+
+[node name="pillar3" type="CSGBox3D" parent="variations/3/pillars/pillar3"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.974274, -0.5625)
+size = Vector3(0.35, 2.25, 0.35)
+material = ExtResource("6_8i1pn")
+
+[node name="pillar4" type="CSGBox3D" parent="variations/3/pillars/pillar3"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.974494, 0.562)
+size = Vector3(0.35, 2.25, 0.35)
+material = ExtResource("6_8i1pn")
+
+[node name="pillar4" type="CSGBox3D" parent="variations/3/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 3, 4.667)
+use_collision = true
+size = Vector3(0.5, 4, 0.5)
+material = ExtResource("6_8i1pn")
+
+[node name="foundation" type="CSGBox3D" parent="variations/3/pillars/pillar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0)
+size = Vector3(0.75, 0.5, 1.25)
+material = ExtResource("2_3ojsg")
+
+[node name="pillar3" type="CSGBox3D" parent="variations/3/pillars/pillar4"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.974274, -0.5625)
+size = Vector3(0.35, 2.25, 0.35)
+material = ExtResource("6_8i1pn")
+
+[node name="pillar4" type="CSGBox3D" parent="variations/3/pillars/pillar4"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0.974494, 0.562)
+size = Vector3(0.35, 2.25, 0.35)
+material = ExtResource("6_8i1pn")
