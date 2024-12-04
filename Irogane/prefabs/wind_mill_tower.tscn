@@ -1,18 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://2insw7cwlhie"]
+[gd_scene load_steps=4 format=3 uid="uid://2insw7cwlhie"]
 
+[ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="1_1iyim"]
 [ext_resource type="PackedScene" uid="uid://chy13wy5d5pr4" path="res://prefabs/wind_mill_4.tscn" id="1_adul3"]
+[ext_resource type="Material" uid="uid://bpg2o1smtm2us" path="res://assets/materials/house_roof.tres" id="2_rmhto"]
 
 [node name="wind_mill" type="CSGCylinder3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78, 24, -101.75)
 use_collision = true
 radius = 12.0
 height = 48.0
+material = ExtResource("1_1iyim")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24, 0)
 radius = 12.0
 radial_segments = 8
 rings = 8
+material = ExtResource("2_rmhto")
 
 [node name="WindMill1" parent="." instance=ExtResource("1_adul3")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 19.75, 13.25)
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0, 19.75, 13.25)

@@ -22,452 +22,454 @@ size = Vector3(8, 2, 7)
 [node name="HouseThin" type="Node3D"]
 script = ExtResource("1_xy6bf")
 
-[node name="1" type="Node3D" parent="."]
+[node name="variations" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="variations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 visible = false
 
-[node name="main" type="CSGBox3D" parent="1"]
+[node name="main" type="CSGBox3D" parent="variations/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 use_collision = true
 size = Vector3(8, 12, 7)
 material = ExtResource("2_wp5ou")
 
-[node name="window80" type="MeshInstance3D" parent="1/main"]
+[node name="window80" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 0, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window81" type="MeshInstance3D" parent="1/main"]
+[node name="window81" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 0, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window82" type="MeshInstance3D" parent="1/main"]
+[node name="window82" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 4, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window96" type="MeshInstance3D" parent="1/main"]
+[node name="window96" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 0, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window97" type="MeshInstance3D" parent="1/main"]
+[node name="window97" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 0, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window98" type="MeshInstance3D" parent="1/main"]
+[node name="window98" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 4, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window99" type="MeshInstance3D" parent="1/main"]
+[node name="window99" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 4, -3.53846)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="1/main/window99" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/1/main/window99" instance=ExtResource("4_pmqo2")]
 
-[node name="window101" type="MeshInstance3D" parent="1/main"]
+[node name="window101" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 2, 4, 3.536)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="1/main/window101" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/1/main/window101" instance=ExtResource("4_pmqo2")]
 
-[node name="window85" type="MeshInstance3D" parent="1/main"]
+[node name="window85" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 4, 1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="1/main/window85" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/1/main/window85" instance=ExtResource("4_pmqo2")]
 
-[node name="window86" type="MeshInstance3D" parent="1/main"]
+[node name="window86" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 0, -1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window88" type="MeshInstance3D" parent="1/main"]
+[node name="window88" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 0, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window89" type="MeshInstance3D" parent="1/main"]
+[node name="window89" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 4, -1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="1/main/window89" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/1/main/window89" instance=ExtResource("4_pmqo2")]
 
-[node name="window91" type="MeshInstance3D" parent="1/main"]
+[node name="window91" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 0, -1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="1/main/window91" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/1/main/window91" instance=ExtResource("4_pmqo2")]
 
-[node name="window93" type="MeshInstance3D" parent="1/main"]
+[node name="window93" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 4, 1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="1/main/window93" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/1/main/window93" instance=ExtResource("4_pmqo2")]
 
-[node name="window95" type="MeshInstance3D" parent="1/main"]
+[node name="window95" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 0, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window100" type="MeshInstance3D" parent="1/main"]
+[node name="window100" type="MeshInstance3D" parent="variations/1/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 4, -1.5)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="doorway" type="CSGBox3D" parent="1/main"]
+[node name="doorway" type="CSGBox3D" parent="variations/1/main"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375, -4, 1.75)
 operation = 2
 size = Vector3(1.75, 3, 2)
 material = SubResource("StandardMaterial3D_810nn")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="1/main/doorway"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="variations/1/main/doorway"]
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1.5, 0)
 radius = 1.0
 height = 1.75
 material = SubResource("StandardMaterial3D_810nn")
 
-[node name="roof" type="CSGMesh3D" parent="1"]
+[node name="roof" type="CSGMesh3D" parent="variations/1"]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -3.57628e-06, 13, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_elkml")
 material = ExtResource("2_wp5ou")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="1/roof"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="variations/1/roof"]
 transform = Transform3D(-0.866026, 0.5, -8.74228e-08, 0.5, 0.866026, 0, 7.57104e-08, -4.37114e-08, -1, 2.21651, 0.125002, 0)
 size = Vector3(5.5, 0.5, 7.5)
 material = ExtResource("5_pga34")
 
-[node name="roof" type="CSGBox3D" parent="1/roof"]
+[node name="roof" type="CSGBox3D" parent="variations/1/roof"]
 transform = Transform3D(0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0, 1, -2.21651, 0.125003, 0)
 size = Vector3(5.5, 0.5, 7.5)
 material = ExtResource("5_pga34")
 
-[node name="foundation" type="CSGBox3D" parent="1"]
+[node name="foundation" type="CSGBox3D" parent="variations/1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 size = Vector3(8.5, 1, 7.5)
 material = ExtResource("2_wp5ou")
 
-[node name="2" type="Node3D" parent="."]
+[node name="2" type="Node3D" parent="variations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 visible = false
 
-[node name="main" type="CSGBox3D" parent="2"]
+[node name="main" type="CSGBox3D" parent="variations/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 use_collision = true
 size = Vector3(8, 12, 7)
 material = ExtResource("2_wp5ou")
 
-[node name="window80" type="MeshInstance3D" parent="2/main"]
+[node name="window80" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 0, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window81" type="MeshInstance3D" parent="2/main"]
+[node name="window81" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 0, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window82" type="MeshInstance3D" parent="2/main"]
+[node name="window82" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 4, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window96" type="MeshInstance3D" parent="2/main"]
+[node name="window96" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 0, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window97" type="MeshInstance3D" parent="2/main"]
+[node name="window97" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 0, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window98" type="MeshInstance3D" parent="2/main"]
+[node name="window98" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 4, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window99" type="MeshInstance3D" parent="2/main"]
+[node name="window99" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 4, -3.53846)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="2/main/window99" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/2/main/window99" instance=ExtResource("4_pmqo2")]
 
-[node name="window101" type="MeshInstance3D" parent="2/main"]
+[node name="window101" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 2, 4, 3.536)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="2/main/window101" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/2/main/window101" instance=ExtResource("4_pmqo2")]
 
-[node name="window85" type="MeshInstance3D" parent="2/main"]
+[node name="window85" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 4, 1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="2/main/window85" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/2/main/window85" instance=ExtResource("4_pmqo2")]
 
-[node name="window86" type="MeshInstance3D" parent="2/main"]
+[node name="window86" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 0, -1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window88" type="MeshInstance3D" parent="2/main"]
+[node name="window88" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 0, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window89" type="MeshInstance3D" parent="2/main"]
+[node name="window89" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 4, -1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="2/main/window89" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/2/main/window89" instance=ExtResource("4_pmqo2")]
 
-[node name="window91" type="MeshInstance3D" parent="2/main"]
+[node name="window91" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 0, -1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="2/main/window91" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/2/main/window91" instance=ExtResource("4_pmqo2")]
 
-[node name="window93" type="MeshInstance3D" parent="2/main"]
+[node name="window93" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 4, 1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="2/main/window93" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/2/main/window93" instance=ExtResource("4_pmqo2")]
 
-[node name="window95" type="MeshInstance3D" parent="2/main"]
+[node name="window95" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 0, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window100" type="MeshInstance3D" parent="2/main"]
+[node name="window100" type="MeshInstance3D" parent="variations/2/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 4, -1.5)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="doorway" type="CSGBox3D" parent="2/main"]
+[node name="doorway" type="CSGBox3D" parent="variations/2/main"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375, -4, -1.75)
 operation = 2
 size = Vector3(1.75, 3, 2)
 material = SubResource("StandardMaterial3D_810nn")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="2/main/doorway"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="variations/2/main/doorway"]
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1.5, 0)
 radius = 1.0
 height = 1.75
 material = SubResource("StandardMaterial3D_810nn")
 
-[node name="roof" type="CSGMesh3D" parent="2"]
+[node name="roof" type="CSGMesh3D" parent="variations/2"]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -3.57628e-06, 13, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_elkml")
 material = ExtResource("2_wp5ou")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="2/roof"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="variations/2/roof"]
 transform = Transform3D(-0.866026, 0.5, -8.74228e-08, 0.5, 0.866026, 0, 7.57104e-08, -4.37114e-08, -1, 2.21651, 0.125002, 0)
 size = Vector3(5.5, 0.5, 7.5)
 material = ExtResource("5_pga34")
 
-[node name="roof" type="CSGBox3D" parent="2/roof"]
+[node name="roof" type="CSGBox3D" parent="variations/2/roof"]
 transform = Transform3D(0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0, 1, -2.21651, 0.125003, 0)
 size = Vector3(5.5, 0.5, 7.5)
 material = ExtResource("5_pga34")
 
-[node name="foundation" type="CSGBox3D" parent="2"]
+[node name="foundation" type="CSGBox3D" parent="variations/2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 size = Vector3(8.5, 1, 7.5)
 material = ExtResource("2_wp5ou")
 
-[node name="3" type="Node3D" parent="."]
+[node name="3" type="Node3D" parent="variations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="main" type="CSGBox3D" parent="3"]
+[node name="main" type="CSGBox3D" parent="variations/3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 use_collision = true
 size = Vector3(8, 12, 7)
 material = ExtResource("2_wp5ou")
 
-[node name="window80" type="MeshInstance3D" parent="3/main"]
+[node name="window80" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 0, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window81" type="MeshInstance3D" parent="3/main"]
+[node name="window81" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 0, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window82" type="MeshInstance3D" parent="3/main"]
+[node name="window82" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 4, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window83" type="MeshInstance3D" parent="3/main"]
+[node name="window83" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 4, 3.5361)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="3/main/window83" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/3/main/window83" instance=ExtResource("4_pmqo2")]
 
-[node name="window96" type="MeshInstance3D" parent="3/main"]
+[node name="window96" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 0, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window97" type="MeshInstance3D" parent="3/main"]
+[node name="window97" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 0, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window98" type="MeshInstance3D" parent="3/main"]
+[node name="window98" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 4, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window99" type="MeshInstance3D" parent="3/main"]
+[node name="window99" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 4, -3.53846)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="3/main/window99" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/3/main/window99" instance=ExtResource("4_pmqo2")]
 
-[node name="window85" type="MeshInstance3D" parent="3/main"]
+[node name="window85" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 4, 1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="3/main/window85" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/3/main/window85" instance=ExtResource("4_pmqo2")]
 
-[node name="window86" type="MeshInstance3D" parent="3/main"]
+[node name="window86" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 4, -1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window88" type="MeshInstance3D" parent="3/main"]
+[node name="window88" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 0, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window89" type="MeshInstance3D" parent="3/main"]
+[node name="window89" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 0, -1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="3/main/window89" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/3/main/window89" instance=ExtResource("4_pmqo2")]
 
-[node name="window91" type="MeshInstance3D" parent="3/main"]
+[node name="window91" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 4, -1.75)
 material_override = ExtResource("3_6xxig")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="OmniLight3D2" parent="3/main/window91" instance=ExtResource("4_pmqo2")]
+[node name="OmniLight3D2" parent="variations/3/main/window91" instance=ExtResource("4_pmqo2")]
 
-[node name="window92" type="MeshInstance3D" parent="3/main"]
+[node name="window92" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 4, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window94" type="MeshInstance3D" parent="3/main"]
+[node name="window94" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 0, -1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="window95" type="MeshInstance3D" parent="3/main"]
+[node name="window95" type="MeshInstance3D" parent="variations/3/main"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 0, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
-[node name="doorway" type="CSGBox3D" parent="3/main"]
+[node name="doorway" type="CSGBox3D" parent="variations/3/main"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375, -4, 0)
 operation = 2
 size = Vector3(1.75, 3, 2)
 material = SubResource("StandardMaterial3D_810nn")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="3/main/doorway"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="variations/3/main/doorway"]
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1.5, 0)
 radius = 1.0
 height = 1.75
 material = SubResource("StandardMaterial3D_810nn")
 
-[node name="roof" type="CSGMesh3D" parent="3"]
+[node name="roof" type="CSGMesh3D" parent="variations/3"]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -3.57628e-06, 13, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_elkml")
 material = ExtResource("2_wp5ou")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="3/roof"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="variations/3/roof"]
 transform = Transform3D(-0.866026, 0.5, -8.74228e-08, 0.5, 0.866026, 0, 7.57104e-08, -4.37114e-08, -1, 2.21651, 0.125002, 0)
 size = Vector3(5.5, 0.5, 7.5)
 material = ExtResource("5_pga34")
 
-[node name="roof" type="CSGBox3D" parent="3/roof"]
+[node name="roof" type="CSGBox3D" parent="variations/3/roof"]
 transform = Transform3D(0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0, 1, -2.21651, 0.125003, 0)
 size = Vector3(5.5, 0.5, 7.5)
 material = ExtResource("5_pga34")
 
-[node name="foundation" type="CSGBox3D" parent="3"]
+[node name="foundation" type="CSGBox3D" parent="variations/3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 size = Vector3(8.5, 1, 7.5)
 material = ExtResource("2_wp5ou")
