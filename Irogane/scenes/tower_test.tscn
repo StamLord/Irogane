@@ -13049,6 +13049,7 @@ curve = SubResource("Curve3D_jgcot")
 curve = SubResource("Curve3D_gar0f")
 
 [node name="city_districts" type="Node3D" parent="."]
+visible = false
 
 [node name="market" type="CSGBox3D" parent="city_districts"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6887, 5, -11.6268)
@@ -13077,13 +13078,11 @@ size = Vector3(60, 10, 73.5)
 
 [node name="industrial_district" type="CSGBox3D" parent="city_districts"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -143.579, 5, 132.824)
-visible = false
 material_override = SubResource("StandardMaterial3D_frcix")
 size = Vector3(121.5, 10, 118.75)
 
 [node name="hearth_district" type="CSGBox3D" parent="city_districts"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.4211, 5, 132.574)
-visible = false
 material_override = SubResource("StandardMaterial3D_bkfak")
 size = Vector3(174.5, 10, 168.25)
 
@@ -13093,9 +13092,9 @@ material_override = SubResource("StandardMaterial3D_ikixq")
 size = Vector3(174.5, 10, 108.75)
 
 [node name="The Bank" type="CSGBox3D" parent="city_districts"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -159.954, 5, -84.1756)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -159.954, 15, -84.1756)
 material_override = SubResource("StandardMaterial3D_83epk")
-size = Vector3(33, 10, 58)
+size = Vector3(33, 30, 58)
 
 [node name="students_row" type="CSGBox3D" parent="city_districts"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 138.546, 5, -74.8006)
@@ -13108,24 +13107,39 @@ material_override = SubResource("StandardMaterial3D_c71ir")
 size = Vector3(16, 10, 82.5)
 
 [node name="university" type="CSGBox3D" parent="city_districts"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 180.046, 5, -123.176)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 180.046, 30.375, -123.176)
 material_override = SubResource("StandardMaterial3D_wfk31")
-size = Vector3(67, 10, 71.25)
+size = Vector3(67, 60.75, 71.25)
 
 [node name="gardens" type="CSGBox3D" parent="city_districts"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 97.9211, 5, -134.551)
 material_override = SubResource("StandardMaterial3D_bglr8")
 size = Vector3(41.75, 10, 66)
 
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="city_districts"]
+transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 7, -158.051)
+polygon = PackedVector2Array(-48.1888, 78.5105, 0.466461, 118.25, 31.7994, 100.928, 26.7046, 65.5188, 0.721207, 34.1858, -12.5253, -12.4315, -31.6307, -34.3391, -48.6983, -20.3285)
+depth = 10.0
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="city_districts"]
+transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 2.5, -158.051)
+polygon = PackedVector2Array(-51.1277, 80.8021, 20.9635, 136.081, 41.3427, 110.861, 43.8901, 74.1788, 27.0773, 40.0437, 8.22658, 19.9193, -4.00092, -41.2182, -20.3042, -67.4563, -46.2877, -74.0796)
+depth = 8.0
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="city_districts"]
+transform = Transform3D(-0.258819, -0.965926, 5.35353e-08, -4.37114e-08, -4.37114e-08, -1, 0.965926, -0.258819, -3.09086e-08, -108.454, 7, -195.551)
+polygon = PackedVector2Array(-12.5, -19.75, -13, 18.75, 22.75, 31.5, 44.75, 0, 22.75, -30.5)
+depth = 20.0
+
 [node name="high_district" type="CSGBox3D" parent="city_districts"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -40.2039, 5, -158.051)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -40.204, 2, -158.051)
 material_override = SubResource("StandardMaterial3D_nxogb")
-size = Vector3(102.25, 10, 173.25)
+size = Vector3(102.25, 4, 173.25)
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="city_districts/high_district"]
-transform = Transform3D(-8.74228e-08, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -1, -8.74228e-08, 4.37114e-08, -50.75, 0, 85.4205)
+transform = Transform3D(-8.74228e-08, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, -1, -8.74228e-08, 4.37114e-08, -50.75, -3, 85.421)
 polygon = PackedVector2Array(0, 0, 0.25, 101.75, -78.5098, 101.792)
-depth = 10.61
+depth = 5.0
 
 [node name="city_base" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
@@ -13285,6 +13299,164 @@ path_joined = false
 
 [node name="houses" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="hearth_district" type="Node3D" parent="houses"]
+
+[node name="HousePoor2" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4.5, 53.25)
+
+[node name="HousePoor9" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 40.4192, 4.5, 71.0828)
+
+[node name="HousePoor14" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 44.1073, 4.5, 84.8472)
+
+[node name="HousePoor15" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 47.7955, 4.5, 98.6117)
+
+[node name="HousePoor16" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 52.1307, 4.5, 114.791)
+
+[node name="HousePoor17" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 55.7542, 4.5, 128.314)
+
+[node name="HousePoor23" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 59.4424, 4.5, 142.078)
+
+[node name="HousePoor24" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 63.0658, 4.5, 155.601)
+
+[node name="HousePoor25" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 67.6599, 4.5, 172.746)
+
+[node name="HousePoor26" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 71.2833, 4.5, 186.269)
+
+[node name="HousePoor18" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 31.274, 4.5, 134.511)
+
+[node name="HousePoor19" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 27.5858, 4.5, 120.747)
+
+[node name="HousePoor20" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 23.8976, 4.5, 106.982)
+
+[node name="HousePoor27" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 43.1797, 4.5, 178.944)
+
+[node name="HousePoor28" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 39.4915, 4.5, 165.179)
+
+[node name="HousePoor29" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 35.8033, 4.5, 151.415)
+
+[node name="HousePoor21" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 19.5624, 4.5, 90.8028)
+
+[node name="HousePoor22" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 15.939, 4.5, 77.2799)
+
+[node name="HousePoor10" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 84.25, 4.5, 53.25)
+
+[node name="HousePoor11" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 69.5, 4.5, 53.25)
+
+[node name="HousePoor12" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.25, 4.5, 53.25)
+
+[node name="HousePoor13" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50.25, 4.5, 53.25)
+
+[node name="HousePoor3" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -28.5, 4.5, 53.25)
+
+[node name="HousePoor4" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42.5, 4.5, 53.25)
+
+[node name="HousePoor5" parent="houses/hearth_district" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -56.5, 4.5, 53.25)
+
+[node name="HouseThin" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 60.75)
+
+[node name="HouseThin2" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 71.25)
+
+[node name="HouseThin3" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 78.75)
+
+[node name="HouseThin4" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.5, 4.5, 86.25)
+
+[node name="HousePoor" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 4.5, 86.25)
+
+[node name="HousePoor6" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -32.25, 4.5, 86.25)
+
+[node name="HousePoor7" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 4.5, 79.25)
+
+[node name="HousePoor8" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 4.5, 59.5)
+
+[node name="HousePoor30" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.5, 4.75, 91.25)
+
+[node name="HousePoor36" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 84.75, 4.75, 137.75)
+
+[node name="HousePoor37" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 64, 4.75, 137.75)
+
+[node name="HousePoor38" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 87.25, 4.75, 185)
+
+[node name="HousePoor31" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.75, 4.75, 92.5)
+
+[node name="HousePoor35" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 4.75, 100)
+
+[node name="HousePoor32" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 71.75, 4.75, 74.25)
+
+[node name="HousePoor34" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 82.5, 4.75, 99.75)
+
+[node name="HousePoor33" parent="houses/hearth_district" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 75.25, 4.75, 63.25)
+
+[node name="HouseThin5" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.75, 4.5, 61.25)
+
+[node name="HouseThin6" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 4.5, 77.5)
+
+[node name="HouseThin7" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89, 4.5, 85)
+
+[node name="HouseThin8" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 89, 4.5, 115)
+
+[node name="HouseThin9" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, 89, 4.5, 123)
+
+[node name="HouseThin10" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 89, 4, 131)
+
+[node name="HouseThin11" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 89, 4.5, 145.25)
+
+[node name="HouseThin12" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, 89, 4.5, 153.25)
+
+[node name="HouseThin13" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 89, 4, 164.75)
+
+[node name="HouseThin14" parent="houses/hearth_district" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 89, 4, 171.75)
 
 [node name="street_lantern" type="Node3D" parent="houses"]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -10.5967, 7.75, -26.034)
@@ -13518,6 +13690,7 @@ curve = SubResource("Curve3D_82x56")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80, 51.125, -35.25)
 
 [node name="main" type="CSGBox3D" parent="houses/clock_tower"]
+use_collision = true
 size = Vector3(20, 94.25, 20)
 
 [node name="runway" type="CSGBox3D" parent="houses/clock_tower/main"]
@@ -13545,17 +13718,20 @@ height = 21.0
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/clock_tower"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 38.25, 0)
 material_override = SubResource("StandardMaterial3D_x7s62")
+use_collision = true
 radius = 8.0
 height = 18.0
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="houses/clock_tower"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 38.25, 0)
 material_override = SubResource("StandardMaterial3D_x7s62")
+use_collision = true
 radius = 8.0
 height = 18.0
 
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="houses/clock_tower"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 38.25, 0)
+use_collision = true
 height = 20.0
 
 [node name="pivot_1" type="Node3D" parent="houses/clock_tower"]
@@ -13616,22 +13792,27 @@ size = Vector3(1, 0.2, 7.5)
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="houses/clock_tower"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 38.25, 0)
+use_collision = true
 height = 20.0
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="houses/clock_tower"]
 transform = Transform3D(1, 0, 0, 0, 0.674315, 0.738444, 0, -0.738444, 0.674315, 0, 50.25, 14)
+use_collision = true
 polygon = PackedVector2Array(-14, 0, 0, 19, 14, 0.041)
 
 [node name="CSGPolygon3D2" type="CSGPolygon3D" parent="houses/clock_tower"]
 transform = Transform3D(-4.37114e-08, -0.738444, 0.674315, 0, 0.674315, 0.738444, -1, 3.22784e-08, -2.94753e-08, 14, 50.25, 0)
+use_collision = true
 polygon = PackedVector2Array(-14, 0, 0, 19, 14, 0.041)
 
 [node name="CSGPolygon3D3" type="CSGPolygon3D" parent="houses/clock_tower"]
 transform = Transform3D(-1, 6.45568e-08, -5.89505e-08, -1.77636e-15, 0.674315, 0.738444, 8.74228e-08, 0.738444, -0.674315, 0, 50.25, -14)
+use_collision = true
 polygon = PackedVector2Array(-14, 0, 0, 19, 14, 0.041)
 
 [node name="CSGPolygon3D4" type="CSGPolygon3D" parent="houses/clock_tower"]
 transform = Transform3D(1.31134e-07, 0.738444, -0.674315, -5.32907e-15, 0.674315, 0.738444, 1, -9.68352e-08, 8.84258e-08, -14, 50.25, 0)
+use_collision = true
 polygon = PackedVector2Array(-14, 0, 0, 19, 14, 0.041)
 
 [node name="big_build_1" type="CSGBox3D" parent="houses"]
@@ -13717,6 +13898,7 @@ radius = 7.5
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.75, 33.5, -75.5)
 
 [node name="church" type="CSGBox3D" parent="houses/church"]
+use_collision = true
 size = Vector3(40, 51, 20)
 material = ExtResource("83_ec04m")
 
