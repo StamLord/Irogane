@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://et5wmy5tuf54"]
+[gd_scene load_steps=11 format=3 uid="uid://et5wmy5tuf54"]
 
 [ext_resource type="Script" path="res://scripts/procedural/prefab_randmoizer.gd" id="1_ybwa0"]
 [ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="2_8txcv"]
 [ext_resource type="Material" uid="uid://4sfrxcw25g5s" path="res://assets/materials/window_light_flicker.tres" id="3_61xgk"]
 [ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="4_qcxkk"]
+[ext_resource type="Script" path="res://scripts/procedural/window_hider.gd" id="4_xnir3"]
 [ext_resource type="Material" uid="uid://bpg2o1smtm2us" path="res://assets/materials/house_roof.tres" id="5_sg0jn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_810nn"]
@@ -68,42 +69,49 @@ transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 6, 3.5
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window81" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 6, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window96" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 6, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window97" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 6, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window86" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, -1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window88" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window91" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6, -1.75)
 material_override = ExtResource("3_61xgk")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window91" instance=ExtResource("4_qcxkk")]
 
@@ -112,6 +120,7 @@ transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.062
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="2" type="Node3D" parent="variations"]
 visible = false
@@ -157,30 +166,35 @@ transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 6, 3.5
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window96" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 6, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window97" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 6, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window86" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, -1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window92" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, 1.75)
 material_override = ExtResource("3_61xgk")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../..")
+script = ExtResource("4_xnir3")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window92" instance=ExtResource("4_qcxkk")]
 
@@ -189,6 +203,7 @@ transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.062
 material_override = ExtResource("3_61xgk")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window91" instance=ExtResource("4_qcxkk")]
 
@@ -197,12 +212,14 @@ transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.062
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window93" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2.273, 6, 3.536)
 material_override = ExtResource("3_61xgk")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../..")
+script = ExtResource("4_xnir3")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window93" instance=ExtResource("4_qcxkk")]
 
@@ -249,36 +266,42 @@ transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 6, 3.5
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window81" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 2, 6, 3.5361)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window96" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 6, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window97" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 6, -3.53846)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window88" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, 1.75)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="window89" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, -1.75)
 material_override = ExtResource("3_61xgk")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window89" instance=ExtResource("4_qcxkk")]
 
@@ -287,6 +310,7 @@ transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.062
 material_override = ExtResource("3_61xgk")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window91" instance=ExtResource("4_qcxkk")]
 
@@ -295,3 +319,4 @@ transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.062
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
+script = ExtResource("4_xnir3")
