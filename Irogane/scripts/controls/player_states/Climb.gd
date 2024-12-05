@@ -38,10 +38,10 @@ func Enter(body):
 	body.velocity = Vector3.ZERO
 	climb_rope_started.emit()
 	
-	current_wall = wall_check.get_collider()
-	wall_normal = wall_check.get_collision_normal()
+	current_wall = climb_check.get_collider()
+	wall_normal = climb_check.get_collision_normal()
 	
-	adjust_to_wall(body, wall_check.get_collision_point())
+	adjust_to_wall(body, climb_check.get_collision_point())
 	
 
 func adjust_to_wall(body, point):
