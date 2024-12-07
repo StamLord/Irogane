@@ -1,4 +1,4 @@
-[gd_scene load_steps=242 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=248 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -109,6 +109,8 @@
 [ext_resource type="PackedScene" uid="uid://dcgyhjepq4vs7" path="res://prefabs/building_blocks/grapple_point.tscn" id="93_i8cp4"]
 [ext_resource type="PackedScene" uid="uid://c8h0cyfgj5kkm" path="res://prefabs/env/trees/tree_01.tscn" id="98_1qyt8"]
 [ext_resource type="PackedScene" uid="uid://cn85824eh7cl5" path="res://prefabs/building_blocks/stairs_4x3.tscn" id="101_ve0uh"]
+[ext_resource type="PackedScene" uid="uid://b4pd2noe3s34w" path="res://prefabs/house_wide_s3_l.tscn" id="110_wuu3r"]
+[ext_resource type="PackedScene" uid="uid://b7y4mi6sbauku" path="res://prefabs/house_rich_1.tscn" id="111_c5v3e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1ke2"]
 albedo_texture = ExtResource("1_e2tcu")
@@ -716,6 +718,28 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_phe8a"]
 material = SubResource("StandardMaterial3D_vnhlj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2dl1"]
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idkhs"]
+albedo_color = Color(0.184314, 0.415686, 1, 1)
+metallic = 1.0
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfy7w"]
+transparency = 1
+albedo_color = Color(0.913725, 0.47451, 0, 1)
+metallic = 1.0
+roughness = 0.5
+emission = Color(0.286275, 0.239216, 0.0666667, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_luuqo"]
+top_radius = 0.0
+bottom_radius = 6.0
+height = 18.0
+radial_segments = 8
+rings = 1
 
 [node name="TowerTest" type="Node3D"]
 
@@ -13119,21 +13143,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 97.921
 material_override = SubResource("StandardMaterial3D_bglr8")
 size = Vector3(41.75, 10, 66)
 
-[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="city_districts"]
-transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 7, -158.051)
-polygon = PackedVector2Array(-48.1888, 78.5105, 0.466461, 118.25, 31.7994, 100.928, 26.7046, 65.5188, 0.721207, 34.1858, -12.5253, -12.4315, -31.6307, -34.3391, -48.6983, -20.3285)
-depth = 10.0
-
-[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="city_districts"]
-transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 2.5, -158.051)
-polygon = PackedVector2Array(-51.1277, 80.8021, 20.9635, 136.081, 41.3427, 110.861, 43.8901, 74.1788, 27.0773, 40.0437, 8.22658, 19.9193, -4.00092, -41.2182, -20.3042, -67.4563, -46.2877, -74.0796)
-depth = 8.0
-
-[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="city_districts"]
-transform = Transform3D(-0.258819, -0.965926, 5.35353e-08, -4.37114e-08, -4.37114e-08, -1, 0.965926, -0.258819, -3.09086e-08, -108.454, 7, -195.551)
-polygon = PackedVector2Array(-12.5, -19.75, -13, 18.75, 22.75, 31.5, 44.75, 0, 22.75, -30.5)
-depth = 20.0
-
 [node name="high_district" type="CSGBox3D" parent="city_districts"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -40.204, 2, -158.051)
 material_override = SubResource("StandardMaterial3D_nxogb")
@@ -13523,6 +13532,11 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
+[node name="goldbay" type="CSGBox3D" parent="city_base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.5, 5, -8)
+operation = 2
+size = Vector3(91.0001, 10, 91)
+
 [node name="water" type="Node3D" parent="city_base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
@@ -13673,6 +13687,19 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
+[node name="CSGBox3D" type="CSGBox3D" parent="city_base/water/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.7422, -0.165527, 20.2158)
+size = Vector3(39.6309, 2.83105, 20.25)
+
+[node name="gold_bay" type="CSGBox3D" parent="city_base/water/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -149.198, -0.165527, -10.1592)
+size = Vector3(98.25, 2.83105, 85.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="city_base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.75, 5, 20)
+operation = 2
+size = Vector3(40, 10, 20)
+
 [node name="bridges" type="Node3D" parent="."]
 
 [node name="market_bridge3" type="CSGCylinder3D" parent="bridges"]
@@ -13779,6 +13806,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.0482, 4.5, 95.793)
 
 [node name="candle_short" parent="houses/hearth_district/decor/barrel7" instance=ExtResource("77_2gqm5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="barrel8" parent="houses/hearth_district/decor" instance=ExtResource("76_mtpu0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7328, 7.5, 108.598)
+
+[node name="candle_short" parent="houses/hearth_district/decor/barrel8" instance=ExtResource("77_2gqm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="candle_short2" parent="houses/hearth_district" instance=ExtResource("77_2gqm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7328, 8.1, 108.598)
+skeleton = NodePath("../decor/barrel8")
 
 [node name="bakers_street" type="Node3D" parent="houses/hearth_district"]
 
@@ -14053,7 +14090,7 @@ material = ExtResource("77_ljg55")
 light_energy = 1.0
 
 [node name="wind_mill" parent="houses/hearth_district" instance=ExtResource("80_5myfl")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 80.8963, 28, 229.135)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3637, 28, 205.079)
 
 [node name="wind_mill2" parent="houses/hearth_district" instance=ExtResource("80_5myfl")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 222.646, 28, 124.385)
@@ -14197,6 +14234,12 @@ transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926
 
 [node name="HousePoor51" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 67.9834, 4, 173.953)
+
+[node name="HousePoor68" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
+transform = Transform3D(-1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, -1, 73.7008, 4, 216.965)
+
+[node name="HousePoor69" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
+transform = Transform3D(-1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, -1, 73.7008, 4, 202.964)
 
 [node name="HousePoor52" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 63.3246, 4, 156.567)
@@ -14863,11 +14906,11 @@ use_collision = true
 polygon = PackedVector2Array(-14, 0, 0, 19, 14, 0.041)
 
 [node name="south_gate" type="CSGBox3D" parent="houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.5, 11, 248)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 11, 248)
 size = Vector3(20, 14, 10)
 
 [node name="big_build_1" type="CSGBox3D" parent="houses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 62.733, 10, 9.547)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 110.233, 10, 9.547)
 size = Vector3(20, 12, 41)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="houses/big_build_1"]
@@ -15005,19 +15048,19 @@ material = ExtResource("83_ec04m")
 
 [node name="platform" type="CSGBox3D" parent="houses/church/church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -26, 0)
-size = Vector3(43, 1, 80)
+size = Vector3(43, 1, 70)
 
 [node name="platform2" type="CSGBox3D" parent="houses/church/church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -27, 0)
-size = Vector3(45, 1, 80)
+size = Vector3(45, 1, 70)
 
 [node name="platform3" type="CSGBox3D" parent="houses/church/church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -28, 0)
-size = Vector3(47, 1, 80)
+size = Vector3(47, 1, 70)
 
 [node name="platform4" type="CSGBox3D" parent="houses/church/church"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -29, 0)
-size = Vector3(49, 1, 80)
+size = Vector3(49, 1, 70)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/church"]
 transform = Transform3D(-4.37114e-08, 1, -1.64203e-15, 4.37114e-08, -1.64203e-15, -1, -1, -4.37114e-08, -4.37114e-08, -11.25, 1, -16.25)
@@ -15831,7 +15874,504 @@ transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 0, 1, -1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.0659, 1.65101, 38.5011)
 
 [node name="water_mill2" parent="." instance=ExtResource("84_hvg8k")]
-transform = Transform3D(-0.75, 0, -1.89681e-07, 0, 0.75, 0, 1.13247e-07, 0, -1.2562, -109.816, 0.338514, 30.5011)
+transform = Transform3D(-0.75, 0, -1.89681e-07, 0, 0.75, 0, 1.13247e-07, 0, -1.2562, -85.3159, 0.338514, 30.5011)
+speed = 10.0
+
+[node name="high_district" type="Node3D" parent="."]
+
+[node name="topology" type="Node3D" parent="high_district"]
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 0, -158.051)
+polygon = PackedVector2Array(-71.5779, 133.368, 19.0749, 186.085, 74.8144, 160.26, 93.5482, 86.3749, 69.6827, 58.7356, 49.7544, 33.7817, 25.0803, -31.0899, -2.735, -88.8067, -48.6303, -78.0282, -75.7502, -16.1392, -77.4887, 46.793)
+depth = 12.0
+
+[node name="CSGPolygon3D5" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 12, -158.051)
+polygon = PackedVector2Array(-62.538, 110.421, 3.52344, 159.793, 69.6419, 154.393, 81.4063, 121.199, 84.76, 95.8512, 62.1591, 50.1948, 46.8165, 39.6199, 22.6938, 36.7604, 17.5589, 27.0436, 11.1455, 10.0431, 6.7803, -17.9301, -27.4211, -29.0037, -53.498, -19.6161, -70.1872, 20.0208)
+depth = 12.0
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 24, -158.051)
+polygon = PackedVector2Array(-42.0956, 82.5029, 5.19041, 121.444, 39.9596, 129.094, 61.8641, 107.884, 42.0457, 63.3799, 27.9331, 48.1726, 0.721207, 34.1858, -11.1511, 4.2723, -26.3865, -0.788879, -42.4872, 11.7653)
+depth = 10.0
+
+[node name="CSGPolygon3D9" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(0, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, -40.204, 33.75, -158.051)
+polygon = PackedVector2Array(-17.1584, 97.8362, 0.378159, 108.454, 8.01096, 114.8, 25.4351, 110.551, 25.7901, 89.5099, 16.0814, 57.5986, 6.67937, 55.4638, -9.50754, 58.7456, -12.6351, 57.9669)
+depth = 10.0
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(-0.258819, -0.965926, 5.35353e-08, -4.37114e-08, -4.37114e-08, -1, 0.965926, -0.258819, -3.09086e-08, -108.454, 12, -195.551)
+polygon = PackedVector2Array(-12.5, -19.75, -13, 18.75, 22.75, 31.5, 44.75, 0, 22.75, -30.5)
+depth = 40.0
+
+[node name="CSGPolygon3D6" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(0.953417, 0.301655, -5.48609e-08, -4.37114e-08, -4.37114e-08, -1, -0.301655, 0.953417, -2.84895e-08, -99.2345, 12, -157.013)
+polygon = PackedVector2Array(11.798, -20.1358, 13.4774, -9.10471, 22.0257, -5.06136, 25.349, -15.4526, 23.0254, -23.8228)
+depth = 35.0
+
+[node name="CSGPolygon3D7" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(0.998762, -0.0497561, 1.59872e-14, -3.07579e-09, -6.17407e-08, -1, 0.0497561, 0.998762, -6.18172e-08, -103.156, 12, -177.525)
+polygon = PackedVector2Array(11.798, -20.1358, 16.5124, -2.26256, 25.5406, -5.98183, 25.349, -15.4526, 23.0254, -23.8228)
+depth = 30.0
+
+[node name="CSGPolygon3D8" type="CSGPolygon3D" parent="high_district/topology"]
+transform = Transform3D(0.979757, -0.200189, 4.82467e-08, 5.50069e-08, 2.82066e-08, -1, 0.200189, 0.979757, 3.86474e-08, -100.365, 12, -172.782)
+polygon = PackedVector2Array(11.798, -20.1358, 16.5124, -2.26256, 25.5406, -5.98183, 25.349, -15.4526, 21.9608, -19.4068)
+depth = 25.0
+
+[node name="houses" type="Node3D" parent="high_district"]
+
+[node name="house_wide_s3_" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.430385, 0, -0.902645, 0, 1, 0, 0.902645, 0, 0.430385, -138.31, 22, -96.4921)
+
+[node name="house_wide_s3_8" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.0785984, 0, -0.996906, 0, 1, 0, 0.996906, 0, -0.0785984, -141.181, 44, -144.883)
+
+[node name="house_wide_s3_16" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.902645, 0, 0.430385, 0, 1, 0, -0.430385, 0, 0.902645, -155.184, 34, -115.035)
+
+[node name="house_wide_s3_17" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.430385, 0, -0.902645, 0, 1, 0, 0.902645, 0, 0.430385, -138.085, 34, -111.355)
+
+[node name="house_wide_s3_18" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.325205, 0, -0.945643, 0, 1, 0, 0.945643, 0, 0.325205, -117.717, 34, -129.582)
+
+[node name="house_wide_s3_20" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.008046, 0, -0.999968, 0, 1, 0, 0.999968, 0, 0.008046, -140.624, 33.5397, -127.614)
+
+[node name="house_wide_s3_19" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.457176, 0, -0.889376, 0, 1, 0, 0.889376, 0, 0.457176, -102.579, 34, -135.726)
+
+[node name="house_wide_s3_14" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.182098, 0, -0.98328, 0, 1, 0, 0.98328, 0, 0.182098, -125.075, 44, -145.898)
+
+[node name="house_wide_s3_15" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.430385, 0, -0.902645, 0, 1, 0, 0.902645, 0, 0.430385, -109.845, 44, -150.507)
+
+[node name="house_wide_s3_2" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.430385, 0, -0.902645, 0, 1, 0, 0.902645, 0, 0.430385, -125.673, 22, -102.518)
+
+[node name="house_wide_s3_21" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.746139, 0, -0.66579, 0, 1, 0, 0.66579, 0, -0.746139, -165.628, 22, -107.935)
+
+[node name="house_wide_s3_22" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.746139, 0, -0.66579, 0, 1, 0, 0.66579, 0, -0.746139, -156.307, 22, -97.4887)
+
+[node name="house_wide_s3_23" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.054253, 0, -0.998527, 0, 1, 0, 0.998527, 0, 0.054253, -189.814, 22, -119.839)
+
+[node name="house_wide_s3_24" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.054253, 0, -0.998527, 0, 1, 0, 0.998527, 0, 0.054253, -175.835, 22, -120.598)
+
+[node name="house_wide_s3_25" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.997963, 0, 0.0638006, 0, 1, 0, -0.0638006, 0, 0.997963, -190.363, 22, -96.6507)
+
+[node name="house_wide_s3_27" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.361283, 0, 0.932456, 0, 1, 0, -0.932456, 0, 0.361283, -185.136, 22, -90.3544)
+
+[node name="house_wide_s3_28" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.361283, 0, 0.932456, 0, 1, 0, -0.932456, 0, 0.361283, -172.082, 22, -85.2964)
+
+[node name="house_wide_s3_26" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.997963, 0, 0.0638006, 0, 1, 0, -0.0638006, 0, 0.997963, -191.256, 22, -110.622)
+
+[node name="house_wide_s3_3" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.430385, 0, -0.902645, 0, 1, 0, 0.902645, 0, 0.430385, -106.717, 22, -111.556)
+
+[node name="house_wide_s3_7" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.98328, 0, 0.182098, 0, 1, 0, -0.182098, 0, 0.98328, -71.729, 22, -150.347)
+
+[node name="house_wide_s3_40" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.98328, 0, -0.182098, 0, 1, 0, 0.182098, 0, -0.98328, -49.4686, 22, -160.572)
+
+[node name="house_wide_s3_9" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.182098, 0, -0.98328, 0, 1, 0, 0.98328, 0, 0.182098, -43.0409, 22, -164.304)
+
+[node name="house_wide_s3_10" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.942595, 0, -0.333939, 0, 1, 0, 0.333939, 0, 0.942595, -35.1008, 22, -178.094)
+
+[node name="house_wide_s3_12" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.942595, 0, -0.333939, 0, 1, 0, 0.333939, 0, 0.942595, -11.7716, 12, -169.829)
+
+[node name="house_wide_s3_47" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.98328, 0, 0.182098, 0, 1, 0, -0.182098, 0, 0.98328, -10.0216, 12, -191.579)
+
+[node name="house_wide_s3_48" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.98328, 0, 0.182098, 0, 1, 0, -0.182098, 0, 0.98328, -12.6165, 12, -205.591)
+
+[node name="house_wide_s3_49" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.182098, 0, -0.98328, 0, 1, 0, 0.98328, 0, 0.182098, -6.91714, 12, -213.257)
+
+[node name="house_wide_s3_50" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.0785984, 0, -0.996906, 0, 1, 0, 0.996906, 0, -0.0785984, 6.71123, 12, -214.061)
+
+[node name="house_wide_s3_51" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.333939, 0, -0.942595, 0, 1, 0, 0.942595, 0, -0.333939, 21.2824, 12, -211.021)
+
+[node name="house_wide_s3_52" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.98328, 0, 0.182098, 0, 1, 0, -0.182098, 0, 0.98328, 32.9184, 12, -199.571)
+
+[node name="house_wide_s3_53" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.98328, 0, 0.182098, 0, 1, 0, -0.182098, 0, 0.98328, 35.4223, 12, -186.051)
+
+[node name="house_wide_s3_54" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.98328, 0, 0.182098, 0, 1, 0, -0.182098, 0, 0.98328, 38.9095, 12, -165.848)
+
+[node name="house_wide_s3_55" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.430385, 0, -0.902646, 0, 1, 0, 0.902646, 0, 0.430385, 32.3758, 12, -163.287)
+
+[node name="house_wide_s3_56" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.182098, 0, -0.98328, 0, 1, 0, 0.98328, 0, 0.182098, 10.8634, 12, -154.417)
+
+[node name="house_wide_s3_13" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.942595, 0, -0.333939, 0, 1, 0, 0.333939, 0, 0.942595, -16.4467, 12, -156.633)
+
+[node name="house_wide_s3_43" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.947819, 0, 0.318811, 0, 1, 0, -0.318811, 0, -0.947819, 8.6547, 12, -166.541)
+
+[node name="house_wide_s3_44" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.947819, 0, 0.318811, 0, 1, 0, -0.318811, 0, -0.947819, 4.19135, 12, -153.271)
+
+[node name="house_wide_s3_45" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.974878, 0, -0.22274, 0, 1, 0, 0.22274, 0, -0.974878, 9.74184, 12, -192.814)
+
+[node name="house_wide_s3_46" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.999309, 0, 0.0371671, 0, 1, 0, -0.0371671, 0, -0.999309, 10.9758, 12, -179.224)
+
+[node name="house_wide_s3_29" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.175246, 0, -0.984525, 0, 1, 0, 0.984525, 0, 0.175246, -28.2309, 12, -145.381)
+
+[node name="house_wide_s3_30" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.175246, 0, -0.984525, 0, 1, 0, 0.984525, 0, 0.175246, -42.0142, 12, -142.927)
+
+[node name="house_wide_s3_31" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.99813, 0, -0.0611358, 0, 1, 0, 0.0611358, 0, 0.99813, -76.5726, 12, -116.093)
+
+[node name="house_wide_s3_32" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.662555, 0, -0.749014, 0, 1, 0, 0.749014, 0, 0.662555, -68.1377, 12, -136.764)
+
+[node name="house_wide_s3_33" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.662555, 0, -0.749014, 0, 1, 0, 0.749014, 0, 0.662555, -87.7685, 1.58203, -98.4526)
+
+[node name="house_wide_s3_39" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.446119, 0, -0.894973, 0, 1, 0, 0.894973, 0, 0.446119, -75.8668, 1.58203, -106.551)
+
+[node name="house_wide_s3_34" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.662555, 0, -0.749014, 0, 1, 0, 0.749014, 0, 0.662555, -98.0674, 1.58203, -89.3425)
+
+[node name="house_wide_s3_35" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.777541, 0, -0.628832, 0, 1, 0, 0.628832, 0, 0.777541, -106.7, 1.58203, -79.368)
+
+[node name="house_wide_s3_38" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.71551, 0, -0.698603, 0, 1, 0, 0.698603, 0, 0.71551, -116.032, 1.58203, -69.145)
+
+[node name="house_wide_s3_36" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.662555, 0, -0.749014, 0, 1, 0, 0.749014, 0, 0.662555, -124.506, 12.082, -76.9704)
+
+[node name="house_wide_s3_37" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.446119, 0, -0.894973, 0, 1, 0, 0.894973, 0, 0.446119, -112.058, 12.082, -85.4605)
+
+[node name="house_wide_s3_11" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(0.98328, 0, 0.182098, 0, 1, 0, -0.182098, 0, 0.98328, -33.8238, 22, -195.201)
+
+[node name="house_wide_s3_4" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.430385, 0, 0.902646, 0, 1, 0, -0.902646, 0, -0.430385, -131.101, 22, -81.3728)
+
+[node name="house_wide_s3_5" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.430385, 0, 0.902646, 0, 1, 0, -0.902646, 0, -0.430385, -118.464, 22, -87.3982)
+
+[node name="house_wide_s3_6" parent="high_district/houses" instance=ExtResource("110_wuu3r")]
+transform = Transform3D(-0.430385, 0, 0.902646, 0, 1, 0, -0.902646, 0, -0.430385, -99.5085, 22, -96.4363)
+
+[node name="HouseRich" parent="high_district/houses" instance=ExtResource("111_c5v3e")]
+transform = Transform3D(0.760497, 0, 0.649342, 0, 1, 0, -0.649342, 0, 0.760497, -134.857, 51.4209, -180.881)
+
+[node name="HousePoor" parent="high_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -104.243, 52, -195.243)
+
+[node name="HousePoor3" parent="high_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -145.743, 42.75, -160.493)
+
+[node name="HousePoor4" parent="high_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -157.243, 34, -128.743)
+
+[node name="HousePoor5" parent="high_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.430558, 0, -0.902562, 0, 1, 0, 0.902562, 0, 0.430558, -116.671, 14.5, -106.88)
+
+[node name="HousePoor6" parent="high_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.942659, 0, -0.333757, 0, 1, 0, 0.333757, 0, 0.942659, -8.53086, 12, -180.539)
+
+[node name="HousePoor7" parent="high_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.942659, 0, -0.333757, 0, 1, 0, 0.333757, 0, 0.942659, -76.174, 6.25, -127.314)
+
+[node name="HousePoor2" parent="high_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -95.7574, 44, -186.757)
+
+[node name="tower_20" parent="high_district/houses" instance=ExtResource("84_2w51g")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -128.5, 52, -192)
+
+[node name="tower_21" parent="high_district/houses" instance=ExtResource("84_2w51g")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -40.642, -1, -186.52)
+
+[node name="bank" type="Node3D" parent="high_district"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -151.375, 18, -31.75)
+
+[node name="bank" type="CSGBox3D" parent="high_district/bank"]
+use_collision = true
+size = Vector3(58, 20, 33)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar2" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar3" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar4" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar5" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar6" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar7" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar8" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="pillar9" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -3.5, 22.5)
+size = Vector3(2, 13, 2)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.75, 9.5, 17.25)
+size = Vector3(10, 7, 10)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="high_district/bank/bank/CSGBox3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+radius = 5.0
+material = SubResource("StandardMaterial3D_idkhs")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.75, 9.5, 17.25)
+size = Vector3(10, 7, 10)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="high_district/bank/bank/CSGBox3D11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+radius = 5.0
+material = SubResource("StandardMaterial3D_idkhs")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.75, 13.5, -10.5)
+size = Vector3(10, 7, 10)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="high_district/bank/bank/CSGBox3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, 0)
+radius = 5.0
+material = SubResource("StandardMaterial3D_idkhs")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+size = Vector3(21, 14, 21)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 12, 0)
+size = Vector3(21, 14, 21)
+
+[node name="brass_dome" type="CSGSphere3D" parent="high_district/bank/bank/CSGBox3D15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+radius = 9.0
+material = SubResource("StandardMaterial3D_bfy7w")
+
+[node name="CSGBox3D12" type="CSGCylinder3D" parent="high_district/bank/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.25, 26.5, -9.5)
+radius = 6.0
+height = 33.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="high_district/bank/bank/CSGBox3D12"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 25.25, 0)
+mesh = SubResource("CylinderMesh_luuqo")
+
+[node name="brazier" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 19, 11.25)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier9" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 10, 21.75)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier9" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier10" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7, 10, 21.75)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier10" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier11" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -14, 10, 21.75)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier11" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier12" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 14, 10, 21.75)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier12" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier13" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7, 10, 21.75)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier13" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier2" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 19, -11.25)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier2" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier3" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 11.25, 19, 0)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier3" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier4" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -11.25, 19, 0)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier4" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier5" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 7.95496, 19, -7.95495)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier5" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier6" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -7.95496, 19, 7.95495)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier6" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier7" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(1.33118e-07, 0, -1, 0, 1, 0, 1, 0, 1.33118e-07, -7.95496, 19, -7.95496)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier7" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="brazier8" type="CSGSphere3D" parent="high_district/bank/bank"]
+transform = Transform3D(1.33118e-07, 0, -1, 0, 1, 0, 1, 0, 1.33118e-07, 7.95496, 19, 7.95496)
+radial_segments = 8
+rings = 3
+material = SubResource("StandardMaterial3D_vg6mx")
+
+[node name="WindowLight" parent="high_district/bank/bank/brazier8" instance=ExtResource("85_xim5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07434, 0)
+
+[node name="bank2" type="CSGBox3D" parent="high_district/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 20)
+use_collision = true
+size = Vector3(58, 7, 7)
+material = SubResource("StandardMaterial3D_f2dl1")
+
+[node name="bank_platue" type="CSGBox3D" parent="high_district/bank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -15.875, 7.5)
+use_collision = true
+size = Vector3(68, 11.75, 48)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="high_district/bank/bank_platue"]
+transform = Transform3D(0.707107, -0.28518, -0.647049, 0, 0.915065, -0.403306, 0.707107, 0.28518, 0.647049, -33.5, 7.5, 25.25)
+light_color = Color(0.862745, 0.541176, 0.188235, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 40.0
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="high_district/bank/bank_platue"]
+transform = Transform3D(0.906308, -0.170546, -0.386679, 0, 0.91496, -0.403545, 0.422618, 0.365736, 0.829235, -15, 7.5, 25.25)
+light_color = Color(0.862745, 0.541176, 0.188235, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 40.0
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="high_district/bank/bank_platue"]
+transform = Transform3D(0.906308, 0.170546, 0.386679, 0, 0.91496, -0.403545, -0.422618, 0.365736, 0.829235, 15, 7.5, 25.25)
+light_color = Color(0.862745, 0.541176, 0.188235, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 40.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="high_district/bank/bank_platue"]
+transform = Transform3D(0.707107, 0.28535, 0.646974, 0, 0.91496, -0.403545, -0.707107, 0.28535, 0.646974, 33.5, 7.5, 25.25)
+light_color = Color(0.862745, 0.541176, 0.188235, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 40.0
 
 [connection signal="body_entered" from="canal/water_area" to="canal/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="canal/water_area" to="canal/water_area" method="_on_body_exited"]
