@@ -147,7 +147,9 @@ func animate(animation_clip):
 	
 	#TODO: Remove this. Only for debug:
 	start_animation_debug = Time.get_ticks_msec()
-	DebugCanvas.debug_text(animation_clip, body.global_position + Vector3.UP * 2.0, Color.RED, 1.0)
+	
+	if debug:
+		DebugCanvas.debug_text(animation_clip, body.global_position + Vector3.UP * 2.0, Color.RED, 1.0)
 	
 
 func goto(target_node):
@@ -256,7 +258,8 @@ func get_dynamic_actions():
 
 func sound_heard(sound_position):
 	update_world_state("sound_heard_at", sound_position)
-	DebugCanvas.debug_point(sound_position, Color.PURPLE, 5.0, 5.0)
+	if debug:
+		DebugCanvas.debug_point(sound_position, Color.PURPLE, 5.0, 5.0)
 	
 
 func get_closest_enemy():
@@ -325,7 +328,8 @@ func update_sensors():
 	var nearest_coin = get_nearest_coin()
 	if nearest_coin != null:
 		update_world_state("nearest_coin", nearest_coin)
-		DebugCanvas.debug_point(nearest_coin.global_position, Color.AQUA)
+		if debug:
+			DebugCanvas.debug_point(nearest_coin.global_position, Color.AQUA)
 	else:
 		erase_world_state("nearest_coin")
 	

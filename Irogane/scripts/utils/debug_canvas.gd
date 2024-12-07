@@ -16,6 +16,9 @@ func _process(_delta):
 	
 
 func _draw():
+	if not visible:
+		return
+	
 	var camera = CameraEntity.active_camera
 	
 	# If camera was freed due to scene loading

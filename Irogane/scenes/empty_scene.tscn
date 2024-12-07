@@ -1,0 +1,307 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk2av011nhivr"]
+
+[ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="1_0a4kf"]
+[ext_resource type="PackedScene" uid="uid://vyuswbha3q8f" path="res://prefabs/house_wide_s3_wp.tscn" id="2_3mumy"]
+[ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="3_3nwx4"]
+
+[node name="EmptyScene" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_0a4kf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+
+[node name="houses" type="Node3D" parent="."]
+
+[node name="house_wide_s3_wp_" parent="houses" instance=ExtResource("2_3mumy")]
+
+[node name="house_wide_s3_wp_2" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.25)
+
+[node name="house_wide_s3_wp_3" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36.75)
+
+[node name="house_wide_s3_wp_4" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -59.25)
+
+[node name="house_wide_s3_wp_5" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80.5)
+
+[node name="house_wide_s3_wp_6" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -98.75)
+
+[node name="house_wide_s3_wp_7" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -117.25)
+
+[node name="house_wide_s3_wp_8" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -139.75)
+
+[node name="house_wide_s3_wp_9" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -164)
+
+[node name="house_wide_s3_wp_10" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -182.25)
+
+[node name="house_wide_s3_wp_11" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200.75)
+
+[node name="house_wide_s3_wp_12" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -223.25)
+
+[node name="house_wide_s3_wp_13" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -244.5)
+
+[node name="house_wide_s3_wp_14" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -262.75)
+
+[node name="house_wide_s3_wp_15" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -281.25)
+
+[node name="house_wide_s3_wp_16" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -303.75)
+
+[node name="house_wide_s3_wp_17" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -330)
+
+[node name="house_wide_s3_wp_18" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -348.25)
+
+[node name="house_wide_s3_wp_19" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -366.75)
+
+[node name="house_wide_s3_wp_20" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -389.25)
+
+[node name="house_wide_s3_wp_21" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -410.5)
+
+[node name="house_wide_s3_wp_22" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -428.75)
+
+[node name="house_wide_s3_wp_23" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -447.25)
+
+[node name="house_wide_s3_wp_24" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -469.75)
+
+[node name="house_wide_s3_wp_25" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -494)
+
+[node name="house_wide_s3_wp_26" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -512.25)
+
+[node name="house_wide_s3_wp_27" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -530.75)
+
+[node name="house_wide_s3_wp_28" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -553.25)
+
+[node name="house_wide_s3_wp_29" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -574.5)
+
+[node name="house_wide_s3_wp_30" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -592.75)
+
+[node name="house_wide_s3_wp_31" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -611.25)
+
+[node name="house_wide_s3_wp_32" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -633.75)
+
+[node name="house_wide_s3_wp_33" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, 0)
+
+[node name="house_wide_s3_wp_34" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -18.25)
+
+[node name="house_wide_s3_wp_35" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -36.75)
+
+[node name="house_wide_s3_wp_36" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -59.25)
+
+[node name="house_wide_s3_wp_37" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -80.5)
+
+[node name="house_wide_s3_wp_38" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -98.75)
+
+[node name="house_wide_s3_wp_39" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -117.25)
+
+[node name="house_wide_s3_wp_40" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -139.75)
+
+[node name="house_wide_s3_wp_41" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -164)
+
+[node name="house_wide_s3_wp_42" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -182.25)
+
+[node name="house_wide_s3_wp_43" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -200.75)
+
+[node name="house_wide_s3_wp_44" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -223.25)
+
+[node name="house_wide_s3_wp_45" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -244.5)
+
+[node name="house_wide_s3_wp_46" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -262.75)
+
+[node name="house_wide_s3_wp_47" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -281.25)
+
+[node name="house_wide_s3_wp_48" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -303.75)
+
+[node name="house_wide_s3_wp_49" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -330)
+
+[node name="house_wide_s3_wp_50" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -348.25)
+
+[node name="house_wide_s3_wp_51" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -366.75)
+
+[node name="house_wide_s3_wp_52" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -389.25)
+
+[node name="house_wide_s3_wp_53" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -410.5)
+
+[node name="house_wide_s3_wp_54" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -428.75)
+
+[node name="house_wide_s3_wp_55" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -447.25)
+
+[node name="house_wide_s3_wp_56" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -469.75)
+
+[node name="house_wide_s3_wp_57" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -494)
+
+[node name="house_wide_s3_wp_58" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -512.25)
+
+[node name="house_wide_s3_wp_59" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -530.75)
+
+[node name="house_wide_s3_wp_60" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -553.25)
+
+[node name="house_wide_s3_wp_61" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -574.5)
+
+[node name="house_wide_s3_wp_62" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -592.75)
+
+[node name="house_wide_s3_wp_63" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -611.25)
+
+[node name="house_wide_s3_wp_64" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.75, 0, -633.75)
+
+[node name="house_wide_s3_wp_65" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, 0)
+
+[node name="house_wide_s3_wp_66" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -18.25)
+
+[node name="house_wide_s3_wp_67" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -36.75)
+
+[node name="house_wide_s3_wp_68" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -59.25)
+
+[node name="house_wide_s3_wp_69" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -80.5)
+
+[node name="house_wide_s3_wp_70" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -98.75)
+
+[node name="house_wide_s3_wp_71" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -117.25)
+
+[node name="house_wide_s3_wp_72" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -139.75)
+
+[node name="house_wide_s3_wp_73" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -164)
+
+[node name="house_wide_s3_wp_74" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -182.25)
+
+[node name="house_wide_s3_wp_75" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -200.75)
+
+[node name="house_wide_s3_wp_76" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -223.25)
+
+[node name="house_wide_s3_wp_77" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -244.5)
+
+[node name="house_wide_s3_wp_78" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -262.75)
+
+[node name="house_wide_s3_wp_79" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -281.25)
+
+[node name="house_wide_s3_wp_80" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -303.75)
+
+[node name="house_wide_s3_wp_81" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -330)
+
+[node name="house_wide_s3_wp_82" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -348.25)
+
+[node name="house_wide_s3_wp_83" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -366.75)
+
+[node name="house_wide_s3_wp_84" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -389.25)
+
+[node name="house_wide_s3_wp_85" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -410.5)
+
+[node name="house_wide_s3_wp_86" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -428.75)
+
+[node name="house_wide_s3_wp_87" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -447.25)
+
+[node name="house_wide_s3_wp_88" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -469.75)
+
+[node name="house_wide_s3_wp_89" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -494)
+
+[node name="house_wide_s3_wp_90" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -512.25)
+
+[node name="house_wide_s3_wp_91" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -530.75)
+
+[node name="house_wide_s3_wp_92" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -553.25)
+
+[node name="house_wide_s3_wp_93" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -574.5)
+
+[node name="house_wide_s3_wp_94" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -592.75)
+
+[node name="house_wide_s3_wp_95" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -611.25)
+
+[node name="house_wide_s3_wp_96" parent="houses" instance=ExtResource("2_3mumy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.25, 0, -633.75)
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.5, 0)
+visible = false
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="game_ui" parent="." instance=ExtResource("3_3nwx4")]
