@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuwgxv22fnmqx"]
+
+[ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="1_7yesg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbi4h"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_av2hq"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vg6mx"]
+emission_enabled = true
+emission = Color(0.890196, 0.643137, 0.266667, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_juym8"]
+material = SubResource("StandardMaterial3D_vg6mx")
+radius = 0.05
+height = 0.2
+
+[node name="candle_short" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.349891, -2.75)
+material_override = SubResource("StandardMaterial3D_wbi4h")
+mesh = SubResource("CylinderMesh_av2hq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168715, 0)
+mesh = SubResource("SphereMesh_juym8")
+
+[node name="WindowLight" parent="." instance=ExtResource("1_7yesg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
