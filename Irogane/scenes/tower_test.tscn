@@ -1,4 +1,4 @@
-[gd_scene load_steps=231 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=234 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
@@ -104,6 +104,9 @@
 [ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="85_xim5x"]
 [ext_resource type="PackedScene" uid="uid://d1n6u22gwj6kt" path="res://assets/models/guard/guard.glb" id="86_alu5y"]
 [ext_resource type="PackedScene" uid="uid://dcgyhjepq4vs7" path="res://prefabs/building_blocks/grapple_point.tscn" id="93_i8cp4"]
+[ext_resource type="PackedScene" uid="uid://bbttruegxtbok" path="res://prefabs/house_wide_s4_sp.tscn" id="93_t77b1"]
+[ext_resource type="Script" path="res://scripts/procedural/prefab_randmoizer.gd" id="94_2flac"]
+[ext_resource type="PackedScene" uid="uid://btnunkxf5vrts" path="res://prefabs/tower_fat_10_garden.tscn" id="94_jank6"]
 [ext_resource type="PackedScene" uid="uid://c8h0cyfgj5kkm" path="res://prefabs/env/trees/tree_01.tscn" id="98_1qyt8"]
 [ext_resource type="PackedScene" uid="uid://cn85824eh7cl5" path="res://prefabs/building_blocks/stairs_4x3.tscn" id="101_ve0uh"]
 [ext_resource type="PackedScene" uid="uid://b4pd2noe3s34w" path="res://prefabs/house_wide_s3_l.tscn" id="110_wuu3r"]
@@ -304,7 +307,7 @@ point_count = 6
 
 [sub_resource type="Curve3D" id="Curve3D_k5jaf"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 8, 0, 35, 0, 0, 0, 0, 0, 0, 8, 0, 100, 0, 0, 0, 0, 0, 0, -32, 0, 100, 0, 0, 0, 0, 0, 0, -32, 0, 155, 0, 0, 0, 0, 0, 0, -2, 0, 155, 0, 0, 0, 0, 0, 0, -2, 0, 230, 0, 0, 0, 0, 0, 0, -79, 0, 230),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7.5, 0, 35, 0, 0, 0, 0, 0, 0, 8, 0, 100, 0, 0, 0, 0, 0, 0, -32, 0, 100, 0, 0, 0, 0, 0, 0, -32, 0, 155, 0, 0, 0, 0, 0, 0, -2, 0, 155, 0, 0, 0, 0, 0, 0, -2, 0, 230, 0, 0, 0, 0, 0, 0, -79, 0, 230),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 7
@@ -455,11 +458,11 @@ height = 0.4
 [sub_resource type="BoxShape3D" id="BoxShape3D_28j45"]
 size = Vector3(95.75, 5, 8)
 
-[sub_resource type="QuadMesh" id="QuadMesh_4whjw"]
+[sub_resource type="QuadMesh" id="QuadMesh_x5djr"]
 material = ExtResource("76_mw4oc")
 size = Vector2(95.75, 8)
 
-[sub_resource type="BoxMesh" id="BoxMesh_t4pw4"]
+[sub_resource type="BoxMesh" id="BoxMesh_mhdqw"]
 material = ExtResource("76_ghoxj")
 size = Vector3(95.7404, 4.9995, 7.9992)
 
@@ -7148,7 +7151,7 @@ size = Vector3(0.75, 0.25, 19.25)
 material = SubResource("StandardMaterial3D_6thla")
 
 [node name="step2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37101e-08, 0, 0.99997, 0, 1, 0, -0.99997, 0, -4.37101e-08, 16.5493, 1.25, 105.222)
+transform = Transform3D(-4.37101e-08, 0, 0.99997, 0, 1, 0, -0.99997, 0, -4.37101e-08, 16.2993, 1.25, 105.222)
 use_collision = true
 size = Vector3(0.75, 2.5, 6)
 material = SubResource("StandardMaterial3D_6thla")
@@ -7629,7 +7632,7 @@ size = Vector3(40, 10, 20)
 [node name="bridges" type="Node3D" parent="."]
 
 [node name="market_bridge3" type="CSGCylinder3D" parent="bridges"]
-transform = Transform3D(4.01244e-16, -2.62268e-08, -0.5, -0.21, -2.62268e-08, 0, -9.17939e-09, 0.6, -2.18557e-08, 8, -3.27835e-08, 45.659)
+transform = Transform3D(9.32587e-16, 0.155291, -0.869333, -0.441, -2.53331e-08, -1.0182e-08, -1.92767e-08, 0.579556, 0.232937, -4.75, -3.27835e-08, 45.659)
 use_collision = true
 radius = 5.0
 height = 8.0
@@ -7645,7 +7648,7 @@ operation = 2
 size = Vector3(6.5, 8, 10)
 
 [node name="market_bridge4" type="CSGCylinder3D" parent="bridges"]
-transform = Transform3D(7.62364e-16, -2.62268e-08, -0.75, -0.399, -2.62268e-08, 0, -1.74408e-08, 0.6, -3.27836e-08, 8, -2.03913e-06, 91.559)
+transform = Transform3D(8.88178e-16, 0.155291, -0.724444, -0.399, -2.53331e-08, -8.48498e-09, -1.74408e-08, 0.579556, 0.194114, 6.18889, -2.06034e-06, 92.0443)
 use_collision = true
 radius = 5.0
 height = 8.0
@@ -7687,7 +7690,7 @@ operation = 2
 size = Vector3(6.5, 8, 10)
 
 [node name="market_bridge5" type="CSGCylinder3D" parent="bridges"]
-transform = Transform3D(-2.18557e-08, 1, 0, -0.5, -4.37114e-08, 0, 0, 0, 1, 19, -1.58454e-06, 34.659)
+transform = Transform3D(-2.18557e-08, 1, 0, -0.5, -4.37114e-08, 0, 0, 0, 1, 22.5, -1.73753e-06, 34.659)
 use_collision = true
 radius = 5.0
 height = 8.0
@@ -7779,250 +7782,287 @@ transform = Transform3D(-0.392979, -0.919547, 5.96046e-08, 1.50567e-08, 1.16907e
 transform = Transform3D(-0.309598, -0.950868, 5.96046e-08, 9.15345e-09, 1.16289e-07, 1, -0.950868, 0.309598, -2.98023e-08, 37.0984, 16.5, 108.841)
 
 [node name="red_stage" type="Node3D" parent="houses/hearth_district"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, 0, 0)
 
-[node name="torch" type="CSGCylinder3D" parent="houses/hearth_district/red_stage"]
+[node name="decor" type="Node3D" parent="houses/hearth_district/red_stage"]
+
+[node name="torch" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -10.2739, 4.75, 76.2304)
 use_collision = true
 radius = 0.05
 height = 1.5
 sides = 4
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/torch"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor/torch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 radius = 0.25
 height = 0.1
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/torch"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/decor/torch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925662, 0)
 radius = 0.2
 radial_segments = 6
 rings = 3
 material = SubResource("StandardMaterial3D_vg6mx")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/torch" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/torch" instance=ExtResource("85_xim5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="torch5" type="CSGCylinder3D" parent="houses/hearth_district/red_stage"]
+[node name="torch5" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, 0.655129, 4.75, 64.8017)
 use_collision = true
 radius = 0.05
 height = 1.5
 sides = 4
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/torch5"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor/torch5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 radius = 0.25
 height = 0.1
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/torch5"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/decor/torch5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925662, 0)
 radius = 0.2
 radial_segments = 6
 rings = 3
 material = SubResource("StandardMaterial3D_vg6mx")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/torch5" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/torch5" instance=ExtResource("85_xim5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="torch6" type="CSGCylinder3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -13.726, 4.75, 51.2303)
+[node name="torch6" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -17.226, 4.75, 51.2303)
 use_collision = true
 radius = 0.05
 height = 1.5
 sides = 4
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/torch6"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor/torch6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 radius = 0.25
 height = 0.1
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/torch6"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/decor/torch6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925662, 0)
 radius = 0.2
 radial_segments = 6
 rings = 3
 material = SubResource("StandardMaterial3D_vg6mx")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/torch6" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/torch6" instance=ExtResource("85_xim5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="torch7" type="CSGCylinder3D" parent="houses/hearth_district/red_stage"]
+[node name="torch7" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -20.9099, 4.75, 51.2303)
 use_collision = true
 radius = 0.05
 height = 1.5
 sides = 4
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/torch7"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor/torch7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 radius = 0.25
 height = 0.1
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/torch7"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/decor/torch7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925662, 0)
 radius = 0.2
 radial_segments = 6
 rings = 3
 material = SubResource("StandardMaterial3D_vg6mx")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/torch7" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/torch7" instance=ExtResource("85_xim5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="torch3" type="CSGCylinder3D" parent="houses/hearth_district/red_stage"]
+[node name="torch3" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -12.7739, 5.74427, 81.2304)
 use_collision = true
 radius = 0.05
 height = 1.5
 sides = 4
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/torch3"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor/torch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 radius = 0.25
 height = 0.1
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/torch3"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/decor/torch3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925662, 0)
 radius = 0.2
 radial_segments = 6
 rings = 3
 material = SubResource("StandardMaterial3D_vg6mx")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/torch3" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/torch3" instance=ExtResource("85_xim5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="torch4" type="CSGCylinder3D" parent="houses/hearth_district/red_stage"]
+[node name="torch4" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -21.2954, 5.74427, 81.2304)
 use_collision = true
 radius = 0.05
 height = 1.5
 sides = 4
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/torch4"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor/torch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 radius = 0.25
 height = 0.1
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/torch4"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/decor/torch4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925662, 0)
 radius = 0.2
 radial_segments = 6
 rings = 3
 material = SubResource("StandardMaterial3D_vg6mx")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/torch4" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/torch4" instance=ExtResource("85_xim5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="torch2" type="CSGCylinder3D" parent="houses/hearth_district/red_stage"]
+[node name="torch2" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -23.7739, 4.75, 76.2304)
 use_collision = true
 radius = 0.05
 height = 1.5
 sides = 4
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/torch2"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/hearth_district/red_stage/decor/torch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 radius = 0.25
 height = 0.1
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/torch2"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="houses/hearth_district/red_stage/decor/torch2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925662, 0)
 radius = 0.2
 radial_segments = 6
 rings = 3
 material = SubResource("StandardMaterial3D_vg6mx")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/torch2" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/torch2" instance=ExtResource("85_xim5x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 
-[node name="stage_s3" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
+[node name="stage_s3" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, -1, -17.1278, 4.5, 79.0626)
 material_override = ExtResource("84_sd8xe")
 size = Vector3(12, 1, 6)
 
-[node name="carpet" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
+[node name="carpet" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, 1, -17.1067, 4.63138, 78.7542)
 use_collision = true
 size = Vector3(0.806897, 12.0903, 4.13269)
 material = SubResource("StandardMaterial3D_a0kj3")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.75, 11.625, 81.75)
-size = Vector3(0.2, 8.25, 1.5)
-material = SubResource("StandardMaterial3D_a0kj3")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-4.85969e-08, 0.992912, -0.118855, -1, -4.37114e-08, 4.37114e-08, 3.82063e-08, 0.118855, 0.992912, -18.2342, 16.9665, 75.5797)
-size = Vector3(0.2, 24.6799, 2.75)
-material = SubResource("StandardMaterial3D_a0kj3")
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-5.35364e-08, 0.965917, -0.258853, -1, -4.37114e-08, 4.37114e-08, 3.09068e-08, 0.258853, 0.965917, -18.2342, 16.9665, 67.8352)
-size = Vector3(0.2, 24.6799, 2.75)
-material = SubResource("StandardMaterial3D_a0kj3")
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-4.43249e-08, 0.9999, -0.0141367, -0.960789, -0.00391988, -0.277253, -0.277281, 0.0135824, 0.960693, -18.2342, 17.1669, 54.1856)
-size = Vector3(0.2, 14.5898, 2.75)
-material = SubResource("StandardMaterial3D_a0kj3")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-4.27217e-08, 0.999749, 0.0223907, -1, -4.37114e-08, 4.37114e-08, 4.46792e-08, -0.0223907, 0.999749, -18.2342, 16.5297, 80.1449)
-size = Vector3(0.2, 24.6799, 2.75)
-material = SubResource("StandardMaterial3D_a0kj3")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-2.76387e-08, 0.948645, 0.316345, -1, -4.37114e-08, 4.37114e-08, 5.52944e-08, -0.316345, 0.948645, -18.8286, 17.3851, 76.0525)
-size = Vector3(0.2, 28.8551, 2.75)
-material = SubResource("StandardMaterial3D_a0kj3")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/hearth_district/red_stage"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 11.625, 81.75)
-size = Vector3(0.2, 8.25, 1.5)
-material = SubResource("StandardMaterial3D_a0kj3")
-
-[node name="tree_01" parent="houses/hearth_district/red_stage" instance=ExtResource("98_1qyt8")]
+[node name="tree_01" parent="houses/hearth_district/red_stage/decor" instance=ExtResource("98_1qyt8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.8159, 4, 63.495)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="houses/hearth_district/red_stage/tree_01"]
+[node name="CSGBox3D" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor/tree_01"]
 transform = Transform3D(0.973219, 0, 0.22988, 0, 1, 0, -0.22988, 0, 0.973219, 0, 2.54437, 1.51137)
 size = Vector3(0.25, 0.5, 0.25)
 material = ExtResource("77_ljg55")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/tree_01/CSGBox3D" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/tree_01/CSGBox3D" instance=ExtResource("85_xim5x")]
 light_energy = 1.0
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="houses/hearth_district/red_stage/tree_01"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor/tree_01"]
 transform = Transform3D(0.543863, 0, 0.839174, 0, 1, 0, -0.839174, 0, 0.543863, 0.396673, 0.294369, -0.76149)
 size = Vector3(0.25, 0.5, 0.25)
 material = ExtResource("77_ljg55")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/tree_01/CSGBox3D3" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/tree_01/CSGBox3D3" instance=ExtResource("85_xim5x")]
 light_energy = 1.0
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="houses/hearth_district/red_stage/tree_01"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor/tree_01"]
 transform = Transform3D(0.966546, 0, -0.256492, 0, 1, 0, 0.256492, 0, 0.966546, 1.25, 1.9627, -0.00785065)
 size = Vector3(0.25, 0.5, 0.25)
 material = ExtResource("77_ljg55")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/tree_01/CSGBox3D2" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/tree_01/CSGBox3D2" instance=ExtResource("85_xim5x")]
 light_energy = 1.0
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="houses/hearth_district/red_stage/tree_01"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor/tree_01"]
 transform = Transform3D(0.966546, 0, -0.256492, 0, 1, 0, 0.256492, 0, 0.966546, 2.12387, 2.88538, -2.17096)
 size = Vector3(0.25, 0.5, 0.25)
 material = ExtResource("77_ljg55")
 
-[node name="WindowLight" parent="houses/hearth_district/red_stage/tree_01/CSGBox3D4" instance=ExtResource("85_xim5x")]
+[node name="WindowLight" parent="houses/hearth_district/red_stage/decor/tree_01/CSGBox3D4" instance=ExtResource("85_xim5x")]
 light_energy = 1.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.75, 11.625, 81.75)
+size = Vector3(0.2, 8.25, 1.5)
+material = SubResource("StandardMaterial3D_a0kj3")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-4.85969e-08, 0.992912, -0.118855, -1, -4.37114e-08, 4.37114e-08, 3.82063e-08, 0.118855, 0.992912, -17.4297, 16.9665, 75.676)
+size = Vector3(0.2, 24.6799, 2.75)
+material = SubResource("StandardMaterial3D_a0kj3")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-5.35364e-08, 0.965917, -0.258853, -1, -4.37114e-08, 4.37114e-08, 3.09068e-08, 0.258853, 0.965917, -18.2342, 16.9665, 67.8352)
+size = Vector3(0.2, 24.6799, 2.75)
+material = SubResource("StandardMaterial3D_a0kj3")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-4.43249e-08, 0.9999, -0.0141367, -0.960789, -0.00391988, -0.277253, -0.277281, 0.0135824, 0.960693, -18.2342, 17.1669, 54.1856)
+size = Vector3(0.2, 14.5898, 2.75)
+material = SubResource("StandardMaterial3D_a0kj3")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-4.27217e-08, 0.999749, 0.0223907, -1, -4.37114e-08, 4.37114e-08, 4.46792e-08, -0.0223907, 0.999749, -16.9845, 16.5297, 80.1169)
+size = Vector3(0.2, 24.6799, 2.75)
+material = SubResource("StandardMaterial3D_a0kj3")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-2.76387e-08, 0.948645, 0.316345, -1, -4.37114e-08, 4.37114e-08, 5.52944e-08, -0.316345, 0.948645, -18.8286, 17.3851, 76.0525)
+size = Vector3(0.2, 28.8551, 2.75)
+material = SubResource("StandardMaterial3D_a0kj3")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="houses/hearth_district/red_stage/decor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -19, 11.625, 81.75)
+size = Vector3(0.2, 8.25, 1.5)
+material = SubResource("StandardMaterial3D_a0kj3")
+
+[node name="HousePoor3" parent="houses/hearth_district/red_stage" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -28.5, 4, 53.25)
+
+[node name="HousePoor5" parent="houses/hearth_district/red_stage" instance=ExtResource("80_mkgfq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -51.75, 4, 53.25)
+
+[node name="HouseThin" parent="houses/hearth_district/red_stage" instance=ExtResource("79_fnq05")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -5.50192, 4, 61.0794)
+
+[node name="HouseThin2" parent="houses/hearth_district/red_stage" instance=ExtResource("79_fnq05")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -2.65491, 4, 71.7046)
+
+[node name="HouseThin3" parent="houses/hearth_district/red_stage" instance=ExtResource("79_fnq05")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.843174, 4, 78.466)
+
+[node name="HouseThin5" parent="houses/hearth_district/red_stage" instance=ExtResource("79_fnq05")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.968559, 4, 85.2275)
+
+[node name="HouseThin4" parent="houses/hearth_district/red_stage" instance=ExtResource("79_fnq05")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.5, 4, 86.25)
+
+[node name="HousePoor" parent="houses/hearth_district/red_stage" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 4, 86.25)
+
+[node name="HousePoor6" parent="houses/hearth_district/red_stage" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26.9182, 4, 86.25)
+
+[node name="HousePoor7" parent="houses/hearth_district/red_stage" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 4, 79.25)
+
+[node name="HousePoor8" parent="houses/hearth_district/red_stage" instance=ExtResource("74_xkko1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 4, 59.5)
+
+[node name="HousePoor23" type="Node3D" parent="houses/hearth_district/red_stage" instance=ExtResource("93_t77b1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.51495, 4, 53.25)
+script = ExtResource("94_2flac")
 
 [node name="wind_mill" parent="houses/hearth_district" instance=ExtResource("80_5myfl")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3637, 28, 205.079)
 
 [node name="wind_mill2" parent="houses/hearth_district" instance=ExtResource("80_5myfl")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 222.646, 28, 124.385)
-
-[node name="tower_20" parent="houses/hearth_district" instance=ExtResource("84_2w51g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.5, 4, 70.75)
 
 [node name="tower_21" parent="houses/hearth_district" instance=ExtResource("84_2w51g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.75, 4, 127.75)
@@ -8135,6 +8175,117 @@ use_collision = true
 size = Vector3(0.25, 0.25, 2)
 material = SubResource("StandardMaterial3D_6thla")
 
+[node name="tower_22" parent="houses/hearth_district" instance=ExtResource("84_2w51g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 88.25, 4, 158)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="houses/hearth_district/tower_22"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, -5)
+use_collision = true
+size = Vector3(2, 2, 8)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="houses/hearth_district/tower_22"]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1.75, 3, -5)
+use_collision = true
+size = Vector3(2, 2, 4.5)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="steps2" type="Node3D" parent="houses/hearth_district/tower_22/CSGBox3D3"]
+transform = Transform3D(-1.17225e-07, 0, 1, 0, 1, 0, -1, 0, -1.17225e-07, -2.75, -0.25, 2.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D3/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.125, 2.75)
+use_collision = true
+size = Vector3(0.25, 1.75, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D3/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 2.75)
+use_collision = true
+size = Vector3(0.25, 1.5, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D3/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.125, 2.75)
+use_collision = true
+size = Vector3(0.25, 1.25, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D3/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625, -0.25, 2.75)
+use_collision = true
+size = Vector3(0.25, 1, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D3/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, -0.375, 2.75)
+use_collision = true
+size = Vector3(0.25, 0.75, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D3/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.5, 2.75)
+use_collision = true
+size = Vector3(0.25, 0.5, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D3/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.625, 2.75)
+use_collision = true
+size = Vector3(0.25, 0.25, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="houses/hearth_district/tower_22"]
+transform = Transform3D(-8.9407e-08, 0, 1, 0, 1, 0, -1, 0, -8.9407e-08, -2.25, 1, -7)
+use_collision = true
+size = Vector3(2, 2, 3.5)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="steps2" type="Node3D" parent="houses/hearth_district/tower_22/CSGBox3D4"]
+transform = Transform3D(-1.17225e-07, 0, 1, 0, 1, 0, -1, 0, -1.17225e-07, -2.75, -0.25, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D4/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.125, 2.75)
+use_collision = true
+size = Vector3(0.25, 1.75, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D4/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0, 2.75)
+use_collision = true
+size = Vector3(0.25, 1.5, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D4/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.125, 2.75)
+use_collision = true
+size = Vector3(0.25, 1.25, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D4/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625, -0.25, 2.75)
+use_collision = true
+size = Vector3(0.25, 1, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D4/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875, -0.375, 2.75)
+use_collision = true
+size = Vector3(0.25, 0.75, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D4/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.125, -0.5, 2.75)
+use_collision = true
+size = Vector3(0.25, 0.5, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="houses/hearth_district/tower_22/CSGBox3D4/steps2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.375, -0.625, 2.75)
+use_collision = true
+size = Vector3(0.25, 0.25, 2)
+material = SubResource("StandardMaterial3D_6thla")
+
 [node name="houses" type="Node3D" parent="houses/hearth_district"]
 
 [node name="HousePoor47" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
@@ -8206,68 +8357,20 @@ transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926
 [node name="UnderPass" parent="houses/hearth_district/houses/HousePoor18" instance=ExtResource("75_y1fgx")]
 transform = Transform3D(-0.999999, 0, 7.45058e-08, 0, 1, 0, -7.45058e-08, 0, -0.999999, 2.00001, 9.5, -9.00004)
 
-[node name="HousePoor2" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 4, 53.25)
-
-[node name="HousePoor10" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 84.25, 4, 53.25)
-
-[node name="HousePoor11" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 69.5, 4.5, 53.25)
-
-[node name="HousePoor12" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.25, 4.5, 53.25)
-
 [node name="HousePoor13" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50.25, 4.5, 53.25)
-
-[node name="HousePoor3" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -28.5, 4, 53.25)
-
-[node name="HousePoor4" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42.5, 4, 53.25)
-
-[node name="HousePoor5" parent="houses/hearth_district/houses" instance=ExtResource("80_mkgfq")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -56.5, 4, 53.25)
-
-[node name="HouseThin" parent="houses/hearth_district/houses" instance=ExtResource("79_fnq05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 60.75)
-
-[node name="HouseThin2" parent="houses/hearth_district/houses" instance=ExtResource("79_fnq05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 71.75)
-
-[node name="HouseThin3" parent="houses/hearth_district/houses" instance=ExtResource("79_fnq05")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, 78.75)
-
-[node name="HouseThin4" parent="houses/hearth_district/houses" instance=ExtResource("79_fnq05")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.5, 4, 86.25)
-
-[node name="HousePoor" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 4, 86.25)
-
-[node name="HousePoor6" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -26.9182, 4, 86.25)
 
 [node name="HousePoor14" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -57.25, 4, 82.75)
 
-[node name="house_half_s2" parent="houses/hearth_district/houses/HousePoor14" instance=ExtResource("85_vvbdf")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -7)
-
 [node name="house_half_s3" parent="houses/hearth_district/houses/HousePoor14" instance=ExtResource("85_vvbdf")]
-transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 6, 0, 7.75)
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 4.04013, 0, 0.249996)
 
 [node name="HousePoor15" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -65, 4, 81.75)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -65, 4, 86)
 
 [node name="HousePoor17" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -65, 4, 60)
-
-[node name="HousePoor7" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 4, 79.25)
-
-[node name="HousePoor8" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 4, 59.5)
 
 [node name="HousePoor30" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 51.5, 4, 91.25)
@@ -8305,7 +8408,10 @@ transform = Transform3D(1, 0, -1.6292e-07, 0, 1, 0, 1.6292e-07, 0, 1, -14.754, 4
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27.996, 4, 166.816)
 
 [node name="HousePoor61" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
-transform = Transform3D(-1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, -1, 21.2145, 4, 177.955)
+transform = Transform3D(-1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, -1, 21.2145, 4, 174.455)
+
+[node name="HousePoor72" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-0.999862, 0, -0.0165972, 0, 1, 0, 0.0165972, 0, -0.999862, 23.5668, 4, 193.596)
 
 [node name="HousePoor59" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.64085, 7, 126.685)
@@ -8389,13 +8495,16 @@ transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, 89, 4,
 transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, 89, 4, 150.75)
 
 [node name="HouseThin13" parent="houses/hearth_district/houses" instance=ExtResource("79_fnq05")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 89, 4, 164.75)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 89, 4, 165.75)
 
 [node name="HouseThin14" parent="houses/hearth_district/houses" instance=ExtResource("79_fnq05")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 89, 4, 171.75)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 89, 4, 172.75)
 
 [node name="HousePoor42" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 16.6508, 4, 79.9362)
+
+[node name="HousePoor43" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 12.7685, 4, 65.4473)
 
 [node name="HousePoor44" parent="houses/hearth_district/houses" instance=ExtResource("78_bsd7t")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 23.8976, 4, 106.982)
@@ -8593,7 +8702,29 @@ transform = Transform3D(0.999999, 0, 2.66454e-15, 0, -4.37114e-08, 1, 0, -0.9999
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.927, 4, 75.0053)
 
 [node name="HousePoor19" parent="houses/hearth_district/houses" instance=ExtResource("81_s7pbl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.073, 4, 49.0053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.073, 4, 122.005)
+
+[node name="HousePoor20" parent="houses/hearth_district/houses" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.573, 4, 184.005)
+
+[node name="HousePoor21" type="Node3D" parent="houses/hearth_district/houses" instance=ExtResource("93_t77b1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.25, 4.5, 53.25)
+script = ExtResource("94_2flac")
+
+[node name="HousePoor23" parent="houses/hearth_district/houses" instance=ExtResource("93_t77b1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.5, 4.5, 53.25)
+
+[node name="HousePoor22" type="Node3D" parent="houses/hearth_district/houses" instance=ExtResource("93_t77b1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42.5, 4, 53.25)
+script = ExtResource("94_2flac")
+
+[node name="HousePoor12" type="Node3D" parent="houses/hearth_district/houses" instance=ExtResource("93_t77b1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 69.5, 4.5, 53.25)
+script = ExtResource("94_2flac")
+
+[node name="HousePoor24" type="Node3D" parent="houses/hearth_district/houses" instance=ExtResource("93_t77b1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 84.25, 4, 53.25)
+script = ExtResource("94_2flac")
 
 [node name="npcs" type="Node3D" parent="houses/hearth_district"]
 
@@ -8652,6 +8783,9 @@ size = Vector3(12.25, 1, 0.5)
 [node name="CSGBox3D2" type="CSGBox3D" parent="houses/hearth_district/hearth_level"]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 18.4097, 2, 16.3144)
 size = Vector3(3, 1, 0.5)
+
+[node name="HousePoor" parent="houses/hearth_district" instance=ExtResource("94_jank6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 4, 73)
 
 [node name="HousePoor74" parent="houses" instance=ExtResource("74_xkko1")]
 transform = Transform3D(1, 0, -2.08616e-07, 0, 1, 0, 2.08616e-07, 0, 1, -247.632, 11.75, -142.566)
@@ -9628,12 +9762,12 @@ script = ExtResource("75_c4nq3")
 
 [node name="surface" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 3.125, 2.5, 0)
-mesh = SubResource("QuadMesh_4whjw")
+mesh = SubResource("QuadMesh_x5djr")
 skeleton = NodePath("../..")
 
 [node name="under_water" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.125, 0, 0)
-mesh = SubResource("BoxMesh_t4pw4")
+mesh = SubResource("BoxMesh_mhdqw")
 
 [node name="vfx" type="Node3D" parent="canal/water_area"]
 
