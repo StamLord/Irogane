@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://cji5dgs7gnrcv"]
+
+[ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="1_wkbnu"]
+[ext_resource type="Material" uid="uid://bpg2o1smtm2us" path="res://assets/materials/house_roof.tres" id="2_b0d0d"]
+
+[node name="chimney" type="CSGBox3D"]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 14.5, 0)
+use_collision = true
+size = Vector3(2, 10, 2)
+material = ExtResource("1_wkbnu")
+
+[node name="chimney" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 1.77636e-14, 0, 1, 0, -1.77636e-14, 0, 1, 0, 3, 0)
+operation = 2
+size = Vector3(1.5, 5, 1.5)
+material = ExtResource("1_wkbnu")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 3.41061e-13, 0, 1, 0, -3.41061e-13, 0, 1, 0, 6, 1.25)
+polygon = PackedVector2Array(-1.25, 0, 0, 1, 1.25, 0)
+depth = 2.5
+material = ExtResource("2_b0d0d")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 4.26326e-14, 0, 1, 0, -4.26326e-14, 0, 1, 0.875, 5.5, -0.875)
+size = Vector3(0.25, 1, 0.25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0.875, 5.5, 0.875)
+size = Vector3(0.25, 1, 0.25)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, -0.875, 5.5, -0.875)
+size = Vector3(0.25, 1, 0.25)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 5.68434e-14, 0, 1, 0, -5.68434e-14, 0, 1, -0.875, 5.5, 0.875)
+size = Vector3(0.25, 1, 0.25)
