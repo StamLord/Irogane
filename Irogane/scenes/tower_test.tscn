@@ -1,12 +1,13 @@
-[gd_scene load_steps=235 format=3 uid="uid://cbavcdwx5m3cy"]
+[gd_scene load_steps=243 format=3 uid="uid://cbavcdwx5m3cy"]
 
 [ext_resource type="Texture2D" uid="uid://tj58eaqcflda" path="res://assets/textures/dev/grids/grid_64x64_dark_2.png" id="1_b58oi"]
 [ext_resource type="Texture2D" uid="uid://71niehqgbjr8" path="res://assets/textures/medieval/castle_wall_slates_diff_4k.jpg" id="1_e2tcu"]
-[ext_resource type="Environment" uid="uid://f1mcdym5kiu2" path="res://assets/environment/env_2.tres" id="1_gccp3"]
+[ext_resource type="Environment" uid="uid://8j01xmc620m1" path="res://assets/environment/env_5.tres" id="1_v2rl7"]
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="1_yf7s4"]
 [ext_resource type="PackedScene" uid="uid://brgiby8p8aecx" path="res://prefabs/house_modular/house_stairs_2x4.tscn" id="2_5w5l6"]
 [ext_resource type="Texture2D" uid="uid://bm0ceq7uuy16l" path="res://assets/textures/medieval/castle_wall_slates_disp_4k.png" id="2_gha8w"]
 [ext_resource type="Script" path="res://scripts/interactive/Pickup.gd" id="2_idssv"]
+[ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_xswhw"]
 [ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="3_0m8c0"]
 [ext_resource type="Texture2D" uid="uid://ux0imaylvsn" path="res://assets/textures/medieval/castle_wall_slates_rough_4k.jpg" id="3_ojmmn"]
 [ext_resource type="Script" path="res://scripts/procedural/transform_animator.gd" id="4_avf03"]
@@ -113,6 +114,21 @@
 [ext_resource type="PackedScene" uid="uid://cn85824eh7cl5" path="res://prefabs/building_blocks/stairs_4x3.tscn" id="101_ve0uh"]
 [ext_resource type="PackedScene" uid="uid://b4pd2noe3s34w" path="res://prefabs/house_wide_s3_l.tscn" id="110_wuu3r"]
 [ext_resource type="PackedScene" uid="uid://b7y4mi6sbauku" path="res://prefabs/house_rich_1.tscn" id="111_c5v3e"]
+[ext_resource type="Shader" uid="uid://2dbqw0p7j4oa" path="res://assets/shaders/height_map.tres" id="114_cnp7c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ktlq"]
+disable_fog = true
+metallic = 1.0
+emission_enabled = true
+emission = Color(0.65098, 0.568627, 0.184314, 1)
+emission_operator = 1
+emission_texture = ExtResource("2_xswhw")
+texture_filter = 0
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_fyork"]
+radius = 100.0
+height = 200.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1ke2"]
 albedo_texture = ExtResource("1_e2tcu")
@@ -459,11 +475,11 @@ height = 0.4
 [sub_resource type="BoxShape3D" id="BoxShape3D_28j45"]
 size = Vector3(95.75, 5, 8)
 
-[sub_resource type="QuadMesh" id="QuadMesh_jpp47"]
+[sub_resource type="QuadMesh" id="QuadMesh_qj5rf"]
 material = ExtResource("76_mw4oc")
 size = Vector2(95.75, 8)
 
-[sub_resource type="BoxMesh" id="BoxMesh_xtsyi"]
+[sub_resource type="BoxMesh" id="BoxMesh_ggckm"]
 material = ExtResource("76_ghoxj")
 size = Vector3(95.7404, 4.9995, 7.9992)
 
@@ -685,10 +701,31 @@ height = 18.0
 radial_segments = 8
 rings = 1
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vnrgd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7wg5i"]
+noise = SubResource("FastNoiseLite_vnrgd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_it1e8"]
+render_priority = 0
+shader = ExtResource("114_cnp7c")
+shader_parameter/flat_radius = 400.0
+shader_parameter/max_radius = 1000.0
+shader_parameter/uv_scale = Vector2(0.25, 0.25)
+shader_parameter/max_height = 400.0
+shader_parameter/min_height = 0.0
+shader_parameter/height_map = SubResource("NoiseTexture2D_7wg5i")
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_7wg5i")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fcbob"]
+size = Vector2(2000, 2000)
+subdivide_width = 100
+subdivide_depth = 100
+
 [node name="TowerTest" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_gccp3")
+environment = ExtResource("1_v2rl7")
 
 [node name="sun" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 33.6888, 16, 0)
@@ -704,6 +741,12 @@ shadow_enabled = true
 shadow_reverse_cull_face = true
 
 [node name="LightmapGI" type="LightmapGI" parent="WorldEnvironment"]
+
+[node name="moon_mesh" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.953338, 0.187003, -0.237016, 0.132231, 0.964396, 0.229031, 0.271407, 0.187003, -0.944123, 0, 863.75, -1364.25)
+layers = 524288
+material_override = SubResource("StandardMaterial3D_5ktlq")
+mesh = SubResource("SphereMesh_fyork")
 
 [node name="tower_0" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 500)
@@ -10146,12 +10189,12 @@ script = ExtResource("75_c4nq3")
 
 [node name="surface" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 3.125, 2.5, 0)
-mesh = SubResource("QuadMesh_jpp47")
+mesh = SubResource("QuadMesh_qj5rf")
 skeleton = NodePath("../..")
 
 [node name="under_water" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.125, 0, 0)
-mesh = SubResource("BoxMesh_xtsyi")
+mesh = SubResource("BoxMesh_ggckm")
 
 [node name="vfx" type="Node3D" parent="canal/water_area"]
 
@@ -10762,6 +10805,11 @@ transform = Transform3D(0.707107, 0.28535, 0.646974, 0, 0.91496, -0.403545, -0.7
 light_color = Color(0.862745, 0.541176, 0.188235, 1)
 light_energy = 4.0
 spot_range = 40.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+material_override = SubResource("ShaderMaterial_it1e8")
+mesh = SubResource("PlaneMesh_fcbob")
 
 [connection signal="body_entered" from="canal/water_area" to="canal/water_area" method="_on_body_entered"]
 [connection signal="body_exited" from="canal/water_area" to="canal/water_area" method="_on_body_exited"]

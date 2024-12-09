@@ -774,6 +774,7 @@ script = ExtResource("19_8btaw")
 [node name="main_camera" type="Camera3D" parent="head/camera_bob"]
 unique_name_in_owner = true
 current = true
+far = 8000.0
 script = ExtResource("18_bhey3")
 
 [node name="interaction" type="Node3D" parent="head/camera_bob/main_camera"]
