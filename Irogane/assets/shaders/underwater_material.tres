@@ -5,7 +5,7 @@
 [resource]
 render_priority = 100
 shader = ExtResource("1_7vm5w")
-shader_parameter/wave_freq = 10.0
-shader_parameter/wave_speed = 1.0
+shader_parameter/wave_freq = 20.0
+shader_parameter/wave_speed = 0.5
 shader_parameter/wave_width = 1.0
 shader_parameter/tint = Color(0.07451, 0.392157, 0.611765, 1)
