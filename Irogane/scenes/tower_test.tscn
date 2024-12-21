@@ -2014,7 +2014,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 4, 59.5)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.51495, 4, 53.25)
 
 [node name="wind_mill" parent="houses/hearth_district" instance=ExtResource("80_5myfl")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 93.3637, 28, 205.079)
+transform = Transform3D(-0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, -0.5, 85.893, 28, 199.708)
 
 [node name="wind_mill2" parent="houses/hearth_district" instance=ExtResource("80_5myfl")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 222.646, 28, 124.385)
@@ -2687,6 +2687,9 @@ transform = Transform3D(1, 0, -1.6292e-07, 0, 1, 0, 1.6292e-07, 0, 1, -16.504, 4
 [node name="HousePoor60" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27.996, 4, 166.816)
 
+[node name="HousePoor85" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 80.746, 4, 218.316)
+
 [node name="HousePoor61" parent="houses/hearth_district/houses" instance=ExtResource("74_xkko1")]
 transform = Transform3D(-1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, -1, 21.2145, 4, 174.455)
 
@@ -3125,6 +3128,9 @@ polygon = PackedVector2Array(-1.44617, -9.04802, -1.10103, 5.44786, 2, 17.75, 21
 depth = 12.0
 material = ExtResource("83_ec04m")
 
+[node name="HousePoor10" parent="houses/slums/CSGPolygon3D3" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.999848, 0.0174524, 1.56761e-08, -7.30361e-08, -4.19095e-08, 1, 0.0174523, -0.999848, -4.28408e-08, 5.14331, -2.42507, 9.31143)
+
 [node name="CSGPolygon3D4" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 128.25, 4, 70)
 use_collision = true
@@ -3191,35 +3197,35 @@ material = ExtResource("83_ec04m")
 [node name="CSGPolygon3D23" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 214.523, 4, 204.97)
 use_collision = true
-polygon = PackedVector2Array(-23.0239, -22.785, -23.3061, -10.4579, -16.2742, -8.22639, -12.2592, -14.7212, -13.9053, -23.2068)
+polygon = PackedVector2Array(-23.5124, -19.0341, -24.1028, -10.8861, -16.2742, -8.22639, -12.0579, -16.2, -14.4197, -23.6395)
 depth = 12.0
 material = ExtResource("83_ec04m")
 
 [node name="CSGPolygon3D42" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 210.154, 4, 194.106)
 use_collision = true
-polygon = PackedVector2Array(-24.1307, -21.0562, -24.0126, -13.971, -18.8168, -14.0891, -12.0667, -15.5137, -11.0543, -18.4497, -13.0305, -24.4807)
+polygon = PackedVector2Array(-24.1307, -21.0562, -23.5124, -15.4915, -20.3241, -15.7277, -19.7336, -11.2404, -12.0667, -15.5137, -11.0543, -18.4497, -13.0305, -24.4807)
 depth = 12.0
 material = ExtResource("83_ec04m")
 
 [node name="CSGPolygon3D41" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 214.523, 4, 204.97)
 use_collision = true
-polygon = PackedVector2Array(-13.9124, -6.92744, 0.538971, -4.08421, -1.6147, -12.7744, -10.5768, -14.2615)
+polygon = PackedVector2Array(-13.9124, -6.92744, -7.99417, -4.05237, 1.10246, -3.91972, 0.755264, -18.5886, -7.92453, -18.6754)
 depth = 12.0
 material = ExtResource("83_ec04m")
 
 [node name="CSGPolygon3D33" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 242.613, 4, 205.842)
 use_collision = true
-polygon = PackedVector2Array(-24.7285, -13.8856, -22.8484, -4.60117, -3.83208, -3.59323, -4.85138, -31.7138, -16.4725, -24.5271, -17.4474, -14.0937)
+polygon = PackedVector2Array(-24.2098, -13.7323, -23.6022, -3.83731, -3.83208, -3.59323, -4.85138, -31.7138, -16.4725, -24.5271, -17.4474, -14.0937)
 depth = 12.0
 material = ExtResource("83_ec04m")
 
 [node name="CSGPolygon3D24" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 226.108, 4, 180.417)
 use_collision = true
-polygon = PackedVector2Array(-22.3432, -0.641296, -19.8495, 6.98312, -4.94211, 6.95274, -4.72757, -8.24202, -8.58333, -8.40266, -14.0456, -3.58298)
+polygon = PackedVector2Array(-22.3432, -0.641296, -20.5113, 3.64883, -3.98277, 3.37335, -3.98277, -7.78337, -9.76775, -7.37016)
 depth = 12.0
 material = ExtResource("83_ec04m")
 
@@ -3247,14 +3253,14 @@ material = ExtResource("83_ec04m")
 [node name="CSGPolygon3D22" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 189.419, 3.99999, 204.416)
 use_collision = true
-polygon = PackedVector2Array(-32.2023, -8.18158, -32.0278, 0.193024, -24.0022, -1.02827, -23.8277, -8.87947)
+polygon = PackedVector2Array(-32.2023, -8.18158, -32.0278, 0.193024, -24.0022, -1.02827, -24.5752, -8.8817)
 depth = 12.0
 material = ExtResource("83_ec04m")
 
 [node name="CSGPolygon3D36" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 189.419, 3.99999, 204.416)
 use_collision = true
-polygon = PackedVector2Array(-33.3558, -19.9272, -32.0278, -11.3221, -21.0362, -12.5434, -20.8617, -3.12193, -2.74652, -10.7594, -2.93109, -22.2037, -23.083, -21.0201)
+polygon = PackedVector2Array(-33.3558, -19.9272, -32.0278, -11.3221, -21.0362, -12.5434, -20.4421, -2.38689, -2.74652, -10.7594, -2.93109, -22.2037, -23.083, -21.0201)
 depth = 12.0
 material = ExtResource("83_ec04m")
 
@@ -3321,6 +3327,9 @@ polygon = PackedVector2Array(2.53387, -22.8497, -2.81421, -14.3793, -1.78902, 7.
 depth = 12.0
 material = ExtResource("83_ec04m")
 
+[node name="HousePoor10" parent="houses/slums/CSGPolygon3D11" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.865457, 0.0325616, -0.499924, 0.499924, 0.00872619, 0.866025, 0.0325616, -0.999432, -0.00872617, 4.50047, -15.3601, -0.20124)
+
 [node name="CSGPolygon3D12" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 172, 4, 53)
 use_collision = true
@@ -3341,6 +3350,44 @@ use_collision = true
 polygon = PackedVector2Array(-4.66356, -6.87128, -5.02869, 3.53492, 27.5903, 6.43606, 29.1728, -4.00857, 28.9524, -14.4755)
 depth = 12.0
 material = ExtResource("83_ec04m")
+
+[node name="HousePoor10" parent="houses/slums/CSGPolygon3D6" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.99386, 0.0521694, -0.0975681, 0.0975235, 0.00340559, 0.995227, 0.0522527, -0.998632, -0.00170305, 16.757, -0.688461, 0.0126953)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D6/HousePoor10"]
+transform = Transform3D(0.923532, 0.383522, 3.72529e-08, -0.383522, 0.923532, -9.31323e-10, -2.98023e-08, -1.49012e-08, 1, -9.51337, 24.5532, 0)
+use_collision = true
+radius = 0.1
+height = 30.834
+sides = 4
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D6/HousePoor10"]
+transform = Transform3D(0.923532, 0.381353, -0.0407279, -0.383522, 0.91831, -0.0980742, -5.96046e-08, 0.106195, 0.994345, -9.43182, 24.7495, -1.98937)
+use_collision = true
+radius = 0.1
+height = 30.834
+sides = 4
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D6/HousePoor10"]
+transform = Transform3D(0.902049, 0.431051, 0.0224647, -0.431625, 0.900431, 0.0540955, 0.00308999, -0.0584931, 0.998283, -10.6249, 25.4783, 1.68324)
+use_collision = true
+radius = 0.1
+height = 32.5993
+sides = 4
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D6/HousePoor10"]
+transform = Transform3D(0.902049, 0.430333, 0.0335154, -0.431625, 0.898747, 0.077177, 0.00308995, -0.0840834, 0.996455, -8.28601, 24.5261, 3.7562)
+use_collision = true
+radius = 0.1
+height = 32.5993
+sides = 4
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D6/HousePoor10"]
+transform = Transform3D(0.902049, 0.431198, -0.0194422, -0.431625, 0.901433, -0.0334786, 0.00308993, 0.038591, 0.999251, -10.6777, 25.1306, -3.16051)
+use_collision = true
+radius = 0.1
+height = 32.5993
+sides = 4
 
 [node name="CSGPolygon3D7" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 114.296, 4, 130.081)
@@ -3384,6 +3431,44 @@ polygon = PackedVector2Array(-29.0292, -23.5094, -31.0318, -10.3665, -15.7767, -
 depth = 12.0
 material = ExtResource("83_ec04m")
 
+[node name="HousePoor10" parent="houses/slums/CSGPolygon3D10" instance=ExtResource("81_s7pbl")]
+transform = Transform3D(0.996445, -0.0347966, -0.076719, 0.0766723, -0.00267745, 0.997053, -0.0348994, -0.999391, -3.35349e-09, -24.0968, -14.8267, -8.76419)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D10/HousePoor10"]
+transform = Transform3D(-0.914353, -0.403785, 0.0303237, -0.403846, 0.914819, 0.00437177, -0.0295058, -0.00824868, -0.999533, 11.1545, 19.0758, -0.0635605)
+use_collision = true
+radius = 0.1
+height = 40.0
+sides = 4
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D10/HousePoor10"]
+transform = Transform3D(-0.914353, -0.398282, 0.0730319, -0.403846, 0.91011, -0.092802, -0.0295058, -0.114347, -0.993004, 11.0083, 19.2615, 1.92312)
+use_collision = true
+radius = 0.1
+height = 40.0
+sides = 4
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D10/HousePoor10"]
+transform = Transform3D(-0.891723, -0.452541, 0.00662002, -0.451448, 0.890418, 0.0579495, -0.032119, 0.0486861, -0.998299, 12.2956, 20.0326, -1.70873)
+use_collision = true
+radius = 0.1
+height = 40.0
+sides = 4
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D10/HousePoor10"]
+transform = Transform3D(-0.891722, -0.452561, -0.00499144, -0.451448, 0.888637, 0.0807726, -0.0321189, 0.07428, -0.996723, 10.0425, 19.038, -3.8554)
+use_collision = true
+radius = 0.1
+height = 40.0
+sides = 4
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="houses/slums/CSGPolygon3D10/HousePoor10"]
+transform = Transform3D(-0.891722, -0.449766, 0.050474, -0.451448, 0.89184, -0.0286717, -0.0321189, -0.0483534, -0.998316, 12.2093, 19.665, 3.13306)
+use_collision = true
+radius = 0.1
+height = 40.0
+sides = 4
+
 [node name="CSGPolygon3D26" type="CSGPolygon3D" parent="houses/slums"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 194.086, 4, 115.388)
 use_collision = true
@@ -3399,7 +3484,7 @@ depth = 12.0
 material = ExtResource("83_ec04m")
 
 [node name="old_mill" type="CSGCylinder3D" parent="houses/slums"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 211.75, 16, 50.75)
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 211.093, 16, 101.125)
 radius = 10.0
 height = 24.0
 sides = 6
