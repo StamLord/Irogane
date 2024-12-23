@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://ddrl3poi6np0y"]
+
+[ext_resource type="Texture2D" uid="uid://cret341ucqv0r" path="res://assets/models/test/peasant_baked/peasant_baked_0.png" id="1_keo5s"]
+[ext_resource type="Texture2D" uid="uid://bg1bc3xaoqw6y" path="res://assets/models/test/peasant_baked/peasant_baked_1.png" id="2_ce8dc"]
+
+[resource]
+resource_name = "Peasant_Man_02"
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = ExtResource("1_keo5s")
+metallic = 0.5
+roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 0.01
+emission_texture = ExtResource("1_keo5s")
+normal_enabled = true
+normal_texture = ExtResource("2_ce8dc")
