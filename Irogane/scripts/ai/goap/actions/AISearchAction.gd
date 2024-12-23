@@ -14,7 +14,7 @@ func get_effects() -> Dictionary:
 	
 
 func start_action(agent):
-	agent.animate("Search Action")
+	agent.animate("search")
 	
 
 func finish_action(agent):

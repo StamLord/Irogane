@@ -14,7 +14,7 @@ func get_effects() -> Dictionary:
 	
 
 func start_action(agent):
-	agent.animate("Look Around")
+	agent.animate("look_around")
 	
 
 func finish_action(agent):

@@ -8,6 +8,7 @@ class_name GoapAgent
 @onready var schedule_agent = $ScheduleAgent
 @onready var light_detection = $character_body/light_detection
 @onready var body = $character_body
+@onready var animation_player = $character_body/visual/peasant_baked
 
 const search_range = 10.0
 
@@ -37,7 +38,8 @@ var current_action_index = 0
 var current_action = null
 
 var animating_clip = null
-var start_animation_debug = 0
+var start_animation_time = 0
+var animation_length = 0
 var goto_target = null
 var goto_target_position = null
 
@@ -84,7 +86,7 @@ func _process(delta):
 	elif state == STATE.ANIMATE:
 		# Check if animation is done
 		# TODO: Replace with waiting for real animation
-		if Time.get_ticks_msec() - start_animation_debug >= 2000:
+		if Time.get_ticks_msec() - start_animation_time >= animation_length:
 			complete_action()
 	
 
@@ -140,16 +142,23 @@ func complete_action():
 		start_action()
 	
 
-func animate(animation_clip):
+func animate(animation_clip, override_length = -1.0):
 	animating_clip = animation_clip
 	state = STATE.ANIMATE
 	cancel_goto()
 	
-	#TODO: Remove this. Only for debug:
-	start_animation_debug = Time.get_ticks_msec()
+	start_animation_time = Time.get_ticks_msec()
+	animation_length = animation_player.play(animation_clip) * 1000 # Miliseconds
+	
+	if override_length > 0:
+		animation_length = override_length * 1000
+	
+	# Fallback
+	if animation_length <= 0:
+		animation_length = 1000
 	
 	if debug:
-		DebugCanvas.debug_text(animation_clip, body.global_position + Vector3.UP * 2.0, Color.RED, 1.0)
+		DebugCanvas.debug_text(animation_clip + ": " + str(animation_length / 1000), body.global_position + Vector3.UP * 2.0, Color.YELLOW, 1.0)
 	
 
 func goto(target_node):
@@ -158,12 +167,16 @@ func goto(target_node):
 	body.set_target_position(target_node.global_position) # Needs to happen once for rotation
 	state = STATE.GOTO
 	
+	animation_player.play_default() # Return to default state
+	
 
 func goto_position(target_position : Vector3):
 	goto_target = null
 	goto_target_position = target_position
 	body.set_target_position(target_position) # Needs to happen once for rotation
 	state = STATE.GOTO
+	
+	animation_player.play_default() # Return to default state
 	
 
 func cancel_goto():

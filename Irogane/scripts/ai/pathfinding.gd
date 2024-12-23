@@ -92,8 +92,8 @@ func _process(delta):
 		if nav.is_navigation_finished():
 			if target_rotation: # Face an overriding rotation target
 				rotate_to_target_rotation(delta)
-			else: # Face the path target position
-				rotate_to_target(delta)
+			#else: # Face the path target position
+				#rotate_to_target(delta)
 		elif look_at_target_while_moving and target_rotation:
 			rotate_to_target_rotation(delta)
 		else: # Face next position on path
