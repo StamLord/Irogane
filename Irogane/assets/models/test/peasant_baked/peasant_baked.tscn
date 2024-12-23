@@ -1,9 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cn51u1aenrf3s"]
+[gd_scene load_steps=43 format=3 uid="uid://cn51u1aenrf3s"]
 
 [ext_resource type="PackedScene" uid="uid://cypcjvhhv75vw" path="res://assets/models/test/peasant_baked/peasant_baked.glb" id="1_svprl"]
 [ext_resource type="Script" path="res://scripts/ai/animation_player.gd" id="2_r1huw"]
 
-[sub_resource type="Animation" id="Animation_7g3s3"]
+[sub_resource type="Animation" id="Animation_ak2h5"]
 resource_name = "t_pose"
 length = 0.0333333
 tracks/0/type = "position_3d"
@@ -252,7 +252,7 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.344202, 0.0144811, 0.00916133, 0.938739)
 
-[sub_resource type="Animation" id="Animation_1twit"]
+[sub_resource type="Animation" id="Animation_i8kc5"]
 resource_name = "run"
 length = 0.833333
 loop_mode = 1
@@ -502,7 +502,7 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.34722, 0.0146641, 0.00917077, 0.937624, 0.0333333, 1, 0.398795, 0.0178029, 0.00931917, 0.91682, 0.0666667, 1, 0.495499, 0.0269138, 0.0111479, 0.86812, 0.1, 1, 0.537365, 0.0286358, 0.0104437, 0.842799, 0.133333, 1, 0.641227, 0.0450754, 0.0129367, 0.765917, 0.2, 1, 0.763159, 0.195569, -0.0134825, 0.615759, 0.233333, 1, 0.694782, 0.270585, 0.0037065, 0.666369, 0.266667, 1, 0.289896, -0.0176316, -0.00360354, 0.956889, 0.3, 1, 0.306731, -0.0358399, -0.0106755, 0.951061, 0.333333, 1, 0.332612, -0.0066826, 0.00141176, 0.943039, 0.366667, 1, 0.348812, 0.0209156, 0.0113709, 0.936891, 0.4, 1, 0.454856, 0.0732637, 0.0215352, 0.887285, 0.433333, 1, 0.520606, 0.0881675, 0.0192536, 0.849014, 0.466667, 1, 0.476944, 0.0576577, 0.0166498, 0.876882, 0.5, 1, 0.371938, 0.0184166, 0.00999326, 0.928021, 0.533333, 1, 0.345101, 0.0145357, 0.00916409, 0.938408, 0.666667, 1, 0.344622, 0.0145066, 0.00916261, 0.938585, 0.7, 1, 0.347472, 0.0146795, 0.00917149, 0.937531, 0.733333, 1, 0.345248, 0.0145446, 0.0091646, 0.938354, 0.766667, 1, 0.344203, 0.0144812, 0.00916129, 0.938739, 0.8, 1, 0.344219, 0.0144822, 0.00916138, 0.938733, 0.833333, 1, 0.347213, 0.0146638, 0.00917072, 0.937627)
 
-[sub_resource type="Animation" id="Animation_87fwa"]
+[sub_resource type="Animation" id="Animation_nrimg"]
 resource_name = "clap"
 length = 1.16667
 tracks/0/type = "position_3d"
@@ -751,7 +751,7 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.344202, 0.0144811, 0.00916133, 0.938739)
 
-[sub_resource type="Animation" id="Animation_e4whh"]
+[sub_resource type="Animation" id="Animation_j0dia"]
 resource_name = "look_around"
 length = 4.0
 tracks/0/type = "position_3d"
@@ -1000,7 +1000,7 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.367143, -0.0115614, -0.00222947, 0.93009, 0.366667, 1, 0.367216, -0.011481, -0.00335878, 0.930059, 0.5, 1, 0.367109, -0.010949, -0.00426795, 0.930104, 0.566667, 1, 0.367213, -0.0105974, -0.00561462, 0.93006, 0.6, 1, 0.367268, -0.0103384, -0.00647046, 0.930035, 0.633333, 1, 0.367279, -0.00992373, -0.00778441, 0.930025, 0.666667, 1, 0.364931, -0.00714027, -0.00801248, 0.930973, 0.7, 1, 0.360527, -0.00211283, -0.00589317, 0.932728, 0.733333, 1, 0.357721, 0.00225823, -0.00209185, 0.933824, 0.766667, 1, 0.357786, 0.00590935, 0.00150372, 0.933784, 0.8, 1, 0.358686, 0.00956253, 0.00395583, 0.933401, 0.833333, 1, 0.359793, 0.0134133, 0.00639051, 0.932914, 0.866667, 1, 0.360673, 0.0185147, 0.007449, 0.932479, 0.9, 1, 0.361699, 0.0247327, 0.00688759, 0.931942, 0.933333, 1, 0.362669, 0.0319305, 0.00532281, 0.931355, 0.966667, 1, 0.36558, 0.038887, 0.00260231, 0.929964, 1, 1, 0.369749, 0.0473248, -0.00368978, 0.927918, 1.03333, 1, 0.374179, 0.0565993, -0.0126871, 0.925541, 1.1, 1, 0.385929, 0.0732229, -0.0375172, 0.918852, 1.13333, 1, 0.390182, 0.0800453, -0.0484278, 0.915972, 1.16667, 1, 0.392703, 0.0853334, -0.0584014, 0.913834, 1.2, 1, 0.393502, 0.088893, -0.0668283, 0.912572, 1.23333, 1, 0.393093, 0.0915471, -0.0737367, 0.911954, 1.26667, 1, 0.392639, 0.0937996, -0.0792257, 0.91146, 1.3, 1, 0.392583, 0.0957827, -0.0841192, 0.910839, 1.33333, 1, 0.392763, 0.0966635, -0.0876679, 0.910334, 1.36667, 1, 0.393163, 0.0968294, -0.0901156, 0.909904, 1.4, 1, 0.393739, 0.096583, -0.0915043, 0.909543, 1.43333, 1, 0.393225, 0.0963175, -0.0924221, 0.909701, 1.46667, 1, 0.391811, 0.0955999, -0.0926355, 0.910364, 1.5, 1, 0.389822, 0.0937539, -0.0913029, 0.911544, 1.53333, 1, 0.387385, 0.0909235, -0.089377, 0.913059, 1.56667, 1, 0.384943, 0.0871472, -0.0870847, 0.914681, 1.6, 1, 0.382191, 0.0821211, -0.0831634, 0.916662, 1.63333, 1, 0.380946, 0.0758245, -0.0779786, 0.918178, 1.66667, 1, 0.378902, 0.0696925, -0.0717198, 0.920018, 1.7, 1, 0.376603, 0.0640275, -0.0652738, 0.921852, 1.73333, 1, 0.374934, 0.0588214, -0.0579403, 0.923368, 1.76667, 1, 0.373194, 0.054003, -0.0507065, 0.924791, 1.8, 1, 0.371229, 0.0498463, -0.0438949, 0.926163, 1.83333, 1, 0.36782, 0.0463046, -0.0368623, 0.928011, 1.86667, 1, 0.362653, 0.0424914, -0.0285257, 0.930518, 1.9, 1, 0.357724, 0.0384584, -0.0195196, 0.932831, 1.93333, 1, 0.354339, 0.0341104, -0.0112749, 0.934427, 1.96667, 1, 0.352202, 0.0297931, -0.00505015, 0.935436, 2, 1, 0.351397, 0.0258474, -0.000718271, 0.935869, 2.03333, 1, 0.351076, 0.0223457, 0.00241715, 0.936077, 2.06667, 1, 0.351453, 0.018951, 0.00403591, 0.936005, 2.1, 1, 0.352112, 0.015871, 0.0048401, 0.935811, 2.13333, 1, 0.352949, 0.0130032, 0.004707, 0.93554, 2.16667, 1, 0.35314, 0.0104487, 0.00413582, 0.935503, 2.2, 1, 0.353948, 0.00760602, 0.0028142, 0.93523, 2.23333, 1, 0.355599, 0.00449079, 0.0012432, 0.934627, 2.26667, 1, 0.357321, 0.00162821, -0.000289204, 0.93398, 2.3, 1, 0.359065, -0.00109698, -0.00127269, 0.933311, 2.33333, 1, 0.360882, -0.00349373, -0.00225937, 0.932602, 2.36667, 1, 0.362527, -0.00522565, -0.00327224, 0.931953, 2.4, 1, 0.363862, -0.00659225, -0.00339221, 0.931423, 2.43333, 1, 0.364667, -0.00751485, -0.00288835, 0.931103, 2.46667, 1, 0.364915, -0.00789615, -0.00181997, 0.931006, 2.5, 1, 0.364788, -0.00800447, -0.00046277, 0.931056, 2.53333, 1, 0.364432, -0.00808809, 0.000817643, 0.931194, 2.6, 1, 0.363558, -0.00799914, 0.00157038, 0.931536, 2.83333, 1, 0.364179, -0.00895967, 0.00218473, 0.931283, 2.9, 1, 0.364997, -0.00994457, 0.00195341, 0.930954, 2.96667, 1, 0.365585, -0.0103205, 0.0011423, 0.93072, 3.06667, 1, 0.365114, -0.00965858, 0.000306054, 0.930913, 3.1, 1, 0.366351, -0.0113333, 0.000630395, 0.930407, 3.13333, 1, 0.368488, -0.0126149, 0.000750719, 0.929547, 3.16667, 1, 0.370798, -0.0136974, 0.00101927, 0.928612, 3.23333, 1, 0.369668, -0.0139642, 0.00274906, 0.929055, 3.26667, 1, 0.368587, -0.013811, 0.00324321, 0.929485, 3.3, 1, 0.367656, -0.0137799, 0.00351766, 0.929853, 3.76667, 1, 0.367392, -0.0133266, 0.00206742, 0.929968, 3.8, 1, 0.367481, -0.0129086, 0.000974341, 0.929941, 3.83333, 1, 0.367539, -0.0123892, -0.000402473, 0.929926, 3.93333, 1, 0.367729, -0.0119688, -0.00157384, 0.929855, 4, 1, 0.367153, -0.011573, -0.00223499, 0.930086)
 
-[sub_resource type="Animation" id="Animation_5vned"]
+[sub_resource type="Animation" id="Animation_dc6eq"]
 resource_name = "search"
 length = 8.0
 tracks/0/type = "position_3d"
@@ -1249,10 +1249,9 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.344223, 0.0144824, 0.00916144, 0.938732)
 
-[sub_resource type="Animation" id="Animation_47152"]
+[sub_resource type="Animation" id="Animation_bw5ef"]
 resource_name = "yell"
 length = 8.0
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -1499,7 +1498,7 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.344203, 0.0144812, 0.00916135, 0.938739, 0.7, 1, 0.344947, 0.0145263, 0.00916375, 0.938465, 0.733333, 1, 0.34593, 0.0145859, 0.00916672, 0.938102, 0.766667, 1, 0.346686, 0.0146318, 0.00916914, 0.937822, 0.8, 1, 0.348258, 0.0147272, 0.00917395, 0.937238, 0.833333, 1, 0.3509, 0.0148875, 0.00918226, 0.936249, 0.866667, 1, 0.352234, 0.0149685, 0.00918627, 0.935747, 0.9, 1, 0.351788, 0.0149414, 0.0091849, 0.935915, 0.933333, 1, 0.350521, 0.0148645, 0.00918098, 0.936392, 0.966667, 1, 0.349402, 0.0147966, 0.00917761, 0.936811, 1, 1, 0.349427, 0.0147981, 0.00917766, 0.936802, 1.03333, 1, 0.352177, 0.014965, 0.00918608, 0.935769, 1.06667, 1, 0.354791, 0.0151237, 0.00919417, 0.934778, 1.1, 1, 0.356012, 0.0169748, 0.00986856, 0.934275, 1.13333, 1, 0.353193, 0.0160335, 0.00956679, 0.935364, 1.16667, 1, 0.349125, 0.0147798, 0.00917679, 0.936915, 1.2, 1, 0.347029, 0.0146527, 0.00917006, 0.937695, 1.26667, 1, 0.345492, 0.0145593, 0.00916539, 0.938264, 1.33333, 1, 0.34452, 0.0145004, 0.00916222, 0.938622, 1.56667, 1, 0.345746, 0.0145747, 0.00916613, 0.93817, 1.6, 1, 0.347205, 0.0146633, 0.00917064, 0.93763, 1.63333, 1, 0.349013, 0.014773, 0.00917633, 0.936957, 1.66667, 1, 0.350583, 0.0148683, 0.0091812, 0.936368, 1.7, 1, 0.350836, 0.0148836, 0.00918194, 0.936274, 1.73333, 1, 0.349591, 0.014808, 0.0091782, 0.936741, 1.76667, 1, 0.347586, 0.0146864, 0.00917191, 0.937488, 1.8, 1, 0.346317, 0.0146094, 0.00916795, 0.937959, 1.96667, 1, 0.345316, 0.0145487, 0.00916471, 0.938329, 2.16667, 1, 0.344202, 0.0144811, 0.00916138, 0.938739, 2.2, 1, 0.344202, 0.0144811, 0.00916134, 0.938739, 2.23333, 1, 0.345692, 0.0145715, 0.00916591, 0.93819, 2.26667, 1, 0.348064, 0.0147154, 0.00917331, 0.93731, 2.3, 1, 0.349738, 0.0148169, 0.00917871, 0.936685, 2.4, 1, 0.34952, 0.0148038, 0.00917789, 0.936767, 2.43333, 1, 0.350501, 0.0148633, 0.00918083, 0.936399, 2.46667, 1, 0.35187, 0.0149463, 0.00918516, 0.935885, 2.5, 1, 0.353201, 0.0150272, 0.00918919, 0.935381, 2.53333, 1, 0.354709, 0.0151187, 0.0091938, 0.934809, 2.56667, 1, 0.355749, 0.0151819, 0.00919706, 0.934413, 2.73333, 1, 0.35435, 0.0150969, 0.00919272, 0.934946, 2.76667, 1, 0.352804, 0.015003, 0.00918814, 0.935532, 2.8, 1, 0.350248, 0.0148479, 0.00918016, 0.936494, 2.83333, 1, 0.347825, 0.014701, 0.00917251, 0.937399, 2.86667, 1, 0.346081, 0.0145951, 0.00916711, 0.938046, 2.9, 1, 0.345119, 0.0145368, 0.00916415, 0.938402, 4.3, 1, 0.344256, 0.0144845, 0.00916146, 0.938719, 4.33333, 1, 0.345636, 0.0145681, 0.00916573, 0.938211, 4.5, 1, 0.34469, 0.0145107, 0.00916287, 0.93856, 4.56667, 1, 0.345567, 0.014564, 0.00916554, 0.938236, 4.6, 1, 0.346774, 0.0146371, 0.00916949, 0.93779, 4.63333, 1, 0.347886, 0.0147046, 0.00917278, 0.937377, 4.7, 1, 0.347615, 0.0146881, 0.00917208, 0.937477, 4.76667, 1, 0.344862, 0.0145212, 0.0091634, 0.938496, 5.56667, 1, 0.345879, 0.0145828, 0.00916654, 0.938121, 5.7, 1, 0.344337, 0.0144893, 0.00916173, 0.93869, 8, 1, 0.344203, 0.0144812, 0.00916137, 0.938739)
 
-[sub_resource type="Animation" id="Animation_h32wy"]
+[sub_resource type="Animation" id="Animation_68v7l"]
 resource_name = "idle"
 length = 9.93333
 loop_mode = 1
@@ -1749,7 +1748,7 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.344202, 0.0144812, 0.00916129, 0.938739, 4.96667, 1, 0.345136, 0.0145378, 0.00916431, 0.938395, 5, 1, 0.34615, 0.0145992, 0.00916767, 0.938021, 5.1, 1, 0.345944, 0.0145868, 0.00916677, 0.938097, 5.13333, 1, 0.344987, 0.0145287, 0.00916379, 0.93845, 9.93333, 1, 0.344202, 0.0144812, 0.00916122, 0.938739)
 
-[sub_resource type="Animation" id="Animation_7477j"]
+[sub_resource type="Animation" id="Animation_uwcl3"]
 resource_name = "walk"
 length = 1.03333
 loop_mode = 1
@@ -1999,16 +1998,16 @@ tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, 0.383529, 0.0238219, 0.00585106, 0.923203, 0.0333333, 1, 0.385871, 0.0228563, 0.00528756, 0.922255, 0.0666667, 1, 0.386939, 0.0234309, 0.00450639, 0.921796, 0.1, 1, 0.39189, 0.024972, 0.00319774, 0.919667, 0.133333, 1, 0.404278, 0.0299622, 0.00171798, 0.914144, 0.166667, 1, 0.429561, 0.0327393, 0.000371808, 0.902444, 0.2, 1, 0.466267, 0.0361393, -0.000405838, 0.883906, 0.233333, 1, 0.508485, 0.042393, -0.00239369, 0.860023, 0.266667, 1, 0.563194, 0.0459406, -0.00471733, 0.825033, 0.3, 1, 0.659057, 0.047724, -0.0043717, 0.750564, 0.333333, 1, 0.770222, 0.069704, 0.0163083, 0.633745, 0.366667, 1, 0.832733, 0.129515, 0.0432391, 0.536574, 0.4, 1, 0.819798, 0.229605, 0.0144333, 0.524409, 0.433333, 1, 0.766188, 0.275343, -0.0093113, 0.580565, 0.466667, 1, 0.694376, 0.227365, -0.00753272, 0.682708, 0.5, 1, 0.596843, 0.170244, -0.000106728, 0.784089, 0.533333, 1, 0.485544, 0.132756, 0.0147017, 0.863948, 0.566667, 1, 0.418301, 0.0735654, 0.00787673, 0.90529, 0.6, 1, 0.424537, 0.0462504, -0.00156944, 0.904227, 0.633333, 1, 0.430013, 0.0391726, 0.00303034, 0.901967, 0.666667, 1, 0.439851, 0.032746, -0.00245801, 0.89747, 0.7, 1, 0.455137, 0.0397866, 0.00535405, 0.889516, 0.733333, 1, 0.443659, 0.025972, 0.00886302, 0.895775, 0.766667, 1, 0.479956, 0.0188787, 0.00917491, 0.877041, 0.8, 1, 0.509145, 0.0285956, 0.00723093, 0.860175, 0.833333, 1, 0.428946, 0.0296515, 0.00786066, 0.902809, 0.866667, 1, 0.366143, 0.0230225, 0.00647607, 0.930251, 0.9, 1, 0.390931, 0.0230486, 0.00606505, 0.920111, 0.933333, 1, 0.387798, 0.0236037, 0.00581687, 0.921424, 0.966667, 1, 0.382525, 0.0239703, 0.00570711, 0.923617, 1, 1, 0.382617, 0.0239525, 0.00573966, 0.923579, 1.03333, 1, 0.383529, 0.0238219, 0.00585106, 0.923203)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qnyde"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c28gh"]
 _data = {
-"clap": SubResource("Animation_87fwa"),
-"idle": SubResource("Animation_h32wy"),
-"look_around": SubResource("Animation_e4whh"),
-"run": SubResource("Animation_1twit"),
-"search": SubResource("Animation_5vned"),
-"t_pose": SubResource("Animation_7g3s3"),
-"walk": SubResource("Animation_7477j"),
-"yell": SubResource("Animation_47152")
+"clap": SubResource("Animation_nrimg"),
+"idle": SubResource("Animation_68v7l"),
+"look_around": SubResource("Animation_j0dia"),
+"run": SubResource("Animation_i8kc5"),
+"search": SubResource("Animation_dc6eq"),
+"t_pose": SubResource("Animation_ak2h5"),
+"walk": SubResource("Animation_uwcl3"),
+"yell": SubResource("Animation_bw5ef")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_beft6"]
@@ -2051,34 +2050,87 @@ animation = &"yell"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b2vk2"]
+xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_buif0"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v4q3t"]
+xfade_time = 0.2
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qdsg8"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twi7g"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q6l66"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_45ys2"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hv41g"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lbjh2"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lyd42"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mwacm"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vp4vd"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tmapn"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aspky"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1b2p8"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lqqdq"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gc6cg"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ae66g"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pueer"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i4oj0"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5jgkb"]
+xfade_time = 0.25
+priority = 2
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xsnwf"]
 states/clap/node = SubResource("AnimationNodeAnimation_beft6")
-states/clap/position = Vector2(451, -5)
+states/clap/position = Vector2(239, 18)
 states/look_around/node = SubResource("AnimationNodeAnimation_1o1ox")
-states/look_around/position = Vector2(628, -5)
+states/look_around/position = Vector2(512, -315)
 states/move/node = SubResource("AnimationNodeBlendTree_nel62")
 states/move/position = Vector2(529, 100)
 states/search/node = SubResource("AnimationNodeAnimation_oxam1")
-states/search/position = Vector2(741, -5)
+states/search/position = Vector2(738, -146)
 states/yell/node = SubResource("AnimationNodeAnimation_16ihf")
-states/yell/position = Vector2(529, -5)
-transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_bc32x"), "clap", "move", SubResource("AnimationNodeStateMachineTransition_b2vk2"), "yell", "move", SubResource("AnimationNodeStateMachineTransition_buif0"), "search", "move", SubResource("AnimationNodeStateMachineTransition_v4q3t"), "look_around", "move", SubResource("AnimationNodeStateMachineTransition_qdsg8")]
-graph_offset = Vector2(-112, -96)
+states/yell/position = Vector2(239, -242)
+transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_bc32x"), "clap", "move", SubResource("AnimationNodeStateMachineTransition_b2vk2"), "yell", "move", SubResource("AnimationNodeStateMachineTransition_buif0"), "look_around", "move", SubResource("AnimationNodeStateMachineTransition_qdsg8"), "move", "clap", SubResource("AnimationNodeStateMachineTransition_twi7g"), "move", "yell", SubResource("AnimationNodeStateMachineTransition_q6l66"), "move", "look_around", SubResource("AnimationNodeStateMachineTransition_45ys2"), "move", "search", SubResource("AnimationNodeStateMachineTransition_hv41g"), "clap", "yell", SubResource("AnimationNodeStateMachineTransition_lbjh2"), "yell", "look_around", SubResource("AnimationNodeStateMachineTransition_lyd42"), "yell", "clap", SubResource("AnimationNodeStateMachineTransition_mwacm"), "look_around", "search", SubResource("AnimationNodeStateMachineTransition_vp4vd"), "search", "look_around", SubResource("AnimationNodeStateMachineTransition_tmapn"), "look_around", "yell", SubResource("AnimationNodeStateMachineTransition_aspky"), "clap", "look_around", SubResource("AnimationNodeStateMachineTransition_1b2p8"), "clap", "search", SubResource("AnimationNodeStateMachineTransition_lqqdq"), "look_around", "clap", SubResource("AnimationNodeStateMachineTransition_gc6cg"), "search", "clap", SubResource("AnimationNodeStateMachineTransition_ae66g"), "yell", "search", SubResource("AnimationNodeStateMachineTransition_pueer"), "search", "yell", SubResource("AnimationNodeStateMachineTransition_i4oj0"), "search", "move", SubResource("AnimationNodeStateMachineTransition_5jgkb")]
+graph_offset = Vector2(-128, -339)
 
 [node name="peasant_baked" instance=ExtResource("1_svprl")]
 script = ExtResource("2_r1huw")
@@ -2087,66 +2139,66 @@ script = ExtResource("2_r1huw")
 transform = Transform3D(0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Node" index="0"]
-bones/0/position = Vector3(-9.11164, 84.5181, -0.0150065)
-bones/0/rotation = Quaternion(-0.0155229, 0.0417467, 0.00849687, 0.998972)
+bones/0/position = Vector3(1.01394, 83.8235, -4.22141)
+bones/0/rotation = Quaternion(0.0948973, -0.121128, 0.0345791, 0.987485)
 bones/0/scale = Vector3(1, 1, 1)
-bones/1/rotation = Quaternion(0.0493635, 0.156421, 0.982819, -0.0846299)
+bones/1/rotation = Quaternion(0.0123359, 0.256948, 0.966346, -6.85975e-05)
 bones/1/scale = Vector3(1, 1, 1)
-bones/2/rotation = Quaternion(-0.36009, -0.0712383, 0.0321616, 0.929637)
-bones/3/rotation = Quaternion(0.571288, -0.0177846, -0.0952197, 0.815014)
+bones/2/rotation = Quaternion(-0.383001, -0.0248111, -0.0127269, 0.923327)
+bones/3/rotation = Quaternion(0.610806, -0.109403, 0.0285226, 0.783667)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.347371, -0.014643, -0.00925178, 0.937568)
+bones/4/rotation = Quaternion(0.345257, -0.014515, -0.00924524, 0.93835)
 bones/4/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.121642, 0.157462, 0.979794, 0.0203426)
+bones/6/rotation = Quaternion(-0.0158852, 0.337603, 0.939843, 0.049677)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.405707, 0.056356, -0.0118822, 0.912187)
+bones/7/rotation = Quaternion(-0.412316, -0.00624487, -0.0385112, 0.910205)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.625291, 0.0834064, -0.0274898, 0.775435)
+bones/8/rotation = Quaternion(0.572707, 0.0479953, 0.0353246, 0.817591)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.344494, 0.0144989, 0.00916218, 0.938632)
+bones/9/rotation = Quaternion(0.344223, 0.0144824, 0.00916145, 0.938732)
 bones/9/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(0.0162305, -0.00176616, 0.00308212, 0.999862)
+bones/11/rotation = Quaternion(0.210101, -0.00981356, 0.0224553, 0.977373)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(0.00724728, -0.0254674, 0.00980595, 0.999601)
-bones/13/rotation = Quaternion(0.0325275, -0.0252833, 0.0105703, 0.999095)
+bones/12/rotation = Quaternion(0.0236481, -2.97128e-05, -0.0112862, 0.999657)
+bones/13/rotation = Quaternion(0.0489329, -0.000630335, -0.0114435, 0.998736)
 bones/13/scale = Vector3(1, 1, 1)
-bones/14/rotation = Quaternion(-0.00295112, 0.00767878, -0.0241554, 0.999674)
+bones/14/rotation = Quaternion(0.123328, -0.0444144, 0.092139, 0.987081)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(0.0409494, -0.0353397, 0.035814, 0.997894)
+bones/15/rotation = Quaternion(-0.328626, -0.19123, 0.0432471, 0.923886)
 bones/15/scale = Vector3(1, 1, 1)
-bones/19/rotation = Quaternion(0.587564, -0.437082, 0.524653, 0.434127)
+bones/19/rotation = Quaternion(0.515529, -0.490052, 0.533585, 0.457566)
 bones/19/scale = Vector3(1, 1, 1)
-bones/20/rotation = Quaternion(0.424303, -0.191878, -0.246293, 0.849994)
-bones/21/rotation = Quaternion(1.48244e-07, -4.0763e-08, -0.246033, 0.969262)
-bones/22/rotation = Quaternion(0.0154847, 0.0434264, 0.128517, 0.990635)
-bones/23/rotation = Quaternion(0.18853, -0.0801195, -0.0608038, 0.976903)
-bones/24/rotation = Quaternion(0.0301565, -0.0595782, 0.032451, 0.99724)
-bones/25/rotation = Quaternion(-0.0294821, -0.000997737, 0.00599484, 0.999547)
-bones/27/rotation = Quaternion(0.0883445, -0.00293175, 0.0424278, 0.995182)
+bones/20/rotation = Quaternion(-0.0273257, 0.613793, -0.122484, 0.779429)
+bones/21/rotation = Quaternion(5.42768e-08, 4.16558e-08, -0.88673, 0.462287)
+bones/22/rotation = Quaternion(-0.148053, 0.178558, -0.0708608, 0.970142)
+bones/23/rotation = Quaternion(0.315481, -0.0162507, -0.128864, 0.940001)
+bones/24/rotation = Quaternion(-0.00491914, 0.0379304, 0.0826924, 0.995841)
+bones/25/rotation = Quaternion(-0.0220477, 0.0225689, 0.108823, 0.99356)
+bones/27/rotation = Quaternion(0.183034, 0.000849317, 0.01303, 0.98302)
 bones/27/scale = Vector3(1, 1, 1)
-bones/28/rotation = Quaternion(0.35602, 2.58442e-08, 0.0433873, 0.933471)
-bones/29/rotation = Quaternion(0.0756053, -6.21367e-08, 0.00921381, 0.997095)
-bones/31/rotation = Quaternion(-0.532195, -0.450878, 0.618977, -0.361033)
+bones/28/rotation = Quaternion(0.158386, 1.57161e-08, 0.0193019, 0.987189)
+bones/29/rotation = Quaternion(0.0789284, 3.01516e-08, 0.00961887, 0.996834)
+bones/31/rotation = Quaternion(-0.561362, -0.463196, 0.426783, -0.536822)
 bones/31/scale = Vector3(1, 1, 1)
-bones/32/rotation = Quaternion(0.432565, 0.195985, 0.22116, 0.851801)
-bones/33/rotation = Quaternion(6.87343e-08, -1.09557e-07, 0.243955, 0.969787)
+bones/32/rotation = Quaternion(0.628052, 0.0599235, -0.057167, 0.773752)
+bones/33/rotation = Quaternion(3.36996e-08, -1.11647e-07, 0.241896, 0.970302)
 bones/33/scale = Vector3(1, 1, 1)
-bones/34/rotation = Quaternion(0.102328, 0.0170875, -0.112529, 0.988218)
-bones/35/rotation = Quaternion(0.150839, -0.0390032, 0.160733, 0.974624)
+bones/34/rotation = Quaternion(-0.0390616, -0.00694853, 0.125246, 0.991332)
+bones/35/rotation = Quaternion(0.22869, -0.0188095, 0.169447, 0.958454)
 bones/35/scale = Vector3(1, 1, 1)
-bones/36/rotation = Quaternion(0.016215, 0.0208086, -0.134596, 0.990549)
-bones/37/rotation = Quaternion(-0.0220942, 0.000191145, -0.0220536, 0.999513)
+bones/36/rotation = Quaternion(-0.0250085, 0.0167799, -0.148851, 0.988401)
+bones/37/rotation = Quaternion(-0.0110619, -0.0605275, -0.103027, 0.992774)
 bones/37/scale = Vector3(1, 1, 1)
-bones/39/rotation = Quaternion(0.181888, -0.00355698, -0.00246876, 0.98331)
+bones/39/rotation = Quaternion(0.0835728, -0.00513206, 0.0521595, 0.995122)
 bones/39/scale = Vector3(1, 1, 1)
-bones/40/rotation = Quaternion(0.299454, -3.72529e-09, -0.0361382, 0.953426)
+bones/40/rotation = Quaternion(0.251534, -1.47847e-08, -0.0303553, 0.967372)
 bones/40/scale = Vector3(1, 1, 1)
-bones/41/rotation = Quaternion(0.148015, 4.27826e-08, -0.0178626, 0.988824)
+bones/41/rotation = Quaternion(0.131376, -3.45171e-08, -0.0158545, 0.991206)
 bones/41/scale = Vector3(1, 1, 1)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_qnyde")
+"": SubResource("AnimationLibrary_c28gh")
 }
 tree_root = SubResource("AnimationNodeStateMachine_xsnwf")
 anim_player = NodePath("../AnimationPlayer")
