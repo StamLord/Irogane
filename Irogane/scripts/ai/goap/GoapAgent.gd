@@ -45,6 +45,8 @@ var goto_target_position = null
 
 var current_patrol_point = 0
 
+var enemy_lost_cheat_duration = 4.0
+
 var use_time_slicing = false
 
 var debug = false
@@ -61,6 +63,9 @@ func _ready():
 func _process(delta):
 	update_sensors()
 	
+	# Run if enemy is seen
+	body.set_running(world_state.has("enemy"))
+		
 	# Calculate goal when world state changed
 	if world_state_changed and Time.get_ticks_msec() - last_goal_time >= goal_calculation_rate * 1000:
 		calculate_goal()
@@ -302,7 +307,7 @@ func enemy_lost(enemy):
 	
 
 func enemy_lost_cheat_delay(enemy):
-	await get_tree().create_timer(2.0)
+	await get_tree().create_timer(enemy_lost_cheat_duration).timeout
 	
 	update_world_state("enemy_last_seen_at", enemy.global_position)
 	update_world_state("search_point", enemy.global_position)

@@ -13,8 +13,7 @@ func _process(delta):
 	if not character_body:
 		return
 	
-	var velocity = Vector3(character_body.velocity.x, 0, character_body.velocity.z)
-	var anim_speed = 2.0 if abs(velocity.length()) > 0.1 else 0.0
+	var anim_speed = character_body.get_normalized_velocity()
 	animation_tree.set(MOVE_SPEED_PARAM, anim_speed)
 	
 

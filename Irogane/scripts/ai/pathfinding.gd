@@ -7,7 +7,14 @@ extends CharacterBody3D
 @onready var push_back_dust_l = $vfx/push_back_dust_l
 @onready var push_back_dust_r = $vfx/push_back_dust_r
 
-@export var movement_speed = 2
+@export var walk_speed = 2
+@export var run_speed = 4
+var is_running = false
+var movement_speed: 
+	get: 
+		return run_speed if is_running else walk_speed
+	
+
 @export var acceleration = 10
 @export var rotation_speed = 5
 @export var gravity = 9
@@ -104,6 +111,20 @@ func _process(delta):
 		var collider = door_check.get_collider()
 		if collider is Switch and collider.state == false:
 			collider.use(null)
+	
+
+func set_running(state: bool):
+	is_running = state
+	
+
+# Returns 0 if stationary, 1 if at walk speed and 2 if at run speed
+func get_normalized_velocity() -> float: 
+	var flat_velocity = Vector3(nav.velocity.x, 0, nav.velocity.z).length()
+	if flat_velocity > run_speed:
+		return 2.0
+	elif flat_velocity <= walk_speed:
+		return flat_velocity / walk_speed
+	return 1.0 + (flat_velocity - walk_speed) / (run_speed - walk_speed)
 	
 
 func set_target_position(target_position : Vector3):
