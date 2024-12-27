@@ -454,8 +454,7 @@ func inform_agents(range, key, value):
 	agents = agents.filter(func(agent): return agent != self and body.global_position.distance_to(agent.body.global_position) <= range)
 	for agent in agents:
 		agent.update_world_state(key, value)
-		if debug:
-			print(agent, " is informing ", agent, " about ", key, " : ", value)
+		DEBUG("%s is informing %s about %s : %s" % [self, agent, key, value])
 	
 
 func get_light_switches():
