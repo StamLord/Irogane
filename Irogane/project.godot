@@ -81,7 +81,7 @@ mouse_cursor/custom_image="res://assets/textures/ui/cursor/mouse_cursor.png"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/building_blocks/plugin.cfg", "res://addons/custom_gizmos/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/maison/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/quest_editor/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
+enabled=PackedStringArray("res://addons/building_blocks/plugin.cfg", "res://addons/custom_gizmos/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/maison/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/quest_editor/plugin.cfg", "res://addons/replacer/plugin.cfg", "res://addons/wigglebone/plugin.cfg")
 
 [file_customization]
 

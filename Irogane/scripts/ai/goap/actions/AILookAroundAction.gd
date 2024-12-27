@@ -19,6 +19,7 @@ func start_action(agent):
 
 func finish_action(agent):
 	agent.erase_world_state("sound_heard_at")
+	agent.erase_world_state("scream_heard_at")
 	
 
 func get_action_name(): return "AILookAroundAction"

@@ -64,8 +64,8 @@ func _process(delta):
 	update_sensors()
 	
 	# Run if enemy is seen
-	body.set_running(world_state.has("enemy"))
-		
+	body.set_running(world_state.has("enemy") or current_goal is AIInvestigateScreamGoal)
+	
 	# Calculate goal when world state changed
 	if world_state_changed and Time.get_ticks_msec() - last_goal_time >= goal_calculation_rate * 1000:
 		calculate_goal()
@@ -232,12 +232,20 @@ func get_dynamic_actions():
 			dynamic_actions.append(goto)
 	
 	# Look at and Goto sound to investigate
-	if world_state.has("sound_heard_at"):
+	if (current_goal is AIInvestigateGoal or current_goal is AISearchNearSoundGoal)and world_state.has("sound_heard_at"):
 		var sound_position = world_state["sound_heard_at"]
-		var look_at = AILookAtAction.new(sound_position,  {"looked_at_sound": true})
+		var look_at = AILookAtAction.new(sound_position, {"looked_at_sound": true})
 		var goto_pos = GotoPositionAction.new(sound_position, {"near_sound": true}, {"looked_at_sound": true})
 		dynamic_actions.append(look_at)
 		dynamic_actions.append(goto_pos)
+	
+	if current_goal is AIInvestigateScreamGoal and world_state.has("scream_heard_at"):
+		var scream_position = world_state["scream_heard_at"]
+		var look_at = AILookAtAction.new(scream_position, {"looked_at_sound": true})
+		var goto_pos = GotoPositionAction.new(scream_position, {"near_sound": true}, {"looked_at_sound": true})
+		dynamic_actions.append(look_at)
+		dynamic_actions.append(goto_pos)
+		
 	
 	# Goto search
 	if current_goal is AISearchEnemyGoal:
@@ -254,10 +262,11 @@ func get_dynamic_actions():
 	# Goto guard
 	if current_goal is AICallGuardGoal:
 		var guard = get_nearest_guard()
-		var guard_body = guard.get_node("character_body")
-		if guard_body != null:
-			var goto = GotoAction.new(guard_body, {"near_guard": true})
-			dynamic_actions.append(goto)
+		if guard != null:
+			var guard_body = guard.get_node("character_body")
+			if guard_body != null:
+				var goto = GotoAction.new(guard_body, {"near_guard": true})
+				dynamic_actions.append(goto)
 	
 	# Goto nearest light switch that is off
 	if current_goal is AILightAreaGoal:
@@ -418,21 +427,17 @@ func generate_new_search_point():
 
 func get_goap_agents():
 	# TODO: Get agents more realistically
-	var goap_agents = []
-	for child in get_parent().get_children():
-		if child is GoapAgent:
-			goap_agents.append(child)
-	
-	return goap_agents
+	return get_tree().get_nodes_in_group("GoapAgent")
 	
 
 func get_guard_agents():
 	# TODO: Get guards more realistically
 	# TODO: Identify guards more cleverly
+	var goapAgents = get_goap_agents()
 	var guards = []
-	for child in get_parent().get_children():
-		if child is GoapAgent and Utils.get_resource_file_name(child.agent_data) == "Guard":
-			guards.append(child)
+	for agent in goapAgents:
+		if agent is GoapAgent and Utils.get_resource_file_name(agent.agent_data) == "Guard":
+			guards.append(agent)
 	
 	return guards
 	
@@ -449,6 +454,8 @@ func inform_agents(range, key, value):
 	agents = agents.filter(func(agent): return agent != self and body.global_position.distance_to(agent.body.global_position) <= range)
 	for agent in agents:
 		agent.update_world_state(key, value)
+		if debug:
+			print(agent, " is informing ", agent, " about ", key, " : ", value)
 	
 
 func get_light_switches():
@@ -544,6 +551,10 @@ func is_same_action_plan(plan_a, plan_b):
 			return false
 	
 	return true
+	
+
+func get_body():
+	return body
 	
 
 func DEBUG(message):

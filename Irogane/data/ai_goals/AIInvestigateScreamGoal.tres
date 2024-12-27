@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIInvestigateScreamGoal" load_steps=2 format=3 uid="uid://bqx4otqkpkewg"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/goals/AIInvestigateScreamGoal.gd" id="1_65cwq"]
+
+[resource]
+script = ExtResource("1_65cwq")

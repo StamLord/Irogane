@@ -14,17 +14,21 @@ func get_effects() -> Dictionary:
 	
 
 func start_action(agent):
-	agent.animate("Calling Guard")
+	agent.animate("call_guard")
 	
 
 func finish_action(agent):
 	# We don't need to perform AICallGuardGoal anymore
 	agent.update_world_state("guard_called", true)
 	
+	var point = null
 	if agent.world_state.has("enemy_last_seen_at"):
-		agent.inform_agents(10, "enemy_last_seen_at", agent.world_state["enemy_last_seen_at"])
+		point = agent.world_state["enemy_last_seen_at"]
 	elif agent.world_state.has("enemy"):
-		agent.inform_agents(10, "enemy_last_seen_at", agent.world_state["enemy"].global_position)
+		point = agent.world_state["enemy"].global_position
+	
+	agent.inform_agents(10, "enemy_last_seen_at", point)
+	agent.inform_agents(10, "search_point", point)
 	
 
 func get_action_name(): return "AICallGuardAction"

@@ -54,7 +54,7 @@ cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 0.0901961)
 
-[node name="npc" type="Node3D"]
+[node name="npc" type="Node3D" groups=["GoapAgent"]]
 script = ExtResource("1_1nlbh")
 agent_data = ExtResource("2_7ydk2")
 
