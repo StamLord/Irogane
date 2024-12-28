@@ -1,17 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt6o248kekgjs"]
+[gd_scene load_steps=10 format=3 uid="uid://dt6o248kekgjs"]
 
 [ext_resource type="Script" path="res://scripts/procedural/prefab_randmoizer.gd" id="1_t2gr6"]
-[ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="2_r6x4k"]
+[ext_resource type="PackedScene" uid="uid://pm7k40ocxcgx" path="res://assets/models/houses/house_wide_s3.glb" id="2_6qhvm"]
 [ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="4_2kh7x"]
 [ext_resource type="Script" path="res://scripts/procedural/window_hider.gd" id="4_22xoj"]
-[ext_resource type="Material" uid="uid://bpg2o1smtm2us" path="res://assets/materials/house_roof.tres" id="5_5hvfc"]
 [ext_resource type="Material" uid="uid://4sfrxcw25g5s" path="res://assets/materials/window_light_flicker.tres" id="6_l3p0v"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_273i4"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_bcdpv"]
-size = Vector3(8, 2, 14)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rk757"]
 specular_mode = 2
@@ -19,6 +12,12 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_34ftj"]
 size = Vector2(1.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kff4g"]
+size = Vector3(8, 12, 14)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgv3x"]
+size = Vector3(5.2749, 0.5, 14)
 
 [node name="house_wide_s3_" type="Node3D"]
 script = ExtResource("1_t2gr6")
@@ -28,39 +27,7 @@ script = ExtResource("1_t2gr6")
 [node name="1" type="Node3D" parent="variations"]
 visible = false
 
-[node name="main" type="CSGBox3D" parent="variations/1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
-use_collision = true
-size = Vector3(8, 12, 14)
-material = ExtResource("2_r6x4k")
-
-[node name="doorway" type="CSGBox3D" parent="variations/1/main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375, -4, 4)
-operation = 2
-size = Vector3(1.75, 3, 2)
-material = SubResource("StandardMaterial3D_273i4")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="variations/1/main/doorway"]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1.5, 0)
-radius = 1.0
-height = 1.75
-material = SubResource("StandardMaterial3D_273i4")
-
-[node name="roof" type="CSGMesh3D" parent="variations/1"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -3.57628e-06, 13, 0)
-use_collision = true
-mesh = SubResource("PrismMesh_bcdpv")
-material = ExtResource("2_r6x4k")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="variations/1/roof"]
-transform = Transform3D(-0.866026, 0.5, -8.74228e-08, 0.5, 0.866026, 0, 7.57104e-08, -4.37114e-08, -1, 2.21651, 0.125, 0)
-size = Vector3(5.5, 0.5, 15)
-material = ExtResource("5_5hvfc")
-
-[node name="roof" type="CSGBox3D" parent="variations/1/roof"]
-transform = Transform3D(0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0, 1, -2.21651, 0.125003, 0)
-size = Vector3(5.5, 0.5, 15)
-material = ExtResource("5_5hvfc")
+[node name="house_wide_s32" parent="variations/1" instance=ExtResource("2_6qhvm")]
 
 [node name="windows" type="Node3D" parent="variations/1"]
 
@@ -228,42 +195,24 @@ mesh = SubResource("QuadMesh_34ftj")
 skeleton = NodePath("../../../..")
 script = ExtResource("4_22xoj")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="variations/1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="variations/1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+shape = SubResource("BoxShape3D_kff4g")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="variations/1/StaticBody3D"]
+transform = Transform3D(0.891006, -0.45399, 0, 0.45399, 0.891006, 0, 0, 0, 1, -2.33726, 13.0273, 0)
+shape = SubResource("BoxShape3D_sgv3x")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="variations/1/StaticBody3D"]
+transform = Transform3D(0.891006, 0.45399, 0, -0.45399, 0.891006, 0, 0, 0, 1, 2.337, 13.027, 0)
+shape = SubResource("BoxShape3D_sgv3x")
+
 [node name="2" type="Node3D" parent="variations"]
 visible = false
 
-[node name="main" type="CSGBox3D" parent="variations/2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
-use_collision = true
-size = Vector3(8, 12, 14)
-material = ExtResource("2_r6x4k")
-
-[node name="doorway" type="CSGBox3D" parent="variations/2/main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375, -4, -4.25)
-operation = 2
-size = Vector3(1.75, 3, 2)
-material = SubResource("StandardMaterial3D_273i4")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="variations/2/main/doorway"]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1.5, 0)
-radius = 1.0
-height = 1.75
-material = SubResource("StandardMaterial3D_273i4")
-
-[node name="roof" type="CSGMesh3D" parent="variations/2"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -3.57628e-06, 13, 0)
-use_collision = true
-mesh = SubResource("PrismMesh_bcdpv")
-material = ExtResource("2_r6x4k")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="variations/2/roof"]
-transform = Transform3D(-0.866026, 0.5, -8.74228e-08, 0.5, 0.866026, 0, 7.57104e-08, -4.37114e-08, -1, 2.21651, 0.125, 0)
-size = Vector3(5.5, 0.5, 15)
-material = ExtResource("5_5hvfc")
-
-[node name="roof" type="CSGBox3D" parent="variations/2/roof"]
-transform = Transform3D(0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0, 1, -2.21651, 0.125003, 0)
-size = Vector3(5.5, 0.5, 15)
-material = ExtResource("5_5hvfc")
+[node name="house_wide_s32" parent="variations/2" instance=ExtResource("2_6qhvm")]
 
 [node name="windows" type="Node3D" parent="variations/2"]
 
@@ -428,41 +377,23 @@ mesh = SubResource("QuadMesh_34ftj")
 skeleton = NodePath("../../../..")
 script = ExtResource("4_22xoj")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="variations/2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="variations/2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+shape = SubResource("BoxShape3D_kff4g")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="variations/2/StaticBody3D"]
+transform = Transform3D(0.891006, -0.45399, 0, 0.45399, 0.891006, 0, 0, 0, 1, -2.33726, 13.0273, 0)
+shape = SubResource("BoxShape3D_sgv3x")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="variations/2/StaticBody3D"]
+transform = Transform3D(0.891006, 0.45399, 0, -0.45399, 0.891006, 0, 0, 0, 1, 2.337, 13.027, 0)
+shape = SubResource("BoxShape3D_sgv3x")
+
 [node name="3" type="Node3D" parent="variations"]
 
-[node name="main" type="CSGBox3D" parent="variations/3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
-use_collision = true
-size = Vector3(8, 12, 14)
-material = ExtResource("2_r6x4k")
-
-[node name="doorway" type="CSGBox3D" parent="variations/3/main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.375, -4, 0)
-operation = 2
-size = Vector3(1.75, 3, 2)
-material = SubResource("StandardMaterial3D_273i4")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="variations/3/main/doorway"]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1.5, 0)
-radius = 1.0
-height = 1.75
-material = SubResource("StandardMaterial3D_273i4")
-
-[node name="roof" type="CSGMesh3D" parent="variations/3"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, -3.57628e-06, 13, 0)
-use_collision = true
-mesh = SubResource("PrismMesh_bcdpv")
-material = ExtResource("2_r6x4k")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="variations/3/roof"]
-transform = Transform3D(-0.866026, 0.5, -8.74228e-08, 0.5, 0.866026, 0, 7.57104e-08, -4.37114e-08, -1, 2.21651, 0.125002, 0)
-size = Vector3(5.5, 0.5, 15)
-material = ExtResource("5_5hvfc")
-
-[node name="roof" type="CSGBox3D" parent="variations/3/roof"]
-transform = Transform3D(0.866026, -0.5, 0, 0.5, 0.866026, 0, 0, 0, 1, -2.21651, 0.125003, 0)
-size = Vector3(5.5, 0.5, 15)
-material = ExtResource("5_5hvfc")
+[node name="house_wide_s32" parent="variations/3" instance=ExtResource("2_6qhvm")]
 
 [node name="windows" type="Node3D" parent="variations/3"]
 
@@ -620,3 +551,17 @@ material_override = SubResource("StandardMaterial3D_rk757")
 mesh = SubResource("QuadMesh_34ftj")
 skeleton = NodePath("../../../..")
 script = ExtResource("4_22xoj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="variations/3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="variations/3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+shape = SubResource("BoxShape3D_kff4g")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="variations/3/StaticBody3D"]
+transform = Transform3D(0.891006, -0.45399, 0, 0.45399, 0.891006, 0, 0, 0, 1, -2.33726, 13.0273, 0)
+shape = SubResource("BoxShape3D_sgv3x")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="variations/3/StaticBody3D"]
+transform = Transform3D(0.891006, 0.45399, 0, -0.45399, 0.891006, 0, 0, 0, 1, 2.337, 13.027, 0)
+shape = SubResource("BoxShape3D_sgv3x")

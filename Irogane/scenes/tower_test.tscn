@@ -309,11 +309,11 @@ point_count = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_28j45"]
 size = Vector3(95.75, 5, 8)
 
-[sub_resource type="QuadMesh" id="QuadMesh_fk83c"]
+[sub_resource type="QuadMesh" id="QuadMesh_1kw3m"]
 material = ExtResource("76_mw4oc")
 size = Vector2(95.75, 8)
 
-[sub_resource type="BoxMesh" id="BoxMesh_iu2qu"]
+[sub_resource type="BoxMesh" id="BoxMesh_ghc6l"]
 material = ExtResource("76_ghoxj")
 size = Vector3(95.7404, 4.9995, 7.9992)
 
@@ -4743,12 +4743,12 @@ script = ExtResource("75_c4nq3")
 
 [node name="surface" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 3.125, 2.5, 0)
-mesh = SubResource("QuadMesh_fk83c")
+mesh = SubResource("QuadMesh_1kw3m")
 skeleton = NodePath("../..")
 
 [node name="under_water" type="MeshInstance3D" parent="canal/water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.125, 0, 0)
-mesh = SubResource("BoxMesh_iu2qu")
+mesh = SubResource("BoxMesh_ghc6l")
 
 [node name="vfx" type="Node3D" parent="canal/water_area"]
 
