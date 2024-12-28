@@ -10,6 +10,9 @@ var max_bounces = 3
 var bounces = 0
 var bounce_damp = 0.5
 var killed_momentum = false
+var sleeping = false
+
+signal on_collision(collision)
 
 func start_force(force: Vector3):
 	velocity = force
@@ -18,6 +21,9 @@ func start_force(force: Vector3):
 	
 
 func _process(delta):
+	if sleeping:
+		return
+	
 	var old_position = global_position
 	var new_position = global_position + velocity * delta
 	velocity.y += GRAVITY * delta
@@ -31,9 +37,7 @@ func _process(delta):
 	else:
 		global_position = new_position
 	
-	if killed_momentum:
-		rotate_to_rest(delta)
-	else:
+	if not killed_momentum:
 		spin(old_position, delta)
 	
 
@@ -51,6 +55,13 @@ func handle_collision(collision):
 	elif not killed_momentum:
 		velocity = Vector3(0, velocity.y, 0)
 		killed_momentum = true
+		rotate_to_rest()
+	# If colliding after momentum is killed (final resting position)
+	# go to sleep and stop processing further collisions and trying to move
+	elif killed_momentum:
+		sleeping = true
+	
+	on_collision.emit(collision)
 	
 
 func calculate_bounce_velocity(velocity: Vector3, normal: Vector3):
@@ -62,6 +73,7 @@ func spin(old_position, delta):
 	visual.rotation_degrees.x += actual_speed * 50000 * delta
 	
 
-func rotate_to_rest(delta):
+func rotate_to_rest():
+	var old_scale = visual.scale # For some reason scale resets when rotation changes
 	visual.global_rotation_degrees.x = 0
-	
+	visual.scale = old_scale

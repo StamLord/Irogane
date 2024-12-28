@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b7y0ro4p7ut5u" path="res://assets/models/loot/coin.fbx" id="1_jwhhv"]
 [ext_resource type="Script" path="res://scripts/physics/coin_physics.gd" id="1_osdid"]
-[ext_resource type="Script" path="res://scripts/stealth/physics_sound_emitter.gd" id="2_yhjim"]
+[ext_resource type="Script" path="res://scripts/stealth/coin_sound_emitter.gd" id="3_d0gx7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kycgm"]
 
@@ -182,9 +182,9 @@ script = ExtResource("1_osdid")
 [node name="visual" parent="." instance=ExtResource("1_jwhhv")]
 transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0)
 
-[node name="sound_emitter" type="Node3D" parent="."]
-script = ExtResource("2_yhjim")
-velocity_threshold = 0.2
+[node name="sound_emitter" type="Node3D" parent="." node_paths=PackedStringArray("coin")]
+script = ExtResource("3_d0gx7")
+coin = NodePath("..")
 sound_range = 7
 
 [node name="sound_cast" type="ShapeCast3D" parent="sound_emitter"]
