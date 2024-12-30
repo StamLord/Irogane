@@ -35,10 +35,9 @@ script = ExtResource("1_ujf71")
 
 [node name="3" type="Node3D" parent="variations"]
 
-[node name="house_wide_s3_wp2" parent="variations/3" instance=ExtResource("2_epm67")]
+[node name="house_wide_s3_wp3" parent="variations/3" instance=ExtResource("2_epm67")]
 
 [node name="windows" type="Node3D" parent="variations/3"]
-script = ExtResource("2_6jxkp")
 
 [node name="window80" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, -2, 6.75, 7.036)
@@ -137,14 +136,14 @@ script = ExtResource("2_6jxkp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 
 [node name="window84" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 10.75, 3.7861)
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 8.02546, 10.75, 3.7861)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window85" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 10.75, -0.213902)
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 8.02546, 10.75, -0.213902)
 material_override = ExtResource("3_5ellb")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
@@ -154,28 +153,28 @@ script = ExtResource("2_6jxkp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 
 [node name="window86" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 10.75, -4.2139)
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 8.02546, 10.75, -4.2139)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window87" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 6.75, 3.7861)
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 8.02546, 6.75, 3.7861)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window88" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 6.75, -0.213902)
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 8.34479, 6.75, -0.213902)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window89" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 8.02546, 6.75, -4.2139)
+transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 8.02546, 6.75, -4.2139)
 material_override = ExtResource("3_5ellb")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
@@ -185,35 +184,35 @@ script = ExtResource("2_6jxkp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 
 [node name="window90" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10.75, -4.2139)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.06261, 10.75, -4.2139)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window91" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10.75, -0.213902)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.06261, 10.75, -0.213902)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window92" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10.75, 3.7861)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.06261, 10.75, 3.7861)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window93" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6.75, -4.2139)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.06261, 6.75, -4.2139)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
 script = ExtResource("2_6jxkp")
 
 [node name="window94" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6.75, -0.213902)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.06261, 6.75, -0.213902)
 material_override = ExtResource("3_5ellb")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")
@@ -223,7 +222,7 @@ script = ExtResource("2_6jxkp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 
 [node name="window95" type="MeshInstance3D" parent="variations/3/windows"]
-transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6.75, 3.7861)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.06261, 6.75, 3.7861)
 material_override = SubResource("StandardMaterial3D_axxkl")
 mesh = SubResource("QuadMesh_k1s1h")
 skeleton = NodePath("../../../..")

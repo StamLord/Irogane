@@ -184,7 +184,6 @@ schedule = {
 }
 
 [node name="npc2" parent="." instance=ExtResource("3_7nk2a")]
-process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.0631526, 27.8815)
 agent_data = ExtResource("5_pyu6k")
 

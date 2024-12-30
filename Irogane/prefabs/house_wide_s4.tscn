@@ -26,6 +26,7 @@ script = ExtResource("1_yd74f")
 [node name="variations" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="variations"]
+process_mode = 4
 visible = false
 
 [node name="main" type="CSGBox3D" parent="variations/1"]
@@ -229,6 +230,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_taojx")
 
 [node name="2" type="Node3D" parent="variations"]
+process_mode = 4
 visible = false
 
 [node name="main" type="CSGBox3D" parent="variations/2"]

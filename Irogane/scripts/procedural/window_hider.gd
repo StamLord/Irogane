@@ -12,6 +12,9 @@ func _ready():
 	
 	check_collisions()
 	
+	if not Engine.is_editor_hint():
+		set_script(null)
+	
 
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint():
@@ -42,7 +45,7 @@ func check_collisions():
 		query.hit_back_faces = true
 	
 		var result = space_state.intersect_ray(query)
-		if result:
+		if result and result.collider.owner != owner:
 			visible = false
 			return
 		

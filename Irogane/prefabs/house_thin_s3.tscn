@@ -25,6 +25,7 @@ script = ExtResource("1_xy6bf")
 [node name="variations" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="variations"]
+process_mode = 4
 visible = false
 
 [node name="house_thin_s3" parent="variations/1" instance=ExtResource("7_wpe2k")]
@@ -170,6 +171,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_40xxw")
 
 [node name="2" type="Node3D" parent="variations"]
+process_mode = 4
 visible = false
 
 [node name="house_thin_s3" parent="variations/2" instance=ExtResource("7_wpe2k")]

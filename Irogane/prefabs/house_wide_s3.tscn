@@ -25,9 +25,8 @@ script = ExtResource("1_t2gr6")
 [node name="variations" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="variations"]
+process_mode = 4
 visible = false
-
-[node name="house_wide_s32" parent="variations/1" instance=ExtResource("2_6qhvm")]
 
 [node name="windows" type="Node3D" parent="variations/1"]
 
@@ -209,10 +208,11 @@ shape = SubResource("BoxShape3D_sgv3x")
 transform = Transform3D(0.891006, 0.45399, 0, -0.45399, 0.891006, 0, 0, 0, 1, 2.337, 13.027, 0)
 shape = SubResource("BoxShape3D_sgv3x")
 
-[node name="2" type="Node3D" parent="variations"]
-visible = false
+[node name="house_wide_s33" parent="variations/1" instance=ExtResource("2_6qhvm")]
 
-[node name="house_wide_s32" parent="variations/2" instance=ExtResource("2_6qhvm")]
+[node name="2" type="Node3D" parent="variations"]
+process_mode = 4
+visible = false
 
 [node name="windows" type="Node3D" parent="variations/2"]
 
@@ -391,9 +391,11 @@ shape = SubResource("BoxShape3D_sgv3x")
 transform = Transform3D(0.891006, 0.45399, 0, -0.45399, 0.891006, 0, 0, 0, 1, 2.337, 13.027, 0)
 shape = SubResource("BoxShape3D_sgv3x")
 
+[node name="house_wide_s32" parent="variations/2" instance=ExtResource("2_6qhvm")]
+
 [node name="3" type="Node3D" parent="variations"]
 
-[node name="house_wide_s32" parent="variations/3" instance=ExtResource("2_6qhvm")]
+[node name="house_wide_s33" parent="variations/3" instance=ExtResource("2_6qhvm")]
 
 [node name="windows" type="Node3D" parent="variations/3"]
 

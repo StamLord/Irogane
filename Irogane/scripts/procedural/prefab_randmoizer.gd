@@ -20,6 +20,8 @@ func _ready():
 	
 	if Engine.is_editor_hint():
 		last_position = global_position
+	else:
+		set_script(null)
 	
 
 func _process(delta: float) -> void:
@@ -41,6 +43,7 @@ func update_prefab(id):
 	var i = 0
 	for variation in get_variations():
 		variation.visible = i == id
+		variation.process_mode = PROCESS_MODE_INHERIT if i == id else PROCESS_MODE_DISABLED 
 		i += 1
 	
 
