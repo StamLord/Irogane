@@ -529,22 +529,14 @@ func add_debug_commands():
 	DebugCommandsManager.add_command(
 		"die",
 		kill_me,
-		 [{
-				"arg_name" : "None",
-				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
-				"arg_desc" : "None"
-			}],
+		 [],
 		"Kills the player"
 		)
 	
 	DebugCommandsManager.add_command(
 		"res",
 		resurrect_me,
-		 [{
-				"arg_name" : "None",
-				"arg_type" : DebugCommandsManager.ArgumentType.STRING,
-				"arg_desc" : "None"
-			}],
+		 [],
 		"Resurrects the player"
 		)
 	
