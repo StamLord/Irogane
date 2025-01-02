@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=107 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
@@ -33,6 +33,8 @@
 [ext_resource type="Script" path="res://scripts/ui/prayer_beads_save_window.gd" id="30_8kyfl"]
 [ext_resource type="PackedScene" uid="uid://ccdnbbmarggif" path="res://prefabs/ui/game_save_load_window.tscn" id="31_e2xi2"]
 [ext_resource type="PackedScene" uid="uid://cbr1jgg4xl0ou" path="res://scenes/minigames/lockpicking_minigame.tscn" id="33_mo2sm"]
+[ext_resource type="FontFile" uid="uid://blnra70x5efg" path="res://assets/fonts/UbuntuMono-Regular.ttf" id="34_pbcfy"]
+[ext_resource type="Script" path="res://scripts/ui/fps_counter.gd" id="35_qpsy7"]
 
 [sub_resource type="Curve" id="Curve_12jqb"]
 max_value = 4.0
@@ -1411,5 +1413,20 @@ max_time_var_name = "prayer_total_time"
 [node name="LockpickingMinigame" parent="." instance=ExtResource("33_mo2sm")]
 visible = false
 layout_mode = 1
+
+[node name="fps_counter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -99.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.780392, 0, 1)
+theme_override_fonts/font = ExtResource("34_pbcfy")
+text = "243"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("35_qpsy7")
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]
