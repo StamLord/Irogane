@@ -1,8 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://buhb2dxhgcuje"]
+[gd_scene load_steps=60 format=3 uid="uid://buhb2dxhgcuje"]
 
 [ext_resource type="Texture2D" uid="uid://lc8jirnmdhqv" path="res://assets/textures/medieval/yellow-seamless-sett-texture.jpg" id="1_bhjy8"]
 [ext_resource type="Script" path="res://scripts/procedural/node_count.gd" id="1_lndv3"]
-[ext_resource type="Environment" uid="uid://c5dldc7hict1f" path="res://assets/environment/env_6.tres" id="2_fd1mu"]
+[ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="2_7q0ui"]
 [ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="2_lrvno"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_r6k8b"]
 [ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="3_01u3a"]
@@ -21,15 +21,19 @@
 [ext_resource type="PackedScene" uid="uid://b6sk7wquaq63e" path="res://prefabs/pickups/crate_big.tscn" id="13_85ygq"]
 [ext_resource type="PackedScene" uid="uid://g8twkpdviu0p" path="res://assets/models/building_blocks/well_1-5x4.glb" id="13_lhnv2"]
 [ext_resource type="Script" path="res://scenes/water_area.gd" id="14_7bmkj"]
+[ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="14_f7ig8"]
 [ext_resource type="PackedScene" uid="uid://bsjxfce43fb7f" path="res://assets/models/building_blocks/well_floor.glb" id="14_ta37m"]
 [ext_resource type="Material" uid="uid://crfxa6bkikyfi" path="res://assets/models/env/river_bed/water.tres" id="15_6022a"]
-[ext_resource type="PackedScene" uid="uid://bg351sbgyatcy" path="res://assets/models/building_blocks/sewers_i_well.glb" id="15_lfdqj"]
+[ext_resource type="PackedScene" uid="uid://dnq256n67ynok" path="res://prefabs/hanging_flags.tscn" id="15_odbvs"]
 [ext_resource type="Script" path="res://scripts/procedural/water_collision_shape.gd" id="15_y0xhc"]
 [ext_resource type="PackedScene" uid="uid://bko8ods3crt5u" path="res://assets/models/building_blocks/sewers_i.glb" id="16_5j77n"]
 [ext_resource type="Material" uid="uid://4a34kvy5tvfs" path="res://assets/shaders/underwater_material.tres" id="16_fl4ow"]
 [ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch.tscn" id="19_0c7k4"]
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="21_0jbb5"]
 [ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="22_pdhfy"]
+[ext_resource type="PackedScene" uid="uid://csoy1mwxtniy2" path="res://prefabs/coin_2_prefab.tscn" id="23_86fpi"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="31_asr3y"]
+[ext_resource type="PackedScene" uid="uid://dgjt41mvb4tff" path="res://prefabs/building_blocks/pipe_1.tscn" id="32_lbus2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp8io"]
 disable_fog = true
@@ -66,44 +70,77 @@ metallic_specular = 0.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_geiwp"]
 size = Vector2(14, 14)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we6ei"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 0.580392, 0.788235, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_raan2"]
+size = Vector3(0.3, 0.8, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kclel"]
+size = Vector3(0.2, 0.6, 0.2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_frfcs"]
 size = Vector3(7.96365, 3, 54.9484)
 
-[sub_resource type="QuadMesh" id="QuadMesh_gsgwr"]
+[sub_resource type="QuadMesh" id="QuadMesh_b233a"]
 material = ExtResource("15_6022a")
 size = Vector2(7.96365, 54.9484)
 
-[sub_resource type="BoxMesh" id="BoxMesh_hch76"]
+[sub_resource type="BoxMesh" id="BoxMesh_nveb3"]
 material = ExtResource("16_fl4ow")
 size = Vector3(7.96285, 2.9997, 54.9429)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ssdyb"]
 size = Vector3(7.96365, 3, 65.3506)
 
-[sub_resource type="QuadMesh" id="QuadMesh_0kot0"]
+[sub_resource type="QuadMesh" id="QuadMesh_jgeyt"]
 material = ExtResource("15_6022a")
 size = Vector2(7.96365, 65.3506)
 
-[sub_resource type="BoxMesh" id="BoxMesh_12htv"]
+[sub_resource type="BoxMesh" id="BoxMesh_5knqi"]
 material = ExtResource("16_fl4ow")
 size = Vector3(7.96285, 2.9997, 65.3441)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j0vhc"]
-size = Vector3(5, 3, 65.3506)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ml1m"]
+size = Vector3(2.9364, 3, 23.7773)
 
-[sub_resource type="QuadMesh" id="QuadMesh_7u22h"]
+[sub_resource type="QuadMesh" id="QuadMesh_s3su3"]
 material = ExtResource("15_6022a")
-size = Vector2(5, 65.3506)
+size = Vector2(2.9364, 23.7773)
 
-[sub_resource type="BoxMesh" id="BoxMesh_5c73t"]
+[sub_resource type="BoxMesh" id="BoxMesh_1hmmx"]
 material = ExtResource("16_fl4ow")
-size = Vector3(4.9995, 2.9997, 65.3441)
+size = Vector3(2.93611, 2.9997, 23.775)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0vhc"]
+size = Vector3(5, 3, 17.9289)
+
+[sub_resource type="QuadMesh" id="QuadMesh_77hjq"]
+material = ExtResource("15_6022a")
+size = Vector2(5, 17.9289)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vdmfi"]
+material = ExtResource("16_fl4ow")
+size = Vector3(4.9995, 2.9997, 17.9271)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ssj4o"]
+size = Vector3(9, 6, 25)
+
+[sub_resource type="QuadMesh" id="QuadMesh_uqqmb"]
+material = ExtResource("15_6022a")
+size = Vector2(9, 25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bamcs"]
+material = ExtResource("16_fl4ow")
+size = Vector3(8.9991, 5.9994, 24.9975)
 
 [node name="BlackWatch" type="Node3D"]
 script = ExtResource("1_lndv3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_fd1mu")
+environment = ExtResource("2_7q0ui")
 
 [node name="sun" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 33.6888, 16, 0)
@@ -132,7 +169,7 @@ navigation_mesh = SubResource("NavigationMesh_ybo6b")
 transform = Transform3D(0.999895, 0, 0.0145206, 0, 1, 0, -0.0145206, 0, 0.999895, 0, -4.75, 0)
 material_override = SubResource("StandardMaterial3D_6thla")
 use_collision = true
-size = Vector3(100, 9.5, 100)
+size = Vector3(120, 9.5, 120)
 
 [node name="canal" type="CSGPolygon3D" parent="NavigationRegion3D/floor"]
 transform = Transform3D(0.999895, -0.0145206, 6.34717e-10, 0, -4.37114e-08, -1, 0.0145206, 0.999895, -4.37068e-08, -32.5002, -1.25, -0.221947)
@@ -140,15 +177,54 @@ operation = 2
 polygon = PackedVector2Array(27.5195, -52.6559, 0, 1, 0.5, 56.75, 8.55205, 56.811, 9.09333, 0.450187, 36.9443, -51.2492)
 depth = 6.0
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+[node name="well_room" type="CSGBox3D" parent="NavigationRegion3D/floor"]
 transform = Transform3D(0.999983, 0, 1.21072e-07, 0, 1, 0, -1.21072e-07, 0, 0.999983, 19.5, 0.632198, -17.25)
 operation = 2
 size = Vector3(4, 10, 4)
 
-[node name="well_path" type="CSGBox3D" parent="NavigationRegion3D/floor"]
-transform = Transform3D(0.999895, 0, 7.45058e-07, 0, 1, 0, -7.45058e-07, 0, 0.999895, 3.875, -0.25, -17.25)
+[node name="well_room2" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(0.999978, 0, 1.546e-07, 0, 1, 0, -1.546e-07, 0, 0.999978, 19.5, -1.4928, -17.25)
 operation = 2
-size = Vector3(38.25, 8, 8.5)
+size = Vector3(7, 5.75, 7)
+
+[node name="well_path" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(0.999874, 0, 8.96864e-07, 0, 1, 0, -8.96864e-07, 0, 0.999874, -7.62377, 1.375, -17.25)
+operation = 2
+size = Vector3(19.25, 4.75, 3)
+
+[node name="well_path2" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(0.499938, 0, 0.865912, 0, 1, 0, -0.865912, 0, 0.499938, 0.921911, 1.5, -25.459)
+operation = 2
+size = Vector3(18.75, 3, 3)
+
+[node name="well_path5" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(-0.865908, 0, 0.499937, 0, 1, 0, -0.499937, 0, -0.865908, 10.7059, 1.5, -22.4079)
+operation = 2
+size = Vector3(22.75, 3, 3)
+
+[node name="well_path3" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(0.499937, 0, 0.865909, 0, 1, 0, -0.865909, 0, 0.499937, 0.101717, 4.625, -25.7882)
+operation = 2
+size = Vector3(2.5, 3.75, 1.25)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/floor/well_path3"]
+transform = Transform3D(1.00013, 0, 1.77636e-15, 0, -4.37172e-08, 1, 0, -1.00013, -4.3723e-08, 0, 1, -9.53674e-07)
+light_color = Color(0, 0.682353, 0.905882, 1)
+light_energy = 0.1
+shadow_enabled = true
+spot_range = 35.29
+
+[node name="well_path4" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(0.499937, 0, 0.86591, 0, 1, 0, -0.86591, 0, 0.499937, -1.89804, 4.5, -22.3245)
+operation = 2
+size = Vector3(2.5, 4, 1.25)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/floor/well_path4"]
+transform = Transform3D(1.00013, 8.9407e-08, 1.77636e-15, 0, -4.37171e-08, 1, 8.9407e-08, -1.00013, -4.37229e-08, -5.72205e-06, 1, 9.53674e-07)
+light_color = Color(0, 0.682353, 0.905882, 1)
+light_energy = 0.1
+shadow_enabled = true
+spot_range = 35.29
 
 [node name="houses" type="Node3D" parent="NavigationRegion3D"]
 
@@ -159,10 +235,13 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.019
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.98046, 0, -0.293549)
 
 [node name="house_thin_s4_2" parent="NavigationRegion3D/houses" instance=ExtResource("5_lk55t")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.25, 0, 25.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.25, 0, 25)
 
 [node name="house_thin_s4_7" parent="NavigationRegion3D/houses" instance=ExtResource("5_lk55t")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9136, 0, 23.844)
+
+[node name="house_thin_s4_8" parent="NavigationRegion3D/houses" instance=ExtResource("5_lk55t")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 33.866, 9, 45.1796)
 
 [node name="house_thin_s4_3" parent="NavigationRegion3D/houses" instance=ExtResource("5_lk55t")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18.5, 0, 27.75)
@@ -195,6 +274,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 operation = 2
 size = Vector3(2, 2, 4)
 
+[node name="closed_gate3" type="CSGBox3D" parent="NavigationRegion3D/houses"]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 42.375, 3, 37.5538)
+material_override = ExtResource("3_01u3a")
+use_collision = true
+size = Vector3(1, 6, 12)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D/houses/closed_gate3"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 4.37114e-08, 1, 0, -1, 0)
+operation = 2
+radius = 2.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/houses/closed_gate3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+operation = 2
+size = Vector3(2, 2, 4)
+
 [node name="house_thin_s4_5" parent="NavigationRegion3D/houses" instance=ExtResource("5_lk55t")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.25, 0, 48.25)
 
@@ -214,16 +309,16 @@ transform = Transform3D(0.906706, 0, -0.421764, 0, 1, 0, 0.421764, 0, 0.906706, 
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 0, -6)
 
 [node name="house_thin_s2_2" parent="NavigationRegion3D/houses" instance=ExtResource("6_0n8hh")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 0, -17.25)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 6.26777, 12.75, -25.9822)
 
 [node name="house_thin_s2_3" parent="NavigationRegion3D/houses" instance=ExtResource("6_0n8hh")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 29, 0, -24.25)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D/houses"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 27.5, 30.5, 3)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 27.5, 34, 3)
 use_collision = true
 radius = 8.5
-height = 13.0
+height = 20.0
 sides = 4
 cone = true
 material = ExtResource("9_mgvhf")
@@ -241,12 +336,18 @@ mesh = SubResource("QuadMesh_pjtpp")
 skeleton = NodePath("../../../../..")
 script = ExtResource("11_v7t7q")
 
+[node name="WindowLight" parent="NavigationRegion3D/houses/tower/window80" instance=ExtResource("14_f7ig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
 [node name="window84" type="MeshInstance3D" parent="NavigationRegion3D/houses/tower"]
 transform = Transform3D(1, 0, -1.3411e-07, 0, 1, 0, 1.3411e-07, 0, 1, 4.25, -1.25, 6.036)
 material_override = ExtResource("10_cfkhc")
 mesh = SubResource("QuadMesh_pjtpp")
 skeleton = NodePath("../../../../..")
 script = ExtResource("11_v7t7q")
+
+[node name="WindowLight" parent="NavigationRegion3D/houses/tower/window84" instance=ExtResource("14_f7ig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window81" type="MeshInstance3D" parent="NavigationRegion3D/houses/tower"]
 transform = Transform3D(-1, 0, 2.21533e-07, 0, 1, 0, -2.21533e-07, 0, -1, 0.25, 6.75, -6.214)
@@ -255,6 +356,9 @@ mesh = SubResource("QuadMesh_pjtpp")
 skeleton = NodePath("../../../../..")
 script = ExtResource("11_v7t7q")
 
+[node name="WindowLight" parent="NavigationRegion3D/houses/tower/window81" instance=ExtResource("14_f7ig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
 [node name="window82" type="MeshInstance3D" parent="NavigationRegion3D/houses/tower"]
 transform = Transform3D(9.03986e-08, 0, 1, 0, 1, 0, -1, 0, 9.03986e-08, 6.125, 2.75, -0.0890009)
 material_override = ExtResource("10_cfkhc")
@@ -262,12 +366,18 @@ mesh = SubResource("QuadMesh_pjtpp")
 skeleton = NodePath("../../../../..")
 script = ExtResource("11_v7t7q")
 
+[node name="WindowLight" parent="NavigationRegion3D/houses/tower/window82" instance=ExtResource("14_f7ig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
 [node name="window83" type="MeshInstance3D" parent="NavigationRegion3D/houses/tower"]
 transform = Transform3D(-1.77821e-07, 0, -1, 0, 1, 0, 1, 0, -1.77821e-07, -6.125, 2.75, -0.0890005)
 material_override = ExtResource("10_cfkhc")
 mesh = SubResource("QuadMesh_pjtpp")
 skeleton = NodePath("../../../../..")
 script = ExtResource("11_v7t7q")
+
+[node name="WindowLight" parent="NavigationRegion3D/houses/tower/window83" instance=ExtResource("14_f7ig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="passage" type="CSGBox3D" parent="NavigationRegion3D/houses"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 10, 1.75)
@@ -303,16 +413,28 @@ transform = Transform3D(0.471027, 0, 0.882119, 0, 1, 0, -0.882119, 0, 0.471027, 
 transform = Transform3D(-0.882119, 0, 0.471027, 0, 1, 0, -0.471027, 0, -0.882119, -14.0162, 0, -42.2567)
 
 [node name="house_wide_s4_4" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.1803, 0, -47.1954)
+transform = Transform3D(0.160105, 0, 0.9871, 0, 1, 0, -0.9871, 0, 0.160105, 8.29142, 0, -43.09)
+
+[node name="house_wide_s4_23" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.4303, 0, -45.9454)
+
+[node name="house_wide_s4_22" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 30.9303, 0, -46.4454)
 
 [node name="house_wide_s4_5" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23.4194, 0, -51.1671)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 17.6694, 0, -45.1671)
 
 [node name="house_wide_s4_6" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 36.6585, 0, -47.2972)
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 38.6585, 0, -50.0472)
+
+[node name="house_wide_s4_21" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
+transform = Transform3D(-0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, 46.674, 0, -60.4305)
 
 [node name="house_wide_s4_10" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 50.1161, 0, -37.8392)
+
+[node name="house_wide_s4_20" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 57.0383, 0, -49.1842)
 
 [node name="house_wide_s4_11" parent="NavigationRegion3D/houses" instance=ExtResource("7_uuc5f")]
 transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, 46.1161, 0, -28.5892)
@@ -328,6 +450,12 @@ transform = Transform3D(-0.882119, 0, 0.471027, 0, 1, 0, -0.471027, 0, -0.882119
 
 [node name="house_wide_s4_14" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(0.0331376, 0, -0.999451, 0, 1, 0, 0.999451, 0, 0.0331376, -39.248, 0, 27.8568)
+
+[node name="house_wide_s4_18" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.498, 10.5, 32.1068)
+
+[node name="house_wide_s4_19" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.498, 10.5, 46.1068)
 
 [node name="house_wide_s4_16" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(0.0331376, 0, -0.999451, 0, 1, 0, 0.999451, 0, 0.0331376, -39.1016, 0, 47.3627)
@@ -358,8 +486,17 @@ transform = Transform3D(-0.999451, 0, -0.0331375, 0, 1, 0, 0.0331375, 0, -0.9994
 [node name="house_wide_s3_wp_4" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 4.48754, 0, 28.0535)
 
+[node name="hanging_flags" parent="NavigationRegion3D/houses/house_wide_s3_wp_4" instance=ExtResource("15_odbvs")]
+transform = Transform3D(0.25882, -0.965927, -4.2222e-08, 0, -4.37114e-08, 1, -0.965927, -0.25882, -1.13134e-08, 8.69706, 12.25, -1.60017)
+
+[node name="hanging_flags3" parent="NavigationRegion3D/houses/house_wide_s3_wp_4" instance=ExtResource("15_odbvs")]
+transform = Transform3D(0.25882, -0.965927, -4.2222e-08, 0, -4.37114e-08, 1, -0.965927, -0.25882, -1.13134e-08, 14.7341, 12.25, 0.0174503)
+
+[node name="hanging_flags2" parent="NavigationRegion3D/houses/house_wide_s3_wp_4" instance=ExtResource("15_odbvs")]
+transform = Transform3D(0.25882, -0.965927, -4.2222e-08, 0, -4.37114e-08, 1, -0.965927, -0.25882, -1.13134e-08, 20.7712, 12.25, 1.63507)
+
 [node name="house_wide_s3_wp_7" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 18.817, 0, 27.4972)
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 18.817, 7, 27.4972)
 
 [node name="house_wide_s3_wp_8" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 27.8973, 0, 31.5246)
@@ -367,14 +504,32 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 27.8973, 0
 [node name="house_wide_s3_wp_9" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 34.8973, 0, 43.6489)
 
+[node name="house_wide_s3_wp_20" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 30.4947, 0, 47.2446)
+
+[node name="house_wide_s3_wp_15" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 44.3411, 0, 53.0289)
+
+[node name="house_wide_s3_wp_17" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(0.0101097, 0.00815295, 0.999915, 0.100849, 0.99486, -0.00913136, -0.99485, 0.100933, 0.00923547, 57.1374, -0.368833, 55.6307)
+
+[node name="house_wide_s3_wp_16" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 56.7136, 0, 39.0989)
+
 [node name="house_wide_s3_wp_10" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 49.3541, 0, 31.5239)
 
 [node name="house_wide_s3_wp_11" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 46.3541, 0, 21.0239)
 
+[node name="house_wide_s3_wp_18" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(-7.35137e-08, 0, 1, 0, 1, 0, -1, 0, -7.35137e-08, 51.3541, 5.25, 15.2739)
+
+[node name="house_wide_s3_wp_19" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(-1, 0, -1.17225e-07, 0, 1, 0, 1.17225e-07, 0, -1, 60.1041, 5.25, 5.0239)
+
 [node name="house_wide_s3_wp_12" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 48.1041, 0, 7.02394)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 46.3541, 0, 7.02394)
 
 [node name="house_wide_s3_wp_13" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(-7.35137e-08, 0, 1, 0, 1, 0, -1, 0, -7.35137e-08, 49.1041, 0, -2.22606)
@@ -387,6 +542,12 @@ transform = Transform3D(-1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, -19.57
 
 [node name="house_wide_s3_wp_6" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
 transform = Transform3D(-1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, -2.82188, 0, 40.6972)
+
+[node name="house_wide_s3_wp_21" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(1.39091e-08, 0, 1, 0, 1, 0, -1, 0, 1.39091e-08, 5.67812, 0, 50.4472)
+
+[node name="house_wide_s3_wp_22" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(1.39091e-08, 0, 1, 0, 1, 0, -1, 0, 1.39091e-08, 19.6781, 0, 50.4472)
 
 [node name="house_thin_s3_" parent="NavigationRegion3D/houses" instance=ExtResource("10_ok6rj")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -16.7914, 0, 24.844)
@@ -401,19 +562,19 @@ transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -13.299, 0
 transform = Transform3D(-2.98023e-07, 0, 1, 0, 1, 0, -1, 0, -2.98023e-07, 11.201, 0, 23.8306)
 
 [node name="house_half_s4" parent="NavigationRegion3D/houses" instance=ExtResource("11_w2f0f")]
-transform = Transform3D(-2.98023e-07, 0, 1, 0, 1, 0, -1, 0, -2.98023e-07, 18.201, 0, 23.8306)
-
-[node name="torch" parent="NavigationRegion3D/houses" instance=ExtResource("19_0c7k4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.1894, 2.25, 6.90208)
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 28.7681, 1.90735e-06, 39.9493)
 
 [node name="torch2" parent="NavigationRegion3D/houses" instance=ExtResource("19_0c7k4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.1894, 2.25, -1.84792)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.3127, 2.25, 0.90208)
 
 [node name="torch4" parent="NavigationRegion3D/houses" instance=ExtResource("19_0c7k4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.802, 2.25, -15.5979)
 
 [node name="torch3" parent="NavigationRegion3D/houses" instance=ExtResource("19_0c7k4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.1894, 2.25, 0.90208)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.1796, 2.25, 0.90208)
+
+[node name="torch6" parent="NavigationRegion3D/houses" instance=ExtResource("19_0c7k4")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 7.42962, 2.25, -4.48089)
 
 [node name="well_1-5x42" parent="NavigationRegion3D/houses" instance=ExtResource("13_lhnv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.25, -2.5, -17.5)
@@ -421,23 +582,203 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.25, -2.5, -17.5)
 [node name="well_floor2" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("14_ta37m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
-[node name="sewers_i_well2" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("15_lfdqj")]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, 0, -5.5, 0)
-
 [node name="sewers_i2" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("16_5j77n")]
 transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 0, -1, -1, -4.37114e-08, -4.37114e-08, -8, -5.5, 0)
+visible = false
 
 [node name="sewers_i3" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("16_5j77n")]
 transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 0, -1, -1, -4.37114e-08, -4.37114e-08, -16, -5.5, 0)
+visible = false
 
 [node name="sewers_i4" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("16_5j77n")]
 transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 0, -1, -1, -4.37114e-08, -4.37114e-08, -24, -5.5, 0)
+visible = false
 
 [node name="sewers_i5" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("16_5j77n")]
 transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 0, -1, -1, -4.37114e-08, -4.37114e-08, -32, -5.5, 0)
+visible = false
+
+[node name="water_crystal" type="Node3D" parent="NavigationRegion3D/houses/well_1-5x42"]
+transform = Transform3D(0.941523, 0.291805, 0.168474, -0.336947, 0.815383, 0.470762, 0, -0.5, 0.866025, -1.28477, -5.10892, 3.43732)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal"]
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_raan2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal"]
+transform = Transform3D(0.892879, 0.362293, 0.267416, -0.404928, 0.905781, 0.124876, -0.196979, -0.219783, 0.955455, 0.209446, -0.112948, -0.120237)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal"]
+transform = Transform3D(0.887541, -0.458624, 0.0439986, 0.354156, 0.740204, 0.571551, -0.294695, -0.491693, 0.819386, -0.150999, -0.323655, -0.101235)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal"]
+transform = Transform3D(0.995018, 0.0798569, 0.0596929, -0.0985214, 0.695703, 0.711541, 0.015293, -0.713877, 0.700104, 0.0546799, -0.289053, -0.180362)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225886, -0.391247)
+light_color = Color(0, 0.564706, 0.768627, 1)
+light_energy = 0.5
+
+[node name="water_crystal3" type="Node3D" parent="NavigationRegion3D/houses/well_1-5x42"]
+transform = Transform3D(0.629917, -0.176384, 0.756369, -0.336947, 0.815383, 0.470762, -0.699765, -0.551397, 0.454191, -17.6537, -2.79663, 1.46101)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal3"]
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_raan2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal3"]
+transform = Transform3D(0.892879, 0.362293, 0.267416, -0.404928, 0.905781, 0.124876, -0.196979, -0.219783, 0.955455, 0.209446, -0.112948, -0.120237)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal3"]
+transform = Transform3D(0.887541, -0.458624, 0.0439986, 0.354156, 0.740204, 0.571551, -0.294695, -0.491693, 0.819386, -0.150999, -0.323655, -0.101235)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal3"]
+transform = Transform3D(0.995018, 0.0798569, 0.0596929, -0.0985214, 0.695703, 0.711541, 0.015293, -0.713877, 0.700104, 0.0546799, -0.289053, -0.180362)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225886, -0.391247)
+light_color = Color(0, 0.564706, 0.768627, 1)
+light_energy = 0.5
+
+[node name="water_crystal2" type="Node3D" parent="NavigationRegion3D/houses/well_1-5x42"]
+transform = Transform3D(-1.41421, -0.154893, 1.40571, 0, 1.98797, 0.219052, -1.41421, 0.154893, -1.40571, 3.22122, -5.35813, -3.03234)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal2"]
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_raan2")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal2"]
+transform = Transform3D(0.892879, 0.362293, 0.267416, -0.404928, 0.905781, 0.124876, -0.196979, -0.219783, 0.955455, 0.209446, -0.112948, -0.120237)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal2"]
+transform = Transform3D(0.887541, -0.458624, 0.0439986, 0.354156, 0.740204, 0.571551, -0.294695, -0.491693, 0.819386, -0.150999, -0.323655, -0.101235)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal2"]
+transform = Transform3D(0.995018, 0.0798569, 0.0596929, -0.0985214, 0.695703, 0.711541, 0.015293, -0.713877, 0.700104, 0.0546799, -0.289053, -0.180362)
+material_override = SubResource("StandardMaterial3D_we6ei")
+mesh = SubResource("BoxMesh_kclel")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/houses/well_1-5x42/water_crystal2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225886, -0.391247)
+light_color = Color(0, 0.564706, 0.768627, 1)
+light_energy = 0.5
+
+[node name="CoinPrefab" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.5, 0)
+
+[node name="CoinPrefab2" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -6.5, 0.25)
+
+[node name="CoinPrefab3" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11359, -6.5, 0.556019)
+
+[node name="CoinPrefab4" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(0.363554, 0, 0.931573, 0, 1, 0, -0.931573, 0, 0.363554, -0.627678, -6.62022, -0.285307)
+
+[node name="CoinPrefab5" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(0.363554, 0, 0.931573, 0, 1, 0, -0.931573, 0, 0.363554, -0.343081, -6.4774, -0.438953)
+
+[node name="CoinPrefab6" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(0.363554, 0, 0.931573, 0, 1, 0, -0.931573, 0, 0.363554, -0.191536, -6.40237, 0.00517464)
+
+[node name="CoinPrefab7" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.659752, -6.5, 0.729799)
+
+[node name="CoinPrefab8" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.482977, -6.5, 0.423613)
+
+[node name="CoinPrefab13" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.624989, 0, 0.780634, 0, 1, 0, -0.780634, 0, -0.624989, 0.34129, -6.4774, -1.20158)
+
+[node name="CoinPrefab14" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.624989, 0, 0.780634, 0, 1, 0, -0.780634, 0, -0.624989, 0.801687, -6.40237, -1.11076)
+
+[node name="CoinPrefab15" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 1.19512, -6.5, -0.342957)
+
+[node name="CoinPrefab16" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 1.01834, -6.5, -0.649141)
+
+[node name="CoinPrefab9" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.0932808, -6.5, 0.69561)
+
+[node name="CoinPrefab10" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.993925, 0, 0.110057, 0, 1, 0, -0.110057, 0, -0.993925, -0.772882, -6.62022, 1.40993)
+
+[node name="CoinPrefab11" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.993925, 0, 0.110057, 0, 1, 0, -0.110057, 0, -0.993925, -0.994953, -6.4774, 1.1748)
+
+[node name="CoinPrefab12" parent="NavigationRegion3D/houses/well_1-5x42" instance=ExtResource("23_86fpi")]
+transform = Transform3D(-0.993925, 0, 0.110057, 0, 1, 0, -0.110057, 0, -0.993925, -0.605181, -6.40237, 0.913469)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D/houses/well_1-5x42"]
+transform = Transform3D(1, 8.93952e-08, 3.90759e-15, 0, -4.37114e-08, 1, 8.93952e-08, -1, -4.37114e-08, -5.72205e-06, 1.07275, 0)
+light_color = Color(0, 0.682353, 0.905882, 1)
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 15.0
 
 [node name="torch5" parent="NavigationRegion3D/houses" instance=ExtResource("19_0c7k4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.44998, 2, 47.25)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.98671, 2, 43)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.75, 7, 27.5)
+size = Vector3(12, 1, 8)
+
+[node name="house_wide_s4_24" parent="NavigationRegion3D/houses" instance=ExtResource("5_njmpg")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -1.84462, 5, -46.6179)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/houses/house_wide_s4_24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0248528, -3.25, 0.749588)
+material_override = ExtResource("3_01u3a")
+use_collision = true
+size = Vector3(8, 7.5, 14)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D/houses/house_wide_s4_24/CSGBox3D"]
+transform = Transform3D(0.00109806, -0.999451, -0.0331194, 0.999451, 1.58907e-08, 0.0331376, -0.0331194, -0.0331376, 0.998902, 0, -3.25, 0)
+operation = 2
+radius = 4.5
+height = 8.5
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D/houses/house_wide_s4_24"]
+transform = Transform3D(-4.37114e-08, 1, 5.96046e-08, 1, 4.37114e-08, 3.82137e-15, 0, 5.96046e-08, -1, -1.75, -5.25, -3.8147e-06)
+material_override = SubResource("StandardMaterial3D_mo5py")
+mesh = SubResource("PlaneMesh_geiwp")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="NavigationRegion3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.5, 3.5, -4.25)
+light_color = Color(0.862745, 0.541176, 0.188235, 1)
+light_energy = 8.0
+shadow_enabled = true
+spot_range = 35.29
 
 [node name="npc" parent="." instance=ExtResource("2_lrvno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.25, 0, 4.5)
@@ -455,11 +796,11 @@ script = ExtResource("15_y0xhc")
 
 [node name="surface" type="MeshInstance3D" parent="water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.41628, -2.875, 31.038)
-mesh = SubResource("QuadMesh_gsgwr")
+mesh = SubResource("QuadMesh_b233a")
 
 [node name="under_water" type="MeshInstance3D" parent="water_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.41628, -4.375, 31.038)
-mesh = SubResource("BoxMesh_hch76")
+mesh = SubResource("BoxMesh_nveb3")
 
 [node name="water_area2" type="Area3D" parent="."]
 transform = Transform3D(0.873933, 0, -0.486046, 0, 1, 0, 0.486046, 0, 0.873933, 2.19813, 0, -47.421)
@@ -474,11 +815,11 @@ script = ExtResource("15_y0xhc")
 
 [node name="surface" type="MeshInstance3D" parent="water_area2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.41628, -2.875, 25.8369)
-mesh = SubResource("QuadMesh_0kot0")
+mesh = SubResource("QuadMesh_jgeyt")
 
 [node name="under_water" type="MeshInstance3D" parent="water_area2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.41628, -4.375, 25.8369)
-mesh = SubResource("BoxMesh_12htv")
+mesh = SubResource("BoxMesh_5knqi")
 
 [node name="water_area3" type="Area3D" parent="."]
 transform = Transform3D(0.0160389, 0, -0.999871, 0, 1, 0, 0.999871, 0, 0.0160389, 16.1981, 0, -14.671)
@@ -487,17 +828,55 @@ collision_mask = 8
 script = ExtResource("14_7bmkj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="water_area3"]
-transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, -3.41628, -4.375, 25.8369)
-shape = SubResource("BoxShape3D_j0vhc")
+transform = Transform3D(1, 0, -4.09782e-08, 0, 1, 0, 4.09782e-08, 0, 1, -2.84798, -4.375, 26.4483)
+shape = SubResource("BoxShape3D_0ml1m")
 script = ExtResource("15_y0xhc")
 
 [node name="surface" type="MeshInstance3D" parent="water_area3"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.41628, -2.875, 25.8369)
-mesh = SubResource("QuadMesh_7u22h")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.84798, -2.875, 26.4482)
+mesh = SubResource("QuadMesh_s3su3")
 
 [node name="under_water" type="MeshInstance3D" parent="water_area3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.41628, -4.375, 25.8369)
-mesh = SubResource("BoxMesh_5c73t")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84798, -4.375, 26.4482)
+mesh = SubResource("BoxMesh_1hmmx")
+
+[node name="water_area4" type="Area3D" parent="."]
+transform = Transform3D(0.873933, 0, -0.486045, 0, 1, 0, 0.486045, 0, 0.873933, 10.1981, 0, -31.921)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("14_7bmkj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water_area4"]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, -5.44116, -4.375, 9.92089)
+shape = SubResource("BoxShape3D_j0vhc")
+script = ExtResource("15_y0xhc")
+
+[node name="surface" type="MeshInstance3D" parent="water_area4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.44116, -2.875, 9.92089)
+mesh = SubResource("QuadMesh_77hjq")
+
+[node name="under_water" type="MeshInstance3D" parent="water_area4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.44116, -4.375, 9.92089)
+mesh = SubResource("BoxMesh_vdmfi")
+
+[node name="water_area5" type="Area3D" parent="."]
+transform = Transform3D(0.486045, 0, 0.873933, 0, 1, 0, -0.873933, 0, 0.486045, 8.98299, 0, -29.7362)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("14_7bmkj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water_area5"]
+transform = Transform3D(1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, 1, -5.19116, -5.875, 7.19114)
+shape = SubResource("BoxShape3D_ssj4o")
+script = ExtResource("15_y0xhc")
+
+[node name="surface" type="MeshInstance3D" parent="water_area5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -5.19116, -2.875, 7.19114)
+mesh = SubResource("QuadMesh_uqqmb")
+
+[node name="under_water" type="MeshInstance3D" parent="water_area5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19116, -5.875, 7.19114)
+mesh = SubResource("BoxMesh_bamcs")
 
 [node name="interactive" type="Node3D" parent="."]
 
@@ -519,6 +898,16 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 45.960
 [node name="carriable2" parent="interactive" instance=ExtResource("13_85ygq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.375, 0.75, -3.375)
 
+[node name="carriable8" parent="interactive" instance=ExtResource("13_85ygq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.625, 0.75, 18.875)
+
+[node name="light" type="OmniLight3D" parent="interactive/carriable8" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -0.0699997)
+light_color = Color(1, 0.54902, 0, 1)
+shadow_enabled = true
+omni_range = 7.0
+script = ExtResource("31_asr3y")
+
 [node name="carriable5" parent="interactive" instance=ExtResource("13_85ygq")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46.125, 0.75, -17.375)
 
@@ -526,3 +915,39 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46.125
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0, 47.25)
 
 [node name="game_ui" parent="." instance=ExtResource("22_pdhfy")]
+
+[node name="pipe_1" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 8.75, 30.25)
+
+[node name="pipe_2" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 9.75, 30.25)
+
+[node name="pipe_11" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 10.75, 30.25)
+
+[node name="pipe_12" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 11.75, 30.25)
+
+[node name="pipe_3" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 7.75, 30.25)
+
+[node name="pipe_4" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 6.75, 30.25)
+
+[node name="pipe_5" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 5.75, 30.25)
+
+[node name="pipe_6" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 3.75, 30.25)
+
+[node name="pipe_7" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 4.75, 30.25)
+
+[node name="pipe_8" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 2.75, 30.25)
+
+[node name="pipe_9" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1.75, 30.25)
+
+[node name="pipe_10" parent="." instance=ExtResource("32_lbus2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0.75, 30.25)
