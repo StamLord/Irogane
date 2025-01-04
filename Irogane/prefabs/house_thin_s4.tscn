@@ -26,7 +26,6 @@ script = ExtResource("1_s8csr")
 
 [node name="1" type="Node3D" parent="variations"]
 process_mode = 4
-visible = false
 
 [node name="house_thin_s42" parent="variations/1" instance=ExtResource("2_8f2cm")]
 
@@ -96,6 +95,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window99" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 0, 0.5)
 
 [node name="window101" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 2, 10, 3.536)
@@ -105,6 +105,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window101" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window102" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 2, 14, 3.536)
@@ -114,6 +115,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window102" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window103" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -2, 14, 3.536)
@@ -123,6 +125,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window103" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, 0, 0.5)
 
 [node name="window85" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 10, 1.75)
@@ -132,6 +135,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window85" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window87" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 14, 1.75)
@@ -141,6 +145,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window87" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window86" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, -1.75)
@@ -171,6 +176,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window89" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window91" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6, -1.75)
@@ -180,6 +186,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window91" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window93" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10, 1.75)
@@ -189,6 +196,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window93" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window95" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6, 1.75)
@@ -205,6 +213,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/1/windows/window92" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window106" type="MeshInstance3D" parent="variations/1/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 14, 1.75)
@@ -292,6 +301,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window99" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 0, 0.5)
 
 [node name="window102" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, -2, 14, -3.53846)
@@ -308,6 +318,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window103" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38419e-07, 0, 0.5)
 
 [node name="window101" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 2, 10, 3.536)
@@ -317,6 +328,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window101" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window106" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 2, 14, 3.536)
@@ -326,6 +338,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window106" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window107" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -2, 14, 3.536)
@@ -335,6 +348,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window107" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, 0, 0.5)
 
 [node name="window85" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 10, 1.75)
@@ -344,6 +358,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window85" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window87" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 14, 1.75)
@@ -353,6 +368,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window87" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window86" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 6, -1.75)
@@ -383,6 +399,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window89" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window91" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6, -1.75)
@@ -392,6 +409,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window91" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window93" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10, 1.75)
@@ -401,6 +419,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/2/windows/window93" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window95" type="MeshInstance3D" parent="variations/2/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 6, 1.75)
@@ -445,6 +464,7 @@ transform = Transform3D(0.891006, 0.45399, 0, -0.45399, 0.891006, 0, 0, 0, 1, 2.
 shape = SubResource("BoxShape3D_nxcv8")
 
 [node name="3" type="Node3D" parent="variations"]
+visible = false
 
 [node name="house_thin_s42" parent="variations/3" instance=ExtResource("2_8f2cm")]
 
@@ -479,6 +499,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window83" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.499999)
 
 [node name="window96" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(-1, 0, 4.66877e-08, 0, 1, 0, -4.66877e-08, 0, -1, 2, 6, -3.53846)
@@ -509,6 +530,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window99" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window85" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 10, 1.75)
@@ -518,6 +540,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window85" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window86" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.023, 10, -1.75)
@@ -541,6 +564,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window89" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window91" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10, -1.75)
@@ -550,6 +574,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window91" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window92" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(-2.97629e-09, 0, -1, 0, 1, 0, 1, 0, -2.97629e-09, -4.06261, 10, 1.75)
@@ -608,6 +633,7 @@ skeleton = NodePath("../../../..")
 script = ExtResource("4_8svcy")
 
 [node name="OmniLight3D2" parent="variations/3/windows/window102" instance=ExtResource("6_xaq6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="window103" type="MeshInstance3D" parent="variations/3/windows"]
 transform = Transform3D(9.03991e-08, 0, 1, 0, 1, 0, -1, 0, 9.03991e-08, 4.04281, 14, 1.74882)

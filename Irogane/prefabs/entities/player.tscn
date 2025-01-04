@@ -1,4 +1,4 @@
-[gd_scene load_steps=190 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=204 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -76,6 +76,8 @@
 [ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
 [ext_resource type="Script" path="res://scripts/weapons/slingshot.gd" id="59_garyl"]
 [ext_resource type="Script" path="res://scripts/weapons/lockpick.gd" id="60_pohs2"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="62_h33aw"]
+[ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="63_rjyd0"]
 [ext_resource type="Script" path="res://scripts/camera/death_cam.gd" id="78_y1sx6"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
@@ -386,6 +388,68 @@ size = Vector3(0.05, 0.2, 0.05)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lecuj"]
 size = Vector3(0.1, 0.05, 0.01)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kld6x"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.25
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as3fc"]
+shading_mode = 0
+albedo_color = Color(1, 0.784314, 0, 1)
+
+[sub_resource type="Curve" id="Curve_mq8eo"]
+_data = [Vector2(0, 1), 0.0, -0.445115, 0, 0, Vector2(1, 0), -1.62068, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dw5um"]
+curve = SubResource("Curve_mq8eo")
+
+[sub_resource type="Gradient" id="Gradient_qqn2l"]
+offsets = PackedFloat32Array(0, 0.237705, 0.561475)
+colors = PackedColorArray(1, 0.968002, 0.431428, 1, 0.912296, 0.771426, 0, 1, 0.77192, 0.22088, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3qlp"]
+gradient = SubResource("Gradient_qqn2l")
+
+[sub_resource type="Curve" id="Curve_tioah"]
+_data = [Vector2(0, 0), 0.0, 3.43082, 0, 0, Vector2(1, 1), 0.0, 0.178046, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_orso8"]
+curve = SubResource("Curve_tioah")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vlxox"]
+emission_shape_scale = Vector3(1, 1, 0.01)
+angle_min = -1.0
+angle_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.23
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_orso8")
+color_ramp = SubResource("GradientTexture1D_k3qlp")
+alpha_curve = SubResource("CurveTexture_dw5um")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wc3t"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("63_rjyd0")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ah24d"]
+material = SubResource("StandardMaterial3D_8wc3t")
+center_offset = Vector3(0, 0.15, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1ter0"]
+size = Vector3(0.007, 0.075, 0.007)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
@@ -1277,6 +1341,41 @@ collide_with_bodies = false
 [node name="pin" type="CSGBox3D" parent="head/camera_bob/main_camera/simple_weapon_manager/lockpick/visual"]
 transform = Transform3D(0.965926, -0.12941, 0.224144, 0, 0.866025, 0.5, -0.258819, -0.482963, 0.836516, 0.36, -0.15, -0.4)
 size = Vector3(0.01, 0.01, 0.2)
+
+[node name="candle" type="Node3D" parent="head/camera_bob/main_camera/simple_weapon_manager"]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]
+transform = Transform3D(0.526541, -0.627507, -0.573576, 0.766044, 0.642788, 0, 0.368688, -0.439385, 0.819152, 0.35, -0.215, -0.4)
+mesh = SubResource("CylinderMesh_kld6x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D"]
+transform = Transform3D(1, 1.49012e-08, 0, 2.98023e-08, 1, -2.98023e-08, 0, -2.98023e-08, 1, 0.0324404, 0.153458, 0)
+material_override = SubResource("StandardMaterial3D_as3fc")
+
+[node name="light" type="OmniLight3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D/MeshInstance3D" groups=["light_source"]]
+transform = Transform3D(1, 1.49012e-08, 2.98023e-08, 0, 1, 2.98023e-08, -5.96046e-08, -2.98023e-08, 1, 0, 0, 0)
+light_color = Color(1, 0.54902, 0, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 3.0
+omni_attenuation = 2.0
+script = ExtResource("62_h33aw")
+base_energy = 0.5
+flicker_amount = 4.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 4.28408e-08, 2.98023e-08, -1.86265e-09, 0.999998, 9.68575e-08, -2.98023e-08, 7.45058e-08, 1, 0, 0, 0)
+amount = 16
+lifetime = 0.2
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_vlxox")
+draw_pass_1 = SubResource("QuadMesh_ah24d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D"]
+transform = Transform3D(0.681871, 0.731473, 0, -0.731473, 0.681871, -2.98023e-08, 2.98023e-08, -9.12696e-08, 1, 0.0140285, 0.140245, 1.19209e-07)
+mesh = SubResource("BoxMesh_1ter0")
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/camera_bob/main_camera"]
 target_position = Vector3(0, 0, -8)
