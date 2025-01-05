@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cuwgxv22fnmqx"]
 
-[ext_resource type="PackedScene" uid="uid://cn1f2ulyvvlxg" path="res://prefabs/window_light.tscn" id="1_7yesg"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="1_2q1tq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbi4h"]
 
@@ -28,5 +28,13 @@ mesh = SubResource("CylinderMesh_av2hq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.168715, 0)
 mesh = SubResource("SphereMesh_juym8")
 
-[node name="WindowLight" parent="." instance=ExtResource("1_7yesg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+[node name="light" type="OmniLight3D" parent="." groups=["light_source"]]
+transform = Transform3D(1, 1.49012e-08, 2.98023e-08, 0, 1, 2.98023e-08, -5.96046e-08, -2.98023e-08, 1, 0, 0, 0)
+light_color = Color(1, 0.54902, 0, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 3.0
+omni_attenuation = 2.0
+script = ExtResource("1_2q1tq")
+base_energy = 0.5
+flicker_amount = 4.0
