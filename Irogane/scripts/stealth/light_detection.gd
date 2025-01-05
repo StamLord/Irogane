@@ -23,7 +23,7 @@ func raycast_light_detection():
 	for light in light_sources:
 		var light_origin = light.global_position
 		
-		if not light.visible:
+		if not light.is_visible_in_tree():
 			continue
 		
 		# In case of direciton light, light origin is different

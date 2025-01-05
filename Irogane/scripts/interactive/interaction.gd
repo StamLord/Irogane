@@ -12,7 +12,7 @@ extends Node3D
 		return inventory
 	
 
-@onready var strength = $"../../../stats/strength"
+@onready var strength = $"%stats/strength"
 
 @export var carry_start_time = 0.8
 @export var carry_distance = 1.5
@@ -103,7 +103,7 @@ func _process(delta):
 
 func set_interactive(interactive):
 	# If new value is null, always continue to handle cases where node was freed
-	if current_interactive == interactive and interactive == null:
+	if current_interactive == interactive:
 		return
 	
 	# Reset button press if we switched interactive
