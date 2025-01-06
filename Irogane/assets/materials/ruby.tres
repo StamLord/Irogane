@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://27l1krb4frj0"]
+
+[ext_resource type="Shader" uid="uid://bi8kluukb46n0" path="res://assets/shaders/gem.tres" id="1_fmkeu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fmkeu")
+shader_parameter/normal_offset = 0.5
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/emission_multiplier = 1.0
+shader_parameter/fresnel_strength = 0.1
+shader_parameter/diffuse = 0.0
+shader_parameter/specular = 0.0

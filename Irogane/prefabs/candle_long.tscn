@@ -1,15 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://cuwgxv22fnmqx"]
+[gd_scene load_steps=17 format=3 uid="uid://dvklo1c2latco"]
 
-[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="1_2q1tq"]
-[ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="2_2mgwv"]
-[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="3_deemb"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="1_mmhf1"]
+[ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="2_h6o1t"]
+[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="3_efaj8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbi4h"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_av2hq"]
 top_radius = 0.1
 bottom_radius = 0.1
-height = 0.2
+height = 0.6
 radial_segments = 6
 
 [sub_resource type="Curve" id="Curve_trqks"]
@@ -49,7 +49,7 @@ transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_2mgwv")
+albedo_texture = ExtResource("2_h6o1t")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -69,21 +69,21 @@ radial_segments = 6
 [sub_resource type="SphereShape3D" id="SphereShape3D_ns6ds"]
 radius = 0.2
 
-[node name="candle_short" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.349891, -2.75)
+[node name="candle_long" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 material_override = SubResource("StandardMaterial3D_wbi4h")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_av2hq")
 
 [node name="light" type="OmniLight3D" parent="." groups=["light_source"]]
-transform = Transform3D(1, -1.77635e-15, 5.96046e-08, 0, 1, 2.98023e-08, -5.96046e-08, -2.98023e-08, 1, 0, 0.13, 0)
+transform = Transform3D(1, -1.77635e-15, 5.96046e-08, 0, 1, 2.98023e-08, -5.96046e-08, -2.98023e-08, 1, 0, 0.35808, 0)
 visible = false
 light_color = Color(1, 0.54902, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
 omni_range = 3.0
 omni_attenuation = 2.0
-script = ExtResource("1_2q1tq")
+script = ExtResource("1_mmhf1")
 base_energy = 0.5
 flicker_amount = 4.0
 
@@ -97,15 +97,15 @@ process_material = SubResource("ParticleProcessMaterial_q0228")
 draw_pass_1 = SubResource("QuadMesh_77xff")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12604, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335021, 0)
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_8rvxn")
 
 [node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0)
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("3_deemb")
+script = ExtResource("3_efaj8")
 node = NodePath("../light")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
