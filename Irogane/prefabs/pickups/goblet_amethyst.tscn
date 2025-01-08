@@ -356,23 +356,23 @@ skeleton = NodePath("")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.2)
 light_color = Color(1, 0, 1, 1)
-light_energy = 0.1
+light_energy = 0.05
 omni_range = 1.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.2)
 light_color = Color(1, 0, 1, 1)
-light_energy = 0.1
+light_energy = 0.05
 omni_range = 1.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.2, 0.25, -8.74228e-09)
 light_color = Color(1, 0, 1, 1)
-light_energy = 0.1
+light_energy = 0.05
 omni_range = 1.0
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.2, 0.25, 8.74228e-09)
 light_color = Color(1, 0, 1, 1)
-light_energy = 0.1
+light_energy = 0.05
 omni_range = 1.0
