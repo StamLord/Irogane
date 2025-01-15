@@ -1,4 +1,4 @@
-[gd_scene load_steps=207 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=210 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -77,9 +77,11 @@
 [ext_resource type="Script" path="res://scripts/weapons/slingshot.gd" id="59_garyl"]
 [ext_resource type="Script" path="res://scripts/weapons/lockpick.gd" id="60_pohs2"]
 [ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="62_5li4o"]
+[ext_resource type="Script" path="res://scripts/weapons/held_candle.gd" id="62_fjejv"]
 [ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="62_gtowg"]
 [ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="62_h33aw"]
 [ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="63_rjyd0"]
+[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="65_uevdo"]
 [ext_resource type="Script" path="res://scripts/camera/death_cam.gd" id="78_y1sx6"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
@@ -452,6 +454,9 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_ah24d"]
 material = SubResource("StandardMaterial3D_stvex")
 center_offset = Vector3(0, 0.15, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xwwng"]
+radius = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_1ter0"]
 size = Vector3(0.007, 0.075, 0.007)
@@ -1349,27 +1354,21 @@ size = Vector3(0.01, 0.01, 0.2)
 
 [node name="candle" type="Node3D" parent="head/camera_bob/main_camera/simple_weapon_manager"]
 visible = false
+script = ExtResource("62_fjejv")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]
+[node name="candle_object" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]
 transform = Transform3D(0.526541, -0.627507, -0.573576, 0.766044, 0.642788, 0, 0.368688, -0.439385, 0.819152, 0.35, -0.215, -0.4)
 material_override = ExtResource("62_5li4o")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_kld6x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object"]
 transform = Transform3D(1, 1.49012e-08, 0, 2.98023e-08, 1, -2.98023e-08, 0, -2.98023e-08, 1, 0.0324404, 0.153458, 0)
 material_override = SubResource("StandardMaterial3D_as3fc")
 
-[node name="Area3D" type="Area3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D/MeshInstance3D"]
+[node name="light" type="OmniLight3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D" groups=["light_source"]]
 transform = Transform3D(1, 2.23517e-07, -1.78814e-07, 2.98023e-08, 1, 3.27826e-07, -8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("62_gtowg")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D/MeshInstance3D/Area3D"]
-shape = SubResource("SphereShape3D_ab3xm")
-
-[node name="light" type="OmniLight3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D/MeshInstance3D" groups=["light_source"]]
-transform = Transform3D(1, 1.49012e-08, 2.98023e-08, 0, 1, 2.98023e-08, -5.96046e-08, -2.98023e-08, 1, 0, 0, 0)
+visible = false
 light_color = Color(1, 0.54902, 0, 1)
 light_energy = 0.5
 shadow_enabled = true
@@ -1379,8 +1378,17 @@ script = ExtResource("62_h33aw")
 base_energy = 0.5
 flicker_amount = 4.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D/MeshInstance3D"]
-transform = Transform3D(1, 4.28408e-08, 2.98023e-08, -1.86265e-09, 0.999998, 9.68575e-08, -2.98023e-08, 7.45058e-08, 1, 0, 0, 0)
+[node name="igniter_area" type="Area3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/light"]
+transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("62_gtowg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/light/igniter_area"]
+shape = SubResource("SphereShape3D_ab3xm")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/light"]
+transform = Transform3D(1, -2.38419e-07, 1.49012e-07, 8.9407e-08, 0.999998, -8.9407e-08, 8.9407e-08, 8.9407e-08, 1, 0, 0, 0)
 amount = 16
 lifetime = 0.2
 fixed_fps = 60
@@ -1388,9 +1396,22 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_vlxox")
 draw_pass_1 = SubResource("QuadMesh_ah24d")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D"]
+[node name="ignitable_area" type="Area3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D" node_paths=PackedStringArray("node")]
+transform = Transform3D(1, 0, 0, 2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("65_uevdo")
+node = NodePath("../light")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/ignitable_area"]
+shape = SubResource("SphereShape3D_xwwng")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object"]
 transform = Transform3D(0.681871, 0.731473, 0, -0.731473, 0.681871, -2.98023e-08, 2.98023e-08, -9.12696e-08, 1, 0.0140285, 0.140245, 1.19209e-07)
 mesh = SubResource("BoxMesh_1ter0")
+
+[node name="candle_target" type="Marker3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, -0.2, -1)
 
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/camera_bob/main_camera"]
 target_position = Vector3(0, 0, -8)

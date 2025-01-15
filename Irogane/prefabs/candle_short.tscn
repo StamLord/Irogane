@@ -1,15 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://cuwgxv22fnmqx"]
+[gd_scene load_steps=19 format=3 uid="uid://cuwgxv22fnmqx"]
 
 [ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="1_2q1tq"]
 [ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="1_jgvxn"]
 [ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="2_2mgwv"]
 [ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="3_deemb"]
+[ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="3_r6knu"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_av2hq"]
 top_radius = 0.1
 bottom_radius = 0.1
 height = 0.2
 radial_segments = 6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ndkht"]
+radius = 0.2
 
 [sub_resource type="Curve" id="Curve_trqks"]
 _data = [Vector2(0, 1), 0.0, -0.445115, 0, 0, Vector2(1, 0), -1.62068, 0.0, 0, 0]
@@ -85,6 +89,15 @@ omni_attenuation = 2.0
 script = ExtResource("1_2q1tq")
 base_energy = 0.5
 flicker_amount = 4.0
+
+[node name="igniter_area" type="Area3D" parent="light"]
+transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_r6knu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="light/igniter_area"]
+shape = SubResource("SphereShape3D_ndkht")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="light"]
 transform = Transform3D(1, 1.86265e-09, 2.98023e-08, -1.86265e-09, 1, -7.45059e-08, -2.98023e-08, 7.45059e-08, 1, 0, 0, 0)

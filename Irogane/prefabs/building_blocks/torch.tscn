@@ -1,11 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://ddutohny1gn8k"]
+[gd_scene load_steps=20 format=3 uid="uid://ddutohny1gn8k"]
 
 [ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="1_pscr7"]
 [ext_resource type="Texture2D" uid="uid://bqsmbpqwulgl2" path="res://assets/textures/vfx/flame_64.png" id="2_8xpn7"]
 [ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="2_lm4lx"]
+[ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="3_i17no"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o13nj"]
 size = Vector3(0.2, 0.75, 0.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1v0ot"]
+radius = 0.2
 
 [sub_resource type="Curve" id="Curve_kwb84"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.30413, 0.0, 0, 0]
@@ -108,6 +112,15 @@ light_color = Color(1, 0.54902, 0, 1)
 shadow_enabled = true
 omni_range = 7.0
 script = ExtResource("2_lm4lx")
+
+[node name="igniter_area" type="Area3D" parent="torch/light"]
+transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_i17no")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="torch/light/igniter_area"]
+shape = SubResource("SphereShape3D_1v0ot")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="torch/light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016762, -0.000557199)
