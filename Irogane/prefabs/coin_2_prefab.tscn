@@ -1,15 +1,18 @@
-[gd_scene load_steps=28 format=3 uid="uid://csoy1mwxtniy2"]
+[gd_scene load_steps=29 format=3 uid="uid://csoy1mwxtniy2"]
 
 [ext_resource type="Script" path="res://scripts/physics/coin_physics.gd" id="1_osdid"]
+[ext_resource type="Texture2D" uid="uid://g6a5fcdin0bn" path="res://assets/models/loot/coin.png" id="2_3p8x6"]
 [ext_resource type="Texture2D" uid="uid://1xkt8ny3senm" path="res://assets/models/loot/coin-bca63a80a5aa1b985be01003c8f1cb97_florin.png" id="2_eocme"]
 [ext_resource type="Script" path="res://scripts/stealth/coin_sound_emitter.gd" id="3_d0gx7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ak7ay"]
-albedo_texture = ExtResource("2_eocme")
+albedo_texture = ExtResource("2_3p8x6")
 metallic = 0.5
 emission_enabled = true
 emission_energy_multiplier = 0.2
-emission_texture = ExtResource("2_eocme")
+emission_texture = ExtResource("2_3p8x6")
+uv1_scale = Vector3(0.875, 0.875, 0.875)
+uv1_offset = Vector3(0.06, 0.06, 0)
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip7aa"]

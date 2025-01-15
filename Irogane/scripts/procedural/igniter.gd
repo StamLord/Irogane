@@ -5,6 +5,9 @@ func _ready():
 	
 
 func on_area_entered(area):
+	if not is_visible_in_tree():
+		return
+	
 	if not area is Ignitable:
 		return
 	

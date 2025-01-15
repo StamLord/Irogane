@@ -1,4 +1,4 @@
-[gd_scene load_steps=206 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=207 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -76,6 +76,7 @@
 [ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
 [ext_resource type="Script" path="res://scripts/weapons/slingshot.gd" id="59_garyl"]
 [ext_resource type="Script" path="res://scripts/weapons/lockpick.gd" id="60_pohs2"]
+[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="62_5li4o"]
 [ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="62_gtowg"]
 [ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="62_h33aw"]
 [ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="63_rjyd0"]
@@ -1351,6 +1352,7 @@ visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]
 transform = Transform3D(0.526541, -0.627507, -0.573576, 0.766044, 0.642788, 0, 0.368688, -0.439385, 0.819152, 0.35, -0.215, -0.4)
+material_override = ExtResource("62_5li4o")
 mesh = SubResource("CylinderMesh_kld6x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/MeshInstance3D"]

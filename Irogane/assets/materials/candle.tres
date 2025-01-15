@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cnv52hl6lnudl"]
+
+[ext_resource type="Texture2D" uid="uid://c6rnco410hbuh" path="res://assets/textures/medieval/candle_wax_2.png" id="1_7bpmr"]
+
+[resource]
+albedo_texture = ExtResource("1_7bpmr")
+subsurf_scatter_strength = 1.0
+subsurf_scatter_texture = ExtResource("1_7bpmr")
+backlight_enabled = true
+backlight = Color(0.141176, 0.0784314, 0, 1)

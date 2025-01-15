@@ -1,10 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://dvklo1c2latco"]
 
+[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="1_cv62f"]
 [ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="1_mmhf1"]
 [ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="2_h6o1t"]
 [ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="3_efaj8"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbi4h"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_av2hq"]
 top_radius = 0.1
@@ -71,7 +70,7 @@ radius = 0.2
 
 [node name="candle_long" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-material_override = SubResource("StandardMaterial3D_wbi4h")
+material_override = ExtResource("1_cv62f")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_av2hq")
 
