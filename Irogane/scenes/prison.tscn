@@ -1,0 +1,1651 @@
+[gd_scene load_steps=61 format=3 uid="uid://c0ud674ybdois"]
+
+[ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
+[ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
+[ext_resource type="Texture2D" uid="uid://fj3mi5qoo2o6" path="res://assets/textures/env/skyline_bg.png" id="3_5b74y"]
+[ext_resource type="Texture2D" uid="uid://lc8jirnmdhqv" path="res://assets/textures/medieval/yellow-seamless-sett-texture.jpg" id="4_gn1aw"]
+[ext_resource type="Script" path="res://scenes/water_area.gd" id="5_1q53j"]
+[ext_resource type="Script" path="res://scripts/procedural/water_collision_shape.gd" id="6_ed2mg"]
+[ext_resource type="Material" uid="uid://crfxa6bkikyfi" path="res://assets/models/env/river_bed/water.tres" id="7_m71qt"]
+[ext_resource type="Material" uid="uid://4a34kvy5tvfs" path="res://assets/shaders/underwater_material.tres" id="8_tbp32"]
+[ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="9_mnla3"]
+[ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch.tscn" id="10_fedt7"]
+[ext_resource type="PackedScene" uid="uid://djimgpl6hvpuu" path="res://prefabs/barrel.tscn" id="11_knwdj"]
+[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="12_j3grc"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="13_c5sup"]
+[ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="14_7rw5u"]
+[ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="15_5xpi6"]
+[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="16_etg5h"]
+[ext_resource type="Script" path="res://scripts/interactive/Carriable.gd" id="16_imo6e"]
+[ext_resource type="Material" uid="uid://cpw0gk8ua7o7e" path="res://assets/materials/wood_portico.tres" id="17_6xw7o"]
+[ext_resource type="PackedScene" uid="uid://5ko1dwipf14y" path="res://prefabs/building_blocks/well_4.tscn" id="17_rig6u"]
+[ext_resource type="Texture2D" uid="uid://c0j1eig1a842x" path="res://assets/textures/medieval/prison_map.png" id="17_t30s2"]
+[ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="18_82ara"]
+[ext_resource type="PackedScene" uid="uid://o8bojx0uugy2" path="res://prefabs/candle_long_on.tscn" id="18_vxi3a"]
+[ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="19_ukq1f"]
+[ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="20_clajy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pcmgd"]
+disable_fog = true
+metallic = 1.0
+emission_enabled = true
+emission = Color(0.65098, 0.568627, 0.184314, 1)
+emission_operator = 1
+emission_texture = ExtResource("2_7j85a")
+texture_filter = 0
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_6m5tf"]
+radius = 100.0
+height = 200.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g74q4"]
+transparency = 1
+disable_fog = true
+albedo_texture = ExtResource("3_5b74y")
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_8h1vi"]
+size = Vector2(140, 140)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6thla"]
+albedo_color = Color(0.92549, 0.870588, 0.792157, 1)
+albedo_texture = ExtResource("4_gn1aw")
+uv1_scale = Vector3(0.125, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
+size = Vector3(10, 3, 100)
+
+[sub_resource type="QuadMesh" id="QuadMesh_a6vbi"]
+material = ExtResource("7_m71qt")
+size = Vector2(10, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aa4hp"]
+material = ExtResource("8_tbp32")
+size = Vector3(9.999, 2.9997, 99.99)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5idw"]
+albedo_color = Color(0.352941, 0.396078, 0.470588, 1)
+metallic = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_guxru"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.25
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wc3d"]
+shading_mode = 0
+albedo_color = Color(1, 0.784314, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iogfw"]
+radius = 0.2
+
+[sub_resource type="Curve" id="Curve_06fj3"]
+_data = [Vector2(0, 1), 0.0, -0.445115, 0, 0, Vector2(1, 0), -1.62068, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x2yda"]
+curve = SubResource("Curve_06fj3")
+
+[sub_resource type="Gradient" id="Gradient_t0kxs"]
+offsets = PackedFloat32Array(0, 0.237705, 0.561475)
+colors = PackedColorArray(1, 0.968002, 0.431428, 1, 0.912296, 0.771426, 0, 1, 0.77192, 0.22088, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2kkno"]
+gradient = SubResource("Gradient_t0kxs")
+
+[sub_resource type="Curve" id="Curve_f17wr"]
+_data = [Vector2(0, 0), 0.0, 3.43082, 0, 0, Vector2(1, 1), 0.0, 0.178046, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pbwux"]
+curve = SubResource("Curve_f17wr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k783y"]
+emission_shape_scale = Vector3(1, 1, 0.01)
+angle_min = -1.0
+angle_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.23
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_pbwux")
+color_ramp = SubResource("GradientTexture1D_2kkno")
+alpha_curve = SubResource("CurveTexture_x2yda")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stvex"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("15_5xpi6")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_edlm2"]
+material = SubResource("StandardMaterial3D_stvex")
+center_offset = Vector3(0, 0.15, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cekqs"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq4jw"]
+albedo_color = Color(0.341176, 0.192157, 0.0823529, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hlr18"]
+size = Vector3(0.007, 0.075, 0.007)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nb86l"]
+size = Vector3(2, 0.07, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snnch"]
+size = Vector3(2, 0.07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7mw4e"]
+size = Vector3(2, 0.07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p3433"]
+albedo_color = Color(0.611765, 0.466667, 0.188235, 1)
+emission = Color(0.611765, 0.466667, 0.188235, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6whed"]
+size = Vector3(0.359863, 0.109519, 0.571289)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5abhw"]
+size = Vector3(0.359863, 0.109519, 0.571289)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6f4ih"]
+size = Vector3(0.359863, 0.109519, 0.571289)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_biutj"]
+albedo_color = Color(0.956863, 0.882353, 0.792157, 1)
+emission = Color(0.956863, 0.882353, 0.792157, 1)
+emission_energy_multiplier = 0.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6uett"]
+height = 0.4
+radius = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w8ib2"]
+height = 0.4
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05sj1"]
+transparency = 1
+albedo_texture = ExtResource("17_t30s2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3n1ad"]
+
+[node name="Prison" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_qsxik")
+
+[node name="sun" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 33.6888, 16, 0)
+light_energy = 0.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
+
+[node name="moon" type="DirectionalLight3D" parent="WorldEnvironment" groups=["light_source"]]
+transform = Transform3D(-0.642788, 0.46315, -0.610177, 0, 0.79653, 0.604599, 0.766044, 0.388629, -0.512, 0, 16, 0)
+light_color = Color(0.470588, 0.788235, 0.972549, 1)
+light_energy = 0.1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+
+[node name="moon_mesh" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.953338, 0.187003, -0.237016, 0.132231, 0.964396, 0.229031, 0.271407, 0.187003, -0.944123, -1514.5, 806.245, -1046.25)
+layers = 524288
+material_override = SubResource("StandardMaterial3D_pcmgd")
+mesh = SubResource("SphereMesh_6m5tf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -49.1957, -9, -39.5189)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3043, -9, -103.019)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.602526, 0, 0.798099, 0, 1, 0, -0.798099, 0, -0.602526, -68.4804, -9, 78.7656)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.993044, 0, 0.117745, 0, 1, 0, -0.117745, 0, -0.993044, -18.5269, -9, 104.422)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(0.181051, 0, 0.983474, 0, 1, 0, -0.983474, 0, 0.181051, -100.551, -9, 14.6139)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 49.4457, -9, 58.7689)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 97.3746, -9, -120.155)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(1.49012e-07, 0, -1, 0, 1, 0, 1, 0, 1.49012e-07, 98.8746, -9, -41.655)
+material_override = SubResource("StandardMaterial3D_g74q4")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_8h1vi")
+skeleton = NodePath("../..")
+
+[node name="level" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.375, 0)
+material_override = SubResource("StandardMaterial3D_6thla")
+use_collision = true
+size = Vector3(200, 6.75, 100)
+
+[node name="canal" type="CSGBox3D" parent="level/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, -2.5)
+operation = 2
+size = Vector3(10, 4, 111.5)
+
+[node name="water_area" type="Area3D" parent="level/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("5_1q53j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/floor/water_area"]
+shape = SubResource("BoxShape3D_l2n77")
+script = ExtResource("6_ed2mg")
+
+[node name="surface" type="MeshInstance3D" parent="level/floor/water_area"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
+mesh = SubResource("QuadMesh_a6vbi")
+
+[node name="under_water" type="MeshInstance3D" parent="level/floor/water_area"]
+mesh = SubResource("BoxMesh_aa4hp")
+
+[node name="south_ward" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(50, 16, 21.5)
+
+[node name="south_ward" type="CSGBox3D" parent="level/south_ward"]
+operation = 2
+size = Vector3(49, 15, 20.5)
+
+[node name="door2" type="CSGBox3D" parent="level/south_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.375, 5.25, -10.75)
+operation = 2
+size = Vector3(1, 2, 1.75)
+
+[node name="east_tower" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.375, 32, 39.25)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(16, 32, 16)
+
+[node name="east_tower" type="CSGBox3D" parent="level/east_tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
+material_override = ExtResource("9_mnla3")
+operation = 2
+use_collision = true
+size = Vector3(15, 32.25, 15)
+
+[node name="west_ward" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.625, 8, 6.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(15.25, 16, 43.25)
+
+[node name="west_ward" type="CSGBox3D" parent="level/west_ward"]
+operation = 2
+size = Vector3(14.25, 15, 42.25)
+
+[node name="bridge" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 6.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(10, 4, 6)
+
+[node name="bridge" type="CSGBox3D" parent="level/bridge"]
+operation = 2
+size = Vector3(8, 3, 5)
+
+[node name="window" type="CSGBox3D" parent="level/bridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 3)
+operation = 2
+
+[node name="window2" type="CSGBox3D" parent="level/bridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+operation = 2
+
+[node name="window3" type="CSGBox3D" parent="level/bridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 3)
+operation = 2
+
+[node name="window4" type="CSGBox3D" parent="level/bridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.75)
+operation = 2
+
+[node name="window5" type="CSGBox3D" parent="level/bridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.75)
+operation = 2
+
+[node name="window6" type="CSGBox3D" parent="level/bridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -2.75)
+operation = 2
+
+[node name="support" type="CSGBox3D" parent="level/bridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 0)
+size = Vector3(10, 3, 6)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="level/bridge/support"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.64, 0, -1, -2.79753e-08, 0, -1.5, 0)
+operation = 2
+radius = 5.0
+height = 6.0
+sides = 12
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.625, 8, 17.625)
+use_collision = true
+size = Vector3(15.25, 16, 64.75)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.125, 8, 28.625)
+use_collision = true
+size = Vector3(15.25, 16, 42.75)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -35.75, 8, 42.375)
+use_collision = true
+size = Vector3(15.25, 16, 31.5)
+
+[node name="east_ward" type="CSGBox3D" parent="level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.375, 8, 7.125)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(15.25, 16, 43.25)
+
+[node name="east_ward" type="CSGBox3D" parent="level/east_ward"]
+operation = 2
+size = Vector3(14.25, 15, 42.25)
+
+[node name="door" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 21.5)
+operation = 2
+size = Vector3(1, 2, 2)
+
+[node name="floor_4" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+size = Vector3(14.25, 0.5, 42.25)
+
+[node name="window" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 6.5, 18.25)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level/east_ward/window"]
+transform = Transform3D(-0.507968, 0.388545, -0.768766, 0.184334, 0.920845, 0.343607, 0.841421, 0.0328316, -0.539382, -1.456, 0.861, -1.31)
+light_color = Color(0.470588, 0.788235, 0.972549, 1)
+light_size = 1.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 16.0
+
+[node name="window2" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 6.5, 12.5)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="window3" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 6.5, 6.25)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="window4" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 2.5, 18.25)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="window5" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 2.5, 12.5)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="window6" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 2.5, 6.25)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="window7" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, -1.5, 18.25)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="window8" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, -1.5, 12.5)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="window9" type="CSGBox3D" parent="level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, -1.5, 6.25)
+operation = 2
+size = Vector3(1, 1, 1.5)
+
+[node name="interior" type="Node3D" parent="level/east_ward"]
+
+[node name="cell" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 4.375, 18.125)
+
+[node name="wall" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="torch" parent="level/east_ward/interior/cell/wall" instance=ExtResource("10_fedt7")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+visible = false
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall4" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 1.5, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.75, 3.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.509754, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221504, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="candle_object" type="MeshInstance3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(-9.71818e-08, 0.54024, 0.84151, 1, 4.37114e-08, 8.74227e-08, 1.04457e-08, 0.841511, -0.54024, -2.78092, -0.0933132, -0.582802)
+material_override = ExtResource("12_j3grc")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_guxru")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/east_ward/interior/cell/candle_object"]
+transform = Transform3D(1, 1.49012e-08, 0, 2.98023e-08, 1, -2.98023e-08, 0, -2.98023e-08, 1, 0.0324404, 0.153458, 0)
+material_override = SubResource("StandardMaterial3D_0wc3d")
+
+[node name="light" type="OmniLight3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D" groups=["light_source"]]
+transform = Transform3D(1, 2.23517e-07, -1.78814e-07, 2.98023e-08, 1, 3.27826e-07, -8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+visible = false
+light_color = Color(1, 0.54902, 0, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 3.0
+omni_attenuation = 2.0
+script = ExtResource("13_c5sup")
+base_energy = 0.5
+flicker_amount = 4.0
+
+[node name="igniter_area" type="Area3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/light"]
+transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("14_7rw5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/light/igniter_area"]
+shape = SubResource("SphereShape3D_iogfw")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/light"]
+transform = Transform3D(1, -2.38419e-07, 1.49012e-07, 8.9407e-08, 0.999998, -8.9407e-08, 8.9407e-08, 8.9407e-08, 1, 0, 0, 0)
+amount = 16
+lifetime = 0.2
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_k783y")
+draw_pass_1 = SubResource("QuadMesh_edlm2")
+
+[node name="ignitable_area" type="Area3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_etg5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/ignitable_area"]
+shape = SubResource("SphereShape3D_cekqs")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/east_ward/interior/cell/candle_object"]
+transform = Transform3D(0.681871, 0.731473, 0, -0.731473, 0.681871, -2.98023e-08, 2.98023e-08, -9.12696e-08, 1, 0.0140285, 0.140245, 1.19209e-07)
+material_override = SubResource("StandardMaterial3D_aq4jw")
+mesh = SubResource("BoxMesh_hlr18")
+
+[node name="straw_bed" type="RigidBody3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.0179933, 0, -0.999838, 0, 1, 0, 0.999838, 0, 0.0179933, 2.01781, -0.0884151, -3.04153)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/straw_bed"]
+shape = SubResource("BoxShape3D_nb86l")
+
+[node name="interactive_area" type="Area3D" parent="level/east_ward/interior/cell/straw_bed" node_paths=PackedStringArray("mesh")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("16_imo6e")
+interaction_text = "Hold E"
+mesh = NodePath("../bed_mesh")
+highlight_emission_operator = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/straw_bed/interactive_area"]
+shape = SubResource("BoxShape3D_snnch")
+
+[node name="bed_mesh" type="MeshInstance3D" parent="level/east_ward/interior/cell/straw_bed"]
+transform = Transform3D(1, 0, -7.45058e-09, 0, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_7mw4e")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_p3433")
+
+[node name="pillow" type="RigidBody3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(-0.0350565, 0, -0.999385, 0, 1, 0, 0.999385, 0, -0.0350565, 2.02321, 0.0138168, -3.89079)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/pillow"]
+transform = Transform3D(1, 0, -1.37836e-07, 0, 1, 0, 1.37836e-07, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_6whed")
+
+[node name="interactive_area" type="Area3D" parent="level/east_ward/interior/cell/pillow" node_paths=PackedStringArray("mesh")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("16_imo6e")
+interaction_text = "Hold E"
+mesh = NodePath("../pillow_mesh")
+highlight_emission_operator = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/pillow/interactive_area"]
+transform = Transform3D(1, 0, -1.11759e-08, 0, 1, 0, 1.11759e-08, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_5abhw")
+
+[node name="pillow_mesh" type="MeshInstance3D" parent="level/east_ward/interior/cell/pillow"]
+transform = Transform3D(1, 0, -1.11759e-08, 0, 1, 0, 1.11759e-08, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_6f4ih")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_biutj")
+
+[node name="bucket" type="RigidBody3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.69435, 0.0798664, -3.81147)
+
+[node name="bucket" type="CSGCylinder3D" parent="level/east_ward/interior/cell/bucket"]
+material_override = ExtResource("17_6xw7o")
+use_collision = true
+radius = 0.2
+height = 0.4
+
+[node name="bucket2" type="CSGCylinder3D" parent="level/east_ward/interior/cell/bucket/bucket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+operation = 2
+radius = 0.175
+height = 0.4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/bucket"]
+shape = SubResource("CylinderShape3D_6uett")
+
+[node name="interactive_area" type="Area3D" parent="level/east_ward/interior/cell/bucket"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("16_imo6e")
+interaction_text = ""
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/bucket/interactive_area"]
+shape = SubResource("CylinderShape3D_w8ib2")
+
+[node name="map" type="MeshInstance3D" parent="level/east_ward/interior/cell"]
+transform = Transform3D(0.994699, 0.102827, 0, 4.49472e-09, -4.34797e-08, 1, 0.102827, -0.994699, -4.37114e-08, 2.12927, -0.122136, -3.54094)
+material_override = SubResource("StandardMaterial3D_05sj1")
+mesh = SubResource("QuadMesh_3n1ad")
+
+[node name="cell5" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 4.375, 12.625)
+
+[node name="wall" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="torch" parent="level/east_ward/interior/cell5/wall" instance=ExtResource("10_fedt7")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="cell6" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 4.375, 6.375)
+
+[node name="wall" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="cell2" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 4.375, 18.125)
+
+[node name="wall" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="wall5" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="straw_bed" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(-0.0497214, 0, -0.998763, 0, 1, 0, 0.998763, 0, -0.0497214, 2.06164, -0.0884151, -3.06529)
+material_override = SubResource("StandardMaterial3D_p3433")
+size = Vector3(2, 0.07, 1)
+
+[node name="pillow" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(-0.146135, 0, -0.989265, 0, 1, 0, 0.989265, 0, -0.146135, 2.15713, 0.0138168, -3.85734)
+material_override = SubResource("StandardMaterial3D_biutj")
+size = Vector3(0.359863, 0.109519, 0.571289)
+
+[node name="bucket" type="CSGCylinder3D" parent="level/east_ward/interior/cell2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.944351, 0.0798664, -3.56147)
+material_override = ExtResource("17_6xw7o")
+use_collision = true
+radius = 0.2
+height = 0.4
+
+[node name="bucket2" type="CSGCylinder3D" parent="level/east_ward/interior/cell2/bucket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+operation = 2
+radius = 0.175
+height = 0.4
+
+[node name="cell3" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 4.375, 12.375)
+
+[node name="wall5" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="torch" parent="level/east_ward/interior/cell3/wall5" instance=ExtResource("10_fedt7")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 5.75)
+
+[node name="torch2" parent="level/east_ward/interior/cell3/wall5" instance=ExtResource("10_fedt7")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.4618, 0, -5.75)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="straw_bed" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(-0.0497214, 0, -0.998763, 0, 1, 0, 0.998763, 0, -0.0497214, 2.06164, -0.0884151, -3.06529)
+material_override = SubResource("StandardMaterial3D_p3433")
+size = Vector3(2, 0.07, 1)
+
+[node name="pillow" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(-0.146135, 0, -0.989265, 0, 1, 0, 0.989265, 0, -0.146135, 2.15713, 0.0138168, -3.85734)
+material_override = SubResource("StandardMaterial3D_biutj")
+size = Vector3(0.359863, 0.109519, 0.571289)
+
+[node name="bucket" type="CSGCylinder3D" parent="level/east_ward/interior/cell3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.944351, 0.0798664, -3.56147)
+material_override = ExtResource("17_6xw7o")
+use_collision = true
+radius = 0.2
+height = 0.4
+
+[node name="bucket2" type="CSGCylinder3D" parent="level/east_ward/interior/cell3/bucket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+operation = 2
+radius = 0.175
+height = 0.4
+
+[node name="cell4" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 4.375, 6.625)
+
+[node name="wall5" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.875, 1.5, 0.75)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(10, 3.25, 0.5)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_a5idw")
+use_collision = true
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
+use_collision = true
+size = Vector3(0.1, 1, 0.1)
+
+[node name="straw_bed" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(-0.0497214, 0, -0.998763, 0, 1, 0, 0.998763, 0, -0.0497214, 2.06164, -0.0884151, -3.06529)
+material_override = SubResource("StandardMaterial3D_p3433")
+size = Vector3(2, 0.07, 1)
+
+[node name="pillow" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(-0.146135, 0, -0.989265, 0, 1, 0, 0.989265, 0, -0.146135, 2.15713, 0.0138168, -3.85734)
+material_override = SubResource("StandardMaterial3D_biutj")
+size = Vector3(0.359863, 0.109519, 0.571289)
+
+[node name="bucket" type="CSGCylinder3D" parent="level/east_ward/interior/cell4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.944351, 0.0798664, -3.56147)
+material_override = ExtResource("17_6xw7o")
+use_collision = true
+radius = 0.2
+height = 0.4
+
+[node name="bucket2" type="CSGCylinder3D" parent="level/east_ward/interior/cell4/bucket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+operation = 2
+radius = 0.175
+height = 0.4
+
+[node name="torch" parent="level/east_ward/interior" instance=ExtResource("10_fedt7")]
+transform = Transform3D(1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, 1, -2.03819, 5.5, 20.947)
+visible = false
+
+[node name="barrel" parent="level/east_ward/interior" instance=ExtResource("11_knwdj")]
+transform = Transform3D(0.876298, 0, -0.481769, 0, 1, 0, 0.481769, 0, 0.876298, -2.37079, 4.85492, 15.8829)
+
+[node name="candle_long" parent="level/east_ward/interior/barrel" instance=ExtResource("18_vxi3a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493603, 0.418627, 0.127327)
+
+[node name="north_ward" type="CSGBox3D" parent="level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 31, 6, 3.375)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(15.25, 12, 22.5)
+
+[node name="north_ward" type="CSGBox3D" parent="level/north_ward"]
+operation = 2
+size = Vector3(14.25, 11, 22.5)
+
+[node name="well_4" parent="level" instance=ExtResource("17_rig6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, -3, 19.75)
+
+[node name="player" parent="." instance=ExtResource("18_82ara")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 42, 12.5, 25.5)
+
+[node name="game_ui" parent="." instance=ExtResource("19_ukq1f")]
+
+[node name="npc" parent="." instance=ExtResource("20_clajy")]
+
+[node name="npc4" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 7.75)
+
+[node name="npc3" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 0, 20)
+
+[node name="npc2" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.25, 16, 42.25)
+
+[node name="npc5" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 46, 12.25, 24.5)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=210 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=211 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -411,21 +411,21 @@ radius = 0.2
 _data = [Vector2(0, 1), 0.0, -0.445115, 0, 0, Vector2(1, 0), -1.62068, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_x2yda"]
+[sub_resource type="CurveTexture" id="CurveTexture_b1wd0"]
 curve = SubResource("Curve_mq8eo")
 
 [sub_resource type="Gradient" id="Gradient_qqn2l"]
 offsets = PackedFloat32Array(0, 0.237705, 0.561475)
 colors = PackedColorArray(1, 0.968002, 0.431428, 1, 0.912296, 0.771426, 0, 1, 0.77192, 0.22088, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2kkno"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f2umx"]
 gradient = SubResource("Gradient_qqn2l")
 
 [sub_resource type="Curve" id="Curve_tioah"]
 _data = [Vector2(0, 0), 0.0, 3.43082, 0, 0, Vector2(1, 1), 0.0, 0.178046, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_pbwux"]
+[sub_resource type="CurveTexture" id="CurveTexture_j0baq"]
 curve = SubResource("Curve_tioah")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vlxox"]
@@ -435,11 +435,11 @@ angle_max = 1.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.23
 scale_max = 0.25
-scale_curve = SubResource("CurveTexture_pbwux")
-color_ramp = SubResource("GradientTexture1D_2kkno")
-alpha_curve = SubResource("CurveTexture_x2yda")
+scale_curve = SubResource("CurveTexture_j0baq")
+color_ramp = SubResource("GradientTexture1D_f2umx")
+alpha_curve = SubResource("CurveTexture_b1wd0")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stvex"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pinn4"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -452,11 +452,14 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_ah24d"]
-material = SubResource("StandardMaterial3D_stvex")
+material = SubResource("StandardMaterial3D_pinn4")
 center_offset = Vector3(0, 0.15, 0)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xwwng"]
 radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq4jw"]
+albedo_color = Color(0.341176, 0.192157, 0.0823529, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1ter0"]
 size = Vector3(0.007, 0.075, 0.007)
@@ -1408,6 +1411,7 @@ shape = SubResource("SphereShape3D_xwwng")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object"]
 transform = Transform3D(0.681871, 0.731473, 0, -0.731473, 0.681871, -2.98023e-08, 2.98023e-08, -9.12696e-08, 1, 0.0140285, 0.140245, 1.19209e-07)
+material_override = SubResource("StandardMaterial3D_aq4jw")
 mesh = SubResource("BoxMesh_1ter0")
 
 [node name="candle_target" type="Marker3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]

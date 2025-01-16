@@ -4,6 +4,7 @@ class_name Interactive
 @export var interaction_text = "Use"
 @export var mesh : MeshInstance3D
 @export var highlight_emission_multiplier = 3.0
+@export var highlight_emission_operator = StandardMaterial3D.EMISSION_OP_MULTIPLY
 
 const HIGHLIGHT_EMMISION = 0.25
 const HIGHLIGHT_COLOR = Color.WHITE
@@ -56,8 +57,9 @@ func highlight_on():
 		active_material.emission_enabled = true
 		active_material.emission = HIGHLIGHT_COLOR if base_emission == Color.BLACK else base_emission
 		active_material.emission_energy_multiplier = new_emission_multiplier
-		active_material.emission_operator = StandardMaterial3D.EMISSION_OP_MULTIPLY
+		active_material.emission_operator = highlight_emission_operator
 		active_material.emission_texture = active_material.albedo_texture
+		
 	elif active_material is ShaderMaterial:
 		active_material.set_shader_parameter("emission_multiplier", new_emission_multiplier)
 	
