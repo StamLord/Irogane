@@ -1,0 +1,102 @@
+[gd_scene load_steps=17 format=3 uid="uid://dabdutuwbjt5x"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_jaf07"]
+[ext_resource type="Script" path="res://scripts/interactive/Key.gd" id="3_gtsmc"]
+[ext_resource type="Script" path="res://scripts/interactive/door_audio_player.gd" id="4_n8nmj"]
+[ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="5_tndb3"]
+[ext_resource type="Texture2D" uid="uid://gm00b8cfycok" path="res://assets/textures/medieval/medieval_door_tex.jpg" id="6_03c2h"]
+[ext_resource type="Script" path="res://scripts/interactive/Lock.gd" id="7_fjkyv"]
+
+[sub_resource type="Resource" id="Resource_4xb3l"]
+script = ExtResource("3_gtsmc")
+color = 0
+tower_id = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vnole"]
+size = Vector3(1, 1.9, 0.1)
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_vlmip"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8hcye"]
+size = Vector3(1, 1.9, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4h6dr"]
+albedo_texture = ExtResource("6_03c2h")
+emission_energy_multiplier = 0.0
+uv1_scale = Vector3(3, 2, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_g8ese"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsupm"]
+albedo_color = Color(0.611765, 0.4, 0.215686, 1)
+metallic = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwids"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8couy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jp0e1"]
+size = Vector3(1, 1.9, 0.1)
+
+[node name="door" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.95, 0)
+
+[node name="Switch" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.37114e-08, 0, 0.5)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_jaf07")
+on_text = "Close"
+off_rotation = Vector3(0, 90, 0)
+animation_time = 0.5
+required_keys = Array[ExtResource("3_gtsmc")]([SubResource("Resource_4xb3l")])
+interaction_text = "Open"
+mesh = NodePath("../door_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_vnole")
+
+[node name="door_audio" type="Node3D" parent="Switch" node_paths=PackedStringArray("switch")]
+script = ExtResource("4_n8nmj")
+switch = NodePath("..")
+
+[node name="audio_player" type="AudioStreamPlayer3D" parent="Switch/door_audio"]
+stream = SubResource("AudioStreamPolyphonic_vlmip")
+max_polyphony = 2
+bus = &"Sound"
+script = ExtResource("5_tndb3")
+
+[node name="door_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.37114e-08, 0.1, 0.5)
+mesh = SubResource("BoxMesh_8hcye")
+skeleton = NodePath("../Switch")
+surface_material_override/0 = SubResource("StandardMaterial3D_4h6dr")
+
+[node name="lock_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.35137e-08, 0.0578423, 0.840928)
+mesh = SubResource("BoxMesh_g8ese")
+surface_material_override/0 = SubResource("StandardMaterial3D_bsupm")
+
+[node name="lock_collider" type="Area3D" parent="." node_paths=PackedStringArray("door")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.35137e-08, 0.0578423, 0.840928)
+collision_layer = 512
+script = ExtResource("7_fjkyv")
+door = NodePath("../Switch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lock_collider"]
+shape = SubResource("BoxShape3D_kwids")
+
+[node name="Sprite3D" type="Sprite3D" parent="lock_collider"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.3, 0.075)
+texture = SubResource("ViewportTexture_8couy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.37114e-08, 0, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_jp0e1")

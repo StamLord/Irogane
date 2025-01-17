@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://crxjt1r5cc71g"]
+[gd_scene load_steps=20 format=3 uid="uid://ddutohny1gn8k"]
 
 [ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="1_pscr7"]
 [ext_resource type="Texture2D" uid="uid://bqsmbpqwulgl2" path="res://assets/textures/vfx/flame_64.png" id="2_8xpn7"]
@@ -108,7 +108,6 @@ shape = SubResource("BoxShape3D_o13nj")
 
 [node name="light" type="OmniLight3D" parent="torch" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.07)
-visible = false
 light_color = Color(1, 0.54902, 0, 1)
 shadow_enabled = true
 omni_range = 7.0

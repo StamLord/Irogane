@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=68 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -9,7 +9,9 @@
 [ext_resource type="Material" uid="uid://crfxa6bkikyfi" path="res://assets/models/env/river_bed/water.tres" id="7_m71qt"]
 [ext_resource type="Material" uid="uid://4a34kvy5tvfs" path="res://assets/shaders/underwater_material.tres" id="8_tbp32"]
 [ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="9_mnla3"]
-[ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch.tscn" id="10_fedt7"]
+[ext_resource type="PackedScene" uid="uid://bqew4wl4asl5t" path="res://assets/models/building_blocks/spiral_stairs_4.glb" id="10_d8r33"]
+[ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch_on.tscn" id="10_fedt7"]
+[ext_resource type="PackedScene" uid="uid://dabdutuwbjt5x" path="res://prefabs/building_blocks/brass_door_no_frame.tscn" id="11_8opx3"]
 [ext_resource type="PackedScene" uid="uid://biwrd1alb43lk" path="res://prefabs/candle_short_on.tscn" id="11_jhau7"]
 [ext_resource type="PackedScene" uid="uid://djimgpl6hvpuu" path="res://prefabs/barrel.tscn" id="11_knwdj"]
 [ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="12_j3grc"]
@@ -23,9 +25,11 @@
 [ext_resource type="PackedScene" uid="uid://5ko1dwipf14y" path="res://prefabs/building_blocks/well_4.tscn" id="17_rig6u"]
 [ext_resource type="Texture2D" uid="uid://c0j1eig1a842x" path="res://assets/textures/medieval/prison_map.png" id="17_t30s2"]
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="18_82ara"]
+[ext_resource type="PackedScene" uid="uid://dlckj6voogyui" path="res://prefabs/building_blocks/silver_bar_door.tscn" id="18_mj1rs"]
 [ext_resource type="PackedScene" uid="uid://o8bojx0uugy2" path="res://prefabs/candle_long_on.tscn" id="18_vxi3a"]
 [ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="19_ukq1f"]
 [ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="20_clajy"]
+[ext_resource type="PackedScene" uid="uid://crxjt1r5cc71g" path="res://prefabs/building_blocks/torch.tscn" id="22_y303n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pcmgd"]
 disable_fog = true
@@ -60,13 +64,22 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_gvfqy"]
+[sub_resource type="QuadMesh" id="QuadMesh_aevyq"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_e354v"]
+[sub_resource type="BoxMesh" id="BoxMesh_q7awe"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmj2w"]
+transparency = 1
+albedo_color = Color(0, 0.219608, 0.137255, 0.588235)
+metallic_specular = 1.0
+roughness = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_wo4hl"]
+size = Vector2(0.286, 0.407)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_guxru"]
 top_radius = 0.03
@@ -286,10 +299,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_gvfqy")
+mesh = SubResource("QuadMesh_aevyq")
 
 [node name="under_water" type="MeshInstance3D" parent="level/floor/water_area"]
-mesh = SubResource("BoxMesh_e354v")
+mesh = SubResource("BoxMesh_q7awe")
 
 [node name="south_ward" type="CSGBox3D" parent="level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -307,22 +320,24 @@ operation = 2
 size = Vector3(1, 2, 1.75)
 
 [node name="east_tower2" type="CSGBox3D" parent="level/south_ward"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.375, 9.15682, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.125, 9.15682, 8.25)
 material_override = ExtResource("9_mnla3")
 operation = 2
 use_collision = true
-size = Vector3(15, 4, 15)
+size = Vector3(5, 4, 4.5)
 
 [node name="floor_3" type="CSGBox3D" parent="level/south_ward"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 size = Vector3(49, 0.5, 20.5)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/floor_3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.625, 1.875, 0.125)
-size = Vector3(31.75, 3.25, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.25, 0, 8.625)
+operation = 2
+size = Vector3(3.5, 1, 3.25)
 
 [node name="floor_4" type="CSGBox3D" parent="level/south_ward"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.75, 7.75, 0)
+visible = false
 size = Vector3(17.5, 0.5, 20.5)
 
 [node name="window2" type="CSGBox3D" parent="level/south_ward"]
@@ -366,67 +381,330 @@ spot_angle = 16.0
 
 [node name="interior" type="Node3D" parent="level/south_ward"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 5.875, 3.375)
+[node name="wall4" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 14.9151, 5.8592, 3.92046)
 material_override = ExtResource("9_mnla3")
 use_collision = true
-size = Vector3(0.5, 3.25, 13.75)
+size = Vector3(5, 3.25, 0.5)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0.5)
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
+operation = 2
+size = Vector3(1, 2, 2)
+
+[node name="torch2" parent="level/south_ward/interior/wall4" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.25, 0, 0.455563)
+visible = false
+
+[node name="brass_door2" parent="level/south_ward/interior/wall4" instance=ExtResource("11_8opx3")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, -0.675, 0)
+
+[node name="torch3" parent="level/south_ward/interior/wall4" instance=ExtResource("10_fedt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24998, 0, -0.429512)
+
+[node name="torch4" parent="level/south_ward/interior/wall4" instance=ExtResource("10_fedt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25002, 0, -0.429512)
+
+[node name="wall5" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(-0.706304, 0.0218059, 0.707572, 0.0148026, 0.999762, -0.0160345, -0.707754, -0.000851314, -0.706459, 18.4151, 5.8592, 5.17046)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4, 3.25, 0.5)
+
+[node name="wall6" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(-0.707754, -0.000851314, -0.706459, 0.0148026, 0.999762, -0.0160345, 0.706304, -0.0218059, -0.707572, 11.0612, 5.8666, 5.52361)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(5, 3.25, 0.5)
+
+[node name="wall7" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(1, 0, -2.38419e-07, 0, 1, 0, 2.38419e-07, 0, 1, 14.9151, 5.8592, -3.66288)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(5, 3.25, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/wall7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
 operation = 2
 size = Vector3(1, 2, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, -4.25)
+[node name="torch" parent="level/south_ward/interior/wall7" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.25, 0, 0.455563)
+visible = false
+
+[node name="wall10" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(-2.8213e-07, 0, -1, 0, 1, 0, 1, 0, -2.8213e-07, 17.1651, 5.8592, 0.0871201)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(7, 3.25, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/wall10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
+operation = 2
+size = Vector3(1, 2, 1)
+
+[node name="torch" parent="level/south_ward/interior/wall10" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.25, 0, 0.455563)
+visible = false
+
+[node name="torch2" parent="level/south_ward/interior/wall10" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.25, 0, 0.455563)
+visible = false
+
+[node name="torch3" parent="level/south_ward/interior/wall10" instance=ExtResource("10_fedt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24998, 0, -0.429512)
+visible = false
+
+[node name="torch4" parent="level/south_ward/interior/wall10" instance=ExtResource("10_fedt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25002, 0, -0.429512)
+visible = false
+
+[node name="brass_door2" parent="level/south_ward/interior/wall10" instance=ExtResource("11_8opx3")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.500038, -0.676117, 0)
+
+[node name="barrel" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -3.04978, -1, 0.681515)
+
+[node name="candle_long" parent="level/south_ward/interior/wall10/barrel" instance=ExtResource("18_vxi3a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493603, 0.418627, 0.127327)
+
+[node name="barrel2" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.61141, -1, 3.61469)
+
+[node name="barrel5" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -4.64614, -1, 1.16366)
+
+[node name="candle_long" parent="level/south_ward/interior/wall10/barrel5" instance=ExtResource("18_vxi3a")]
+transform = Transform3D(0.999999, 0, 1.98952e-13, 0, 1, 0, -1.98952e-13, 0, 0.999999, -0.158688, 0.477536, -0.0816612)
+
+[node name="barrel3" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -7.30632, -1, 5.60228)
+
+[node name="barrel6" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -8.82093, -1, 4.10258)
+
+[node name="barrel9" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -9.16816, -1, 5.15191)
+
+[node name="barrel10" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -9.76133, -1, 6.88569)
+
+[node name="barrel4" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -6.44764, -1, 5.92336)
+
+[node name="barrel7" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.26637, -1, -5.82003)
+
+[node name="barrel8" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.22306, -1, -6.71853)
+
+[node name="barrel11" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -8.06285, -1, -6.71853)
+
+[node name="barrel12" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -9.72065, -1, -6.75587)
+
+[node name="barrel13" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.28831, -1, -3.5577)
+
+[node name="barrel15" parent="level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -9.25471, -1, -5.84502)
+
+[node name="wall8" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(0.706304, -0.0218059, -0.707573, 0.0148026, 0.999762, -0.0160345, 0.707754, 0.000851313, 0.706459, 11.4151, 5.8592, -4.91288)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4, 3.25, 0.5)
+
+[node name="wall9" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(0.707754, 0.000851313, 0.706459, 0.0148026, 0.999762, -0.0160345, -0.706304, 0.0218059, 0.707572, 18.4151, 5.8592, -4.91288)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4, 3.25, 0.5)
+
+[node name="torch3" parent="level/south_ward/interior/wall9" instance=ExtResource("10_fedt7")]
+transform = Transform3D(0.999562, 0.0295981, 0.00047493, -0.0295981, 0.999048, 0.0320613, 0.000474542, -0.0320613, 0.999486, 0, 0, -0.5)
+visible = false
+
+[node name="wall11" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(0.00102484, 0.016021, 0.999871, 0.0148026, 0.999762, -0.0160345, -0.99989, 0.0148171, 0.000787407, 19.9151, 5.8592, -8.16288)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4, 3.25, 0.5)
+
+[node name="wall11" type="CSGBox3D" parent="level/south_ward/interior/wall11"]
+transform = Transform3D(1, 0, 1.04774e-08, -2.68221e-07, 1, -1.75994e-07, 4.48199e-09, 5.27507e-11, 0.999983, 0.250008, -0.374996, -1.52588e-05)
+material_override = ExtResource("9_mnla3")
+operation = 2
+use_collision = true
+size = Vector3(2, 2.5, 0.75)
+
+[node name="wall12" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(0.99989, -0.0148171, -0.000787451, 0.0148026, 0.999762, -0.0160345, 0.00102489, 0.016021, 0.999871, 22.1651, 5.8592, -6.41288)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(5, 3.25, 0.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 5.875, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 3.25, 20.5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 4)
 operation = 2
 size = Vector3(1, 2, 1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 3.99999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 7.24999)
 operation = 2
 size = Vector3(1, 1.5, 3.5)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 5.875, 3.375)
-material_override = ExtResource("9_mnla3")
-use_collision = true
-size = Vector3(0.5, 3.25, 13.75)
+[node name="CSGBox3D3" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 7.24999)
+size = Vector3(0.1, 1.5, 0.1)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0.5)
-operation = 2
-size = Vector3(1, 2, 1)
+[node name="CSGBox3D10" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.125, 7.24999)
+size = Vector3(0.1, 3.75, 0.1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 7.99999)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 8.74999)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 6.49999)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 5.74999)
+size = Vector3(0.1, 1.5, 0.1)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.25, 5.875, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 6, 7.24999)
+material_override = SubResource("StandardMaterial3D_qmj2w")
+size = Vector3(0.05, 1.5, 3.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 5.875, 6)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 3.25, 8.5)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, -1.75)
-operation = 2
-size = Vector3(1, 2, 2)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 1.75)
-operation = 2
-size = Vector3(1, 2, 2)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -18.625, 5.875, 2)
+[node name="stairway" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.25, 12.25, 8)
 material_override = ExtResource("9_mnla3")
 use_collision = true
-size = Vector3(0.5, 3.25, 11.75)
+size = Vector3(0.5, 16, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/stairway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0.25)
+operation = 2
+size = Vector3(1, 2, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="level/south_ward/interior/stairway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.25)
+operation = 2
+size = Vector3(1, 2, 2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="level/south_ward/interior/stairway"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.875, 0, -1.75)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 16, 4.75)
+
+[node name="spiral_stairs_42" parent="level/south_ward/interior/stairway" instance=ExtResource("10_d8r33")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 2.22758, -8.1408, 0.232956)
+
+[node name="spiral_stairs_43" parent="level/south_ward/interior/stairway" instance=ExtResource("10_d8r33")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 2.22758, -6.1408, 0.232956)
+
+[node name="spiral_stairs_44" parent="level/south_ward/interior/stairway" instance=ExtResource("10_d8r33")]
+transform = Transform3D(9.73536e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, 9.73536e-08, 2.22758, -4.1408, 0.232956)
+
+[node name="spiral_stairs_45" parent="level/south_ward/interior/stairway" instance=ExtResource("10_d8r33")]
+transform = Transform3D(0.5, 0, -1.19209e-07, 0, 0.5, 0, 1.19209e-07, 0, 0.5, 2.22758, -2.1408, 0.232956)
+
+[node name="stairway2" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9.25, -0.5, 6.75)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 16, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/stairway2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, 0)
+operation = 2
+size = Vector3(1, 2, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="level/south_ward/interior/stairway2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.75, 0)
+operation = 2
+size = Vector3(1, 2, 2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="level/south_ward/interior/stairway2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25, 0, -2)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 16, 4)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="level/south_ward/interior/stairway2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.25, 0, 2)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 16, 4)
+
+[node name="spiral_stairs_42" parent="level/south_ward/interior/stairway2" instance=ExtResource("10_d8r33")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 2.22758, -8.1408, -0.0170441)
+
+[node name="spiral_stairs_43" parent="level/south_ward/interior/stairway2" instance=ExtResource("10_d8r33")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 2.22758, -6.1408, -0.0170441)
+
+[node name="spiral_stairs_44" parent="level/south_ward/interior/stairway2" instance=ExtResource("10_d8r33")]
+transform = Transform3D(9.73536e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, 9.73536e-08, 2.22758, -4.1408, -0.0170441)
+
+[node name="spiral_stairs_45" parent="level/south_ward/interior/stairway2" instance=ExtResource("10_d8r33")]
+transform = Transform3D(0.5, 0, -1.19209e-07, 0, 0.5, 0, 1.19209e-07, 0, 0.5, 2.22758, -2.1408, -0.0170441)
+
+[node name="spiral_stairs_46" parent="level/south_ward/interior/stairway2" instance=ExtResource("10_d8r33")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 2.22758, -0.140802, -0.0170441)
+
+[node name="spiral_stairs_47" parent="level/south_ward/interior/stairway2" instance=ExtResource("10_d8r33")]
+transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 2.22758, 1.8592, -0.0170441)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -18.125, 5.875, 2)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 3.25, 12.75)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, -3.75)
+operation = 2
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 4.24999)
+operation = 2
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="level/south_ward/interior"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -21.875, 5.875, -6)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 3.25, 5.25)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward/interior/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, -2.86102e-06)
 operation = 2
 size = Vector3(1, 2, 1)
 
 [node name="operation_bed" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -16.625, 4.625, -1)
+transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, -21.875, 4.625, -1.75)
 use_collision = true
 size = Vector3(1, 0.75, 2.5)
 
@@ -435,32 +713,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 light_color = Color(0, 1, 0.784314, 1)
 light_energy = 0.5
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="level/south_ward/interior/operation_bed"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -6.5)
+[node name="OmniLight3D2" type="OmniLight3D" parent="level/south_ward/interior"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -23.125, 5.375, -8.25)
 light_color = Color(0.803922, 0.341176, 0, 1)
 light_energy = 0.5
 
 [node name="interogation_table" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(0.610339, 0, 0.79214, 0, 1, 0, -0.79214, 0, 0.610339, -17.9313, 4.875, 6.19146)
+transform = Transform3D(0.610339, 0, 0.79214, 0, 1, 0, -0.79214, 0, 0.610339, -16.431, 5.25, 6.191)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(1.75, 0.1, 1)
 
 [node name="interogation_table2" type="CSGBox3D" parent="level/south_ward/interior/interogation_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.375, 0.25)
-size = Vector3(0.1, 0.75, 0.1)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -0.75, -0.5, 0.25)
+size = Vector3(0.1, 1, 0.1)
 
 [node name="interogation_table3" type="CSGBox3D" parent="level/south_ward/interior/interogation_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.375, -0.25)
-size = Vector3(0.1, 0.75, 0.1)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -0.75, -0.5, -0.25)
+size = Vector3(0.1, 1, 0.1)
 
 [node name="interogation_table4" type="CSGBox3D" parent="level/south_ward/interior/interogation_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.375, 0.25)
-size = Vector3(0.1, 0.75, 0.1)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, 0.750006, -0.5, 0.249996)
+size = Vector3(0.1, 1, 0.1)
 
 [node name="interogation_table5" type="CSGBox3D" parent="level/south_ward/interior/interogation_table"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.375, -0.25)
-size = Vector3(0.1, 0.75, 0.1)
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, 0.749996, -0.461426, -0.250004)
+size = Vector3(0.1, 0.922852, 0.1)
 
 [node name="candle_short2" parent="level/south_ward/interior/interogation_table" instance=ExtResource("11_jhau7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.480434, 0.159142, 0.118351)
@@ -473,8 +751,12 @@ skeleton = NodePath("")
 [node name="candle_long" parent="level/south_ward/interior/interogation_table" instance=ExtResource("18_vxi3a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.677334, 0.3, 0.276955)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/south_ward/interior/interogation_table"]
+transform = Transform3D(0.973881, 0.227059, 9.92506e-09, 0, -4.37114e-08, 1, 0.227059, -0.973881, -4.25697e-08, -0.013237, 0.0839567, -0.149834)
+mesh = SubResource("QuadMesh_wo4hl")
+
 [node name="interogation_chair" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(0.610339, 0, 0.79214, 0, 1, 0, -0.79214, 0, 0.610339, -18.6949, 4.875, 5.54403)
+transform = Transform3D(0.610339, 0, 0.79214, 0, 1, 0, -0.79214, 0, 0.610339, -17.1949, 4.875, 5.54403)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 0.1, 0.5)
@@ -500,7 +782,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, -0.3)
 size = Vector3(0.4, 1, 0.1)
 
 [node name="torture_bed" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(6.66364e-08, -0.828686, -0.559714, 1, -1.46018e-07, -1.19209e-07, 6.99057e-10, -0.559714, 0.828686, -15.3857, 4.375, 7.46322)
+transform = Transform3D(6.66364e-08, -0.828686, -0.559714, 1, -1.46018e-07, -1.19209e-07, 6.99057e-10, -0.559714, 0.828686, -13.4714, 4.375, 7.74308)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.1, 2, 0.1)
@@ -521,28 +803,64 @@ size = Vector3(0.1, 2, 0.1)
 transform = Transform3D(1, 3.55271e-15, -7.10543e-15, 0, 1, 0, 0, 0, 1, 0, 3.8147e-06, 0.999999)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="level/south_ward/interior"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -18.625, 5.875, -3.75)
-material_override = ExtResource("9_mnla3")
-use_collision = true
-size = Vector3(0.5, 3.25, 11.75)
-
-[node name="torch" parent="level/south_ward/interior/CSGBox3D4" instance=ExtResource("10_fedt7")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.461811, 0, 3.25)
-
-[node name="torch2" parent="level/south_ward/interior/CSGBox3D4" instance=ExtResource("10_fedt7")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.461811, 0, -2.75)
-
 [node name="torch" parent="level/south_ward/interior" instance=ExtResource("10_fedt7")]
-transform = Transform3D(1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, 1, -18.2027, 5.5, 10.0686)
+transform = Transform3D(1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, 1, -16.7027, 5.5, 10.0686)
 
 [node name="door3" type="CSGBox3D" parent="level/south_ward"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.125, 5.25, -10.625)
 operation = 2
 size = Vector3(1, 2, 2)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="level/south_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.75, 6.25, -8.5)
+operation = 2
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level/south_ward/CSGBox3D"]
+transform = Transform3D(0.0177246, -0.441431, 0.89712, -0.0108301, 0.897124, 0.441647, -0.999784, -0.0175439, 0.0111205, 0.991047, 0.466684, -0.0537434)
+light_color = Color(0.470588, 0.788235, 0.972549, 1)
+light_size = 1.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 16.0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/south_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.75, 6.25, -4)
+operation = 2
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level/south_ward/CSGBox3D2"]
+transform = Transform3D(0.0177246, -0.441431, 0.89712, -0.0108301, 0.897124, 0.441647, -0.999784, -0.0175439, 0.0111205, 0.991047, 0.466684, -0.0537434)
+light_color = Color(0.470588, 0.788235, 0.972549, 1)
+light_size = 1.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 16.0
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="level/south_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.75, 6.25, -0.25)
+operation = 2
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level/south_ward/CSGBox3D3"]
+transform = Transform3D(0.0177246, -0.441431, 0.89712, -0.0108301, 0.897124, 0.441647, -0.999784, -0.0175439, 0.0111205, 0.991047, 0.466684, -0.0537434)
+light_color = Color(0.470588, 0.788235, 0.972549, 1)
+light_size = 1.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 16.0
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="level/south_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.75, 6.25, 3.75)
+operation = 2
+
+[node name="SpotLight3D" type="SpotLight3D" parent="level/south_ward/CSGBox3D4"]
+transform = Transform3D(0.0177246, -0.441431, 0.89712, -0.0108301, 0.897124, 0.441647, -0.999784, -0.0175439, 0.0111205, 0.991047, 0.466684, -0.0537434)
+light_color = Color(0.470588, 0.788235, 0.972549, 1)
+light_size = 1.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 16.0
+
 [node name="east_tower" type="CSGBox3D" parent="level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.375, 32, 39.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.875, 32, 42)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(16, 32, 16)
@@ -737,132 +1055,179 @@ size = Vector3(0.75, 3.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 2.625, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
-size = Vector3(0.05, 3.25, 0.05)
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 1, 0.05)
+
+[node name="door" parent="level/east_ward/interior/cell" instance=ExtResource("18_mj1rs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.228554, 1.15891, 0.0307503)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 2.625, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
-size = Vector3(0.05, 3.25, 0.05)
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 1, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 2.625, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
-size = Vector3(0.05, 3.25, 0.05)
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 1, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 2.625, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
-size = Vector3(0.05, 3.25, 0.05)
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 1, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.509754, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221504, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="candle_object" type="MeshInstance3D" parent="level/east_ward/interior/cell"]
@@ -1027,144 +1392,192 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="cell6" type="Node3D" parent="level/east_ward/interior"]
@@ -1191,144 +1604,192 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="cell2" type="Node3D" parent="level/east_ward/interior"]
@@ -1361,132 +1822,176 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="straw_bed" type="CSGBox3D" parent="level/east_ward/interior/cell2"]
@@ -1542,132 +2047,176 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="straw_bed" type="CSGBox3D" parent="level/east_ward/interior/cell3"]
@@ -1702,6 +2251,11 @@ material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(10, 3.25, 0.5)
 
+[node name="door2" type="CSGBox3D" parent="level/east_ward/interior/cell4/wall5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, -3.8147e-06)
+operation = 2
+size = Vector3(1, 2, 1.75)
+
 [node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 material_override = ExtResource("9_mnla3")
 use_collision = true
@@ -1717,132 +2271,176 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="straw_bed" type="CSGBox3D" parent="level/east_ward/interior/cell4"]
@@ -1877,7 +2475,7 @@ material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(4.75, 3.25, 0.5)
 
-[node name="torch" parent="level/east_ward/interior/cell7/wall" instance=ExtResource("10_fedt7")]
+[node name="torch3" parent="level/east_ward/interior/cell7/wall" instance=ExtResource("10_fedt7")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
 
 [node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
@@ -1895,144 +2493,192 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="cell8" type="Node3D" parent="level/east_ward/interior"]
@@ -2043,9 +2689,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875,
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(4.75, 3.25, 0.5)
-
-[node name="torch" parent="level/east_ward/interior/cell8/wall" instance=ExtResource("10_fedt7")]
-transform = Transform3D(8.74228e-08, 0, 1, 0, 1, 0, -1, 0, 8.74228e-08, 6.05744, 0, 2.62675)
 
 [node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 material_override = ExtResource("9_mnla3")
@@ -2062,144 +2705,192 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="cell9" type="Node3D" parent="level/east_ward/interior"]
@@ -2235,144 +2926,192 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="cell10" type="Node3D" parent="level/east_ward/interior"]
@@ -2402,144 +3141,192 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="cell11" type="Node3D" parent="level/east_ward/interior"]
@@ -2551,7 +3338,7 @@ material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(4.75, 3.25, 0.5)
 
-[node name="torch" parent="level/east_ward/interior/cell11/wall" instance=ExtResource("10_fedt7")]
+[node name="torch3" parent="level/east_ward/interior/cell11/wall" instance=ExtResource("22_y303n")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
 
 [node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
@@ -2569,144 +3356,192 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="cell12" type="Node3D" parent="level/east_ward/interior"]
@@ -2718,8 +3553,8 @@ material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(4.75, 3.25, 0.5)
 
-[node name="torch" parent="level/east_ward/interior/cell12/wall" instance=ExtResource("10_fedt7")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+[node name="torch3" parent="level/east_ward/interior/cell12/wall" instance=ExtResource("22_y303n")]
+transform = Transform3D(4.37114e-08, 0, -1, 0, 1, 0, 1, 0, 4.37114e-08, 2.46181, 0, -0.0381889)
 
 [node name="wall4" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.625, 1.5, -1.875)
@@ -2745,145 +3580,1222 @@ size = Vector3(6.25, 0.25, 0.5)
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
 [node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
 [node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 2.125, -4.25)
 material_override = ExtResource("14_31bc1")
 use_collision = true
+collision_layer = 1024
+collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
+
+[node name="cell13" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -21.75, 4.375, 30.375)
+
+[node name="wall" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="torch2" parent="level/east_ward/interior/cell13/wall" instance=ExtResource("22_y303n")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="wall4" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall5" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar25" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar26" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar27" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar28" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar29" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar30" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar31" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar32" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar33" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar34" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar35" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar36" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar37" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar38" type="CSGBox3D" parent="level/east_ward/interior/cell13"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="cell14" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -16.25, 4.375, 30.375)
+
+[node name="wall" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="torch2" parent="level/east_ward/interior/cell14/wall" instance=ExtResource("22_y303n")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="wall4" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall5" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar25" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar26" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar27" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar28" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar29" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar30" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar31" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar32" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar33" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar34" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar35" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar36" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar37" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar38" type="CSGBox3D" parent="level/east_ward/interior/cell14"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="cell15" type="Node3D" parent="level/east_ward/interior"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.75, 4.375, 30.375)
+
+[node name="wall" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.875, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="torch2" parent="level/east_ward/interior/cell15/wall" instance=ExtResource("22_y303n")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+
+[node name="wall4" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.625, 1.5, -1.875)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(4.75, 3.25, 0.5)
+
+[node name="torch2" parent="level/east_ward/interior/cell15/wall4" instance=ExtResource("22_y303n")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+
+[node name="torch3" parent="level/east_ward/interior/cell15/wall4" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.455563)
+
+[node name="wall2" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall3" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar2" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar3" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar4" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar5" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar6" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar7" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar8" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar9" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar11" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar14" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar16" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar17" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar18" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar19" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="wall5" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="wall6" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -4)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(6.25, 0.25, 0.5)
+
+[node name="bar20" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -2.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar21" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar22" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar23" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar24" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar25" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar26" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar27" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar28" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar29" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar30" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar31" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar32" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar33" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar34" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar35" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar36" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar37" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
+
+[node name="bar38" type="CSGBox3D" parent="level/east_ward/interior/cell15"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, -4)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.05, 3.25, 0.05)
 
 [node name="torch" parent="level/east_ward/interior" instance=ExtResource("10_fedt7")]
 transform = Transform3D(1, 0, 4.37114e-08, 0, 1, 0, -4.37114e-08, 0, 1, -2.03819, 5.5, 20.947)
@@ -2894,6 +4806,42 @@ transform = Transform3D(0.876298, 0, -0.481769, 0, 1, 0, 0.481769, 0, 0.876298, 
 
 [node name="candle_long" parent="level/east_ward/interior/barrel" instance=ExtResource("18_vxi3a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493603, 0.418627, 0.127327)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="level/east_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 6.25, 30.5)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 4, 0.5)
+
+[node name="torch3" parent="level/east_ward/interior/CSGBox3D" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 1, 0, -1, 0, -8.74228e-08, -0.444864, 0, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="level/east_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 6.25, 25.75)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 4, 0.5)
+
+[node name="torch3" parent="level/east_ward/interior/CSGBox3D2" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 1, 0, -1, 0, -8.74228e-08, -0.444864, 0, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="level/east_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 6.25, 30.5)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 4, 0.5)
+
+[node name="torch3" parent="level/east_ward/interior/CSGBox3D3" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.43429, 0, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="level/east_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 6.25, 25.75)
+material_override = ExtResource("9_mnla3")
+use_collision = true
+size = Vector3(0.5, 4, 0.5)
+
+[node name="torch3" parent="level/east_ward/interior/CSGBox3D4" instance=ExtResource("10_fedt7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.43429, 0, 0)
 
 [node name="north_ward" type="CSGBox3D" parent="level"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 31, 6, 3.375)
@@ -2933,4 +4881,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.25, 16, 42.25)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 46, 12.25, 24.5)
 
 [node name="npc6" parent="." instance=ExtResource("20_clajy")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 31.25, 12.25, 31.5)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 36.9823, 12.25, 31.6089)
+
+[node name="npc10" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 25.9823, 12.25, 31.6089)
+
+[node name="npc7" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 30.7323, 12.25, 39.1089)
+
+[node name="npc8" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 37.2323, 12.25, 47.1089)
+
+[node name="npc11" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 30.7323, 12.25, 47.1089)
+
+[node name="npc9" parent="." instance=ExtResource("20_clajy")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 24.7323, 12.25, 46.8589)

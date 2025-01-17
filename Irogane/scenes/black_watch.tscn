@@ -28,7 +28,7 @@
 [ext_resource type="Script" path="res://scripts/procedural/water_collision_shape.gd" id="15_y0xhc"]
 [ext_resource type="PackedScene" uid="uid://bko8ods3crt5u" path="res://assets/models/building_blocks/sewers_i.glb" id="16_5j77n"]
 [ext_resource type="Material" uid="uid://4a34kvy5tvfs" path="res://assets/shaders/underwater_material.tres" id="16_fl4ow"]
-[ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch.tscn" id="19_0c7k4"]
+[ext_resource type="PackedScene" uid="uid://ddutohny1gn8k" path="res://prefabs/building_blocks/torch_on.tscn" id="19_0c7k4"]
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="21_0jbb5"]
 [ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="22_pdhfy"]
 [ext_resource type="PackedScene" uid="uid://csoy1mwxtniy2" path="res://prefabs/coin_2_prefab.tscn" id="23_86fpi"]

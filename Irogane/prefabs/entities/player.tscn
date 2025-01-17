@@ -774,7 +774,7 @@ size = Vector3(0.4, 0.4, 0.4)
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
 collision_layer = 129
-collision_mask = 129
+collision_mask = 1153
 floor_constant_speed = true
 script = ExtResource("1_v2hnl")
 push_force = 2
