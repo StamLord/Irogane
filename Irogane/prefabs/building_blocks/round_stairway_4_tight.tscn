@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://dkfgdnoxoavhv"]
+
+[node name="round_stairway_4" type="Node3D"]
+
+[node name="step" type="Node3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step2" type="Node3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 0.25, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step3" type="Node3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0.5, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step4" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0.75, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step5" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 1, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step6" type="Node3D" parent="."]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 1.25, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step7" type="Node3D" parent="."]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 0, 1.5, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step8" type="Node3D" parent="."]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 0, 1.75, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step9" type="Node3D" parent="."]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 2, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step10" type="Node3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 2.25, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step11" type="Node3D" parent="."]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0, 2.5, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step12" type="Node3D" parent="."]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 0, 2.75, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step13" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 0, 3, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step14" type="Node3D" parent="."]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0, 3.25, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step15" type="Node3D" parent="."]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 0, 3.5, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step16" type="Node3D" parent="."]
+transform = Transform3D(-0.707106, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707106, 0, 3.75, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -1)
+use_collision = true
+size = Vector3(1, 0.25, 2)
+
+[node name="step17" type="Node3D" parent="."]
+transform = Transform3D(8.9407e-08, 0, -1, 0, 1, 0, 1, 0, 8.9407e-08, 2.23517e-08, 3.75, 0.25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="step17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.125, -0.875)
+use_collision = true
+size = Vector3(0.75, 0.25, 1.75)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="step17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 0.125, -1.375)
+use_collision = true
+size = Vector3(0.75, 0.25, 0.75)
+
+[node name="pillar" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+use_collision = true
+height = 4.0

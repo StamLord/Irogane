@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://rgw0s800frxg"]
+
+[ext_resource type="Material" uid="uid://cpw0gk8ua7o7e" path="res://assets/materials/wood_portico.tres" id="1_a2y5p"]
+
+[node name="interogation_chair" type="CSGBox3D"]
+transform = Transform3D(0.610339, 0, 0.79214, 0, 1, 0, -0.79214, 0, 0.610339, -17.1949, 4.875, 5.54403)
+material_override = ExtResource("1_a2y5p")
+use_collision = true
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="interogation_table2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.375, 0.2)
+size = Vector3(0.1, 0.75, 0.1)
+
+[node name="interogation_table3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.125, -0.3)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="interogation_table4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.375, 0.2)
+size = Vector3(0.1, 0.75, 0.1)
+
+[node name="interogation_table5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.200001, 0.125, -0.3)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="interogation_table6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, -0.3)
+size = Vector3(0.4, 1, 0.1)
