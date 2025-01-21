@@ -11,7 +11,7 @@ extends Node3D
 		
 		return inventory
 	
-
+@onready var tool_manager = $"../simple_weapon_manager"
 @onready var strength = $"%stats/strength"
 
 @export var carry_start_time = 0.8
@@ -198,10 +198,28 @@ func throw_carry_object():
 	
 
 func add_item(item_id):
+	var item = ItemDB.get_item(item_id)
+	
+	# Handle tools
+	if item.slot == "TOOL":
+		return add_tool(item)
+	
+	# Handle items
 	if inventory == null:
 		return false
 	
 	return inventory.pickup_item(item_id)
+	
+
+func add_tool(tool):
+	if tool_manager == null:
+		return false
+	
+	if not tool.has("type") or not tool.type is SimpleWeaponManager.tool_type:
+		return false
+		
+	tool_manager.add_tool(tool.type)
+	return true
 	
 
 func add_key(tower_id : int, key_color : Key.key_color, uses : int):

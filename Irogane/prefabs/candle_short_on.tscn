@@ -90,8 +90,8 @@ flicker_amount = 4.0
 
 [node name="igniter_area" type="Area3D" parent="light"]
 transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2048
+collision_mask = 2048
 script = ExtResource("3_lyi1o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="light/igniter_area"]
@@ -111,12 +111,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12604, 0)
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_8rvxn")
 
-[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("node")]
+[node name="ignitable_area" type="Area3D" parent="." node_paths=PackedStringArray("node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2048
+collision_mask = 2048
 script = ExtResource("5_or3sp")
 node = NodePath("../light")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ignitable_area"]
 shape = SubResource("SphereShape3D_ns6ds")

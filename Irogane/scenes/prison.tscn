@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=60 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -14,14 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://dabdutuwbjt5x" path="res://prefabs/building_blocks/brass_door_no_frame.tscn" id="11_8opx3"]
 [ext_resource type="PackedScene" uid="uid://biwrd1alb43lk" path="res://prefabs/candle_short_on.tscn" id="11_jhau7"]
 [ext_resource type="PackedScene" uid="uid://djimgpl6hvpuu" path="res://prefabs/barrel.tscn" id="11_knwdj"]
-[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="12_j3grc"]
-[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="13_c5sup"]
-[ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="14_7rw5u"]
 [ext_resource type="Material" uid="uid://bxwlp000cigp8" path="res://assets/materials/iron_bar.tres" id="14_31bc1"]
 [ext_resource type="PackedScene" uid="uid://bbho3oihymvcm" path="res://prefabs/building_blocks/round_stairway_4_wide.tscn" id="15_1xp5l"]
-[ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="15_5xpi6"]
 [ext_resource type="PackedScene" uid="uid://cuwgxv22fnmqx" path="res://prefabs/candle_short.tscn" id="15_x2cvp"]
-[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="16_etg5h"]
 [ext_resource type="Script" path="res://scripts/interactive/Carriable.gd" id="16_imo6e"]
 [ext_resource type="PackedScene" uid="uid://rgw0s800frxg" path="res://prefabs/wooden_chair.tscn" id="17_3b8vk"]
 [ext_resource type="Material" uid="uid://cpw0gk8ua7o7e" path="res://assets/materials/wood_portico.tres" id="17_6xw7o"]
@@ -34,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="20_clajy"]
 [ext_resource type="PackedScene" uid="uid://mdr1tuqo2e7v" path="res://prefabs/building_blocks/bed.tscn" id="22_xvo63"]
 [ext_resource type="PackedScene" uid="uid://crxjt1r5cc71g" path="res://prefabs/building_blocks/torch.tscn" id="22_y303n"]
+[ext_resource type="PackedScene" uid="uid://rudwdswtudgx" path="res://prefabs/pickups/weapons/candle_tool_pickup.tscn" id="24_0b7eo"]
 [ext_resource type="Texture2D" uid="uid://bhht57p716sdf" path="res://assets/textures/medieval/old_paper_0.png" id="29_628p2"]
 [ext_resource type="Texture2D" uid="uid://2ayewk7u76jt" path="res://assets/textures/medieval/prison_notice.png" id="29_kpv4w"]
 
@@ -70,11 +66,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_8nup2"]
+[sub_resource type="QuadMesh" id="QuadMesh_55lwo"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_n38yh"]
+[sub_resource type="BoxMesh" id="BoxMesh_e2tsx"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -95,77 +91,6 @@ transparency = 3
 alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 albedo_color = Color(0, 0, 0, 0.447059)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_guxru"]
-top_radius = 0.03
-bottom_radius = 0.03
-height = 0.25
-radial_segments = 4
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wc3d"]
-shading_mode = 0
-albedo_color = Color(1, 0.784314, 0, 1)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_iogfw"]
-radius = 0.2
-
-[sub_resource type="Curve" id="Curve_06fj3"]
-_data = [Vector2(0, 1), 0.0, -0.445115, 0, 0, Vector2(1, 0), -1.62068, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_x2yda"]
-curve = SubResource("Curve_06fj3")
-
-[sub_resource type="Gradient" id="Gradient_t0kxs"]
-offsets = PackedFloat32Array(0, 0.237705, 0.561475)
-colors = PackedColorArray(1, 0.968002, 0.431428, 1, 0.912296, 0.771426, 0, 1, 0.77192, 0.22088, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2kkno"]
-gradient = SubResource("Gradient_t0kxs")
-
-[sub_resource type="Curve" id="Curve_f17wr"]
-_data = [Vector2(0, 0), 0.0, 3.43082, 0, 0, Vector2(1, 1), 0.0, 0.178046, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_pbwux"]
-curve = SubResource("Curve_f17wr")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k783y"]
-emission_shape_scale = Vector3(1, 1, 0.01)
-angle_min = -1.0
-angle_max = 1.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.23
-scale_max = 0.25
-scale_curve = SubResource("CurveTexture_pbwux")
-color_ramp = SubResource("GradientTexture1D_2kkno")
-alpha_curve = SubResource("CurveTexture_x2yda")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stvex"]
-transparency = 1
-blend_mode = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("15_5xpi6")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_edlm2"]
-material = SubResource("StandardMaterial3D_stvex")
-center_offset = Vector3(0, 0.15, 0)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_cekqs"]
-radius = 0.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq4jw"]
-albedo_color = Color(0.341176, 0.192157, 0.0823529, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_hlr18"]
-size = Vector3(0.007, 0.075, 0.007)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nb86l"]
 size = Vector3(2, 0.07, 1)
@@ -325,10 +250,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_8nup2")
+mesh = SubResource("QuadMesh_55lwo")
 
 [node name="under_water" type="MeshInstance3D" parent="level/floor/water_area"]
-mesh = SubResource("BoxMesh_n38yh")
+mesh = SubResource("BoxMesh_e2tsx")
 
 [node name="south_ward" type="CSGBox3D" parent="level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -2262,60 +2187,9 @@ collision_layer = 1024
 collision_mask = 1024
 size = Vector3(0.1, 1, 0.1)
 
-[node name="candle_object" type="MeshInstance3D" parent="level/east_ward/interior/cell"]
+[node name="candle_tool_pickup" parent="level/east_ward/interior/cell" instance=ExtResource("24_0b7eo")]
 transform = Transform3D(-9.71818e-08, 0.54024, 0.84151, 1, 4.37114e-08, 8.74227e-08, 1.04457e-08, 0.841511, -0.54024, -2.78092, -0.0933132, -0.582802)
-material_override = ExtResource("12_j3grc")
-cast_shadow = 0
-mesh = SubResource("CylinderMesh_guxru")
-skeleton = NodePath("")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="level/east_ward/interior/cell/candle_object"]
-transform = Transform3D(1, 1.49012e-08, 0, 2.98023e-08, 1, -2.98023e-08, 0, -2.98023e-08, 1, 0.0324404, 0.153458, 0)
-material_override = SubResource("StandardMaterial3D_0wc3d")
-
-[node name="light" type="OmniLight3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D" groups=["light_source"]]
-transform = Transform3D(1, 2.23517e-07, -1.78814e-07, 2.98023e-08, 1, 3.27826e-07, -8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
-visible = false
-light_color = Color(1, 0.54902, 0, 1)
-light_energy = 0.5
-shadow_enabled = true
-omni_range = 3.0
-omni_attenuation = 2.0
-script = ExtResource("13_c5sup")
-base_energy = 0.5
-flicker_amount = 4.0
-
-[node name="igniter_area" type="Area3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/light"]
-transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("14_7rw5u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/light/igniter_area"]
-shape = SubResource("SphereShape3D_iogfw")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/light"]
-transform = Transform3D(1, -2.38419e-07, 1.49012e-07, 8.9407e-08, 0.999998, -8.9407e-08, 8.9407e-08, 8.9407e-08, 1, 0, 0, 0)
-amount = 16
-lifetime = 0.2
-fixed_fps = 60
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_k783y")
-draw_pass_1 = SubResource("QuadMesh_edlm2")
-
-[node name="ignitable_area" type="Area3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("16_etg5h")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="level/east_ward/interior/cell/candle_object/MeshInstance3D/ignitable_area"]
-shape = SubResource("SphereShape3D_cekqs")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/east_ward/interior/cell/candle_object"]
-transform = Transform3D(0.681871, 0.731473, 0, -0.731473, 0.681871, -2.98023e-08, 2.98023e-08, -9.12696e-08, 1, 0.0140285, 0.140245, 1.19209e-07)
-material_override = SubResource("StandardMaterial3D_aq4jw")
-mesh = SubResource("BoxMesh_hlr18")
+freeze = true
 
 [node name="straw_bed" type="RigidBody3D" parent="level/east_ward/interior/cell"]
 transform = Transform3D(0.0179933, 0, -0.999838, 0, 1, 0, 0.999838, 0, 0.0179933, 2.01781, -0.0884151, -3.04153)

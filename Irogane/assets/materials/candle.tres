@@ -4,6 +4,8 @@
 
 [resource]
 albedo_texture = ExtResource("1_7bpmr")
+emission_energy_multiplier = 0.25
+emission_texture = ExtResource("1_7bpmr")
 subsurf_scatter_strength = 1.0
 subsurf_scatter_texture = ExtResource("1_7bpmr")
 backlight_enabled = true

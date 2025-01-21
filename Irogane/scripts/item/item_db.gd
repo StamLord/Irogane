@@ -65,6 +65,12 @@ const ITEMS = {
 		"type" : "NONE",
 		"pickup" : preload(PICKUP_PATH + "pickup.tscn")
 	},
+	"candle_tool" : {
+		"icon" : ICON_PATH + "katana.png",
+		"slot" : "TOOL",
+		"type" : SimpleWeaponManager.tool_type.CANDLE,
+		"pickup" : preload(PICKUP_PATH + "pickup.tscn")
+	},
 }
 
 static func get_item(id):
