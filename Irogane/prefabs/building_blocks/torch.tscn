@@ -97,8 +97,8 @@ size = Vector3(0.21, 0.8, 0.2)
 [node name="torch" type="StaticBody3D"]
 
 [node name="torch" type="Area3D" parent="." node_paths=PackedStringArray("node")]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2048
+collision_mask = 2048
 script = ExtResource("1_pscr7")
 node = NodePath("light")
 
@@ -116,8 +116,8 @@ script = ExtResource("2_lm4lx")
 
 [node name="igniter_area" type="Area3D" parent="torch/light"]
 transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2048
+collision_mask = 2048
 script = ExtResource("3_i17no")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="torch/light/igniter_area"]
