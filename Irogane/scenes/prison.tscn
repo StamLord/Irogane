@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=66 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -32,6 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://rudwdswtudgx" path="res://prefabs/pickups/weapons/candle_tool_pickup.tscn" id="24_0b7eo"]
 [ext_resource type="Texture2D" uid="uid://bhht57p716sdf" path="res://assets/textures/medieval/old_paper_0.png" id="29_628p2"]
 [ext_resource type="Texture2D" uid="uid://2ayewk7u76jt" path="res://assets/textures/medieval/prison_notice.png" id="29_kpv4w"]
+[ext_resource type="PackedScene" uid="uid://df14atga7qdvx" path="res://prefabs/pickups/silver_key.tscn" id="33_137jg"]
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="34_06lda"]
+[ext_resource type="PackedScene" uid="uid://bjhhsnlanod80" path="res://prefabs/building_blocks/bar_portcullis.tscn" id="35_aucl4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pcmgd"]
 disable_fog = true
@@ -66,13 +69,22 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_55lwo"]
+[sub_resource type="QuadMesh" id="QuadMesh_uvcir"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_e2tsx"]
+[sub_resource type="BoxMesh" id="BoxMesh_auiqk"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnwtm"]
+albedo_color = Color(0.690196, 0.184314, 0.152941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7un6v"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tc5hv"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmj2w"]
 transparency = 1
@@ -250,10 +262,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_55lwo")
+mesh = SubResource("QuadMesh_uvcir")
 
 [node name="under_water" type="MeshInstance3D" parent="level/floor/water_area"]
-mesh = SubResource("BoxMesh_e2tsx")
+mesh = SubResource("BoxMesh_auiqk")
 
 [node name="south_ward" type="CSGBox3D" parent="level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -495,8 +507,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
 operation = 2
 size = Vector3(1, 2, 1)
 
-[node name="door" parent="level/south_ward/interior/wall7/CSGBox3D2" instance=ExtResource("18_mj1rs")]
+[node name="door_switch" type="MeshInstance3D" parent="level/south_ward/interior/wall7/CSGBox3D2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.75, 0, 0.25)
+material_override = SubResource("StandardMaterial3D_lnwtm")
+mesh = SubResource("BoxMesh_7un6v")
+skeleton = NodePath("door_switch")
+
+[node name="door_switch" type="Area3D" parent="level/south_ward/interior/wall7/CSGBox3D2/door_switch"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("34_06lda")
+on_text = "PRESS"
+on_position = Vector3(0, 0, 0.025)
+_animate_rotation = false
+interaction_text = "PRESS"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/south_ward/interior/wall7/CSGBox3D2/door_switch/door_switch"]
+shape = SubResource("BoxShape3D_tc5hv")
+
+[node name="bar_portcullis" parent="level/south_ward/interior/wall7/CSGBox3D2" node_paths=PackedStringArray("switches") instance=ExtResource("35_aucl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+dual_side = false
+switches = [NodePath("../door_switch/door_switch")]
+auto_open = true
 
 [node name="torch" parent="level/south_ward/interior/wall7" instance=ExtResource("10_fedt7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.25, 0, 0.455563)
@@ -2244,7 +2277,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.694
 
 [node name="bucket" type="CSGCylinder3D" parent="level/east_ward/interior/cell/bucket"]
 material_override = ExtResource("17_6xw7o")
-use_collision = true
 radius = 0.2
 height = 0.4
 
@@ -5840,3 +5872,31 @@ transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 30.7323,
 
 [node name="npc9" parent="." instance=ExtResource("20_clajy")]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 24.7323, 12.25, 46.8589)
+
+[node name="silver_key_pickup" parent="." instance=ExtResource("33_137jg")]
+transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, -1, -4.37114e-08, 0, -3.09086e-08, 0.707107, 0.707107, 40.5669, 12.2591, 23.3505)
+freeze = true
+
+[node name="door_switch" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.114, 13.25, 29)
+material_override = SubResource("StandardMaterial3D_lnwtm")
+mesh = SubResource("BoxMesh_7un6v")
+skeleton = NodePath("door_switch")
+
+[node name="door_switch" type="Area3D" parent="door_switch"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("34_06lda")
+on_text = "PRESS"
+on_position = Vector3(0, 0, 0.025)
+_animate_rotation = false
+interaction_text = "PRESS"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door_switch/door_switch"]
+shape = SubResource("BoxShape3D_tc5hv")
+
+[node name="bar_portcullis" parent="." node_paths=PackedStringArray("switches") instance=ExtResource("35_aucl4")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 47.8642, 13.25, 28.7072)
+dual_side = false
+start_open = true
+switches = [NodePath("../door_switch/door_switch")]

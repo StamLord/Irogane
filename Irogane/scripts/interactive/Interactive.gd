@@ -9,6 +9,8 @@ class_name Interactive
 const HIGHLIGHT_EMMISION = 0.25
 const HIGHLIGHT_COLOR = Color.WHITE
 
+var is_disabled = false
+
 var active_material = null
 
 var base_emission_enabled = false
@@ -40,6 +42,9 @@ func _ready():
 	
 
 func get_text():
+	if is_disabled:
+		return ""
+	
 	return interaction_text
 	
 
@@ -48,7 +53,7 @@ func use(_interactor):
 	
 
 func highlight_on():
-	if active_material == null:
+	if is_disabled or active_material == null:
 		return
 	
 	var new_emission_multiplier = HIGHLIGHT_EMMISION if base_emission_energy_multiplier == 0 else base_emission_energy_multiplier * highlight_emission_multiplier
@@ -65,7 +70,7 @@ func highlight_on():
 	
 
 func highlight_off():
-	if active_material == null:
+	if is_disabled or active_material == null:
 		return
 	
 	if active_material is StandardMaterial3D:
@@ -76,4 +81,8 @@ func highlight_off():
 		active_material.emission_texture = base_emission_texture
 	elif active_material is ShaderMaterial:
 		active_material.set_shader_parameter("emission_multiplier", base_emission_energy_multiplier)
+	
+
+func set_disabled(state : bool):
+	is_disabled = state
 	
