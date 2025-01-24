@@ -93,6 +93,7 @@ visible = false
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="character_body"]
+path_desired_distance = 0.5
 path_height_offset = 0.6
 avoidance_enabled = true
 debug_enabled = true
