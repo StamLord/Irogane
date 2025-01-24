@@ -53,6 +53,8 @@ func _ready():
 func use(interactor):
 	if is_locked:
 		for key in required_keys:
+			if interactor == null:
+				return
 			var use_key = interactor.use_key(key.tower_id, key.color)
 			if use_key == false:
 				on_failed_unlocked.emit()
