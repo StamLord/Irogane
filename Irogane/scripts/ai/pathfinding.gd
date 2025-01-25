@@ -154,7 +154,7 @@ func _physics_process(delta):
 	direction = (next_position - global_position).normalized()
 	
 	# Get dot product between our facing direction and the direction
-	var facing_direction = basis * Vector3.FORWARD # Our facing direction
+	var facing_direction = global_basis * Vector3.FORWARD # Our facing direction
 	var dot_product = facing_direction.dot(direction)
 	dot_product = max(0, dot_product) # Make sure it's not below 0
 	
