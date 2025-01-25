@@ -2,6 +2,7 @@ extends Node
 class_name GoapAgent
 
 @export var agent_data : AIagent
+@export var inform_guards_about_enemy = false
 
 @onready var time_slicer = $"../TimeSlicer"
 @onready var awareness_agent = %AwarenessAgent
@@ -46,16 +47,18 @@ var goto_target_position = null
 var current_patrol_point = 0
 
 var enemy_lost_cheat_duration = 4.0
-
+var agents_enemy_shared_with = []
 var use_time_slicing = false
 
-var debug = false
+@export var debug = false
 
 func _ready():
 	if awareness_agent != null:
 		awareness_agent.on_enemy_seen.connect(enemy_seen)
 		awareness_agent.on_enemy_lost.connect(enemy_lost)
 		awareness_agent.on_sound_heard.connect(sound_heard)
+		awareness_agent.direct_sight_range = agent_data.direct_sight
+		awareness_agent.peripheral_sight_range = agent_data.peripheral_sight
 	
 	update_world_state("self", body)
 	
@@ -211,17 +214,19 @@ func erase_world_state(key):
 func set_action_plan(action_plan):
 	# No need to restart action plan if it's the same as current
 	if current_action_plan != null and is_same_action_plan(current_action_plan, action_plan):
-		DEBUG("Got the same action plan, will ignore it.")
+		DEBUG(name + ": Got action plan: " + str(action_plan))
+		DEBUG(name + ": Got the same action plan, will ignore it.")
 		return
 	
 	current_action_plan = action_plan
 	current_action_index = 0
+	DEBUG(name + ": Got new action plan: " + str(action_plan))
 	start_action()
 	
 
 func set_goal(goal):
 	current_goal = goal
-	DEBUG("New goal: " + str(goal))
+	DEBUG(name + ": New goal: " + str(goal))
 	
 	var color_seed = current_goal.to_string().hash()
 	var random_color = Utils.random_color(color_seed)
@@ -234,10 +239,16 @@ func set_goal(goal):
 func get_dynamic_actions():
 	var dynamic_actions = []
 	
-	if awareness_agent != null:
-		for agent in awareness_agent.visible_agents:
-			var goto = GotoAction.new(agent, {"near_enemy": true})
-			dynamic_actions.append(goto)
+	# Add goto actions to all visible agents
+	#if awareness_agent != null:
+		#for agent in awareness_agent.visible_agents:
+			#var goto = GotoAction.new(agent, {"near_enemy": true})
+			#dynamic_actions.append(goto)
+	
+	# Add goto action to our closest enemy
+	if world_state.has("enemy"):
+		var goto = GotoAction.new(world_state["enemy"], {"near_enemy": true})
+		dynamic_actions.append(goto)
 	
 	# Look at and Goto sound to investigate
 	if (current_goal is AIInvestigateGoal or current_goal is AISearchNearSoundGoal)and world_state.has("sound_heard_at"):
@@ -312,9 +323,16 @@ func get_closest_enemy():
 
 func enemy_seen(enemy):
 	update_closest_enemy()
+	if inform_guards_about_enemy:
+		agents_enemy_shared_with = inform_agents(10, "enemy", world_state["enemy"], "Guard")
 	
 
 func enemy_lost(enemy):
+	# We can get "uninformed" by another agent about the enemy
+	# in that case we have nothing to do when enemy_lost signal arrives
+	if not world_state.has("enemy"):
+		return
+	
 	if enemy != world_state["enemy"]:
 		return
 	
@@ -329,6 +347,11 @@ func enemy_lost_cheat_delay(enemy):
 	update_world_state("enemy_last_seen_at", enemy.global_position)
 	update_world_state("search_point", enemy.global_position)
 	update_closest_enemy()
+	
+	if inform_guards_about_enemy:
+		uninform_agents(agents_enemy_shared_with, "enemy")
+		inform_agents(10, "enemy_last_seen_at", enemy.global_position, "Guard")
+		inform_agents(10, "search_point", enemy.global_position, "Guard")
 	
 
 func update_closest_enemy():
@@ -457,12 +480,25 @@ func get_nearest_guard():
 
 # Updates the world_state of GoapAgents
 # in range with key and value
-func inform_agents(range, key, value):
+func inform_agents(range, key, value, agent_type = null):
 	var agents = get_goap_agents()
+	var inform_all = agent_type == null
 	agents = agents.filter(func(agent): return agent != self and body.global_position.distance_to(agent.body.global_position) <= range)
+	
+	var agents_informed = []
 	for agent in agents:
-		agent.update_world_state(key, value)
-		DEBUG("%s is informing %s about %s : %s" % [self, agent, key, value])
+		if inform_all or agent_type is String and Utils.get_resource_file_name(agent.agent_data) == agent_type:
+			agent.update_world_state(key, value)
+			agents_informed.append(agent)
+			DEBUG("%s is informing %s about %s : %s" % [self, agent, key, value])
+	
+	return agents_informed
+	
+
+func uninform_agents(agents, key):
+	for agent in agents:
+		agent.erase_world_state(key)
+		DEBUG("%s is uninforming %s about %s" % [self, agent, key])
 	
 
 func get_light_switches():

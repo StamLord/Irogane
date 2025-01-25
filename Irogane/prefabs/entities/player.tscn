@@ -1535,8 +1535,8 @@ collide_with_bodies = false
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 visible = false
-collision_layer = 16
-collision_mask = 16
+collision_layer = 4096
+collision_mask = 4096
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wind_check"]
 shape = SubResource("BoxShape3D_motmp")

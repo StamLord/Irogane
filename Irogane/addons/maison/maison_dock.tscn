@@ -99,7 +99,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "agent"
+text = "Civilian"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -255,19 +255,41 @@ layout_mode = 2
 [node name="Label" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Sight"
+text = "Direct Sight"
 
-[node name="sight_slider" type="HSlider" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="direct_sight_slider" type="HSlider" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_agw66")
+value = 20.0
 
-[node name="sight_value" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("slider")]
+[node name="direct_sight_value" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("slider")]
 layout_mode = 2
-text = "10"
+text = "20"
 script = ExtResource("2_mvok7")
-slider = NodePath("../sight_slider")
+slider = NodePath("../direct_sight_slider")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="agent_window/awareness/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Periph. Sight"
+
+[node name="peripheral_sight_slider" type="HSlider" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_agw66")
+value = 5.0
+
+[node name="peripheral_sight_value" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("slider")]
+layout_mode = 2
+text = "5"
+script = ExtResource("2_mvok7")
+slider = NodePath("../peripheral_sight_slider")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="agent_window/awareness/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -282,10 +304,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_agw66")
+value = 20.0
 
 [node name="hearing_value" type="Label" parent="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("slider")]
 layout_mode = 2
-text = "10"
+text = "20"
 script = ExtResource("2_mvok7")
 slider = NodePath("../hearing_slider")
 
@@ -317,7 +340,8 @@ root_subfolder = "res://data/ai_goals/"
 [connection signal="pressed" from="agent_window/title/confirm_rename_button" to="." method="_on_confirm_rename_button_pressed"]
 [connection signal="pressed" from="agent_window/HBoxContainer/goal_panel/title/add_goal" to="." method="_on_add_goal_pressed"]
 [connection signal="pressed" from="agent_window/HBoxContainer/action_panel/title/add_action" to="." method="_on_add_action_pressed"]
-[connection signal="drag_ended" from="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer/sight_slider" to="." method="_on_sight_slider_drag_ended"]
+[connection signal="drag_ended" from="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer/direct_sight_slider" to="." method="_on_direct_sight_slider_drag_ended"]
+[connection signal="drag_ended" from="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer3/peripheral_sight_slider" to="." method="_on_peripheral_sight_slider_drag_ended"]
 [connection signal="drag_ended" from="agent_window/awareness/MarginContainer/VBoxContainer/HBoxContainer2/hearing_slider" to="." method="_on_hearing_slider_drag_ended"]
 [connection signal="file_selected" from="action_file_dialogue" to="." method="_on_action_file_dialogue_file_selected"]
 [connection signal="files_selected" from="action_file_dialogue" to="." method="_on_action_file_dialogue_files_selected"]

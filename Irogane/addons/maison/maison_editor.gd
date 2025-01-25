@@ -13,7 +13,8 @@ extends Control
 @onready var confirm_rename_button = %confirm_rename_button
 @onready var rename_edit = %rename_edit
 
-@onready var sight_slider = %sight_slider
+@onready var direct_sight_slider = %direct_sight_slider
+@onready var peripheral_sight_slider = %peripheral_sight_slider
 @onready var hearing_slider = %hearing_slider
 
 const AGENT_ITEM = preload("res://addons/maison/agent_item.tscn")
@@ -101,7 +102,8 @@ func update_agent_window():
 	update_gui_items(goal_container, current_resource.goals, remove_goal_from_agent)
 	
 	# Set sliders
-	sight_slider.value = current_resource.sight
+	direct_sight_slider.value = current_resource.direct_sight
+	peripheral_sight_slider.value = current_resource.peripheral_sight
 	hearing_slider.value = current_resource.hearing
 	
 
@@ -309,8 +311,12 @@ func _on_confirm_rename_button_pressed():
 	delete_agent()
 	
 
-func _on_sight_slider_drag_ended(value_changed):
-	set_agent_property("sight", sight_slider.value)
+func _on_direct_sight_slider_drag_ended(value_changed):
+	set_agent_property("direct_sight", direct_sight_slider.value)
+	
+
+func _on_peripheral_sight_slider_drag_ended(value_changed):
+	set_agent_property("peripheral_sight", peripheral_sight_slider.value)
 	
 
 func _on_hearing_slider_drag_ended(value_changed):

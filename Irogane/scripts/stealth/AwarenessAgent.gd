@@ -14,7 +14,7 @@ class_name AwarenessAgent
 @export var direct_sight_range = 20.0
 @export var direct_sight_angle = Vector2(30, 20)
 
-@export var peripheral_range = 5.0
+@export var peripheral_sight_range = 5.0
 @export var peripheral_sight_angle = Vector2(160, 20)
 
 @export_flags_3d_physics var sight_obstacle_mask = 17 # Bit mask for layers, 17 is 1 - Default, 5 - Stealth
@@ -60,7 +60,7 @@ func get_detection_rate(is_direct):
 func get_visible(delta):
 	# Get agents in direct sight range
 	var peripheral_stealth_agents = []
-	sight_cast.shape.radius = peripheral_range
+	sight_cast.shape.radius = peripheral_sight_range
 	sight_cast.force_shapecast_update()
 	for i in range(sight_cast.get_collision_count()):
 		var col = sight_cast.get_collider(i)
@@ -164,7 +164,7 @@ func _process(delta):
 		
 		if peripheral_vision_cone != null:
 			peripheral_vision_cone.visible = true
-			update_cone_mesh(peripheral_range, peripheral_sight_angle, peripheral_cone_mesh, peripheral_sphere_mesh)
+			update_cone_mesh(peripheral_sight_range, peripheral_sight_angle, peripheral_cone_mesh, peripheral_sphere_mesh)
 	else:
 		if direct_vision_cone != null:
 			direct_vision_cone.visible =  false
