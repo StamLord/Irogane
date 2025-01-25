@@ -127,9 +127,10 @@ func start_action():
 	
 
 func cancel_action():
-	goto_target = null
-	animating_clip = null
-	
+	reset_state()
+	# Reset action plan to not ignore the next action plan
+	# which can be the same, if the goal is the same.
+	current_action_plan = null
 	calculate_goal()
 	
 
@@ -137,14 +138,21 @@ func complete_action():
 	current_action.finish_action(self)
 	current_action_index += 1
 	
-	state = STATE.NONE
-	goto_target = null
-	animating_clip = null
+	reset_state()
 	
 	if current_action_index >= current_action_plan.size():
+		# Reset action plan to not ignore the next action plan
+		# which can be the same, if the goal is the same.
+		current_action_plan = null
 		calculate_goal()
 	else:
 		start_action()
+	
+
+func reset_state():
+	state = STATE.NONE
+	goto_target = null
+	animating_clip = null
 	
 
 func animate(animation_clip, override_length = -1.0):
