@@ -862,7 +862,7 @@ carry_layer = 4
 [node name="interact_check" type="RayCast3D" parent="head/camera_bob/main_camera/interaction"]
 visible = false
 target_position = Vector3(0, 0, -2)
-collision_mask = 4
+collision_mask = 5
 collide_with_areas = true
 debug_shape_custom_color = Color(0.407843, 0.862745, 0, 1)
 
