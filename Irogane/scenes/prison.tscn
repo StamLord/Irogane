@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=87 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -35,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://2ayewk7u76jt" path="res://assets/textures/medieval/prison_notice.png" id="29_kpv4w"]
 [ext_resource type="Material" uid="uid://27l1krb4frj0" path="res://assets/materials/ruby.tres" id="31_fln5t"]
 [ext_resource type="Material" uid="uid://hy7is1hc3gw3" path="res://assets/models/compass/brass_compass.tres" id="32_hhvtl"]
-[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="33_6mjkm"]
 [ext_resource type="PackedScene" uid="uid://df14atga7qdvx" path="res://prefabs/pickups/silver_key.tscn" id="33_137jg"]
 [ext_resource type="PackedScene" uid="uid://cx8myxrl1yfr4" path="res://prefabs/pickups/crate.tscn" id="34_4oasf"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="34_06lda"]
@@ -83,11 +82,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_dfs77"]
+[sub_resource type="QuadMesh" id="QuadMesh_xfi4m"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_21wes"]
+[sub_resource type="BoxMesh" id="BoxMesh_jc43j"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -325,10 +324,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_dfs77")
+mesh = SubResource("QuadMesh_xfi4m")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_21wes")
+mesh = SubResource("BoxMesh_jc43j")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -7712,7 +7711,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.1
 operation = 2
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/north_ward/interior"]
-transform = Transform3D(1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, 1, 0.12, 3, -9)
+transform = Transform3D(1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, 1, -0.0122536, 3, -9)
 use_collision = true
 size = Vector3(1.5, 1.5, 1)
 
@@ -7841,28 +7840,20 @@ transform = Transform3D(0.997786, 0.066465, 2.90527e-09, 1.94296e-15, -4.37114e-
 material_override = SubResource("StandardMaterial3D_einpf")
 mesh = SubResource("QuadMesh_wo4hl")
 
-[node name="candle_short8" type="MeshInstance3D" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("11_jhau7")]
+[node name="candle_short8" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("11_jhau7")]
 transform = Transform3D(1, 0, -3.55271e-14, 0, 1, 0, 3.55271e-14, 0, 1, -0.472998, 0.159142, 0.220494)
-material_override = ExtResource("33_6mjkm")
-cast_shadow = 0
 mesh = SubResource("CylinderMesh_av2hq")
 
-[node name="candle_short10" type="MeshInstance3D" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("11_jhau7")]
+[node name="candle_short10" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("11_jhau7")]
 transform = Transform3D(0.0383529, 0, 0.999264, 0, 1, 0, -0.999264, 0, 0.0383529, 0.84741, 0.159142, 0.300696)
-material_override = ExtResource("33_6mjkm")
-cast_shadow = 0
 mesh = SubResource("CylinderMesh_av2hq")
 
-[node name="candle_short11" type="MeshInstance3D" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("11_jhau7")]
+[node name="candle_short11" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("11_jhau7")]
 transform = Transform3D(0.0383528, 0, 0.999263, 0, 1, 0, -0.999263, 0, 0.0383528, 1.05168, 0.0945349, 0.143857)
-material_override = ExtResource("33_6mjkm")
-cast_shadow = 0
 mesh = SubResource("CylinderMesh_av2hq")
 
-[node name="candle_short12" type="MeshInstance3D" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("18_vxi3a")]
+[node name="candle_short12" parent="navigation_region/level/north_ward/interior/interogation_table2" instance=ExtResource("18_vxi3a")]
 transform = Transform3D(0.999999, 0, 5.96045e-08, 0, 1, 0, -5.96045e-08, 0, 0.999999, -0.308439, 0.268373, 0.374899)
-material_override = ExtResource("33_6mjkm")
-cast_shadow = 0
 mesh = SubResource("CylinderMesh_a40rl")
 
 [node name="interogation_chair5" parent="navigation_region/level/north_ward/interior" instance=ExtResource("17_3b8vk")]
@@ -8197,7 +8188,7 @@ open_rotation_offset = Vector3(0, 0, -90)
 dual_side = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/roof_window2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-14, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-14, 0, 1, -1, -0.25, 0)
 shape = SubResource("BoxShape3D_41mpr")
 
 [node name="roof_window" type="CSGBox3D" parent="navigation_region/level/roof_window2"]
@@ -8239,7 +8230,7 @@ open_rotation_offset = Vector3(0, 0, -90)
 dual_side = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/roof_window3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-14, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, -3.55271e-14, 0, 1, -1, -0.249995, 0)
 shape = SubResource("BoxShape3D_41mpr")
 
 [node name="roof_window" type="CSGBox3D" parent="navigation_region/level/roof_window3"]
@@ -8293,7 +8284,7 @@ open_rotation_offset = Vector3(0, 0, -90)
 dual_side = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/roof_window4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-14, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-14, 0, 1, -1, -0.25, 0)
 shape = SubResource("BoxShape3D_41mpr")
 
 [node name="roof_window" type="CSGBox3D" parent="navigation_region/level/roof_window4"]
@@ -9029,7 +9020,7 @@ sides = 3
 cone = true
 
 [node name="player" parent="." instance=ExtResource("18_82ara")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27, 12.5, 43.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.5, 12.5, 8.25)
 
 [node name="game_ui" parent="." instance=ExtResource("19_ukq1f")]
 
