@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://df14atga7qdvx"]
+[gd_scene load_steps=7 format=3 uid="uid://df14atga7qdvx"]
 
 [ext_resource type="Script" path="res://scripts/interactive/key_pickup.gd" id="1_brfpj"]
 [ext_resource type="Script" path="res://scripts/interactive/Key.gd" id="2_igc2c"]
@@ -9,22 +9,24 @@ script = ExtResource("2_igc2c")
 color = 1
 tower_id = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbjco"]
+size = Vector3(0.2, 0.24, 0.5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_76ii7"]
 size = Vector3(0.1, 0.14, 0.4)
 
 [node name="silver_key_pickup" type="RigidBody3D"]
 
-[node name="interactive_area" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
+[node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_brfpj")
 key = SubResource("Resource_q36je")
 interaction_text = "Take"
-mesh = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
-shape = SubResource("BoxShape3D_76ii7")
+shape = SubResource("BoxShape3D_mbjco")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)

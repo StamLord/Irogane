@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=108 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://cbr1jgg4xl0ou" path="res://scenes/minigames/lockpicking_minigame.tscn" id="33_mo2sm"]
 [ext_resource type="FontFile" uid="uid://blnra70x5efg" path="res://assets/fonts/UbuntuMono-Regular.ttf" id="34_pbcfy"]
 [ext_resource type="Script" path="res://scripts/ui/fps_counter.gd" id="35_qpsy7"]
+[ext_resource type="Script" path="res://scripts/ui/interaction_debug.gd" id="36_xqonp"]
 
 [sub_resource type="Curve" id="Curve_12jqb"]
 max_value = 4.0
@@ -1428,5 +1429,26 @@ text = "243"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("35_qpsy7")
+
+[node name="interaction_debug" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -91.0
+offset_right = 184.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.780392, 0, 1)
+theme_override_fonts/font = ExtResource("34_pbcfy")
+theme_override_font_sizes/font_size = 18
+text = "[ parent: test ]
+[ object: tests]"
+vertical_alignment = 1
+script = ExtResource("36_xqonp")
 
 [connection signal="close_requested" from="quests_window" to="quests_window" method="_on_close_requested"]
