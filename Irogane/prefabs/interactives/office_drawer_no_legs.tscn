@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://css8nyh53e1kh"]
+
+[ext_resource type="Material" uid="uid://cpw0gk8ua7o7e" path="res://assets/materials/wood_portico.tres" id="1_jqw8u"]
+[ext_resource type="Script" path="res://scripts/interactive/Door.gd" id="2_yaf3x"]
+[ext_resource type="Material" uid="uid://xfgqntou1u8o" path="res://assets/materials/gold.tres" id="3_h12lm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twvj8"]
+size = Vector3(0.9, 0.3, 1.1)
+
+[node name="office_drawer" type="CSGBox3D"]
+transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0.5, 0)
+material_override = ExtResource("1_jqw8u")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, 0.1)
+operation = 2
+size = Vector3(0.75, 0.25, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+operation = 2
+size = Vector3(0.75, 0.25, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.325, 0.1)
+operation = 2
+size = Vector3(0.75, 0.25, 1)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="drawer" type="Area3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_yaf3x")
+open_position_offset = Vector3(0, 0, 0.5)
+dual_side = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer"]
+material_override = ExtResource("1_jqw8u")
+use_collision = true
+size = Vector3(0.75, 0.25, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+operation = 2
+size = Vector3(0.65, 0.25, 0.9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/drawer"]
+shape = SubResource("BoxShape3D_twvj8")
+
+[node name="handle" type="CSGBox3D" parent="Node3D/drawer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.515)
+material_override = ExtResource("3_h12lm")
+size = Vector3(0.2, 0.05, 0.05)
+
+[node name="drawer2" type="Area3D" parent="Node3D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_yaf3x")
+open_position_offset = Vector3(0, 0, 0.5)
+dual_side = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer2"]
+material_override = ExtResource("1_jqw8u")
+use_collision = true
+size = Vector3(0.75, 0.25, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer2/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+operation = 2
+size = Vector3(0.65, 0.25, 0.9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/drawer2"]
+shape = SubResource("BoxShape3D_twvj8")
+
+[node name="handle" type="CSGBox3D" parent="Node3D/drawer2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.515)
+material_override = ExtResource("3_h12lm")
+size = Vector3(0.2, 0.05, 0.05)
+
+[node name="drawer3" type="Area3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.325, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_yaf3x")
+open_position_offset = Vector3(0, 0, 0.5)
+dual_side = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer3"]
+material_override = ExtResource("1_jqw8u")
+use_collision = true
+size = Vector3(0.75, 0.25, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer3/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+operation = 2
+size = Vector3(0.65, 0.25, 0.9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/drawer3"]
+shape = SubResource("BoxShape3D_twvj8")
+
+[node name="handle" type="CSGBox3D" parent="Node3D/drawer3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.515)
+material_override = ExtResource("3_h12lm")
+size = Vector3(0.2, 0.05, 0.05)
