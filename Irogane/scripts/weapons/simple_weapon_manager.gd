@@ -4,10 +4,10 @@ class_name SimpleWeaponManager
 @onready var stats = %stats
 
 @onready var tools = [null, null, null, null, null, null, null, null] 	# Used for hotkeys
-var existing_indexes = [] # Used for scrolling through the tools we have
+var existing_indexes = [0] # Used for scrolling through the tools we have
 
 enum tool_type {
-	MIRROR,
+	EMPTY,
 	SLINGSHOT,
 	GRAPPLE,
 	LOCKPICK,
@@ -18,7 +18,7 @@ enum tool_type {
 }
 
 @onready var tool_dict = {
-	tool_type.MIRROR : $pocket_mirror,
+	tool_type.EMPTY : null,
 	tool_type.SLINGSHOT : $slingshot,
 	tool_type.GRAPPLE : $grapple,
 	tool_type.LOCKPICK : $lockpick,
@@ -87,8 +87,7 @@ func switch_to(new_index, activate_slot = true):
 	
 	# Activate corresponding template
 	var exist = tools[new_index] != null
-	if exist:
-		activate_template(tools[new_index])
+	activate_template(tools[new_index])
 	
 	index = new_index
 	var found = existing_indexes.find(index)
@@ -99,21 +98,20 @@ func switch_to(new_index, activate_slot = true):
 	
 
 func activate_template(template):
-	if template == null:
-		return
-	
 	if current_template == template:
 		return
 	
-	if current_template != null:
-		deactivate_template(current_template)
+	deactivate_template(current_template)
 	
-	template.visible = true
+	if template != null:
+		template.visible = true
+	
 	current_template = template
 	
 
 func deactivate_template(template):
-	template.visible = false
+	if current_template != null:
+		template.visible = false
 	
 
 func add_tool_debug(args : Array):

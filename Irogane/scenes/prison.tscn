@@ -91,11 +91,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_d088o"]
+[sub_resource type="QuadMesh" id="QuadMesh_qapsr"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_30nfp"]
+[sub_resource type="BoxMesh" id="BoxMesh_tjdxd"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -440,10 +440,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_d088o")
+mesh = SubResource("QuadMesh_qapsr")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_30nfp")
+mesh = SubResource("BoxMesh_tjdxd")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -7610,7 +7610,7 @@ use_collision = true
 size = Vector3(5, 3.25, 0.5)
 
 [node name="torch2" parent="navigation_region/level/east_ward/interior/cell13/wall" instance=ExtResource("22_y303n")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.71181, 0, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell13/wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.25)
@@ -7960,7 +7960,7 @@ use_collision = true
 size = Vector3(5, 3.25, 0.5)
 
 [node name="torch" parent="navigation_region/level/east_ward/interior/cell14/wall" instance=ExtResource("10_fedt7")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.71181, 0, 0)
 
 [node name="wall2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell14"]
 material_override = ExtResource("9_mnla3")
@@ -8299,7 +8299,7 @@ use_collision = true
 size = Vector3(5, 3.25, 0.5)
 
 [node name="torch2" parent="navigation_region/level/east_ward/interior/cell15/wall" instance=ExtResource("22_y303n")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.71181, 0, 0)
 
 [node name="wall4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell15"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.625, 1.5, -2)
@@ -8308,7 +8308,7 @@ use_collision = true
 size = Vector3(5, 3.25, 0.5)
 
 [node name="torch2" parent="navigation_region/level/east_ward/interior/cell15/wall4" instance=ExtResource("22_y303n")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.71181, 0, 0)
 
 [node name="torch3" parent="navigation_region/level/east_ward/interior/cell15/wall4" instance=ExtResource("10_fedt7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.455563)
