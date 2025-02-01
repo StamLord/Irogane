@@ -12,7 +12,8 @@ var origin_rotation : Vector3
 func _ready():
 	origin_position = position
 	origin_rotation = rotation_degrees
-	switch.on_state_changed.connect(update_state)
+	if switch != null:
+		switch.on_state_changed.connect(update_state)
 	
 
 func update_state(state):
