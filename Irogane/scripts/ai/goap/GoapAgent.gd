@@ -86,7 +86,7 @@ func _process(delta):
 		var dist = body.global_position.distance_to(flat_target)
 		
 		# Continously update pathfiding
-		if dist > 2.0:
+		if dist >= body.get_desired_distance():
 			body.set_target_position(target)
 		else:
 			complete_action()

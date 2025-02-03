@@ -143,6 +143,10 @@ func reset_target_rotation():
 	target_rotation = null
 	
 
+func get_desired_distance():
+	return nav.path_desired_distance
+	
+
 func _physics_process(delta):
 	if is_traveling_link:
 		return
