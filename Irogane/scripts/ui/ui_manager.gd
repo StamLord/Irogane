@@ -14,10 +14,21 @@ func _ready():
 	
 
 func create_ui_node_if_needed():
-	if ui_node == null:
-		var game_ui_scene = ResourceLoader.load(UI_SCENE_PATH)
-		ui_node = game_ui_scene.instantiate()
-		get_tree().root.add_child(ui_node)
+	if ui_node != null:
+		return
+	
+	# Node might already exist if testing from editor
+	# and having game_ui exist as a child of the scene
+	var existing_node = null
+	for child in get_tree().root.get_children():
+		existing_node = child.get_node("game_ui")
+		if existing_node:
+			ui_node = existing_node
+			return
+	
+	var game_ui_scene = ResourceLoader.load(UI_SCENE_PATH)
+	ui_node = game_ui_scene.instantiate()
+	get_tree().root.add_child(ui_node)
 	
 
 func delete_ui_node():
