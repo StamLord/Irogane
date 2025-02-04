@@ -1192,6 +1192,7 @@ skeleton = NodePath("../..")
 
 [node name="text" type="MeshInstance3D" parent="navigation_region/level/south_ward/interior/interogation_table2/Area3D"]
 transform = Transform3D(1, -2.98023e-08, -1.77636e-15, 2.98023e-08, 1, 2.22045e-15, 1.77636e-15, 3.33067e-15, 1, 0, 0, 0.00145817)
+visible = false
 material_override = SubResource("StandardMaterial3D_2b6ce")
 mesh = SubResource("QuadMesh_wo4hl")
 skeleton = NodePath("../..")
@@ -1199,6 +1200,37 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/south_ward/interior/interogation_table2/Area3D"]
 transform = Transform3D(1.00001, -1.04308e-07, -7.10543e-15, 1.04308e-07, 1.00001, 2.30926e-14, 1.42109e-14, 4.02789e-13, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_4hxh2")
+
+[node name="Label3D" type="Label3D" parent="navigation_region/level/south_ward/interior/interogation_table2/Area3D"]
+transform = Transform3D(1, -7.45058e-08, -8.88178e-15, 7.45058e-08, 1, 6.66134e-16, 1.24345e-14, -3.06422e-14, 1, -0.249989, 0.358, 0.0010004)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+text = "Dear Carver,
+
+I must confess that when word first 
+reached me of the carver of San Theodore, 
+I had my doubts. But now, having borne 
+witness to your work, I see that my doubts 
+were misguided. 
+
+Such unwavering devotion to the extraction 
+of truth is a  blessed gift reserved only for 
+a true friend of the faith. 
+What I observed today was nothing short
+ of divine artistry. You are no mere
+ interrogator; you are a sculptor in 
+flesh, chiseling away lies and half-truths 
+to reveal the light and bring justice.
+
+Accept this ring as a token of my gratitude 
+for your work is not only necessary, 
+but sacred.                    
+
+                                          Cardinale Malvero"
+font_size = 24
+outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
 
 [node name="candle_short4" parent="navigation_region/level/south_ward/interior/interogation_table2" instance=ExtResource("15_x2cvp")]
 transform = Transform3D(1, 0, -2.4869e-14, 0, 1, 0, 2.4869e-14, 0, 1, 0.652771, 0.159142, 0.196771)
