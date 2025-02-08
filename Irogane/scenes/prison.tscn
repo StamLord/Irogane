@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=145 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -357,24 +357,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eq4e4")
 
-[sub_resource type="QuadMesh" id="QuadMesh_jv0hn"]
-size = Vector2(2, 2)
+[sub_resource type="QuadMesh" id="QuadMesh_b0sqa"]
+size = Vector2(2, 1)
 subdivide_width = 4
 subdivide_depth = 16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swjy3"]
 cull_mode = 2
 albedo_color = Color(0.227451, 0.415686, 0.34902, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_b0sqa"]
-size = Vector2(2, 1)
-subdivide_width = 4
-subdivide_depth = 16
-
-[sub_resource type="QuadMesh" id="QuadMesh_tn4iw"]
-size = Vector2(2, 3)
-subdivide_width = 4
-subdivide_depth = 16
 
 [sub_resource type="BoxMesh" id="BoxMesh_fhgvb"]
 size = Vector3(0.125, 0.125, 0.075)
@@ -10204,284 +10194,10 @@ operation = 2
 size = Vector3(2, 3, 1)
 
 [node name="torch" parent="navigation_region/level/east_ward/interior2/CSGBox3D" instance=ExtResource("10_fedt7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69, -2.25, -0.45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94, -2.25, -0.45)
 
-[node name="bed3" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37114e-08, 6, -7.50774, -18.75)
-
-[node name="SoftBody3D7" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed3"]
-transform = Transform3D(-3.55271e-15, 4.37112e-08, 1, 0.666667, 6.55671e-08, 3.64262e-08, -4.37114e-08, 1, -4.37112e-08, -1.5, 0.868, 0.25)
-mesh = SubResource("QuadMesh_jv0hn")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed3"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.868, 1.75)
-mesh = SubResource("QuadMesh_b0sqa")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D9" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed3"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 1, 0.868, 1.75)
-mesh = SubResource("QuadMesh_b0sqa")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.960173, 0.175354, -0.865574)
-size = Vector3(0.75, 0.35, 0.5)
-
-[node name="candle_short" parent="navigation_region/level/east_ward/interior2/bed3/CSGBox3D" instance=ExtResource("11_jhau7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268704, 0)
-
-[node name="bed4" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37114e-08, 6, -7.50774, -15.75)
-
-[node name="SoftBody3D7" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed4"]
-transform = Transform3D(-3.55271e-15, 4.37112e-08, 1, 0.666667, 6.55671e-08, 3.64262e-08, -4.37114e-08, 1, -4.37112e-08, -1.5, 0.868, 0.25)
-mesh = SubResource("QuadMesh_jv0hn")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed4"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.868, 1.75)
-mesh = SubResource("QuadMesh_b0sqa")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D9" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed4"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 1, 0.868, 1.75)
-mesh = SubResource("QuadMesh_b0sqa")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.960173, 0.175354, -0.865574)
-size = Vector3(0.75, 0.35, 0.5)
-
-[node name="candle_short" parent="navigation_region/level/east_ward/interior2/bed4/CSGBox3D" instance=ExtResource("11_jhau7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268704, 0)
-
-[node name="bed5" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37114e-08, 6, -7.50774, -12.75)
-
-[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed5"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 5.96046e-08, 0.868, 1.75)
-mesh = SubResource("QuadMesh_tn4iw")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D7" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed5"]
-transform = Transform3D(-3.55271e-15, 4.37112e-08, 1, 0.666667, 6.55671e-08, 3.64262e-08, -4.37114e-08, 1, -4.37112e-08, -1.5, 0.868, 0.25)
-mesh = SubResource("QuadMesh_jv0hn")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="bed6" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37114e-08, 6, -7.50774, -9.75)
-
-[node name="SoftBody3D7" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed6"]
-transform = Transform3D(-3.55271e-15, 4.37112e-08, 1, 0.666667, 6.55671e-08, 3.64262e-08, -4.37114e-08, 1, -4.37112e-08, -1.5, 0.868, 0.25)
-mesh = SubResource("QuadMesh_jv0hn")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed6"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.868, 1.75)
-mesh = SubResource("QuadMesh_b0sqa")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D9" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed6"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 1, 0.868, 1.75)
-mesh = SubResource("QuadMesh_b0sqa")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.960173, 0.175354, -0.865574)
-size = Vector3(0.75, 0.35, 0.5)
-
-[node name="candle_short" parent="navigation_region/level/east_ward/interior2/bed6/CSGBox3D" instance=ExtResource("11_jhau7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268704, 0)
-
-[node name="bed7" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37114e-08, 6, -7.50774, -6.75)
-
-[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed7"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 5.96046e-08, 0.868, 1.75)
-mesh = SubResource("QuadMesh_tn4iw")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D7" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed7"]
-transform = Transform3D(-3.55271e-15, 4.37112e-08, 1, 0.666667, 6.55671e-08, 3.64262e-08, -4.37114e-08, 1, -4.37112e-08, -1.5, 0.868, 0.25)
-mesh = SubResource("QuadMesh_jv0hn")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.960173, 0.175354, -0.865574)
-size = Vector3(0.75, 0.35, 0.5)
-
-[node name="candle_short" parent="navigation_region/level/east_ward/interior2/bed7/CSGBox3D" instance=ExtResource("11_jhau7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268704, 0)
-
-[node name="bed8" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37114e-08, 6, -7.50774, -3.75)
-
-[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed8"]
-transform = Transform3D(-5.73205e-15, 1, -8.74226e-08, 0.666667, 1.27379e-15, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 5.96046e-08, 0.868, 1.75)
-mesh = SubResource("QuadMesh_tn4iw")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="SoftBody3D7" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed8"]
-transform = Transform3D(-3.55271e-15, 4.37112e-08, 1, 0.666667, 6.55671e-08, 3.64262e-08, -4.37114e-08, 1, -4.37112e-08, -1.5, 0.868, 0.25)
-mesh = SubResource("QuadMesh_jv0hn")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.960173, 0.175354, -0.865574)
-size = Vector3(0.75, 0.35, 0.5)
-
-[node name="candle_short" parent="navigation_region/level/east_ward/interior2/bed8/CSGBox3D" instance=ExtResource("11_jhau7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.268704, 0)
-
-[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed8"]
-transform = Transform3D(-3.55271e-15, 4.37112e-08, 1, 0.666667, 6.55671e-08, 3.64262e-08, -4.37114e-08, 1, -4.37112e-08, 1.5, 0.868, 0.25)
-mesh = SubResource("QuadMesh_jv0hn")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
-linear_stiffness = 0.25
-pinned_points = [0, 102]
-attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
-attachments/1/point_index = 102
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
+[node name="torch2" parent="navigation_region/level/east_ward/interior2/CSGBox3D" instance=ExtResource("10_fedt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56, -2.25, -0.45)
 
 [node name="bed10" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1.5, 0, -1, 0, 1.31134e-07, -6, -7.50774, -6.75)
@@ -10714,23 +10430,254 @@ attachments/1/point_index = 102
 attachments/1/spatial_attachment_path = NodePath("")
 attachments/1/offset = Vector3(0, 0, 0)
 
+[node name="bed15" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
+transform = Transform3D(-4.37112e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37112e-08, 6, -7.50774, -19.65)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed15"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -0.960173, 0.170796, -0.865574)
+size = Vector3(0.75, 0.5, 0.5)
+
+[node name="candle_short" parent="navigation_region/level/east_ward/interior2/bed15/CSGBox3D2" instance=ExtResource("11_jhau7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190092, 0.328849, -0.0887146)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed15"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, 0.0250003, 1.50516, 1.73794)
+use_collision = true
+size = Vector3(3.25, 0.5, 0.25)
+
+[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed15"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed15"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 0.999999, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="bed16" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
+transform = Transform3D(-4.37112e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37112e-08, 6, -7.50774, -16.4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed16"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -0.960173, 0.170796, -0.865574)
+size = Vector3(0.75, 0.5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed16"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -1.5, 0.838493, 0.362942)
+use_collision = true
+size = Vector3(0.2, 2.5, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed16"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, 0.0250003, 1.50516, 1.73794)
+use_collision = true
+size = Vector3(3.25, 0.5, 0.25)
+
+[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed16"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed16"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 0.999999, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="bed17" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
+transform = Transform3D(-4.37112e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37112e-08, 6, -7.50774, -13.15)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed17"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -0.960173, 0.170796, -0.865574)
+size = Vector3(0.75, 0.5, 0.5)
+
+[node name="candle_short" parent="navigation_region/level/east_ward/interior2/bed17/CSGBox3D2" instance=ExtResource("11_jhau7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190092, 0.328849, -0.0887146)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed17"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -1.5, 0.838493, 0.362942)
+use_collision = true
+size = Vector3(0.2, 2.5, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed17"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, 0.025001, 1.50516, 1.73794)
+use_collision = true
+size = Vector3(3.25, 0.5, 0.25)
+
+[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed17"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed17"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 0.999999, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="bed18" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
+transform = Transform3D(-4.37112e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37112e-08, 6, -7.50774, -9.9)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed18"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -0.960173, 0.170796, -0.865574)
+size = Vector3(0.75, 0.5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed18"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -1.5, 0.838493, 0.362942)
+use_collision = true
+size = Vector3(0.2, 2.5, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed18"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -0.0999997, 1.50516, 1.73794)
+use_collision = true
+size = Vector3(3, 0.5, 0.25)
+
+[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed18"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed18"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 0.999999, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="bed19" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("22_xvo63")]
+transform = Transform3D(-4.37112e-08, 0, -1, 0, 1.5, 0, 1, 0, -4.37112e-08, 6, -7.50774, -6.9)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed19"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -0.960173, 0.170796, -0.865574)
+size = Vector3(0.75, 0.5, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed19"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -1.5, 0.838493, 0.362942)
+use_collision = true
+size = Vector3(0.2, 2.5, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed19"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, 1.5, 0.838493, 0.362942)
+use_collision = true
+size = Vector3(0.2, 2.5, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/bed19"]
+transform = Transform3D(1, 0, 5.56361e-08, 0, 0.666667, 0, -5.56361e-08, 0, 1, -0.0999997, 1.50516, 1.73794)
+use_collision = true
+size = Vector3(3, 0.5, 0.25)
+
+[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed19"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, -1, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
+[node name="SoftBody3D8" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/bed19"]
+transform = Transform3D(4.37114e-08, 1, -8.74226e-08, 0.666667, -2.91409e-08, -2.91409e-08, -4.37114e-08, -8.74226e-08, -1, 0.999999, 0.701333, 1.65337)
+mesh = SubResource("QuadMesh_b0sqa")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [0, 102]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 102
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+
 [node name="pillar2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.875, -6.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.875, -3.75)
 use_collision = true
 size = Vector3(0.75, 7.25, 0.75)
 
 [node name="pillar4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
-transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, 0, -3.875, -12.75)
+transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, 0, -3.875, -9.75)
 use_collision = true
 size = Vector3(0.75, 7.25, 0.75)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -3.875, -18.75)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, -3.875, -15.75)
 use_collision = true
 size = Vector3(0.75, 7.25, 0.75)
 
 [node name="infirmary_table" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -6.75, -9.75)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -6.75, -6.75)
 use_collision = true
 size = Vector3(1.5, 0.15, 3)
 
@@ -10754,7 +10701,7 @@ size = Vector3(0.2, 1.5, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.380775, 0.169842, 1.03615)
 
 [node name="infirmary_table6" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -6.75, -15.75)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -6.75, -12.75)
 use_collision = true
 size = Vector3(1.5, 0.15, 3)
 
@@ -10771,6 +10718,27 @@ transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -0.033493,
 size = Vector3(0.2, 1.5, 0.1)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table6"]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, -0.033493, -0.444625, 1.25)
+size = Vector3(0.2, 1.5, 0.1)
+
+[node name="infirmary_table8" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -6.75, -18.75)
+use_collision = true
+size = Vector3(1.5, 0.15, 3)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -0.033493, -0.444625, -1.25)
+size = Vector3(0.2, 1.5, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
+transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, -0.033493, -0.444625, -1.25)
+size = Vector3(0.2, 1.5, 0.1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -0.033493, -0.444625, 1.25)
+size = Vector3(0.2, 1.5, 0.1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
 transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, -0.033493, -0.444625, 1.25)
 size = Vector3(0.2, 1.5, 0.1)
 
@@ -10799,16 +10767,16 @@ size = Vector3(0.2, 1.5, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -7.5, 0.5)
 
 [node name="torch" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
-transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, -5.31027, -2.5, -16)
+transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, -5.31027, -2.5, -18.75)
 
 [node name="torch2" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
-transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -16)
+transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -18.75)
 
 [node name="torch6" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
-transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -10)
+transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -12.75)
 
 [node name="torch11" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
-transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -4)
+transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -6.75)
 
 [node name="north_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.75, 6, -0.75)
