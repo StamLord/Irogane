@@ -39,6 +39,8 @@ var released_last_frame = false
 # tower_id : { key_color : uses_left } eg:  {Key.key_color.BRASS : 5}  
 var key_ring = {}#{1 : {Key.key_color.BRASS : 5}}
 
+var old_text = ""
+
 signal interactive_changed(new_interactive_text)
 signal press_time_update(time)
 signal too_heavy(weight)
@@ -102,6 +104,17 @@ func _process(delta):
 	
 
 func set_interactive(interactive):
+	# Always update text even if it's the same interactive
+	# text might change due to interactive's state
+	var text = ""
+	if interactive != null:
+		text = interactive.get_text()
+	
+	if text != old_text:
+		interactive_changed.emit(text)
+		old_text = text
+	
+	# Skip if we are facing the same interactive
 	# If new value is null, always continue to handle cases where node was freed
 	if current_interactive == interactive:
 		return
@@ -118,13 +131,6 @@ func set_interactive(interactive):
 	# Highlight new
 	if current_interactive != null:
 		current_interactive.highlight_on()
-	
-	# Update text
-	var text = ""
-	if current_interactive != null:
-		text = current_interactive.get_text()
-	
-	interactive_changed.emit(text)
 	
 
 func reset_button_time():
