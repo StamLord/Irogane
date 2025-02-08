@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=162 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -52,6 +52,7 @@
 [ext_resource type="PackedScene" uid="uid://b6sk7wquaq63e" path="res://prefabs/pickups/crate_big.tscn" id="35_i3sjm"]
 [ext_resource type="Script" path="res://scripts/interactive/elevator.gd" id="36_cund4"]
 [ext_resource type="PhysicsMaterial" uid="uid://lmkjlbgdklci" path="res://assets/materials/glass_physics.tres" id="37_17b86"]
+[ext_resource type="PackedScene" uid="uid://dqrfbfu4q2we8" path="res://prefabs/pickups/weapons/lockpick_tool_pickup.tscn" id="37_dnx72"]
 [ext_resource type="Resource" uid="uid://cup3wub806y8v" path="res://data/ai_agents/Guard_no_melee.res" id="37_jbhkw"]
 [ext_resource type="Script" path="res://scripts/interactive/Breakable.gd" id="37_uqfxq"]
 [ext_resource type="PackedScene" uid="uid://drtk1sfb04di7" path="res://prefabs/pickups/brick.tscn" id="38_6dx7l"]
@@ -102,11 +103,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_6dkor"]
+[sub_resource type="QuadMesh" id="QuadMesh_2kt6p"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_r07nr"]
+[sub_resource type="BoxMesh" id="BoxMesh_6l20b"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -154,6 +155,37 @@ size = Vector3(1, 1.5, 0.25)
 [sub_resource type="BoxMesh" id="BoxMesh_2krla"]
 size = Vector3(1, 1.5, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88h2p"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.156863)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hunif"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.1
+
+[sub_resource type="Gradient" id="Gradient_rgt0c"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8vdyf"]
+gradient = SubResource("Gradient_rgt0c")
+fill_to = Vector2(0, 0.465812)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sd1l5"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.239216, 0.305882, 0.388235, 0.0627451)
+albedo_texture = SubResource("GradientTexture2D_8vdyf")
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y3hco"]
+top_radius = 1.0
+bottom_radius = 5.412
+height = 20.0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7qt34"]
 size = Vector3(0.25, 0.25, 0.25)
 
@@ -183,6 +215,43 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.6
 radial_segments = 6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7tgc4"]
+height = 0.25
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lntne"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.117647)
+roughness = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6teq6"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ctdik"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a3bx5"]
+top_radius = 0.09
+bottom_radius = 0.09
+height = 0.175
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnny5"]
+albedo_color = Color(0.439216, 0.309804, 0.196078, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6xilj"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jovtm"]
+height = 0.3
+radius = 0.125
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4y17r"]
 size = Vector3(1, 1, 0.2)
@@ -237,6 +306,12 @@ alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 albedo_color = Color(0, 0, 0, 0.447059)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7gdgd"]
+size = Vector3(0.2, 0.3, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nat5f"]
+size = Vector3(0.3, 0.4, 0.5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nb86l"]
 size = Vector3(2, 0.07, 1)
 
@@ -265,13 +340,17 @@ albedo_color = Color(0.956863, 0.882353, 0.792157, 1)
 emission = Color(0.956863, 0.882353, 0.792157, 1)
 emission_energy_multiplier = 0.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d657x"]
+transparency = 1
+albedo_color = Color(0.603922, 0.45098, 0.141176, 0.294118)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6uett"]
-height = 0.4
-radius = 0.2
+height = 0.5
+radius = 0.25
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_w8ib2"]
-height = 0.4
-radius = 0.2
+height = 0.55
+radius = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05sj1"]
 transparency = 1
@@ -303,9 +382,6 @@ rings = 1
 top_radius = 0.15
 bottom_radius = 0.15
 height = 0.05
-
-[sub_resource type="Gradient" id="Gradient_rgt0c"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_od7vb"]
 gradient = SubResource("Gradient_rgt0c")
@@ -537,10 +613,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_6dkor")
+mesh = SubResource("QuadMesh_2kt6p")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_r07nr")
+mesh = SubResource("BoxMesh_6l20b")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -3578,6 +3654,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -3.875, -21.5)
 operation = 2
 size = Vector3(1.5, 4.75, 1)
 
+[node name="moon_reflector" type="SpotLight3D" parent="navigation_region/level/west_ward"]
+transform = Transform3D(-0.539426, 0.731994, -0.416179, 0.19112, 0.587791, 0.786114, 0.820057, 0.34451, -0.456968, 6.75, 13, -2.5)
+shadow_enabled = true
+spot_range = 63.25
+spot_angle = 15.2478
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/west_ward/moon_reflector"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_88h2p")
+mesh = SubResource("CylinderMesh_hunif")
+
+[node name="ray" type="MeshInstance3D" parent="navigation_region/level/west_ward/moon_reflector"]
+transform = Transform3D(1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 0, -1, -2.98023e-08, 1, -5.96046e-08, 2.38419e-06, -5.72205e-06, -10.0382)
+material_override = SubResource("StandardMaterial3D_sd1l5")
+mesh = SubResource("CylinderMesh_y3hco")
+
+[node name="moon_reflector2" type="SpotLight3D" parent="navigation_region/level/west_ward"]
+transform = Transform3D(0.832464, 0.439892, -0.336894, 0.00545809, 0.601486, 0.798865, 0.554052, -0.666865, 0.498315, 8, 13, 22.25)
+shadow_enabled = true
+spot_range = 63.25
+spot_angle = 15.2478
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/west_ward/moon_reflector2"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, -2.98023e-08, -1, 0, 1, -8.9407e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_88h2p")
+mesh = SubResource("CylinderMesh_hunif")
+
+[node name="ray" type="MeshInstance3D" parent="navigation_region/level/west_ward/moon_reflector2"]
+transform = Transform3D(1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 0, -1, -2.98023e-08, 1, -5.96046e-08, 2.38419e-06, -5.72205e-06, -10.0382)
+material_override = SubResource("StandardMaterial3D_sd1l5")
+mesh = SubResource("CylinderMesh_y3hco")
+
+[node name="moon_reflector3" type="SpotLight3D" parent="navigation_region/level/west_ward"]
+transform = Transform3D(0.896055, -0.336322, 0.289781, 0.00545808, 0.661041, 0.75033, -0.443909, -0.670755, 0.594165, 26.5, 13, 22.25)
+shadow_enabled = true
+spot_range = 63.25
+spot_angle = 15.2478
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/west_ward/moon_reflector3"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, -2.98023e-08, -1, 0, 1, -8.9407e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_88h2p")
+mesh = SubResource("CylinderMesh_hunif")
+
+[node name="ray" type="MeshInstance3D" parent="navigation_region/level/west_ward/moon_reflector3"]
+transform = Transform3D(1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 0, -1, -2.98023e-08, 1, -5.96046e-08, 2.38419e-06, -5.72205e-06, -10.0382)
+material_override = SubResource("StandardMaterial3D_sd1l5")
+mesh = SubResource("CylinderMesh_y3hco")
+
 [node name="bridge" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 6.875)
 material_override = ExtResource("9_mnla3")
@@ -4662,10 +4786,346 @@ operation = 2
 use_collision = true
 size = Vector3(0.9, 1, 0.9)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+[node name="chemical_jar" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
 transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0.125, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
 light_color = Color(0, 1, 0, 1)
 light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar2" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0.125, 0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar2"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar2"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar2"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar3" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0.125, -0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar3"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar3"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar3"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar4" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, -0.25, 0.125, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar4"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar4"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar4"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar4/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar5" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, -0.25, 0.125, 0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar5"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar5"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar5"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar5/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar6" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, -0.25, 0.125, -0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar6"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar6"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar6"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar6/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar7" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0.25, 0.125, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar7"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar7"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar7"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar7/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar8" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0.25, 0.125, 0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar8"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar8"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar8"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar8/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
+
+[node name="chemical_jar9" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0.25, 0.125, -0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar9"]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar9"]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+
+[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar9"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("16_imo6e")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar9/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")
 
 [node name="storage_chandalier" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior" node_paths=PackedStringArray("switch")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.195, 5.625, -6.806)
@@ -4788,6 +5248,9 @@ size = Vector3(1, 0.5, 1.75)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.675, 0)
 operation = 2
 size = Vector3(1, 0.5, 1.75)
+
+[node name="lockpick_tool_pickup" parent="navigation_region/level/east_ward/floor_3/interior/bookshelves15" instance=ExtResource("37_dnx72")]
+transform = Transform3D(-0.113151, 0, 0.993578, 0, 1, 0, -0.993578, 0, -0.113151, 0, -0.966049, 0)
 
 [node name="bookshelves16" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.97645, 2.345, -4.573)
@@ -5832,9 +6295,38 @@ material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(4.75, 3.25, 0.5)
 
-[node name="torch" parent="navigation_region/level/east_ward/interior/cell/wall" instance=ExtResource("10_fedt7")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.46181, 0, 0)
+[node name="loose_brick_hole" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell/wall"]
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.25441, 0.136402, 0.181416)
 visible = false
+operation = 2
+size = Vector3(0.2, 0.35, 0.5)
+
+[node name="loose_brick" type="RigidBody3D" parent="navigation_region/level/east_ward/interior/cell/wall/loose_brick_hole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+sleeping = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell/wall/loose_brick_hole/loose_brick"]
+transform = Transform3D(1, 0, 9.31323e-08, 0, 1, 0, -9.31323e-08, 0, 1, 0, 0.00815392, 0)
+material_override = ExtResource("9_mnla3")
+operation = 2
+size = Vector3(0.2, 0.317432, 0.446289)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/wall/loose_brick_hole/loose_brick"]
+transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, -3.72529e-09, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_7gdgd")
+
+[node name="interactive_area" type="Area3D" parent="navigation_region/level/east_ward/interior/cell/wall/loose_brick_hole/loose_brick" node_paths=PackedStringArray("mesh")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("16_imo6e")
+interaction_text = "Hold E"
+mesh = NodePath("../../../../straw_bed/bed_mesh")
+highlight_emission_operator = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/wall/loose_brick_hole/loose_brick/interactive_area"]
+transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, -3.72529e-09, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_nat5f")
 
 [node name="wall2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
 material_override = ExtResource("9_mnla3")
@@ -6085,18 +6577,26 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_biutj")
 
 [node name="bucket" type="RigidBody3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.69435, 0.0798664, -3.81147)
+process_mode = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.44435, 0.131859, -3.56147)
 
 [node name="bucket" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior/cell/bucket"]
 material_override = ExtResource("17_6xw7o")
-radius = 0.2
-height = 0.4
+radius = 0.25
+height = 0.5
 
 [node name="bucket2" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior/cell/bucket/bucket"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0386925, 0)
 operation = 2
-radius = 0.175
-height = 0.4
+radius = 0.2
+height = 0.5
+
+[node name="water" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior/cell/bucket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0809927, 0)
+material_override = SubResource("StandardMaterial3D_d657x")
+operation = 2
+radius = 0.2
+height = 0.345045
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/bucket"]
 shape = SubResource("CylinderShape3D_6uett")
@@ -13491,7 +13991,7 @@ transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 24.7323,
 agent_data = ExtResource("38_pdrcy")
 
 [node name="silver_key_pickup" parent="." instance=ExtResource("33_137jg")]
-transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, -1, -4.37114e-08, 0, -3.09086e-08, 0.707107, 0.707107, 40.5669, 12.2591, 23.3505)
+transform = Transform3D(-0.380594, 0.707107, -0.595943, -0.842791, -4.47035e-08, 0.538242, 0.380594, 0.707107, 0.595943, 40.7207, 12.531, 27.7993)
 freeze = true
 
 [node name="door_switch" type="MeshInstance3D" parent="."]
