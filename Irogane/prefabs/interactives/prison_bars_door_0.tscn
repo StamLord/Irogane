@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy7bar0hwjm7c"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Door.gd" id="1_d0ths"]
+[ext_resource type="Material" uid="uid://bxwlp000cigp8" path="res://assets/materials/iron_bar.tres" id="2_oxrpe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6xx2"]
+size = Vector3(1.1, 2.1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgtrs"]
+size = Vector3(0.05, 2, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myqhs"]
+size = Vector3(0.075, 2, 0.075)
+
+[node name="prison_wood_door" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_d0ths")
+open_rotation_offset = Vector3(0, 90, 0)
+
+[node name="interactive_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_j6xx2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_sgtrs")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726372, 0, -2.06559e-09)
+shape = SubResource("BoxShape3D_sgtrs")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.276111, 0, 2.28266e-09)
+shape = SubResource("BoxShape3D_sgtrs")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.078529, 0, -1.49905e-08)
+shape = SubResource("BoxShape3D_myqhs")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941985, 0, 6.04953e-08)
+shape = SubResource("BoxShape3D_myqhs")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.75, 0)
+start_position = Vector3(0, 0, -1)
+end_position = Vector3(0, 0, 1)
+
+[node name="bar8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.00449768, 0, 0.0455023)
+material_override = ExtResource("2_oxrpe")
+size = Vector3(0.075, 2, 0.075)
+
+[node name="bar14" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.904498, 0, 0.0455022)
+material_override = ExtResource("2_oxrpe")
+size = Vector3(0.075, 2, 0.075)
+
+[node name="bar9" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.229498, 0, 0.0455023)
+material_override = ExtResource("2_oxrpe")
+size = Vector3(0.05, 2, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.454498, 0, 0.0455023)
+material_override = ExtResource("2_oxrpe")
+size = Vector3(0.05, 2, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.679128, 0, 0.0455023)
+material_override = ExtResource("2_oxrpe")
+size = Vector3(0.05, 2, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="."]
+transform = Transform3D(-3.09086e-08, -1, 3.09086e-08, 0.707107, -4.37114e-08, -0.707107, 0.707107, -1.06581e-14, 0.707107, 0.454498, -1, 0.0455023)
+material_override = ExtResource("2_oxrpe")
+size = Vector3(0.05, 1, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="."]
+transform = Transform3D(-3.09086e-08, -1, 3.09086e-08, 0.707107, -4.37114e-08, -0.707107, 0.707107, -1.06581e-14, 0.707107, 0.454498, 1, 0.0455023)
+material_override = ExtResource("2_oxrpe")
+size = Vector3(0.05, 1, 0.05)

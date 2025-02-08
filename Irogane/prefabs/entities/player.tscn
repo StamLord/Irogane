@@ -1,4 +1,4 @@
-[gd_scene load_steps=211 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=223 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -83,6 +83,7 @@
 [ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="63_rjyd0"]
 [ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="65_uevdo"]
 [ext_resource type="Script" path="res://scripts/camera/death_cam.gd" id="78_y1sx6"]
+[ext_resource type="Texture2D" uid="uid://jbv1ax4fsyx6" path="res://assets/textures/vfx/sparkle_0.png" id="84_n4wi0"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -771,6 +772,78 @@ bounce = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r7snk"]
 size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1kjv"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_hrhwr"]
+_data = [Vector2(0, 0.868132), 0.0, 0.220879, 0, 0, Vector2(1, 1), 0.0581267, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bpggs"]
+curve = SubResource("Curve_hrhwr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1fgfq"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, -0.5, 0)
+scale_min = 0.02
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_bpggs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nji67"]
+transparency = 1
+albedo_texture = ExtResource("84_n4wi0")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_unx3q"]
+material = SubResource("StandardMaterial3D_nji67")
+
+[sub_resource type="Curve" id="Curve_kqd5y"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b8i6v"]
+curve = SubResource("Curve_kqd5y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j42fb"]
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_bpggs")
+alpha_curve = SubResource("CurveTexture_b8i6v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_652hg"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.0980392)
+albedo_texture = ExtResource("24_4mlx4")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xud33"]
+material = SubResource("StandardMaterial3D_652hg")
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
 collision_layer = 129
@@ -1730,6 +1803,27 @@ script = ExtResource("78_y1sx6")
 [node name="PinJoint3D" type="PinJoint3D" parent="death_cam"]
 node_a = NodePath("../body")
 node_b = NodePath("../head")
+
+[node name="fairy" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.515, -0.75)
+visible = false
+material_override = SubResource("StandardMaterial3D_e1kjv")
+cast_shadow = 0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="fairy"]
+light_energy = 0.1
+shadow_enabled = true
+omni_range = 2.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="fairy"]
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_1fgfq")
+draw_pass_1 = SubResource("QuadMesh_unx3q")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="fairy"]
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_j42fb")
+draw_pass_1 = SubResource("QuadMesh_xud33")
 
 [connection signal="visibility_changed" from="head/camera_bob/main_camera/weapon_manager/skill_zone" to="head/camera_bob/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="head/camera_bob/main_camera/simple_weapon_manager/skill_zone" to="head/camera_bob/main_camera/simple_weapon_manager/skill_zone" method="_on_visibility_changed"]
