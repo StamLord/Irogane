@@ -115,6 +115,19 @@ func use(interactor):
 			close()
 	
 
+func get_text():
+	if is_disabled:
+		return ""
+	
+	if not all_switches_on():
+		return "Locked"
+	
+	if door_state in [DoorState.CLOSED, DoorState.CLOSING, DoorState.AJAR]:
+		return "Open"
+	else:
+		return "Close"
+	
+
 func switch_state_changed(state : bool):
 	if not state:
 		close()

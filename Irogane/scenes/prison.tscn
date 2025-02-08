@@ -102,11 +102,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_41qp0"]
+[sub_resource type="QuadMesh" id="QuadMesh_6dkor"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_cfxo8"]
+[sub_resource type="BoxMesh" id="BoxMesh_r07nr"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -547,10 +547,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_41qp0")
+mesh = SubResource("QuadMesh_6dkor")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_cfxo8")
+mesh = SubResource("BoxMesh_r07nr")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
