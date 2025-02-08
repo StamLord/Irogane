@@ -5,12 +5,13 @@ class_name Door
 @export var open_rotation_offset : Vector3
 @export var dual_side = true
 @export var start_open = false
+@export_range(-1.0, 1.0) var start_open_percentage = 1.0
 @export var animation_time = 0.5
 
 @export var switches : Array[Switch]
 @export var auto_open = false
 
-enum DoorState {OPEN, OPENING, CLOSING ,CLOSED}
+enum DoorState {OPEN, OPENING, CLOSING ,CLOSED, AJAR}
 var door_state = DoorState.CLOSED
 
 var origin_position: Vector3
@@ -19,7 +20,6 @@ var origin_rotation: Vector3 # Degrees
 # Run-time animation data
 var animation_start_time = -1
 var is_animation_reversed = false
-var was_last_open_animation_reversed = false
 var from_position = null
 var from_rotation = null
 var to_position = null
@@ -64,10 +64,9 @@ func open():
 	if door_state == DoorState.OPEN:
 		return
 	
-	from_position = origin_position
-	from_rotation = origin_rotation
+	from_position = position
+	from_rotation = rotation_degrees
 	var reverse = -1 if is_animation_reversed else 1
-	was_last_open_animation_reversed = is_animation_reversed
 	to_position = origin_position + open_position_offset * reverse
 	to_rotation = origin_rotation + open_rotation_offset * reverse
 	target_state = DoorState.OPEN
@@ -80,9 +79,8 @@ func close():
 	if door_state == DoorState.CLOSED:
 		return
 	
-	var reverse = -1 if was_last_open_animation_reversed else 1
-	from_position = origin_position + open_position_offset * reverse
-	from_rotation = origin_rotation + open_rotation_offset * reverse
+	from_position = position
+	from_rotation = rotation_degrees
 	to_position = origin_position 
 	to_rotation = origin_rotation 
 	target_state = DoorState.CLOSED
@@ -93,8 +91,12 @@ func close():
 
 func instant_open():
 	position = origin_position + open_position_offset
-	rotation_degrees = origin_rotation + open_rotation_offset
-	door_state = DoorState.OPEN
+	rotation_degrees = origin_rotation + lerp(Vector3.ZERO, open_rotation_offset, start_open_percentage)
+	
+	if abs(start_open_percentage) >= 1.0:
+		door_state = DoorState.OPEN
+	else:
+		door_state = DoorState.AJAR
 	
 
 func use(interactor):
@@ -103,13 +105,13 @@ func use(interactor):
 		return
 	
 	if dual_side:
-		var plane = Plane(-global_basis.z, global_transform.origin) # Create a plance with door's forward as normal
+		var plane = Plane(-global_basis.z, global_transform.origin) # Create a plane with door's forward as normal
 		is_animation_reversed = plane.is_point_over(interactor.owner.global_position)
 	
 	if all_switches_on():
-		if door_state == DoorState.CLOSED:
+		if door_state in [DoorState.CLOSED, DoorState.CLOSING, DoorState.AJAR]:
 			open()
-		elif door_state == DoorState.OPEN:
+		elif door_state in [DoorState.OPEN, DoorState.OPENING]:
 			close()
 	
 

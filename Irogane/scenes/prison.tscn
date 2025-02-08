@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=147 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -102,11 +102,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_1i2sy"]
+[sub_resource type="QuadMesh" id="QuadMesh_41qp0"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_eowan"]
+[sub_resource type="BoxMesh" id="BoxMesh_cfxo8"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -379,6 +379,15 @@ subdivide_depth = 16
 [sub_resource type="BoxMesh" id="BoxMesh_fhgvb"]
 size = Vector3(0.125, 0.125, 0.075)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_16773"]
+size = Vector3(5, 0.2, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4w3rc"]
+albedo_color = Color(0.545098, 0.145098, 0.133333, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_i2ylu"]
+size = Vector2(5, 5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_einpf"]
 cull_mode = 2
 albedo_texture = ExtResource("29_628p2")
@@ -538,10 +547,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_1i2sy")
+mesh = SubResource("QuadMesh_41qp0")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_eowan")
+mesh = SubResource("BoxMesh_cfxo8")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -3683,7 +3692,9 @@ operation = 2
 size = Vector3(1, 2, 1)
 
 [node name="prison_wood_door_0" parent="navigation_region/level/east_ward/floor_3/interior/office2/CSGBox3D2/CSGBox3D" instance=ExtResource("20_dk30p")]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 0.5, 0, 0)
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 0.5, 0, 0)
+start_open = true
+start_open_percentage = -0.25
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior/office2/CSGBox3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05824, 2.66822, -4.76837e-07)
@@ -10946,6 +10957,19 @@ size = Vector3(1.25, 1.25, 0.75)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, -0.125)
 operation = 2
 size = Vector3(0.5, 0.75, 0.5)
+
+[node name="carpet_5x5" type="StaticBody3D" parent="navigation_region/level/north_ward/interior"]
+transform = Transform3D(1.58932e-08, 0, -1, 0, 1, 0, 1, 0, 1.58932e-08, 0.9881, 2.28429, -3.17981)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/north_ward/interior/carpet_5x5"]
+shape = SubResource("BoxShape3D_16773")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/north_ward/interior/carpet_5x5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_4w3rc")
+mesh = SubResource("QuadMesh_i2ylu")
 
 [node name="interogation_table2" type="CSGBox3D" parent="navigation_region/level/north_ward/interior"]
 transform = Transform3D(1.58932e-08, 0, -1, 0, 1, 0, 1, 0, 1.58932e-08, 1.9881, 3.25, -3.17981)

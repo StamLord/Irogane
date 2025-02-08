@@ -37,10 +37,6 @@ InputContextManager="*res://scripts/input/input_context_manager.gd"
 StatusDb="*res://scripts/stats/status_db.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [dialogic]
 
 glossary/default_case_sensitive=true
