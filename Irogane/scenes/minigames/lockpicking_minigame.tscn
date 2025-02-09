@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/ui/lockpicking_ui.gd" id="2_cijcc"]
 [ext_resource type="Texture2D" uid="uid://chwyk5pfde2ky" path="res://assets/images/lock_picking_minigame/inner gear.png" id="2_l4dc1"]
+[ext_resource type="Texture2D" uid="uid://bafu64svd4kg1" path="res://assets/textures/medieval/brass_pipes.png" id="2_wisg8"]
 [ext_resource type="Texture2D" uid="uid://nuvr300vrvud" path="res://assets/textures/ui/inventory/inv_grid_cell_round.png" id="3_2xuj2"]
-[ext_resource type="Texture2D" uid="uid://5e20h1y62yra" path="res://assets/textures/ui/inventory/inv_grid_cell_square.png" id="4_47hn6"]
 [ext_resource type="Texture2D" uid="uid://b5npcver81tlf" path="res://assets/images/lock_picking_minigame/gear.png" id="4_s0e45"]
 [ext_resource type="Script" path="res://scripts/ui/lockpick_circles.gd" id="5_o3tib"]
 [ext_resource type="Texture2D" uid="uid://dy2r8lxj46qoa" path="res://assets/images/lock_picking_minigame/outer.png" id="5_styf7"]
@@ -46,18 +46,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(10, 10)
-pivot_offset = Vector2(32, 32)
+pivot_offset = Vector2(256, 256)
 value = 5.0
 fill_mode = 4
-texture_progress = ExtResource("4_47hn6")
-tint_progress = Color(1, 1, 1, 0.607843)
+texture_progress = ExtResource("2_wisg8")
+tint_progress = Color(0.286275, 0.682353, 0, 1)
 radial_initial_angle = 80.0
 
 [node name="outer_gear" type="TextureRect" parent="."]

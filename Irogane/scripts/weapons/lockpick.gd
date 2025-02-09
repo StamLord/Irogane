@@ -38,6 +38,7 @@ func start_minigame(lock_object):
 func quit_minigame():
 	if minigame != null:
 		minigame.end_minigame()
+		minigame.success.disconnect(success)
 	
 
 func success(lock_object):

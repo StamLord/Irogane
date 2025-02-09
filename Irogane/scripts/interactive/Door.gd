@@ -9,6 +9,7 @@ class_name Door
 @export var animation_time = 0.5
 
 @export var switches : Array[Switch]
+@export var locks : Array[Lock]
 @export var auto_open = false
 
 enum DoorState {OPEN, OPENING, CLOSING ,CLOSED, AJAR}
@@ -36,9 +37,15 @@ func _ready():
 		instant_open()
 	
 	for switch in switches:
-		switch.on_state_changed.connect(switch_state_changed)
+		switch.on_state_changed.connect(switch_or_lock_state_changed)
 		if start_open:
 			switch.state = true
+	
+	for lock in locks:
+		lock.on_state_changed.connect(switch_or_lock_state_changed)
+		if start_open:
+			lock.is_unlocked = true
+			
 	
 	# Prevent direct interaction if should be opened by switches
 	if auto_open and switches.size() > 0:
@@ -104,11 +111,21 @@ func use(interactor):
 	if is_disabled:
 		return
 	
+	# For every locked lock, try to unlock using keys
+	for lock in locks:
+		if not lock.is_unlocked:
+			var unlocked = lock.use_keys(interactor)
+			if unlocked:
+				lock.is_unlocked = true
+			if not unlocked:
+				return
+		
+	
 	if dual_side:
 		var plane = Plane(-global_basis.z, global_transform.origin) # Create a plane with door's forward as normal
 		is_animation_reversed = plane.is_point_over(interactor.owner.global_position)
 	
-	if all_switches_on():
+	if all_switches_on() and all_locks_unlocked():
 		if door_state in [DoorState.CLOSED, DoorState.CLOSING, DoorState.AJAR]:
 			open()
 		elif door_state in [DoorState.OPEN, DoorState.OPENING]:
@@ -119,8 +136,11 @@ func get_text():
 	if is_disabled:
 		return ""
 	
-	if not all_switches_on():
+	if not all_locks_unlocked():
 		return "Locked"
+	
+	if not all_switches_on():
+		return "Won't budge"
 	
 	if door_state in [DoorState.CLOSED, DoorState.CLOSING, DoorState.AJAR]:
 		return "Open"
@@ -128,12 +148,12 @@ func get_text():
 		return "Close"
 	
 
-func switch_state_changed(state : bool):
+func switch_or_lock_state_changed(state : bool):
 	if not state:
 		close()
 		return
 	
-	if not all_switches_on():
+	if not all_switches_on() or not all_locks_unlocked():
 		close()
 		return
 	
@@ -144,6 +164,14 @@ func switch_state_changed(state : bool):
 func all_switches_on() -> bool:
 	for switch in switches:
 		if switch.state == false:
+			return false
+	
+	return true
+	
+
+func all_locks_unlocked() -> bool:
+	for lock in locks:
+		if not lock.is_unlocked:
 			return false
 	
 	return true

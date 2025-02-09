@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=165 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -43,6 +43,7 @@
 [ext_resource type="Material" uid="uid://27l1krb4frj0" path="res://assets/materials/ruby.tres" id="31_fln5t"]
 [ext_resource type="PackedScene" uid="uid://css8nyh53e1kh" path="res://prefabs/interactives/office_drawer_no_legs.tscn" id="31_rj3t1"]
 [ext_resource type="Material" uid="uid://hy7is1hc3gw3" path="res://assets/models/compass/brass_compass.tres" id="32_hhvtl"]
+[ext_resource type="Script" path="res://scripts/interactive/Key.gd" id="32_vgo2y"]
 [ext_resource type="Script" path="res://scripts/interactive/SwitchListener.gd" id="32_xt4km"]
 [ext_resource type="PackedScene" uid="uid://df14atga7qdvx" path="res://prefabs/pickups/silver_key.tscn" id="33_137jg"]
 [ext_resource type="PackedScene" uid="uid://cx8myxrl1yfr4" path="res://prefabs/pickups/crate.tscn" id="34_4oasf"]
@@ -103,11 +104,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_2kt6p"]
+[sub_resource type="QuadMesh" id="QuadMesh_v7jjh"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_6l20b"]
+[sub_resource type="BoxMesh" id="BoxMesh_yc1ra"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -191,6 +192,14 @@ size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qg4os"]
 size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Resource" id="Resource_n1bq3"]
+script = ExtResource("32_vgo2y")
+color = 2
+tower_id = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_fhgvb"]
+size = Vector3(0.125, 0.125, 0.075)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_wcubr"]
 top_radius = 0.1
@@ -442,8 +451,10 @@ subdivide_depth = 16
 cull_mode = 2
 albedo_color = Color(0.227451, 0.415686, 0.34902, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_fhgvb"]
-size = Vector3(0.125, 0.125, 0.075)
+[sub_resource type="Resource" id="Resource_kbrv3"]
+script = ExtResource("32_vgo2y")
+color = 2
+tower_id = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_16773"]
 size = Vector3(5, 0.2, 5)
@@ -613,10 +624,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_2kt6p")
+mesh = SubResource("QuadMesh_v7jjh")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_6l20b")
+mesh = SubResource("BoxMesh_yc1ra")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -3904,6 +3915,19 @@ shape = SubResource("BoxShape3D_7qt34")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/office3/CSGBox3D2/CSGBox3D2/storage_switch"]
 mesh = SubResource("BoxMesh_qg4os")
 
+[node name="prison_wood_door_0" parent="navigation_region/level/east_ward/floor_3/interior/office3/CSGBox3D2/CSGBox3D2" node_paths=PackedStringArray("locks") instance=ExtResource("20_dk30p")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.5, 0, 0)
+locks = [NodePath("storage_lock")]
+auto_open = true
+
+[node name="storage_lock" parent="navigation_region/level/east_ward/floor_3/interior/office3/CSGBox3D2/CSGBox3D2/prison_wood_door_0" instance=ExtResource("44_ygr2d")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.875, 0, 0)
+required_keys = Array[ExtResource("32_vgo2y")]([SubResource("Resource_n1bq3")])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/office3/CSGBox3D2/CSGBox3D2/prison_wood_door_0/storage_lock"]
+material_override = ExtResource("45_dxl78")
+mesh = SubResource("BoxMesh_fhgvb")
+
 [node name="npc" parent="navigation_region/level/east_ward/floor_3/interior" instance=ExtResource("20_clajy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34178, 0.25, -9.71368)
 
@@ -6303,7 +6327,6 @@ operation = 2
 size = Vector3(0.2, 0.35, 0.5)
 
 [node name="loose_brick" type="RigidBody3D" parent="navigation_region/level/east_ward/interior/cell/wall/loose_brick_hole"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 sleeping = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell/wall/loose_brick_hole/loose_brick"]
@@ -11381,14 +11404,16 @@ transform = Transform3D(1.74846e-07, 0, -1, 0, 1, 0, 1, 0, 1.74846e-07, 8.70016,
 [node name="torch9" parent="navigation_region/level/north_ward/interior/wall/door7" instance=ExtResource("10_fedt7")]
 transform = Transform3D(-2.62268e-07, 0, 1, 0, 1, 0, -1, 0, -2.62268e-07, 14.3473, 0.25, 5.5)
 
-[node name="prison_wood_door_0" parent="navigation_region/level/north_ward/interior/wall/door7" instance=ExtResource("20_dk30p")]
+[node name="prison_wood_door_0" parent="navigation_region/level/north_ward/interior/wall/door7" node_paths=PackedStringArray("locks") instance=ExtResource("20_dk30p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.5)
-open_rotation_offset = Vector3(0, -90, 0)
+locks = [NodePath("office_lock")]
+auto_open = true
 
-[node name="lock_collider" parent="navigation_region/level/north_ward/interior/wall/door7/prison_wood_door_0" instance=ExtResource("44_ygr2d")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.840503, 0.0579996, 0)
+[node name="office_lock" parent="navigation_region/level/north_ward/interior/wall/door7/prison_wood_door_0" instance=ExtResource("44_ygr2d")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.875, 0, 0)
+required_keys = Array[ExtResource("32_vgo2y")]([SubResource("Resource_kbrv3")])
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/north_ward/interior/wall/door7/prison_wood_door_0/lock_collider"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/north_ward/interior/wall/door7/prison_wood_door_0/office_lock"]
 material_override = ExtResource("45_dxl78")
 mesh = SubResource("BoxMesh_fhgvb")
 

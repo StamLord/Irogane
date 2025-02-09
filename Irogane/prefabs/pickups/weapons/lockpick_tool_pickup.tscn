@@ -17,12 +17,11 @@ metallic = 0.25
 
 [node name="lockpick_tool_pickup" type="RigidBody3D"]
 
-[node name="interactive_area" type="Area3D" parent="." node_paths=PackedStringArray("mesh")]
+[node name="interactive_area" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_pur1a")
 item_id = "lockpick_tool"
-mesh = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 shape = SubResource("BoxShape3D_qo1wx")
@@ -31,7 +30,6 @@ shape = SubResource("BoxShape3D_qo1wx")
 shape = SubResource("BoxShape3D_76ii7")
 
 [node name="wrap" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_uefnu")
 size = Vector3(0.195, 0.005, 0.25)
 
