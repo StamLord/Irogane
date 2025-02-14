@@ -28,6 +28,8 @@ var to_rotation = null
 var target_state = DoorState.CLOSED
 
 func _ready():
+	super._ready()
+	
 	origin_position = position
 	origin_rotation = rotation_degrees
 	

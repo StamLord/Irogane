@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=168 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -25,7 +25,6 @@
 [ext_resource type="Texture2D" uid="uid://c0j1eig1a842x" path="res://assets/textures/medieval/prison_map.png" id="17_t30s2"]
 [ext_resource type="Material" uid="uid://jt2xjmfdgb4s" path="res://assets/materials/glass.tres" id="18_50trj"]
 [ext_resource type="PackedScene" uid="uid://bx4y44rdruyi7" path="res://prefabs/entities/player.tscn" id="18_82ara"]
-[ext_resource type="PackedScene" uid="uid://dlckj6voogyui" path="res://prefabs/building_blocks/silver_bar_door.tscn" id="18_mj1rs"]
 [ext_resource type="PackedScene" uid="uid://o8bojx0uugy2" path="res://prefabs/candle_long_on.tscn" id="18_vxi3a"]
 [ext_resource type="PackedScene" uid="uid://dxkipe3wxamcu" path="res://prefabs/ui/game_ui.tscn" id="19_ukq1f"]
 [ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="20_clajy"]
@@ -63,6 +62,7 @@
 [ext_resource type="Texture2D" uid="uid://ca50v4ai2skrm" path="res://assets/models/env/godray_2x5_Untitled.png" id="40_tpwhn"]
 [ext_resource type="PackedScene" uid="uid://c58e6u5wf54jc" path="res://prefabs/lock.tscn" id="44_ygr2d"]
 [ext_resource type="Material" uid="uid://xfgqntou1u8o" path="res://assets/materials/gold.tres" id="45_dxl78"]
+[ext_resource type="Texture2D" uid="uid://bq6vyg8rglhso" path="res://assets/textures/medieval/arrow_1.png" id="48_lk4ri"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="53_r3el4"]
 [ext_resource type="Resource" uid="uid://bgrr3awej48pd" path="res://data/ai_agents/Guard_Unreactive.res" id="62_4lxp1"]
 [ext_resource type="Script" path="res://scripts/entities/npc_loot.gd" id="63_kywvb"]
@@ -105,11 +105,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_578yy"]
+[sub_resource type="QuadMesh" id="QuadMesh_n2cw8"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2tg5b"]
+[sub_resource type="BoxMesh" id="BoxMesh_0pbjf"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -322,6 +322,11 @@ size = Vector3(0.2, 0.3, 0.4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nat5f"]
 size = Vector3(0.3, 0.4, 0.5)
 
+[sub_resource type="Resource" id="Resource_ixtim"]
+script = ExtResource("32_vgo2y")
+color = 1
+tower_id = 0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nb86l"]
 size = Vector3(2, 0.07, 1)
 
@@ -367,6 +372,10 @@ transparency = 1
 albedo_texture = ExtResource("17_t30s2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_3n1ad"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0civ"]
+transparency = 1
+albedo_texture = ExtResource("48_lk4ri")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6pru"]
 albedo_texture = ExtResource("29_628p2")
@@ -625,10 +634,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_578yy")
+mesh = SubResource("QuadMesh_n2cw8")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_2tg5b")
+mesh = SubResource("BoxMesh_0pbjf")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -6759,8 +6768,12 @@ collision_layer = 1024
 collision_mask = 1024
 size = Vector3(0.05, 1, 0.05)
 
-[node name="door" parent="navigation_region/level/east_ward/interior/cell" instance=ExtResource("18_mj1rs")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.228554, 1.15891, 0.0307503)
+[node name="prison_wood_door" parent="navigation_region/level/east_ward/interior/cell" node_paths=PackedStringArray("locks") instance=ExtResource("31_dwg4j")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.25, 1.159, 0)
+locks = [NodePath("lock_collider")]
+
+[node name="lock_collider" parent="navigation_region/level/east_ward/interior/cell/prison_wood_door" instance=ExtResource("44_ygr2d")]
+required_keys = Array[ExtResource("32_vgo2y")]([SubResource("Resource_ixtim")])
 
 [node name="bar8" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.375, 2.625, 0)
@@ -6787,76 +6800,84 @@ collision_mask = 1024
 size = Vector3(0.05, 1, 0.05)
 
 [node name="bar11" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.375, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.25, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar12" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.625, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.5, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar13" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.875, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.75, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar14" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.125, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
+
+[node name="bar20" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.25, 1.5, 0)
+material_override = ExtResource("14_31bc1")
+use_collision = true
+collision_layer = 1024
+collision_mask = 1024
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar15" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.375, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.5, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar16" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.625, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.75, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar17" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.875, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar18" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.125, 1.5, 0)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.25, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
-[node name="bar19" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.375, 1.5, 0)
+[node name="bar24" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.5, 1.5, 0)
 material_override = ExtResource("14_31bc1")
 use_collision = true
 collision_layer = 1024
 collision_mask = 1024
-size = Vector3(0.05, 3.25, 0.05)
+size = Vector3(0.04, 3.25, 0.04)
 
 [node name="bar21" type="CSGBox3D" parent="navigation_region/level/east_ward/interior/cell"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.509754, 2.125, -4.25)
@@ -6936,7 +6957,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_biutj")
 
 [node name="bucket" type="RigidBody3D" parent="navigation_region/level/east_ward/interior/cell"]
 process_mode = 4
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.44435, 0.131859, -3.56147)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.44435, 0.131859, -3.81147)
 
 [node name="bucket" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior/cell/bucket"]
 material_override = ExtResource("17_6xw7o")
@@ -6971,6 +6992,11 @@ shape = SubResource("CylinderShape3D_w8ib2")
 [node name="map" type="MeshInstance3D" parent="navigation_region/level/east_ward/interior/cell"]
 transform = Transform3D(0.994699, 0.102827, 0, 4.49472e-09, -4.34797e-08, 1, 0.102827, -0.994699, -4.37114e-08, 2.12927, -0.122136, -3.54094)
 material_override = SubResource("StandardMaterial3D_05sj1")
+mesh = SubResource("QuadMesh_3n1ad")
+
+[node name="map2" type="MeshInstance3D" parent="navigation_region/level/east_ward/interior/cell"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.10037, 0.798684, -4.12168)
+material_override = SubResource("StandardMaterial3D_e0civ")
 mesh = SubResource("QuadMesh_3n1ad")
 
 [node name="cell5" type="Node3D" parent="navigation_region/level/east_ward/interior"]
@@ -14677,7 +14703,7 @@ transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 24.7323,
 agent_data = ExtResource("38_pdrcy")
 
 [node name="silver_key_pickup" parent="." instance=ExtResource("33_137jg")]
-transform = Transform3D(-0.380594, 0.707107, -0.595943, -0.842791, -4.47035e-08, 0.538242, 0.380594, 0.707107, 0.595943, 40.7207, 12.531, 27.7993)
+transform = Transform3D(-0.380594, 0.707107, -0.595943, -0.842791, -4.47035e-08, 0.538242, 0.380594, 0.707107, 0.595943, 40.4707, 12.531, 27.7993)
 freeze = true
 
 [node name="door_switch" type="MeshInstance3D" parent="."]
