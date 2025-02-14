@@ -1,4 +1,4 @@
-[gd_scene load_steps=165 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=166 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -54,7 +54,6 @@
 [ext_resource type="Script" path="res://scripts/interactive/elevator.gd" id="36_cund4"]
 [ext_resource type="PhysicsMaterial" uid="uid://lmkjlbgdklci" path="res://assets/materials/glass_physics.tres" id="37_17b86"]
 [ext_resource type="PackedScene" uid="uid://dqrfbfu4q2we8" path="res://prefabs/pickups/weapons/lockpick_tool_pickup.tscn" id="37_dnx72"]
-[ext_resource type="Resource" uid="uid://cup3wub806y8v" path="res://data/ai_agents/Guard_no_melee.res" id="37_jbhkw"]
 [ext_resource type="Script" path="res://scripts/interactive/Breakable.gd" id="37_uqfxq"]
 [ext_resource type="PackedScene" uid="uid://drtk1sfb04di7" path="res://prefabs/pickups/brick.tscn" id="38_6dx7l"]
 [ext_resource type="Script" path="res://scripts/procedural/cog.gd" id="38_641jf"]
@@ -65,6 +64,8 @@
 [ext_resource type="PackedScene" uid="uid://c58e6u5wf54jc" path="res://prefabs/lock.tscn" id="44_ygr2d"]
 [ext_resource type="Material" uid="uid://xfgqntou1u8o" path="res://assets/materials/gold.tres" id="45_dxl78"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="53_r3el4"]
+[ext_resource type="Resource" uid="uid://bgrr3awej48pd" path="res://data/ai_agents/Guard_Unreactive.res" id="62_4lxp1"]
+[ext_resource type="Script" path="res://scripts/entities/npc_loot.gd" id="63_kywvb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pcmgd"]
 disable_fog = true
@@ -104,11 +105,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_v7jjh"]
+[sub_resource type="QuadMesh" id="QuadMesh_578yy"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yc1ra"]
+[sub_resource type="BoxMesh" id="BoxMesh_2tg5b"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -624,10 +625,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_v7jjh")
+mesh = SubResource("QuadMesh_578yy")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_yc1ra")
+mesh = SubResource("BoxMesh_2tg5b")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -1880,29 +1881,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, 5.25, 1)
 operation = 2
 size = Vector3(1, 2, 1)
 
-[node name="balcony" type="CSGBox3D" parent="navigation_region/level/west_ward"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.25, 4.5, 1)
-size = Vector3(1.25, 1.5, 2.5)
+[node name="balcony5" type="CSGPolygon3D" parent="navigation_region/level/west_ward"]
+transform = Transform3D(-1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, 0, -1, 4.37114e-08, 8.625, 3.75, 1)
+polygon = PackedVector2Array(-0.5, -1.25, -0.5, 1.25, 1, 2, 1, -2)
+depth = 1.25
 
-[node name="balcony" type="CSGBox3D" parent="navigation_region/level/west_ward/balcony"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.25, 0)
+[node name="balcony5" type="CSGPolygon3D" parent="navigation_region/level/west_ward/balcony5"]
+transform = Transform3D(1, 0, -1.67037e-22, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 operation = 2
-size = Vector3(1, 1, 2)
-
-[node name="balcony3" type="CSGBox3D" parent="navigation_region/level/west_ward/balcony"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.625, -1.125)
-operation = 2
-size = Vector3(1, 0.25, 0.25)
-
-[node name="balcony4" type="CSGBox3D" parent="navigation_region/level/west_ward/balcony"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.625, 1.125)
-operation = 2
-size = Vector3(1, 0.25, 0.25)
-
-[node name="balcony2" type="CSGBox3D" parent="navigation_region/level/west_ward/balcony"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.625, 0)
-operation = 2
-size = Vector3(0.25, 0.25, 2)
+polygon = PackedVector2Array(-0.25, -1, -0.25, 1, 1, 1.6, 1, -1.6)
+depth = 1.25
 
 [node name="door5" type="CSGBox3D" parent="navigation_region/level/west_ward"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, -0.5, 0)
@@ -3713,6 +3701,329 @@ transform = Transform3D(1, -2.98023e-08, 2.98023e-08, -2.98023e-08, 0, -1, -2.98
 material_override = SubResource("StandardMaterial3D_sd1l5")
 mesh = SubResource("CylinderMesh_y3hco")
 
+[node name="fence" type="Node3D" parent="navigation_region/level/west_ward"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.64779, 8, -21.5)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, 0)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, -0.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, -1)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, -1.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -2)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -2.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -3)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -3.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -4)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -4.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851417, 1.5, -5.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -6)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -6.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -7)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D16" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -7.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D17" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -8)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D18" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -8.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D19" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -9)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D20" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -9.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D21" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -10)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D22" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -10.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D23" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -11)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D24" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -11.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D25" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -12)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D26" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -12.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D27" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -13)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D28" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -13.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D29" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -14)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D30" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -14.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D31" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -15)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D32" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -15.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D33" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851445, 1.5, -16)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D34" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085144, 1.5, -16.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D35" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -17)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D36" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -17.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D37" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -18)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D38" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -18.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D39" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -19)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D40" type="CSGCylinder3D" parent="navigation_region/level/west_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -19.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
 [node name="bridge" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 6.875)
 material_override = ExtResource("9_mnla3")
@@ -3789,13 +4100,37 @@ operation = 2
 size = Vector3(1, 2, 2)
 
 [node name="floor_4" type="CSGBox3D" parent="navigation_region/level/east_ward"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 11.25)
-size = Vector3(14.25, 0.5, 19.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 11)
+size = Vector3(14.25, 0.5, 20.25)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.94507, 0, -9)
 operation = 2
 size = Vector3(2.60986, 1, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, -11.2365)
+size = Vector3(3, 0.5, 2.25)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.625, -11.2365)
+size = Vector3(0.25, 0.75, 2.25)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 0.625, -9.98655)
+size = Vector3(0.25, 0.75, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.625, -12.2365)
+size = Vector3(3, 0.75, 0.25)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3.26516, 0, -10.7214)
+size = Vector3(1.5, 0.5, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_4"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3.7071, 0.625, -11.1633)
+size = Vector3(0.25, 0.75, 3)
 
 [node name="floor_3" type="CSGBox3D" parent="navigation_region/level/east_ward"]
 size = Vector3(14.25, 0.5, 42.25)
@@ -3829,7 +4164,7 @@ operation = 2
 transform = Transform3D(-1.17225e-07, 0, -1, 0, 1, 0, 1, 0, -1.17225e-07, 1.54707, 2, -7.93463)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior/office3"]
-transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 7, 1.875, -1.547)
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 6.5, 1.875, -1.547)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(8, 7.25, 0.25)
@@ -3846,7 +4181,7 @@ operation = 2
 size = Vector3(1, 2, 1)
 
 [node name="prison_wood_door" parent="navigation_region/level/east_ward/floor_3/interior/office3/CSGBox3D11/CSGBox3D" instance=ExtResource("31_dwg4j")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.5, 0, 0)
+transform = Transform3D(-1, 0, 1.94707e-07, 0, 1, 0, -1.94707e-07, 0, -1, 0.5, 0, 0)
 open_rotation_offset = Vector3(0, -120, 0)
 dual_side = false
 
@@ -3895,13 +4230,13 @@ use_collision = true
 size = Vector3(2.5, 15, 0.25)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior/office3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24, 1.875, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99, 1.875, 2.5)
 material_override = ExtResource("9_mnla3")
 use_collision = true
-size = Vector3(11.75, 7.25, 0.25)
+size = Vector3(11.25, 7.25, 0.25)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior/office3/CSGBox3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.61399, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, -2.61399, 0)
 operation = 2
 size = Vector3(1, 2, 1)
 
@@ -3932,97 +4267,97 @@ mesh = SubResource("BoxMesh_fhgvb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34178, 0.25, -9.71368)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99307, 4.125, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.99307, 4.125, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(2.25, 0.25, 2.25)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.86807, 3.875, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.86807, 3.875, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61807, 3.625, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61807, 3.625, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36807, 3.375, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.36807, 3.375, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11808, 3.125, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.11808, 3.125, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.86807, 2.875, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.86807, 2.875, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.61807, 2.625, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.61807, 2.625, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.36808, 2.375, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.36808, 2.375, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11807, 2.125, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11807, 2.125, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86807, 1.875, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86807, 1.875, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61808, 1.625, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61808, 1.625, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36807, 1.375, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36807, 1.375, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11807, 1.125, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11807, 1.125, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86807, 0.875, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86807, 0.875, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61807, 0.625, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61807, 0.625, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36807, 0.375, 0.375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36807, 0.375, -0.125)
 material_override = ExtResource("9_mnla3")
 use_collision = true
 size = Vector3(0.5, 0.25, 2.25)
@@ -5243,7 +5578,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves15" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.97645, 2.345, -2.573)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.97645, 2.345, -3.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5277,7 +5612,7 @@ size = Vector3(1, 0.5, 1.75)
 transform = Transform3D(-0.113151, 0, 0.993578, 0, 1, 0, -0.993578, 0, -0.113151, 0, -0.966049, 0)
 
 [node name="bookshelves16" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.97645, 2.345, -4.573)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.97645, 2.345, -5.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5308,7 +5643,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves27" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.47645, 2.345, -2.573)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.47645, 2.345, -3.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5339,7 +5674,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves28" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.47645, 2.345, -4.573)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4.47645, 2.345, -5.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5370,7 +5705,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves22" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.726448, 2.345, -1.323)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.726448, 2.345, -1.823)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5401,7 +5736,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves25" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.22645, 2.345, -1.323)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.22645, 2.345, -1.823)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5432,7 +5767,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves26" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.72645, 2.345, -1.323)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.72645, 2.345, -1.823)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5525,7 +5860,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves17" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.523552, 2.345, -2.573)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.523552, 2.345, -3.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5556,7 +5891,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves18" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.523552, 2.345, -4.573)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.523552, 2.345, -5.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5649,7 +5984,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves21" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.97645, 2.345, -2.573)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.97645, 2.345, -3.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5680,7 +6015,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves19" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.97645, 2.345, -6.573)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.97645, 2.345, -7.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -5711,7 +6046,7 @@ operation = 2
 size = Vector3(1, 0.5, 1.75)
 
 [node name="bookshelves20" type="CSGBox3D" parent="navigation_region/level/east_ward/floor_3/interior"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.97645, 2.345, -4.573)
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.97645, 2.345, -5.073)
 material_override = ExtResource("17_6xw7o")
 use_collision = true
 size = Vector3(0.5, 4.17682, 2)
@@ -10583,7 +10918,7 @@ mesh = SubResource("ArrayMesh_k3lml")
 skeleton = NodePath("")
 
 [node name="storage_window" type="CSGBox3D" parent="navigation_region/level/east_ward"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 5.75, -6.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 5.75, -7)
 operation = 2
 
 [node name="Cube" type="MeshInstance3D" parent="navigation_region/level/east_ward/storage_window"]
@@ -10601,7 +10936,7 @@ spot_range = 20.0
 spot_angle = 20.0
 
 [node name="storage_window2" type="CSGBox3D" parent="navigation_region/level/east_ward"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 5.75, -10.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.5, 5.75, -11)
 operation = 2
 
 [node name="Cube" type="MeshInstance3D" parent="navigation_region/level/east_ward/storage_window2"]
@@ -11300,6 +11635,329 @@ transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5,
 
 [node name="torch11" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
 transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -6.75)
+
+[node name="fence" type="Node3D" parent="navigation_region/level/east_ward"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6462, 8, -2)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, 0)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, -0.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, -1)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851407, 1.5, -1.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -2)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -2.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -3)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -3.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -4)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -4.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D11" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D12" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851417, 1.5, -5.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D13" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -6)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D14" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -6.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D15" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -7)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D16" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851421, 1.5, -7.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D17" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -8)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D18" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -8.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D19" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -9)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D20" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851412, 1.5, -9.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D21" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -10)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D22" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -10.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D23" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -11)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D24" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -11.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D25" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -12)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D26" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -12.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D27" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -13)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D28" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851426, 1.5, -13.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D29" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -14)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D30" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -14.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D31" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -15)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D32" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -15.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D33" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851445, 1.5, -16)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D34" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085144, 1.5, -16.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D35" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851431, 1.5, -17)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D36" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -17.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D37" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -18)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D38" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -18.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D39" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -19)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
+
+[node name="CSGCylinder3D40" type="CSGCylinder3D" parent="navigation_region/level/east_ward/fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0851436, 1.5, -19.5)
+use_collision = true
+radius = 0.1
+height = 3.0
+sides = 3
+cone = true
 
 [node name="north_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.75, 6, -0.75)
@@ -13961,9 +14619,12 @@ process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.25, 16, 42.25)
 
 [node name="guard_prison_cell" parent="." instance=ExtResource("20_clajy")]
-process_mode = 4
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 46, 12.25, 24.5)
-agent_data = ExtResource("37_jbhkw")
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 45.25, 12.25, 24.5)
+agent_data = ExtResource("62_4lxp1")
+
+[node name="npc_loot" type="Node3D" parent="guard_prison_cell"]
+unique_name_in_owner = true
+script = ExtResource("63_kywvb")
 
 [node name="npc_prisoner3" parent="." instance=ExtResource("20_clajy")]
 process_mode = 4

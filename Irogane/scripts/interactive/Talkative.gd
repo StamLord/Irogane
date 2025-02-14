@@ -24,3 +24,10 @@ func _process(_delta):
 		DialogueManager.hide_dialouge()
 		talking_to = null
 	
+
+func get_text():
+	if dialogue == null or resource == null:
+		return ""
+	
+	return interaction_text
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://6w2qvvdo2jh4"]
+[gd_scene load_steps=30 format=3 uid="uid://6w2qvvdo2jh4"]
 
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="1_1nlbh"]
 [ext_resource type="Resource" uid="uid://bemmj32kb8mvn" path="res://data/ai_agents/Guard.res" id="2_7ydk2"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://shvwwq43i0ds" path="res://assets/audio/guard_detection/i_can_see_you.ogg" id="10_ceugx"]
 [ext_resource type="Script" path="res://scripts/stealth/light_detection.gd" id="10_qlqfu"]
 [ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="11_yxcr4"]
+[ext_resource type="Script" path="res://scripts/entities/visual_loot.gd" id="13_1iybx"]
+[ext_resource type="Script" path="res://scripts/interactive/StaticPickup.gd" id="14_5tncd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hbheq"]
 radius = 0.4
@@ -30,7 +32,6 @@ albedo_color = Color(0.921569, 0, 0.337255, 1)
 length = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nwcln"]
-radius = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ps1xe"]
 
@@ -53,6 +54,27 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 0.0901961)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rl3f2"]
+radius = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k0ono"]
+top_radius = 0.01
+bottom_radius = 0.1
+height = 0.2
+radial_segments = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_av6i7"]
+albedo_color = Color(0.266667, 0.176471, 0.0901961, 1)
+emission_enabled = true
+emission = Color(0.266667, 0.176471, 0.0901961, 1)
+emission_energy_multiplier = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ti8ny"]
+top_radius = 0.01
+bottom_radius = 0.1
+height = 0.05
+radial_segments = 4
 
 [node name="npc" type="Node3D" groups=["GoapAgent"]]
 script = ExtResource("1_1nlbh")
@@ -120,7 +142,7 @@ shape = SubResource("SeparationRayShape3D_xeuho")
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("7_j7jfl")
-interaction_text = "Talk"
+interaction_text = ""
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="character_body/interactive"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -191,5 +213,37 @@ script = ExtResource("11_yxcr4")
 [node name="light_detection" type="Node3D" parent="character_body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("10_qlqfu")
+
+[node name="visual_loot" type="Node3D" parent="character_body" node_paths=PackedStringArray("skeleton_parent")]
+unique_name_in_owner = true
+script = ExtResource("13_1iybx")
+skeleton_parent = NodePath("../visual/peasant_baked")
+
+[node name="gold_sack" type="Node3D" parent="character_body/visual_loot"]
+visible = false
+
+[node name="interactive_area" type="Area3D" parent="character_body/visual_loot/gold_sack" node_paths=PackedStringArray("mesh")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("14_5tncd")
+item_id = "gold_sack"
+interaction_text = "Steal"
+mesh = NodePath("../MeshInstance3D")
+highlight_emission_multiplier = 4.0
+highlight_emission_operator = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character_body/visual_loot/gold_sack/interactive_area"]
+shape = SubResource("SphereShape3D_rl3f2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="character_body/visual_loot/gold_sack"]
+mesh = SubResource("CylinderMesh_k0ono")
+skeleton = NodePath("../interactive_area")
+surface_material_override/0 = SubResource("StandardMaterial3D_av6i7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="character_body/visual_loot/gold_sack"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -8.72567e-09, -0.12481, 0)
+mesh = SubResource("CylinderMesh_ti8ny")
+skeleton = NodePath("../interactive_area")
+surface_material_override/0 = SubResource("StandardMaterial3D_av6i7")
 
 [connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]
