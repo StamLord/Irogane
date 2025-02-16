@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://dfs8kygdy6fve"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Carriable.gd" id="1_6epep"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7tgc4"]
+height = 0.25
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lntne"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.117647)
+roughness = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6teq6"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ctdik"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a3bx5"]
+top_radius = 0.09
+bottom_radius = 0.09
+height = 0.175
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnny5"]
+albedo_color = Color(0.439216, 0.309804, 0.196078, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6xilj"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jovtm"]
+height = 0.3
+radius = 0.125
+
+[node name="chemical_jar" type="RigidBody3D"]
+transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0.125, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+shape = SubResource("CylinderShape3D_7tgc4")
+
+[node name="jar" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lntne")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_6teq6")
+
+[node name="liquid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
+material_override = SubResource("StandardMaterial3D_ctdik")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a3bx5")
+
+[node name="lid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
+material_override = SubResource("StandardMaterial3D_rnny5")
+mesh = SubResource("CylinderMesh_6xilj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_6epep")
+interaction_text = "Move"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
+shape = SubResource("CylinderShape3D_jovtm")

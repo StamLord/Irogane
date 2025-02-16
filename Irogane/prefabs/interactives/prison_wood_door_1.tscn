@@ -48,7 +48,7 @@ collision_mask = 4
 script = ExtResource("1_qjqo2")
 open_rotation_offset = Vector3(0, 90, 0)
 mesh = NodePath("door_1")
-highlight_emission_multiplier = 0.25
+highlight_emission_multiplier = 0.1
 
 [node name="interactive_shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)

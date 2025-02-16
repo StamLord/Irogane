@@ -6,7 +6,7 @@ class_name Interactive
 @export var highlight_emission_multiplier = 3.0
 @export var highlight_emission_operator = StandardMaterial3D.EMISSION_OP_MULTIPLY
 
-const HIGHLIGHT_EMMISION = 0.25
+const HIGHLIGHT_EMMISION = 0.1
 const HIGHLIGHT_COLOR = Color.WHITE
 
 var is_disabled = false

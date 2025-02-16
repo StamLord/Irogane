@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=170 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -56,6 +56,7 @@
 [ext_resource type="Script" path="res://scripts/interactive/Breakable.gd" id="37_uqfxq"]
 [ext_resource type="PackedScene" uid="uid://drtk1sfb04di7" path="res://prefabs/pickups/brick.tscn" id="38_6dx7l"]
 [ext_resource type="Script" path="res://scripts/procedural/cog.gd" id="38_641jf"]
+[ext_resource type="PackedScene" uid="uid://dfs8kygdy6fve" path="res://prefabs/pickups/chemical_jar.tscn" id="38_o3psy"]
 [ext_resource type="Resource" uid="uid://df2w86kf3xtbr" path="res://data/ai_agents/Prisoner.res" id="38_pdrcy"]
 [ext_resource type="Script" path="res://scripts/interactive/ElevatorSwitch.gd" id="39_tjlh1"]
 [ext_resource type="Material" uid="uid://cgs45hff05pjt" path="res://assets/materials/saphire.tres" id="40_4tuq7"]
@@ -105,11 +106,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_n2cw8"]
+[sub_resource type="QuadMesh" id="QuadMesh_vdsfi"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_0pbjf"]
+[sub_resource type="BoxMesh" id="BoxMesh_eynkj"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -461,6 +462,11 @@ subdivide_depth = 16
 cull_mode = 2
 albedo_color = Color(0.227451, 0.415686, 0.34902, 1)
 
+[sub_resource type="QuadMesh" id="QuadMesh_045xs"]
+size = Vector2(1.8, 0.7)
+subdivide_width = 8
+subdivide_depth = 4
+
 [sub_resource type="Resource" id="Resource_kbrv3"]
 script = ExtResource("32_vgo2y")
 color = 2
@@ -634,10 +640,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_n2cw8")
+mesh = SubResource("QuadMesh_vdsfi")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_0pbjf")
+mesh = SubResource("BoxMesh_eynkj")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -947,6 +953,7 @@ shape = SubResource("BoxShape3D_ukvgu")
 [node name="prison_wood_door" parent="navigation_region/level/south_ward/interior/wall10" node_paths=PackedStringArray("switches") instance=ExtResource("13_34lev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500027, -0.625, -0.199306)
 switches = [NodePath("../bar_switch/Area3D")]
+highlight_emission_operator = 0
 
 [node name="barrel" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -3.04978, -1, 0.681515)
@@ -5154,43 +5161,7 @@ operation = 2
 use_collision = true
 size = Vector3(0.9, 1, 0.9)
 
-[node name="chemical_jar" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
-transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0.125, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
-shape = SubResource("CylinderShape3D_7tgc4")
-
-[node name="jar" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
-material_override = SubResource("StandardMaterial3D_lntne")
-cast_shadow = 0
-mesh = SubResource("CylinderMesh_6teq6")
-
-[node name="liquid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122929, 0)
-material_override = SubResource("StandardMaterial3D_ctdik")
-cast_shadow = 0
-mesh = SubResource("CylinderMesh_a3bx5")
-
-[node name="lid" type="MeshInstance3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126626, 0)
-material_override = SubResource("StandardMaterial3D_rnny5")
-mesh = SubResource("CylinderMesh_6xilj")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
-light_color = Color(0, 1, 0, 1)
-light_energy = 0.1
-shadow_enabled = true
-
-[node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar"]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("16_imo6e")
-interaction_text = "Move"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64/chemical_jar/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0352287, 0)
-shape = SubResource("CylinderShape3D_jovtm")
+[node name="chemical_jar" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64" instance=ExtResource("38_o3psy")]
 
 [node name="chemical_jar2" type="RigidBody3D" parent="navigation_region/level/east_ward/floor_3/interior/CSGBox3D64"]
 transform = Transform3D(1, 0, 4.9738e-14, 0, 1, 0, -4.9738e-14, 0, 1, 0, 0.125, 0.25)
@@ -11581,9 +11552,6 @@ size = Vector3(0.2, 1.5, 0.1)
 transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, -0.033493, -0.444625, 1.25)
 size = Vector3(0.2, 1.5, 0.1)
 
-[node name="candle_short2" parent="navigation_region/level/east_ward/interior2/infirmary_table" instance=ExtResource("11_jhau7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.380775, 0.169842, 1.03615)
-
 [node name="infirmary_table6" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -6.75, -12.75)
 use_collision = true
@@ -11605,26 +11573,8 @@ size = Vector3(0.2, 1.5, 0.1)
 transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, -0.033493, -0.444625, 1.25)
 size = Vector3(0.2, 1.5, 0.1)
 
-[node name="infirmary_table8" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, -6.75, -18.75)
-use_collision = true
-size = Vector3(1.5, 0.15, 3)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
-transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -0.033493, -0.444625, -1.25)
-size = Vector3(0.2, 1.5, 0.1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
-transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, -0.033493, -0.444625, -1.25)
-size = Vector3(0.2, 1.5, 0.1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
-transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -0.033493, -0.444625, 1.25)
-size = Vector3(0.2, 1.5, 0.1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/infirmary_table8"]
-transform = Transform3D(-0.5, 0.866025, 0, -0.866025, -0.5, 0, 0, 0, 1, -0.033493, -0.444625, 1.25)
-size = Vector3(0.2, 1.5, 0.1)
+[node name="candle_short2" parent="navigation_region/level/east_ward/interior2/infirmary_table6" instance=ExtResource("11_jhau7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.380775, 0.169842, 1.03615)
 
 [node name="infirmary_table7" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.6021, -6.75, -4.36214)
@@ -11656,11 +11606,108 @@ transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, -5.31027
 [node name="torch2" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
 transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -18.75)
 
-[node name="torch6" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
-transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -12.75)
-
 [node name="torch11" parent="navigation_region/level/east_ward/interior2" instance=ExtResource("10_fedt7")]
 transform = Transform3D(5.96046e-08, 0, 1, 0, 1, 0, -1, 0, 5.96046e-08, 0, -2.5, -6.75)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, -6.3, -10.25)
+use_collision = true
+size = Vector3(1, 0.1, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.400002, -0.466671, 0.751634)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.342, 0.252)
+size = Vector3(1, 0.75, 0.1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.692969, 0.327)
+size = Vector3(1, 0.05, 0.25)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.442969, 0.327)
+size = Vector3(1, 0.05, 0.25)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.192969, 0.327)
+size = Vector3(1, 0.05, 0.25)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.400002, -0.466671, 0.751634)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.400002, -0.466671, -0.755486)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.400002, -0.466671, -0.755486)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.5, -0.948043, -0.75)
+radius = 0.25
+height = 0.1
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.5, -0.948043, 0.75)
+radius = 0.25
+height = 0.1
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.5, -0.948043, -0.75)
+radius = 0.25
+height = 0.1
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.5, -0.948043, 0.75)
+radius = 0.25
+height = 0.1
+
+[node name="SoftBody3D6" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(-2.91409e-08, 0, -1, 0, 1, 0, 0.666667, 0, -4.37114e-08, -0.5, -0.395059, 0)
+mesh = SubResource("QuadMesh_045xs")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [102, 107, 59, 50]
+attachments/0/point_index = 102
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 107
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 59
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 50
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+
+[node name="SoftBody3D7" type="SoftBody3D" parent="navigation_region/level/east_ward/interior2/CSGBox3D3"]
+transform = Transform3D(-2.91409e-08, 0, -1, 0, 1, 0, 0.666667, 0, -4.37114e-08, 0.5, -0.395059, 0)
+mesh = SubResource("QuadMesh_045xs")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_swjy3")
+linear_stiffness = 0.25
+pinned_points = [102, 107, 59, 50]
+attachments/0/point_index = 102
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 107
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 59
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 50
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+
+[node name="chemical_jar2" parent="navigation_region/level/east_ward/interior2/CSGBox3D3" instance=ExtResource("38_o3psy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, 0.175, 0.5)
 
 [node name="fence" type="Node3D" parent="navigation_region/level/east_ward"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6462, 8, -2)
