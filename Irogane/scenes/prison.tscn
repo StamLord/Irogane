@@ -1,4 +1,4 @@
-[gd_scene load_steps=179 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=178 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -44,7 +44,6 @@
 [ext_resource type="Material" uid="uid://hy7is1hc3gw3" path="res://assets/models/compass/brass_compass.tres" id="32_hhvtl"]
 [ext_resource type="Script" path="res://scripts/interactive/Key.gd" id="32_vgo2y"]
 [ext_resource type="Script" path="res://scripts/interactive/SwitchListener.gd" id="32_xt4km"]
-[ext_resource type="PackedScene" uid="uid://df14atga7qdvx" path="res://prefabs/pickups/silver_key.tscn" id="33_137jg"]
 [ext_resource type="PackedScene" uid="uid://cx8myxrl1yfr4" path="res://prefabs/pickups/crate.tscn" id="34_4oasf"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="34_06lda"]
 [ext_resource type="Material" uid="uid://bpg2o1smtm2us" path="res://assets/materials/house_roof.tres" id="34_ekehk"]
@@ -6822,6 +6821,7 @@ mesh = SubResource("QuadMesh_3n1ad")
 
 [node name="map2" type="MeshInstance3D" parent="navigation_region/level/east_ward/interior/cell"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.10037, 0.798684, -4.12168)
+visible = false
 material_override = SubResource("StandardMaterial3D_e0civ")
 mesh = SubResource("QuadMesh_3n1ad")
 
@@ -14683,10 +14683,6 @@ agent_data = ExtResource("38_pdrcy")
 process_mode = 4
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 24.7323, 12.25, 46.8589)
 agent_data = ExtResource("38_pdrcy")
-
-[node name="silver_key_pickup" parent="." instance=ExtResource("33_137jg")]
-transform = Transform3D(-0.380594, 0.707107, -0.595943, -0.842791, -4.47035e-08, 0.538242, 0.380594, 0.707107, 0.595943, 40.4707, 12.531, 27.7993)
-freeze = true
 
 [node name="door_switch" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.114, 13.25, 29)
