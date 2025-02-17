@@ -2,8 +2,14 @@ extends Node3D
 
 @onready var loot = %npc_loot
 @onready var sack: Node3D = $gold_sack
+@onready var key = $key
+
+
 const POUCH_POSITION = Vector3(-24.4, 22.5, -18.17) # Tested in editor directly on skeleton
 const POUCH_ROTATION = Vector3(10.0, 45.0, -3.0)
+
+const KEY_POSITION = Vector3(32.0, 25.0, -12.0)
+const KEY_ROTATION = Vector3(0.0, -75.0, 0.0)
 
 @export var skeleton_parent: Node3D
 @export var skeleton_name = "Skeleton3D"
@@ -41,13 +47,20 @@ func setup_skeleton():
 	for item in loot.items:
 		if item == "gold_sack":
 			sack.visible = true
-			attach_to_bone("mixamorigHips", sack)
+			attach_to_bone("mixamorigHips", sack, POUCH_POSITION, POUCH_ROTATION)
 			var interactive = sack.get_node("interactive_area")
 			if interactive != null:
 				interactive.amount = loot.items[item]
+		elif item == "key":
+			key.visible = true
+			attach_to_bone("mixamorigHips", key, KEY_POSITION, KEY_ROTATION)
+			var interactive = sack.get_node("interactive_area")
+			if interactive != null:
+				interactive.amount = loot.items[item]
+			
 	
 
-func attach_to_bone(bone_name: String, node_to_attach: Node3D):
+func attach_to_bone(bone_name: String, node_to_attach: Node3D, position_offset: Vector3, rotation_offset: Vector3):
 	# Ensure the bone exists
 	var bone_index = skeleton.find_bone(bone_name)
 	if bone_index == -1:
@@ -62,8 +75,8 @@ func attach_to_bone(bone_name: String, node_to_attach: Node3D):
 	
 	skeleton.add_child(bone_attachment)
 	node_to_attach.reparent(bone_attachment)
-	node_to_attach.position = POUCH_POSITION
-	node_to_attach.rotation = POUCH_ROTATION
+	node_to_attach.position = position_offset
+	node_to_attach.rotation = rotation_offset
 	
 	# Ensure transforms are updated
 	skeleton.force_update_bone_child_transform(bone_index)

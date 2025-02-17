@@ -23,13 +23,21 @@ func _process(delta):
 	
 	var current = interaction_node.current_interactive
 	if not current:
-		text = ""
+		if interaction_node.interact_check.is_colliding():
+			text = format_text(interaction_node.interact_check.get_collider())
+		else:
+			text = ""
 		return
 	
 	var parent = current.get_parent()
-	text = "[ parent: " + str(parent.name) + " ]\n[ " + str(interaction_node.current_interactive) + " ]"
+	text = format_text(interaction_node.current_interactive)
 	
 
 func set_debug_visible(args: Array):
 	visible = bool(args[0])
+	
+
+func format_text(node: Node):
+	var parent = node.get_parent()
+	return "[ parent: " + str(parent.name) + " ]\n[ " + str(node) + " ]"
 	

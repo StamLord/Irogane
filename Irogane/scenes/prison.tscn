@@ -109,11 +109,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_mufj6"]
+[sub_resource type="QuadMesh" id="QuadMesh_gre6l"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ucc2i"]
+[sub_resource type="BoxMesh" id="BoxMesh_4rrm6"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -661,10 +661,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_mufj6")
+mesh = SubResource("QuadMesh_gre6l")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_ucc2i")
+mesh = SubResource("BoxMesh_4rrm6")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -6826,6 +6826,7 @@ material_override = SubResource("StandardMaterial3D_e0civ")
 mesh = SubResource("QuadMesh_3n1ad")
 
 [node name="bars_door_frame2" parent="navigation_region/level/east_ward/interior/cell" instance=ExtResource("49_g4sy8")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="navigation_region/level/east_ward/interior/cell/bars_door_frame2"]
 
@@ -6883,7 +6884,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.861153, 1.5, 0)
 shape = SubResource("BoxShape3D_agyr1")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/bars_2x32/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, -2.98023e-08, -1, -4.37114e-08, -2.98023e-08, -2.98023e-08, 2.98023e-08, 1, 0.481426, 1, 0)
+transform = Transform3D(-4.37114e-08, 1, -2.98023e-08, -1, -4.37114e-08, -2.98023e-08, -2.98023e-08, 2.98023e-08, 1, 0.481, 0.9, 0)
 shape = SubResource("BoxShape3D_gur03")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/bars_2x32/StaticBody3D"]
@@ -6902,7 +6903,7 @@ shape = SubResource("BoxShape3D_5dfyr")
 transform = Transform3D(1, 0, -1.39091e-08, 0, 1, 0, 1.39091e-08, 0, 1, 2, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="navigation_region/level/east_ward/interior/cell/bars_2x33"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.999996, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.865, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/bars_2x33/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -6933,7 +6934,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.861153, 1.5, 0)
 shape = SubResource("BoxShape3D_agyr1")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/bars_2x33/StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 1, -2.98023e-08, -1, -4.37114e-08, -2.98023e-08, -2.98023e-08, 2.98023e-08, 1, 0.481426, 1, 0)
+transform = Transform3D(-4.37114e-08, 1, -2.98023e-08, -1, -4.37114e-08, -2.98023e-08, -2.98023e-08, 2.98023e-08, 1, 0.481, 0.9, 0)
 shape = SubResource("BoxShape3D_gur03")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/bars_2x33/StaticBody3D"]
@@ -14628,6 +14629,10 @@ agent_data = ExtResource("62_4lxp1")
 [node name="npc_loot" type="Node3D" parent="guard_prison_cell"]
 unique_name_in_owner = true
 script = ExtResource("63_kywvb")
+items = {
+"gold_sack": 1,
+"key": 1
+}
 
 [node name="npc_prisoner3" parent="." instance=ExtResource("20_clajy")]
 process_mode = 4
