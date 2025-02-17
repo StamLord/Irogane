@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://chbmsl467fu05"
-path="res://.godot/imported/bars_door.glb-aba47380972a8f453b46d2fa35ca402a.scn"
+uid="uid://c3rglojsk2dyh"
+path="res://.godot/imported/bars_1x3.glb-a0624dd28aa75d47e77c1ad91ed91c6a.scn"
 
 [deps]
 
-source_file="res://assets/models/building_blocks/bars_door.glb"
-dest_files=["res://.godot/imported/bars_door.glb-aba47380972a8f453b46d2fa35ca402a.scn"]
+source_file="res://assets/models/prison/bars_1x3.glb"
+dest_files=["res://.godot/imported/bars_1x3.glb-a0624dd28aa75d47e77c1ad91ed91c6a.scn"]
 
 [params]
 
@@ -31,7 +31,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
-"@MATERIAL:0": {
+"Material": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/iron_bar.tres"
 }
