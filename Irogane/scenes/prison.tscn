@@ -108,11 +108,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_gre6l"]
+[sub_resource type="QuadMesh" id="QuadMesh_esw7y"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_4rrm6"]
+[sub_resource type="BoxMesh" id="BoxMesh_c3ke0"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -660,10 +660,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_gre6l")
+mesh = SubResource("QuadMesh_esw7y")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_4rrm6")
+mesh = SubResource("BoxMesh_c3ke0")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -888,11 +888,11 @@ size = Vector3(1, 2, 1)
 
 [node name="door_switch" type="MeshInstance3D" parent="navigation_region/level/south_ward/interior/wall7/CSGBox3D2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.75, 0, 0.25)
-material_override = SubResource("StandardMaterial3D_lnwtm")
 mesh = SubResource("BoxMesh_7un6v")
 skeleton = NodePath("door_switch")
+surface_material_override/0 = ExtResource("31_fln5t")
 
-[node name="door_switch" type="Area3D" parent="navigation_region/level/south_ward/interior/wall7/CSGBox3D2/door_switch"]
+[node name="door_switch" type="Area3D" parent="navigation_region/level/south_ward/interior/wall7/CSGBox3D2/door_switch" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("34_06lda")
@@ -900,9 +900,17 @@ on_text = "PRESS"
 on_position = Vector3(0, 0, 0.025)
 _animate_rotation = false
 interaction_text = "PRESS"
+mesh = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/south_ward/interior/wall7/CSGBox3D2/door_switch/door_switch"]
 shape = SubResource("BoxShape3D_tc5hv")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="navigation_region/level/south_ward/interior/wall7/CSGBox3D2/door_switch" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0, 0)
+light_color = Color(1, 0.368627, 0.301961, 1)
+light_energy = 0.1
+shadow_enabled = true
+omni_range = 0.5
 
 [node name="bar_portcullis" parent="navigation_region/level/south_ward/interior/wall7/CSGBox3D2" node_paths=PackedStringArray("switches") instance=ExtResource("35_aucl4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
@@ -14689,8 +14697,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.114
 material_override = ExtResource("31_fln5t")
 mesh = SubResource("BoxMesh_7un6v")
 skeleton = NodePath("door_switch")
+surface_material_override/0 = ExtResource("31_fln5t")
 
-[node name="door_switch" type="Area3D" parent="door_switch"]
+[node name="door_switch" type="Area3D" parent="door_switch" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("34_06lda")
@@ -14698,6 +14707,7 @@ on_text = "PRESS"
 on_position = Vector3(0, 0, 0.025)
 _animate_rotation = false
 interaction_text = "PRESS"
+mesh = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door_switch/door_switch"]
 shape = SubResource("BoxShape3D_tc5hv")
