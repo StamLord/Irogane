@@ -14686,7 +14686,7 @@ agent_data = ExtResource("38_pdrcy")
 
 [node name="door_switch" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.114, 13.25, 29)
-material_override = SubResource("StandardMaterial3D_lnwtm")
+material_override = ExtResource("31_fln5t")
 mesh = SubResource("BoxMesh_7un6v")
 skeleton = NodePath("door_switch")
 
@@ -14701,6 +14701,13 @@ interaction_text = "PRESS"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door_switch/door_switch"]
 shape = SubResource("BoxShape3D_tc5hv")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="door_switch" groups=["light_source"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0, 0)
+light_color = Color(1, 0.368627, 0.301961, 1)
+light_energy = 0.1
+shadow_enabled = true
+omni_range = 0.5
 
 [node name="door_switch2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.114, 13.25, 10.6287)
