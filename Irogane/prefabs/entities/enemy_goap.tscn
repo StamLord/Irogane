@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://6w2qvvdo2jh4"]
+[gd_scene load_steps=38 format=3 uid="uid://6w2qvvdo2jh4"]
 
 [ext_resource type="Script" path="res://scripts/ai/goap/GoapAgent.gd" id="1_1nlbh"]
 [ext_resource type="Resource" uid="uid://bemmj32kb8mvn" path="res://data/ai_agents/Guard.res" id="2_7ydk2"]
@@ -92,7 +92,7 @@ resource_name = "silver"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
 metallic = 1.0
-roughness = 0.2
+roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ir0ul"]
 _surfaces = [{
@@ -125,6 +125,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ir0ul")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m6xni"]
+radius = 0.25
 
 [node name="npc" type="Node3D" groups=["GoapAgent"]]
 script = ExtResource("1_1nlbh")
@@ -276,7 +279,8 @@ visible = false
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("14_5tncd")
-item_id = "gold_sack"
+item_id = "coin"
+amount = 5
 interaction_text = "Steal"
 mesh = NodePath("../MeshInstance3D")
 highlight_emission_multiplier = 4.0
@@ -322,5 +326,17 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("ArrayMesh_imxny")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_rraie")
+
+[node name="smell_particles_attractor" type="GPUParticlesAttractorSphere3D" parent="character_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.25)
+strength = 0.5
+radius = 2.5
+
+[node name="Area3D" type="Area3D" parent="character_body/smell_particles_attractor"]
+collision_layer = 8192
+collision_mask = 8192
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character_body/smell_particles_attractor/Area3D"]
+shape = SubResource("SphereShape3D_m6xni")
 
 [connection signal="velocity_computed" from="character_body/NavigationAgent3D" to="character_body" method="_on_navigation_agent_3d_velocity_computed"]
