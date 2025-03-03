@@ -19,9 +19,23 @@ func _ready():
 		"Displays/Hides sound bubble comming from SoundEmitter(s)"
 		)
 	
+	if sound_cast == null:
+		create_sound_cast()
+	
+
+func create_sound_cast():
+	var shape_cast = ShapeCast3D.new()
+	shape_cast.shape = SphereShape3D.new()
+	shape_cast.collision_mask = sound_collision_mask
+	add_child(shape_cast)
+	sound_cast = shape_cast
+	
 
 func emit_sound(sound_position, sound_range):
 	# Set and cast a sphere around us
+	if sound_cast.shape == null:
+		sound_cast.shape = SphereShape3D.new()
+	
 	sound_cast.global_position = sound_position
 	sound_cast.shape.radius = sound_range
 	sound_cast.collision_mask = sound_collision_mask
