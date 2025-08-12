@@ -36,6 +36,7 @@ SkillDB="*res://scripts/skills/skill_db.gd"
 InputContextManager="*res://scripts/input/input_context_manager.gd"
 StatusDb="*res://scripts/stats/status_db.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+ControlSettings="*res://scripts/controls/control_settings.gd"
 
 [dialogic]
 
@@ -374,4 +375,4 @@ common/max_physics_steps_per_frame=24
 [rendering]
 
 textures/lossless_compression/force_png=true
-limits/opengl/max_lights_per_object=32
+limits/opengl/max_lights_per_object=256

@@ -5,7 +5,6 @@ extends Node3D
 @onready var camera = %main_camera
 
 # Mouse
-@export var mouse_sensitivity = 0.3;
 @export var look_min = -90;
 @export var look_max = 90;
 
@@ -24,15 +23,11 @@ var tilt_duration = 4
 var is_tilting = false
 
 # Fov
-var original_fov = 75
-
 var can_rotate = true
 
 func _ready():
+	ControlSettings.camera_fov_changed.connect(set_fov)
 	original_height = position.y
-	original_fov = camera.fov
-	
-	add_debug_commands()
 	
 
 func _input(event):
@@ -47,7 +42,7 @@ func _input(event):
 	
 	if event is InputEventMouseMotion:
 		# Horizontal
-		body.rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
+		body.rotate_y(deg_to_rad(-event.relative.x * ControlSettings.mouse_sensitivity.x))
 		if temp_horizontal_limits != null:
 			var curr_angle = unsign_angle(body.rotation_degrees.y) # Use modulo to wrap negative angles to the equivalent positive angle
 			var min_angle = unsign_angle(temp_horizontal_offset + temp_horizontal_limits.x)
@@ -57,7 +52,7 @@ func _input(event):
 			body.rotation_degrees.y = clamped_angle
 		
 		# Vertical
-		rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
+		rotate_x(deg_to_rad(-event.relative.y * ControlSettings.mouse_sensitivity.y))
 		rotation.x = clamp(rotation.x, deg_to_rad(look_min), deg_to_rad(look_max))
 	
 
@@ -157,40 +152,7 @@ func get_fov():
 	
 
 func reset_fov(duration):
-	fov_animate(original_fov, duration)
-	
-
-func add_debug_commands():
-	DebugCommandsManager.add_command(
-		"set_fov",
-		set_original_fov,
-		 [{
-				"arg_name" : "value",
-				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
-				"arg_desc" : "New fov value"
-			}],
-		"Sets the player camera fov to the new value"
-		)
-	
-	DebugCommandsManager.add_command(
-		"set_mouse_sensitivity",
-		set_sensitivity,
-		 [{
-				"arg_name" : "value",
-				"arg_type" : DebugCommandsManager.ArgumentType.FLOAT,
-				"arg_desc" : "New sensitivity value"
-			}],
-		"Sets the player camera mouse sensitivity to the new value"
-		)
-	
-
-func set_original_fov(args: Array):
-	original_fov = args[0]
-	camera.fov = args[0]
-	
-
-func set_sensitivity(args: Array):
-	mouse_sensitivity = args[0]
+	fov_animate(ControlSettings.camera_fov, duration)
 	
 
 func look_at_lerp(target : Vector3):

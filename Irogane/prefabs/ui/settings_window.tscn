@@ -30,85 +30,47 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xyt6o")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+current_tab = 2
+
+[node name="Video" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Video"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video/ScrollContainer"]
 layout_mode = 2
 
-[node name="audio" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "AUDIO"
-
-[node name="audio_margin" type="MarginContainer" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 64
-
-[node name="HBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/audio_margin"]
-layout_mode = 2
-
-[node name="sounds" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer"]
-layout_mode = 2
-text = "SOUNDS"
-
-[node name="sound_slider" type="HSlider" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer/sounds"]
-layout_mode = 0
-offset_left = 101.0
-offset_right = 351.0
-offset_bottom = 16.0
-step = 5.0
-value = 100.0
-tick_count = 10
-ticks_on_borders = true
-script = ExtResource("2_p4xaa")
-audio_bus_name = "Sound"
-
-[node name="music" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer"]
-layout_mode = 2
-text = "MUSIC
-"
-
-[node name="music_slider" type="HSlider" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer/music"]
-layout_mode = 0
-offset_left = 101.0
-offset_right = 351.0
-offset_bottom = 16.0
-step = 5.0
-value = 100.0
-tick_count = 10
-ticks_on_borders = true
-script = ExtResource("2_p4xaa")
-audio_bus_name = "Music"
-
-[node name="graphics" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="graphics" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "GRAPHICS"
 
-[node name="graphics_margin" type="MarginContainer" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="sub_section" type="MarginContainer" parent="TabContainer/Video/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 64
 
-[node name="HBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin"]
+[node name="HBoxContainer" type="VBoxContainer" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section"]
 layout_mode = 2
-theme_override_constants/separation = 22
+theme_override_constants/separation = 25
 
-[node name="resolution" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+[node name="resolution" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer"]
 layout_mode = 2
 text = "RESOLUTION"
 
-[node name="resolution_button" type="OptionButton" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution"]
+[node name="resolution_button" type="OptionButton" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/resolution"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
 offset_top = -6.0
@@ -123,23 +85,41 @@ popup/item_1/id = 1
 popup/item_2/text = "1920x1080"
 popup/item_2/id = 2
 
-[node name="full_screen" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+[node name="fov" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer"]
+layout_mode = 2
+text = "FOV"
+
+[node name="fov_slider" type="HSlider" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/fov"]
+unique_name_in_owner = true
+offset_left = 123.0
+offset_right = 373.0
+offset_bottom = 42.0
+min_value = 50.0
+value = 75.0
+tick_count = 100
+ticks_on_borders = true
+script = ExtResource("2_p4xaa")
+audio_bus_name = "Master"
+
+[node name="full_screen" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer"]
 layout_mode = 2
 text = "FULL SCREEN
 "
 
-[node name="full_screen_button" type="CheckButton" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/full_screen"]
+[node name="full_screen_button" type="CheckButton" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/full_screen"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
 offset_top = -6.0
 offset_right = 220.0
 offset_bottom = 30.0
 
-[node name="vsync" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+[node name="vsync" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer"]
 layout_mode = 2
 text = "V SYNC"
 
-[node name="vsync_button" type="OptionButton" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/vsync"]
+[node name="vsync_button" type="OptionButton" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/vsync"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
 offset_top = -6.0
@@ -152,11 +132,12 @@ popup/item_0/id = 0
 popup/item_1/text = "ENABLED"
 popup/item_1/id = 1
 
-[node name="limit_fps" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+[node name="limit_fps" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer"]
 layout_mode = 2
 text = "LIMIT FPS"
 
-[node name="limit_fps_button" type="OptionButton" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/limit_fps"]
+[node name="limit_fps_button" type="OptionButton" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/limit_fps"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
 offset_top = -6.0
@@ -173,11 +154,12 @@ popup/item_2/id = 2
 popup/item_3/text = "144"
 popup/item_3/id = 3
 
-[node name="anti_aliasing" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+[node name="anti_aliasing" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer"]
 layout_mode = 2
 text = "ANTI-ALIASING"
 
-[node name="anti_aliasing_button" type="OptionButton" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/anti_aliasing"]
+[node name="anti_aliasing_button" type="OptionButton" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/anti_aliasing"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
 offset_top = -6.0
@@ -194,11 +176,12 @@ popup/item_2/id = 2
 popup/item_3/text = "8x"
 popup/item_3/id = 3
 
-[node name="draw_distance" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer"]
+[node name="draw_distance" type="Label" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer"]
 layout_mode = 2
 text = "DRAW DISTANCE"
 
-[node name="draw_distance_button" type="OptionButton" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/draw_distance"]
+[node name="draw_distance_button" type="OptionButton" parent="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/draw_distance"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 176.0
 offset_top = -6.0
@@ -215,14 +198,148 @@ popup/item_2/id = 2
 popup/item_3/text = "EPIC"
 popup/item_3/id = 3
 
-[node name="controls" type="Label" parent="Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Audio" type="MarginContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
-text = "CONTROLS"
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
-[connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/resolution/resolution_button" to="." method="_on_resolution_button_item_selected"]
-[connection signal="toggled" from="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/full_screen/full_screen_button" to="." method="_on_full_screen_button_toggled"]
-[connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/vsync/vsync_button" to="." method="_on_vsync_button_item_selected"]
-[connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/limit_fps/limit_fps_button" to="." method="_on_limit_fps_button_item_selected"]
-[connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/anti_aliasing/anti_aliasing_button" to="." method="_on_anti_aliasing_button_item_selected"]
-[connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/VBoxContainer/graphics_margin/HBoxContainer/draw_distance/draw_distance_button" to="." method="_on_draw_distance_button_item_selected"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Audio/ScrollContainer"]
+layout_mode = 2
+
+[node name="audio" type="Label" parent="TabContainer/Audio/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "AUDIO"
+
+[node name="audio_margin" type="MarginContainer" parent="TabContainer/Audio/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+
+[node name="HBoxContainer" type="VBoxContainer" parent="TabContainer/Audio/ScrollContainer/VBoxContainer/audio_margin"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="master" type="Label" parent="TabContainer/Audio/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer"]
+layout_mode = 2
+text = "MASTER"
+
+[node name="master_slider" type="HSlider" parent="TabContainer/Audio/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer/master"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 101.0
+offset_right = 351.0
+offset_bottom = 16.0
+step = 5.0
+value = 100.0
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource("2_p4xaa")
+audio_bus_name = "Master"
+
+[node name="sounds" type="Label" parent="TabContainer/Audio/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer"]
+layout_mode = 2
+text = "SOUNDS"
+
+[node name="sound_slider" type="HSlider" parent="TabContainer/Audio/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer/sounds"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 101.0
+offset_right = 351.0
+offset_bottom = 16.0
+step = 5.0
+value = 100.0
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource("2_p4xaa")
+audio_bus_name = "Sound"
+
+[node name="music" type="Label" parent="TabContainer/Audio/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer"]
+layout_mode = 2
+text = "MUSIC
+"
+
+[node name="music_slider" type="HSlider" parent="TabContainer/Audio/ScrollContainer/VBoxContainer/audio_margin/HBoxContainer/music"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 101.0
+offset_right = 351.0
+offset_bottom = 16.0
+step = 5.0
+value = 100.0
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource("2_p4xaa")
+audio_bus_name = "Music"
+
+[node name="Controls" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Controls"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="audio" type="Label" parent="TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "MOUSE SENSETIVITY"
+
+[node name="subsection" type="MarginContainer" parent="TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+
+[node name="HBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/ScrollContainer/VBoxContainer/subsection"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="horizontal" type="Label" parent="TabContainer/Controls/ScrollContainer/VBoxContainer/subsection/HBoxContainer"]
+layout_mode = 2
+text = "Horizontal"
+
+[node name="horizontal_slider" type="HSlider" parent="TabContainer/Controls/ScrollContainer/VBoxContainer/subsection/HBoxContainer/horizontal"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 123.0
+offset_right = 373.0
+offset_bottom = 42.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 100
+ticks_on_borders = true
+
+[node name="vertical" type="Label" parent="TabContainer/Controls/ScrollContainer/VBoxContainer/subsection/HBoxContainer"]
+layout_mode = 2
+text = "Vertical"
+
+[node name="vertical_slider" type="HSlider" parent="TabContainer/Controls/ScrollContainer/VBoxContainer/subsection/HBoxContainer/vertical"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 123.0
+offset_right = 373.0
+offset_bottom = 42.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 100
+ticks_on_borders = true
+
+[connection signal="item_selected" from="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/resolution/resolution_button" to="." method="_on_resolution_button_item_selected"]
+[connection signal="value_changed" from="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/fov/fov_slider" to="." method="_on_fov_slider_value_changed"]
+[connection signal="toggled" from="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/full_screen/full_screen_button" to="." method="_on_full_screen_button_toggled"]
+[connection signal="item_selected" from="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/vsync/vsync_button" to="." method="_on_vsync_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/limit_fps/limit_fps_button" to="." method="_on_limit_fps_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/anti_aliasing/anti_aliasing_button" to="." method="_on_anti_aliasing_button_item_selected"]
+[connection signal="item_selected" from="TabContainer/Video/ScrollContainer/VBoxContainer/sub_section/HBoxContainer/draw_distance/draw_distance_button" to="." method="_on_draw_distance_button_item_selected"]
+[connection signal="value_changed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/subsection/HBoxContainer/horizontal/horizontal_slider" to="." method="_on_horizontal_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Controls/ScrollContainer/VBoxContainer/subsection/HBoxContainer/vertical/vertical_slider" to="." method="_on_vertical_slider_value_changed"]
