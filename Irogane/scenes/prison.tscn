@@ -1,9 +1,10 @@
-[gd_scene load_steps=220 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=223 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
 [ext_resource type="Texture2D" uid="uid://fj3mi5qoo2o6" path="res://assets/textures/env/skyline_bg.png" id="3_5b74y"]
 [ext_resource type="Texture2D" uid="uid://lc8jirnmdhqv" path="res://assets/textures/medieval/yellow-seamless-sett-texture.jpg" id="4_gn1aw"]
+[ext_resource type="AudioStream" uid="uid://dcqi1ok88548e" path="res://assets/audio/bgm/creepy_ambience.wav" id="4_wafub"]
 [ext_resource type="Script" path="res://scenes/water_area.gd" id="5_1q53j"]
 [ext_resource type="Script" path="res://scripts/procedural/water_collision_shape.gd" id="6_ed2mg"]
 [ext_resource type="Material" uid="uid://crfxa6bkikyfi" path="res://assets/models/env/river_bed/water.tres" id="7_m71qt"]
@@ -69,6 +70,7 @@
 [ext_resource type="Script" path="res://scripts/stealth/physics_sound_emitter.gd" id="53_joerh"]
 [ext_resource type="Script" path="res://scripts/ai/schedule_agent.gd" id="53_r3el4"]
 [ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="54_3cpwa"]
+[ext_resource type="Script" path="res://scripts/interactive/Interactive.gd" id="54_8a3v0"]
 [ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="55_wqexk"]
 [ext_resource type="Script" path="res://scripts/procedural/smoke_mesh.gd" id="56_5sosc"]
 [ext_resource type="Script" path="res://scripts/interactive/smoke_starter.gd" id="56_6jqwm"]
@@ -115,11 +117,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_hk2xe"]
+[sub_resource type="QuadMesh" id="QuadMesh_li1sc"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_dojhb"]
+[sub_resource type="BoxMesh" id="BoxMesh_nvf6n"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -360,6 +362,9 @@ emission_energy_multiplier = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_6whed"]
 size = Vector3(0.359863, 0.109519, 0.571289)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8pskp"]
+size = Vector3(0.241486, 0.109519, 0.571289)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_5abhw"]
 size = Vector3(0.46, 0.21, 0.671)
 
@@ -416,7 +421,7 @@ size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xw4xk"]
 margin = 1.0
-size = Vector3(0.2, 0.2, 0.2)
+size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bq0a6"]
 radius = 0.2
@@ -845,6 +850,11 @@ cast_shadow = 0
 mesh = SubResource("QuadMesh_8h1vi")
 skeleton = NodePath("../..")
 
+[node name="ambience" type="AudioStreamPlayer" parent="WorldEnvironment"]
+stream = ExtResource("4_wafub")
+autoplay = true
+bus = &"Music"
+
 [node name="navigation_region" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_qnueh")
 
@@ -873,10 +883,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_hk2xe")
+mesh = SubResource("QuadMesh_li1sc")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_dojhb")
+mesh = SubResource("BoxMesh_nvf6n")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -7029,8 +7039,12 @@ transform = Transform3D(-0.0350565, -3.08457e-08, -0.999385, -0.716895, 0.696727
 sleeping = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/pillow"]
-transform = Transform3D(1, 0, -1.37836e-07, 0, 1, 0, 1.37836e-07, 0, 1, 0, 0, 0)
+transform = Transform3D(1, -1.78809e-11, -1.37836e-07, -3.1696e-08, 1, 3.31752e-11, 1.37836e-07, -5.09746e-10, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_6whed")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/pillow"]
+transform = Transform3D(0.707112, 0.707109, -3.27826e-07, -0.70711, 0.707107, 1.49045e-07, 1.30385e-07, 8.19564e-08, 1, -0.0441227, -0.0876503, 0.000198364)
+shape = SubResource("BoxShape3D_8pskp")
 
 [node name="interactive_area" type="Area3D" parent="navigation_region/level/east_ward/interior/cell/pillow" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
@@ -7222,12 +7236,10 @@ shape = SubResource("BoxShape3D_5dfyr")
 [node name="bars_pillar2" parent="navigation_region/level/east_ward/interior/cell" instance=ExtResource("51_h2w1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, 0)
 
-[node name="bars_pillar3" parent="navigation_region/level/east_ward/interior/cell" instance=ExtResource("51_h2w1w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 0)
-visible = false
-
 [node name="pebble" type="RigidBody3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.646952, 0.25, -3.50671)
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.472662, 1.69835, -4.27251)
+visible = false
 max_contacts_reported = 1
 contact_monitor = true
 
@@ -7257,6 +7269,7 @@ velocity_threshold = 0.25
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -2.74763, 0, -3.85751)
 sleeping = true
 lock_rotation = true
+freeze = true
 max_contacts_reported = 1
 contact_monitor = true
 
@@ -7273,8 +7286,8 @@ shape = SubResource("BoxShape3D_xw4xk")
 [node name="Area3D" type="Area3D" parent="navigation_region/level/east_ward/interior/cell/dream_wort" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("16_imo6e")
-interaction_text = "Hold E"
+script = ExtResource("54_8a3v0")
+interaction_text = ""
 mesh = NodePath("../plant_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/east_ward/interior/cell/dream_wort/Area3D"]
@@ -7418,18 +7431,26 @@ font = ExtResource("59_c34co")
 font_size = 24
 outline_size = 0
 
-[node name="hold true" type="Label3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(0.999166, 0.0408294, 0, -0.0408294, 0.999166, 0, 0, 0, 1, 1.84379, 0.301277, -4.1122)
+[node name="they can\'t" type="Label3D" parent="navigation_region/level/east_ward/interior/cell"]
+transform = Transform3D(0.999166, 0.0408294, 0, -0.0408294, 0.999166, 0, 0, 0, 1, 1.88993, 0.390773, -4.1122)
 shaded = true
-text = "HOLD TRUE AT"
+text = "THEY CAN'T"
+font = ExtResource("59_c34co")
+font_size = 24
+outline_size = 0
+
+[node name="hold me for" type="Label3D" parent="navigation_region/level/east_ward/interior/cell"]
+transform = Transform3D(0.999166, 0.0408294, 0, -0.0408294, 0.999166, 0, 0, 0, 1, 1.74015, 0.126646, -4.1122)
+shaded = true
+text = "HOLD ME"
 font = ExtResource("59_c34co")
 font_size = 24
 outline_size = 0
 
 [node name="every step" type="Label3D" parent="navigation_region/level/east_ward/interior/cell"]
-transform = Transform3D(1, -0.000122175, 0, 0.000122171, 1, 0, 0, 0, 1, 2.02169, 0.159875, -4.1122)
+transform = Transform3D(1, -0.000122175, 0, 0.000122171, 1, 0, 0, 0, 1, 1.82177, 0.272895, -4.1122)
 shaded = true
-text = "EVERY STEP"
+text = "EVER"
 font = ExtResource("59_c34co")
 font_size = 24
 outline_size = 0
