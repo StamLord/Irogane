@@ -7,6 +7,6 @@ func _value_changed(new_value):
 	var t = new_value / max_value
 	var db = linear_to_db(t)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(audio_bus_name), db)
-	SaveSystem.save_system_settings(owner.get_system_settings())
+	owner.save_system_settings()
 	
 
