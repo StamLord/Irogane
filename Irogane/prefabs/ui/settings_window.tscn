@@ -37,7 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 2
+current_tab = 1
 
 [node name="Video" type="MarginContainer" parent="TabContainer"]
 visible = false
@@ -199,7 +199,6 @@ popup/item_3/text = "EPIC"
 popup/item_3/id = 3
 
 [node name="Audio" type="MarginContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
@@ -277,6 +276,7 @@ script = ExtResource("2_p4xaa")
 audio_bus_name = "Music"
 
 [node name="Controls" type="MarginContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
