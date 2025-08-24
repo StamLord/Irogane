@@ -13,11 +13,11 @@ func impact(projectile):
 	for i in range(get_collision_count()):
 		var collider = get_collider(i)
 		print(collider)
-		print(collider is LightSwitch)
-		if not collider is LightSwitch:
-			continue
+		if collider is Ignitable:
+			collider.extinguish()
 		
-		print(collider.state)
-		if collider.state:
-			collider.use(null)
+		if collider is LightSwitch:
+			print(collider.state)
+			if collider.state:
+				collider.use(null)
 	

@@ -11,7 +11,7 @@ var room_i = 0
 var wet_i = 0
 var occulsion_i = 0
 
-var debug = true
+var debug = false
 
 var audio_buses = [
 	[["s1", "s1o"], ["s2", "s2o"]],

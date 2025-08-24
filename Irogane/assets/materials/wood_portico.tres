@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cpw0gk8ua7o7e"]
+
+[ext_resource type="Texture2D" uid="uid://bh65qlrnxlxdm" path="res://assets/textures/medieval/wood_beam.png" id="1_jndmy"]
+
+[resource]
+albedo_texture = ExtResource("1_jndmy")
+texture_filter = 0

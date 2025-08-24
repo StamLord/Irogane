@@ -1,0 +1,122 @@
+[gd_scene load_steps=19 format=3 uid="uid://biwrd1alb43lk"]
+
+[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="1_51j87"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="2_ibr7w"]
+[ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="3_lyi1o"]
+[ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="4_dkbup"]
+[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="5_or3sp"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_av2hq"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
+radial_segments = 6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ndkht"]
+radius = 0.2
+
+[sub_resource type="Curve" id="Curve_trqks"]
+_data = [Vector2(0, 1), 0.0, -0.445115, 0, 0, Vector2(1, 0), -1.62068, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dw5um"]
+curve = SubResource("Curve_trqks")
+
+[sub_resource type="Gradient" id="Gradient_ijwkr"]
+offsets = PackedFloat32Array(0, 0.237705, 0.561475)
+colors = PackedColorArray(1, 0.968002, 0.431428, 1, 0.912296, 0.771426, 0, 1, 0.77192, 0.22088, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3qlp"]
+gradient = SubResource("Gradient_ijwkr")
+
+[sub_resource type="Curve" id="Curve_1p16h"]
+_data = [Vector2(0, 0), 0.0, 3.43082, 0, 0, Vector2(1, 1), 0.0, 0.178046, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_orso8"]
+curve = SubResource("Curve_1p16h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q0228"]
+emission_shape_scale = Vector3(1, 1, 0.01)
+angle_min = -1.0
+angle_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.45
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_orso8")
+color_ramp = SubResource("GradientTexture1D_k3qlp")
+alpha_curve = SubResource("CurveTexture_dw5um")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wc3t"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_dkbup")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_77xff"]
+material = SubResource("StandardMaterial3D_8wc3t")
+center_offset = Vector3(0, 0.15, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8rvxn"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.1
+radial_segments = 6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ns6ds"]
+radius = 0.2
+
+[node name="candle_short" type="MeshInstance3D"]
+material_override = ExtResource("1_51j87")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_av2hq")
+
+[node name="light" type="OmniLight3D" parent="." groups=["light_source"]]
+transform = Transform3D(1, -1.77635e-15, 5.96046e-08, 0, 1, 2.98023e-08, -5.96046e-08, -2.98023e-08, 1, 0, 0.13, 0)
+light_color = Color(1, 0.54902, 0, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 3.0
+omni_attenuation = 2.0
+script = ExtResource("2_ibr7w")
+base_energy = 0.5
+flicker_amount = 4.0
+
+[node name="igniter_area" type="Area3D" parent="light"]
+transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("3_lyi1o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="light/igniter_area"]
+shape = SubResource("SphereShape3D_ndkht")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="light"]
+transform = Transform3D(1, 1.86265e-09, 2.98023e-08, -1.86265e-09, 1, -7.45059e-08, -2.98023e-08, 7.45059e-08, 1, 0, 0, 0)
+amount = 16
+lifetime = 0.2
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_q0228")
+draw_pass_1 = SubResource("QuadMesh_77xff")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12604, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_8rvxn")
+
+[node name="ignitable_area" type="Area3D" parent="." node_paths=PackedStringArray("node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("5_or3sp")
+node = NodePath("../light")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ignitable_area"]
+shape = SubResource("SphereShape3D_ns6ds")

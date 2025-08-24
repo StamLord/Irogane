@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7opnogpr65km"]
+
+[ext_resource type="Script" path="res://scripts/procedural/window_hider.gd" id="1_m3dby"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gvykk"]
+size = Vector2(1.5, 2)
+
+[node name="window_test" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gvykk")
+script = ExtResource("1_m3dby")

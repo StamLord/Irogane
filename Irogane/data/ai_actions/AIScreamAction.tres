@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIScreamAction" load_steps=2 format=3 uid="uid://cobab33cx1yfs"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/actions/AIScreamAction.gd" id="1_ngqer"]
+
+[resource]
+script = ExtResource("1_ngqer")

@@ -1,15 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgjt41mvb4tff"]
-
-[ext_resource type="PackedScene" uid="uid://c3sxasotblt07" path="res://assets/models/building_blocks/pipe_1.glb" id="1_60bca"]
+[gd_scene load_steps=6 format=3 uid="uid://dgjt41mvb4tff"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_icr13"]
 size = Vector3(0.25, 1, 0.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2j3v"]
+albedo_color = Color(0.556863, 0.380392, 0, 1)
+metallic = 1.0
+roughness = 0.5
+emission = Color(0.556863, 0.380392, 0, 1)
+emission_energy_multiplier = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0ch7"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vyd3v"]
+_surfaces = [{
+"aabb": AABB(-0.1, -1, -0.1, 0.2, 1.00001, 0.2),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray(2, 0, 11, 0, 3, 0, 2, 0, 10, 0, 11, 0, 5, 0, 14, 0, 6, 0, 5, 0, 13, 0, 14, 0, 3, 0, 12, 0, 4, 0, 3, 0, 11, 0, 12, 0, 6, 0, 15, 0, 7, 0, 6, 0, 14, 0, 15, 0, 1, 0, 10, 0, 2, 0, 1, 0, 9, 0, 10, 0, 4, 0, 13, 0, 5, 0, 4, 0, 12, 0, 13, 0, 7, 0, 8, 0, 0, 0, 7, 0, 15, 0, 8, 0, 0, 0, 9, 0, 1, 0, 0, 0, 8, 0, 9, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(255, 127, 254, 255, 0, 0, 0, 0, 129, 218, 254, 255, 125, 37, 0, 0, 255, 255, 254, 255, 255, 127, 0, 0, 129, 218, 254, 255, 129, 218, 0, 0, 255, 127, 254, 255, 255, 255, 0, 0, 125, 37, 254, 255, 129, 218, 0, 0, 0, 0, 254, 255, 255, 127, 0, 0, 125, 37, 254, 255, 125, 37, 0, 0, 255, 127, 0, 0, 0, 0, 0, 0, 129, 218, 0, 0, 125, 37, 0, 0, 255, 255, 0, 0, 255, 127, 0, 0, 129, 218, 0, 0, 129, 218, 0, 0, 255, 127, 0, 0, 255, 255, 0, 0, 125, 37, 0, 0, 129, 218, 0, 0, 0, 0, 0, 0, 255, 127, 0, 0, 125, 37, 0, 0, 125, 37, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lb6ps"]
+resource_name = "pipe_1_Cylinder_004"
+_surfaces = [{
+"aabb": AABB(-0.1, -1, -0.1, 0.2, 1.00001, 0.2),
+"attribute_data": PackedByteArray(0, 0, 255, 127, 255, 255, 255, 127, 255, 223, 255, 127, 255, 191, 255, 127, 255, 159, 255, 127, 255, 127, 255, 127, 255, 95, 255, 127, 255, 63, 255, 127, 255, 31, 255, 127, 0, 0, 255, 127, 255, 255, 255, 127, 255, 223, 255, 127, 255, 191, 255, 127, 255, 159, 255, 127, 255, 127, 255, 127, 255, 95, 255, 127, 255, 63, 255, 127, 255, 31, 255, 127),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray(3, 0, 13, 0, 4, 0, 3, 0, 12, 0, 13, 0, 6, 0, 16, 0, 7, 0, 6, 0, 15, 0, 16, 0, 4, 0, 14, 0, 5, 0, 4, 0, 13, 0, 14, 0, 7, 0, 17, 0, 8, 0, 7, 0, 16, 0, 17, 0, 2, 0, 12, 0, 3, 0, 2, 0, 11, 0, 12, 0, 5, 0, 15, 0, 6, 0, 5, 0, 14, 0, 15, 0, 8, 0, 9, 0, 0, 0, 8, 0, 17, 0, 9, 0, 1, 0, 11, 0, 2, 0, 1, 0, 10, 0, 11, 0),
+"material": SubResource("StandardMaterial3D_w0ch7"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray(255, 127, 254, 255, 0, 0, 255, 255, 255, 127, 254, 255, 0, 0, 255, 255, 129, 218, 254, 255, 125, 37, 170, 233, 255, 255, 254, 255, 255, 127, 255, 191, 129, 218, 254, 255, 129, 218, 171, 105, 255, 127, 254, 255, 255, 255, 254, 127, 125, 37, 254, 255, 129, 218, 171, 105, 0, 0, 254, 255, 255, 127, 255, 191, 125, 37, 254, 255, 125, 37, 170, 233, 255, 127, 0, 0, 0, 0, 255, 255, 255, 127, 0, 0, 0, 0, 255, 255, 129, 218, 0, 0, 125, 37, 170, 233, 255, 255, 0, 0, 255, 127, 255, 191, 129, 218, 0, 0, 129, 218, 171, 105, 255, 127, 0, 0, 255, 255, 254, 127, 125, 37, 0, 0, 129, 218, 171, 105, 0, 0, 0, 0, 255, 127, 255, 191, 125, 37, 0, 0, 125, 37, 170, 233, 255, 255, 255, 127, 255, 255, 255, 127, 255, 127, 0, 0, 255, 127, 0, 0, 255, 127, 0, 0, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 127, 0, 0, 255, 127, 0, 0, 255, 127, 0, 0, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vyd3v")
+
 [node name="pipe_1" type="StaticBody3D"]
+collision_layer = 129
+collision_mask = 129
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_icr13")
 
-[node name="pipe_1" parent="." instance=ExtResource("1_60bca")]
+[node name="pipe_1" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="pipe_1" type="MeshInstance3D" parent="pipe_1"]
+material_override = SubResource("StandardMaterial3D_m2j3v")
+mesh = SubResource("ArrayMesh_lb6ps")
+skeleton = NodePath("")

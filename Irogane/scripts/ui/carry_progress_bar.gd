@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-@export var path_on_player = "head/main_camera/interaction"
+@export var path_on_player = "%interaction"
 @export var signal_name = "press_time_update"
 @export var max_time_var_name = "carry_start_time"
 

@@ -1,0 +1,33 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://bxidrbipitv6o"]
+
+[ext_resource type="Shader" path="res://assets/shaders/performant_night_sky.gdshader" id="1_0u7lw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2t3nn"]
+shader = ExtResource("1_0u7lw")
+shader_parameter/horizon_color = Color(0.0705882, 0.0705882, 0.211765, 1)
+shader_parameter/sky_color = Color(0, 0.0235294, 0.0666667, 1)
+shader_parameter/ground_color = Color(0.168627, 0.164706, 0.415686, 1)
+shader_parameter/horizon_blend = 1.5
+shader_parameter/star_density = 0.1
+shader_parameter/twinkle_speed = 1.0
+shader_parameter/twinkle_intensity = 0.5
+shader_parameter/star_color = Color(0.572549, 0.713726, 1, 1)
+shader_parameter/supernova_density = 0.02
+shader_parameter/supernova_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_fq0yc"]
+sky_material = SubResource("ShaderMaterial_2t3nn")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_fq0yc")
+ambient_light_sky_contribution = 0.08
+reflected_light_source = 1
+glow_normalized = true
+glow_blend_mode = 1
+fog_enabled = true
+fog_light_color = Color(0.0705882, 0.141176, 0.258824, 1)
+fog_light_energy = 0.5
+fog_density = 0.02
+fog_sky_affect = 0.0
+volumetric_fog_sky_affect = 0.0

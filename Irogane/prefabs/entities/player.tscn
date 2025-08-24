@@ -1,4 +1,4 @@
-[gd_scene load_steps=191 format=3 uid="uid://bx4y44rdruyi7"]
+[gd_scene load_steps=223 format=3 uid="uid://bx4y44rdruyi7"]
 
 [ext_resource type="Script" path="res://scripts/controls/player_state_machine/PlayerStateMachine.gd" id="1_v2hnl"]
 [ext_resource type="Script" path="res://scripts/controls/player_states/Walk.gd" id="2_6iu14"]
@@ -56,7 +56,6 @@
 [ext_resource type="Script" path="res://scripts/skills/skill_zone.gd" id="37_60ul2"]
 [ext_resource type="Texture2D" uid="uid://byr54if45wqhj" path="res://assets/textures/ui/stealth/light_stone_frame.png" id="37_gcigv"]
 [ext_resource type="Texture2D" uid="uid://b2gre3j56duto" path="res://assets/textures/vfx/slash_1.png" id="37_okqcx"]
-[ext_resource type="Script" path="res://scripts/procedural/follow_node.gd" id="38_510aq"]
 [ext_resource type="Texture2D" uid="uid://d15my5xovi2rm" path="res://assets/textures/vfx/slash_2.png" id="38_e1qu1"]
 [ext_resource type="Script" path="res://scripts/camera/third_person_camera.gd" id="38_tsii1"]
 [ext_resource type="Texture2D" uid="uid://dkvdldcqcxfrn" path="res://assets/textures/vfx/break_particles.png" id="40_xlxho"]
@@ -77,7 +76,14 @@
 [ext_resource type="Script" path="res://scripts/weapons/prayer_beads.gd" id="58_ej268"]
 [ext_resource type="Script" path="res://scripts/weapons/slingshot.gd" id="59_garyl"]
 [ext_resource type="Script" path="res://scripts/weapons/lockpick.gd" id="60_pohs2"]
+[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="62_5li4o"]
+[ext_resource type="Script" path="res://scripts/weapons/held_candle.gd" id="62_fjejv"]
+[ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="62_gtowg"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="62_h33aw"]
+[ext_resource type="Texture2D" uid="uid://dic5cwk3icpv6" path="res://assets/textures/vfx/candle.png" id="63_rjyd0"]
+[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="65_uevdo"]
 [ext_resource type="Script" path="res://scripts/camera/death_cam.gd" id="78_y1sx6"]
+[ext_resource type="Texture2D" uid="uid://jbv1ax4fsyx6" path="res://assets/textures/vfx/sparkle_0.png" id="84_n4wi0"]
 
 [sub_resource type="Gradient" id="Gradient_3hf1d"]
 offsets = PackedFloat32Array(0.587209, 1)
@@ -388,6 +394,77 @@ size = Vector3(0.05, 0.2, 0.05)
 [sub_resource type="BoxMesh" id="BoxMesh_lecuj"]
 size = Vector3(0.1, 0.05, 0.01)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_kld6x"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.25
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as3fc"]
+shading_mode = 0
+albedo_color = Color(1, 0.784314, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ab3xm"]
+radius = 0.2
+
+[sub_resource type="Curve" id="Curve_mq8eo"]
+_data = [Vector2(0, 1), 0.0, -0.445115, 0, 0, Vector2(1, 0), -1.62068, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b1wd0"]
+curve = SubResource("Curve_mq8eo")
+
+[sub_resource type="Gradient" id="Gradient_qqn2l"]
+offsets = PackedFloat32Array(0, 0.237705, 0.561475)
+colors = PackedColorArray(1, 0.968002, 0.431428, 1, 0.912296, 0.771426, 0, 1, 0.77192, 0.22088, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f2umx"]
+gradient = SubResource("Gradient_qqn2l")
+
+[sub_resource type="Curve" id="Curve_tioah"]
+_data = [Vector2(0, 0), 0.0, 3.43082, 0, 0, Vector2(1, 1), 0.0, 0.178046, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j0baq"]
+curve = SubResource("Curve_tioah")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vlxox"]
+emission_shape_scale = Vector3(1, 1, 0.01)
+angle_min = -1.0
+angle_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.23
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_j0baq")
+color_ramp = SubResource("GradientTexture1D_f2umx")
+alpha_curve = SubResource("CurveTexture_b1wd0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pinn4"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("63_rjyd0")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ah24d"]
+material = SubResource("StandardMaterial3D_pinn4")
+center_offset = Vector3(0, 0.15, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xwwng"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq4jw"]
+albedo_color = Color(0.341176, 0.192157, 0.0823529, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1ter0"]
+size = Vector3(0.007, 0.075, 0.007)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_xo22a"]
 radius = 0.3
 
@@ -408,7 +485,7 @@ height = 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_motmp"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_6kqm5"]
-length = 0.5
+length = 0.35
 
 [sub_resource type="Curve" id="Curve_y01dl"]
 min_value = -360.0
@@ -696,9 +773,80 @@ bounce = 0.1
 [sub_resource type="BoxShape3D" id="BoxShape3D_r7snk"]
 size = Vector3(0.4, 0.4, 0.4)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1kjv"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_hrhwr"]
+_data = [Vector2(0, 0.868132), 0.0, 0.220879, 0, 0, Vector2(1, 1), 0.0581267, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bpggs"]
+curve = SubResource("Curve_hrhwr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1fgfq"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, -0.5, 0)
+scale_min = 0.02
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_bpggs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nji67"]
+transparency = 1
+albedo_texture = ExtResource("84_n4wi0")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_unx3q"]
+material = SubResource("StandardMaterial3D_nji67")
+
+[sub_resource type="Curve" id="Curve_kqd5y"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b8i6v"]
+curve = SubResource("Curve_kqd5y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j42fb"]
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_bpggs")
+alpha_curve = SubResource("CurveTexture_b8i6v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_652hg"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.0980392)
+albedo_texture = ExtResource("24_4mlx4")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xud33"]
+material = SubResource("StandardMaterial3D_652hg")
+
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
-collision_layer = 129
-collision_mask = 129
+collision_mask = 1153
 floor_constant_speed = true
 script = ExtResource("1_v2hnl")
 push_force = 2
@@ -775,6 +923,7 @@ script = ExtResource("19_8btaw")
 [node name="main_camera" type="Camera3D" parent="head/camera_bob"]
 unique_name_in_owner = true
 current = true
+far = 8000.0
 script = ExtResource("18_bhey3")
 
 [node name="interaction" type="Node3D" parent="head/camera_bob/main_camera"]
@@ -785,7 +934,7 @@ carry_layer = 4
 [node name="interact_check" type="RayCast3D" parent="head/camera_bob/main_camera/interaction"]
 visible = false
 target_position = Vector3(0, 0, -2)
-collision_mask = 4
+collision_mask = 5
 collide_with_areas = true
 debug_shape_custom_color = Color(0.407843, 0.862745, 0, 1)
 
@@ -1278,6 +1427,68 @@ collide_with_bodies = false
 transform = Transform3D(0.965926, -0.12941, 0.224144, 0, 0.866025, 0.5, -0.258819, -0.482963, 0.836516, 0.36, -0.15, -0.4)
 size = Vector3(0.01, 0.01, 0.2)
 
+[node name="candle" type="Node3D" parent="head/camera_bob/main_camera/simple_weapon_manager"]
+visible = false
+script = ExtResource("62_fjejv")
+
+[node name="candle_object" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]
+transform = Transform3D(0.526541, -0.627507, -0.573576, 0.766044, 0.642788, 0, 0.368688, -0.439385, 0.819152, 0.35, -0.215, -0.4)
+material_override = ExtResource("62_5li4o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_kld6x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object"]
+transform = Transform3D(1, 1.49012e-08, 0, 2.98023e-08, 1, -2.98023e-08, 0, -2.98023e-08, 1, 0.0324404, 0.153458, 0)
+material_override = SubResource("StandardMaterial3D_as3fc")
+
+[node name="light" type="OmniLight3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D" groups=["light_source"]]
+transform = Transform3D(1, 2.23517e-07, -1.78814e-07, 2.98023e-08, 1, 3.27826e-07, -8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+visible = false
+light_color = Color(1, 0.54902, 0, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 3.0
+omni_attenuation = 2.0
+script = ExtResource("62_h33aw")
+base_energy = 0.5
+flicker_amount = 4.0
+
+[node name="igniter_area" type="Area3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/light"]
+transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("62_gtowg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/light/igniter_area"]
+shape = SubResource("SphereShape3D_ab3xm")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/light"]
+transform = Transform3D(1, -2.38419e-07, 1.49012e-07, 8.9407e-08, 0.999998, -8.9407e-08, 8.9407e-08, 8.9407e-08, 1, 0, 0, 0)
+amount = 16
+lifetime = 0.2
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_vlxox")
+draw_pass_1 = SubResource("QuadMesh_ah24d")
+
+[node name="ignitable_area" type="Area3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D" node_paths=PackedStringArray("node")]
+transform = Transform3D(1, 0, 0, 2.98023e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("65_uevdo")
+node = NodePath("../light")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object/MeshInstance3D/ignitable_area"]
+shape = SubResource("SphereShape3D_xwwng")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle/candle_object"]
+transform = Transform3D(0.681871, 0.731473, 0, -0.731473, 0.681871, -2.98023e-08, 2.98023e-08, -9.12696e-08, 1, 0.0140285, 0.140245, 1.19209e-07)
+material_override = SubResource("StandardMaterial3D_aq4jw")
+mesh = SubResource("BoxMesh_1ter0")
+
+[node name="candle_target" type="Marker3D" parent="head/camera_bob/main_camera/simple_weapon_manager/candle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, -0.2, -1)
+
 [node name="grappling_ray_cast" type="RayCast3D" parent="head/camera_bob/main_camera"]
 target_position = Vector3(0, 0, -8)
 collision_mask = 256
@@ -1396,15 +1607,15 @@ collide_with_bodies = false
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 visible = false
-collision_layer = 16
-collision_mask = 16
+collision_layer = 4096
+collision_mask = 4096
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wind_check"]
 shape = SubResource("BoxShape3D_motmp")
 
 [node name="step_separation" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, -0.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.35, -0.25)
 shape = SubResource("SeparationRayShape3D_6kqm5")
 disabled = true
 
@@ -1508,78 +1719,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="light_detection/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 843.0
-offset_top = -64.0
-offset_right = 875.0
-offset_bottom = -32.0
-grow_vertical = 2
-
-[node name="top_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(32, 32)
-render_target_update_mode = 0
-
-[node name="top_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer/top_viewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-current = true
-fov = 55.0
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="light_detection/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -263.0
-offset_top = -64.0
-offset_right = -231.0
-offset_bottom = -32.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="bot_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer2"]
-handle_input_locally = false
-size = Vector2i(32, 32)
-render_target_update_mode = 0
-
-[node name="bot_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer2/bot_viewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-current = true
-fov = 55.0
-
-[node name="SubViewportContainer3" type="SubViewportContainer" parent="light_detection/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -292.0
-offset_top = -118.0
-offset_right = -260.0
-offset_bottom = -86.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="front_viewport" type="SubViewport" parent="light_detection/Control/SubViewportContainer3"]
-handle_input_locally = false
-size = Vector2i(32, 32)
-render_target_update_mode = 0
-
-[node name="front_camera" type="Camera3D" parent="light_detection/Control/SubViewportContainer3/front_viewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, -1)
-current = true
-fov = 25.0
-
 [node name="light_stone" type="TextureRect" parent="light_detection/Control"]
 texture_filter = 1
 texture_repeat = 2
@@ -1617,27 +1756,6 @@ texture = ExtResource("37_gcigv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_86t26")
 collision_mask = 64
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -256.0
-offset_bottom = 256.0
-grow_horizontal = 0
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(256, 256)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("node_to_follow")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, 0)
-projection = 1
-current = true
-size = 7.0
-script = ExtResource("38_510aq")
-node_to_follow = NodePath("../../..")
 
 [node name="status_vfx" type="Node3D" parent="." node_paths=PackedStringArray("stats")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -1684,6 +1802,27 @@ script = ExtResource("78_y1sx6")
 [node name="PinJoint3D" type="PinJoint3D" parent="death_cam"]
 node_a = NodePath("../body")
 node_b = NodePath("../head")
+
+[node name="fairy" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.515, -0.75)
+visible = false
+material_override = SubResource("StandardMaterial3D_e1kjv")
+cast_shadow = 0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="fairy"]
+light_energy = 0.1
+shadow_enabled = true
+omni_range = 2.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="fairy"]
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_1fgfq")
+draw_pass_1 = SubResource("QuadMesh_unx3q")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="fairy"]
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_j42fb")
+draw_pass_1 = SubResource("QuadMesh_xud33")
 
 [connection signal="visibility_changed" from="head/camera_bob/main_camera/weapon_manager/skill_zone" to="head/camera_bob/main_camera/weapon_manager/skill_zone" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="head/camera_bob/main_camera/simple_weapon_manager/skill_zone" to="head/camera_bob/main_camera/simple_weapon_manager/skill_zone" method="_on_visibility_changed"]

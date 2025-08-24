@@ -1,23 +1,17 @@
 extends Node3D
 
 @onready var telecam = $telecam
-@onready var mouse_look = %head
 @export var min_fov = 70.0
 @export var max_fov = 1.0
 @export var min_sensitivity = 0.04
 @export var steps = 10
 
 var current_step = 0
-var base_mouse_sensitivity = 0.4
 
 signal telescope_on(state)
 
 func _ready():
 	telecam.fov = min_fov
-	
-	if mouse_look:
-		base_mouse_sensitivity = mouse_look.mouse_sensitivity
-	
 	visibility_changed.connect(visibility_change)
 	
 
@@ -40,8 +34,7 @@ func zoom_to(step):
 	var t = step / float(steps)
 	telecam.fov = lerp(min_fov, max_fov, t)
 	
-	if mouse_look:
-		mouse_look.mouse_sensitivity = lerp(base_mouse_sensitivity, min_sensitivity, t)
+	ControlSettings.mouse_sesitivity_multiplier_variable = lerp(1.0, min_sensitivity, t)
 	
 
 func set_telecam_active(state):

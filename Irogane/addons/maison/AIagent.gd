@@ -1,9 +1,13 @@
 extends Resource
 class_name AIagent
 
-@export var sight = 20.0 :
+@export var direct_sight = 20.0 :
 	set(value):
-		sight = max(value, 0.0)
+		direct_sight = max(value, 0.0)
+
+@export var peripheral_sight = 5.0 :
+	set(value):
+		peripheral_sight = max(value, 0.0)
 
 @export var hearing = 20.0 :
 	set(value):

@@ -14,11 +14,12 @@ func get_effects() -> Dictionary:
 	
 
 func start_action(agent):
-	agent.animate("Look Around")
+	agent.animate("look_around")
 	
 
 func finish_action(agent):
 	agent.erase_world_state("sound_heard_at")
+	agent.erase_world_state("scream_heard_at")
 	
 
 func get_action_name(): return "AILookAroundAction"

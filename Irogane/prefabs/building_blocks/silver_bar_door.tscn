@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://dlckj6voogyui"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="2_wirxx"]
+[ext_resource type="Script" path="res://scripts/interactive/Key.gd" id="3_mrc3y"]
+[ext_resource type="Script" path="res://scripts/interactive/door_audio_player.gd" id="4_ur84x"]
+[ext_resource type="Script" path="res://scripts/audio/SpatialAudioStreamPlayer3D.gd" id="5_5goh4"]
+[ext_resource type="Material" uid="uid://bxwlp000cigp8" path="res://assets/materials/iron_bar.tres" id="5_c2k7n"]
+
+[sub_resource type="Resource" id="Resource_4xb3l"]
+script = ExtResource("3_mrc3y")
+color = 1
+tower_id = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vnole"]
+size = Vector3(1, 2, 0.1)
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_vlmip"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g8ese"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fg2fc"]
+metallic = 1.0
+roughness = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jb2tt"]
+size = Vector3(0.05, 2, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rf458"]
+size = Vector3(0.075, 2, 0.075)
+
+[node name="door" type="Node3D"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 1, 0)
+
+[node name="Switch" type="Area3D" parent="."]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.454498, 0, 0.0455023)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_wirxx")
+on_text = "Close"
+on_rotation = Vector3(0, 90, 0)
+animation_time = 0.5
+required_keys = Array[ExtResource("3_mrc3y")]([SubResource("Resource_4xb3l")])
+interaction_text = "Open"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Switch"]
+shape = SubResource("BoxShape3D_vnole")
+
+[node name="door_audio" type="Node3D" parent="Switch" node_paths=PackedStringArray("switch")]
+script = ExtResource("4_ur84x")
+switch = NodePath("..")
+
+[node name="audio_player" type="AudioStreamPlayer3D" parent="Switch/door_audio"]
+stream = SubResource("AudioStreamPolyphonic_vlmip")
+max_polyphony = 2
+bus = &"Sound"
+script = ExtResource("5_5goh4")
+
+[node name="lock_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0.90989, 0.0578423, 0.0455023)
+mesh = SubResource("BoxMesh_g8ese")
+surface_material_override/0 = SubResource("StandardMaterial3D_fg2fc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.454498, 0, 0.0455023)
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_jb2tt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226372, 0, -2.06559e-09)
+shape = SubResource("BoxShape3D_jb2tt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223889, 0, 2.28266e-09)
+shape = SubResource("BoxShape3D_jb2tt")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421471, 0, -1.49905e-08)
+shape = SubResource("BoxShape3D_rf458")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.441985, 0, 6.04953e-08)
+shape = SubResource("BoxShape3D_rf458")
+
+[node name="bar8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.00449768, 0, 0.0455023)
+material_override = ExtResource("5_c2k7n")
+size = Vector3(0.075, 2, 0.075)
+
+[node name="bar14" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.904498, 0, 0.0455022)
+material_override = ExtResource("5_c2k7n")
+size = Vector3(0.075, 2, 0.075)
+
+[node name="bar9" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.229498, 0, 0.0455023)
+material_override = ExtResource("5_c2k7n")
+size = Vector3(0.05, 2, 0.05)
+
+[node name="bar10" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.454498, 0, 0.0455023)
+material_override = ExtResource("5_c2k7n")
+size = Vector3(0.05, 2, 0.05)
+
+[node name="bar15" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0.679128, 0, 0.0455023)
+material_override = ExtResource("5_c2k7n")
+size = Vector3(0.05, 2, 0.05)
+
+[node name="bar12" type="CSGBox3D" parent="."]
+transform = Transform3D(-3.09086e-08, -1, 3.09086e-08, 0.707107, -4.37114e-08, -0.707107, 0.707107, -1.06581e-14, 0.707107, 0.454498, -1, 0.0455023)
+material_override = ExtResource("5_c2k7n")
+size = Vector3(0.05, 1, 0.05)
+
+[node name="bar13" type="CSGBox3D" parent="."]
+transform = Transform3D(-3.09086e-08, -1, 3.09086e-08, 0.707107, -4.37114e-08, -0.707107, 0.707107, -1.06581e-14, 0.707107, 0.454498, 1, 0.0455023)
+material_override = ExtResource("5_c2k7n")
+size = Vector3(0.05, 1, 0.05)

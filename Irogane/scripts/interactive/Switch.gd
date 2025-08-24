@@ -7,12 +7,15 @@ class_name Switch
 		state = value
 		
 		if Engine.is_editor_hint():
+			origin_position = get_parent().position
+			origin_rotation_degrees = get_parent().rotation_degrees
+			
 			if state:
-				get_parent().position = on_position
-				get_parent().rotation_degrees = on_rotation
+				get_parent().position = origin_position + on_position
+				get_parent().rotation_degrees = origin_rotation_degrees + on_rotation
 			else:
-				get_parent().position = off_position
-				get_parent().rotation_degrees = off_rotation
+				get_parent().position = origin_position + off_position
+				get_parent().rotation_degrees = origin_rotation_degrees + off_rotation
 	
 
 @export var on_text : String
@@ -31,14 +34,27 @@ class_name Switch
 var is_animating_position : bool
 var is_animating_rotation : bool
 
+var origin_position: Vector3
+var origin_rotation_degrees: Vector3
+
 signal on_state_changed(state)
 signal on_animation_done(state)
 signal on_failed_unlocked()
 signal on_unlocked()
 
+func _ready():
+	if Engine.is_editor_hint():
+		return
+	
+	origin_position = get_parent().position
+	origin_rotation_degrees = get_parent().rotation_degrees
+	
+
 func use(interactor):
 	if is_locked:
 		for key in required_keys:
+			if interactor == null:
+				return
 			var use_key = interactor.use_key(key.tower_id, key.color)
 			if use_key == false:
 				on_failed_unlocked.emit()
@@ -68,12 +84,12 @@ func perform_animations():
 	if _animate_position:
 		var from_pos = off_position if state else on_position
 		var to_pos = on_position if state else off_position
-		animate_position(from_pos, to_pos)
+		animate_position(origin_position + from_pos, origin_position + to_pos)
 	
 	if _animate_rotation:
 		var from_rot = off_rotation if state else on_rotation
 		var to_rot = on_rotation if state else off_rotation
-		animate_rotation(from_rot, to_rot)
+		animate_rotation(origin_rotation_degrees + from_rot, origin_rotation_degrees + to_rot)
 	
 	on_state_changed.emit(state)
 	

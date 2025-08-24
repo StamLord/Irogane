@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwl4uoqpt0map"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Readable.gd" id="1_ancng"]
+[ext_resource type="Texture2D" uid="uid://bhht57p716sdf" path="res://assets/textures/medieval/old_paper_0.png" id="2_gyfrr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_einpf"]
+cull_mode = 2
+albedo_texture = ExtResource("2_gyfrr")
+backlight_enabled = true
+backlight_texture = ExtResource("2_gyfrr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wo4hl"]
+size = Vector2(0.572, 0.814)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hxh2"]
+size = Vector3(0.6, 0.85, 0.1)
+
+[node name="readable_paper" type="Area3D"]
+transform = Transform3D(-0.973881, -0.227059, 9.92506e-09, -8.88178e-15, 4.37114e-08, 1, -0.227059, 0.973881, -4.25697e-08, -0.013237, 0.0839567, -0.149836)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_ancng")
+interaction_text = "Read"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 5.9952e-15, 0, 1.11022e-14, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_einpf")
+mesh = SubResource("QuadMesh_wo4hl")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4hxh2")

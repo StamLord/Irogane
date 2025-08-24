@@ -1,21 +1,33 @@
 extends Node3D
 
 @export var distance_step = 0.8
+@export var movement_axis = AXIS.X
 @export var rotation_step = 45.0
-@export var axis = Vector3.UP
+@export var rotation_axis = Vector3.UP
 
-var prev_position = Vector3.ZERO
+enum AXIS {X, Y, Z}
+
+var prev = 0.0
 
 func _ready():
-	prev_position = global_position
+	prev = get_current_position()
 	
 
 func _process(delta):
-	var position_delta = (global_position - prev_position).length()
-	var rotate_amount = rotation_step * (position_delta / distance_step)
-	rotation_degrees.x += rotate_amount * axis.x
-	rotation_degrees.y += rotate_amount * axis.y
-	rotation_degrees.z += rotate_amount * axis.z
+	var current = get_current_position()
+	var position_delta = current - prev
 	
-	prev_position = global_position
+	if position_delta != 0.0:
+		var rotate_amount = rotation_step * (position_delta / distance_step)
+		rotation_degrees += rotate_amount * rotation_axis * delta * 100
+	
+	prev = current
+	
+
+func get_current_position() -> float:
+	match movement_axis:
+		AXIS.X: return global_position.x
+		AXIS.Y: return global_position.y
+		AXIS.Z: return global_position.z
+	return global_position.x
 	

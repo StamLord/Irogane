@@ -7,7 +7,14 @@ extends CharacterBody3D
 @onready var push_back_dust_l = $vfx/push_back_dust_l
 @onready var push_back_dust_r = $vfx/push_back_dust_r
 
-@export var movement_speed = 2
+@export var walk_speed = 2
+@export var run_speed = 4
+var is_running = false
+var movement_speed: 
+	get: 
+		return run_speed if is_running else walk_speed
+	
+
 @export var acceleration = 10
 @export var rotation_speed = 5
 @export var gravity = 9
@@ -92,8 +99,8 @@ func _process(delta):
 		if nav.is_navigation_finished():
 			if target_rotation: # Face an overriding rotation target
 				rotate_to_target_rotation(delta)
-			else: # Face the path target position
-				rotate_to_target(delta)
+			#else: # Face the path target position
+				#rotate_to_target(delta)
 		elif look_at_target_while_moving and target_rotation:
 			rotate_to_target_rotation(delta)
 		else: # Face next position on path
@@ -104,6 +111,20 @@ func _process(delta):
 		var collider = door_check.get_collider()
 		if collider is Switch and collider.state == false:
 			collider.use(null)
+	
+
+func set_running(state: bool):
+	is_running = state
+	
+
+# Returns 0 if stationary, 1 if at walk speed and 2 if at run speed
+func get_normalized_velocity() -> float: 
+	var flat_velocity = Vector3(nav.velocity.x, 0, nav.velocity.z).length()
+	if flat_velocity > run_speed:
+		return 2.0
+	elif flat_velocity <= walk_speed:
+		return flat_velocity / walk_speed
+	return 1.0 + (flat_velocity - walk_speed) / (run_speed - walk_speed)
 	
 
 func set_target_position(target_position : Vector3):
@@ -122,6 +143,10 @@ func reset_target_rotation():
 	target_rotation = null
 	
 
+func get_desired_distance():
+	return nav.path_desired_distance
+	
+
 func _physics_process(delta):
 	if is_traveling_link:
 		return
@@ -133,7 +158,7 @@ func _physics_process(delta):
 	direction = (next_position - global_position).normalized()
 	
 	# Get dot product between our facing direction and the direction
-	var facing_direction = basis * Vector3.FORWARD # Our facing direction
+	var facing_direction = global_basis * Vector3.FORWARD # Our facing direction
 	var dot_product = facing_direction.dot(direction)
 	dot_product = max(0, dot_product) # Make sure it's not below 0
 	

@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://ddlnclt2skq78"
+path="res://.godot/imported/tower_test.exr-848ee669dd2288c95b0e6e62b91ff875.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://scenes/tower_test.exr"
+dest_files=["res://.godot/imported/tower_test.exr-848ee669dd2288c95b0e6e62b91ff875.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=31

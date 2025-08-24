@@ -3,9 +3,13 @@ class_name Interactive
 
 @export var interaction_text = "Use"
 @export var mesh : MeshInstance3D
+@export var highlight_emission_multiplier = 3.0
+@export var highlight_emission_operator = StandardMaterial3D.EMISSION_OP_MULTIPLY
 
-const HIGHLIGHT_EMMISION = 0.25
+const HIGHLIGHT_EMMISION = 0.1
 const HIGHLIGHT_COLOR = Color.WHITE
+
+var is_disabled = false
 
 var active_material = null
 
@@ -38,6 +42,9 @@ func _ready():
 	
 
 func get_text():
+	if is_disabled:
+		return ""
+	
 	return interaction_text
 	
 
@@ -46,23 +53,24 @@ func use(_interactor):
 	
 
 func highlight_on():
-	if active_material == null:
+	if is_disabled or active_material == null:
 		return
+	
+	var new_emission_multiplier = HIGHLIGHT_EMMISION if base_emission_energy_multiplier == 0 else base_emission_energy_multiplier * highlight_emission_multiplier
 	
 	if active_material is StandardMaterial3D:
 		active_material.emission_enabled = true
 		active_material.emission = HIGHLIGHT_COLOR if base_emission == Color.BLACK else base_emission
-		var new_emission_multiplier = HIGHLIGHT_EMMISION if base_emission_energy_multiplier == 0 else base_emission_energy_multiplier * 3
 		active_material.emission_energy_multiplier = new_emission_multiplier
-		active_material.emission_operator = StandardMaterial3D.EMISSION_OP_MULTIPLY
+		active_material.emission_operator = highlight_emission_operator
 		active_material.emission_texture = active_material.albedo_texture
+		
 	elif active_material is ShaderMaterial:
-		var new_emission_multiplier = HIGHLIGHT_EMMISION if base_emission_energy_multiplier == 0 else base_emission_energy_multiplier * 3
 		active_material.set_shader_parameter("emission_multiplier", new_emission_multiplier)
 	
 
 func highlight_off():
-	if active_material == null:
+	if is_disabled or active_material == null:
 		return
 	
 	if active_material is StandardMaterial3D:
@@ -73,4 +81,8 @@ func highlight_off():
 		active_material.emission_texture = base_emission_texture
 	elif active_material is ShaderMaterial:
 		active_material.set_shader_parameter("emission_multiplier", base_emission_energy_multiplier)
+	
+
+func set_disabled(state : bool):
+	is_disabled = state
 	

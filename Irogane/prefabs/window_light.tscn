@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cn1f2ulyvvlxg"]
 
-[node name="WindowLight" type="OmniLight3D"]
+[node name="WindowLight" type="OmniLight3D" groups=["light_source"]]
 light_color = Color(0.862745, 0.541176, 0.188235, 1)
 light_energy = 2.0
 light_bake_mode = 1

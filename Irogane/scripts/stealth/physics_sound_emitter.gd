@@ -5,6 +5,8 @@ extends SoundEmitter
 @export var sound_range = 5
 
 func _ready():
+	super._ready()
+	
 	if rigidbody:
 		rigidbody.body_entered.connect(collision)
 	

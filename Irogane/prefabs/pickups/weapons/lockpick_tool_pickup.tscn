@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqrfbfu4q2we8"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Pickup.gd" id="1_pur1a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qo1wx"]
+size = Vector3(0.25, 0.05, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_76ii7"]
+size = Vector3(0.24, 0.04, 0.22)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uefnu"]
+albedo_color = Color(0.211765, 0.133333, 0.0509804, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp650"]
+albedo_color = Color(0.568627, 0.568627, 0.568627, 1)
+metallic = 0.25
+
+[node name="lockpick_tool_pickup" type="RigidBody3D"]
+
+[node name="interactive_area" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_pur1a")
+item_id = "lockpick_tool"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
+shape = SubResource("BoxShape3D_qo1wx")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_76ii7")
+
+[node name="wrap" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_uefnu")
+size = Vector3(0.195, 0.005, 0.25)
+
+[node name="wrap2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.923043, 0.384698, 0, -0.384698, 0.923042, 0, 0, 0, 1, 0.0710295, 0.0135853, 0)
+material_override = SubResource("StandardMaterial3D_uefnu")
+size = Vector3(0.0612543, 0.005, 0.25)
+
+[node name="pin" type="CSGBox3D" parent="."]
+transform = Transform3D(0.998971, 0, -0.0453455, 0, 1, 0, 0.0453456, 0, 0.998971, -0.0523414, 0.0121896, -0.000177185)
+material_override = SubResource("StandardMaterial3D_kp650")
+size = Vector3(0.01, 0.01, 0.2)
+
+[node name="pin2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.999875, 0, 0.0157946, 0, 1, 0, -0.0157946, 0, 0.999875, -0.0160177, 0.0121896, 6.17164e-05)
+material_override = SubResource("StandardMaterial3D_kp650")
+size = Vector3(0.01, 0.01, 0.2)
+
+[node name="pin3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.998981, 0, -0.0451363, 0, 1, 0, 0.0451363, 0, 0.998981, 0.0199917, 0.0121896, -0.000176368)
+material_override = SubResource("StandardMaterial3D_kp650")
+size = Vector3(0.01, 0.01, 0.2)
+
+[node name="pin4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.999989, 0, 0.00467746, 0, 1, 0, -0.00467747, 0, 0.999989, 0.0526459, 0.0121896, 1.82769e-05)
+material_override = SubResource("StandardMaterial3D_kp650")
+size = Vector3(0.01, 0.01, 0.2)

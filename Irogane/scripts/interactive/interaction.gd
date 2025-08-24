@@ -11,8 +11,8 @@ extends Node3D
 		
 		return inventory
 	
-
-@onready var strength = $"../../../stats/strength"
+@onready var tool_manager = $"../simple_weapon_manager"
+@onready var strength = $"%stats/strength"
 
 @export var carry_start_time = 0.8
 @export var carry_distance = 1.5
@@ -38,6 +38,8 @@ var released_last_frame = false
 
 # tower_id : { key_color : uses_left } eg:  {Key.key_color.BRASS : 5}  
 var key_ring = {}#{1 : {Key.key_color.BRASS : 5}}
+
+var old_text = ""
 
 signal interactive_changed(new_interactive_text)
 signal press_time_update(time)
@@ -102,8 +104,19 @@ func _process(delta):
 	
 
 func set_interactive(interactive):
+	# Always update text even if it's the same interactive
+	# text might change due to interactive's state
+	var text = ""
+	if interactive != null:
+		text = interactive.get_text()
+	
+	if text != old_text:
+		interactive_changed.emit(text)
+		old_text = text
+	
+	# Skip if we are facing the same interactive
 	# If new value is null, always continue to handle cases where node was freed
-	if current_interactive == interactive and interactive == null:
+	if current_interactive == interactive:
 		return
 	
 	# Reset button press if we switched interactive
@@ -118,13 +131,6 @@ func set_interactive(interactive):
 	# Highlight new
 	if current_interactive != null:
 		current_interactive.highlight_on()
-	
-	# Update text
-	var text = ""
-	if current_interactive != null:
-		text = current_interactive.get_text()
-	
-	interactive_changed.emit(text)
 	
 
 func reset_button_time():
@@ -198,10 +204,28 @@ func throw_carry_object():
 	
 
 func add_item(item_id):
+	var item = ItemDB.get_item(item_id)
+	
+	# Handle tools
+	if item.slot == "TOOL":
+		return add_tool(item)
+	
+	# Handle items
 	if inventory == null:
 		return false
 	
 	return inventory.pickup_item(item_id)
+	
+
+func add_tool(tool):
+	if tool_manager == null:
+		return false
+	
+	if not tool.has("type") or not tool.type is SimpleWeaponManager.tool_type:
+		return false
+		
+	tool_manager.add_tool(tool.type)
+	return true
 	
 
 func add_key(tower_id : int, key_color : Key.key_color, uses : int):

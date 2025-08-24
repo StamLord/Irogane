@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="AIScreamGoal" load_steps=2 format=3 uid="uid://cnr4f0wuwiob0"]
+
+[ext_resource type="Script" path="res://scripts/ai/goap/goals/AIScreamGoal.gd" id="1_njvx3"]
+
+[resource]
+script = ExtResource("1_njvx3")

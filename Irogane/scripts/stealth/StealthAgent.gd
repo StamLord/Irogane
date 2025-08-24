@@ -22,6 +22,7 @@ func _ready():
 func _process(_delta):
 	if light_detection:
 		detection_multiplier = light_detection.light_value
+		detection_multiplier *= crouch_detection_multiplier if is_crouching() else base_detection_multiplier
 	
 
 func set_crouch_detection():
@@ -59,4 +60,10 @@ func remove_all_watchers():
 
 func scene_loading(_scene_path):
 	remove_all_watchers()
+	
+
+func is_crouching() -> bool:
+	if state_machine == null:
+		return false
+	return state_machine.current_state.name == "Crouch"
 	

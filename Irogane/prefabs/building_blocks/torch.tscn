@@ -1,9 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddutohny1gn8k"]
+[gd_scene load_steps=20 format=3 uid="uid://crxjt1r5cc71g"]
 
-[ext_resource type="Script" path="res://scripts/interactive/LightSwitch.gd" id="1_5bqjn"]
+[ext_resource type="Script" path="res://scripts/procedural/ignitable.gd" id="1_pscr7"]
+[ext_resource type="Texture2D" uid="uid://bqsmbpqwulgl2" path="res://assets/textures/vfx/flame_64.png" id="2_8xpn7"]
+[ext_resource type="Script" path="res://scripts/vfx/omnilight_flicker.gd" id="2_lm4lx"]
+[ext_resource type="Script" path="res://scripts/procedural/igniter.gd" id="3_i17no"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o13nj"]
 size = Vector3(0.2, 0.75, 0.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1v0ot"]
+radius = 0.2
+
+[sub_resource type="Curve" id="Curve_kwb84"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.30413, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0hhvu"]
+curve = SubResource("Curve_kwb84")
+
+[sub_resource type="Gradient" id="Gradient_tv6kf"]
+offsets = PackedFloat32Array(0, 0.237705, 0.561475)
+colors = PackedColorArray(1, 0.968002, 0.431428, 1, 0.912296, 0.771426, 0, 1, 0.77192, 0.22088, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uts3u"]
+gradient = SubResource("Gradient_tv6kf")
+
+[sub_resource type="Curve" id="Curve_bk5kn"]
+_data = [Vector2(0, 0), 0.0, 5.54683, 0, 0, Vector2(0.323529, 1), 0.0, 0.178046, 0, 0, Vector2(1, 0), -3.77559, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_twx28"]
+curve = SubResource("Curve_bk5kn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2tmly"]
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 2, 0)
+scale_min = 0.1
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_twx28")
+color_ramp = SubResource("GradientTexture1D_uts3u")
+alpha_curve = SubResource("CurveTexture_0hhvu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d6elv"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_8xpn7")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_32dnv"]
+material = SubResource("StandardMaterial3D_d6elv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_631i0"]
 
@@ -44,12 +96,11 @@ size = Vector3(0.21, 0.8, 0.2)
 
 [node name="torch" type="StaticBody3D"]
 
-[node name="torch" type="Area3D" parent="." node_paths=PackedStringArray("light")]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("1_5bqjn")
-light = NodePath("light")
-state = true
+[node name="torch" type="Area3D" parent="." node_paths=PackedStringArray("node")]
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("1_pscr7")
+node = NodePath("light")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="torch"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
@@ -57,8 +108,28 @@ shape = SubResource("BoxShape3D_o13nj")
 
 [node name="light" type="OmniLight3D" parent="torch" groups=["light_source"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.07)
-light_color = Color(1, 0.811765, 0.588235, 1)
+visible = false
+light_color = Color(1, 0.54902, 0, 1)
 shadow_enabled = true
+omni_range = 7.0
+script = ExtResource("2_lm4lx")
+
+[node name="igniter_area" type="Area3D" parent="torch/light"]
+transform = Transform3D(1, -2.68221e-07, 1.49012e-07, 7.45058e-08, 1, -2.08616e-07, 8.9407e-08, -2.98023e-08, 1, 0, 0, 0)
+collision_layer = 2048
+collision_mask = 2048
+script = ExtResource("3_i17no")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="torch/light/igniter_area"]
+shape = SubResource("SphereShape3D_1v0ot")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="torch/light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016762, -0.000557199)
+amount = 32
+lifetime = 0.75
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_2tmly")
+draw_pass_1 = SubResource("QuadMesh_32dnv")
 
 [node name="torch2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)

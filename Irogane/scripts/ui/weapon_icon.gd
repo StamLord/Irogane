@@ -15,13 +15,13 @@ func subscribe_to_player(player_node):
 		manager.on_index_changed.connect(index_changed)
 	
 
-func index_changed(index):
-	var count = get_child_count()
-	if index >= count:
-		return
-	
+func index_changed(index : int, exist : bool):
 	if visible_tool != null:
 		visible_tool.visible = false
+	
+	var count = get_child_count()
+	if index < 0 or index >= count or not exist:
+		return
 	
 	visible_tool = get_child(index)
 	if visible_tool != null:

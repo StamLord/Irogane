@@ -1,0 +1,148 @@
+[gd_scene load_steps=5 format=3 uid="uid://4gnuf45mj2pm"]
+
+[ext_resource type="Material" uid="uid://diab4e106b2st" path="res://assets/materials/house_wall.tres" id="1_n7bgu"]
+[ext_resource type="PackedScene" uid="uid://d1n6u22gwj6kt" path="res://assets/models/guard/guard.glb" id="2_whqnp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwj6j"]
+albedo_color = Color(0.243137, 0.682353, 0.494118, 1)
+emission_enabled = true
+emission = Color(0.243137, 0.682353, 0.494118, 1)
+emission_energy_multiplier = 0.02
+
+[sub_resource type="BoxMesh" id="BoxMesh_by8oi"]
+size = Vector3(0.1, 7, 2)
+
+[node name="checkpoint" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.75, -11.875)
+use_collision = true
+size = Vector3(4, 11.5, 10)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+operation = 2
+size = Vector3(4.25, 6.5, 4)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 3.5)
+operation = 2
+size = Vector3(3, 11, 2)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.625, 2.25)
+operation = 2
+size = Vector3(1, 2.25, 2)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.25, -3.5)
+operation = 2
+size = Vector3(3, 11, 2)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -4.625, -2.25)
+operation = 2
+size = Vector3(1, 2.25, 2)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 4.37114e-08, 1, 0, 0.75, 0)
+operation = 2
+radius = 2.0
+height = 4.0
+material = ExtResource("1_n7bgu")
+
+[node name="guard2" parent="." instance=ExtResource("2_whqnp")]
+transform = Transform3D(-1.1, 0, -1.66095e-07, 0, 1.1, 0, 1.66095e-07, 0, -1.1, -0.5, -5.75, 1.5)
+
+[node name="guard3" parent="." instance=ExtResource("2_whqnp")]
+transform = Transform3D(1.1, 0, 1.96652e-08, 0, 1.1, 0, -1.96652e-08, 0, 1.1, 1.25, -5.75, -1.5)
+
+[node name="guard4" parent="." instance=ExtResource("2_whqnp")]
+transform = Transform3D(-4.80825e-08, 0, 1.1, 0, 1.1, 0, -1.1, 0, -4.80825e-08, 2, -5.75, 1)
+
+[node name="guard5" parent="." instance=ExtResource("2_whqnp")]
+transform = Transform3D(-4.80825e-08, 0, -1.1, 0, 1.1, 0, 1.1, 0, -4.80825e-08, -1.25, 5.75, 2)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 6.25, -0.75)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 6.25, -2.5)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 6.25, -4.25)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 6.25, 1)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 6.25, 4.5)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 6.25, 2.75)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 6.25, 1)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 6.25, 2.75)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 6.25, 4.5)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 6.25, -0.75)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 6.25, -4.25)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.75, 6.25, -2.5)
+size = Vector3(0.5, 1, 1)
+material = ExtResource("1_n7bgu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.75, 2.75)
+material_override = SubResource("StandardMaterial3D_nwj6j")
+mesh = SubResource("BoxMesh_by8oi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.75, -2.75)
+material_override = SubResource("StandardMaterial3D_nwj6j")
+mesh = SubResource("BoxMesh_by8oi")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.75, 2.75)
+material_override = SubResource("StandardMaterial3D_nwj6j")
+mesh = SubResource("BoxMesh_by8oi")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.75, -2.75)
+material_override = SubResource("StandardMaterial3D_nwj6j")
+mesh = SubResource("BoxMesh_by8oi")
