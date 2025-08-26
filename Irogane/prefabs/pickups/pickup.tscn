@@ -30,7 +30,9 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_1m7dj")
 item_id = "godot cube"
+interaction_text = "Pickup"
 mesh = NodePath("../mesh")
+highlight_emission_operator = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
 shape = SubResource("SphereShape3D_hbgxb")
