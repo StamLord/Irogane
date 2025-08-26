@@ -4,4 +4,7 @@
 
 [resource]
 albedo_texture = ExtResource("1_jndmy")
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("1_jndmy")
 texture_filter = 0
