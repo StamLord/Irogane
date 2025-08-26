@@ -1474,6 +1474,7 @@ mesh = SubResource("BoxMesh_i6jt4")
 skeleton = NodePath("../..")
 
 [node name="candle" type="Node3D" parent="tool_3d/tool_parent"]
+visible = false
 script = ExtResource("26_uw7fk")
 rotation_curve = SubResource("CurveXYZTexture_ax1fm")
 duration = 2.0
