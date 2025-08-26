@@ -1,5 +1,6 @@
 extends Node3D
 
+@export_flags_3d_physics var collision_mask
 @onready var visual = $visual
 
 const GRAVITY = -9.8
@@ -29,7 +30,7 @@ func _process(delta):
 	velocity.y += GRAVITY * delta
 	
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(global_position, new_position)
+	var query = PhysicsRayQueryParameters3D.create(global_position, new_position, collision_mask)
 	var collision = space_state.intersect_ray(query)
 	
 	if collision:
