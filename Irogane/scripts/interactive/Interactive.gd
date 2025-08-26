@@ -20,25 +20,31 @@ var base_emission_texture = null
 var base_emission_operation = null
 
 func _ready():
-	if mesh != null:
-		active_material = mesh.get_surface_override_material(0)
-		
-		if active_material == null:
-			return
-		
-		# Set a clone of the active material as override to make local changes
+	if mesh == null:
+		return
+	
+	active_material = mesh.get_surface_override_material(0)
+	
+	if active_material == null:
+		return
+	
+	# Set a clone of the active material as override to make local changes
+	if not active_material.has_meta("duplicate"):
 		active_material = active_material.duplicate()
 		mesh.set_surface_override_material(0, active_material)
-		
-		# Get defaults to turn back off
-		if active_material is StandardMaterial3D:
-			base_emission_enabled = active_material.emission_enabled
-			base_emission = active_material.emission
-			base_emission_energy_multiplier = active_material.emission_energy_multiplier
-			base_emission_texture = active_material.emission_texture
-			base_emission_operation = active_material.emission_operator
-		elif active_material is ShaderMaterial:
-			base_emission_energy_multiplier = active_material.get_shader_parameter("emission_multiplier")
+		active_material.set_meta("duplicate", true)
+	else:
+		print("WARNING: %s tried to duplicate material for %s" % [name, mesh.name])
+	
+	# Get defaults to turn back off
+	if active_material is StandardMaterial3D:
+		base_emission_enabled = active_material.emission_enabled
+		base_emission = active_material.emission
+		base_emission_energy_multiplier = active_material.emission_energy_multiplier
+		base_emission_texture = active_material.emission_texture
+		base_emission_operation = active_material.emission_operator
+	elif active_material is ShaderMaterial:
+		base_emission_energy_multiplier = active_material.get_shader_parameter("emission_multiplier")
 	
 
 func get_text():

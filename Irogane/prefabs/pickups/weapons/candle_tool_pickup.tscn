@@ -91,6 +91,7 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_ukb7u")
 item_id = "candle_tool"
+interaction_text = "Pickup"
 mesh = NodePath("../candle_object")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interactive_area"]
