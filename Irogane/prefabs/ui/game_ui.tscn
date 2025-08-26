@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dxkipe3wxamcu"]
+[gd_scene load_steps=111 format=3 uid="uid://dxkipe3wxamcu"]
 
 [ext_resource type="Texture2D" uid="uid://r7y5tcfsibcq" path="res://assets/textures/ui/cursor/cursor_single.png" id="1_xge4d"]
 [ext_resource type="Shader" uid="uid://ucpwk2kdfcyp" path="res://prefabs/vfx/chromatic_aberration.tres" id="2_38aop"]
@@ -31,6 +31,7 @@
 [ext_resource type="Material" uid="uid://c6vqwn8pups4t" path="res://assets/models/compass/mirror.tres" id="28_1dkty"]
 [ext_resource type="Texture2D" uid="uid://1xkt8ny3senm" path="res://assets/models/loot/coin-bca63a80a5aa1b985be01003c8f1cb97_florin.png" id="29_wcp8v"]
 [ext_resource type="Script" path="res://scripts/ui/prayer_beads_save_window.gd" id="30_8kyfl"]
+[ext_resource type="Material" uid="uid://cnv52hl6lnudl" path="res://assets/materials/candle.tres" id="31_dxx5l"]
 [ext_resource type="PackedScene" uid="uid://ccdnbbmarggif" path="res://prefabs/ui/game_save_load_window.tscn" id="31_e2xi2"]
 [ext_resource type="PackedScene" uid="uid://cbr1jgg4xl0ou" path="res://scenes/minigames/lockpicking_minigame.tscn" id="33_mo2sm"]
 [ext_resource type="FontFile" uid="uid://blnra70x5efg" path="res://assets/fonts/UbuntuMono-Regular.ttf" id="34_pbcfy"]
@@ -541,6 +542,18 @@ size = Vector3(0.04, 0.3, 0.02)
 
 [sub_resource type="BoxMesh" id="BoxMesh_i6jt4"]
 size = Vector3(0.03, 0.2, 0.02)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_av2hq"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.6
+radial_segments = 6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8rvxn"]
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.1
+radial_segments = 6
 
 [node name="game_ui" type="Control"]
 texture_filter = 1
@@ -1369,9 +1382,35 @@ material_override = SubResource("StandardMaterial3D_wjvvb")
 mesh = SubResource("BoxMesh_i6jt4")
 skeleton = NodePath("../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="tool_3d"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.25)
+[node name="candle" type="Node3D" parent="tool_3d/tool_parent"]
+script = ExtResource("26_uw7fk")
+rotation_curve = SubResource("CurveXYZTexture_ax1fm")
+duration = 2.0
+
+[node name="candle_long" type="MeshInstance3D" parent="tool_3d/tool_parent/candle"]
+transform = Transform3D(0.474611, 0.157303, 0, -0.151943, 0.458439, -0.12941, -0.0407129, 0.122838, 0.482963, 0, 0.05, 0)
+layers = 513
+material_override = ExtResource("31_dxx5l")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_av2hq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tool_3d/tool_parent/candle/candle_long"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335021, 0)
+layers = 513
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_8rvxn")
+
+[node name="main_light" type="OmniLight3D" parent="tool_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.25)
 layers = 512
+light_color = Color(1, 0.921569, 0.729412, 1)
+light_energy = 0.5
+
+[node name="rim_light" type="OmniLight3D" parent="tool_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, -0.25)
+layers = 512
+light_color = Color(0.207843, 0.435294, 1, 1)
+light_energy = 0.25
 
 [node name="prayer_beads_save_window" type="Control" parent="."]
 process_mode = 3
