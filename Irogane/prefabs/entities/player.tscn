@@ -846,7 +846,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_652hg")
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("default_state") groups=["Persist"]]
-collision_mask = 1153
+collision_mask = 5249
 floor_constant_speed = true
 script = ExtResource("1_v2hnl")
 push_force = 2

@@ -229,6 +229,7 @@ material = SubResource("ShaderMaterial_ks6vs")
 
 [node name="CoinPrefab" type="Node3D"]
 script = ExtResource("1_osdid")
+collision_mask = 1025
 
 [node name="visual" type="Node3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0)
