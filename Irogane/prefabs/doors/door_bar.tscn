@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dekhmrs3thi2r"]
+
+[ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="1_0gwn4"]
+[ext_resource type="Texture2D" uid="uid://bh65qlrnxlxdm" path="res://assets/textures/medieval/wood_beam.png" id="2_821rd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2roa3"]
+size = Vector3(1.35, 0.35, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukvgu"]
+size = Vector3(1.25, 0.25, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_77osm"]
+size = Vector3(1.25, 0.25, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbivv"]
+albedo_texture = ExtResource("2_821rd")
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = ExtResource("2_821rd")
+texture_filter = 0
+metadata/duplicate = true
+
+[node name="Area3D" type="Area3D" node_paths=PackedStringArray("animate_body", "mesh")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_0gwn4")
+on_text = "Close"
+animate_body = NodePath("bar_switch")
+on_rotation = Vector3(0, 0, 90)
+animation_time = 0.5
+interaction_text = "Open"
+mesh = NodePath("bar_switch/mesh")
+highlight_emission_multiplier = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+shape = SubResource("BoxShape3D_2roa3")
+
+[node name="bar_switch" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bar_switch"]
+shape = SubResource("BoxShape3D_ukvgu")
+
+[node name="mesh" type="MeshInstance3D" parent="bar_switch"]
+mesh = SubResource("BoxMesh_77osm")
+surface_material_override/0 = SubResource("StandardMaterial3D_gbivv")

@@ -16,7 +16,7 @@ size = Vector3(0.05, 1.75, 0.05)
 size = Vector3(1, 2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kqbtr"]
-size = Vector3(1, 2, 0.5)
+size = Vector3(1, 1.75, 0.5)
 
 [node name="bar_portcullis" type="Area3D"]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 1, 0)
@@ -183,5 +183,5 @@ collision_layer = 4096
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_collision_fix"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0.05)
 shape = SubResource("BoxShape3D_kqbtr")
