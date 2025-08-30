@@ -1,4 +1,4 @@
-[gd_scene load_steps=223 format=3 uid="uid://c0ud674ybdois"]
+[gd_scene load_steps=228 format=3 uid="uid://c0ud674ybdois"]
 
 [ext_resource type="Environment" uid="uid://bxidrbipitv6o" path="res://assets/environment/env_7.tres" id="1_qsxik"]
 [ext_resource type="Texture2D" uid="uid://cnn5fwr2ojv11" path="res://assets/textures/vfx/moon_texture.png" id="2_7j85a"]
@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bd0iypg5xkjo5" path="res://prefabs/interactives/prison_wood_door_1.tscn" id="13_34lev"]
 [ext_resource type="Material" uid="uid://bxwlp000cigp8" path="res://assets/materials/iron_bar.tres" id="14_31bc1"]
 [ext_resource type="Script" path="res://scripts/interactive/Door.gd" id="14_k0u5s"]
+[ext_resource type="Shader" uid="uid://bi8kluukb46n0" path="res://assets/shaders/gem.tres" id="14_thnyi"]
 [ext_resource type="PackedScene" uid="uid://bbho3oihymvcm" path="res://prefabs/building_blocks/round_stairway_4_wide.tscn" id="15_1xp5l"]
 [ext_resource type="PackedScene" uid="uid://cuwgxv22fnmqx" path="res://prefabs/candle_short.tscn" id="15_x2cvp"]
+[ext_resource type="PackedScene" uid="uid://dekhmrs3thi2r" path="res://prefabs/doors/door_bar.tscn" id="15_y1fd3"]
 [ext_resource type="Script" path="res://scripts/interactive/Carriable.gd" id="16_imo6e"]
 [ext_resource type="PackedScene" uid="uid://rgw0s800frxg" path="res://prefabs/wooden_chair.tscn" id="17_3b8vk"]
 [ext_resource type="Material" uid="uid://cpw0gk8ua7o7e" path="res://assets/materials/wood_portico.tres" id="17_6xw7o"]
@@ -45,6 +47,7 @@
 [ext_resource type="Material" uid="uid://hy7is1hc3gw3" path="res://assets/models/compass/brass_compass.tres" id="32_hhvtl"]
 [ext_resource type="Script" path="res://scripts/interactive/Key.gd" id="32_vgo2y"]
 [ext_resource type="Script" path="res://scripts/interactive/SwitchListener.gd" id="32_xt4km"]
+[ext_resource type="Texture2D" uid="uid://djha3ymwurvdk" path="res://assets/textures/medieval/painting_01.jpg" id="33_mityr"]
 [ext_resource type="PackedScene" uid="uid://cx8myxrl1yfr4" path="res://prefabs/pickups/crate.tscn" id="34_4oasf"]
 [ext_resource type="Script" path="res://scripts/interactive/Switch.gd" id="34_06lda"]
 [ext_resource type="Material" uid="uid://bpg2o1smtm2us" path="res://assets/materials/house_roof.tres" id="34_ekehk"]
@@ -117,11 +120,11 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2n77"]
 size = Vector3(10, 3, 100)
 
-[sub_resource type="QuadMesh" id="QuadMesh_b3qc7"]
+[sub_resource type="QuadMesh" id="QuadMesh_wv7r2"]
 material = ExtResource("7_m71qt")
 size = Vector2(10, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_mn7xv"]
+[sub_resource type="BoxMesh" id="BoxMesh_23fhe"]
 material = ExtResource("8_tbp32")
 size = Vector3(9.999, 2.9997, 99.99)
 
@@ -134,17 +137,25 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tc5hv"]
 size = Vector3(0.2, 0.2, 0.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2roa3"]
-size = Vector3(1.35, 0.35, 0.15)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ukvgu"]
-size = Vector3(1.25, 0.25, 0.05)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nigb5"]
+render_priority = 0
+shader = ExtResource("14_thnyi")
+shader_parameter/normal_offset = 0.5
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/emission_multiplier = 1.0
+shader_parameter/fresnel_strength = 0.1
+shader_parameter/diffuse = 0.0
+shader_parameter/specular = 0.0
+metadata/duplicate = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vv3fe"]
 size = Vector3(1.1, 1.1, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lblg5"]
 size = Vector3(1, 2, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m3yrc"]
+size = Vector3(1, 1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcbf4"]
 albedo_color = Color(1, 0.768627, 0, 1)
@@ -174,6 +185,11 @@ size = Vector3(1, 1.5, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2krla"]
 size = Vector3(1, 1.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nce3o"]
+albedo_texture = ExtResource("33_mityr")
+emission_texture = ExtResource("33_mityr")
+uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88h2p"]
 transparency = 1
@@ -770,6 +786,17 @@ size = Vector3(0.765, 1.245, 0.05)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mgebg"]
 size = Vector3(1.8, 0.25, 1.8)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vb3jx"]
+render_priority = 0
+shader = ExtResource("14_thnyi")
+shader_parameter/normal_offset = 0.5
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/emission_multiplier = 1.0
+shader_parameter/fresnel_strength = 0.1
+shader_parameter/diffuse = 0.0
+shader_parameter/specular = 0.0
+metadata/duplicate = true
+
 [node name="Prison" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -883,10 +910,10 @@ script = ExtResource("6_ed2mg")
 
 [node name="surface" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.5, 0)
-mesh = SubResource("QuadMesh_b3qc7")
+mesh = SubResource("QuadMesh_wv7r2")
 
 [node name="under_water" type="MeshInstance3D" parent="navigation_region/level/floor/water_area"]
-mesh = SubResource("BoxMesh_mn7xv")
+mesh = SubResource("BoxMesh_23fhe")
 
 [node name="south_ward" type="CSGBox3D" parent="navigation_region/level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8, 39.25)
@@ -1113,7 +1140,7 @@ size = Vector3(1, 2, 1)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.75, 0, 0.25)
 mesh = SubResource("BoxMesh_7un6v")
 skeleton = NodePath("door_switch")
-surface_material_override/0 = ExtResource("31_fln5t")
+surface_material_override/0 = SubResource("ShaderMaterial_nigb5")
 
 [node name="door_switch" type="Area3D" parent="navigation_region/level/south_ward/interior/wall7/CSGBox3D2/door_switch" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
@@ -1177,34 +1204,12 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25002, 0, -0.429512)
 visible = false
 
-[node name="bar_switch" type="StaticBody3D" parent="navigation_region/level/south_ward/interior/wall10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499886, -0.610846, -0.277874)
-
-[node name="Area3D" type="Area3D" parent="navigation_region/level/south_ward/interior/wall10/bar_switch"]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("34_06lda")
-on_text = "Close"
-on_rotation = Vector3(0, 0, -90)
-animation_time = 0.5
-interaction_text = "Open"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/south_ward/interior/wall10/bar_switch/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.014, 0)
-shape = SubResource("BoxShape3D_2roa3")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="navigation_region/level/south_ward/interior/wall10/bar_switch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.014, 0)
-size = Vector3(1.25, 0.25, 0.05)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/south_ward/interior/wall10/bar_switch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.014, 0)
-shape = SubResource("BoxShape3D_ukvgu")
+[node name="bar_switch" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("15_y1fd3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500042, -0.5, -0.28009)
 
 [node name="prison_wood_door" parent="navigation_region/level/south_ward/interior/wall10" node_paths=PackedStringArray("switches") instance=ExtResource("13_34lev")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500027, -0.625, -0.199306)
-switches = [NodePath("../bar_switch/Area3D")]
-highlight_emission_operator = 0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.500038, -0.625, -0.199306)
+switches = [NodePath("../bar_switch")]
 
 [node name="barrel" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -3.04978, -1, 0.681515)
@@ -1213,10 +1218,10 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -3.04978, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0493603, 0.418627, 0.127327)
 
 [node name="barrel2" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.61141, -1, 3.61469)
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.61141, -1.1, 3.61469)
 
 [node name="barrel5" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -4.64614, -1, 1.16366)
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -4.64614, -1.1, 1.16366)
 visible = false
 
 [node name="candle_long" parent="navigation_region/level/south_ward/interior/wall10/barrel5" instance=ExtResource("18_vxi3a")]
@@ -1226,40 +1231,40 @@ transform = Transform3D(0.999999, 0, 1.98952e-13, 0, 1, 0, -1.98952e-13, 0, 0.99
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -4.20178, -0.25, 3.66366)
 
 [node name="barrel3" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -7.30632, -1, 5.60228)
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -7.30632, -1.1, 5.60228)
 
 [node name="barrel6" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -8.82093, -1, 4.10258)
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -8.82093, -1.1, 4.10258)
 
 [node name="barrel9" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -9.16816, -1, 5.15191)
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -9.16816, -1.1, 5.15191)
 
 [node name="barrel10" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -9.76133, -1, 6.88569)
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -9.76133, -1.1, 6.88569)
 
 [node name="barrel4" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -6.44764, -1, 5.92336)
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -6.44764, -1.1, 5.92336)
 
 [node name="barrel7" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-0.0993717, 0, -0.99505, 0, 1, 0, 0.99505, 0, -0.0993717, -7.19328, -1, -4.58904)
+transform = Transform3D(-0.0993717, 0, -0.99505, 0, 1, 0, 0.99505, 0, -0.0993717, -7.19328, -1.1, -4.58904)
 
 [node name="barrel8" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.22306, -1, -6.71853)
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.22306, -1.1, -6.71853)
 
 [node name="candle_short" parent="navigation_region/level/south_ward/interior/wall10/barrel8" instance=ExtResource("15_x2cvp")]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -0.130056, 0.596625, -0.120239)
 
 [node name="barrel11" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.88134, -1, -6.20538)
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.88134, -1.1, -6.20538)
 
 [node name="barrel12" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -9.72065, -1, -6.75587)
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -9.72065, -1.1, -6.75587)
 
 [node name="barrel13" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.28831, -1, -3.5577)
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -7.28831, -1.1, -3.5577)
 
 [node name="barrel15" parent="navigation_region/level/south_ward/interior/wall10" instance=ExtResource("11_knwdj")]
-transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -9.25471, -1, -5.84502)
+transform = Transform3D(-0.63334, 0, 0.773873, 0, 1, 0, -0.773873, 0, -0.63334, -9.25471, -1.1, -5.84502)
 
 [node name="wall8" type="CSGBox3D" parent="navigation_region/level/south_ward/interior"]
 transform = Transform3D(0.706304, -0.0218059, -0.707573, 0.0148026, 0.999762, -0.0160345, 0.707754, 0.000851313, 0.706459, 11.4151, 5.8592, -4.91288)
@@ -1300,12 +1305,14 @@ size = Vector3(5, 3.25, 0.5)
 transform = Transform3D(1, -5.71163e-09, 0, 5.28416e-09, 1, 0, 0, 0, 1, 0.499916, -1.01111, -0.000591278)
 operation = 2
 
-[node name="wood_door" type="Area3D" parent="navigation_region/level/south_ward/interior/wall12/CSGBox3D"]
+[node name="wood_door" type="Area3D" parent="navigation_region/level/south_ward/interior/wall12/CSGBox3D" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(-1, 4.91127e-10, -8.74279e-08, -1.11322e-09, 0.999997, 0.00349065, 8.74279e-08, 0.00349066, -0.999994, 0.499912, 0, 0)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("14_k0u5s")
 open_rotation_offset = Vector3(0, 90, 0)
+mesh = NodePath("trap_door")
+highlight_emission_multiplier = 0.1
 
 [node name="interactive_shape" type="CollisionShape3D" parent="navigation_region/level/south_ward/interior/wall12/CSGBox3D/wood_door"]
 transform = Transform3D(1, 2.89219e-10, 0, 4.47471e-10, 1, 0, 0, 0, 1, 0.500019, -4.76837e-06, 0)
@@ -1317,10 +1324,11 @@ shape = SubResource("BoxShape3D_vv3fe")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 shape = SubResource("BoxShape3D_lblg5")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="navigation_region/level/south_ward/interior/wall12/CSGBox3D/wood_door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-material_override = ExtResource("17_6xw7o")
-size = Vector3(1, 1, 0.1)
+[node name="trap_door" type="MeshInstance3D" parent="navigation_region/level/south_ward/interior/wall12/CSGBox3D/wood_door"]
+transform = Transform3D(1, 2.89219e-10, 0, 4.47471e-10, 1, 0, 0, 0, 1, 0.500004, -9.53674e-07, 0)
+mesh = SubResource("BoxMesh_m3yrc")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("17_6xw7o")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="navigation_region/level/south_ward/interior"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21.625, 6, 2.57)
@@ -1741,13 +1749,15 @@ operation = 2
 size = Vector3(0.65, 0.3, 0.4)
 material = ExtResource("17_6xw7o")
 
-[node name="chest_top" type="Area3D" parent="navigation_region/level/south_ward/interior/chest"]
+[node name="chest_top" type="Area3D" parent="navigation_region/level/south_ward/interior/chest" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.178218, -0.25)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("14_k0u5s")
 open_rotation_offset = Vector3(-60, 0, 0)
 dual_side = false
+mesh = NodePath("MeshInstance3D")
+highlight_emission_operator = 0
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="navigation_region/level/south_ward/interior/chest/chest_top"]
 transform = Transform3D(1, 3.55271e-15, 2.98023e-08, 3.55271e-15, 1, 7.10543e-15, -2.98023e-08, 0, 1, 0, 0, 0.25)
@@ -2046,6 +2056,12 @@ collision_layer = 1024
 collision_mask = 1024
 size = Vector3(0.05, 3.25, 0.05)
 
+[node name="pixie" type="OmniLight3D" parent="navigation_region/level/south_ward/interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7243, 5.45221, -10.4742)
+light_energy = 0.25
+shadow_enabled = true
+omni_range = 0.5
+
 [node name="picture_hanger" type="StaticBody3D" parent="navigation_region/level/south_ward/interior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 6.44719, -10.2275)
 
@@ -2067,10 +2083,12 @@ shape = SubResource("BoxShape3D_w6bd5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73, -0.025)
 shape = SubResource("BoxShape3D_7uteh")
 
-[node name="Area3D" type="Area3D" parent="navigation_region/level/south_ward/interior/picture"]
+[node name="Area3D" type="Area3D" parent="navigation_region/level/south_ward/interior/picture" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("16_imo6e")
+mesh = NodePath("../MeshInstance3D")
+highlight_emission_multiplier = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="navigation_region/level/south_ward/interior/picture/Area3D"]
 shape = SubResource("BoxShape3D_aw15p")
@@ -2079,6 +2097,7 @@ shape = SubResource("BoxShape3D_aw15p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="navigation_region/level/south_ward/interior/picture"]
 mesh = SubResource("BoxMesh_2krla")
+surface_material_override/0 = SubResource("StandardMaterial3D_nce3o")
 
 [node name="door3" type="CSGBox3D" parent="navigation_region/level/south_ward"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.125, 5.25, -10.625)
@@ -15977,7 +15996,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.114
 material_override = ExtResource("31_fln5t")
 mesh = SubResource("BoxMesh_7un6v")
 skeleton = NodePath("door_switch")
-surface_material_override/0 = ExtResource("31_fln5t")
+surface_material_override/0 = SubResource("ShaderMaterial_vb3jx")
 
 [node name="door_switch" type="Area3D" parent="door_switch" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
