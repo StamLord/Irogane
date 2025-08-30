@@ -19,6 +19,7 @@ class_name Switch
 	
 
 @export var on_text : String
+@export var animate_body : Node3D
 @export var _animate_position : bool = true
 @export var off_position : Vector3
 @export var on_position : Vector3
@@ -43,11 +44,13 @@ signal on_failed_unlocked()
 signal on_unlocked()
 
 func _ready():
+	super._ready()
+	
 	if Engine.is_editor_hint():
 		return
 	
-	origin_position = get_parent().position
-	origin_rotation_degrees = get_parent().rotation_degrees
+	origin_position = position
+	origin_rotation_degrees = rotation_degrees
 	
 
 func use(interactor):
@@ -106,10 +109,10 @@ func animate_position(from, to):
 	var start_time = Time.get_ticks_msec()
 	while Time.get_ticks_msec() - start_time <= animation_time * 1000:
 		var t = (Time.get_ticks_msec() - start_time) / (animation_time * 1000)
-		get_parent().position = lerp(from, to, t)
+		position = lerp(from, to, t)
 		await get_tree().process_frame
 	
-	get_parent().position = to
+	position = to
 	is_animating_position = false
 	
 
@@ -118,9 +121,9 @@ func animate_rotation(from, to):
 	var start_time = Time.get_ticks_msec()
 	while Time.get_ticks_msec() - start_time <= animation_time * 1000:
 		var t = (Time.get_ticks_msec() - start_time) / (animation_time * 1000)
-		get_parent().rotation_degrees = lerp(from, to, t)
+		rotation_degrees = lerp(from, to, t)
 		await get_tree().process_frame
 	
-	get_parent().rotation_degrees = to
+	rotation_degrees = to
 	is_animating_rotation = false
 	
