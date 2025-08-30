@@ -220,8 +220,6 @@ material = SubResource("StandardMaterial3D_jnv0n")
 [node name="slingshot_bullet" type="Node3D"]
 script = ExtResource("1_vcawn")
 collision_mask = 33
-flight_sfx_path = null
-impact_sfx_path = null
 impact_paricles_amount = 256
 
 [node name="hitbox" type="Area3D" parent="."]
@@ -258,7 +256,7 @@ draw_pass_1 = SubResource("SphereMesh_sim81")
 enabled = false
 shape = SubResource("SphereShape3D_01ag6")
 target_position = Vector3(0, 0, 0)
-collision_mask = 4
+collision_mask = 2048
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("4_pikt0")
