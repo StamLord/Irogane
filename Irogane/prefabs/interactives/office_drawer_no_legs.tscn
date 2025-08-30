@@ -29,13 +29,15 @@ size = Vector3(0.75, 0.25, 1)
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="drawer" type="Area3D" parent="Node3D"]
+[node name="drawer" type="Area3D" parent="Node3D" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, 0)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("2_yaf3x")
 open_position_offset = Vector3(0, 0, 0.5)
 dual_side = false
+mesh = NodePath("CSGBox3D")
+highlight_emission_multiplier = 0.1
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer"]
 material_override = ExtResource("1_jqw8u")
@@ -55,12 +57,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.515)
 material_override = ExtResource("3_h12lm")
 size = Vector3(0.2, 0.05, 0.05)
 
-[node name="drawer2" type="Area3D" parent="Node3D"]
+[node name="drawer2" type="Area3D" parent="Node3D" node_paths=PackedStringArray("mesh")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("2_yaf3x")
 open_position_offset = Vector3(0, 0, 0.5)
 dual_side = false
+mesh = NodePath("CSGBox3D")
+highlight_emission_multiplier = 0.1
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer2"]
 material_override = ExtResource("1_jqw8u")
@@ -80,13 +84,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.515)
 material_override = ExtResource("3_h12lm")
 size = Vector3(0.2, 0.05, 0.05)
 
-[node name="drawer3" type="Area3D" parent="Node3D"]
+[node name="drawer3" type="Area3D" parent="Node3D" node_paths=PackedStringArray("mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.325, 0)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("2_yaf3x")
 open_position_offset = Vector3(0, 0, 0.5)
 dual_side = false
+mesh = NodePath("CSGBox3D")
+highlight_emission_multiplier = 0.1
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Node3D/drawer3"]
 material_override = ExtResource("1_jqw8u")

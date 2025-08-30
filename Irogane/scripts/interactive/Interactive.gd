@@ -2,7 +2,7 @@ extends Area3D
 class_name Interactive
 
 @export var interaction_text = "Use"
-@export var mesh : MeshInstance3D
+@export var mesh : GeometryInstance3D
 @export var highlight_emission_multiplier = 3.0
 @export var highlight_emission_operator = StandardMaterial3D.EMISSION_OP_MULTIPLY
 
@@ -23,7 +23,10 @@ func _ready():
 	if mesh == null:
 		return
 	
-	active_material = mesh.get_surface_override_material(0)
+	if mesh is MeshInstance3D:
+		active_material = mesh.get_surface_override_material(0)
+	else:
+		active_material = mesh.material_override
 	
 	if active_material == null:
 		return
@@ -31,7 +34,12 @@ func _ready():
 	# Set a clone of the active material as override to make local changes
 	if not active_material.has_meta("duplicate"):
 		active_material = active_material.duplicate()
-		mesh.set_surface_override_material(0, active_material)
+		
+		if mesh is MeshInstance3D:
+			mesh.set_surface_override_material(0, active_material)
+		else:
+			mesh.material_override = active_material
+		
 		active_material.set_meta("duplicate", true)
 	else:
 		print("WARNING: %s tried to duplicate material for %s" % [name, mesh.name])

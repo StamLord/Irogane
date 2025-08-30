@@ -1670,6 +1670,7 @@ state_machine = NodePath("..")
 
 [node name="audio" type="Node3D" parent="footsteps"]
 script = ExtResource("29_c2b1q")
+bus = &"Sound"
 
 [node name="sound_emitter" type="Node3D" parent="footsteps"]
 script = ExtResource("36_ldcyx")
