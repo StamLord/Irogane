@@ -375,4 +375,7 @@ common/max_physics_steps_per_frame=24
 [rendering]
 
 textures/lossless_compression/force_png=true
-limits/opengl/max_lights_per_object=256
+limits/cluster_builder/max_clustered_elements=2048.0
+lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=3
+lights_and_shadows/positional_shadow/atlas_quadrant_1_subdiv=3
+lights_and_shadows/cluster_builder/max_clustered_elements=2048.0
