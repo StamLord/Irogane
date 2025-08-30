@@ -378,4 +378,5 @@ textures/lossless_compression/force_png=true
 limits/cluster_builder/max_clustered_elements=2048.0
 lights_and_shadows/positional_shadow/atlas_quadrant_0_subdiv=3
 lights_and_shadows/positional_shadow/atlas_quadrant_1_subdiv=3
+lights_and_shadows/positional_shadow/atlas_quadrant_2_subdiv=4
 lights_and_shadows/cluster_builder/max_clustered_elements=2048.0
