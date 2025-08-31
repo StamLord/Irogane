@@ -49,7 +49,7 @@ func emit_sound(sound_position, sound_range):
 			var path = get_nav_path(sound_position, sound_cast.get_collider(i).global_position)
 			var distance = get_path_length(path)
 			
-			if distance > sound_range:
+			if distance > sound_range / 2:
 				if debug:
 					DebugCanvas.debug_path(path, Color.RED)
 				continue
