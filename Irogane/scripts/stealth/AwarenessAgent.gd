@@ -219,7 +219,6 @@ func update_cone_mesh(sight_range, sight_angle, cone_mesh, sphere_mesh):
 	
 
 func hear_sound(sound_position):
-	#print("Heard sound at: " + str(sound_position))
 	on_sound_heard.emit(sound_position)
 	pass
 	
