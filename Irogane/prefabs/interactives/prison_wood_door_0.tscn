@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3rypjxv4at6l"]
+[gd_scene load_steps=8 format=3 uid="uid://d3rypjxv4at6l"]
 
 [ext_resource type="Script" path="res://scripts/interactive/Door.gd" id="1_feavi"]
 [ext_resource type="Material" uid="uid://cpw0gk8ua7o7e" path="res://assets/materials/wood_portico.tres" id="2_vord8"]
+[ext_resource type="Script" path="res://scripts/audio/audio_player.gd" id="3_qgq5e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_185vh"]
 size = Vector3(1.1, 2.1, 0.2)
@@ -71,3 +72,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
 mesh = SubResource("ArrayMesh_glf3t")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_vord8")
+
+[node name="audio" type="Node3D" parent="."]
+script = ExtResource("3_qgq5e")
+bus = &"Sound"

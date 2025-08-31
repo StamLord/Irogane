@@ -1,6 +1,10 @@
 extends Interactive
 class_name Door
 
+@onready var audio = $audio
+@export var open_sound_clip = preload("res://assets/audio/lock/wood_door_open.ogg")
+@export var close_sound_clip = preload("res://assets/audio/lock/wood_door_close.ogg")
+
 @export var open_position_offset : Vector3
 @export var open_rotation_offset : Vector3
 @export var dual_side = true
@@ -64,6 +68,10 @@ func _process(delta):
 		position = to_position
 		rotation_degrees = to_rotation
 		door_state = target_state
+		
+		# Play close sound only on animation end
+		if audio and door_state == DoorState.CLOSED:
+			audio.play(close_sound_clip)
 	else:
 		position = lerp(from_position, to_position, t)
 		rotation_degrees = lerp(from_rotation, to_rotation, t)
@@ -72,6 +80,9 @@ func _process(delta):
 func open():
 	if door_state == DoorState.OPEN:
 		return
+	
+	if audio and door_state == DoorState.CLOSED:
+		audio.play(open_sound_clip)
 	
 	from_position = position
 	from_rotation = rotation_degrees
