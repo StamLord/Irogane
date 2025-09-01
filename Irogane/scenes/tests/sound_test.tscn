@@ -1,0 +1,250 @@
+[gd_scene load_steps=27 format=3 uid="uid://fnwfbd6jy404"]
+
+[ext_resource type="Texture2D" uid="uid://c3gfmwmu3qeu" path="res://assets/textures/dev/grids/grid_64x64_dark.png" id="1_ie0l8"]
+[ext_resource type="PackedScene" uid="uid://cy46s0m24lnxw" path="res://prefabs/ui/debug_console.tscn" id="1_mgy7p"]
+[ext_resource type="Script" path="res://scripts/tests/mouse_sound_emitter.gd" id="3_5pyxq"]
+[ext_resource type="Script" path="res://scripts/camera/main_camera.gd" id="3_e6o7c"]
+[ext_resource type="PackedScene" uid="uid://6w2qvvdo2jh4" path="res://prefabs/entities/enemy_goap.tscn" id="4_gbnps"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_n5d0m"]
+vertices = PackedVector3Array(-3.25, 0.4, 1.5, -4.5, 0.4, 1.75, -4.5, 0.4, 2.25, -2.75, 0.4, 2.25, 2.25, 0.4, -3.25, 1.5, 0.4, -1.75, 1.5, 0.4, -0.25, 2.25, 0.4, 1.5, -3.25, 0.4, 1.5, -2.75, 0.4, 2.25, -2.75, 0.4, -1.25, -3.25, 0.4, -3.25, 4.5, 0.4, 2.25, 3.5, 0.4, 1.75, 2.25, 0.4, 1.5, -1.25, 0.4, 2.25, -3.25, 0.4, -3.25, -2.75, 0.4, -1.25, -2.25, 0.4, -1.75, 1.5, 0.4, -0.25, -1.25, 0.4, -0.25, -1.25, 0.4, 2.25, 2.25, 0.4, 1.5, 2.25, 0.4, -3.25, -3.25, 0.4, -3.25, -2.25, 0.4, -1.75, 1.5, 0.4, -1.75, 4.5, 0.4, -4.5, 3.75, 0.4, -4.5, 3.5, 0.4, 1.75, 4.5, 0.4, 2.25, -4.5, 0.4, 3.75, -4.5, 0.4, 4.5, 4.5, 0.4, 4.5, 4.5, 0.4, 3.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(19, 22, 20), PackedInt32Array(20, 22, 21), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(34, 33, 31), PackedInt32Array(31, 33, 32)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0co2"]
+albedo_texture = ExtResource("1_ie0l8")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="Gradient" id="Gradient_005pw"]
+colors = PackedColorArray(1, 1, 1, 1, 0.717573, 0.868575, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ifpml"]
+gradient = SubResource("Gradient_005pw")
+
+[sub_resource type="Curve" id="Curve_v3mtr"]
+_data = [Vector2(0, 0), 0.0, 5.11278, 0, 0, Vector2(0.5, 1), 0.0791426, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_rn0i1"]
+curve = SubResource("Curve_v3mtr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vq22f"]
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_rn0i1")
+color = Color(1, 1, 1, 0.498039)
+color_ramp = SubResource("GradientTexture1D_ifpml")
+
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_o4abe"]
+default_input_values = [0, 0.1]
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_h60q8"]
+function = 31
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_nxtb4"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ywjur"]
+source = 1
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_vgxbe"]
+default_input_values = [2, false, 3, 4.0]
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_sq51a"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_f3ng8"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_qxqe4"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_67y3d"]
+default_input_values = [0, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lopbl"]
+parameter_name = "proximity"
+default_value_enabled = true
+default_value = 0.5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_tch2t"]
+parameter_name = "fresnel"
+default_value_enabled = true
+default_value = 4.0
+
+[sub_resource type="VisualShader" id="VisualShader_2mgku"]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform sampler2D screen_tex_frg_21 : hint_screen_texture;
+uniform float proximity = 0.5;
+uniform sampler2D depth_tex_frg_18 : hint_depth_texture;
+uniform float fresnel = 4;
+
+
+
+void fragment() {
+	vec4 n_out21p0;
+// Texture2D:21
+	n_out21p0 = texture(screen_tex_frg_21, SCREEN_UV);
+
+
+// FloatParameter:38
+	float n_out38p0 = proximity;
+
+
+	float n_out18p0;
+// ProximityFade:18
+	{
+		float __depth_tex = texture(depth_tex_frg_18, SCREEN_UV).r;
+		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
+		__depth_world_pos.xyz /= __depth_world_pos.w;
+		n_out18p0 = clamp(1.0 - smoothstep(__depth_world_pos.z + n_out38p0, __depth_world_pos.z, VERTEX.z), 0.0, 1.0);
+	}
+
+
+// FloatFunc:19
+	float n_out19p0 = 1.0 - n_out18p0;
+
+
+// FloatParameter:39
+	float n_out39p0 = fresnel;
+
+
+// Fresnel:22
+	float n_out22p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out39p0);
+
+
+// ColorOp:23
+	vec3 n_out23p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out19p0)) * (vec3(1.0) - vec3(n_out22p0));
+
+
+// ColorOp:20
+	vec3 n_out20p0 = vec3(1.0) - (vec3(1.0) - vec3(n_out21p0.xyz)) * (vec3(1.0) - n_out23p0);
+
+
+// Input:34
+	vec4 n_out34p0 = COLOR;
+
+
+// VectorOp:35
+	vec4 n_out35p0 = vec4(n_out20p0, 0.0) * n_out34p0;
+
+
+// VectorDecompose:36
+	float n_out36p0 = n_out34p0.x;
+	float n_out36p1 = n_out34p0.y;
+	float n_out36p2 = n_out34p0.z;
+	float n_out36p3 = n_out34p0.w;
+
+
+// Output:0
+	ALBEDO = vec3(n_out35p0.xyz);
+	ALPHA = n_out36p3;
+
+
+}
+"
+graph_offset = Vector2(-1017.11, -35.5419)
+modes/blend = 1
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/18/node = SubResource("VisualShaderNodeProximityFade_o4abe")
+nodes/fragment/18/position = Vector2(-860, 260)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatFunc_h60q8")
+nodes/fragment/19/position = Vector2(-640, 260)
+nodes/fragment/20/node = SubResource("VisualShaderNodeColorOp_nxtb4")
+nodes/fragment/20/position = Vector2(-200, 200)
+nodes/fragment/21/node = SubResource("VisualShaderNodeTexture_ywjur")
+nodes/fragment/21/position = Vector2(-480, 40)
+nodes/fragment/22/node = SubResource("VisualShaderNodeFresnel_vgxbe")
+nodes/fragment/22/position = Vector2(-700, 360)
+nodes/fragment/23/node = SubResource("VisualShaderNodeColorOp_sq51a")
+nodes/fragment/23/position = Vector2(-360, 320)
+nodes/fragment/34/node = SubResource("VisualShaderNodeInput_f3ng8")
+nodes/fragment/34/position = Vector2(-400, 540)
+nodes/fragment/35/node = SubResource("VisualShaderNodeVectorOp_qxqe4")
+nodes/fragment/35/position = Vector2(20, 120)
+nodes/fragment/36/node = SubResource("VisualShaderNodeVectorDecompose_67y3d")
+nodes/fragment/36/position = Vector2(-40, 500)
+nodes/fragment/38/node = SubResource("VisualShaderNodeFloatParameter_lopbl")
+nodes/fragment/38/position = Vector2(-1140, 260)
+nodes/fragment/39/node = SubResource("VisualShaderNodeFloatParameter_tch2t")
+nodes/fragment/39/position = Vector2(-1080, 520)
+nodes/fragment/connections = PackedInt32Array(18, 0, 19, 0, 21, 0, 20, 0, 22, 0, 23, 1, 19, 0, 23, 0, 23, 0, 20, 1, 35, 0, 0, 0, 34, 0, 35, 1, 20, 0, 35, 0, 34, 0, 36, 0, 38, 0, 18, 0, 39, 0, 22, 3, 36, 3, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4ab3"]
+render_priority = 0
+shader = SubResource("VisualShader_2mgku")
+shader_parameter/proximity = 0.1
+shader_parameter/fresnel = 6.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_amdhk"]
+material = SubResource("ShaderMaterial_m4ab3")
+
+[node name="SoundTest" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_n5d0m")
+
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+material_override = SubResource("StandardMaterial3D_p0co2")
+use_collision = true
+size = Vector3(10, 0.1, 10)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -1)
+size = Vector3(3, 1, 0.25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -4)
+size = Vector3(7, 1, 0.25)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.00515, 0.5, -1.49113)
+size = Vector3(5, 1, 0.25)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.99485, 0.5, -1.49113)
+size = Vector3(5, 1, 0.25)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.99485, 0.5, 0.88387)
+size = Vector3(3.75, 1, 0.25)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00515175, 0.5, 2.88387)
+size = Vector3(8.25, 1, 0.25)
+
+[node name="consolePanelContainer" parent="." instance=ExtResource("1_mgy7p")]
+visible = false
+
+[node name="camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 5.5, 1.43001)
+current = true
+script = ExtResource("3_e6o7c")
+
+[node name="mouse_sound_emitter" type="Node3D" parent="."]
+script = ExtResource("3_5pyxq")
+
+[node name="sound_cast" type="ShapeCast3D" parent="mouse_sound_emitter"]
+enabled = false
+target_position = Vector3(0, 0, 0)
+
+[node name="sound_ripple_vfx" type="GPUParticles3D" parent="mouse_sound_emitter"]
+emitting = false
+amount = 24
+lifetime = 2.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_vq22f")
+draw_pass_1 = SubResource("SphereMesh_amdhk")
+
+[node name="navigation_agent" type="NavigationAgent3D" parent="mouse_sound_emitter"]
+
+[node name="npc" parent="." instance=ExtResource("4_gbnps")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.497119, 0, 0.989426)
